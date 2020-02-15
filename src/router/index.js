@@ -48,10 +48,24 @@ export default new Router({
 export const asyncRouterMap = {
 
   '/views/layout/Layout': () => import('@/views/layout/Layout'),
-  //蜂巢办
-  '/views/dashboard/index': () => import('@/views/dashboard'),
-  '/views/admin/index': () => import('@/views/admin/index'),
-  '/views/project/index': () => import('@/views/project/index'),
+  '/views/dashboard/index': () => import('@/views/dashboard'),//视频监控
+  '/views/admin/index': () => import('@/views/admin/index'),//人员管理
+  '/views/project/index': () => import('@/views/project/index'),//工程进度
+  '/views/monitor/index': () => import('@/views/monitor/index'),//行车监控
+  '/views/run_monitor/index': () => import('@/views/run_monitor/index'),//列车运行监控
+  '/views/location/index': () => import('@/views/location/index'),//定位管理
+  '/views/real_time/index': () => import('@/views/real_time/index'),//实时管理
+  '/views/progress/index': () => import('@/views/progress/index'),//进度形象图
+  '/views/security/index': () => import('@/views/security/index'),//安全管理
+  '/views/dispatch/index': () => import('@/views/dispatch/index'),//调度命令
+  '/views/apply/index': () => import('@/views/apply/index'),//施工请点
+  '/views/plan/index': () => import('@/views/plan/index'),//施工计划
+  '/views/search/index': () => import('@/views/search/index'),//查询统计
+  '/views/description/index': () => import('@/views/description/index'),//项目介绍
+  '/views/set/index': () => import('@/views/set/index'),//设置
+  '/views/back/index': () => import('@/views/back/index'),//返回
+  
+
   
 
 
