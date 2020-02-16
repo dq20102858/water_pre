@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="app-page">
   <div  class="app-page-container">
    <div class="app-page-select">
@@ -161,3 +162,21 @@ export default {
 .app-page-select .select-from-inline .redbtn{background: #FF5C75;width: 120px;border-color:#FF5C75; margin-right: 20px} 
 .app-page-select .select-from-inline  .input{ width: 120px;} 
 </style>
+=======
+    <div id="monitor">
+    
+    </div>
+</template>
+<script>
+    export default {
+        data() {
+            return {
+
+            }
+        },
+        methods: {
+            
+        }
+    }
+</script>
+>>>>>>> f35f452337eef77f568f5e7a37ca55145ad8b533
