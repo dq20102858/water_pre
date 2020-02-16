@@ -52,6 +52,8 @@ export const asyncRouterMap = {
   '/views/dashboard/index': () => import('@/views/dashboard'),
   '/views/admin/index': () => import('@/views/admin/index'),
   '/views/project/index': () => import('@/views/project/index'),
+  '/views/dispatch/index': () => import('@/views/dispatch/index'),
+  '/views/run_monitor/index': () => import('@/views/run_monitor/index'),
   
 
 

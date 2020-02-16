@@ -1,9 +1,45 @@
 <template>
-  <div class="dashboard-container">
-    <video id="myVideo" class="video-js" ref="myVideo">
+ <div class="app-page">
+
+   <el-row :gutter="20">
+  <el-col :span="6"><div class="grid-content">
+     <video id="myVideo" class="video-js" ref="myVideo">
       <!-- <source src="../../../static/7efaf904a76f6050251da6d38980600c.mp4" type="video/mp4" > -->
       <source src="rtmp://10.100.100.11:1935/live/" type="rtmp/flv" />
     </video>
+    </div>
+    </el-col>
+   <el-col :span="6"><div class="grid-content">
+     <video id="myVideo" class="video-js" ref="myVideo">
+      <!-- <source src="../../../static/7efaf904a76f6050251da6d38980600c.mp4" type="video/mp4" > -->
+      <source src="rtmp://10.100.100.11:1935/live/" type="rtmp/flv" />
+    </video>
+    </div>
+    </el-col>
+    <el-col :span="6"><div class="grid-content">
+     <video id="myVideo" class="video-js" ref="myVideo">
+      <!-- <source src="../../../static/7efaf904a76f6050251da6d38980600c.mp4" type="video/mp4" > -->
+      <source src="rtmp://10.100.100.11:1935/live/" type="rtmp/flv" />
+    </video>
+    </div>
+    </el-col>
+     <el-col :span="6"><div class="grid-content">
+     <video id="myVideo" class="video-js" ref="myVideo">
+      <!-- <source src="../../../static/7efaf904a76f6050251da6d38980600c.mp4" type="video/mp4" > -->
+      <source src="rtmp://10.100.100.11:1935/live/" type="rtmp/flv" />
+    </video>
+    </div>
+    </el-col>
+     <el-col :span="6"><div class="grid-content">
+     <video id="myVideo" class="video-js" ref="myVideo">
+      <!-- <source src="../../../static/7efaf904a76f6050251da6d38980600c.mp4" type="video/mp4" > -->
+      <source src="rtmp://10.100.100.11:1935/live/" type="rtmp/flv" />
+    </video>
+    </div>
+    </el-col>
+</el-row>
+
+  
   </div>
 </template>
 <script>
@@ -56,44 +92,17 @@ export default {
 }
 </script>
 <style>
-  .date{
-    text-align: center;
-    /* line-height: 80px; */
-    font-size: 30px;
-    color: #72acce;
+.video-js{background: none}
+.grid-content{background: #000;border-radius:6px;padding: 2px;}
+.myVideo-dimensions{width: 100%;height: 200px}
+  .el-row {
+    margin-bottom: 20px;
   }
-  .calendar-wapper{
-    position: relative;
-  }
-  .calendar-operate{
-    position: absolute;
-    top: -40px;
-    font-size: 10px;
-    cursor: pointer;
-  }
-  .add{
-    right: 34px;
-    color: red;
-  }
-  .detail{
-    right: 0px;
-    color: #72acce;
-  }
-  .calendar-show{
-    position: absolute;
-    font-size: 10px;
-    left: -5px;
-  }
-  .plan-finished{
-    top: -30px;
-  }
-  .act-finished{
-    top: 0px;
-  }
-  .remark{
-    top: 30px;
-  }
-  .el-calendar-table td{
-    height: 100px !important;
+    .el-row :last-child {
+      margin-bottom: 0;
+    }
+
+  .el-col {
+    border-radius: 4px;margin-bottom: 20px
   }
 </style>
