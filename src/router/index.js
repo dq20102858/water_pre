@@ -48,14 +48,14 @@ export default new Router({
 export const asyncRouterMap = {
 
   '/views/layout/Layout': () => import('@/views/layout/Layout'),
-<<<<<<< HEAD
-  //蜂巢办
-  '/views/dashboard/index': () => import('@/views/dashboard'),
-  '/views/admin/index': () => import('@/views/admin/index'),
-  '/views/project/index': () => import('@/views/project/index'),
-  '/views/dispatch/index': () => import('@/views/dispatch/index'),
-  '/views/run_monitor/index': () => import('@/views/run_monitor/index'),
-=======
+
+  // //蜂巢办
+  // '/views/dashboard/index': () => import('@/views/dashboard'),
+  // '/views/admin/index': () => import('@/views/admin/index'),
+  // '/views/project/index': () => import('@/views/project/index'),
+  // '/views/dispatch/index': () => import('@/views/dispatch/index'),
+  // '/views/run_monitor/index': () => import('@/views/run_monitor/index'),
+
   '/views/dashboard/index': () => import('@/views/dashboard'),//视频监控
   '/views/admin/index': () => import('@/views/admin/index'),//人员管理
   '/views/project/index': () => import('@/views/project/index'),//工程进度
@@ -74,7 +74,6 @@ export const asyncRouterMap = {
   '/views/back/index': () => import('@/views/back/index'),//返回
   
 
->>>>>>> f35f452337eef77f568f5e7a37ca55145ad8b533
   
 
 
