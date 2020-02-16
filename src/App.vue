@@ -40,6 +40,8 @@ p,div,h1,h2,h3,h4,ul,li,span{margin: 0;padding: 0;}
 .pull-left{float: left;}
 .pull-right{float: right;}
 .text-right{text-align: right}
+/* hideSidebar */
+#app .hideSidebar .submenu-title-noDropdown .el-tooltip{padding:0 5px!important;}
 /* bg */
 .app-body-black{background: #000; }
 .app-page{padding: 20px;}
