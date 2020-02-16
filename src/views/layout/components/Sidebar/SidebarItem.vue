@@ -1,5 +1,5 @@
 <template>
-	<div id="el-menu" class="app-menu menu-wrapper">
+	<div  class="app-menu-item menu-wrapper">
 		<template v-for="item in routes" v-if="!item.hidden&&item.children">
 			<router-link v-if="item.redirect=='dashboard'" :to="item.path+'/'+item.children[0].path" :key="item.children[0].name">
 				<el-menu-item :index="item.path+'/'+item.children[0].path" :class="{'submenu-title-noDropdown':!isNest}">
@@ -51,10 +51,10 @@ export default {
 };
 </script>
 <style>
-.app-menu {margin: 10px 0;}
-.app-menu  .el-menu-item em img{width: 24px;vertical-align: middle}
-.app-menu  .el-menu-item span{color: #fff;font-weight: 700; padding-left: 10px;font-size:15px}
-.app-menu  .el-menu-item.is-active{ background-image: linear-gradient(to right, #7391e3 ,#5478dd);border-left:4px #fff solid;padding-left: 16px!important;}
-.app-menu  .el-menu-item.is-active:hover{ background-image: linear-gradient(to right, #7391e3 ,#5478dd)!important;border-left:4px #fff solid;padding-left: 16px!important;}
-.app-menu  .el-menu-item:hover{background: none}
+
+.app-menu-item .el-menu-item em img{width: 24px;vertical-align: middle}
+.app-menu-item .el-menu-item span{color: #fff;font-weight: 700; padding-left: 10px;font-size:15px}
+.app-menu-item .el-menu-item.is-active{ background-image: linear-gradient(to right, #7391e3 ,#5478dd);border-left:4px #fff solid;padding-left: 16px!important;}
+.app-menu-item .el-menu-item.is-active:hover{ background-image: linear-gradient(to right, #7391e3 ,#5478dd)!important;border-left:4px #fff solid;padding-left: 16px!important;}
+.app-menu-item .el-menu-item:hover{background: none}
 </style>

@@ -1,6 +1,6 @@
 <template>
     <el-scrollbar wrapClass="scrollbar-wrapper">
-        <el-menu mode="vertical" :show-timeout="200" :default-active="$route.path" :collapse="isCollapse">
+        <el-menu class="app-menu" mode="vertical" :show-timeout="200" :default-active="$route.path" :collapse="isCollapse">
             <sidebar-item :routes="permission_routers"></sidebar-item>
         </el-menu>
     </el-scrollbar>
@@ -19,6 +19,8 @@
     };
 </script>
 
-<style  scoped>
-.el-menu{background-image: linear-gradient(#6289f2 ,#4b6eca, #3b5cae, #1d397a);}
+<style>
+.sidebar-container .el-scrollbar__wrap{background-image: linear-gradient(#6289f2 ,#4b6eca, #3b5cae, #1d397a);height: 100%;}
+.sidebar-container .app-menu {padding: 10px 0;}
+.sidebar-container .app-menu.el-menu{background: none}
 </style>
