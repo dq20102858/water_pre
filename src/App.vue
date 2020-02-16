@@ -40,6 +40,7 @@ p,div,h1,h2,h3,h4,ul,li,span{margin: 0;padding: 0;}
 .pull-left{float: left;}
 .pull-right{float: right;}
 .text-right{text-align: right}
+.blank{height:5px;clear: both;}
 /* hideSidebar */
 #app .hideSidebar .submenu-title-noDropdown .el-tooltip{padding:0 5px!important;}
 /* bg */
@@ -77,7 +78,7 @@ p,div,h1,h2,h3,h4,ul,li,span{margin: 0;padding: 0;}
 .app-pagination .el-pagination .el-pagination__total{color: #1d397a; padding-left: 6px;}
 /* dialog */
 .app-dialog .el-dialog{border-radius: 6px;}
-.app-dialog .el-dialog__header{border-radius:6px 6px 0 0; background: #3655a5;text-align: center;padding:15px;}
+.app-dialog .el-dialog__header{border-radius:6px 6px 0 0; background: #3655a5;text-align: center;padding:12px;}
 .app-dialog .el-dialog__title{color: #fff;font-size: 18px;}
 .app-dialog .el-dialog__headerbtn{top:16px; background: #1d397a;border-radius: 100%;height: 22px;width: 22px;padding: 2px;color:#fff;}
 .app-dialog .el-dialog__headerbtn:hover{background: #fff;color:#1d397a }

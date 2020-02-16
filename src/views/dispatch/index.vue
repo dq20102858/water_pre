@@ -52,8 +52,8 @@
     </div>
      <div  class="app-table">
       <el-table   :data="tableData">
-        <el-table-column prop="nums" label="命令号" width="140"></el-table-column>
-        <el-table-column prop="txt" label="受令司机" width="120"></el-table-column>
+        <el-table-column prop="nums" label="命令号"></el-table-column>
+        <el-table-column prop="txt" label="受令机车"></el-table-column>
         <el-table-column prop="txt" label="守令车长"></el-table-column>
         <el-table-column prop="txt" label="守令司机"></el-table-column>
         <el-table-column prop="txt" label="受令处所"></el-table-column>
@@ -79,27 +79,64 @@
   </div>
 
   <!-- add -->
-  <el-dialog class="app-dialog" title="添加部门信息" :visible.sync="isVisible">
-        <el-form >
-          <el-form-item label="公司名称" label-width="120px">
+  <el-dialog class="app-dialog app-dialog-addtop" width="880px" title="添加信息" :visible.sync="isVisible">
+        <el-form label-position="top"  :model="ruleForm" :inline="true" :rules="rules" ref="ruleForm">
+          <el-form-item label="命令号码"  prop="name">
+              <el-input  v-model="ruleForm.name" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="受令机车">
             <el-select placeholder="请选择" @change="getAreaLists" clearable>
                 <el-option  v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
             </el-form-item>
-            <el-form-item label="部门名称" label-width="120px">
+              <el-form-item label="类型">
+            <el-select placeholder="请选择" @change="getAreaLists" clearable>
+                <el-option  v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+            </el-form-item>
+              <el-form-item label="受令机长">
+            <el-select placeholder="请选择" @change="getAreaLists" clearable>
+                <el-option  v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+            </el-form-item>
+              <el-form-item label="受令处所">
+            <el-select placeholder="请选择" @change="getAreaLists" clearable>
+                <el-option  v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+            </el-form-item>
+               <el-form-item label="受令司机">
+            <el-select placeholder="请选择" @change="getAreaLists" clearable>
+                <el-option  v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+            </el-form-item>
+             <el-form-item label="值班调度">
+            <el-select placeholder="请选择" @change="getAreaLists" clearable>
+                <el-option  v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+            </el-form-item>
+            <el-form-item label="受令车站">
               <el-input  autocomplete="off"></el-input>
             </el-form-item>
-            <el-form-item label="是否属于施工队" label-width="120px">
-              <el-radio label="1">是</el-radio>
-              <el-radio  label="0">否</el-radio>
+             <el-form-item label="车站值班员">
+            <el-select placeholder="请选择" @change="getAreaLists" clearable>
+                <el-option  v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+            </el-form-item> 
+            <el-form-item label="调度命令内容">
+            <el-select placeholder="请选择" @change="getAreaLists" clearable>
+                <el-option  v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+             <el-button type="primary" class="bluebtn">删除选中模板</el-button>
+             <el-button type="primary" class="redbtn">新建调度内容模板<i class="el-icon-plus el-icon--right"></i></el-button>
             </el-form-item>
-            <el-form-item label="部门详情" label-width="120px">
-              <el-input autocomplete="off" type="textarea"></el-input>
-            </el-form-item>
+            <div class="blank"></div>
+             <div class="contents">
+              <el-input type="textarea"></el-input>
+          </div>
           </el-form>
           <div slot="footer" class="dialog-footer">
             <el-button @click="isVisible = false">取 消</el-button>
-            <el-button type="primary">确 定</el-button>
+            <el-button type="primary" @click="submitForm('ruleForm')">确 定</el-button>
           </div>
       </el-dialog>
 
@@ -140,6 +177,16 @@ export default {
           value: '选项4',
           label: '下拉选择4'
         }],
+
+        ruleForm: {
+          name: ''
+        },
+        rules: {
+          name: [
+            { required: true, message: '请输入命令号码', trigger: 'blur' },
+            { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+          ],
+        }
       }
   },
   computed:{
@@ -148,6 +195,19 @@ export default {
      openAdd(){
           this.isVisible = true;
    },
+    submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            alert('submit!');
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
+      }
   },
 };
 </script>
@@ -160,4 +220,16 @@ export default {
 .app-page-select .select-from-inline .bluebtn{ width: 120px; margin-right: 20px} 
 .app-page-select .select-from-inline .redbtn{background: #FF5C75;width: 120px;border-color:#FF5C75; margin-right: 20px} 
 .app-page-select .select-from-inline  .input{ width: 120px;} 
+
+.app-dialog-addtop{padding-left: 10px; margin-top: -5vh;}
+.app-dialog-addtop .el-dialog__body{padding: 15px 0 20px 20px}
+.app-dialog-addtop .el-form-item{margin-bottom: 10px;}
+.app-dialog-addtop .el-form-item__label{width: 100px}
+.app-dialog-addtop .el-input input{ width: 200px;} 
+.app-dialog-addtop .bluebtn{margin-left:10px}
+.app-dialog-addtop .redbtn{background: #FF5C75;border-color:#FF5C75; } 
+.app-dialog-addtop .contents{display: block}
+.app-dialog-addtop .contents .el-textarea{width: 98%;}
+.app-dialog-addtop .contents .el-textarea__inner{width: 100%;height:120px;}
+.app-dialog-addtop .el-form-item__error{padding-top: 5px;}
 </style>
