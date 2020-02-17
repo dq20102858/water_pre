@@ -42,7 +42,14 @@ p,div,h1,h2,h3,h4,ul,li,span{margin: 0;padding: 0;}
 .text-right{text-align: right}
 .blank{height:5px;clear: both;}
 /* hideSidebar */
+#app .sidebar-container{z-index: 500;}
 #app .hideSidebar .submenu-title-noDropdown .el-tooltip{padding:0 5px!important;}
+/* layer */
+.vl-notify-mask { background-color: #000;opacity: .5;}
+.vl-notify.vl-notify-alert h2.vl-notice-title{height: 52px;line-height: 53px;border-radius:6px 6px 0 0; background: #3655a5;text-align: center;}
+.vl-notice-title span{color: #fff;font-size: 18px;}
+.vl-notify.vl-notify-main{border: none;border-radius:6px;}
+.vl-notify.vl-notify-alert h2.vl-notice-title .icon-remove {position: absolute;right: 13px;font-size: 14px;text-shadow: 0 1px 0 hsla(0,0%,100%,.5);top: 13px; font-weight: 700;cursor: pointer;color: #fff;font-style: normal;background: #1d397a;border-radius: 100%; height: 22px;width: 22px; line-height: 22px;}
 /* bg */
 .app-body-black{background: #000; }
 .app-page{padding: 20px;}
@@ -82,4 +89,8 @@ p,div,h1,h2,h3,h4,ul,li,span{margin: 0;padding: 0;}
 .app-dialog .el-dialog__title{color: #fff;font-size: 18px;}
 .app-dialog .el-dialog__headerbtn{top:16px; background: #1d397a;border-radius: 100%;height: 22px;width: 22px;padding: 2px;color:#fff;}
 .app-dialog .el-dialog__headerbtn:hover{background: #fff;color:#1d397a }
+
+.app-dialog-form .el-form-item__label {color: #1d397a;}
+.app-dialog-form .el-input input {border: 1px #9db9fa solid;color: #4b6eca}
+.app-dialog-form .el-textarea__inner {border: 1px #9db9fa solid;color: #4b6eca;}
 </style>
