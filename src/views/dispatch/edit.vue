@@ -1,5 +1,5 @@
 <template>
-  <div class="app-page-layer">
+  <div id="dispatch-edit" class="app-page-layer">
     <div class="app-dialog-form">
       <el-form label-position="top" :model="ruleForm" :inline="true" :rules="rules" ref="ruleForm">
         <el-form-item label="命令号码" prop="number">
@@ -69,8 +69,8 @@
         </el-form-item>
         <div class="blank"></div>
         <el-form-item label="调度命令内容">
-          <el-select placeholder="请选择" clearable>
-              <el-option
+          <el-select placeholder="请选择"  v-model="ruleForm.station_worker_id" clearable>
+            <el-option
               v-for="item in stationWorkerList"
               :key="item.id"
               :label="item.name"
@@ -148,12 +148,6 @@ export default {
     this.getUsersListDriver(); //司机
     this.getUsersListDispatch(); //调度员
     this.getUsersListStationWorker(); //车站值班人
-  },
-  props: {
-    layerid: {
-      type: String,
-      default: ""
-    }
   },
   methods: {
     submitForm(formName) {
@@ -242,7 +236,6 @@ export default {
         }
       });
     },
-
     getLocomotiveLists() {
       this.request({
         url: "/dispatch/getLocomotiveLists",
@@ -254,55 +247,59 @@ export default {
         }
       });
     }
-  }
+  },
+   props: {
+    layerid: {
+      type: String,
+      default: ""
+    }
+  },
 };
 </script>
 
 <style>
-.app-dialog-form {
+#dispatch-edit .app-dialog-form {
   padding: 10px 0px 30px 30px;
   display: block;
 }
-.app-dialog-form .el-form-item__label {
+#dispatch-edit .app-dialog-form .el-form-item__label {
   width: 100px;
 }
-.app-dialog-form .el-input input {
+#dispatch-edit .app-dialog-form .el-input input {
   width: 240px;
 }
-.app-dialog-form .el-form--label-top .el-form-item__label {
+#dispatch-edit .app-dialog-form .el-form--label-top .el-form-item__label {
   padding-bottom: 5px;
 }
-
-.app-dialog-form .bluebtn {
+#dispatch-edit .app-dialog-form .bluebtn {
   margin-left: 10px;
 }
-.app-dialog-form .redbtn {
+#dispatch-edit .app-dialog-form .redbtn {
   background: #ff5c75;
   border-color: #ff5c75;
 }
-.app-dialog-form .contents {
+#dispatch-edit .app-dialog-form .contents {
   display: block;
 }
-.app-dialog-form .contents .el-textarea {
+#dispatch-edit .app-dialog-form .contents .el-textarea {
   width: 96.6%;
 }
-.app-dialog-form .contents .el-textarea__inner {
+#dispatch-edit .app-dialog-form .contents .el-textarea__inner {
   width: 100%;
   height: 100px;
 }
-.app-dialog-form .el-form-item__error {
+#dispatch-edit .app-dialog-form .el-form-item__error {
   padding-top: 5px;
 }
-
-.app-dialog-footer {
+#dispatch-edit .app-dialog-footer {
   margin-top: 20px;
   margin-right: 20px;
 }
-.app-dialog-footer .tips {
+#dispatch-edit .app-dialog-footer .tips {
   color: #ff5c75;
   font-size: 14px;
 }
-.app-dialog-footer .el-button {
+#dispatch-edit .app-dialog-footer .el-button {
   float: right;
   margin-right: 10px;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="app-page-layer">
+  <div id="dispatch-detail" class="app-page-layer">
     <div class="app-dialog-form">
       <el-form :inline="true">
         <el-form-item label="命令号码：">
@@ -38,7 +38,7 @@
           <el-input v-model="dataInfo.dispatch" readonly></el-input>
         </el-form-item>
         <el-form-item label="确认时间：">
-          <p v-if="dataInfo.makesure_time.length==0">
+          <p v-if="dataInfo.makesure_time==''">
             <el-input readonly value="暂未确认"></el-input>
           </p>
           <p v-else>
@@ -94,7 +94,7 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.dataInfo = data.data;
-          console.log(JSON.stringify(this.dataInfo));
+          //console.log(JSON.stringify(this.dataInfo));
         }
       });
     },
@@ -106,50 +106,50 @@ export default {
 </script>
 
 <style>
-.app-dialog-form {
+#dispatch-detail .app-dialog-form {
   padding: 30px 0px 30px 30px;
   display: block;
-  margin-top: 20px;
+  margin-top: 1px;
 }
-.app-dialog-form .el-form-item {
+#dispatch-detail .app-dialog-form .el-form-item {
   margin-bottom: 15px;
 }
-.app-dialog-form .el-form-item__label {
+#dispatch-detail .app-dialog-form .el-form-item__label {
   width: 120px;
   color: #1d397a;
 }
-.app-dialog-form .el-input input {
+#dispatch-detail .app-dialog-form .el-input input {
   width: 245px;
 }
-.app-dialog-form .bluebtn {
+#dispatch-detail .app-dialog-form .bluebtn {
   margin-left: 10px;
 }
-.app-dialog-form .redbtn {
+#dispatch-detail .app-dialog-form .redbtn {
   background: #ff5c75;
   border-color: #ff5c75;
 }
-.app-dialog-form .contents {
+#dispatch-detail .app-dialog-form .contents {
   display: block;
   width: 100%;
 }
-.app-dialog-form .contents .el-textarea {
+#dispatch-detail .app-dialog-form .contents .el-textarea {
   width: 100%;
 }
-.app-dialog-form .contents .el-form-item__content {
+#dispatch-detail .app-dialog-form .contents .el-form-item__content {
   width: 623px;
 }
-.app-dialog-form .contents .el-textarea__inner {
+#dispatch-detail .app-dialog-form .contents .el-textarea__inner {
   width: 100%;
   height: 100px;
 }
-.app-dialog-footer {
+#dispatch-detail .app-dialog-footer {
   margin-top: 20px;
 }
-.app-dialog-footer .tips {
+#dispatch-detail .app-dialog-footer .tips {
   color: #ff5c75;
   font-size: 16px;
 }
-.app-dialog-footer .el-button {
+#dispatch-detail .app-dialog-footer .el-button {
   float: right;
   margin-right: 30px;
 }

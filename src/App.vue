@@ -93,4 +93,5 @@ p,div,h1,h2,h3,h4,ul,li,span{margin: 0;padding: 0;}
 .app-dialog-form .el-form-item__label {color: #1d397a;}
 .app-dialog-form .el-input input {border: 1px #9db9fa solid;color: #4b6eca}
 .app-dialog-form .el-textarea__inner {border: 1px #9db9fa solid;color: #4b6eca;}
+
 </style>

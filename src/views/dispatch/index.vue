@@ -269,7 +269,7 @@ export default {
         content: {
           content: addForm,
           parent: this,
-          data: {} //props
+          data: {}
         }
       });
     },
@@ -279,8 +279,8 @@ export default {
         title: "调度命令详情",
         content: {
           content: detailForm,
-          parent: this, //当前的vue对象
-          data: { iframeData: { id: id } } //props
+          parent: this,
+          data: { iframeData: { id: id } }
         }
       });
     },
