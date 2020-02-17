@@ -29,12 +29,7 @@
           <el-input v-model="dataInfo.master" readonly></el-input>
         </el-form-item>
         <el-form-item label="发令时间：">
-          <p v-if="dataInfo.create_time.length==0">
-            <el-input readonly value="暂未确认"></el-input>
-          </p>
-          <p v-else>
-            <el-input readonly v-model="dataInfo.create_time"></el-input>
-          </p>
+          <el-input readonly v-model="dataInfo.create_time"></el-input>
         </el-form-item>
         <el-form-item label="受令车站：">
           <el-input v-model="dataInfo.station" readonly></el-input>
@@ -43,8 +38,7 @@
           <el-input v-model="dataInfo.dispatch" readonly></el-input>
         </el-form-item>
         <el-form-item label="确认时间：">
-          <!-- <el-input v-model="dataInfo.makesure_time" readonly></el-input> -->
-           <p v-if="dataInfo.makesure_time.length==0">
+          <p v-if="dataInfo.makesure_time.length==0">
             <el-input readonly value="暂未确认"></el-input>
           </p>
           <p v-else>

@@ -85,7 +85,6 @@
         </el-form-item>
         <div class="blank"></div>
         <div class="contents">
-          <p></p>
           <el-input type="textarea" v-model="ruleForm.description"></el-input>
         </div>
       </el-form>
