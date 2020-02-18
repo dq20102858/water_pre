@@ -21,11 +21,14 @@ import Video from 'video.js'//浏览器视频插件
 import 'video.js/dist/video-js.css'
 Vue.prototype.$video = Video
 
-
 // import Vue from 'vue';
  import layer from 'vue-layer'
  import 'vue-layer/lib/vue-layer.css';
 Vue.prototype.$layer = layer(Vue);
+
+//Print
+import Print from 'vue-print-nb'
+Vue.use(Print);
 
 // Vue.prototype.$echarts = echarts
 Vue.prototype.authorityCode = authorityCode

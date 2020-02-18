@@ -1,7 +1,7 @@
 <template>
   <div id="dispatch-print" class="app-page-layer">
     <div class="app-dialog-form">
-      <el-form :inline="true">
+      <el-form  id="printMe"  :inline="true" >
         <el-form-item label="命令号：">
           <el-input v-model="dataInfo.number" readonly></el-input>
         </el-form-item>
@@ -34,7 +34,7 @@
       <p class="info">注：本调度命令一式四份</p>
       <div slot="footer" class="app-dialog-footer">
         <el-button class="bluebtn" @click="isCancel">返回列表</el-button>
-        <el-button class="redbtn">打印信息</el-button>
+        <el-button class="redbtn" v-print="'#printMe'">打印信息</el-button>
       </div>
     </div>
   </div>
