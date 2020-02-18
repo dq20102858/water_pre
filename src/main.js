@@ -26,10 +26,6 @@ Vue.prototype.$video = Video
  import 'vue-layer/lib/vue-layer.css';
 Vue.prototype.$layer = layer(Vue);
 
-//Print
-import Print from 'vue-print-nb'
-Vue.use(Print);
-
 // Vue.prototype.$echarts = echarts
 Vue.prototype.authorityCode = authorityCode
 Vue.use(Element, {
