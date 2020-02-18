@@ -68,10 +68,10 @@
           </el-select>
         </el-form-item>
         <div class="blank"></div>
-        <el-form-item label="调度命令内容">
-          <el-select placeholder="请选择"  v-model="ruleForm.station_worker_id" clearable>
+        <div class="contents-select">
+          <el-select @change="templateChange" v-model="ruleForm.template_id" clearable>
             <el-option
-              v-for="item in stationWorkerList"
+              v-for="item in templateList"
               :key="item.id"
               :label="item.name"
               :value="item.id"
@@ -82,9 +82,10 @@
             新建调度内容模板
             <i class="el-icon-plus el-icon--right"></i>
           </el-button>
-        </el-form-item>
+        </div>
         <div class="blank"></div>
-        <div class="contents">
+        <div class="contents-area">
+          <p>调度命令内容</p>
           <el-input type="textarea" v-model="ruleForm.description"></el-input>
         </div>
       </el-form>
@@ -107,6 +108,7 @@ export default {
       driverList: [],
       dispatchList: [],
       stationWorkerList: [],
+      templateList: [],
       ruleForm: {
         number: "",
         lid: "",
@@ -118,7 +120,7 @@ export default {
         station_worker_id: "",
         station: "",
         description: "",
-        template_id: 0
+        template_id: 1
       },
       rules: {
         number: [
@@ -148,6 +150,7 @@ export default {
     this.getUsersListDriver(); //司机
     this.getUsersListDispatch(); //调度员
     this.getUsersListStationWorker(); //车站值班人
+    this.getTemplateLists(); //模板
   },
   methods: {
     submitForm(formName) {
@@ -166,8 +169,8 @@ export default {
                 message: "恭喜你，保存成功",
                 type: "success"
               });
-
               this.$layer.close(this.layerid);
+              this.$parent.getDataLists();
             }
           });
         } else {
@@ -246,14 +249,39 @@ export default {
           this.locomotiveList = data.data;
         }
       });
+    },
+    //模板
+    getTemplateLists() {
+      this.request({
+        url: "/dispatch/getTemplateLists",
+        method: "get"
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.templateList = data.data;
+           this.templateChange(this.ruleForm.template_id);
+        }
+      });
+    },
+    templateChange(params) {
+      let value = params;
+      this.request({
+        url: "/dispatch/getTemplateDetail?id=" + value,
+        method: "get"
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.ruleForm.description = res.data.data.description;
+        }
+      });
     }
   },
-   props: {
+  props: {
     layerid: {
       type: String,
       default: ""
     }
-  },
+  }
 };
 </script>
 
@@ -278,15 +306,32 @@ export default {
   background: #ff5c75;
   border-color: #ff5c75;
 }
-#dispatch-edit .app-dialog-form .contents {
+
+#dispatch-edit .app-dialog-form .contents-select {
+  text-align: right;
+  margin-right: 20px;
+}
+
+#dispatch-edit .app-dialog-form .contents-select .el-input input {
+  width: auto;
+}
+#dispatch-edit .app-dialog-form .contents-area {
   display: block;
+  margin-right: 20px;
 }
-#dispatch-edit .app-dialog-form .contents .el-textarea {
-  width: 96.6%;
+#dispatch-edit .app-dialog-form .contents-area .el-textarea {
+  width: 100%;
 }
-#dispatch-edit .app-dialog-form .contents .el-textarea__inner {
+#dispatch-edit .app-dialog-form .contents-area .el-textarea__inner {
   width: 100%;
   height: 100px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+#dispatch-edit .app-dialog-form .contents-area p {
+  color: #1d397a;
+  padding-bottom: 10px;
 }
 #dispatch-edit .app-dialog-form .el-form-item__error {
   padding-top: 5px;

@@ -71,6 +71,7 @@ p,div,h1,h2,h3,h4,ul,li,span{margin: 0;padding: 0;}
 .app-operation .btn-green{border: 1px #27db07 solid;color: #243f7e}
 .app-operation .el-button{margin-left: 0!important;margin-right: 5px;padding: 7px 10px;background: none}
 .app-operation .el-button:hover{opacity: 0.5;}
+.app-operation .el-button[disabled]{color: #999;border: 1px #999 solid;}
 /*pagination */
 .app-pagination{text-align: right;margin-top: 20px;}
 .app-pagination .el-pagination {border-radius: 4px;overflow: hidden; display: inline-block;padding: 0; margin: 20px 0;border: 1px solid #9db9fa;}

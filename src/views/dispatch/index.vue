@@ -89,7 +89,7 @@
                 style="width: 100%;"
               ></el-date-picker>
             </el-form-item>-->
-            <el-form-item>
+            <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
               <el-button size="small" icon="el-icon-search" type="primary" @click="getDataLists">查询</el-button>
             </el-form-item>
@@ -106,9 +106,9 @@
           <el-table-column prop="dispatch" label="值班调度"></el-table-column>
           <el-table-column prop="status" label="状态">
             <template scope="scope">
-              <span v-if="scope.row.status=='1'">新命令</span>
-              <span v-if="scope.row.status=='2'">已确认</span>
-              <span v-if="scope.row.status=='3'">已作废</span>
+              <span class="statused" v-if="scope.row.status=='1'">新命令</span>
+              <span class="statused" v-if="scope.row.status=='2'">已确认</span>
+              <span class="statused" v-if="scope.row.status=='3'">已作废</span>
             </template>
           </el-table-column>
           <el-table-column prop="create_time" label="发令时间"></el-table-column>
@@ -122,8 +122,12 @@
             <template slot-scope="scope">
               <div class="app-operation">
                 <el-button class="btn-blue" size="mini" @click="goDetail(scope.row.id)">详情</el-button>
-                <el-button class="btn-blue" size="mini" @click="goInvalid(scope.row.id)">作废</el-button>
-                <el-button class="btn-red" size="mini" @click="goDel(scope.row.id)">删除</el-button>
+                <el-button :disabled="scope.row.status == '3'"
+                  class="btn-blue"
+                  size="mini"
+                  @click="goInvalid(scope.row.id,scope.$index)"
+                >作废</el-button>
+                <el-button title="作废后才能删除" :disabled="scope.row.status != '3'" class="btn-red" size="mini" @click="goDel(scope.row.id)">删除</el-button>
                 <el-button class="btn-green" size="mini" @click="goPrint(scope.row.id)">打印</el-button>
               </div>
             </template>
@@ -262,6 +266,7 @@ export default {
       this.pageCur = value;
       this.getDataLists();
     },
+
     addInfo: function() {
       this.$layer.iframe({
         area: ["800px", "620px"],
@@ -284,19 +289,29 @@ export default {
         }
       });
     },
-    goInvalid(id) {
+
+    goInvalid(id, index) {
       this.$confirm("您确认作废命令?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
-      })
-        .then(() => {
-          this.$message({
-            type: "success",
-            message: "删除成功!"
-          });
-        })
-        .catch(() => {});
+      }).then(() => {
+        this.request({
+          url: "/dispatch/changeStatus",
+          method: "post",
+          data: { id: id, status: 1 },
+          contentType: "application/x-www-form-urlencoded"
+        }).then(res => {
+          let data = res.data;
+          if (data.status == 1) {
+            this.$message({
+              type: "success",
+              message: "作废成功!"
+            });
+            this.$set(this.dataList[index], "status", 3);
+          }
+        });
+      });
     },
     goDel(id) {
       this.$confirm("您确认删除命令?", "提示", {
@@ -305,12 +320,22 @@ export default {
         type: "warning"
       })
         .then(() => {
-          this.$message({
-            type: "success",
-            message: "删除成功!"
-          });
-        })
-        .catch(() => {});
+         this.request({
+          url: "/dispatch/changeStatus",
+          method: "post",
+          data: { id: id, status: 0 },
+          contentType: "application/x-www-form-urlencoded"
+        }).then(res => {
+          let data = res.data;
+          if (data.status == 1) {
+            this.$message({
+              type: "success",
+              message: "删除成功!"
+            });
+           this.getDataLists();
+          }
+        });
+      });
     }
   }
 };
@@ -341,6 +366,9 @@ export default {
   margin-right: 20px;
 }
 .app-page-select .select-from-inline .input {
-  width: 120px;
+  width: auto;
 }
+.app-page-select .select-from-inline .form-so{width:29%;text-align: right;}
+.app-page-select .select-from-inline .form-so .el-form-item__content{width: 100%;}
+.app-page-select .select-from-inline .form-so .el-button-{float: right;}
 </style>
