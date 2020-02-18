@@ -155,6 +155,8 @@
 import { publicData } from "@/utils/common";
 import addForm from "./edit.vue";
 import detailForm from "./detail.vue";
+import printlForm from "./printing.vue";
+
 export default {
   name: "",
   data() {
@@ -269,8 +271,9 @@ export default {
 
     addInfo: function() {
       this.$layer.iframe({
-        area: ["800px", "620px"],
+        area: ["800px", "590px"],
         title: "新建调度命令",
+         shadeClose: false,
         content: {
           content: addForm,
           parent: this,
@@ -282,6 +285,7 @@ export default {
       this.$layer.iframe({
         area: ["800px", "590px"],
         title: "调度命令详情",
+        shadeClose: false,
         content: {
           content: detailForm,
           parent: this,
@@ -289,7 +293,6 @@ export default {
         }
       });
     },
-
     goInvalid(id, index) {
       this.$confirm("您确认作废命令?", "提示", {
         confirmButtonText: "确定",
@@ -336,7 +339,19 @@ export default {
           }
         });
       });
-    }
+    },
+     goPrint: function(id) {
+      this.$layer.iframe({
+        area: ["960px", "590px"],
+        title: "调度命令（行车调度）",
+        shadeClose: false,
+        content: {
+          content: printlForm,
+          parent: this,
+          data: { iframeData: { id: id } }
+        }
+      });
+    },
   }
 };
 </script>

@@ -69,7 +69,7 @@
         </el-form-item>
         <div class="blank"></div>
         <div class="contents-select">
-          <el-select @change="templateChange" v-model="ruleForm.template_id" clearable>
+          <el-select @change="templateChange" v-model="ruleForm.template_id">
             <el-option
               v-for="item in templateList"
               :key="item.id"
@@ -77,8 +77,8 @@
               :value="item.id"
             ></el-option>
           </el-select>
-          <el-button type="primary" class="bluebtn">删除选中模板</el-button>
-          <el-button type="primary" class="redbtn">
+          <el-button type="primary" class="bluebtn" @click="templateDel">删除选中模板</el-button>
+          <el-button type="primary" class="redbtn" @click="templateShowDialog">
             新建调度内容模板
             <i class="el-icon-plus el-icon--right"></i>
           </el-button>
@@ -91,10 +91,38 @@
       </el-form>
       <div slot="footer" class="app-dialog-footer">
         <span class="tips">备注：*为必填项</span>
-        <el-button type="primary" @click="submitForm('ruleForm')">确认保存</el-button>
+        <el-button type="primary" @click="submitForm('ruleForm')">确定保存</el-button>
         <el-button @click="isCancel">关闭</el-button>
       </div>
     </div>
+    <!-- add dialog-->
+    <el-dialog
+      class="app-dialog app-dialog-temp"
+      width="580px"
+      title="新增调度内容模板"
+      :visible.sync="isVisible"
+      center
+      :append-to-body="true"
+    >
+      <el-form
+        :model="tempForm"
+        :rules="temprules"
+        ref="tempForm"
+        label-width="100px"
+        label-position="left"
+      >
+        <el-form-item label="新增名称" prop="name">
+          <el-input v-model="tempForm.name" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="新增内容" prop="description">
+          <el-input type="textarea" v-model="tempForm.description"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="isVisible = false">取 消</el-button>
+        <el-button type="primary" @click="templateSubmitTempForm('tempForm')">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -103,12 +131,10 @@ import editFrom from "../dashboard/index.vue";
 export default {
   data() {
     return {
-      locomotiveList: [],
-      masterList: [],
-      driverList: [],
-      dispatchList: [],
-      stationWorkerList: [],
-      templateList: [],
+      tempForm: {
+        name: "",
+        description: ""
+      },
       ruleForm: {
         number: "",
         lid: "",
@@ -122,6 +148,13 @@ export default {
         description: "",
         template_id: 1
       },
+      locomotiveList: [],
+      masterList: [],
+      driverList: [],
+      dispatchList: [],
+      stationWorkerList: [],
+      templateList: [],
+      isVisible: false,
       rules: {
         number: [
           { required: true, message: "请输入命令号码", trigger: "blur" }
@@ -139,6 +172,12 @@ export default {
         ],
         dispatch_id: [
           { required: true, message: "请选择调度员", trigger: "change" }
+        ]
+      },
+      temprules: {
+        name: [{ required: true, message: "请输入名称", trigger: "blur" }],
+        description: [
+          { required: true, message: "请输入内容", trigger: "blur" }
         ]
       }
     };
@@ -166,7 +205,7 @@ export default {
             var data = res.data;
             if (data.status == 1) {
               this.$message({
-                message: "恭喜你，保存成功",
+                message: "恭喜您，新增成功",
                 type: "success"
               });
               this.$layer.close(this.layerid);
@@ -174,7 +213,7 @@ export default {
             }
           });
         } else {
-          console.log("error submit!!");
+          console.log("保存命令失败");
           return false;
         }
       });
@@ -259,7 +298,7 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.templateList = data.data;
-           this.templateChange(this.ruleForm.template_id);
+          this.templateChange(1);
         }
       });
     },
@@ -272,6 +311,54 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.ruleForm.description = res.data.data.description;
+        }
+      });
+    },
+    templateShowDialog() {
+      this.isVisible = true;
+      this.tempForm.name = "";
+      this.tempForm.description = "";
+    },
+    templateDel() {
+      this.request({
+        url: "/dispatch/deleteTemplate",
+        method: "post",
+        data: { id: this.ruleForm.template_id }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.ruleForm.template_id = 1;
+          this.getTemplateLists();
+          this.$message({
+            message: "恭喜您，删除成功",
+            type: "success"
+          });
+        }
+      });
+    },
+    templateSubmitTempForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          let data = this.tempForm;
+          console.log("tempForm：" + JSON.stringify(data));
+          this.request({
+            url: "/dispatch/addTemplate",
+            method: "post",
+            data
+          }).then(res => {
+            var data = res.data;
+            if (data.status == 1) {
+              this.isVisible = false;
+              this.$message({
+                message: "恭喜您，新增成功",
+                type: "success"
+              });
+              this.getTemplateLists();
+            }
+          });
+        } else {
+          console.log("保存模板失败");
+          return false;
         }
       });
     }
@@ -347,5 +434,21 @@ export default {
 #dispatch-edit .app-dialog-footer .el-button {
   float: right;
   margin-right: 10px;
+}
+.app-dialog-temp .el-textarea__inner {
+  height: 120px;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+.app-dialog-temp .el-textarea {
+  width: 100%;
+}
+.app-dialog-temp .el-form-item__error {
+  padding-top: 5px;
+}
+.app-dialog-temp .el-form-item {
+  margin-bottom: 25px;
 }
 </style>
