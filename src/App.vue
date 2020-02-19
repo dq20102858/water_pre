@@ -30,9 +30,9 @@
 </script>
 <style>
 body{background: #E7EEFF; height: 100%; width: 100%; font-size: 14px;margin: 0;padding: 0; }
-
 /* public css */
 p,div,h1,h2,h3,h4,ul,li,span{margin: 0;padding: 0;}
+ul,li{list-style-type: none}
 .app-pages{margin: 15px;}
 .app-nowarp{white-space: nowrap;text-overflow: initial}
 .app-nowarp .cell{white-space: nowrap;text-overflow: initial;}
