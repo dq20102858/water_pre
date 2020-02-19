@@ -273,6 +273,7 @@ export default {
       this.$layer.iframe({
         area: ["800px", "590px"],
         title: "新建调度命令",
+        skin:"layers",
          shadeClose: false,
         content: {
           content: addForm,
