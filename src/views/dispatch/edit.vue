@@ -1,7 +1,7 @@
 <template>
   <div id="dispatch-edit" class="app-page-layer">
     <div class="app-dialog-form">
-      <el-form label-position="top" :model="ruleForm" :inline="true" :rules="rules" ref="ruleForm">
+      <el-form  label-position="top" :model="ruleForm" :inline="true" :rules="rules" ref="ruleForm">
         <el-form-item label="命令号码" prop="number">
           <el-input v-model="ruleForm.number" autocomplete="off"></el-input>
         </el-form-item>

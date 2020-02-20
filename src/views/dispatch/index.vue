@@ -295,7 +295,7 @@ export default {
       });
     },
     goInvalid(id, index) {
-      this.$confirm("您确认作废命令?", "提示", {
+      this.$confirm("您确定作废命令?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
@@ -318,7 +318,7 @@ export default {
       });
     },
     goDel(id) {
-      this.$confirm("您确认删除命令?", "提示", {
+      this.$confirm("您确定删除命令?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"

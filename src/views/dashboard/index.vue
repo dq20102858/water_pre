@@ -106,7 +106,7 @@ export default {
 }
 .grid-title {
   color: #1d397a;
-  text-align: center;
+  text-align: right;
   line-height: 28px;
 }
 .app-topbar ul {
