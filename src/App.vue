@@ -108,7 +108,7 @@ ul,li{list-style-type: none}
 .vl-notify .icon-remove {position: absolute;right: 13px!important;font-size: 14px;text-shadow: 0 1px 0 hsla(0,0%,100%,.5);top: 13px!important;color: #fff!important;background: #1d397a;border-radius: 100%; height: 22px;width: 22px; line-height: 22px;}
 .vl-notify .icon-remove:hover{background: #fff;color:#1d397a!important }
 /* el-menu-top */
-.el-menu-top {text-align: center;}
+.el-menu-top {text-align: center; background: #fff}
 .el-menu-top ul {margin: 0 auto;display: block;}
 .el-menu-top li {color: #1d397a;font-size: 16px;}
 .el-menu-top .ptitle {float: left;line-height: 61px;padding-left: 120px;padding-right: 60px;font-weight: 700;font-size: 18px;}

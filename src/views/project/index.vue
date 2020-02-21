@@ -12,54 +12,59 @@
       </el-menu>
     </div>
     <div class="app-page">
- <div class="app-page-container">
       <div id="work" class="app-table" v-show="workShow">
-        <div class="addbtn">
-           <el-button type="primary" @click="openAddWork">添加作业</el-button>
-        </div>
-       
-        <el-table :data="workLists" ref="multipleTable">
-          <el-table-column prop="sort" label="作业顺序" align="center"></el-table-column>
-          <el-table-column prop="name" label="作业名称" align="center"></el-table-column>
-          <el-table-column prop="start_time" label="计划开始时间" align="center"></el-table-column>
-          <el-table-column prop="end_time" label="计划结束时间" align="center"></el-table-column>
-          <el-table-column prop="total" label="设计总量" align="center"></el-table-column>
-          <el-table-column label="操作" width="210px">
-            <template slot-scope="scope">
-            <div class="app-operation">
-              <el-button class="btn-blue" size="mini" @click="getLine(scope.row.id)">查看线别</el-button>
-              <el-button class="btn-blue" size="mini" @click="goDetail(scope.row.id)">修改</el-button>
-              <el-button class="btn-red" size="mini"  @click="deleteWork(scope.row.id)">删除</el-button>
-           </div>
-            </template>
-          </el-table-column>
-        </el-table>
-         <div class="app-pagination">
-          <el-pagination
-           class="pagination"
-            v-if="workLists.length !== 0"
-            layout="prev, pager, next,total"
-            :current-page="this.workPage"
-            :total="this.workTotal"
-            @current-change="workPageChange"
-               prev-text="上一页"
-            next-text="下一页"
-          ></el-pagination>
-        </div>
+        <div class="app-page-container">
+          <div class="addbtn">
+            <el-button type="primary" @click="openAddWork">添加作业</el-button>
+          </div>
+
+          <el-table :data="workLists" ref="multipleTable">
+            <el-table-column prop="sort" label="作业顺序" align="center"></el-table-column>
+            <el-table-column prop="name" label="作业名称" align="center"></el-table-column>
+            <el-table-column prop="start_time" label="计划开始时间" align="center"></el-table-column>
+            <el-table-column prop="end_time" label="计划结束时间" align="center"></el-table-column>
+            <el-table-column prop="total" label="设计总量" align="center"></el-table-column>
+            <el-table-column label="操作" width="210px">
+              <template slot-scope="scope">
+                <div class="app-operation">
+                  <el-button class="btn-blue" size="mini" @click="getLine(scope.row.id)">查看线别</el-button>
+                  <el-button class="btn-blue" size="mini" @click="goDetail(scope.row.id)">修改</el-button>
+                  <el-button class="btn-red" size="mini" @click="deleteWork(scope.row.id)">删除</el-button>
+                </div>
+              </template>
+            </el-table-column>
+          </el-table>
+          <div class="app-pagination">
+            <el-pagination
+              class="pagination"
+              v-if="workLists.length !== 0"
+              layout="prev, pager, next,total"
+              :current-page="this.workPage"
+              :total="this.workTotal"
+              @current-change="workPageChange"
+              prev-text="上一页"
+              next-text="下一页"
+            ></el-pagination>
+          </div>
         </div>
         <el-dialog class="dialog-work" :title="this.title" :visible.sync="workVisible">
           <el-form class="el-form-custom" :model="workData" :rules="wokRules" ref="workForm">
             <el-form-item label="名称" prop="name">
-              <el-input v-model="workData.name" autocomplete="off"></el-input>
+              <el-input v-model="workData.name" autocomplete="off" placeholder="请输入作业名称"></el-input>
             </el-form-item>
-             <el-form-item label="顺序">
-              <el-input v-model="workData.sort" autocomplete="off"></el-input>
+            <el-form-item label="顺序">
+              <el-input
+                v-model="workData.sort"
+                autocomplete="off"
+                onkeyup="this.value = this.value.replace(/[^\d.]/g,'');"
+                placeholder="请输入数字，数字越大越靠后"
+              ></el-input>
             </el-form-item>
             <el-form-item label="类别" prop="type">
               <el-radio v-model="workData.type" :label="1">里程</el-radio>
               <el-radio v-model="workData.type" :label="2">计数（个，股，孔）</el-radio>
             </el-form-item>
-            <el-form-item label="线别"  prop="line_type" v-if="workData.type == 1">
+            <el-form-item label="线别" prop="line_type" v-if="workData.type == 1">
               <el-checkbox-group v-model="workData.line_type">
                 <el-checkbox label="1">左线</el-checkbox>
                 <el-checkbox label="2">右线</el-checkbox>
@@ -67,23 +72,23 @@
                 <el-checkbox label="4">出场线</el-checkbox>
               </el-checkbox-group>
             </el-form-item>
-              <div class="el-form-item-inline">
-             <el-form-item label="设计总量" prop="total">
-              <el-input v-model="workData.total" autocomplete="off"></el-input>
-            </el-form-item>
-             <el-form-item label="单位" prop="unit">
-              <el-input v-model="workData.unit" autocomplete="off"></el-input>
-            </el-form-item>
+            <div class="el-form-item-inline">
+              <el-form-item label="设计总量" prop="total">
+                <el-input v-model="workData.total" autocomplete="off"></el-input>
+              </el-form-item>
+              <el-form-item label="单位" prop="unit">
+                <el-input v-model="workData.unit" autocomplete="off"></el-input>
+              </el-form-item>
             </div>
             <div class="el-form-item-inline">
-            <el-form-item label="计划开始时间" prop="start_time">
-              <el-date-picker v-model="workData.start_time" type="date" placeholder="选择日期"></el-date-picker>
-            </el-form-item>
-            <el-form-item label="计划结束时间" prop="end_time">
-              <el-date-picker v-model="workData.end_time" type="date" placeholder="选择日期"></el-date-picker>
-            </el-form-item>
-             </div>
-             <div class="blank"></div>
+              <el-form-item label="计划开始时间" prop="start_time">
+                <el-date-picker v-model="workData.start_time" type="date" placeholder="选择日期"></el-date-picker>
+              </el-form-item>
+              <el-form-item label="计划结束时间" prop="end_time">
+                <el-date-picker v-model="workData.end_time" type="date" placeholder="选择日期"></el-date-picker>
+              </el-form-item>
+            </div>
+            <div class="blank"></div>
           </el-form>
           <div slot="footer" class="dialog-footer">
             <el-button @click="workVisible = false">关闭</el-button>
@@ -136,218 +141,118 @@
             <el-button @click="lineVisible = false">关闭</el-button>
           </div>
         </el-dialog>
-    
+      </div>
       <div id="plan" v-show="planShow">
-        <el-menu
+         <div class="echart-top">
+        <el-menu  class="el-menu-cus"
           :default-active="subIndex"
-          class="el-menu-demo"
-          mode="horizontal"
           @select="handleSubSelect"
         >
           <el-menu-item
-            v-for="(item,index) in lineTypeList" 
+            v-for="(item,index) in lineTypeList"
             :index="item.id.toString()"
           >{{item.name}}</el-menu-item>
         </el-menu>
-        <el-calendar class="plancale">
-          <!-- 这里使用的是 2.5 slot 语法，对于新项目请使用 2.6 slot 语法-->
-          <template slot="dateCell" slot-scope="{date, data}">
-            <div class="calendar-wapper">
-              <p class="date">{{ data.day.split('-').slice(2).join('-') }}</p>
-              <p class="calendar-operate add" @click="addDayPlay(data.day)">添加</p>
-              <p class="calendar-operate detail" @click="getDetail(data.day)">详情</p>
-              <div class="calendar-tips">
-              <p class="calendar-show plan-finished">
-                <span>计划完成：</span>
-                <span v-if="typeof(calendarLists[data.day])!=='undefined'">
-                  <div v-for="(item,index) in calendarLists[data.day]">{{item.plan_tip}}</div>
-                </span>
-              </p>
-              <p class="calendar-show act-finished">
-                <span>实际完成：</span>
-                <span v-if="typeof(calendarLists[data.day])!=='undefined'">
-                  <div v-for="(item,index) in calendarLists[data.day]">{{item.true_tip}}</div>
-                </span>
-              </p>
-              <p class="calendar-show remark">
-                <span>备注：</span>
-                <span v-if="typeof(calendarLists[data.day])!=='undefined'">
-                  <div v-for="(item,index) in calendarLists[data.day]">{{item.remark}}</div>
-                </span>
-              </p>
+         </div>
+        <div class="app-page-container">
+          <el-calendar class="plancale">
+            <!-- 这里使用的是 2.5 slot 语法，对于新项目请使用 2.6 slot 语法-->
+            <template slot="dateCell" slot-scope="{date, data}">
+              <div class="calendar-wapper">
+                <p class="date">{{ data.day.split('-').slice(2).join('-') }}</p>
+                <p class="calendar-operate add" @click="addDayPlay(data.day)">添加</p>
+                <p class="calendar-operate detail" @click="getDetail(data.day)">详情</p>
+                <div class="calendar-tips">
+                  <p class="calendar-show plan-finished">
+                    <span>计划完成：</span>
+                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">
+                      <div v-for="(item,index) in calendarLists[data.day]">{{item.plan_tip}}</div>
+                    </span>
+                  </p>
+                  <p class="calendar-show act-finished">
+                    <span>实际完成：</span>
+                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">
+                      <div v-for="(item,index) in calendarLists[data.day]">{{item.true_tip}}</div>
+                    </span>
+                  </p>
+                  <p class="calendar-show remark">
+                    <span>备注：</span>
+                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">
+                      <div v-for="(item,index) in calendarLists[data.day]">{{item.remark}}</div>
+                    </span>
+                  </p>
+                </div>
               </div>
+            </template>
+          </el-calendar>
+          <el-dialog title="添加信息" :visible.sync="planVisible">
+            <span>添加日期：{{addDate}}</span>
+            <span>作业：{{planWorkName}}</span>
+            <ul id="plan-ul">
+              <li>
+                <div class="plan-content">线别</div>
+                <div class="plan-content">计划开始里程</div>
+                <div class="plan-content">计划结束里程</div>
+              </li>
+              <li v-for="(item,index) in planOneData" class="li-line">
+                <div class="plan-content">
+                  <el-checkbox v-model="item.checked"></el-checkbox>
+                  <span v-if="item.line_type == 1">左线</span>
+                  <span v-else-if="item.line_type == 2">右线</span>
+                  <span v-else-if="item.line_type == 3">入场线</span>
+                  <span v-else>出场线</span>
+                </div>
+                <div class="plan-content">
+                  <span>DK</span>
+                  <input v-model="item.start_flag" style="width:40px;" type="number" />
+                  <span>+</span>
+                  <input v-model="item.start_length" style="width:40px;" type="number" />
+                </div>
+                <div class="plan-content">
+                  <span>DK</span>
+                  <input v-model="item.end_flag" style="width:40px;" type="number" />
+                  <span>+</span>
+                  <input v-model="item.end_length" style="width:40px;" type="number" />
+                </div>
+                <div class="plan-tip">{{item.tip}}</div>
+              </li>
+              <p style="clear:both"></p>
+            </ul>
+            <div class="plan-btn">
+              <el-button size="mini" @click="closePlan">关闭</el-button>
+              <el-button size="mini" @click="addOnePlan">确认</el-button>
             </div>
-          </template>
-        </el-calendar>
-        <el-dialog title="添加信息" :visible.sync="planVisible">
-          <span>添加日期：{{addDate}}</span>
-          <span>作业：{{planWorkName}}</span>
-          <ul id="plan-ul">
-            <li>
-              <div class="plan-content">线别</div>
-              <div class="plan-content">计划开始里程</div>
-              <div class="plan-content">计划结束里程</div>
-            </li>
-            <li v-for="(item,index) in planOneData" class="li-line">
-              <div class="plan-content">
-                <el-checkbox v-model="item.checked"></el-checkbox>
-                <span v-if="item.line_type == 1">左线</span>
-                <span v-else-if="item.line_type == 2">右线</span>
-                <span v-else-if="item.line_type == 3">入场线</span>
-                <span v-else>出场线</span>
-              </div>
-              <div class="plan-content">
-                <span>DK</span>
-                <input v-model="item.start_flag" style="width:40px;" type="number" />
-                <span>+</span>
-                <input v-model="item.start_length" style="width:40px;" type="number" />
-              </div>
-              <div class="plan-content">
-                <span>DK</span>
-                <input v-model="item.end_flag" style="width:40px;" type="number" />
-                <span>+</span>
-                <input v-model="item.end_length" style="width:40px;" type="number" />
-              </div>
-              <div class="plan-tip">{{item.tip}}</div>
-            </li>
-            <p style="clear:both"></p>
-          </ul>
-          <div class="plan-btn">
-            <el-button size="mini" @click="closePlan">关闭</el-button>
-            <el-button size="mini" @click="addOnePlan">确认</el-button>
-          </div>
-        </el-dialog>
-        <el-dialog title="详细信息" :visible.sync="detailVisible">
-          <div>
-            <span>施工日期：</span>
-            <span v-if="planDetailList.length>0">{{planDetailList[0]['add_date']}}</span>
-            <span>作业：</span>
-            <span>{{this.planWorkName}}</span>
-          </div>
-          <el-table :data="planDetailList">
-            <el-table-column property="line_type_desc" label="线别"></el-table-column>
-            <el-table-column property="plan_tip" label="计划里程"></el-table-column>
-            <el-table-column property="true_tip" label="实际里程"></el-table-column>
-            <el-table-column property="remark" label="备注"></el-table-column>
-          </el-table>
-          <div style="margin-top:10px;position:relative;">
-            <el-button size="mini" @click="closeDetail" style="position:absolute;right:0px">关闭</el-button>
-          </div>
-        </el-dialog>
+          </el-dialog>
+          <el-dialog title="详细信息" :visible.sync="detailVisible">
+            <div>
+              <span>施工日期：</span>
+              <span v-if="planDetailList.length>0">{{planDetailList[0]['add_date']}}</span>
+              <span>作业：</span>
+              <span>{{this.planWorkName}}</span>
+            </div>
+            <el-table :data="planDetailList">
+              <el-table-column property="line_type_desc" label="线别"></el-table-column>
+              <el-table-column property="plan_tip" label="计划里程"></el-table-column>
+              <el-table-column property="true_tip" label="实际里程"></el-table-column>
+              <el-table-column property="remark" label="备注"></el-table-column>
+            </el-table>
+            <div style="margin-top:10px;position:relative;">
+              <el-button size="mini" @click="closeDetail" style="position:absolute;right:0px">关闭</el-button>
+            </div>
+          </el-dialog>
+        </div>
       </div>
-      <div id="detail" v-show="detailShow">
-        <el-form
-          :model="searchForm"
-          :inline="true"
-        >
-          <el-form-item label="作业">
-            <el-select
-              style="width:140px;"
-              v-model="searchForm.work"
-              clearable
-              placeholder="请选择作业"
-              class="search-input search-select"
-            >
-              <el-option
-                v-for="item in lineTypeList"
-                :key="item.id"
-                :label="item.name"
-                :value="item.id"
-              >{{item.name}}</el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="选择时间">
-            <el-date-picker
-              v-model="searchForm.time_range"
-              type="daterange"
-              align="right"
-              unlink-panels
-              range-separator="至"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期"
-              :picker-options="pickerOptions2"
-              class
-              value-format="yyyy-MM-dd"
-            ></el-date-picker>
-          </el-form-item>
-          <el-form-item label="完成状态">
-            <el-select
-              v-model="searchForm.is_finish"
-              clearable
-              placeholder="请选择状态"
-              class="search-input search-select" style="width:140px;"
-            >
-              <el-option key="1" label="已完成" value="1">已完成</el-option>
-              <el-option key="0" label="未完成" value="0">未完成</el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item>
-          <el-button size="small" icon="el-icon-search" type="primary" @click="getDetailLists">检索</el-button>
-        </el-form-item>
-        <el-form-item>
-        <el-button
-          size="small"
-          icon="el-icon-plus"
-          type="primary"
-          @click="addHistory" style="margin-left:20px;"
-        >添加历史记录</el-button>
-</el-form-item></el-form>
 
-        <div class="app-table">
-        <el-table :data="detailListPages" ref="multipleTable">
-          <el-table-column type="index" label="序号" align="center"></el-table-column>
-          <el-table-column prop="pro_name" label="作业名称" align="center"></el-table-column>
-          <el-table-column prop="plan_tip" label="计划完成" align="center"></el-table-column>
-          <el-table-column prop="true_tip" label="实际完成" align="center"></el-table-column>
-          <el-table-column label="状态" align="center">
-            <template slot-scope="scope">
-              <span v-if="scope.row.is_finish == 1">已完成</span>
-              <span v-else>未完成</span>
-            </template>
-          </el-table-column>
-          <el-table-column prop="remark" label="备注" align="center"></el-table-column>
-          <el-table-column prop="plan_date" label="日期" align="center"></el-table-column>
-          <el-table-column label="操作">
-            <template slot-scope="scope">
-              <div class="app-operation">
-              <el-button class="btn-blue" size="mini" @click="getPlanDetail(scope.row.id)">修改</el-button>
-              <el-button class="btn-red" size="mini" @click="deletePlan(scope.row.id)">删除</el-button>
-           </div>
-            </template>
-          </el-table-column>
-        </el-table>
-        </div>
-       <div class="app-pagination">
-          <el-pagination
-           class="pagination"
-            v-if="detailListPages.length !== 0"
-             layout="prev, pager, next,total"
-            :current-page="this.detailPage"
-            :total="this.detailTotal"
-            @current-change="detailPageChange"
-             prev-text="上一页"
-            next-text="下一页"
-          ></el-pagination>
-        </div>
-        <el-dialog :title="this.historyTitle" :visible.sync="addHistoryVisible">
-          <div
-            v-show="!addShow"
-            style="padding:10px;margin-top:-35px;color:#4d96e2;font-size: 16px;"
-          >
-            <span>作业名称：</span>
-            <span>{{historyData.pro_name}}</span>
-            <span>日期：</span>
-            <span>{{historyData.plan_time}}</span>
-            <span>线别：</span>
-            <span>{{historyData.line_type_desc}}</span>
-          </div>
-          <el-form :model="historyData" :rules="historyRules" ref="detailForm">
-            <el-form-item label="作业名称" label-width="80px" prop="pro_id" v-show="addShow">
+      <div id="detail" v-show="detailShow">
+        <div class="app-page-container">
+          <el-form :model="searchForm" :inline="true">
+            <el-form-item label="作业">
               <el-select
-                v-model="historyData.pro_id"
+                style="width:140px;"
+                v-model="searchForm.work"
                 clearable
                 placeholder="请选择作业"
-                @change="getTheLineType"
+                class="search-input search-select"
               >
                 <el-option
                   v-for="item in lineTypeList"
@@ -357,51 +262,230 @@
                 >{{item.name}}</el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="线别" label-width="80px" prop="line_type" v-show="addShow">
-              <el-select v-model="historyData.line_type" clearable placeholder="请选择线别">
-                <el-option
-                  v-for="item in selectedLineTypeLists"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                >{{item.name}}</el-option>
+            <el-form-item label="选择时间">
+              <el-date-picker
+                v-model="searchForm.time_range"
+                type="daterange"
+                align="right"
+                unlink-panels
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
+                :picker-options="pickerOptions2"
+                class
+                value-format="yyyy-MM-dd"
+              ></el-date-picker>
+            </el-form-item>
+            <el-form-item label="完成状态">
+              <el-select
+                v-model="searchForm.is_finish"
+                clearable
+                placeholder="请选择状态"
+                class="search-input search-select"
+                style="width:140px;"
+              >
+                <el-option key="1" label="已完成" value="1">已完成</el-option>
+                <el-option key="0" label="未完成" value="0">未完成</el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="计划里程" label-width="80px" prop="start_flag">
-              DK
-              <el-input style="width:70px;" v-model="historyData.start_flag" placeholder="公里"></el-input>+
-              <el-input style="width:50px;" v-model="historyData.start_length" placeholder="米"></el-input>~
-              DK
-              <el-input style="width:70px;" v-model="historyData.end_flag" placeholder="公里"></el-input>+
-              <el-input style="width:50px;" v-model="historyData.end_length" placeholder="米"></el-input>
+            <el-form-item>
+              <el-button
+                size="small"
+                icon="el-icon-search"
+                type="primary"
+                @click="getDetailLists"
+              >检索</el-button>
             </el-form-item>
-            <el-form-item label="实际里程" label-width="80px" prop="t_start_flag">
-              DK
-              <el-input style="width:70px;" v-model="historyData.t_start_flag" placeholder="公里"></el-input>+
-              <el-input style="width:50px;" v-model="historyData.t_start_length" placeholder="米"></el-input>~
-              DK
-              <el-input style="width:70px;" v-model="historyData.t_end_flag" placeholder="公里"></el-input>+
-              <el-input style="width:50px;" v-model="historyData.t_end_length" placeholder="米"></el-input>
-            </el-form-item>
-
-            <el-form-item label="完成日期" label-width="80px" prop="plan_time" v-show="addShow">
-              <el-date-picker v-model="historyData.plan_time" type="date" placeholder="选择日期"></el-date-picker>
-            </el-form-item>
-            <el-form-item label="是否完成" label-width="80px" prop="is_finish">
-              <el-radio v-model="historyData.is_finish" label="1" value="1">是</el-radio>
-              <el-radio v-model="historyData.is_finish" label="0" value="0">否</el-radio>
-            </el-form-item>
-            <el-form-item label="备注" label-width="80px">
-              <el-input v-model="historyData.remark" placeholder="填写备注" type="textarea"></el-input>
+            <el-form-item>
+              <el-button
+                size="small"
+                icon="el-icon-plus"
+                type="primary"
+                @click="addHistory"
+                style="margin-left:20px;"
+              >添加历史记录</el-button>
             </el-form-item>
           </el-form>
-          <div slot="footer" class="dialog-footer">
-            <el-button @click="addHistoryVisible = false">取 消</el-button>
-            <el-button type="primary" @click="addOrEditPlanDo()">确 定</el-button>
+
+          <div class="app-table">
+            <el-table :data="detailListPages" ref="multipleTable">
+              <el-table-column type="index" label="序号" align="center"></el-table-column>
+              <el-table-column prop="pro_name" label="作业名称" align="center"></el-table-column>
+              <el-table-column prop="plan_tip" label="计划完成" align="center"></el-table-column>
+              <el-table-column prop="true_tip" label="实际完成" align="center"></el-table-column>
+              <el-table-column label="状态" align="center">
+                <template slot-scope="scope">
+                  <span v-if="scope.row.is_finish == 1">已完成</span>
+                  <span v-else>未完成</span>
+                </template>
+              </el-table-column>
+              <el-table-column prop="remark" label="备注" align="center"></el-table-column>
+              <el-table-column prop="plan_date" label="日期" align="center"></el-table-column>
+              <el-table-column label="操作">
+                <template slot-scope="scope">
+                  <div class="app-operation">
+                    <el-button class="btn-blue" size="mini" @click="getPlanDetail(scope.row.id)">修改</el-button>
+                    <el-button class="btn-red" size="mini" @click="deletePlan(scope.row.id)">删除</el-button>
+                  </div>
+                </template>
+              </el-table-column>
+            </el-table>
           </div>
-        </el-dialog>
+          <div class="app-pagination">
+            <el-pagination
+              class="pagination"
+              v-if="detailListPages.length !== 0"
+              layout="prev, pager, next,total"
+              :current-page="this.detailPage"
+              :total="this.detailTotal"
+              @current-change="detailPageChange"
+              prev-text="上一页"
+              next-text="下一页"
+            ></el-pagination>
+          </div>
+          <el-dialog :title="this.historyTitle" :visible.sync="addHistoryVisible">
+            <div
+              v-show="!addShow"
+              style="padding:10px;margin-top:-35px;color:#4d96e2;font-size: 16px;"
+            >
+              <span>作业名称：</span>
+              <span>{{historyData.pro_name}}</span>
+              <span>日期：</span>
+              <span>{{historyData.plan_time}}</span>
+              <span>线别：</span>
+              <span>{{historyData.line_type_desc}}</span>
+            </div>
+            <el-form :model="historyData" :rules="historyRules" ref="detailForm">
+              <el-form-item label="作业名称" label-width="80px" prop="pro_id" v-show="addShow">
+                <el-select
+                  v-model="historyData.pro_id"
+                  clearable
+                  placeholder="请选择作业"
+                  @change="getTheLineType"
+                >
+                  <el-option
+                    v-for="item in lineTypeList"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id"
+                  >{{item.name}}</el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="线别" label-width="80px" prop="line_type" v-show="addShow">
+                <el-select v-model="historyData.line_type" clearable placeholder="请选择线别">
+                  <el-option
+                    v-for="item in selectedLineTypeLists"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id"
+                  >{{item.name}}</el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="计划里程" label-width="80px" prop="start_flag">
+                DK
+                <el-input style="width:70px;" v-model="historyData.start_flag" placeholder="公里"></el-input>+
+                <el-input style="width:50px;" v-model="historyData.start_length" placeholder="米"></el-input>~
+                DK
+                <el-input style="width:70px;" v-model="historyData.end_flag" placeholder="公里"></el-input>+
+                <el-input style="width:50px;" v-model="historyData.end_length" placeholder="米"></el-input>
+              </el-form-item>
+              <el-form-item label="实际里程" label-width="80px" prop="t_start_flag">
+                DK
+                <el-input style="width:70px;" v-model="historyData.t_start_flag" placeholder="公里"></el-input>+
+                <el-input style="width:50px;" v-model="historyData.t_start_length" placeholder="米"></el-input>~
+                DK
+                <el-input style="width:70px;" v-model="historyData.t_end_flag" placeholder="公里"></el-input>+
+                <el-input style="width:50px;" v-model="historyData.t_end_length" placeholder="米"></el-input>
+              </el-form-item>
+
+              <el-form-item label="完成日期" label-width="80px" prop="plan_time" v-show="addShow">
+                <el-date-picker v-model="historyData.plan_time" type="date" placeholder="选择日期"></el-date-picker>
+              </el-form-item>
+              <el-form-item label="是否完成" label-width="80px" prop="is_finish">
+                <el-radio v-model="historyData.is_finish" label="1" value="1">是</el-radio>
+                <el-radio v-model="historyData.is_finish" label="0" value="0">否</el-radio>
+              </el-form-item>
+              <el-form-item label="备注" label-width="80px">
+                <el-input v-model="historyData.remark" placeholder="填写备注" type="textarea"></el-input>
+              </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="addHistoryVisible = false">取 消</el-button>
+              <el-button type="primary" @click="addOrEditPlanDo()">确 定</el-button>
+            </div>
+          </el-dialog>
+        </div>
       </div>
-    </div>
+      <!-- echarts -->
+
+      <div id="echart" v-show="echartShow">
+        <div class="echart-top">
+          <el-menu :default-active="subIndex" class="el-menu-cus" @select="handleChartSubSelect">
+            <el-menu-item
+              v-for="(item,index) in lineTypeList"
+              :index="item.id.toString()"
+            >{{item.name}}</el-menu-item>
+          </el-menu>
+          <div class="el-serach">
+            <el-date-picker
+              v-model="echartDate"
+              type="month"
+              placeholder="在此选择年月查询"
+              format="yyyy-MM"
+              value-format="yyyy-MM"
+            ></el-date-picker>
+            <el-button @click="searchChartByDate">查询</el-button>
+          </div>
+        </div>
+        <div class="app-page-container">
+          <div class="chartbox">
+            <div id="oneChart"></div>
+          </div>
+        </div>
+        <div class="chart-ontainer">
+          <el-row :gutter="20">
+            <el-col :span="10">
+              <div class="second-content">
+                <h2>{{echartDataNames}} 总体完成情况</h2>
+                <ul class="oneitem">
+                  <li>
+                    <p>设计工程量：</p>
+                    <h3 class="p1">{{echartDataList.designTotal}}公里</h3>
+                  </li>
+                  <li>
+                    <p>完成百分比：</p>
+                    <h3 class="p2">{{echartDataList.percent}}公里</h3>
+                  </li>
+                </ul>
+                <ul class="twoitem">
+                  <li>
+                    <p>月累完成：</p>
+                    <h3>{{echartDataList.monthTotal}}</h3>
+                  </li>
+                  <li>
+                    <p>年累完成：</p>
+                    <h3>{{echartDataList.yearTotal}}</h3>
+                  </li>
+                  <li>
+                    <p>开累完成：</p>
+                    <h3>{{echartDataList.workTotal}}</h3>
+                  </li>
+                  <li>
+                    <p>剩余工程量：</p>
+                    <h3>{{echartDataList.leftTotal}}</h3>
+                  </li>
+                </ul>
+              </div>
+            </el-col>
+            <el-col :span="14">
+              <div class="second-content">
+                <div id="thirdChart"></div>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+      </div>
+      <!-- end echarts -->
     </div>
   </div>
 </template>
@@ -410,7 +494,7 @@ import { publicData } from "@/utils/common";
 export default {
   data() {
     return {
-      eschat:"/project/ecchat",
+      eschat: "/project/ecchat",
       activeIndex: "1",
       subIndex: "0",
       workShow: true,
@@ -431,16 +515,23 @@ export default {
         start_time: [
           { required: true, message: "请选择日期", trigger: "change" }
         ],
-        end_time: [{ required: true, message: "请选择日期", trigger: "change" }],
+        end_time: [
+          { required: true, message: "请选择日期", trigger: "change" }
+        ],
         total: [{ required: true, message: "请输入设计总量", trigger: "blur" }],
         unit: [{ required: true, message: "请输入单位", trigger: "blur" }]
-  },
+      },
       lineVisible: false, //查看线别
       lineData: [],
       planShow: false,
       lineTypeList: [],
       planVisible: false,
       planOneData: [],
+      echartShow: false,
+      echartDate: "",
+      curMonth: "",
+      echartDataList: [],
+      echartDataNames: "",
       addDate: "",
       planWorkName: "",
       planDetailList: [],
@@ -486,22 +577,27 @@ export default {
         this.workShow = true;
         this.planShow = false;
         this.detailShow = false;
+        this.echartShow = false;
         this.getWorkLists();
       } else if (key == 2) {
         this.workShow = false;
         this.planShow = true;
         this.getWorkTypeList();
         this.detailShow = false;
+        this.echartShow = false;
       } else if (key == 3) {
         this.workShow = false;
         this.planShow = false;
         this.detailShow = true;
+        this.echartShow = false;
         this.getDetailLists();
         this.getWorkTypeList();
       } else {
         this.workShow = false;
         this.planShow = false;
         this.detailShow = false;
+        this.echartShow = true;
+        this.getChartWorkTypeList();
       }
     },
     handleSubSelect(key) {
@@ -578,35 +674,35 @@ export default {
       });
     },
     deleteWork(id) {
-        this.$confirm("您确定删除?", "提示", {
+      this.$confirm("您确定删除?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
       }).then(() => {
-      let data = {
-        id: id
-      };
-      this.request({
-        url: "/project/deleteWork",
-        method: "post",
-        data
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          this.$message({
-            showClose: true,
-            message: "删除成功",
-            type: "success"
-          });
-          this.getWorkLists();
-        } else {
-          this.$message({
-            showClose: true,
-            message: "删除失败",
-            type: "error"
-          });
-        }
-      });
+        let data = {
+          id: id
+        };
+        this.request({
+          url: "/project/deleteWork",
+          method: "post",
+          data
+        }).then(response => {
+          let data = response.data;
+          if (data.status == 1) {
+            this.$message({
+              showClose: true,
+              message: "删除成功",
+              type: "success"
+            });
+            this.getWorkLists();
+          } else {
+            this.$message({
+              showClose: true,
+              message: "删除失败",
+              type: "error"
+            });
+          }
+        });
       });
     },
     addOrEditLineDo(data) {
@@ -878,7 +974,228 @@ export default {
           });
         }
       });
+    },
+    // echart
+    getChartWorkTypeList() {
+      this.request({
+        url: "/project/getWorkTypeList",
+        method: "get",
+        params: {}
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1 && data.data.length > 0) {
+          this.lineTypeList = data.data;
+          this.subIndex = this.lineTypeList[0]["id"].toString();
+          this.echartDate="";
+         this.getCharData(this.subIndex,this.curMonth, this.lineTypeList[0]["name"])
+        }
+      });
+    },
+    handleChartSubSelect(key) {
+       let date = this.curMonth;
+      if (this.echartDate != "" && this.echartDate != null) {
+        date = this.echartDate;
+      }
+      let names = "";
+      this.lineTypeList.map((item, i) => {
+        if (item.id == key) {
+          names = item.name;
+        }
+      });
+     //this.subIndex = key;
+     this.getCharData(key,date, names)
+    },
+    searchChartByDate() {
+       let date = this.curMonth;
+      if (this.echartDate != "" && this.echartDate != null) {
+        date = this.echartDate;
+      }
+      // if (this.echartDate == "" || this.echartDate == null) {
+      //   this.$message.error("请选择年月查询");
+      //   this.echartDate="";
+      //   return;
+      // }
+      var key = this.subIndex;
+      let names = "";
+      this.lineTypeList.map((item, i) => {
+        if (item.id == key) {
+          names = item.name;
+        }
+      });
+    this.getCharData(key,date, names)
+    },
+    getCharData(proId,date,proName){
+    this.getOneChart(proId,date, proName);
+      this.getSecondChart(proId,date, proName);
+      this.getThirdChart(proId,date, proName);
+    },
+    getOneChart(proId,date, proName) {
+      this.request({
+        url: "/project/getData",
+        method: "get",
+        params: { proId: proId, date: date }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          let myChart = this.$echarts.init(document.getElementById("oneChart"));
+          myChart.setOption({
+            title: {
+              text: proName + "  " + date + "  单位：公里",
+              textStyle: {
+                color: "#1D397A",
+                fontWeight: "400",
+                fontSize: 14
+              }
+            },
+            tooltip: {
+              trigger: "axis"
+            },
+            color: ["#4b6eca", "#ff5c75"],
+            legend: {
+              data: ["计划", "实际"],
+              icon: "rectangle",
+              textStyle: {
+                fontSize: 14,
+                color: "#1d397a"
+              }
+            },
+            grid: {
+              left: "1%",
+              right: "1%",
+              bottom: "1%",
+              containLabel: true
+            },
+            toolbox: {
+              feature: {
+                saveAsImage: {}
+              }
+            },
+            xAxis: {
+              type: "category",
+              boundaryGap: false,
+              data: data.data.x
+            },
+            yAxis: {
+              type: "value"
+            },
+            series: [
+              {
+                name: "计划",
+                type: "line",
+                data: data.data.list[0].data
+              },
+              {
+                name: "实际",
+                type: "line",
+                data: data.data.list[1].data
+              }
+            ]
+          });
+          myChart.resize();
+          window.addEventListener("resize", function() {
+            myChart.resize();
+          });
+          //end
+        }
+      });
+    },
+    getSecondChart(proId,date, proName) {
+      this.request({
+        url: "/project/getSecond",
+        method: "get",
+        params: { proId: proId, date: date }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.echartDataList = data.data;
+          this.echartDataNames = proName;
+          console.log("echartDataList：" + this.echartDataList);
+        }
+      });
+    },
+    getThirdChart(proId,date, proName) {
+      this.request({
+        url: "/project/getThird",
+        method: "get",
+        params: { proId: proId, date: date }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          let myChart = this.$echarts.init(
+            document.getElementById("thirdChart")
+          );
+          myChart.setOption({
+            title: {
+              text: ""
+            },
+            tooltip: {
+              trigger: "axis"
+            },
+            color: ["#4b6eca", "#ff5c75"],
+            legend: {
+              data: ["计划", "实际"],
+              icon: "rectangle",
+              textStyle: {
+                fontSize: 14,
+                color: "#1d397a"
+              }
+            },
+            grid: {
+              left: "1%",
+              right: "1%",
+              bottom: "1%",
+              containLabel: true
+            },
+            toolbox: {
+              feature: {
+                saveAsImage: {}
+              }
+            },
+            xAxis: [
+              {
+                type: "category",
+                boundaryGap: false,
+                data: data.data.x
+              }
+            ],
+            yAxis: [
+              {
+                type: "value"
+              }
+            ],
+            series: [
+              {
+                name: "计划",
+                type: "bar",
+                data: data.data.list[0].data
+              },
+              {
+                name: "实际",
+                type: "bar",
+                data: data.data.list[1].data
+              }
+            ]
+          });
+          myChart.resize();
+          window.addEventListener("resize", function() {
+            myChart.resize();
+          });
+          //end
+        }
+      });
     }
+  },
+  created() {
+    let nowDate = new Date();
+    let date = {
+      y: nowDate.getFullYear(),
+      m:
+        nowDate.getMonth() < 9
+          ? "0" + (nowDate.getMonth() + 1)
+          : nowDate.getMonth() + 1
+    };
+    this.curMonth = date.y + "-" + date.m;
+    console.log(this.curMonth);
   }
 };
 </script>
@@ -888,33 +1205,232 @@ export default {
   padding: 0;
 }
 
-.plancale .el-calendar-table{border-radius: 6px 6px 0 0;}
-.plancale .el-calendar-table .prev .el-calendar-day{display: none}
-.plancale .el-calendar-table .next .el-calendar-day{display: none}
-.plancale .el-calendar-table thead th{background: #3655a5;color:#fff; }
-.plancale .el-calendar-table thead th:first-child{border-radius: 6px 0 0 0;}
-.plancale .el-calendar-table thead th:last-child {border-radius: 0 6px 0 0;}
-.plancale .el-calendar-table .el-calendar-day{height:110px;padding: 10px;}
-.plancale .date {font-size: 28px;color: #4B6ECA;}
-.plancale .calendar-wapper {position: relative;}
-.plancale .calendar-operate {position: absolute;top: 0px;font-size: 10px;cursor: pointer;}
-.plancale .add {right: 34px;color: red;}
-.plancale .detail {right: 0px;color: #72acce;}
-.plancale .calendar-tips{ position: absolute;font-size: 10px;left: 0;}
-.plancale .calendar-show {padding-top: 5px;color: #666}
-.plancale .is-today{ background: #c9d7f9}
+.plancale .el-calendar-table {
+  border-radius: 6px 6px 0 0;
+}
+.plancale .el-calendar-table .prev .el-calendar-day {
+  display: none;
+}
+.plancale .el-calendar-table .next .el-calendar-day {
+  display: none;
+}
+.plancale .el-calendar-table thead th {
+  background: #3655a5;
+  color: #fff;
+}
+.plancale .el-calendar-table thead th:first-child {
+  border-radius: 6px 0 0 0;
+}
+.plancale .el-calendar-table thead th:last-child {
+  border-radius: 0 6px 0 0;
+}
+.plancale .el-calendar-table .el-calendar-day {
+  height: 110px;
+  padding: 10px;
+}
+.plancale .date {
+  font-size: 28px;
+  color: #4b6eca;
+}
+.plancale .calendar-wapper {
+  position: relative;
+}
+.plancale .calendar-operate {
+  position: absolute;
+  top: 0px;
+  font-size: 10px;
+  cursor: pointer;
+}
+.plancale .add {
+  right: 34px;
+  color: red;
+}
+.plancale .detail {
+  right: 0px;
+  color: #72acce;
+}
+.plancale .calendar-tips {
+  position: absolute;
+  font-size: 10px;
+  left: 0;
+}
+.plancale .calendar-show {
+  padding-top: 5px;
+  color: #666;
+}
+.plancale .is-today {
+  background: #c9d7f9;
+}
 
-#plan-ul {list-style: none;}
-#plan-ul li {width: 100%;border-bottom: 1px solid #ccc;padding: 20px 0;}
-#plan-ul li .plan-content {width: 33%;float: left;}
-.plan-tip {margin-top: 30px;margin-bottom: -10px;text-align: center;color: #66b6e4;font-size: 12px;}
-.plan-btn {text-align: right;margin-top: 20px;}
+#plan-ul {
+  list-style: none;
+}
+#plan-ul li {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  padding: 20px 0;
+}
+#plan-ul li .plan-content {
+  width: 33%;
+  float: left;
+}
+.plan-tip {
+  margin-top: 30px;
+  margin-bottom: -10px;
+  text-align: center;
+  color: #66b6e4;
+  font-size: 12px;
+}
+.plan-btn {
+  text-align: right;
+  margin-top: 20px;
+}
 
-.dialog-work .el-dialog{width: 700px;}
-.dialog-work .el-form-item__label{width: 110px}
-.dialog-work .el-form-item__content{margin-left: 110px;}
-.addbtn{margin-bottom: 15px;}
+.dialog-work .el-dialog {
+  width: 700px;
+}
+.dialog-work .el-form-item__label {
+  width: 110px;
+}
+.dialog-work .el-form-item__content {
+  margin-left: 110px;
+}
+.addbtn {
+  margin-bottom: 15px;
+}
 
-.el-form-item-inline .el-form-item{float: left;white-space: nowrap;}
-.el-form-item-inline .el-input__inner{width: 220px;}
+.el-form-item-inline .el-form-item {
+  float: left;
+  white-space: nowrap;
+}
+.el-form-item-inline .el-input__inner {
+  width: 220px;
+}
+.chart-ontainer {
+  margin: 20px 0;
+}
+.second-content {
+  height: 340px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 6px;
+}
+.second-content h2 {
+  color: #1d397a;
+  font-size: 18px;
+  margin-bottom: 50px;
+  font-weight: 400;
+}
+.second-content .oneitem {
+  text-align: center;
+  margin: 70px 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.second-content .oneitem p {
+  color: #1d397a;
+  font-size: 15px;
+  line-height: 41px;
+}
+.second-content .oneitem .p1 {
+  color: #ff5c75;
+  font-size: 20px;
+}
+.second-content .oneitem .p2 {
+  color: #27db07;
+  font-size: 20px;
+}
+.second-content .twoitem {
+  padding: 0 -15px;
+  display: flex;
+  justify-content: space-between;
+}
+.second-content .twoitem li {
+  border-right: 1px #b8ccfb solid;
+  padding: 0 15px;
+}
+.second-content .twoitem li:last-child {
+  border: 0;
+}
+.second-content .twoitem p {
+  color: #4b6eca;
+  font-size: 14px;
+  line-height: 31px;
+}
+.second-content .twoitem h3 {
+  color: #1d397a;
+  font-size: 16px;
+}
+.chartbox {
+  width: 100%;
+  height: 100%;
+}
+#oneChart {
+  width: 100%;
+  height: 400px;
+  box-sizing: border-box;
+}
+#thirdChart {
+  width: 100%;
+  height: 300px;
+  box-sizing: border-box;
+}
+.echart-top {
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.el-menu-cus {
+  float: left;
+  background: none;
+  border: 0;
+}
+.el-menu-cus .el-menu-item {
+  display: inline-block;
+  margin-right: 10px;
+  color: #1d397a;
+  height: 35px;
+  line-height: 36px;
+  font-size: 16px;
+  padding: 0 12px;
+}
+.el-menu-cus .el-menu-item.is-active {
+  background: #4b6eca;
+  color: #fff;
+  border-radius: 3px;
+}
+.el-serach {
+  float: right;
+  border: 2px #4b6eca solid;
+  border-radius: 3px;
+}
+.el-serach .el-date-editor {
+  width: 178px;
+}
+.el-serach .el-input__inner {
+  background: none;
+  border: none;
+  color: #4b6eca;
+  width: 178px;
+}
+.el-serach .el-input__inner:placeholder {
+  color: #4b6eca;
+}
+.el-serach .el-input__inner:-webkit-input-placeholder {
+  color: #4b6eca;
+}
+.el-serach .el-input__inner:-moz-placeholder {
+  color: #4b6eca;
+}
+.el-serach .el-input__inner:-ms-input-placeholder {
+  color: #4b6eca;
+}
+.el-serach .el-button {
+  background: #4b6eca;
+  color: #fff;
+}
+.app-page-container {
+  border-radius: 6px;
+  padding: 20px;
+  background: #fff;
+}
 </style>

@@ -12,21 +12,27 @@ import './permission' // permission control
 import * as filters from './filters' // global filters
 import eventBus from './utils/eventBus'
 import authorityCode from './authorityCode'
+
 // import echarts from 'echarts'
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
+// import BaiduMap
 import BaiduMap from 'vue-baidu-map'
 import Print from 'vue-print-nb'//调用浏览器打印插件
 Vue.use(Print);
 
+// import Video
 import Video from 'video.js'//浏览器视频插件
 import 'video.js/dist/video-js.css'
 Vue.prototype.$video = Video
 
-// import Vue from 'vue';
+// import layer;
  import layer from 'vue-layer'
  import 'vue-layer/lib/vue-layer.css';
 Vue.prototype.$layer = layer(Vue);
 
-// Vue.prototype.$echarts = echarts
+// 
 Vue.prototype.authorityCode = authorityCode
 Vue.use(Element, {
   size: 'medium'
