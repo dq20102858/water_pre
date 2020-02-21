@@ -17,7 +17,6 @@
           <div class="addbtn">
             <el-button type="primary" @click="openAddWork">添加作业</el-button>
           </div>
-
           <el-table :data="workLists" ref="multipleTable">
             <el-table-column prop="sort" label="作业顺序" align="center"></el-table-column>
             <el-table-column prop="name" label="作业名称" align="center"></el-table-column>
