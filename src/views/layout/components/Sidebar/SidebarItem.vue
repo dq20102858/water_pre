@@ -3,7 +3,7 @@
 		<template v-for="item in routes" v-if="!item.hidden&&item.children">
 			<router-link v-if="item.redirect=='dashboard'" :to="item.path+'/'+item.children[0].path" :key="item.children[0].name">
 				<el-menu-item :index="item.path+'/'+item.children[0].path" :class="{'submenu-title-noDropdown':!isNest}">
-					<em><img :src="'/src/assets/image/m_'+item.children[0].path+'.png'" /></em>
+					<em><img :src="require('@/assets/image/m_'+item.children[0].path+'.png')" /></em>
 					<span v-if="item.children[0].meta&&item.children[0].meta.title" slot="title">{{item.children[0].meta.title}}</span>
 				</el-menu-item>
 			</router-link>
@@ -51,7 +51,6 @@ export default {
 };
 </script>
 <style>
-
 .app-menu-item .el-menu-item em img{width: 24px;vertical-align: middle}
 .app-menu-item .el-menu-item span{color: #fff;font-weight: 700; padding-left: 10px;font-size:15px}
 .app-menu-item .el-menu-item.is-active{ background-image: linear-gradient(to right, #7391e3 ,#5478dd);border-left:4px #fff solid;padding-left: 16px!important;}

@@ -65,4 +65,5 @@ export const asyncRouterMap = {
   '/views/set/index': () => import('@/views/set/index'),//设置
   '/views/back/index': () => import('@/views/back/index'),//返回
   
+ '/views/apply/weekplan': () => import('@/views/apply/weekplan'),//周计划
 }

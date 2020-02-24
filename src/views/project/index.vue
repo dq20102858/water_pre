@@ -3,7 +3,7 @@
     <div class="el-menu-top">
       <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
         <li class="ptitle">
-          <img src="/src/assets/image/icon-project.png" />工程进度
+          <img :src="require('@/assets/image/icon-project.png')" />工程进度
         </li>
         <el-menu-item index="1">添加作业</el-menu-item>
         <el-menu-item index="2">计划日程</el-menu-item>
@@ -109,9 +109,9 @@
               <template slot-scope="scope">
                 <div>
                   <span>DK</span>
-                  <input v-model="scope.row.start_flag" style="width:40px;" type="number" />
+                  <input v-model="scope.row.start_flag" class="diinput" type="number" />
                   <span>+</span>
-                  <input v-model="scope.row.start_length" style="width:40px;" type="number" />
+                  <input v-model="scope.row.start_length" class="diinput" type="number" />
                 </div>
               </template>
             </el-table-column>
@@ -119,9 +119,9 @@
               <template slot-scope="scope">
                 <div>
                   <span>DK</span>
-                  <input v-model="scope.row.end_flag" style="width:40px;" type="number" />
+                  <input v-model="scope.row.end_flag" class="diinput" type="number" />
                   <span>+</span>
-                  <input v-model="scope.row.end_length" style="width:40px;" type="number" />
+                  <input v-model="scope.row.end_length" class="diinput" type="number" />
                 </div>
               </template>
             </el-table-column>
@@ -132,7 +132,7 @@
                   @click="addOrEditLineDo(scope.row)"
                   v-if="scope.row.id == 0"
                 >设置</el-button>
-                <el-button size="mini" @click="addOrEditLineDo(scope.row)" v-else>修改</el-button>
+                <el-button type="primary" size="mini" @click="addOrEditLineDo(scope.row)" v-else>修改</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -142,17 +142,14 @@
         </el-dialog>
       </div>
       <div id="plan" v-show="planShow">
-         <div class="echart-top">
-        <el-menu  class="el-menu-cus"
-          :default-active="subIndex"
-          @select="handleSubSelect"
-        >
-          <el-menu-item
-            v-for="(item,index) in lineTypeList"
-            :index="item.id.toString()"
-          >{{item.name}}</el-menu-item>
-        </el-menu>
-         </div>
+        <div class="echart-top">
+          <el-menu class="el-menu-cus" :default-active="subIndex" @select="handleSubSelect">
+            <el-menu-item
+              v-for="(item,index) in lineTypeList"
+              :index="item.id.toString()"
+            >{{item.name}}</el-menu-item>
+          </el-menu>
+        </div>
         <div class="app-page-container">
           <el-calendar class="plancale">
             <!-- 这里使用的是 2.5 slot 语法，对于新项目请使用 2.6 slot 语法-->
@@ -184,14 +181,14 @@
               </div>
             </template>
           </el-calendar>
-          <el-dialog title="添加信息" :visible.sync="planVisible">
-            <span>添加日期：{{addDate}}</span>
-            <span>作业：{{planWorkName}}</span>
+          <el-dialog class="dialog-plan-add" title="添加信息" :visible.sync="planVisible">
+            <span class="ptxt">添加日期：{{addDate}}</span>
+            <span class="ptxt">作业：{{planWorkName}}</span>
             <ul id="plan-ul">
-              <li>
-                <div class="plan-content">线别</div>
-                <div class="plan-content">计划开始里程</div>
-                <div class="plan-content">计划结束里程</div>
+              <li class="pheader">
+                <div class="pitem">线别</div>
+                <div class="pitem">计划开始里程</div>
+                <div class="pitem">计划结束里程</div>
               </li>
               <li v-for="(item,index) in planOneData" class="li-line">
                 <div class="plan-content">
@@ -202,41 +199,65 @@
                   <span v-else>出场线</span>
                 </div>
                 <div class="plan-content">
-                  <span>DK</span>
-                  <input v-model="item.start_flag" style="width:40px;" type="number" />
+                  <span>
+                    <b>DK</b>
+                  </span>
+                  <input
+                    v-model="item.start_flag"
+                    :disabled="!item.checked"
+                    class="pinput"
+                    type="number"
+                  />
                   <span>+</span>
-                  <input v-model="item.start_length" style="width:40px;" type="number" />
+                  <input
+                    v-model="item.start_length"
+                    :disabled="!item.checked"
+                    class="pinput"
+                    type="number"
+                  />
                 </div>
                 <div class="plan-content">
-                  <span>DK</span>
-                  <input v-model="item.end_flag" style="width:40px;" type="number" />
+                  <span>
+                    <b>DK</b>
+                  </span>
+                  <input
+                    v-model="item.end_flag"
+                    :disabled="!item.checked"
+                    class="pinput"
+                    type="number"
+                  />
                   <span>+</span>
-                  <input v-model="item.end_length" style="width:40px;" type="number" />
+                  <input
+                    v-model="item.end_length"
+                    :disabled="!item.checked"
+                    class="pinput"
+                    type="number"
+                  />
                 </div>
                 <div class="plan-tip">{{item.tip}}</div>
               </li>
               <p style="clear:both"></p>
             </ul>
             <div class="plan-btn">
-              <el-button size="mini" @click="closePlan">关闭</el-button>
-              <el-button size="mini" @click="addOnePlan">确认</el-button>
+              <el-button @click="closePlan">关闭</el-button>
+              <el-button type="primary" @click="addOnePlan">确定保存</el-button>
             </div>
           </el-dialog>
-          <el-dialog title="详细信息" :visible.sync="detailVisible">
+          <el-dialog class="dialog-plan-add" title="详细信息" :visible.sync="detailVisible">
             <div>
-              <span>施工日期：</span>
-              <span v-if="planDetailList.length>0">{{planDetailList[0]['add_date']}}</span>
-              <span>作业：</span>
-              <span>{{this.planWorkName}}</span>
+              <span class="ptxt">施工日期：</span>
+              <span class="ptxt" v-if="planDetailList.length>0">{{planDetailList[0]['add_date']}}</span>
+              <span class="ptxt">作业：</span>
+              <span class="ptxt">{{this.planWorkName}}</span>
             </div>
-            <el-table :data="planDetailList">
+            <el-table :data="planDetailList" class="plan-show">
               <el-table-column property="line_type_desc" label="线别"></el-table-column>
               <el-table-column property="plan_tip" label="计划里程"></el-table-column>
               <el-table-column property="true_tip" label="实际里程"></el-table-column>
               <el-table-column property="remark" label="备注"></el-table-column>
             </el-table>
-            <div style="margin-top:10px;position:relative;">
-              <el-button size="mini" @click="closeDetail" style="position:absolute;right:0px">关闭</el-button>
+            <div class="plan-btn">
+              <el-button @click="closeDetail">关闭</el-button>
             </div>
           </el-dialog>
         </div>
@@ -342,17 +363,20 @@
               next-text="下一页"
             ></el-pagination>
           </div>
-          <el-dialog :title="this.historyTitle" :visible.sync="addHistoryVisible">
-            <div
+          <el-dialog
+            class="dialog-plan-detail"
+            :title="this.historyTitle"
+            :visible.sync="addHistoryVisible"
+          >
+            <div class="ptxtbox"
               v-show="!addShow"
-              style="padding:10px;margin-top:-35px;color:#4d96e2;font-size: 16px;"
             >
-              <span>作业名称：</span>
-              <span>{{historyData.pro_name}}</span>
-              <span>日期：</span>
-              <span>{{historyData.plan_time}}</span>
-              <span>线别：</span>
-              <span>{{historyData.line_type_desc}}</span>
+              <span class="ptxt">作业名称：</span>
+              <span class="ptxt">{{historyData.pro_name}}</span>
+              <span class="ptxt">日期：</span>
+              <span class="ptxt">{{historyData.plan_time}}</span>
+              <span class="ptxt">线别：</span>
+              <span class="ptxt">{{historyData.line_type_desc}}</span>
             </div>
             <el-form :model="historyData" :rules="historyRules" ref="detailForm">
               <el-form-item label="作业名称" label-width="80px" prop="pro_id" v-show="addShow">
@@ -381,20 +405,20 @@
                 </el-select>
               </el-form-item>
               <el-form-item label="计划里程" label-width="80px" prop="start_flag">
-                DK
-                <el-input style="width:70px;" v-model="historyData.start_flag" placeholder="公里"></el-input>+
-                <el-input style="width:50px;" v-model="historyData.start_length" placeholder="米"></el-input>~
-                DK
-                <el-input style="width:70px;" v-model="historyData.end_flag" placeholder="公里"></el-input>+
-                <el-input style="width:50px;" v-model="historyData.end_length" placeholder="米"></el-input>
+                <b>DK</b>
+                <el-input class="pinput" v-model="historyData.start_flag" placeholder="公里"></el-input>+
+                <el-input class="pinput" v-model="historyData.start_length" placeholder="米"></el-input><em>~</em>
+                <b>DK</b>
+                <el-input class="pinput" v-model="historyData.end_flag" placeholder="公里"></el-input>+
+                <el-input class="pinput" v-model="historyData.end_length" placeholder="米"></el-input>
               </el-form-item>
               <el-form-item label="实际里程" label-width="80px" prop="t_start_flag">
-                DK
-                <el-input style="width:70px;" v-model="historyData.t_start_flag" placeholder="公里"></el-input>+
-                <el-input style="width:50px;" v-model="historyData.t_start_length" placeholder="米"></el-input>~
-                DK
-                <el-input style="width:70px;" v-model="historyData.t_end_flag" placeholder="公里"></el-input>+
-                <el-input style="width:50px;" v-model="historyData.t_end_length" placeholder="米"></el-input>
+                <b>DK</b>
+                <el-input class="pinput" v-model="historyData.t_start_flag" placeholder="公里"></el-input>+
+                <el-input class="pinput" v-model="historyData.t_start_length" placeholder="米"></el-input><em>~</em>
+                <b>DK</b>
+                <el-input class="pinput" v-model="historyData.t_end_flag" placeholder="公里"></el-input>+
+                <el-input class="pinput" v-model="historyData.t_end_length" placeholder="米"></el-input>
               </el-form-item>
 
               <el-form-item label="完成日期" label-width="80px" prop="plan_time" v-show="addShow">
@@ -408,9 +432,9 @@
                 <el-input v-model="historyData.remark" placeholder="填写备注" type="textarea"></el-input>
               </el-form-item>
             </el-form>
-            <div slot="footer" class="dialog-footer">
-              <el-button @click="addHistoryVisible = false">取 消</el-button>
-              <el-button type="primary" @click="addOrEditPlanDo()">确 定</el-button>
+            <div slot="footer">
+              <el-button @click="addHistoryVisible = false">关闭</el-button>
+              <el-button type="primary" @click="addOrEditPlanDo()">确定</el-button>
             </div>
           </el-dialog>
         </div>
@@ -493,7 +517,6 @@ import { publicData } from "@/utils/common";
 export default {
   data() {
     return {
-      eschat: "/project/ecchat",
       activeIndex: "1",
       subIndex: "0",
       workShow: true,
@@ -522,6 +545,7 @@ export default {
       },
       lineVisible: false, //查看线别
       lineData: [],
+      planInputDisabled: true,
       planShow: false,
       lineTypeList: [],
       planVisible: false,
@@ -777,6 +801,7 @@ export default {
       this.planOneData.forEach(function(item) {
         if (item["checked"] == true) {
           canSubmit = true;
+          this.planInputDisabled = false;
         }
       });
       if (canSubmit == false) {
@@ -885,29 +910,35 @@ export default {
       });
     },
     deletePlan(id) {
-      let data = {
-        id: id
-      };
-      this.request({
-        url: "/project/deletePlan",
-        method: "post",
-        data
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          this.$message({
-            showClose: true,
-            message: "删除成功",
-            type: "success"
-          });
-          this.getDetailLists();
-        } else {
-          this.$message({
-            showClose: true,
-            message: "删除失败",
-            type: "error"
-          });
-        }
+      this.$confirm("您确定删除作业?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      }).then(() => {
+        let data = {
+          id: id
+        };
+        this.request({
+          url: "/project/deletePlan",
+          method: "post",
+          data
+        }).then(response => {
+          let data = response.data;
+          if (data.status == 1) {
+            this.$message({
+              showClose: true,
+              message: "删除成功",
+              type: "success"
+            });
+            this.getDetailLists();
+          } else {
+            this.$message({
+              showClose: true,
+              message: "删除失败",
+              type: "error"
+            });
+          }
+        });
       });
     },
     addHistory() {
@@ -985,13 +1016,17 @@ export default {
         if (data.status == 1 && data.data.length > 0) {
           this.lineTypeList = data.data;
           this.subIndex = this.lineTypeList[0]["id"].toString();
-          this.echartDate="";
-         this.getCharData(this.subIndex,this.curMonth, this.lineTypeList[0]["name"])
+          this.echartDate = "";
+          this.getCharData(
+            this.subIndex,
+            this.curMonth,
+            this.lineTypeList[0]["name"]
+          );
         }
       });
     },
     handleChartSubSelect(key) {
-       let date = this.curMonth;
+      let date = this.curMonth;
       if (this.echartDate != "" && this.echartDate != null) {
         date = this.echartDate;
       }
@@ -1001,11 +1036,11 @@ export default {
           names = item.name;
         }
       });
-     //this.subIndex = key;
-     this.getCharData(key,date, names)
+      //this.subIndex = key;
+      this.getCharData(key, date, names);
     },
     searchChartByDate() {
-       let date = this.curMonth;
+      let date = this.curMonth;
       if (this.echartDate != "" && this.echartDate != null) {
         date = this.echartDate;
       }
@@ -1021,14 +1056,14 @@ export default {
           names = item.name;
         }
       });
-    this.getCharData(key,date, names)
+      this.getCharData(key, date, names);
     },
-    getCharData(proId,date,proName){
-    this.getOneChart(proId,date, proName);
-      this.getSecondChart(proId,date, proName);
-      this.getThirdChart(proId,date, proName);
+    getCharData(proId, date, proName) {
+      this.getOneChart(proId, date, proName);
+      this.getSecondChart(proId, date, proName);
+      this.getThirdChart(proId, date, proName);
     },
-    getOneChart(proId,date, proName) {
+    getOneChart(proId, date, proName) {
       this.request({
         url: "/project/getData",
         method: "get",
@@ -1098,7 +1133,7 @@ export default {
         }
       });
     },
-    getSecondChart(proId,date, proName) {
+    getSecondChart(proId, date, proName) {
       this.request({
         url: "/project/getSecond",
         method: "get",
@@ -1112,7 +1147,7 @@ export default {
         }
       });
     },
-    getThirdChart(proId,date, proName) {
+    getThirdChart(proId, date, proName) {
       this.request({
         url: "/project/getThird",
         method: "get",
@@ -1260,31 +1295,7 @@ export default {
 .plancale .is-today {
   background: #c9d7f9;
 }
-
-#plan-ul {
-  list-style: none;
-}
-#plan-ul li {
-  width: 100%;
-  border-bottom: 1px solid #ccc;
-  padding: 20px 0;
-}
-#plan-ul li .plan-content {
-  width: 33%;
-  float: left;
-}
-.plan-tip {
-  margin-top: 30px;
-  margin-bottom: -10px;
-  text-align: center;
-  color: #66b6e4;
-  font-size: 12px;
-}
-.plan-btn {
-  text-align: right;
-  margin-top: 20px;
-}
-
+/* work */
 .dialog-work .el-dialog {
   width: 700px;
 }
@@ -1297,7 +1308,118 @@ export default {
 .addbtn {
   margin-bottom: 15px;
 }
+.diinput {
+  width: 60px;
+  height: 28px;
+  border: 1px #9db9fa solid;
+  text-align: center;
+}
+/*plan */
+.dialog-plan-add .ptxt {
+  color: #4b6eca;
+  display: inline-block;
+  margin-right: 15px;
+  font-size: 18px;
+}
+.dialog-plan-add .pinput {
+  width: 60px;
+  height: 31px;
+  border: 1px #9db9fa solid;
+  text-align: center;
+}
+.dialog-plan-add #plan-ul {
+  list-style: none;
+  border: 1px #ddd solid;
+  border-bottom: none;
+  margin-top: 20px;
+}
+.dialog-plan-add #plan-ul li {
+  border-bottom: 1px solid #ccc;
+  padding: 15px 20px;
+  overflow: hidden;
+}
+.dialog-plan-add #plan-ul .pheader {
+  background: #f2f2f2;
+}
+.dialog-plan-add #plan-ul .pitem {
+  width: 32%;
+  display: inline-block;
+}
+.dialog-plan-add .plan-content {
+  width: 33%;
+  float: left;
+  margin-bottom: 10px;
+}
+.dialog-plan-add .plan-content span {
+  color: #1d397a;
+}
+.dialog-plan-add .plan-tip {
+  color: #90a8e8;
+  text-align: center;
+  font-size: 12px;
+  display: block;
+  margin-left: -15px;
+}
+.plan-btn {
+  text-align: right;
+  margin-top: 20px;
+}
 
+.plan-show {
+  border: 1px #ddd solid;
+  border-bottom: none;
+  margin-top: 20px;
+}
+.plan-show .has-gutter th {
+  background: #f2f2f2;
+}
+/* end plan */
+.ptxtbox{padding:0 10px 10px 10px;margin-bottom:15px; }
+.dialog-plan-detail .ptxt {
+  color: #4b6eca;
+  display: inline-block;
+  margin-right: 15px;
+  font-size: 18px;
+}
+.dialog-plan-detail .el-form-item {
+  margin-bottom: 25px;
+}
+.dialog-plan-detail .el-form-item em{padding: 0 10px;}
+.dialog-plan-detail .el-form-item:last-child {
+  margin-bottom: 0;
+}
+.dialog-plan-detail .el-input__inner {
+  border: 1px #9db9fa solid;
+  color: #4b6eca;
+  width: 100%;
+}
+.dialog-plan-detail .el-form-item__error {
+  padding-top: 5px;
+}
+.dialog-plan-detail .el-select {
+  width: 100%;
+}
+.dialog-plan-detail .el-input {
+  width: auto;
+}
+.dialog-plan-detail .pinput input {
+  width: 80px;
+  text-align: center;
+  margin: 0 3px;
+}
+.dialog-plan-detail .el-form-item__label {
+  color: #1d397a;
+}
+.dialog-plan-detail .el-textarea {
+  width: 100%;
+}
+.dialog-plan-detail .el-textarea__inner {
+  width: 100%;
+  height: 60px;
+  box-sizing: border-box;
+}
+.dialog-plan-detail .el-dialog__body{padding: 20px;}
+/* end detail */
 .el-form-item-inline .el-form-item {
   float: left;
   white-space: nowrap;
@@ -1359,6 +1481,7 @@ export default {
 .second-content .twoitem h3 {
   color: #1d397a;
   font-size: 16px;
+  text-align: center;
 }
 .chartbox {
   width: 100%;
