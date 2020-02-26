@@ -1,15 +1,15 @@
 <template>
   <div id="app-apply">
     <div class="el-menu-top">
-      <el-menu  mode="horizontal" active-text-color="#1d397a">
+      <el-menu router :default-active="apply" mode="horizontal">
         <li class="ptitle">无锡地铁三号线</li>
-        <el-submenu index="1">
+        <el-submenu index="1" class="is-active">
           <template slot="title">日班计划</template>
-          <el-menu-item index="2-1">日班图表</el-menu-item>
-          <el-menu-item index="2-2">已班列表</el-menu-item>
-          <el-menu-item index="2-3">冲突检测</el-menu-item>
+          <el-menu-item index="daychart">日班图表</el-menu-item>
+          <el-menu-item  class="is-active" index="apply">已班列表</el-menu-item>
+          <el-menu-item index="conflictcheck">冲突检测</el-menu-item>
         </el-submenu>
-        <el-menu-item><router-link :to="{name:'weekplan'}">周计划</router-link></el-menu-item>
+       <el-menu-item index="weekplan">周计划</el-menu-item>
       </el-menu>
     </div>
     <div class="app-page">
@@ -98,7 +98,7 @@
             </el-form-item>
             <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
-              <el-button size="small" icon="el-icon-search" @click="geURL" type="primary">查询</el-button>
+              <el-button size="small" icon="el-icon-search" type="primary">查询</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -135,7 +135,6 @@
   </div>
 </template>
 <script>
-import weekplan from "./weekplan.vue";
 export default {
   data() {
        const item = {
@@ -161,9 +160,6 @@ export default {
     this.getlibLists(); //机车
   },
   methods: {
-      geURL(){
-          //this.$router.push({path: '/weekplan' , params: { Id: 1 }})
-      },
     getlibLists() {
       this.request({
         url: "/dispatch/getLocomotiveLists",
@@ -176,10 +172,10 @@ export default {
       });
     },
      goDetail: function(id) {},
-  },
-   components: {
-        'Demo': weekplan  //将别名demo 变成 组件 Demo
-      }
-
+  }
 };
 </script>
+<style>
+.el-menu--collapse .el-menu .el-submenu, .el-menu--popup {min-width: 124px;text-align: center; padding: 0;}
+.el-menu--horizontal .el-menu .el-menu-item.is-active, .el-menu--horizontal .el-menu .el-submenu.is-active>.el-submenu__title{ background: #4b6eca;color: #fff}
+</style>

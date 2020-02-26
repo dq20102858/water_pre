@@ -8,17 +8,18 @@
       </ul>
     </div>
     <div class="app-page">
-      <el-row class="videolist" :gutter="20">
-        <el-col :span="6" v-for="item in videoList" :key="item.id">
-          <div class="grid-content">
-            <video :id="'myVideo'+item.id" class="video-js" ref="myVideo">
-              <!-- <source src="../../../static/7efaf904a76f6050251da6d38980600c.mp4" type="video/mp4" > -->
-              <source :src="item.url" type="rtmp/flv" />
-            </video>
-          </div>
-          <div class="grid-title">{{item.name}}</div>
-        </el-col>
-      </el-row>
+      <!-- <el-row class="videolist" :gutter="20">
+      <el-col :span="6" v-for="(item,i) in videoList" :key="i">-->
+      <div v-for="(item,i) in videoList" :key="i">
+        <div class="grid-content">
+          <video :id="'myVideo'+item.id" class="video-js" ref="myVideo">
+            <source :src="item.url" type="rtmp/flv" />
+          </video>
+        </div>
+        <div class="grid-title">{{item.name}}</div>
+      </div>
+      <!-- </el-col>
+      </el-row>-->
     </div>
   </div>
 </template>
@@ -30,17 +31,21 @@ export default {
       videoList: []
     };
   },
-
-  beforeDestroy: function() {
-    const videoDom = this.$refs.myVideo; //不能用document 获取节点
-    this.$video(videoDom).dispose(); //销毁video实例，避免出现节点不存在 但是flash一直在执行，报 this.el.......is not function
-    this.myPlayer.dispose(); //销毁video实例
-  },
   mounted() {
     this.initVideo();
   },
   created() {
     this.getVideos();
+    // this.videoList.push({
+    //   id: 1,
+    //   url: "rtmp://58.200.131.2:1935/livetv/hunantv",
+    //   name: "测试视频"
+    // });
+    // this.videoList.push({
+    //   id: 2,
+    //   url: "rtmp://129.211.168.161:1935/live/",
+    //   name: "测试视频1"
+    // });
   },
   methods: {
     getVideos() {
@@ -66,12 +71,20 @@ export default {
           preload: "metadata"
           //设置视频播放器的显示宽度（以像素为单位）
           // width: "400px",
-          //设置视频播放器的显示高度（以像素为单位）
-          //height: "200px"
+          // //设置视频播放器的显示高度（以像素为单位）
+          // height: "200px"
         });
       });
       //
     }
+  },
+  beforeDestroy: function() {
+    this.videoList.map((item, i) => {
+      this.$video("myVideo" + item.id).dispose();
+    });
+    //const videoDom = this.$refs.myVideo;
+    //this.$video(videoDom).dispose(); //销毁video实例，避免出现节点不存在 但是flash一直在执行，报 this.el.......is not function
+    //this.myPlayer.dispose(); //销毁video实例
   }
 };
 </script>

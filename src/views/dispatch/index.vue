@@ -303,7 +303,7 @@ export default {
         this.request({
           url: "/dispatch/changeStatus",
           method: "post",
-          data: { id: id, status: 1 },
+          data: { id: id, status: 3 },
           contentType: "application/x-www-form-urlencoded"
         }).then(res => {
           let data = res.data;
