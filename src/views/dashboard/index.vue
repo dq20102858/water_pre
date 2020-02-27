@@ -12,7 +12,7 @@
       <el-row :gutter="20">
         <el-col :span="6" v-for="(item,i) in videoList" :key="i">
           <div class="grid-content">
-            <video v-if="isShow" :id="'myVideo'+item.id" class="video-js" ref="myVideo">
+            <video :id="'myVideo'+item.id" class="video-js" ref="myVideo">
               <source :src="item.url" type="rtmp/flv" />
             </video>
           </div>
@@ -38,7 +38,6 @@ export default {
   },
   created() {
     this.getVideos();
-    this.isShow=true;
   },
   methods: {
     getVideos() {

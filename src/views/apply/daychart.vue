@@ -681,7 +681,7 @@ export default {
   background: #4b6eca;
   color: #fff;
 }
-body {
+/* body {
   font-family: "微软雅黑";
   font-size: 16px !important;
   overflow: auto !important;
@@ -689,7 +689,7 @@ body {
 
 body {
   background-color: #030a2e;
-}
+} */
 .canvas_main {
   /*width: 100%;*/
 }
