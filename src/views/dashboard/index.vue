@@ -8,18 +8,16 @@
       </ul>
     </div>
     <div class="app-page">
-      <!-- <el-row class="videolist" :gutter="20">
-      <el-col :span="6" v-for="(item,i) in videoList" :key="i">-->
-      <div v-for="(item,i) in videoList" :key="i">
-        <div class="grid-content">
-          <video :id="'myVideo'+item.id" class="video-js" ref="myVideo">
-            <source :src="item.url" type="rtmp/flv" />
-          </video>
-        </div>
-        <div class="grid-title">{{item.name}}</div>
-      </div>
-      <!-- </el-col>
-      </el-row>-->
+      <el-row :gutter="20">
+        <el-col :span="6" v-for="(item,i) in videoList" :key="i">
+          <div class="grid-content">
+            <video :id="'myVideo'+item.id" class="video-js" ref="myVideo">
+              <source :src="item.url" type="rtmp/flv" />
+            </video>
+          </div>
+          <div class="grid-title">{{item.name}}</div>
+        </el-col>
+      </el-row>
     </div>
   </div>
 </template>
@@ -28,7 +26,18 @@ import "videojs-flash";
 export default {
   data() {
     return {
-      videoList: []
+      videoList: [
+        // {
+        //   id: 1,
+        //   url: "rtmp://58.200.131.2:1935/livetv/hunantv",
+        //   name: "测试视频"
+        // },
+        // {
+        //   id: 2,
+        //   url: "rtmp://129.211.168.161:1935/live/",
+        //   name: "测试视频1"
+        // }
+      ]
     };
   },
   mounted() {
@@ -36,16 +45,6 @@ export default {
   },
   created() {
     this.getVideos();
-    // this.videoList.push({
-    //   id: 1,
-    //   url: "rtmp://58.200.131.2:1935/livetv/hunantv",
-    //   name: "测试视频"
-    // });
-    // this.videoList.push({
-    //   id: 2,
-    //   url: "rtmp://129.211.168.161:1935/live/",
-    //   name: "测试视频1"
-    // });
   },
   methods: {
     getVideos() {

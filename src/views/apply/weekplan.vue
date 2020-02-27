@@ -3,7 +3,7 @@
     <div class="el-menu-top">
       <el-menu router default-active="weekplan" mode="horizontal">
         <li class="ptitle">无锡地铁三号线</li>
-        <el-submenu>
+        <el-submenu index="1">
           <template slot="title" style="font-size:16px;">日班计划</template>
           <el-menu-item index="daychart">日班图表</el-menu-item>
           <el-menu-item index="apply">已班列表</el-menu-item>

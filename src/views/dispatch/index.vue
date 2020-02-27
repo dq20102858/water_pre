@@ -243,7 +243,7 @@ export default {
       let time_range = this.searchForm.time_range;
       //alert(time_range);
       this.request({
-        url: "dispatch/getDispatchPages",
+        url: "/dispatch/getDispatchPages",
         method: "get",
         params: {
           page,
