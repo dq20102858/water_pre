@@ -10,17 +10,9 @@
     <div class="app-page">
 
       <el-row :gutter="20">
-         <!-- <el-col :span="6">
-          <div class="grid-content">
-            <video id="myVideo0" class="video-js" ref="myVideo">
-              <source src="rtmp://58.200.131.2:1935/livetv/hunantv" type="rtmp/flv" />
-            </video>
-          </div>
-          <div class="grid-title">123</div>
-        </el-col> -->
         <el-col :span="6" v-for="(item,i) in videoList" :key="i">
           <div class="grid-content">
-            <video :id="'myVideo'+item.id" class="video-js" ref="myVideo">
+            <video v-if="isShow" :id="'myVideo'+item.id" class="video-js" ref="myVideo">
               <source :src="item.url" type="rtmp/flv" />
             </video>
           </div>
@@ -35,6 +27,7 @@ import "videojs-flash";
 export default {
   data() {
     return {
+      isShow:false,
       videoList: [
         // {
         //   id: 1,
@@ -54,6 +47,7 @@ export default {
   },
   created() {
     this.getVideos();
+    this.isShow=true;
   },
   methods: {
     getVideos() {
@@ -64,11 +58,11 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.videoList = data.data.data;
-          // this.videoList.push({
-          //   id: 4,
-          //   url: "rtmp://58.200.131.2:1935/livetv/hunantv",
-          //   name: "测试视频"
-          // });
+          this.videoList.push({
+            id: 10,
+            url: "rtmp://58.200.131.2:1935/livetv/hunantv",
+            name: "测试视频"
+          });
         }
       });
     },
