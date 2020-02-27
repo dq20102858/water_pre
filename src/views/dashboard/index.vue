@@ -8,7 +8,16 @@
       </ul>
     </div>
     <div class="app-page">
+
       <el-row :gutter="20">
+         <!-- <el-col :span="6">
+          <div class="grid-content">
+            <video id="myVideo0" class="video-js" ref="myVideo">
+              <source src="rtmp://58.200.131.2:1935/livetv/hunantv" type="rtmp/flv" />
+            </video>
+          </div>
+          <div class="grid-title">123</div>
+        </el-col> -->
         <el-col :span="6" v-for="(item,i) in videoList" :key="i">
           <div class="grid-content">
             <video :id="'myVideo'+item.id" class="video-js" ref="myVideo">
@@ -55,10 +64,27 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.videoList = data.data.data;
+          // this.videoList.push({
+          //   id: 4,
+          //   url: "rtmp://58.200.131.2:1935/livetv/hunantv",
+          //   name: "测试视频"
+          // });
         }
       });
     },
     initVideo() {
+       let myPlayer = this.$video("myVideo0", {
+          //确定播放器是否具有用户可以与之交互的控件。没有控件，启动视频播放的唯一方法是使用autoplay属性或通过Player API。
+          controls: true,
+          //自动播放属性,muted:静音播放
+          autoplay: true,
+          //建议浏览器是否应在<video>加载元素后立即开始下载视频数据。
+          preload: "none"
+          //设置视频播放器的显示宽度（以像素为单位）
+          // width: "400px",
+          // //设置视频播放器的显示高度（以像素为单位）
+          // height: "200px"
+        });
       //初始化video
       this.videoList.map((item, i) => {
         let myPlayer = this.$video("myVideo" + item.id, {
@@ -67,7 +93,7 @@ export default {
           //自动播放属性,muted:静音播放
           autoplay: true,
           //建议浏览器是否应在<video>加载元素后立即开始下载视频数据。
-          preload: "metadata"
+          preload: "none"
           //设置视频播放器的显示宽度（以像素为单位）
           // width: "400px",
           // //设置视频播放器的显示高度（以像素为单位）

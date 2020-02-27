@@ -105,7 +105,7 @@
           <el-table-column prop="location" label="受令处所"></el-table-column>
           <el-table-column prop="dispatch" label="值班调度"></el-table-column>
           <el-table-column prop="status" label="状态">
-            <template scope="scope">
+            <template slot-scope="scope">
               <span class="statused" v-if="scope.row.status=='1'">新命令</span>
               <span class="statused" v-if="scope.row.status=='2'">已确认</span>
               <span class="statused" v-if="scope.row.status=='3'">已作废</span>
@@ -113,7 +113,7 @@
           </el-table-column>
           <el-table-column prop="create_time" label="发令时间"></el-table-column>
           <el-table-column prop="makesure_time" label="确认时间">
-            <template scope="scope">
+            <template slot-scope="scope">
               <span v-if="scope.row.makesure_time.length==0">暂未确认</span>
               <span v-else>{{scope.row.makesure_time}}</span>
             </template>
