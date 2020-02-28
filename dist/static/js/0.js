@@ -1,30 +1,46 @@
-webpackJsonp([0],{
+webpackJsonp([0,2],{
 
-/***/ "1bg+":
+/***/ "03Ss":
 /***/ (function(module, exports, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
 
-// load the styles
-var content = __webpack_require__("g8m/");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("b7c7a194", content, true);
+
+// module
+exports.push([module.i, "\n#dispatch-edit .app-dialog-form {\r\n  padding: 10px 0px 30px 30px;\r\n  display: block;\n}\n#dispatch-edit .app-dialog-form .el-form-item__label {\r\n  width: 100px;\n}\n#dispatch-edit .app-dialog-form .el-input input {\r\n  width: 240px;\n}\n#dispatch-edit .app-dialog-form .el-form--label-top .el-form-item__label {\r\n  padding-bottom: 5px;\n}\n#dispatch-edit .app-dialog-form .bluebtn {\r\n  margin-left: 10px;\n}\n#dispatch-edit .app-dialog-form .redbtn {\r\n  background: #ff5c75;\r\n  border-color: #ff5c75;\n}\n#dispatch-edit .app-dialog-form .contents-select {\r\n  text-align: right;\r\n  margin-right: 20px;\n}\n#dispatch-edit .app-dialog-form .contents-select .el-input input {\r\n  width: auto;\n}\n#dispatch-edit .app-dialog-form .contents-area {\r\n  display: block;\r\n  margin-right: 20px;\n}\n#dispatch-edit .app-dialog-form .contents-area .el-textarea {\r\n  width: 100%;\n}\n#dispatch-edit .app-dialog-form .contents-area .el-textarea__inner {\r\n  width: 100%;\r\n  height: 100px;\r\n  box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n  -moz-box-sizing: border-box;\n}\n#dispatch-edit .app-dialog-form .contents-area p {\r\n  color: #1d397a;\r\n  padding-bottom: 10px;\n}\n#dispatch-edit .app-dialog-form .el-form-item__error {\r\n  padding-top: 5px;\n}\n#dispatch-edit .app-dialog-footer {\r\n  margin-top: 20px;\r\n  margin-right: 20px;\n}\n#dispatch-edit .app-dialog-footer .tips {\r\n  color: #ff5c75;\r\n  font-size: 14px;\n}\n#dispatch-edit .app-dialog-footer .el-button {\r\n  float: right;\r\n  margin-right: 10px;\n}\n.app-dialog-temp .el-textarea__inner {\r\n  height: 120px;\r\n  width: 100%;\r\n  box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n  -moz-box-sizing: border-box;\n}\n.app-dialog-temp .el-textarea {\r\n  width: 100%;\n}\n.app-dialog-temp .el-form-item__error {\r\n  padding-top: 5px;\n}\n.app-dialog-temp .el-form-item {\r\n  margin-bottom: 25px;\n}\r\n", ""]);
+
+// exports
+
 
 /***/ }),
 
-/***/ "AGV+":
+/***/ "5AKo":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.app-video .video-js {\r\n  background: none;\r\n  width: 100%;\r\n  height: 180px;\n}\n.videolist {\r\n  overflow: hidden;\n}\n.videolist .grid-content {\r\n  background: #000;\r\n  border-radius: 6px;\r\n  padding: 2px;\n}\n.videolist .el-row {\r\n  margin-bottom: 20px;\n}\n.videolist .el-row :last-child {\r\n  margin-bottom: 0;\n}\n.videolist .el-col {\r\n  border-radius: 4px;\r\n  margin-bottom: 20px;\n}\n.app-topbar {\r\n  height: 50px;\r\n  background: #fff;\r\n  text-align: center;\n}\n.grid-title {\r\n  color: #1d397a;\r\n  text-align: right;\r\n  line-height: 28px;\n}\n.app-topbar ul {\r\n  margin: 0 auto;\n}\n.app-topbar li {\r\n  color: #1d397a;\r\n  display: inline-block;\r\n  font-size: 16px;\r\n  line-height: 50px;\r\n  padding: 0 30px;\r\n  cursor: 0;\n}\n.app-topbar li.active {\r\n  background: #4b6eca;\r\n  color: #fff;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "9iIH":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("QMMI");
+var content = __webpack_require__("03Ss");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("rjj0")("59fc28eb", content, true);
+var update = __webpack_require__("rjj0")("5a5233aa", content, true);
 
 /***/ }),
 
@@ -33,455 +49,6 @@ var update = __webpack_require__("rjj0")("59fc28eb", content, true);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-
-// EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/extends.js
-var helpers_extends = __webpack_require__("Dd8w");
-var extends_default = /*#__PURE__*/__webpack_require__.n(helpers_extends);
-
-// EXTERNAL MODULE: ./node_modules/vuex/dist/vuex.esm.js
-var vuex_esm = __webpack_require__("NYxO");
-
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/components/Sticky/index.vue
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ var Sticky = ({
-  name: 'Sticky',
-  props: {
-    stickyTop: {
-      type: Number,
-      default: 0
-    },
-    zIndex: {
-      type: Number,
-      default: 1
-    },
-    className: {
-      type: String,
-      default: ''
-    }
-  },
-  data: function data() {
-    return {
-      active: false,
-      position: '',
-      width: undefined,
-      height: undefined,
-      isSticky: false
-    };
-  },
-  mounted: function mounted() {
-    this.height = this.$el.getBoundingClientRect().height;
-    window.addEventListener('scroll', this.handleScroll);
-    window.addEventListener('resize', this.handleReize);
-  },
-  activated: function activated() {
-    this.handleScroll();
-  },
-  destroyed: function destroyed() {
-    window.removeEventListener('scroll', this.handleScroll);
-    window.removeEventListener('resize', this.handleReize);
-  },
-
-  methods: {
-    sticky: function sticky() {
-      if (this.active) {
-        return;
-      }
-      this.position = 'fixed';
-      this.active = true;
-      this.width = this.width + 'px';
-      this.isSticky = true;
-    },
-    reset: function reset() {
-      if (!this.active) {
-        return;
-      }
-      this.position = '';
-      this.width = 'auto';
-      this.active = false;
-      this.isSticky = false;
-    },
-    handleScroll: function handleScroll() {
-      this.width = this.$el.getBoundingClientRect().width;
-      var offsetTop = this.$el.getBoundingClientRect().top;
-      if (offsetTop < this.stickyTop) {
-        this.sticky();
-        return;
-      }
-      this.reset();
-    },
-    handleReize: function handleReize() {
-      if (this.isSticky) {
-        this.width = this.$el.getBoundingClientRect().width + 'px';
-      }
-    }
-  }
-});
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-4a268764","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/components/Sticky/index.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{style:({height:_vm.height+'px',zIndex:_vm.zIndex})},[_c('div',{class:_vm.className,style:({top:_vm.stickyTop+'px',zIndex:_vm.zIndex,position:_vm.position,width:_vm.width,height:_vm.height+'px'})},[_vm._t("default",[_c('div',[_vm._v("sticky")])])],2)])}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var components_Sticky = (esExports);
-// CONCATENATED MODULE: ./src/components/Sticky/index.vue
-var normalizeComponent = __webpack_require__("VU/8")
-/* script */
-
-/* template */
-
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  Sticky,
-  components_Sticky,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-
-/* harmony default export */ var src_components_Sticky = (Component.exports);
-
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/dashboard/admin/components/TransactionTable.vue
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ var TransactionTable = ({
-  props: {
-    listData: {
-      type: Array
-    }
-  }
-});
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-6450cebe","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dashboard/admin/components/TransactionTable.vue
-var TransactionTable_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"box",staticStyle:{"padding":"20px"}},[_c('el-table',{staticStyle:{"padding-top":"15px"},attrs:{"data":_vm.listData}},[_c('el-table-column',{attrs:{"label":"推荐来源"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_vm._v("\n        "+_vm._s(scope.row.name)+"\n      ")]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"PV","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_vm._v("\n        "+_vm._s(scope.row.pv)+"\n      ")]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"提交量","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_vm._v("\n        "+_vm._s(scope.row.total)+"\n      ")]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"真实量","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_vm._v("\n        "+_vm._s(scope.row.real)+"\n      ")]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"跟进量","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_vm._v("\n        "+_vm._s(scope.row.follow)+"\n      ")]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"成交量","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_vm._v("\n        "+_vm._s(scope.row.finish)+"\n        ")]}}])})],1)],1)}
-var TransactionTable_staticRenderFns = []
-var TransactionTable_esExports = { render: TransactionTable_render, staticRenderFns: TransactionTable_staticRenderFns }
-/* harmony default export */ var components_TransactionTable = (TransactionTable_esExports);
-// CONCATENATED MODULE: ./src/views/dashboard/admin/components/TransactionTable.vue
-var TransactionTable_normalizeComponent = __webpack_require__("VU/8")
-/* script */
-
-/* template */
-
-/* template functional */
-var TransactionTable___vue_template_functional__ = false
-/* styles */
-var TransactionTable___vue_styles__ = null
-/* scopeId */
-var TransactionTable___vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var TransactionTable___vue_module_identifier__ = null
-var TransactionTable_Component = TransactionTable_normalizeComponent(
-  TransactionTable,
-  components_TransactionTable,
-  TransactionTable___vue_template_functional__,
-  TransactionTable___vue_styles__,
-  TransactionTable___vue_scopeId__,
-  TransactionTable___vue_module_identifier__
-)
-
-/* harmony default export */ var admin_components_TransactionTable = (TransactionTable_Component.exports);
-
-// EXTERNAL MODULE: ./src/store/index.js + 5 modules
-var store = __webpack_require__("IcnI");
-
-// CONCATENATED MODULE: ./src/directive/permission/permission.js
-
-
-
-/* harmony default export */ var permission = ({
-  inserted: function inserted(el, binding, vnode) {
-    var value = binding.value;
-
-    var roles = store["a" /* default */].getters && store["a" /* default */].getters.roles;
-
-    if (value && value instanceof Array && value.length > 0) {
-      var permissionRoles = value;
-
-      var hasPermission = roles.some(function (role) {
-        return permissionRoles.includes(role);
-      });
-
-      if (!hasPermission) {
-        el.parentNode && el.parentNode.removeChild(el);
-      }
-    }
-  }
-});
-// CONCATENATED MODULE: ./src/directive/permission/index.js
-
-
-var permission_install = function install(Vue) {
-  Vue.directive('permission', permission);
-};
-
-if (window.Vue) {
-  window['permission'] = permission;
-  Vue.use(permission_install); // eslint-disable-line
-}
-
-permission.install = permission_install;
-/* harmony default export */ var directive_permission = (permission);
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/dashboard/admin/index.vue
-//
-//
-//
-//
-//
-//
-//
-
-
- // 粘性header组件
-
- // 权限判断指令
-
-/* harmony default export */ var admin = ({
-	name: "DashboardAdmin",
-	components: {
-		Sticky: src_components_Sticky,
-		TransactionTable: admin_components_TransactionTable
-	},
-	directives: { permission: directive_permission },
-	data: function data() {
-		return {};
-	},
-	created: function created() {},
-
-	methods: {}
-});
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-5fc5cf98","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dashboard/admin/index.vue
-var admin_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"dashboard-editor-container order-chart"})}
-var admin_staticRenderFns = []
-var admin_esExports = { render: admin_render, staticRenderFns: admin_staticRenderFns }
-/* harmony default export */ var dashboard_admin = (admin_esExports);
-// CONCATENATED MODULE: ./src/views/dashboard/admin/index.vue
-function injectStyle (ssrContext) {
-  __webpack_require__("YI7S")
-}
-var admin_normalizeComponent = __webpack_require__("VU/8")
-/* script */
-
-/* template */
-
-/* template functional */
-var admin___vue_template_functional__ = false
-/* styles */
-var admin___vue_styles__ = injectStyle
-/* scopeId */
-var admin___vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var admin___vue_module_identifier__ = null
-var admin_Component = admin_normalizeComponent(
-  admin,
-  dashboard_admin,
-  admin___vue_template_functional__,
-  admin___vue_styles__,
-  admin___vue_scopeId__,
-  admin___vue_module_identifier__
-)
-
-/* harmony default export */ var views_dashboard_admin = (admin_Component.exports);
-
-// EXTERNAL MODULE: ./src/assets/image/avatar.gif
-var avatar = __webpack_require__("FO02");
-var avatar_default = /*#__PURE__*/__webpack_require__.n(avatar);
-
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/components/PanThumb/index.vue
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ var PanThumb = ({
-  name: 'PanThumb',
-  props: {
-    image: {
-      type: String,
-      required: true
-    },
-    zIndex: {
-      type: Number,
-      default: 1
-    },
-    width: {
-      type: String,
-      default: '150px'
-    },
-    height: {
-      type: String,
-      default: '150px'
-    }
-  }
-});
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-2f6c38f3","hasScoped":true,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/components/PanThumb/index.vue
-var PanThumb_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"pan-item",style:({zIndex:_vm.zIndex,height:_vm.height,width:_vm.width})},[_c('div',{staticClass:"pan-info"},[_c('div',{staticClass:"pan-info-roles-container"},[_vm._t("default")],2)]),_vm._v(" "),_c('img',{staticClass:"pan-thumb",attrs:{"src":_vm.image}})])}
-var PanThumb_staticRenderFns = []
-var PanThumb_esExports = { render: PanThumb_render, staticRenderFns: PanThumb_staticRenderFns }
-/* harmony default export */ var components_PanThumb = (PanThumb_esExports);
-// CONCATENATED MODULE: ./src/components/PanThumb/index.vue
-function PanThumb_injectStyle (ssrContext) {
-  __webpack_require__("RSgl")
-}
-var PanThumb_normalizeComponent = __webpack_require__("VU/8")
-/* script */
-
-/* template */
-
-/* template functional */
-var PanThumb___vue_template_functional__ = false
-/* styles */
-var PanThumb___vue_styles__ = PanThumb_injectStyle
-/* scopeId */
-var PanThumb___vue_scopeId__ = "data-v-2f6c38f3"
-/* moduleIdentifier (server only) */
-var PanThumb___vue_module_identifier__ = null
-var PanThumb_Component = PanThumb_normalizeComponent(
-  PanThumb,
-  components_PanThumb,
-  PanThumb___vue_template_functional__,
-  PanThumb___vue_styles__,
-  PanThumb___vue_scopeId__,
-  PanThumb___vue_module_identifier__
-)
-
-/* harmony default export */ var src_components_PanThumb = (PanThumb_Component.exports);
-
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/dashboard/editor/index.vue
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-// import emptyGif from "@/assets/image/empty-gif";
-
-
-
-/* harmony default export */ var editor = ({
-  name: 'DashboardEditor',
-  components: { PanThumb: src_components_PanThumb },
-  data: function data() {
-    return {
-      emptyGif: 'https://wpimg.wallstcn.com/0e03b7da-db9e-4819-ba10-9016ddfdaed3',
-      avatar: avatar_default.a
-    };
-  },
-
-  computed: extends_default()({}, Object(vuex_esm["b" /* mapGetters */])(['name',
-  // 'avatar',
-  'roles']))
-});
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-736d64a4","hasScoped":true,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dashboard/editor/index.vue
-var editor_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"dashboard-editor-container"},[_c('div',{staticClass:" clearfix"},[_c('pan-thumb',{staticStyle:{"float":"left"},attrs:{"image":_vm.avatar}},_vm._l((_vm.roles),function(item){return _c('span',{key:item,staticClass:"pan-info-roles"},[_vm._v(_vm._s(item))])})),_vm._v(" "),_c('div',{staticClass:"info-container"},[_c('span',{staticClass:"display_name"},[_vm._v(_vm._s(_vm.name))]),_vm._v(" "),_c('span',{staticStyle:{"font-size":"20px","padding-top":"20px","display":"inline-block"}},[_vm._v("您的912网站首页")])])],1),_vm._v(" "),_c('div',[_c('img',{staticClass:"emptyGif",attrs:{"src":_vm.emptyGif}})])])}
-var editor_staticRenderFns = []
-var editor_esExports = { render: editor_render, staticRenderFns: editor_staticRenderFns }
-/* harmony default export */ var dashboard_editor = (editor_esExports);
-// CONCATENATED MODULE: ./src/views/dashboard/editor/index.vue
-function editor_injectStyle (ssrContext) {
-  __webpack_require__("1bg+")
-}
-var editor_normalizeComponent = __webpack_require__("VU/8")
-/* script */
-
-/* template */
-
-/* template functional */
-var editor___vue_template_functional__ = false
-/* styles */
-var editor___vue_styles__ = editor_injectStyle
-/* scopeId */
-var editor___vue_scopeId__ = "data-v-736d64a4"
-/* moduleIdentifier (server only) */
-var editor___vue_module_identifier__ = null
-var editor_Component = editor_normalizeComponent(
-  editor,
-  dashboard_editor,
-  editor___vue_template_functional__,
-  editor___vue_styles__,
-  editor___vue_scopeId__,
-  editor___vue_module_identifier__
-)
-
-/* harmony default export */ var views_dashboard_editor = (editor_Component.exports);
 
 // EXTERNAL MODULE: ./node_modules/video.js/dist/video.es.js + 3 modules
 var video_es = __webpack_require__("63pp");
@@ -1922,7 +1489,6 @@ videojs_flash_es_Flash.VERSION = version$1;
 /* harmony default export */ var videojs_flash_es = (videojs_flash_es_Flash);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/dashboard/index.vue
-
 //
 //
 //
@@ -1931,23 +1497,31 @@ videojs_flash_es_Flash.VERSION = version$1;
 //
 //
 //
-
-
-
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ var dashboard = ({
-  name: 'Dashboard',
-  components: { adminDashboard: views_dashboard_admin, editorDashboard: views_dashboard_editor },
   data: function data() {
     return {
-      currentRole: 'adminDashboard'
+      videoList: []
     };
   },
 
-  computed: extends_default()({}, Object(vuex_esm["b" /* mapGetters */])(['roles'])),
-  created: function created() {},
 
   beforeDestroy: function beforeDestroy() {
     var videoDom = this.$refs.myVideo; //不能用document 获取节点
@@ -1957,127 +1531,1224 @@ videojs_flash_es_Flash.VERSION = version$1;
   mounted: function mounted() {
     this.initVideo();
   },
+  created: function created() {
+    this.getVideos();
+  },
 
   methods: {
-    initVideo: function initVideo() {
-      //初始化视频方法
-      this.myPlayer = this.$video(myVideo, {
-        //确定播放器是否具有用户可以与之交互的控件。没有控件，启动视频播放的唯一方法是使用autoplay属性或通过Player API。
-        controls: true,
-        //自动播放属性,muted:静音播放
-        autoplay: true,
-        //建议浏览器是否应在<video>加载元素后立即开始下载视频数据。
-        preload: "metadata",
-        //设置视频播放器的显示宽度（以像素为单位）
-        width: "800px",
-        //设置视频播放器的显示高度（以像素为单位）
-        height: "400px"
+    getVideos: function getVideos() {
+      var _this = this;
+
+      this.request({
+        url: "/video/getVideoList",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this.videoList = data.data.data;
+        }
       });
+    },
+    initVideo: function initVideo() {
+      var _this2 = this;
+
+      //初始化video
+      this.videoList.map(function (item, i) {
+        var myPlayer = _this2.$video("myVideo" + item.id, {
+          //确定播放器是否具有用户可以与之交互的控件。没有控件，启动视频播放的唯一方法是使用autoplay属性或通过Player API。
+          controls: true,
+          //自动播放属性,muted:静音播放
+          autoplay: true,
+          //建议浏览器是否应在<video>加载元素后立即开始下载视频数据。
+          preload: "metadata"
+          //设置视频播放器的显示宽度（以像素为单位）
+          // width: "400px",
+          //设置视频播放器的显示高度（以像素为单位）
+          //height: "200px"
+        });
+      });
+      //
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-7a30d908","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dashboard/index.vue
-var dashboard_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"dashboard-container"},[_c('video',{ref:"myVideo",staticClass:"video-js",attrs:{"id":"myVideo"}},[_c('source',{attrs:{"src":"rtmp://10.100.100.11:1935/live/","type":"rtmp/flv"}})])])}
-var dashboard_staticRenderFns = []
-var dashboard_esExports = { render: dashboard_render, staticRenderFns: dashboard_staticRenderFns }
-/* harmony default export */ var views_dashboard = (dashboard_esExports);
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-747d897b","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dashboard/index.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-video"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('el-row',{staticClass:"videolist",attrs:{"gutter":20}},_vm._l((_vm.videoList),function(item){return _c('el-col',{key:item.id,attrs:{"span":6}},[_c('div',{staticClass:"grid-content"},[_c('video',{ref:"myVideo",refInFor:true,staticClass:"video-js",attrs:{"id":'myVideo'+item.id}},[_c('source',{attrs:{"src":item.url,"type":"rtmp/flv"}})])]),_vm._v(" "),_c('div',{staticClass:"grid-title"},[_vm._v(_vm._s(item.name))])])}))],1)])}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-topbar"},[_c('ul',[_c('li',{staticClass:"active"},[_vm._v("视图")]),_vm._v(" "),_c('li',[_vm._v("云台控制")]),_vm._v(" "),_c('li',[_vm._v("设置")])])])}]
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ var views_dashboard = (esExports);
 // CONCATENATED MODULE: ./src/views/dashboard/index.vue
-function dashboard_injectStyle (ssrContext) {
-  __webpack_require__("AGV+")
+function injectStyle (ssrContext) {
+  __webpack_require__("Cb+s")
 }
-var dashboard_normalizeComponent = __webpack_require__("VU/8")
+var normalizeComponent = __webpack_require__("VU/8")
 /* script */
 
 /* template */
 
 /* template functional */
-var dashboard___vue_template_functional__ = false
+var __vue_template_functional__ = false
 /* styles */
-var dashboard___vue_styles__ = dashboard_injectStyle
+var __vue_styles__ = injectStyle
 /* scopeId */
-var dashboard___vue_scopeId__ = null
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
-var dashboard___vue_module_identifier__ = null
-var dashboard_Component = dashboard_normalizeComponent(
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
   dashboard,
   views_dashboard,
-  dashboard___vue_template_functional__,
-  dashboard___vue_styles__,
-  dashboard___vue_scopeId__,
-  dashboard___vue_module_identifier__
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
 )
 
-/* harmony default export */ var src_views_dashboard = __webpack_exports__["default"] = (dashboard_Component.exports);
+/* harmony default export */ var src_views_dashboard = __webpack_exports__["default"] = (Component.exports);
 
 
 /***/ }),
 
-/***/ "FO02":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "static/img/avatar.d25a6cc.gif";
-
-/***/ }),
-
-/***/ "MHoI":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("FZ+f")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.dashboard-editor-container {\n  background-color: #f8f9fa;\n}\n.dashboard-editor-container .sub-navbar.draft {\n    background: #f8f9fa;\n}\n.dashboard-editor-container .chart-block {\n    background: #fff;\n    margin-bottom: 32px;\n    border: 1px solid #ccc;\n}\n.dashboard-editor-container .filter-bar {\n    background: -webkit-linear-gradient(top, #f3f3f3, #fff);\n    padding: 10px 20px;\n}\n.dashboard-editor-container .filter-content {\n    padding: 0 10px 10px;\n}\n.dashboard-editor-container .chart-wrapper {\n    background: #fff;\n    padding: 16px 16px 0;\n    margin-bottom: 32px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "QMMI":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("FZ+f")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.date{\n  text-align: center;\n  /* line-height: 80px; */\n  font-size: 30px;\n  color: #72acce;\n}\n.calendar-wapper{\n  position: relative;\n}\n.calendar-operate{\n  position: absolute;\n  top: -40px;\n  font-size: 10px;\n  cursor: pointer;\n}\n.add{\n  right: 34px;\n  color: red;\n}\n.detail{\n  right: 0px;\n  color: #72acce;\n}\n.calendar-show{\n  position: absolute;\n  font-size: 10px;\n  left: -5px;\n}\n.plan-finished{\n  top: -30px;\n}\n.act-finished{\n  top: 0px;\n}\n.remark{\n  top: 30px;\n}\n.el-calendar-table td{\n  height: 100px !important;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "RSgl":
+/***/ "Cb+s":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("kO7J");
+var content = __webpack_require__("5AKo");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("rjj0")("0568d575", content, true);
+var update = __webpack_require__("rjj0")("30827046", content, true);
 
 /***/ }),
 
-/***/ "YI7S":
+/***/ "Fjmr":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("MHoI");
+var content = __webpack_require__("MLuA");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("rjj0")("3cedadce", content, true);
+var update = __webpack_require__("rjj0")("65b8e81d", content, true);
 
 /***/ }),
 
-/***/ "g8m/":
+/***/ "FvKM":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+// EXTERNAL MODULE: ./src/utils/common.js
+var common = __webpack_require__("X2Oc");
+
+// EXTERNAL MODULE: ./node_modules/babel-runtime/core-js/json/stringify.js
+var stringify = __webpack_require__("mvHQ");
+var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
+
+// EXTERNAL MODULE: ./src/views/dashboard/index.vue + 3 modules
+var dashboard = __webpack_require__("ARoL");
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/dispatch/edit.vue
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ var edit = ({
+  data: function data() {
+    return {
+      tempForm: {
+        name: "",
+        description: ""
+      },
+      ruleForm: {
+        number: "",
+        lid: "",
+        type: "",
+        master_id: "",
+        location: "司机车长及施工负责人",
+        driver_id: "",
+        dispatch_id: "",
+        station_worker_id: "",
+        station: "",
+        description: "",
+        template_id: 1
+      },
+      locomotiveList: [],
+      masterList: [],
+      driverList: [],
+      dispatchList: [],
+      stationWorkerList: [],
+      templateList: [],
+      isVisible: false,
+      rules: {
+        number: [{ required: true, message: "请输入命令号码", trigger: "blur" }],
+        lid: [{ required: true, message: "请选择受令机车", trigger: "change" }],
+        type: [{ required: true, message: "请选择类型", trigger: "change" }],
+        master_id: [{ required: true, message: "请选择受令机长", trigger: "change" }],
+        location: [{ required: true, message: "请选择令处所", trigger: "blur" }],
+        driver_id: [{ required: true, message: "请选择受令机车", trigger: "change" }],
+        dispatch_id: [{ required: true, message: "请选择调度员", trigger: "change" }]
+      },
+      temprules: {
+        name: [{ required: true, message: "请输入名称", trigger: "blur" }],
+        description: [{ required: true, message: "请输入内容", trigger: "blur" }]
+      }
+    };
+  },
+  created: function created() {
+    this.getCreateNumber();
+    this.getLocomotiveLists(); //机车
+    this.getUsersListMaster(); //车长
+    this.getUsersListDriver(); //司机
+    this.getUsersListDispatch(); //调度员
+    this.getUsersListStationWorker(); //车站值班人
+    this.getTemplateLists(); //模板
+  },
+
+  methods: {
+    submitForm: function submitForm(formName) {
+      var _this = this;
+
+      this.$refs[formName].validate(function (valid) {
+        if (valid) {
+          var data = _this.ruleForm;
+          console.log(stringify_default()(data));
+          _this.request({
+            url: "/dispatch/addDispatch",
+            method: "post",
+            data: data
+          }).then(function (res) {
+            var data = res.data;
+            if (data.status == 1) {
+              _this.$message({
+                message: "恭喜您，新增成功",
+                type: "success"
+              });
+              _this.$layer.close(_this.layerid);
+              _this.$parent.getDataLists();
+            }
+          });
+        } else {
+          console.log("保存命令失败");
+          return false;
+        }
+      });
+    },
+    isCancel: function isCancel() {
+      this.$layer.close(this.layerid);
+    },
+    getCreateNumber: function getCreateNumber() {
+      var _this2 = this;
+
+      this.request({
+        url: "/dispatch/createNumber",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this2.ruleForm.number = data.data;
+          console.log(_this2.ruleForm.number);
+        }
+      });
+    },
+
+    //5:车长,6:司机,7:调度值班员，8：车站值班员 /dispatch/getUsersLists
+    getUsersListMaster: function getUsersListMaster() {
+      var _this3 = this;
+
+      this.request({
+        url: "/dispatch/getUsersLists?role_id=5",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this3.masterList = data.data;
+        }
+      });
+    },
+    getUsersListDriver: function getUsersListDriver() {
+      var _this4 = this;
+
+      this.request({
+        url: "/dispatch/getUsersLists?role_id=6",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this4.driverList = data.data;
+        }
+      });
+    },
+    getUsersListDispatch: function getUsersListDispatch() {
+      var _this5 = this;
+
+      this.request({
+        url: "/dispatch/getUsersLists?role_id=7",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this5.dispatchList = data.data;
+        }
+      });
+    },
+    getUsersListStationWorker: function getUsersListStationWorker() {
+      var _this6 = this;
+
+      this.request({
+        url: "/dispatch/getUsersLists?role_id=8",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this6.stationWorkerList = data.data;
+        }
+      });
+    },
+    getLocomotiveLists: function getLocomotiveLists() {
+      var _this7 = this;
+
+      this.request({
+        url: "/dispatch/getLocomotiveLists",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this7.locomotiveList = data.data;
+        }
+      });
+    },
+
+    //模板
+    getTemplateLists: function getTemplateLists() {
+      var _this8 = this;
+
+      this.request({
+        url: "/dispatch/getTemplateLists",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this8.templateList = data.data;
+          _this8.templateChange(1);
+        }
+      });
+    },
+    templateChange: function templateChange(params) {
+      var _this9 = this;
+
+      var value = params;
+      this.request({
+        url: "/dispatch/getTemplateDetail?id=" + value,
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this9.ruleForm.description = res.data.data.description;
+        }
+      });
+    },
+    templateShowDialog: function templateShowDialog() {
+      this.isVisible = true;
+      this.tempForm.name = "";
+      this.tempForm.description = "";
+    },
+    templateDel: function templateDel() {
+      var _this10 = this;
+
+      this.request({
+        url: "/dispatch/deleteTemplate",
+        method: "post",
+        data: { id: this.ruleForm.template_id }
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this10.ruleForm.template_id = 1;
+          _this10.getTemplateLists();
+          _this10.$message({
+            message: "恭喜您，删除成功",
+            type: "success"
+          });
+        }
+      });
+    },
+    templateSubmitTempForm: function templateSubmitTempForm(formName) {
+      var _this11 = this;
+
+      this.$refs[formName].validate(function (valid) {
+        if (valid) {
+          var data = _this11.tempForm;
+          console.log("tempForm：" + stringify_default()(data));
+          _this11.request({
+            url: "/dispatch/addTemplate",
+            method: "post",
+            data: data
+          }).then(function (res) {
+            var data = res.data;
+            if (data.status == 1) {
+              _this11.isVisible = false;
+              _this11.$message({
+                message: "恭喜您，新增成功",
+                type: "success"
+              });
+              _this11.getTemplateLists();
+            }
+          });
+        } else {
+          console.log("保存模板失败");
+          return false;
+        }
+      });
+    }
+  },
+  props: {
+    layerid: {
+      type: String,
+      default: ""
+    }
+  }
+});
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-20949ccf","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dispatch/edit.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-page-layer",attrs:{"id":"dispatch-edit"}},[_c('div',{staticClass:"app-dialog-form"},[_c('el-form',{ref:"ruleForm",attrs:{"label-position":"top","model":_vm.ruleForm,"inline":true,"rules":_vm.rules}},[_c('el-form-item',{attrs:{"label":"命令号码","prop":"number"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.ruleForm.number),callback:function ($$v) {_vm.$set(_vm.ruleForm, "number", $$v)},expression:"ruleForm.number"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令机车","prop":"lid"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.ruleForm.lid),callback:function ($$v) {_vm.$set(_vm.ruleForm, "lid", $$v)},expression:"ruleForm.lid"}},_vm._l((_vm.locomotiveList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"类型","prop":"type"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.ruleForm.type),callback:function ($$v) {_vm.$set(_vm.ruleForm, "type", $$v)},expression:"ruleForm.type"}},[_c('el-option',{attrs:{"label":"行车调度","value":"1"}}),_vm._v(" "),_c('el-option',{attrs:{"label":"施工调度","value":"2"}})],1)],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令机长","prop":"master_id"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.ruleForm.master_id),callback:function ($$v) {_vm.$set(_vm.ruleForm, "master_id", $$v)},expression:"ruleForm.master_id"}},_vm._l((_vm.masterList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令处所","prop":"location"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.ruleForm.location),callback:function ($$v) {_vm.$set(_vm.ruleForm, "location", $$v)},expression:"ruleForm.location"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令司机","prop":"driver_id"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.ruleForm.driver_id),callback:function ($$v) {_vm.$set(_vm.ruleForm, "driver_id", $$v)},expression:"ruleForm.driver_id"}},_vm._l((_vm.driverList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"值班调度","prop":"dispatch_id"}},[_c('el-select',{attrs:{"placeholder":"请选择调度员","clearable":""},model:{value:(_vm.ruleForm.dispatch_id),callback:function ($$v) {_vm.$set(_vm.ruleForm, "dispatch_id", $$v)},expression:"ruleForm.dispatch_id"}},_vm._l((_vm.dispatchList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令车站"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.ruleForm.station),callback:function ($$v) {_vm.$set(_vm.ruleForm, "station", $$v)},expression:"ruleForm.station"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"车站值班员"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.ruleForm.station_worker_id),callback:function ($$v) {_vm.$set(_vm.ruleForm, "station_worker_id", $$v)},expression:"ruleForm.station_worker_id"}},_vm._l((_vm.stationWorkerList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('div',{staticClass:"blank"}),_vm._v(" "),_c('div',{staticClass:"contents-select"},[_c('el-select',{on:{"change":_vm.templateChange},model:{value:(_vm.ruleForm.template_id),callback:function ($$v) {_vm.$set(_vm.ruleForm, "template_id", $$v)},expression:"ruleForm.template_id"}},_vm._l((_vm.templateList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})})),_vm._v(" "),_c('el-button',{staticClass:"bluebtn",attrs:{"type":"primary"},on:{"click":_vm.templateDel}},[_vm._v("删除选中模板")]),_vm._v(" "),_c('el-button',{staticClass:"redbtn",attrs:{"type":"primary"},on:{"click":_vm.templateShowDialog}},[_vm._v("\n          新建调度内容模板\n          "),_c('i',{staticClass:"el-icon-plus el-icon--right"})])],1),_vm._v(" "),_c('div',{staticClass:"blank"}),_vm._v(" "),_c('div',{staticClass:"contents-area"},[_c('p',[_vm._v("调度命令内容")]),_vm._v(" "),_c('el-input',{attrs:{"type":"textarea"},model:{value:(_vm.ruleForm.description),callback:function ($$v) {_vm.$set(_vm.ruleForm, "description", $$v)},expression:"ruleForm.description"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"app-dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('span',{staticClass:"tips"},[_vm._v("备注：*为必填项")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.submitForm('ruleForm')}}},[_vm._v("确定保存")]),_vm._v(" "),_c('el-button',{on:{"click":_vm.isCancel}},[_vm._v("关闭")])],1)],1),_vm._v(" "),_c('el-dialog',{staticClass:"app-dialog app-dialog-temp",attrs:{"width":"580px","title":"新增调度内容模板","visible":_vm.isVisible,"center":"","append-to-body":true},on:{"update:visible":function($event){_vm.isVisible=$event}}},[_c('el-form',{ref:"tempForm",attrs:{"model":_vm.tempForm,"rules":_vm.temprules,"label-width":"100px","label-position":"left"}},[_c('el-form-item',{attrs:{"label":"新增名称","prop":"name"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.tempForm.name),callback:function ($$v) {_vm.$set(_vm.tempForm, "name", $$v)},expression:"tempForm.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"新增内容","prop":"description"}},[_c('el-input',{attrs:{"type":"textarea"},model:{value:(_vm.tempForm.description),callback:function ($$v) {_vm.$set(_vm.tempForm, "description", $$v)},expression:"tempForm.description"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.isVisible = false}}},[_vm._v("取 消")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.templateSubmitTempForm('tempForm')}}},[_vm._v("确 定")])],1)],1)],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ var dispatch_edit = (esExports);
+// CONCATENATED MODULE: ./src/views/dispatch/edit.vue
+function injectStyle (ssrContext) {
+  __webpack_require__("9iIH")
+}
+var normalizeComponent = __webpack_require__("VU/8")
+/* script */
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  edit,
+  dispatch_edit,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+
+/* harmony default export */ var views_dispatch_edit = (Component.exports);
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/dispatch/detail.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var detail = ({
+  data: function data() {
+    return {
+      iframepar: {},
+      id: 1,
+      dataInfo: [],
+      iData: { id: 3 }
+    };
+  },
+
+  props: {
+    iframeData: {
+      type: Object,
+      default: function _default() {
+        return {};
+      }
+    },
+    layerid: {
+      type: String,
+      default: ""
+    }
+  },
+  created: function created() {
+    this.getDetail();
+  },
+
+  methods: {
+    getDetail: function getDetail() {
+      var _this = this;
+
+      this.request({
+        url: "/dispatch/getDispatchDetail?id=" + this.iframeData.id,
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this.dataInfo = data.data;
+          //console.log(JSON.stringify(this.dataInfo));
+        }
+      });
+    },
+    isCancel: function isCancel() {
+      this.$layer.close(this.layerid);
+    }
+  }
+});
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-5df7f5ca","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dispatch/detail.vue
+var detail_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-page-layer",attrs:{"id":"dispatch-detail"}},[_c('div',{staticClass:"app-dialog-form"},[_c('el-form',{attrs:{"inline":true}},[_c('el-form-item',{attrs:{"label":"命令号码："}},[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.number),callback:function ($$v) {_vm.$set(_vm.dataInfo, "number", $$v)},expression:"dataInfo.number"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"值班调度："}},[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.dispatch),callback:function ($$v) {_vm.$set(_vm.dataInfo, "dispatch", $$v)},expression:"dataInfo.dispatch"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"命令状态"}},[(_vm.dataInfo.status=='1')?_c('p',[_c('el-input',{attrs:{"readonly":"","value":"新命令"}})],1):_vm._e(),_vm._v(" "),(_vm.dataInfo.status=='2')?_c('p',[_c('el-input',{attrs:{"readonly":"","value":"已确认"}})],1):_vm._e(),_vm._v(" "),(_vm.dataInfo.status=='3')?_c('p',[_c('el-input',{attrs:{"readonly":"","value":"已作废"}})],1):_vm._e()]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令机车："}},[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.loco),callback:function ($$v) {_vm.$set(_vm.dataInfo, "loco", $$v)},expression:"dataInfo.loco"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令司机："}},[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.driver),callback:function ($$v) {_vm.$set(_vm.dataInfo, "driver", $$v)},expression:"dataInfo.driver"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令机长"}},[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.master),callback:function ($$v) {_vm.$set(_vm.dataInfo, "master", $$v)},expression:"dataInfo.master"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"发令时间："}},[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.create_time),callback:function ($$v) {_vm.$set(_vm.dataInfo, "create_time", $$v)},expression:"dataInfo.create_time"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令车站："}},[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.station),callback:function ($$v) {_vm.$set(_vm.dataInfo, "station", $$v)},expression:"dataInfo.station"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"车站值班员："}},[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.station_worker),callback:function ($$v) {_vm.$set(_vm.dataInfo, "station_worker", $$v)},expression:"dataInfo.station_worker"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"确认时间："}},[(_vm.dataInfo.makesure_time=='')?_c('p',[_c('el-input',{attrs:{"readonly":"","value":"暂未确认"}})],1):_c('p',[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.makesure_time),callback:function ($$v) {_vm.$set(_vm.dataInfo, "makesure_time", $$v)},expression:"dataInfo.makesure_time"}})],1)]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令处所："}},[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.location),callback:function ($$v) {_vm.$set(_vm.dataInfo, "location", $$v)},expression:"dataInfo.location"}})],1),_vm._v(" "),_c('el-form-item'),_vm._v(" "),_c('el-form-item',{staticClass:"contents",attrs:{"label":"调度命令内容："}},[_c('el-input',{attrs:{"type":"textarea"},model:{value:(_vm.dataInfo.description),callback:function ($$v) {_vm.$set(_vm.dataInfo, "description", $$v)},expression:"dataInfo.description"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"app-dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":_vm.isCancel}},[_vm._v("关闭")])],1)],1)])}
+var detail_staticRenderFns = []
+var detail_esExports = { render: detail_render, staticRenderFns: detail_staticRenderFns }
+/* harmony default export */ var dispatch_detail = (detail_esExports);
+// CONCATENATED MODULE: ./src/views/dispatch/detail.vue
+function detail_injectStyle (ssrContext) {
+  __webpack_require__("Fjmr")
+}
+var detail_normalizeComponent = __webpack_require__("VU/8")
+/* script */
+
+/* template */
+
+/* template functional */
+var detail___vue_template_functional__ = false
+/* styles */
+var detail___vue_styles__ = detail_injectStyle
+/* scopeId */
+var detail___vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var detail___vue_module_identifier__ = null
+var detail_Component = detail_normalizeComponent(
+  detail,
+  dispatch_detail,
+  detail___vue_template_functional__,
+  detail___vue_styles__,
+  detail___vue_scopeId__,
+  detail___vue_module_identifier__
+)
+
+/* harmony default export */ var views_dispatch_detail = (detail_Component.exports);
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/dispatch/printing.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var printing = ({
+  data: function data() {
+    return {
+      iframepar: {},
+      id: 1,
+      dataInfo: [],
+      iData: { id: 3 }
+    };
+  },
+
+  props: {
+    iframeData: {
+      type: Object,
+      default: function _default() {
+        return {};
+      }
+    },
+    layerid: {
+      type: String,
+      default: ""
+    }
+  },
+  created: function created() {
+    this.getDetail();
+  },
+
+  methods: {
+    getDetail: function getDetail() {
+      var _this = this;
+
+      this.request({
+        url: "/dispatch/getDispatchDetail?id=" + this.iframeData.id,
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this.dataInfo = data.data;
+          //console.log(JSON.stringify(this.dataInfo));
+        }
+      });
+    },
+    isCancel: function isCancel() {
+      this.$layer.close(this.layerid);
+    }
+  }
+});
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-06b8aabc","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dispatch/printing.vue
+var printing_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-page-layer",attrs:{"id":"dispatch-print"}},[_c('div',{staticClass:"app-dialog-form"},[_c('el-form',{attrs:{"id":"printMe","inline":true}},[_c('el-form-item',{attrs:{"label":"命令号："}},[_c('div',{staticClass:"txt"},[_vm._v(_vm._s(_vm.dataInfo.number))])]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"调度："}},[_c('div',{staticClass:"txt"},[_vm._v(_vm._s(_vm.dataInfo.dispatch))])]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"车站："}},[_c('div',{staticClass:"txt"},[_vm._v(_vm._s(_vm.dataInfo.station))])]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"机车："}},[_c('div',{staticClass:"txt"},[_vm._v(_vm._s(_vm.dataInfo.loco))])]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"机长"}},[_c('div',{staticClass:"txt"},[_vm._v(_vm._s(_vm.dataInfo.master))])]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"司机："}},[_c('div',{staticClass:"txt"},[_vm._v(_vm._s(_vm.dataInfo.driver))])]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"值班员："}},[_c('div',{staticClass:"txt"},[_vm._v(_vm._s(_vm.dataInfo.station_worker))])]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令处所："}},[_c('div',{staticClass:"txt"},[_vm._v(_vm._s(_vm.dataInfo.location))])]),_vm._v(" "),_c('el-form-item'),_vm._v(" "),_c('el-form-item',{staticClass:"contents",attrs:{"label":"命令内容："}},[_c('div',{staticClass:"conn"},[_vm._v(_vm._s(_vm.dataInfo.description))])]),_vm._v(" "),_c('p',{staticClass:"info"},[_vm._v("注：本调度命令一式四份")])],1),_vm._v(" "),_c('div',{staticClass:"app-dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{staticClass:"bluebtn",on:{"click":_vm.isCancel}},[_vm._v("返回列表")]),_vm._v(" "),_c('el-button',{directives:[{name:"print",rawName:"v-print",value:('#printMe'),expression:"'#printMe'"}],staticClass:"redbtn"},[_vm._v("打印信息")])],1)],1)])}
+var printing_staticRenderFns = []
+var printing_esExports = { render: printing_render, staticRenderFns: printing_staticRenderFns }
+/* harmony default export */ var dispatch_printing = (printing_esExports);
+// CONCATENATED MODULE: ./src/views/dispatch/printing.vue
+function printing_injectStyle (ssrContext) {
+  __webpack_require__("h0b4")
+}
+var printing_normalizeComponent = __webpack_require__("VU/8")
+/* script */
+
+/* template */
+
+/* template functional */
+var printing___vue_template_functional__ = false
+/* styles */
+var printing___vue_styles__ = printing_injectStyle
+/* scopeId */
+var printing___vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var printing___vue_module_identifier__ = null
+var printing_Component = printing_normalizeComponent(
+  printing,
+  dispatch_printing,
+  printing___vue_template_functional__,
+  printing___vue_styles__,
+  printing___vue_scopeId__,
+  printing___vue_module_identifier__
+)
+
+/* harmony default export */ var views_dispatch_printing = (printing_Component.exports);
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/dispatch/index.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ var dispatch = ({
+  name: "",
+  data: function data() {
+    return {
+      pageCur: 1,
+      pageTotal: 0,
+      per_page: 20,
+      lidList: [],
+      masterList: [],
+      driverList: [],
+      dispatchList: [],
+      dataList: [],
+      searchForm: {
+        lid: "",
+        dispatch_id: "",
+        master_id: "",
+        driver_id: "",
+        status: "",
+        time_range: []
+      },
+      pickerOptions2: common["a" /* publicData */].pickerOptions2
+    };
+  },
+  created: function created() {
+    this.getlibLists(); //机车
+    this.getUsersListDispatch(); //调度员
+    this.getUsersListMaster(); //车长
+    this.getUsersListDriver(); //司机
+    this.getDataLists();
+  },
+
+  methods: {
+    getlibLists: function getlibLists() {
+      var _this = this;
+
+      this.request({
+        url: "/dispatch/getLocomotiveLists",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this.lidList = data.data;
+        }
+      });
+    },
+
+    //5:车长,6:司机,7:调度值班员
+    getUsersListMaster: function getUsersListMaster() {
+      var _this2 = this;
+
+      this.request({
+        url: "/dispatch/getUsersLists?role_id=5",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this2.masterList = data.data;
+        }
+      });
+    },
+    getUsersListDriver: function getUsersListDriver() {
+      var _this3 = this;
+
+      this.request({
+        url: "/dispatch/getUsersLists?role_id=6",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this3.driverList = data.data;
+        }
+      });
+    },
+    getUsersListDispatch: function getUsersListDispatch() {
+      var _this4 = this;
+
+      this.request({
+        url: "/dispatch/getUsersLists?role_id=7",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this4.dispatchList = data.data;
+        }
+      });
+    },
+    getDataLists: function getDataLists() {
+      var _this5 = this;
+
+      var page = this.pageCur;
+      var lid = this.searchForm.lid;
+      var dispatch_id = this.searchForm.dispatch_id;
+      var master_id = this.searchForm.master_id;
+      var driver_id = this.searchForm.driver_id;
+      var status = this.searchForm.status;
+      var time_range = this.searchForm.time_range;
+      //alert(time_range);
+      this.request({
+        url: "dispatch/getDispatchPages",
+        method: "get",
+        params: {
+          page: page,
+          lid: lid,
+          dispatch_id: dispatch_id,
+          master_id: master_id,
+          driver_id: driver_id,
+          status: status,
+          time_range: time_range
+        }
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this5.dataList = data.data.data;
+          _this5.pageCur = parseInt(data.data.current_page);
+          _this5.pageTotal = data.data.total;
+          _this5.per_page = data.data.per_page;
+        }
+      });
+    },
+    pageChange: function pageChange(value) {
+      this.pageCur = value;
+      this.getDataLists();
+    },
+
+
+    addInfo: function addInfo() {
+      this.$layer.iframe({
+        area: ["800px", "590px"],
+        title: "新建调度命令",
+        skin: "layers",
+        shadeClose: false,
+        content: {
+          content: views_dispatch_edit,
+          parent: this,
+          data: {}
+        }
+      });
+    },
+    goDetail: function goDetail(id) {
+      this.$layer.iframe({
+        area: ["800px", "590px"],
+        title: "调度命令详情",
+        shadeClose: false,
+        content: {
+          content: views_dispatch_detail,
+          parent: this,
+          data: { iframeData: { id: id } }
+        }
+      });
+    },
+    goInvalid: function goInvalid(id, index) {
+      var _this6 = this;
+
+      this.$confirm("您确定作废命令?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      }).then(function () {
+        _this6.request({
+          url: "/dispatch/changeStatus",
+          method: "post",
+          data: { id: id, status: 1 },
+          contentType: "application/x-www-form-urlencoded"
+        }).then(function (res) {
+          var data = res.data;
+          if (data.status == 1) {
+            _this6.$message({
+              type: "success",
+              message: "作废成功!"
+            });
+            _this6.$set(_this6.dataList[index], "status", 3);
+          }
+        });
+      });
+    },
+    goDel: function goDel(id) {
+      var _this7 = this;
+
+      this.$confirm("您确定删除命令?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      }).then(function () {
+        _this7.request({
+          url: "/dispatch/changeStatus",
+          method: "post",
+          data: { id: id, status: 0 },
+          contentType: "application/x-www-form-urlencoded"
+        }).then(function (res) {
+          var data = res.data;
+          if (data.status == 1) {
+            _this7.$message({
+              type: "success",
+              message: "删除成功!"
+            });
+            _this7.getDataLists();
+          }
+        });
+      });
+    },
+
+    goPrint: function goPrint(id) {
+      this.$layer.iframe({
+        area: ["960px", "590px"],
+        title: "调度命令（行车调度）",
+        shadeClose: false,
+        content: {
+          content: views_dispatch_printing,
+          parent: this,
+          data: { iframeData: { id: id } }
+        }
+      });
+    }
+  }
+});
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-1be57c60","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dispatch/index.vue
+var dispatch_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{attrs:{"model":_vm.searchForm,"inline":true}},[_c('div',{staticClass:"select-from-inline"},[_c('el-form-item',[_c('el-button',{staticClass:"redbtn",attrs:{"type":"primary"},on:{"click":_vm.addInfo}},[_vm._v("新建调度命令")])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"机车名称"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.searchForm.lid),callback:function ($$v) {_vm.$set(_vm.searchForm, "lid", $$v)},expression:"searchForm.lid"}},_vm._l((_vm.lidList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"值班调度"}},[_c('el-select',{attrs:{"placeholder":"请选择调度员","clearable":""},model:{value:(_vm.searchForm.dispatch_id),callback:function ($$v) {_vm.$set(_vm.searchForm, "dispatch_id", $$v)},expression:"searchForm.dispatch_id"}},_vm._l((_vm.dispatchList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"车长"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.searchForm.master_id),callback:function ($$v) {_vm.$set(_vm.searchForm, "master_id", $$v)},expression:"searchForm.master_id"}},_vm._l((_vm.masterList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"司机"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.searchForm.driver_id),callback:function ($$v) {_vm.$set(_vm.searchForm, "driver_id", $$v)},expression:"searchForm.driver_id"}},_vm._l((_vm.driverList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1)],1),_vm._v(" "),_c('div',{staticClass:"select-from-inline"},[_c('el-form-item',[_c('el-button',{staticClass:"bluebtn",attrs:{"type":"primary"}},[_vm._v("\n              更多信息\n              "),_c('i',{staticClass:"el-icon-plus el-icon--right"})])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"命令状态"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.searchForm.status),callback:function ($$v) {_vm.$set(_vm.searchForm, "status", $$v)},expression:"searchForm.status"}},[_c('el-option',{attrs:{"label":"新命令","value":"1"}}),_vm._v(" "),_c('el-option',{attrs:{"label":"已确认","value":"2"}}),_vm._v(" "),_c('el-option',{attrs:{"label":"已作废","value":"3"}})],1)],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"开始时间"}},[_c('el-date-picker',{attrs:{"type":"daterange","range-separator":"至","start-placeholder":"开始日期","end-placeholder":"结束日期","picker-options":_vm.pickerOptions2,"value-format":"yyyy-MM-dd HH:mm"},model:{value:(_vm.searchForm.time_range),callback:function ($$v) {_vm.$set(_vm.searchForm, "time_range", $$v)},expression:"searchForm.time_range"}})],1),_vm._v(" "),_c('el-form-item',{staticClass:"form-so"},[_c('label',{staticClass:"el-form-item__label"}),_vm._v(" "),_c('el-button',{attrs:{"size":"small","icon":"el-icon-search","type":"primary"},on:{"click":_vm.getDataLists}},[_vm._v("查询")])],1)],1)])],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{attrs:{"data":_vm.dataList}},[_c('el-table-column',{attrs:{"prop":"number","label":"命令号"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"loco","label":"受令机车"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"master","label":"守令车长"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"driver","label":"守令司机"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"location","label":"受令处所"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"dispatch","label":"值班调度"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"status","label":"状态"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.status=='1')?_c('span',{staticClass:"statused"},[_vm._v("新命令")]):_vm._e(),_vm._v(" "),(scope.row.status=='2')?_c('span',{staticClass:"statused"},[_vm._v("已确认")]):_vm._e(),_vm._v(" "),(scope.row.status=='3')?_c('span',{staticClass:"statused"},[_vm._v("已作废")]):_vm._e()]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"create_time","label":"发令时间"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"makesure_time","label":"确认时间"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.makesure_time.length==0)?_c('span',[_vm._v("暂未确认")]):_c('span',[_vm._v(_vm._s(scope.row.makesure_time))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"240"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.goDetail(scope.row.id)}}},[_vm._v("详情")]),_vm._v(" "),_c('el-button',{staticClass:"btn-blue",attrs:{"disabled":scope.row.status == '3',"size":"mini"},on:{"click":function($event){_vm.goInvalid(scope.row.id,scope.$index)}}},[_vm._v("作废")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"title":"作废后才能删除","disabled":scope.row.status != '3',"size":"mini"},on:{"click":function($event){_vm.goDel(scope.row.id)}}},[_vm._v("删除")]),_vm._v(" "),_c('el-button',{staticClass:"btn-green",attrs:{"size":"mini"},on:{"click":function($event){_vm.goPrint(scope.row.id)}}},[_vm._v("打印")])],1)]}}])})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.dataList.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"prev, pager, next,total","page-size":this.per_page,"current-page":this.pageCur,"total":this.pageTotal,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.pageChange}}):_vm._e()],1)],1)])])}
+var dispatch_staticRenderFns = []
+var dispatch_esExports = { render: dispatch_render, staticRenderFns: dispatch_staticRenderFns }
+/* harmony default export */ var views_dispatch = (dispatch_esExports);
+// CONCATENATED MODULE: ./src/views/dispatch/index.vue
+function dispatch_injectStyle (ssrContext) {
+  __webpack_require__("zh3x")
+}
+var dispatch_normalizeComponent = __webpack_require__("VU/8")
+/* script */
+
+/* template */
+
+/* template functional */
+var dispatch___vue_template_functional__ = false
+/* styles */
+var dispatch___vue_styles__ = dispatch_injectStyle
+/* scopeId */
+var dispatch___vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var dispatch___vue_module_identifier__ = null
+var dispatch_Component = dispatch_normalizeComponent(
+  dispatch,
+  views_dispatch,
+  dispatch___vue_template_functional__,
+  dispatch___vue_styles__,
+  dispatch___vue_scopeId__,
+  dispatch___vue_module_identifier__
+)
+
+/* harmony default export */ var src_views_dispatch = __webpack_exports__["default"] = (dispatch_Component.exports);
+
+
+/***/ }),
+
+/***/ "MLuA":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("FZ+f")(false);
@@ -2085,10 +2756,117 @@ exports = module.exports = __webpack_require__("FZ+f")(false);
 
 
 // module
-exports.push([module.i, "\n.emptyGif[data-v-736d64a4] {\n  display: block;\n  width: 45%;\n  margin: 0 auto;\n}\n.dashboard-editor-container[data-v-736d64a4] {\n  background-color: #e3e3e3;\n  min-height: 100vh;\n  padding: 50px 60px 0px;\n}\n.dashboard-editor-container .pan-info-roles[data-v-736d64a4] {\n    font-size: 12px;\n    font-weight: 700;\n    color: #333;\n    display: block;\n}\n.dashboard-editor-container .info-container[data-v-736d64a4] {\n    position: relative;\n    margin-left: 190px;\n    height: 150px;\n    line-height: 200px;\n}\n.dashboard-editor-container .info-container .display_name[data-v-736d64a4] {\n      font-size: 48px;\n      line-height: 48px;\n      color: #212121;\n      position: absolute;\n      top: 25px;\n}\n", ""]);
+exports.push([module.i, "\n#dispatch-detail .app-dialog-form {\r\n  padding: 30px 0px 30px 30px;\r\n  display: block;\r\n  margin-top: 1px;\n}\n#dispatch-detail .app-dialog-form .el-form-item {\r\n  margin-bottom: 15px;\n}\n#dispatch-detail .app-dialog-form .el-form-item__label {\r\n  width: 120px;\r\n  color: #1d397a;\n}\n#dispatch-detail .app-dialog-form .el-input input {\r\n  width: 245px;\n}\n#dispatch-detail .app-dialog-form .bluebtn {\r\n  margin-left: 10px;\n}\n#dispatch-detail .app-dialog-form .redbtn {\r\n  background: #ff5c75;\r\n  border-color: #ff5c75;\n}\n#dispatch-detail .app-dialog-form .contents {\r\n  display: block;\r\n  width: 100%;\n}\n#dispatch-detail .app-dialog-form .contents .el-textarea {\r\n  width: 100%;\n}\n#dispatch-detail .app-dialog-form .contents .el-form-item__content {\r\n  width: 623px;\n}\n#dispatch-detail .app-dialog-form .contents .el-textarea__inner {\r\n  width: 100%;\r\n  height: 100px;\n}\n#dispatch-detail .app-dialog-footer {\r\n  margin-top: 20px;\n}\n#dispatch-detail .app-dialog-footer .tips {\r\n  color: #ff5c75;\r\n  font-size: 16px;\n}\n#dispatch-detail .app-dialog-footer .el-button {\r\n  float: right;\r\n  margin-right: 30px;\n}\r\n", ""]);
 
 // exports
 
+
+/***/ }),
+
+/***/ "X2Oc":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return publicData; });
+
+var publicData = {
+
+  pickerOptions2: {
+    shortcuts: [{
+      text: '今天',
+      onClick: function onClick(picker) {
+        var end = new Date();
+        var start = new Date();
+        start.setTime(start.getTime() - 3600 * 1000 * 24 * 0);
+        picker.$emit('pick', [start, end]);
+      }
+    }, {
+      text: '最近三天',
+      onClick: function onClick(picker) {
+        var end = new Date();
+        var start = new Date();
+        start.setTime(start.getTime() - 3600 * 1000 * 24 * 2);
+        picker.$emit('pick', [start, end]);
+      }
+    }, {
+      text: '最近一周',
+      onClick: function onClick(picker) {
+        var end = new Date();
+        var start = new Date();
+        start.setTime(start.getTime() - 3600 * 1000 * 24 * 6);
+        picker.$emit('pick', [start, end]);
+      }
+    }, {
+      text: '最近一个月',
+      onClick: function onClick(picker) {
+        var end = new Date();
+        var start = new Date();
+        start.setTime(start.getTime() - 3600 * 1000 * 24 * 29);
+        picker.$emit('pick', [start, end]);
+      }
+    }, {
+      text: '最近三个月',
+      onClick: function onClick(picker) {
+        var end = new Date();
+        var start = new Date();
+        start.setTime(start.getTime() - 3600 * 1000 * 24 * 89);
+        picker.$emit('pick', [start, end]);
+      }
+    }]
+  },
+  pickerOptions3: {
+    shortcuts: [{
+      text: '本月',
+      onClick: function onClick(picker) {
+        picker.$emit('pick', [new Date(), new Date()]);
+      }
+    }, {
+      text: '今年至今',
+      onClick: function onClick(picker) {
+        var end = new Date();
+        var start = new Date(new Date().getFullYear(), 0);
+        picker.$emit('pick', [start, end]);
+      }
+    }, {
+      text: '最近六个月',
+      onClick: function onClick(picker) {
+        var end = new Date();
+        var start = new Date();
+        start.setMonth(start.getMonth() - 6);
+        picker.$emit('pick', [start, end]);
+      }
+    }]
+  }
+};
+
+/***/ }),
+
+/***/ "cd7n":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n#dispatch-print .app-dialog-form {\r\n  padding: 30px 0px 30px 30px;\r\n  display: block;\r\n  margin-top: 1px;\n}\n#dispatch-print .app-dialog-form .el-form-item {\r\n  margin-bottom: 15px;\n}\n#dispatch-print .app-dialog-form .el-form-item__label {\r\n  width: 90px;\r\n  color: #1d397a;\n}\n#dispatch-print .app-dialog-form .contents {\r\n  display: block;\r\n  width: 100%;\n}\n#dispatch-print .app-dialog-form .contents .el-textarea {\r\n  width: 100%;\n}\n#dispatch-print .app-dialog-form .contents .el-form-item__content {\r\n  width: 723px;\n}\n#dispatch-print .conn {\r\n  border: 1px #9db9fa solid;\r\n  color: #4b6eca;\r\n  padding: 10px;\r\n  border-radius: 3px;\n}\n#dispatch-print .info {\r\n  color: #4b6eca;\n}\n#dispatch-print .app-dialog-footer {\r\n  text-align: center;\r\n  margin-top: 30px;\n}\n#dispatch-print .app-dialog-footer .el-button {\r\n  margin-right: 10px;\r\n  padding: 12px 80px;\r\n  font-size: 16px;\r\n  color: #fff;\n}\n#dispatch-print .app-dialog-footer .bluebtn {\r\n  background: #4b6eca;\r\n  border-color: #4b6eca;\r\n  margin-left: 10px;\n}\n#dispatch-print .app-dialog-footer .redbtn {\r\n  background: #ff5c75;\r\n  border-color: #ff5c75;\n}\n#dispatch-print .txt {\r\n  border: 1px #9db9fa solid;\r\n  color: #4b6eca;\r\n  height: 37px;\r\n  padding: 0 10px;\r\n  width: 200px;\r\n  border-radius: 3px;\n}\n#printMe .el-form-item__label {\r\n  width: 90px;\r\n  color: #1d397a;\n}\n#printMe p{color: #4b6eca\n}\n#printMe .txt{color: #4b6eca; width: 200px;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "h0b4":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("cd7n");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("1e3573a9", content, true);
 
 /***/ }),
 
@@ -2113,7 +2891,7 @@ module.exports = win;
 
 /***/ }),
 
-/***/ "kO7J":
+/***/ "jR0Y":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("FZ+f")(false);
@@ -2121,9 +2899,28 @@ exports = module.exports = __webpack_require__("FZ+f")(false);
 
 
 // module
-exports.push([module.i, "\n.pan-item[data-v-2f6c38f3] {\n  width: 200px;\n  height: 200px;\n  border-radius: 50%;\n  display: inline-block;\n  position: relative;\n  cursor: default;\n  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);\n          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);\n}\n.pan-info-roles-container[data-v-2f6c38f3] {\n  padding: 20px;\n  text-align: center;\n}\n.pan-thumb[data-v-2f6c38f3] {\n  width: 100%;\n  height: 100%;\n  background-size: 100%;\n  border-radius: 50%;\n  overflow: hidden;\n  position: absolute;\n  -webkit-transform-origin: 95% 40%;\n          transform-origin: 95% 40%;\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n}\n.pan-thumb[data-v-2f6c38f3]:after {\n  content: '';\n  width: 8px;\n  height: 8px;\n  position: absolute;\n  border-radius: 50%;\n  top: 40%;\n  left: 95%;\n  margin: -4px 0 0 -4px;\n  background: radial-gradient(ellipse at center, rgba(14, 14, 14, 1) 0%, rgba(125, 126, 125, 1) 100%);\n  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.9);\n          box-shadow: 0 0 1px rgba(255, 255, 255, 0.9);\n}\n.pan-info[data-v-2f6c38f3] {\n  position: absolute;\n  width: inherit;\n  height: inherit;\n  border-radius: 50%;\n  overflow: hidden;\n  -webkit-box-shadow: inset 0 0 0 5px rgba(0, 0, 0, 0.05);\n          box-shadow: inset 0 0 0 5px rgba(0, 0, 0, 0.05);\n}\n.pan-info h3[data-v-2f6c38f3] {\n  color: #fff;\n  text-transform: uppercase;\n  position: relative;\n  letter-spacing: 2px;\n  font-size: 18px;\n  margin: 0 60px;\n  padding: 22px 0 0 0;\n  height: 85px;\n  font-family: 'Open Sans', Arial, sans-serif;\n  text-shadow: 0 0 1px #fff, 0 1px 2px rgba(0, 0, 0, 0.3);\n}\n.pan-info p[data-v-2f6c38f3] {\n  color: #fff;\n  padding: 10px 5px;\n  font-style: italic;\n  margin: 0 30px;\n  font-size: 12px;\n  border-top: 1px solid rgba(255, 255, 255, 0.5);\n}\n.pan-info p a[data-v-2f6c38f3] {\n  display: block;\n  color: #333;\n  width: 80px;\n  height: 80px;\n  background: rgba(255, 255, 255, 0.3);\n  border-radius: 50%;\n  color: #fff;\n  font-style: normal;\n  font-weight: 700;\n  text-transform: uppercase;\n  font-size: 9px;\n  letter-spacing: 1px;\n  padding-top: 24px;\n  margin: 7px auto 0;\n  font-family: 'Open Sans', Arial, sans-serif;\n  opacity: 0;\n  -webkit-transition: opacity 0.3s ease-in-out 0.2s, background 0.2s linear 0s, -webkit-transform 0.3s ease-in-out 0.2s;\n  transition: opacity 0.3s ease-in-out 0.2s, background 0.2s linear 0s, -webkit-transform 0.3s ease-in-out 0.2s;\n  transition: transform 0.3s ease-in-out 0.2s, opacity 0.3s ease-in-out 0.2s, background 0.2s linear 0s;\n  transition: transform 0.3s ease-in-out 0.2s, opacity 0.3s ease-in-out 0.2s, background 0.2s linear 0s, -webkit-transform 0.3s ease-in-out 0.2s;\n  -webkit-transform: translateX(60px) rotate(90deg);\n          transform: translateX(60px) rotate(90deg);\n}\n.pan-info p a[data-v-2f6c38f3]:hover {\n  background: rgba(255, 255, 255, 0.5);\n}\n.pan-item:hover .pan-thumb[data-v-2f6c38f3] {\n  -webkit-transform: rotate(-110deg);\n          transform: rotate(-110deg);\n}\n.pan-item:hover .pan-info p a[data-v-2f6c38f3] {\n  opacity: 1;\n  -webkit-transform: translateX(0px) rotate(0deg);\n          transform: translateX(0px) rotate(0deg);\n}\n", ""]);
+exports.push([module.i, "\n.app-page-select {\r\n  margin-bottom: 10px;\r\n  width: 100%;\n}\n.app-page-select .select-from-inline .el-form-item__label {\r\n  width: 70px;\n}\n.app-page-select .select-from-inline {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\n}\n.app-page-select .select-from-inline .el-form-item {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\n}\n.app-page-select .select-from-inline .bluebtn {\r\n  width: 120px;\r\n  margin-right: 20px;\n}\n.app-page-select .select-from-inline .redbtn {\r\n  background: #ff5c75;\r\n  width: 120px;\r\n  border-color: #ff5c75;\r\n  margin-right: 20px;\n}\n.app-page-select .select-from-inline .input {\r\n  width: auto;\n}\n.app-page-select .select-from-inline .form-so{width:29%;text-align: right;\n}\n.app-page-select .select-from-inline .form-so .el-form-item__content{width: 100%;\n}\n.app-page-select .select-from-inline .form-so .el-button-{float: right;\n}\r\n", ""]);
 
 // exports
+
+
+/***/ }),
+
+/***/ "mvHQ":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__("qkKv"), __esModule: true };
+
+/***/ }),
+
+/***/ "qkKv":
+/***/ (function(module, exports, __webpack_require__) {
+
+var core = __webpack_require__("FeBl");
+var $JSON = core.JSON || (core.JSON = { stringify: JSON.stringify });
+module.exports = function stringify(it) { // eslint-disable-line no-unused-vars
+  return $JSON.stringify.apply($JSON, arguments);
+};
 
 
 /***/ }),
@@ -2131,7 +2928,21 @@ exports.push([module.i, "\n.pan-item[data-v-2f6c38f3] {\n  width: 200px;\n  heig
 /***/ "vA7V":
 /***/ (function(module, exports) {
 
-module.exports = {"_from":"videojs-swf@5.4.2","_id":"videojs-swf@5.4.2","_inBundle":false,"_integrity":"sha512-FGg+Csioa8/A/EacvFefBdb9Z0rSiMlheHDunZnN3xXfUF43jvjawcWFQnZvrv1Cs1nE1LBrHyUZjF7j2mKOLw==","_location":"/videojs-swf","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"videojs-swf@5.4.2","name":"videojs-swf","escapedName":"videojs-swf","rawSpec":"5.4.2","saveSpec":null,"fetchSpec":"5.4.2"},"_requiredBy":["/videojs-flash"],"_resolved":"https://registry.npmjs.org/videojs-swf/-/videojs-swf-5.4.2.tgz","_shasum":"6964a9bff903b732f3e465314ae478a02a17e8ab","_spec":"videojs-swf@5.4.2","_where":"/Users/dq20102828/Documents/my-project/pre/subway_pre/node_modules/videojs-flash","author":{"name":"Brightcove"},"bugs":{"url":"https://github.com/videojs/video-js-swf/issues"},"bundleDependencies":false,"copyright":"Copyright 2014 Brightcove, Inc. https://github.com/videojs/video-js-swf/blob/master/LICENSE","deprecated":false,"description":"The Flash-fallback video player for video.js (http://videojs.com)","devDependencies":{"async":"~0.2.9","chg":"^0.3.2","flex-sdk":"4.6.0-0","grunt":"~0.4.0","grunt-bumpup":"~0.5.0","grunt-cli":"~0.1.0","grunt-connect":"~0.2.0","grunt-contrib-jshint":"~0.4.3","grunt-contrib-qunit":"~0.2.1","grunt-contrib-watch":"~0.1.4","grunt-npm":"~0.0.2","grunt-prompt":"~0.1.2","grunt-shell":"~0.6.1","grunt-tagrelease":"~0.3.1","qunitjs":"~1.12.0","video.js":"^5.9.2"},"homepage":"http://videojs.com","keywords":["flash","video","player"],"name":"videojs-swf","repository":{"type":"git","url":"git+https://github.com/videojs/video-js-swf.git"},"scripts":{"version":"chg release -y && grunt dist && git add -f dist/ && git add CHANGELOG.md"},"version":"5.4.2"}
+module.exports = {"_from":"videojs-swf@5.4.2","_id":"videojs-swf@5.4.2","_inBundle":false,"_integrity":"sha512-FGg+Csioa8/A/EacvFefBdb9Z0rSiMlheHDunZnN3xXfUF43jvjawcWFQnZvrv1Cs1nE1LBrHyUZjF7j2mKOLw==","_location":"/videojs-swf","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"videojs-swf@5.4.2","name":"videojs-swf","escapedName":"videojs-swf","rawSpec":"5.4.2","saveSpec":null,"fetchSpec":"5.4.2"},"_requiredBy":["/videojs-flash"],"_resolved":"https://registry.npmjs.org/videojs-swf/-/videojs-swf-5.4.2.tgz","_shasum":"6964a9bff903b732f3e465314ae478a02a17e8ab","_spec":"videojs-swf@5.4.2","_where":"D:\\my_codes\\subway_pre\\node_modules\\videojs-flash","author":{"name":"Brightcove"},"bugs":{"url":"https://github.com/videojs/video-js-swf/issues"},"bundleDependencies":false,"copyright":"Copyright 2014 Brightcove, Inc. https://github.com/videojs/video-js-swf/blob/master/LICENSE","deprecated":false,"description":"The Flash-fallback video player for video.js (http://videojs.com)","devDependencies":{"async":"~0.2.9","chg":"^0.3.2","flex-sdk":"4.6.0-0","grunt":"~0.4.0","grunt-bumpup":"~0.5.0","grunt-cli":"~0.1.0","grunt-connect":"~0.2.0","grunt-contrib-jshint":"~0.4.3","grunt-contrib-qunit":"~0.2.1","grunt-contrib-watch":"~0.1.4","grunt-npm":"~0.0.2","grunt-prompt":"~0.1.2","grunt-shell":"~0.6.1","grunt-tagrelease":"~0.3.1","qunitjs":"~1.12.0","video.js":"^5.9.2"},"homepage":"http://videojs.com","keywords":["flash","video","player"],"name":"videojs-swf","repository":{"type":"git","url":"git+https://github.com/videojs/video-js-swf.git"},"scripts":{"version":"chg release -y && grunt dist && git add -f dist/ && git add CHANGELOG.md"},"version":"5.4.2"}
+
+/***/ }),
+
+/***/ "zh3x":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("jR0Y");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("9b4dd5a4", content, true);
 
 /***/ })
 
