@@ -15,7 +15,7 @@
       <div id="work" class="app-table" v-show="workShow">
         <div class="app-page-container">
           <div class="addbtn">
-            <el-button type="primary" @click="openAddWork">添加作业</el-button>
+            <el-button type="primary" icon="el-icon-plus" @click="openAddWork">添加作业</el-button>
           </div>
           <el-table :data="workLists" ref="multipleTable">
             <el-table-column prop="sort" label="作业顺序" align="center"></el-table-column>
@@ -37,13 +37,20 @@
             <el-pagination
               class="pagination"
               v-if="workLists.length !== 0"
-              layout="prev, pager, next,total"
+              layout="slot,prev, pager, next,slot,total"
               :current-page="this.workPage"
               :total="this.workTotal"
               @current-change="workPageChange"
               prev-text="上一页"
               next-text="下一页"
-            ></el-pagination>
+            >
+              <button @click="workPageFirst" type="button" class="btn-first">
+                <span>首页</span>
+              </button>
+              <button @click="workPageLast" type="button" class="btn-last">
+                <span>尾页</span>
+              </button>
+            </el-pagination>
           </div>
         </div>
         <el-dialog class="dialog-work" :title="this.title" :visible.sync="workVisible">
@@ -146,6 +153,7 @@
           <el-menu class="el-menu-cus" :default-active="subIndex" @select="handleSubSelect">
             <el-menu-item
               v-for="(item,index) in lineTypeList"
+              :key="item.id"
               :index="item.id.toString()"
             >{{item.name}}</el-menu-item>
           </el-menu>
@@ -355,22 +363,24 @@
             <el-pagination
               class="pagination"
               v-if="detailListPages.length !== 0"
-              layout="prev, pager, next,total"
+              layout="slot,prev, pager, next,slot,total"
               :current-page="this.detailPage"
               :total="this.detailTotal"
               @current-change="detailPageChange"
               prev-text="上一页"
               next-text="下一页"
-            ></el-pagination>
+            >
+             <button @click="detailPageFirst" type="button" class="btn-first"><span>首页</span></button>
+          <button @click="detailPageLast" type="button" class="btn-last"><span>尾页</span></button>
+      
+            </el-pagination>
           </div>
           <el-dialog
             class="dialog-plan-detail"
             :title="this.historyTitle"
             :visible.sync="addHistoryVisible"
           >
-            <div class="ptxtbox"
-              v-show="!addShow"
-            >
+            <div class="ptxtbox" v-show="!addShow">
               <span class="ptxt">作业名称：</span>
               <span class="ptxt">{{historyData.pro_name}}</span>
               <span class="ptxt">日期：</span>
@@ -407,7 +417,8 @@
               <el-form-item label="计划里程" label-width="80px" prop="start_flag">
                 <b>DK</b>
                 <el-input class="pinput" v-model="historyData.start_flag" placeholder="公里"></el-input>+
-                <el-input class="pinput" v-model="historyData.start_length" placeholder="米"></el-input><em>~</em>
+                <el-input class="pinput" v-model="historyData.start_length" placeholder="米"></el-input>
+                <em>~</em>
                 <b>DK</b>
                 <el-input class="pinput" v-model="historyData.end_flag" placeholder="公里"></el-input>+
                 <el-input class="pinput" v-model="historyData.end_length" placeholder="米"></el-input>
@@ -415,7 +426,8 @@
               <el-form-item label="实际里程" label-width="80px" prop="t_start_flag">
                 <b>DK</b>
                 <el-input class="pinput" v-model="historyData.t_start_flag" placeholder="公里"></el-input>+
-                <el-input class="pinput" v-model="historyData.t_start_length" placeholder="米"></el-input><em>~</em>
+                <el-input class="pinput" v-model="historyData.t_start_length" placeholder="米"></el-input>
+                <em>~</em>
                 <b>DK</b>
                 <el-input class="pinput" v-model="historyData.t_end_flag" placeholder="公里"></el-input>+
                 <el-input class="pinput" v-model="historyData.t_end_length" placeholder="米"></el-input>
@@ -523,6 +535,7 @@ export default {
       workLists: [],
       workPage: 1,
       workTotal: 0,
+      workPage_total: 0,
       workVisible: false,
       workData: {
         line_type: []
@@ -564,6 +577,7 @@ export default {
       detailListPages: [],
       detailPage: 1,
       detailTotal: 0,
+      detailPage_total:0,
       searchForm: {},
       pickerOptions2: publicData.pickerOptions2,
       addHistoryVisible: false,
@@ -593,6 +607,16 @@ export default {
   },
   created() {
     this.getWorkLists();
+    let nowDate = new Date();
+    let date = {
+      y: nowDate.getFullYear(),
+      m:
+        nowDate.getMonth() < 9
+          ? "0" + (nowDate.getMonth() + 1)
+          : nowDate.getMonth() + 1
+    };
+    this.curMonth = date.y + "-" + date.m;
+    console.log(this.curMonth);
   },
   methods: {
     handleSelect(key, keyPath) {
@@ -637,9 +661,23 @@ export default {
       this.workPage = value;
       this.getWorkLists();
     },
-    detailPageChange() {
+    workPageFirst() {
+      this.workPageChange(1);
+    },
+    workPageLast() {
+      this.workPage = this.workPage_total;
+      this.workPageChange(this.workPage_total);
+    },
+    detailPageChange(value) {
       this.detailPage = value;
       this.getDetailLists();
+    },
+     detailPageFirst() {
+      this.detailPageChange(1);
+    },
+    detailPageLast() {
+      this.detailPage = this.detailPage_total;
+      this.detailPageChange(this.detailPage_total);
     },
     openAddWork() {
       this.title = "添加作业信息";
@@ -658,6 +696,7 @@ export default {
           this.workLists = data.data.data;
           this.workPage = parseInt(data.data.current_page);
           this.workTotal = parseInt(data.data.total);
+          this.workPage_total = parseInt(data.data.last_page);
         }
       });
     },
@@ -890,6 +929,7 @@ export default {
           this.detailListPages = data.data.data;
           this.detailPage = parseInt(data.data.current_page);
           this.detailTotal = parseInt(data.data.total);
+          this.detailPage_total=parseInt(data.data.last_page);
         }
       });
     },
@@ -1218,18 +1258,6 @@ export default {
         }
       });
     }
-  },
-  created() {
-    let nowDate = new Date();
-    let date = {
-      y: nowDate.getFullYear(),
-      m:
-        nowDate.getMonth() < 9
-          ? "0" + (nowDate.getMonth() + 1)
-          : nowDate.getMonth() + 1
-    };
-    this.curMonth = date.y + "-" + date.m;
-    console.log(this.curMonth);
   }
 };
 </script>
@@ -1374,7 +1402,10 @@ export default {
   background: #f2f2f2;
 }
 /* end plan */
-.ptxtbox{padding:0 10px 10px 10px;margin-bottom:15px; }
+.ptxtbox {
+  padding: 0 10px 10px 10px;
+  margin-bottom: 15px;
+}
 .dialog-plan-detail .ptxt {
   color: #4b6eca;
   display: inline-block;
@@ -1384,7 +1415,9 @@ export default {
 .dialog-plan-detail .el-form-item {
   margin-bottom: 25px;
 }
-.dialog-plan-detail .el-form-item em{padding: 0 10px;}
+.dialog-plan-detail .el-form-item em {
+  padding: 0 10px;
+}
 .dialog-plan-detail .el-form-item:last-child {
   margin-bottom: 0;
 }
@@ -1418,7 +1451,9 @@ export default {
   height: 60px;
   box-sizing: border-box;
 }
-.dialog-plan-detail .el-dialog__body{padding: 20px;}
+.dialog-plan-detail .el-dialog__body {
+  padding: 20px;
+}
 /* end detail */
 .el-form-item-inline .el-form-item {
   float: left;

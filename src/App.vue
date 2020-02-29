@@ -90,8 +90,13 @@ ul,li{list-style-type: none}
 .app-pagination .el-pagination .btn-prev span{color: #1d397a; margin-left: 0;padding: 0 6px;border-top-right-radius: 4px; border-bottom-left-radius: 4px;  }
 .app-pagination .el-pagination .btn-next{margin: 0;padding: 0;}
 .app-pagination .el-pagination .btn-next span{color: #1d397a; margin-left: 0;padding: 0 6px; border-left: 1px solid #3655A5;border-right: 1px solid #3655A5; }
-.app-pagination .el-pagination .el-pagination__total{color: #1d397a; background: #fff; padding-left: 6px; padding-right: 5px;padding-top: 1px; margin-right: 0}
+.app-pagination .el-pagination .el-pagination__total{color: #1d397a; background:none; padding-left: 6px; padding-right: 5px;padding-top: 1px; margin-right: 0}
 .app-pagination .el-pagination .el-pager li.active:hover{color:#fff}
+.app-pagination slot:first-child .btn-last{display: none}
+.app-pagination .btn-next~slot>.btn-first{display: none;}
+.app-pagination .btn-first{cursor: pointer; color: #1d397a;border-right: 1px solid #3655A5!important;}
+.app-pagination .btn-last{cursor: pointer;color: #1d397a;border-right: 1px solid #3655A5!important;}
+.app-pagination  .btn-next, .app-pagination  .btn-prev{background: none!important}
 /* dialog */
 .el-dialog{border-radius: 6px; margin-top: 10vh!important;}
 .el-dialog__header{border-radius:6px 6px 0 0; background: #3655a5;text-align: center;padding:12px;}

@@ -5,7 +5,7 @@
         <el-form :model="searchForm" :inline="true">
           <div class="select-from-inline">
             <el-form-item>
-              <el-button type="primary" class="redbtn" @click="addInfo">新建调度命令</el-button>
+              <el-button type="primary" class="redbtn" style="width:145px;" icon="el-icon-plus" @click="addInfo">新建调度命令</el-button>
             </el-form-item>
             <el-form-item label="机车名称">
               <el-select v-model="searchForm.lid" placeholder="请选择" clearable>
@@ -50,10 +50,7 @@
           </div>
           <div class="select-from-inline">
             <el-form-item>
-              <el-button type="primary" class="bluebtn">
-                更多信息
-                <i class="el-icon-plus el-icon--right"></i>
-              </el-button>
+              <el-button type="primary" style="width:145px;" class="bluebtn"  icon="el-icon-refresh-right" @click="onLoadPage">更新信息</el-button>
             </el-form-item>
             <el-form-item label="命令状态">
               <el-select v-model="searchForm.status" placeholder="请选择" clearable>
@@ -65,30 +62,13 @@
             <el-form-item label="开始时间">
               <el-date-picker
                 v-model="searchForm.time_range"
-                type="daterange"
-                range-separator="至"
-                start-placeholder="开始日期"
-                end-placeholder="结束日期"
-                :picker-options="pickerOptions2"
-                value-format="yyyy-MM-dd HH:mm"
+                 type="daterange"
+                  range-separator="至"
+                  start-placeholder="开始日期"
+                  end-placeholder="结束日期"
+                  :default-time="['00:00:00', '23:59:59']"
               ></el-date-picker>
             </el-form-item>
-            <!-- <el-form-item label="开始时间">
-              <el-date-picker
-                type="date"
-                placeholder="选择日期"
-                v-model="searchForm.date1"
-                style="width: 100%;"
-              ></el-date-picker>
-            </el-form-item>
-            <el-form-item label="结束时间">
-              <el-date-picker
-                type="date"
-                placeholder="选择日期"
-                v-model="searchForm.date1"
-                style="width: 100%;"
-              ></el-date-picker>
-            </el-form-item>-->
             <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
               <el-button size="small" icon="el-icon-search" type="primary" @click="getDataLists">查询</el-button>
@@ -99,9 +79,9 @@
       <div class="app-table">
         <el-table :data="dataList">
           <el-table-column prop="number" label="命令号"></el-table-column>
-          <el-table-column prop="loco" label="受令机车"></el-table-column>
-          <el-table-column prop="master" label="守令车长"></el-table-column>
-          <el-table-column prop="driver" label="守令司机"></el-table-column>
+          <el-table-column prop="loco" label="受令机长"></el-table-column>
+          <el-table-column prop="master" label="受令车长"></el-table-column>
+          <el-table-column prop="driver" label="受令司机"></el-table-column>
           <el-table-column prop="location" label="受令处所"></el-table-column>
           <el-table-column prop="dispatch" label="值班调度"></el-table-column>
           <el-table-column prop="status" label="状态">
@@ -111,8 +91,8 @@
               <span class="statused" v-if="scope.row.status=='3'">已作废</span>
             </template>
           </el-table-column>
-          <el-table-column prop="create_time" label="发令时间"></el-table-column>
-          <el-table-column prop="makesure_time" label="确认时间">
+          <el-table-column prop="create_time" min-width="80" label="发令时间"></el-table-column>
+          <el-table-column prop="makesure_time" min-width="80" label="确认时间">
             <template slot-scope="scope">
               <span v-if="scope.row.makesure_time.length==0">暂未确认</span>
               <span v-else>{{scope.row.makesure_time}}</span>
@@ -122,12 +102,19 @@
             <template slot-scope="scope">
               <div class="app-operation">
                 <el-button class="btn-blue" size="mini" @click="goDetail(scope.row.id)">详情</el-button>
-                <el-button :disabled="scope.row.status == '3'"
+                <el-button
+                  :disabled="scope.row.status == '3'"
                   class="btn-blue"
                   size="mini"
                   @click="goInvalid(scope.row.id,scope.$index)"
                 >作废</el-button>
-                <el-button title="作废后才能删除" :disabled="scope.row.status != '3'" class="btn-red" size="mini" @click="goDel(scope.row.id)">删除</el-button>
+                <el-button
+                  title="作废后才能删除"
+                  :disabled="scope.row.status != '3'"
+                  class="btn-red"
+                  size="mini"
+                  @click="goDel(scope.row.id)"
+                >删除</el-button>
                 <el-button class="btn-green" size="mini" @click="goPrint(scope.row.id)">打印</el-button>
               </div>
             </template>
@@ -137,14 +124,17 @@
           <el-pagination
             class="pagination"
             v-if="dataList.length !== 0"
-            layout="prev, pager, next,total"
-            :page-size="this.per_page"
-            :current-page="this.pageCur"
+            layout="slot,prev, pager, next,slot,total"
+            :page-size="this.page_size"
+            :current-page="this.page_cur"
             :total="this.pageTotal"
             @current-change="pageChange"
             prev-text="上一页"
             next-text="下一页"
-          ></el-pagination>
+          >
+          <button @click="toFirstPage" type="button" class="btn-first"><span>首页</span></button>
+          <button @click="toLastPage" type="button" class="btn-last"><span>尾页</span></button>
+          </el-pagination>
         </div>
       </div>
     </div>
@@ -152,18 +142,17 @@
 </template>
 
 <script>
-import { publicData } from "@/utils/common";
 import addForm from "./edit.vue";
 import detailForm from "./detail.vue";
 import printlForm from "./printing.vue";
-
 export default {
   name: "",
   data() {
     return {
-      pageCur: 1,
+      page_cur: 1,
       pageTotal: 0,
-      per_page: 20,
+      page_size: 20,
+      page_total: 0,
       lidList: [],
       masterList: [],
       driverList: [],
@@ -176,8 +165,7 @@ export default {
         driver_id: "",
         status: "",
         time_range: []
-      },
-      pickerOptions2: publicData.pickerOptions2
+      }
     };
   },
   created() {
@@ -188,6 +176,9 @@ export default {
     this.getDataLists();
   },
   methods: {
+    onLoadPage() {
+      this.$router.go(0);
+    },
     getlibLists() {
       this.request({
         url: "/dispatch/getLocomotiveLists",
@@ -234,7 +225,7 @@ export default {
       });
     },
     getDataLists() {
-      let page = this.pageCur;
+      let page = this.page_cur;
       let lid = this.searchForm.lid;
       let dispatch_id = this.searchForm.dispatch_id;
       let master_id = this.searchForm.master_id;
@@ -258,23 +249,30 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.dataList = data.data.data;
-          this.pageCur = parseInt(data.data.current_page);
+          this.page_cur = parseInt(data.data.current_page);
           this.pageTotal = data.data.total;
-          this.per_page = data.data.per_page;
+          this.page_size = data.data.per_page;
+          this.page_total = data.data.last_page;
         }
       });
     },
     pageChange(value) {
-      this.pageCur = value;
+      this.page_cur = value;
       this.getDataLists();
     },
-
+    toFirstPage() {
+      this.pageChange(1);
+    },
+    toLastPage() {
+      this.page_cur = this.page_total;
+      this.pageChange(this.page_total);
+    },
     addInfo: function() {
       this.$layer.iframe({
         area: ["800px", "590px"],
         title: "新建调度命令",
-        skin:"layers",
-         shadeClose: false,
+        skin: "layers",
+        shadeClose: false,
         content: {
           content: addForm,
           parent: this,
@@ -322,9 +320,8 @@ export default {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
-      })
-        .then(() => {
-         this.request({
+      }).then(() => {
+        this.request({
           url: "/dispatch/changeStatus",
           method: "post",
           data: { id: id, status: 0 },
@@ -336,12 +333,12 @@ export default {
               type: "success",
               message: "删除成功!"
             });
-           this.getDataLists();
+            this.getDataLists();
           }
         });
       });
     },
-     goPrint: function(id) {
+    goPrint: function(id) {
       this.$layer.iframe({
         area: ["960px", "590px"],
         title: "调度命令（行车调度）",
@@ -352,7 +349,7 @@ export default {
           data: { iframeData: { id: id } }
         }
       });
-    },
+    }
   }
 };
 </script>
@@ -384,7 +381,16 @@ export default {
 .app-page-select .select-from-inline .input {
   width: auto;
 }
-.app-page-select .select-from-inline .form-so{width:29%;text-align: right;}
-.app-page-select .select-from-inline .form-so .el-form-item__content{width: 100%;}
-.app-page-select .select-from-inline .form-so .el-button-{float: right;}
+.app-page-select .select-from-inline .form-so {
+  width: 29%;
+  text-align: right;
+}
+.app-page-select .select-from-inline .form-so .el-form-item__content {
+  width: 100%;
+}
+.app-page-select .select-from-inline .form-so .el-button- {
+  float: right;
+}
+
+
 </style>

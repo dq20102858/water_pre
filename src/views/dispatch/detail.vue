@@ -2,13 +2,13 @@
   <div id="dispatch-detail" class="app-page-layer">
     <div class="app-dialog-form">
       <el-form :inline="true">
-        <el-form-item label="命令号码：">
+        <el-form-item label="命令号：">
           <el-input v-model="dataInfo.number" readonly></el-input>
         </el-form-item>
         <el-form-item label="值班调度：">
           <el-input v-model="dataInfo.dispatch" readonly></el-input>
         </el-form-item>
-        <el-form-item label="命令状态">
+        <el-form-item label="命令状态：">
           <p v-if="dataInfo.status=='1'">
             <el-input readonly value="新命令"></el-input>
           </p>
@@ -25,7 +25,7 @@
         <el-form-item label="受令司机：">
           <el-input v-model="dataInfo.driver" readonly></el-input>
         </el-form-item>
-        <el-form-item label="受令机长">
+        <el-form-item label="受令车长：">
           <el-input v-model="dataInfo.master" readonly></el-input>
         </el-form-item>
         <el-form-item label="发令时间：">
