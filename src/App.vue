@@ -90,7 +90,7 @@ ul,li{list-style-type: none}
 .app-pagination .el-pagination .btn-prev span{color: #1d397a; margin-left: 0;padding: 0 6px;border-top-right-radius: 4px; border-bottom-left-radius: 4px;  }
 .app-pagination .el-pagination .btn-next{margin: 0;padding: 0;}
 .app-pagination .el-pagination .btn-next span{color: #1d397a; margin-left: 0;padding: 0 6px; border-left: 1px solid #3655A5;border-right: 1px solid #3655A5; }
-.app-pagination .el-pagination .el-pagination__total{color: #1d397a; padding-left: 6px;}
+.app-pagination .el-pagination .el-pagination__total{color: #1d397a; background: #fff; padding-left: 6px; padding-right: 5px;padding-top: 1px; margin-right: 0}
 .app-pagination .el-pagination .el-pager li.active:hover{color:#fff}
 /* dialog */
 .el-dialog{border-radius: 6px; margin-top: 10vh!important;}
@@ -114,10 +114,10 @@ ul,li{list-style-type: none}
 .el-menu-top li {color: #1d397a;font-size: 16px;}
 .el-menu-top .ptitle {float: left;line-height: 61px;padding-left: 120px;padding-right: 60px;font-weight: 700;font-size: 18px;}
 .el-menu-top .ptitle img {width: 18px;margin-right: 5px;display: inline-block;vertical-align: text-top;}
-.el-menu-top .el-menu--horizontal > .el-menu-item.is-active {height: 61px; background-color: #4b6eca;color: #fff;border: none;}
-.el-menu-top  .el-submenu__title{font-size: 16px;}
-.el-menu-top .is-active.is-opened  .el-submenu__title{height: 61px; background-color: #4b6eca;color: #fff;border: none;}
-.el-menu-top .is-active .el-submenu__title{height: 61px; background-color: #4b6eca;color: #fff!important;border: none!important;}
+.el-menu-top1 .el-menu-item:hover{height: 61px; background-color: #4b6eca!important;border: none;color: #fff!important}
+.el-menu-top .is-active {height: 61px; background-color: #4b6eca!important;border: none!important;color: #fff!important}
+.el-menu-top .is-active .el-submenu__title:hover {background-color:#4b6eca!important;}
+.el-menu-top .is-active .el-submenu__title{font-size: 16px; height: 61px; background-color: #4b6eca;color: #fff!important;border: none!important;}
 .el-menu-top .is-active .el-submenu__title i{color: #fff}
-
+.el-menu-top .el-submenu__title{font-size: 16px!important}
 </style>

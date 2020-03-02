@@ -8,11 +8,11 @@
       </ul>
     </div>
     <div class="app-page">
-      <el-row class="videolist" :gutter="20">
-        <el-col :span="6" v-for="item in videoList" :key="item.id">
+
+      <el-row :gutter="20">
+        <el-col :span="6" v-for="(item,i) in videoList" :key="i">
           <div class="grid-content">
             <video :id="'myVideo'+item.id" class="video-js" ref="myVideo">
-              <!-- <source src="../../../static/7efaf904a76f6050251da6d38980600c.mp4" type="video/mp4" > -->
               <source :src="item.url" type="rtmp/flv" />
             </video>
           </div>
@@ -30,14 +30,11 @@ export default {
       videoList: []
     };
   },
-
-  beforeDestroy: function() {
-    const videoDom = this.$refs.myVideo; //不能用document 获取节点
-    this.$video(videoDom).dispose(); //销毁video实例，避免出现节点不存在 但是flash一直在执行，报 this.el.......is not function
-    this.myPlayer.dispose(); //销毁video实例
-  },
-  mounted() {
-    this.initVideo();
+  updated() {
+    this.$nextTick(function () {
+      this.initVideo();
+    })
+    
   },
   created() {
     this.getVideos();
@@ -57,21 +54,30 @@ export default {
     initVideo() {
       //初始化video
       this.videoList.map((item, i) => {
-        let myPlayer = this.$video("myVideo" + item.id, {
+        let id ="myVideo" + item.id;
+        let myPlayer = this.$video(id, {
           //确定播放器是否具有用户可以与之交互的控件。没有控件，启动视频播放的唯一方法是使用autoplay属性或通过Player API。
           controls: true,
           //自动播放属性,muted:静音播放
           autoplay: true,
           //建议浏览器是否应在<video>加载元素后立即开始下载视频数据。
-          preload: "metadata"
+          preload: "none"
           //设置视频播放器的显示宽度（以像素为单位）
           // width: "400px",
-          //设置视频播放器的显示高度（以像素为单位）
-          //height: "200px"
+          // //设置视频播放器的显示高度（以像素为单位）
+          // height: "200px"
         });
       });
       //
     }
+  },
+  beforeDestroy: function() {
+    this.videoList.map((item, i) => {
+      this.$video("myVideo" + item.id).dispose();
+    });
+    //const videoDom = this.$refs.myVideo;
+    //this.$video(videoDom).dispose(); //销毁video实例，避免出现节点不存在 但是flash一直在执行，报 this.el.......is not function
+    //this.myPlayer.dispose(); //销毁video实例
   }
 };
 </script>

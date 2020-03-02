@@ -64,6 +64,9 @@ export const asyncRouterMap = {
   '/views/description/index': () => import('@/views/description/index'),//项目介绍
   '/views/set/index': () => import('@/views/set/index'),//设置
   '/views/back/index': () => import('@/views/back/index'),//返回
-  
- '/views/apply/weekplan': () => import('@/views/apply/weekplan'),//周计划
+
+  '/views/apply/daychart': () => import('@/views/apply/daychart'),//日班图表
+  '/views/apply/conflictcheck': () => import('@/views/apply/conflictcheck'),//冲突检测
+  '/views/apply/weekplan': () => import('@/views/apply/weekplan'),//周计划
+
 }
