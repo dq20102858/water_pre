@@ -6,7 +6,7 @@
         <el-submenu index="1">
           <template slot="title" style="font-size:16px;">日班计划</template>
           <el-menu-item index="daychart">日班图表</el-menu-item>
-          <el-menu-item index="apply">已班列表</el-menu-item>
+          <el-menu-item index="apply">日班列表</el-menu-item>
           <el-menu-item index="conflictcheck">冲突检测</el-menu-item>
         </el-submenu>
         <el-menu-item index="weekplan">周计划</el-menu-item>
@@ -59,14 +59,21 @@
             <el-pagination
               class="pagination"
               v-if="weekList.length !== 0"
-              layout="prev, pager, next,total"
-              :page-size="this.per_page"
-              :current-page="this.pageCur"
+              layout="slot,prev, pager, next,slot,total"
+              :page-size="this.page_size"
+              :current-page="this.page_cur"
               :total="this.pageTotal"
               @current-change="pageChange"
               prev-text="上一页"
               next-text="下一页"
-            ></el-pagination>
+            >
+              <button @click="toFirstPage" type="button" class="btn-first">
+                <span>首页</span>
+              </button>
+              <button @click="toLastPage" type="button" class="btn-last">
+                <span>尾页</span>
+              </button>
+            </el-pagination>
           </div>
         </div>
       </div>
@@ -83,19 +90,18 @@
       </div>
       <div class="wmain">
         <div class="app-table">
-          <el-table :data="tableData">
-            <el-table-column prop="datatimes" label="日期"></el-table-column>
-            <el-table-column prop="txt" label="作业类别"></el-table-column>
-            <el-table-column prop="txt" label="作业时间"></el-table-column>
-            <el-table-column prop="txt" label="作业内容"></el-table-column>
-            <el-table-column prop="txt" label="作业区域"></el-table-column>
-            <el-table-column prop="txt" label="编组上行端"></el-table-column>
-            <el-table-column prop="txt" label="防护措施及要求"></el-table-column>
-            <el-table-column prop="txt" label="备注"></el-table-column>
-            <el-table-column prop="txt" label="操作" width="140">
+          <el-table :data="weekdailyList">
+            <el-table-column prop="work_time" label="日期" :formatter="dateFormat"></el-table-column>
+            <el-table-column prop="type" label="作业类别"></el-table-column>
+            <el-table-column prop="work_time" min-width="60" label="作业时间"></el-table-column>
+            <el-table-column prop="description" label="作业内容"></el-table-column>
+            <el-table-column prop="area" label="作业区域"></el-table-column>
+            <el-table-column prop="up_part" label="编组上行端"></el-table-column>
+            <el-table-column prop="attention" label="防护措施及要求"></el-table-column>
+            <el-table-column prop="remark" label="备注"></el-table-column>
+            <el-table-column label="操作" width="140">
               <template slot-scope="scope">
                 <div class="app-operation">
-                  <!-- @click="goDetail(scope.row.id)" -->
                   <el-button class="btn-blue" size="mini">已转换</el-button>
                   <el-button class="btn-blue" size="mini">报表</el-button>
                 </div>
@@ -114,6 +120,7 @@
 </template>
 
 <script>
+import * as fecha from 'element-ui/lib/utils/date';
 export default {
   name: "weekplan",
 
@@ -125,9 +132,10 @@ export default {
     return {
       tableData: Array(10).fill(item),
       isParent: true,
-      pageCur: 1,
+      page_cur: 1,
       pageTotal: 0,
-      per_page: 20,
+      page_size: 20,
+      page_total: 0,
       companyList: [],
       weekList: [],
       weekdailyList: [],
@@ -154,7 +162,7 @@ export default {
       });
     },
     getWeekList() {
-      let page = this.pageCur;
+      let page = this.page_cur;
       let depart_id = this.searchForm.depart_id;
       let time_range = this.searchForm.time_range;
       this.request({
@@ -169,20 +177,27 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.weekList = data.data.data;
-          this.pageCur = parseInt(data.data.current_page);
+          this.page_cur = parseInt(data.data.current_page);
           this.pageTotal = data.data.total;
-          this.per_page = data.data.per_page;
+          this.page_size = data.data.per_page;
+          this.page_total = data.data.last_page;
         }
       });
     },
     pageChange(value) {
-      this.pageCur = value;
+      this.page_cur = value;
       this.getWeekList();
     },
-
+    toFirstPage() {
+      this.pageChange(1);
+    },
+    toLastPage() {
+      this.page_cur = this.page_total;
+      this.pageChange(this.page_total);
+    },
     goDetail(id) {
       this.isParent = false;
-      let wid = wid;
+      let wid = id;
       this.request({
         url: "/apply/getWeekDailyLists",
         method: "get",
@@ -196,6 +211,9 @@ export default {
     },
     goBack() {
       this.isParent = true;
+    },
+    dateFormat(row, column, cellValue) {
+      return cellValue ? fecha.format(new Date(cellValue), "yyyy年MM月dd日") : "";
     }
     //end
   }
@@ -279,12 +297,12 @@ export default {
   padding-top: 5px;
 }
 .wfoot .itembtn {
- vertical-align: -3px;
+  vertical-align: -3px;
 }
 .wfoot {
   margin-top: 20px;
   overflow: hidden;
-   display: flex;
+  display: flex;
   justify-content: space-between;
 }
 .wfoot span {

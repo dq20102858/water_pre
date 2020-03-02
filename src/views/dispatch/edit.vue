@@ -1,8 +1,8 @@
 <template>
   <div id="dispatch-edit" class="app-page-layer">
     <div class="app-dialog-form">
-      <el-form  label-position="top" :model="ruleForm" :inline="true" :rules="rules" ref="ruleForm">
-        <el-form-item label="命令号码" prop="number">
+      <el-form label-position="top" :model="ruleForm" :inline="true" :rules="rules" ref="ruleForm">
+        <el-form-item label="命令号" prop="number">
           <el-input v-model="ruleForm.number" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="受令机车" prop="lid">
@@ -21,7 +21,7 @@
             <el-option label="施工调度" value="2"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="受令机长" prop="master_id">
+        <el-form-item label="受令车长" prop="master_id">
           <el-select placeholder="请选择" v-model="ruleForm.master_id" clearable>
             <el-option
               v-for="item in masterList"
@@ -59,6 +59,7 @@
         </el-form-item>
         <el-form-item label="车站值班员">
           <el-select placeholder="请选择" v-model="ruleForm.station_worker_id" clearable>
+            <el-option label="暂无值班员" value="0"></el-option>
             <el-option
               v-for="item in stationWorkerList"
               :key="item.id"
@@ -69,7 +70,11 @@
         </el-form-item>
         <div class="blank"></div>
         <div class="contents-select">
-          <el-select @change="templateChange" v-model="ruleForm.template_id">
+          <el-select
+            @change="templateChange"
+            popper-class="el-select-height"
+            v-model="ruleForm.template_id"
+          >
             <el-option
               v-for="item in templateList"
               :key="item.id"
@@ -320,20 +325,28 @@ export default {
       this.tempForm.description = "";
     },
     templateDel() {
-      this.request({
-        url: "/dispatch/deleteTemplate",
-        method: "post",
-        data: { id: this.ruleForm.template_id }
-      }).then(res => {
-        let data = res.data;
-        if (data.status == 1) {
-          this.ruleForm.template_id = 1;
-          this.getTemplateLists();
-          this.$message({
-            message: "恭喜您，删除成功",
-            type: "success"
-          });
-        }
+      this.$confirm("您确定要删除此模板?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      }).then(() => {
+        this.request({
+          url: "/dispatch/deleteTemplate",
+          method: "post",
+          data: { id: this.ruleForm.template_id }
+        }).then(res => {
+          let data = res.data;
+          if (data.status == 1) {
+            this.ruleForm.template_id = 1;
+            this.getTemplateLists();
+            this.$message({
+              message: "恭喜您，删除成功",
+              type: "success"
+            });
+          } else {
+            this.$message.error("删除失败");
+          }
+        });
       });
     },
     templateSubmitTempForm(formName) {
@@ -353,6 +366,7 @@ export default {
                 message: "恭喜您，新增成功",
                 type: "success"
               });
+              this.ruleForm.template_id = 1;
               this.getTemplateLists();
             }
           });
@@ -450,5 +464,8 @@ export default {
 }
 .app-dialog-temp .el-form-item {
   margin-bottom: 25px;
+}
+.el-select-height .el-select-dropdown__wrap {
+  max-height: 200px;
 }
 </style>

@@ -6,7 +6,7 @@
         <el-submenu index="1" class="is-active">
           <template slot="title">日班计划</template>
           <el-menu-item index="daychart">日班图表</el-menu-item>
-          <el-menu-item index="apply">已班列表</el-menu-item>
+          <el-menu-item index="apply">日班列表</el-menu-item>
           <el-menu-item index="conflictcheck">冲突检测</el-menu-item>
         </el-submenu>
         <el-menu-item index="weekplan">周计划</el-menu-item>

@@ -6,7 +6,7 @@
         <el-submenu index="1" class="is-active">
           <template slot="title">日班计划</template>
           <el-menu-item index="daychart">日班图表</el-menu-item>
-          <el-menu-item class="is-active" index="apply">已班列表</el-menu-item>
+          <el-menu-item class="is-active" index="apply">日班列表</el-menu-item>
           <el-menu-item index="conflictcheck">冲突检测</el-menu-item>
         </el-submenu>
         <el-menu-item index="weekplan">周计划</el-menu-item>
@@ -113,14 +113,17 @@
             <el-pagination
               class="pagination"
               v-if="dataList.length !== 0"
-              layout="prev, pager, next,total"
-              :page-size="this.per_page"
-              :current-page="this.pageCur"
+              layout="slot,prev, pager, next,slot,total"
+              :page-size="this.page_size"
+              :current-page="this.page_cur"
               :total="this.pageTotal"
               @current-change="pageChange"
               prev-text="上一页"
               next-text="下一页"
-            ></el-pagination>
+            >
+           <button @click="toFirstPage" type="button" class="btn-first"><span>首页</span></button>
+          <button @click="toLastPage" type="button" class="btn-last"><span>尾页</span></button>
+          </el-pagination>
           </div>
         </div>
         <!-- end table -->
@@ -129,12 +132,14 @@
   </div>
 </template>
 <script>
+import detailForm from "./applydetail.vue";
 export default {
   data() {
     return {
-      pageCur: 1,
+      page_cur: 1,
       pageTotal: 0,
-      per_page: 20,
+      page_size: 20,
+      page_total:0,
       companyList: [],
       lineList: [],
       typeList: [
@@ -171,7 +176,7 @@ export default {
   },
   methods: {
     getDataList() {
-      let page = this.pageCur;
+      let page = this.page_cur;
       let depart_id = this.searchForm.depart_id;
       let line_type = this.searchForm.line_type;
       let type = this.searchForm.type;
@@ -196,15 +201,23 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.dataList = data.data.data;
-          this.pageCur = parseInt(data.data.current_page);
+          this.page_cur = parseInt(data.data.current_page);
           this.pageTotal = data.data.total;
-          this.per_page = data.data.per_page;
+          this.page_size = data.data.per_page;
+          this.page_total=data.data.last_page;
         }
       });
     },
     pageChange(value) {
-      this.pageCur = value;
+      this.page_cur = value;
       this.getDataLists();
+    },
+     toFirstPage() {
+      this.pageChange(1);
+    },
+    toLastPage() {
+      this.page_cur = this.page_total;
+      this.pageChange(this.page_total);
     },
     getCompanyList() {
       this.request({
@@ -239,7 +252,18 @@ export default {
         }
       });
     },
-    goDetail: function(id) {}
+     goDetail(id) {
+      this.$layer.iframe({
+        area: ["890px", "590px"],
+        title: "调度命令详情",
+        shadeClose: false,
+        content: {
+          content: detailForm,
+          parent: this,
+          data: { iframeData: { id: id } }
+        }
+      });
+    },
   }
 };
 </script>
