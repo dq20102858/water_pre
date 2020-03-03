@@ -72,10 +72,16 @@
             </el-form-item>
             <el-form-item label="线别" prop="line_type" v-if="workData.type == 1">
               <el-checkbox-group v-model="workData.line_type">
-                <el-checkbox label="1">左线</el-checkbox>
+                <!-- <el-checkbox label="1">左线</el-checkbox>
                 <el-checkbox label="2">右线</el-checkbox>
                 <el-checkbox label="3">入场线</el-checkbox>
-                <el-checkbox label="4">出场线</el-checkbox>
+                <el-checkbox label="4">出场线</el-checkbox>-->
+
+                <el-checkbox
+                  v-for="item in lineList"
+                  :key="item.id"
+                  :label="item.name"
+                >{{item.name}}</el-checkbox>
               </el-checkbox-group>
             </el-form-item>
             <div class="el-form-item-inline">
@@ -370,9 +376,12 @@
               prev-text="上一页"
               next-text="下一页"
             >
-             <button @click="detailPageFirst" type="button" class="btn-first"><span>首页</span></button>
-          <button @click="detailPageLast" type="button" class="btn-last"><span>尾页</span></button>
-      
+              <button @click="detailPageFirst" type="button" class="btn-first">
+                <span>首页</span>
+              </button>
+              <button @click="detailPageLast" type="button" class="btn-last">
+                <span>尾页</span>
+              </button>
             </el-pagination>
           </div>
           <el-dialog
@@ -537,6 +546,7 @@ export default {
       workTotal: 0,
       workPage_total: 0,
       workVisible: false,
+      lineList: [],
       workData: {
         line_type: []
       },
@@ -577,7 +587,7 @@ export default {
       detailListPages: [],
       detailPage: 1,
       detailTotal: 0,
-      detailPage_total:0,
+      detailPage_total: 0,
       searchForm: {},
       pickerOptions2: publicData.pickerOptions2,
       addHistoryVisible: false,
@@ -607,6 +617,7 @@ export default {
   },
   created() {
     this.getWorkLists();
+    this.getLineType();
     let nowDate = new Date();
     let date = {
       y: nowDate.getFullYear(),
@@ -672,7 +683,7 @@ export default {
       this.detailPage = value;
       this.getDetailLists();
     },
-     detailPageFirst() {
+    detailPageFirst() {
       this.detailPageChange(1);
     },
     detailPageLast() {
@@ -786,6 +797,17 @@ export default {
             message: "操作失败",
             type: "error"
           });
+        }
+      });
+    },
+    getLineType() {
+      this.request({
+        url: "/common/getLineType",
+        method: "get"
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.lineList = data.data;
         }
       });
     },
@@ -929,7 +951,7 @@ export default {
           this.detailListPages = data.data.data;
           this.detailPage = parseInt(data.data.current_page);
           this.detailTotal = parseInt(data.data.total);
-          this.detailPage_total=parseInt(data.data.last_page);
+          this.detailPage_total = parseInt(data.data.last_page);
         }
       });
     },
