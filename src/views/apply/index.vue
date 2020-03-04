@@ -92,6 +92,7 @@
             </el-form-item>
           </el-form>
         </div>
+        <div class="page-count">找到{{pageTotal}}条相关作业令</div>
         <!-- end search -->
         <div class="app-table">
           <el-table :data="dataList">
@@ -121,9 +122,13 @@
               prev-text="上一页"
               next-text="下一页"
             >
-           <button @click="toFirstPage" type="button" class="btn-first"><span>首页</span></button>
-          <button @click="toLastPage" type="button" class="btn-last"><span>尾页</span></button>
-          </el-pagination>
+              <button @click="toFirstPage" type="button" class="btn-first">
+                <span>首页</span>
+              </button>
+              <button @click="toLastPage" type="button" class="btn-last">
+                <span>尾页</span>
+              </button>
+            </el-pagination>
           </div>
         </div>
         <!-- end table -->
@@ -139,14 +144,14 @@ export default {
       page_cur: 1,
       pageTotal: 0,
       page_size: 20,
-      page_total:0,
+      page_total: 0,
       companyList: [],
       lineList: [],
       typeList: [
-        { id: 1, name: "A1" },
-        { id: 2, name: "A2" },
-        { id: 3, name: "A3" },
-        { id: 4, name: "A4" }
+        { id: "A1", name: "A1" },
+        { id: "A2", name: "A2" },
+        { id: "A3", name: "A3" },
+        { id: "A4", name: "A4" }
       ],
       stationList: [],
       statusList: [
@@ -204,7 +209,7 @@ export default {
           this.page_cur = parseInt(data.data.current_page);
           this.pageTotal = data.data.total;
           this.page_size = data.data.per_page;
-          this.page_total=data.data.last_page;
+          this.page_total = data.data.last_page;
         }
       });
     },
@@ -212,7 +217,7 @@ export default {
       this.page_cur = value;
       this.getDataLists();
     },
-     toFirstPage() {
+    toFirstPage() {
       this.pageChange(1);
     },
     toLastPage() {
@@ -252,18 +257,19 @@ export default {
         }
       });
     },
-     goDetail(id) {
+    goDetail(id) {
       this.$layer.iframe({
         area: ["890px", "590px"],
         title: "调度命令详情",
         shadeClose: false,
+        scrollbar: false,
         content: {
           content: detailForm,
           parent: this,
           data: { iframeData: { id: id } }
         }
       });
-    },
+    }
   }
 };
 </script>
@@ -278,5 +284,10 @@ export default {
 .el-menu--horizontal .el-menu .el-submenu.is-active > .el-submenu__title {
   background: #4b6eca;
   color: #fff;
+}
+.page-count {
+  text-align: right;
+  color: #1d397a;
+  padding-bottom: 20px;
 }
 </style>

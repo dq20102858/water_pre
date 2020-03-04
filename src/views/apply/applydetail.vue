@@ -25,20 +25,30 @@
               <span class="input">{{ dataInfo.sub_apply_user}}</span>
             </div>
             <div class="item">
-              <label class="labels">单位</label>
-              <span class="input" style="width:500px;">{{ dataInfo.company}}</span>
+              <label class="labels">单位：</label>
+              <span class="input" style="width:550px;">{{ dataInfo.company}}</span>
             </div>
             <div class="item">
-              <label class="labels">联系电话</label>
-              <span class="input" style="width:500px;">{{ dataInfo.phone}}</span>
+              <label class="labels">联系电话：</label>
+              <span class="input" style="width:550px;">{{ dataInfo.phone}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;带领 ( {{dataInfo.worker_num}} ) 人进行以下工作：</span>
+              
             </div>
             <div class="item">
               <label class="labels">A区域/车辆：</label>
               <div class="conn">
-                <em>长江南路站 - 长江南路站 区间 左线 ( DK38 + 940 - DK38 + 940 )</em>
-                <i>开始时间：2019-12-29 07:00:00 结束时间：2019-12-29 20:00:00</i>
-                <em>长江南路站 - 长江南路站 区间 右线 ( DK38 + 940 - DK38 + 940 )</em>
-                <i>开始时间：2019-12-29 07:00:00 结束时间：2019-12-29 20:00:00</i>
+                <div v-for="areas in dataInfo.area_or_car" :key="areas.id">
+                  <p>
+                    <em>{{areas.start_station_name}} - {{areas.end_station_name}} 区间 左线 ( DK{{areas.start_flag}} + {{areas.start_length}} - DK{{areas.end_flag}} + {{areas.end_length}} )</em>
+                  </p>
+                  <p>
+                    <i>开始时间：{{areas.start_time}}</i>
+                    <i>结束时间：{{areas.end_time}}</i>
+                  </p>
+                </div>
+                <!-- <div>
+                  <em>长江南路站 - 长江南路站 区间 左线 ( DK38 + 940 - DK38 + 940 )</em>
+                  <i>开始时间：2019-12-29 07:00:00 结束时间：2019-12-29 20:00:00</i>
+                </div>-->
               </div>
             </div>
             <div class="item">
@@ -78,10 +88,11 @@
               </ul>
             </div>
             <div
-              class="itemconn" style="margin-bottom:30px;"
+              class="itemconn"
+              style="margin-bottom:30px;"
             >本单位及本人谨此声明：愿意在规定时间内完成上述工作，并确保本人属下员工遵守上述安全措施，同时本人或本人属 下员工不会试图损坏其它单位的设备，在其它区域或车辆上工作。</div>
             <div class="singn">
-              <span class="pull-left">工点负责人（签名）</span>
+              <span class="pull-left">工点负责人（签名）{{dataInfo.p_in_charge}}</span>
               <span class="pull-right">2019年12月11日 17时47分</span>
             </div>
           </div>
@@ -96,7 +107,7 @@
           <div class="onebox">
             <div class="itemconn">兹批准此许可证生效，或按红笔修改的执行。</div>
             <div class="singn lines">
-              <span class="pull-left">批准人（签名）</span>
+              <span class="pull-left">批准人（签名）{{dataInfo.approver}}</span>
               <span class="pull-right">2019年12月11日 17时47分</span>
             </div>
           </div>
@@ -128,7 +139,10 @@
           <div class="onebox">
             <div class="itemconn">此许可证已经原批准人或联合办公室经理同意注销。</div>
             <div class="singn lines">
-              <span class="pull-left">批准人（签名） <b>{{dataInfo.logout}}</b></span>
+              <span class="pull-left">
+                批准人（签名）
+                <b>{{dataInfo.logout}}</b>
+              </span>
               <span class="pull-right">{{dataInfo.logout_time}}</span>
             </div>
           </div>
@@ -222,21 +236,24 @@ export default {
 .item .labels {
   color: #1d397a;
   margin: 0 15px 0 15px;
+  min-width: 75px;
+  display: inline-block;
 }
 .item em {
-  display: inline-block;
+  display: block;
   color: #4b6eca;
   font-style: normal;
 }
 .item i {
-  display: block;
+  display: inline-block;
   color: #1d397a;
-  font-size: 12px;
+  font-size: 13px;
+  margin-right: 10px;
   font-style: normal;
 }
-.conn {
+.app-apply-detail .conn {
   display: block;
-  padding-left: 100px;
+  padding-left: 110px;
   line-height: 24px;
 }
 .scheck {

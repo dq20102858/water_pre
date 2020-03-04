@@ -80,17 +80,17 @@
     </div>
     <div v-if="!isParent" class="wdetail">
       <div class="wtop">
-        <span class="item">作业单位： 中铁十七局土建06标</span>
-        <span class="item">申报时间： 2019年12月03日</span>
-        <span class="item">申报人： 葛健</span>
-        <span class="item">电话：15705604642</span>
+        <span class="item">作业单位： {{weekdailyList.company}}</span>
+        <span class="item">申报时间： {{weekdailyList.create_time}}</span>
+        <span class="item">申报人： {{weekdailyList.apply}}</span>
+        <span class="item">电话：{{weekdailyList.phone}}</span>
         <span class="itembtn">
           <el-button size="small" @click="goBack" type="primary">返回</el-button>
         </span>
       </div>
       <div class="wmain">
         <div class="app-table">
-          <el-table :data="weekdailyList">
+          <el-table :data="weekdailyList.lists">
             <el-table-column prop="work_time" label="日期" :formatter="dateFormat"></el-table-column>
             <el-table-column prop="type" label="作业类别"></el-table-column>
             <el-table-column prop="work_time" min-width="60" label="作业时间"></el-table-column>
@@ -107,6 +107,7 @@
                 </div>
               </template>
             </el-table-column>
+            
           </el-table>
         </div>
       </div>
@@ -205,7 +206,7 @@ export default {
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
-          this.weekdailyList = data.data;
+          this.weekdailyList = data;
         }
       });
     },

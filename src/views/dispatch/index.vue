@@ -273,6 +273,7 @@ export default {
         title: "新建调度命令",
         skin: "layers",
         shadeClose: false,
+        scrollbar: false,
         content: {
           content: addForm,
           parent: this,
@@ -285,6 +286,7 @@ export default {
         area: ["800px", "590px"],
         title: "调度命令详情",
         shadeClose: false,
+        scrollbar: false,
         content: {
           content: detailForm,
           parent: this,
@@ -343,6 +345,7 @@ export default {
         area: ["960px", "590px"],
         title: "调度命令（行车调度）",
         shadeClose: false,
+        scrollbar: false,
         content: {
           content: printlForm,
           parent: this,
