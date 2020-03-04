@@ -1,31 +1,31 @@
-webpackJsonp([14],{
+webpackJsonp([23],{
 
-/***/ "bUWe":
+/***/ "ap+h":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/set/index.vue
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/description/index.vue
 //
 //
 //
 //
 //
 
-/* harmony default export */ var set = ({
+/* harmony default export */ var description = ({
     data: function data() {
         return {};
     },
 
     methods: {}
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-0ec1b852","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/set/index.vue
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-0ec1b852","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/description/index.vue
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"monitor"}})}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var views_set = (esExports);
-// CONCATENATED MODULE: ./src/views/set/index.vue
+/* harmony default export */ var views_description = (esExports);
+// CONCATENATED MODULE: ./src/views/description/index.vue
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
 
@@ -40,15 +40,15 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  set,
-  views_set,
+  description,
+  views_description,
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 
-/* harmony default export */ var src_views_set = __webpack_exports__["default"] = (Component.exports);
+/* harmony default export */ var src_views_description = __webpack_exports__["default"] = (Component.exports);
 
 
 /***/ })

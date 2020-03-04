@@ -1,569 +1,1465 @@
-webpackJsonp([1],{
+webpackJsonp([1,2],{
 
-<<<<<<< HEAD
-/***/ "9bBU":
-=======
-/***/ "+rXr":
->>>>>>> a9f62a19db2bb48f558a31ab942bf539ab05d700
+/***/ "1Pr4":
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__("mClu");
-var $Object = __webpack_require__("FeBl").Object;
-module.exports = function defineProperty(it, key, desc) {
-  return $Object.defineProperty(it, key, desc);
-};
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
 
-<<<<<<< HEAD
 
-/***/ }),
+// module
+exports.push([module.i, "\n#dispatch-detail .app-dialog-form {\r\n  padding: 30px 0px 30px 30px;\r\n  display: block;\r\n  margin-top: 1px;\n}\n#dispatch-detail .app-dialog-form .el-form-item {\r\n  margin-bottom: 15px;\n}\n#dispatch-detail .app-dialog-form .el-form-item__label {\r\n  width: 120px;\r\n  color: #1d397a;\n}\n#dispatch-detail .app-dialog-form .el-input input {\r\n  width: 245px;\n}\n#dispatch-detail .app-dialog-form .bluebtn {\r\n  margin-left: 10px;\n}\n#dispatch-detail .app-dialog-form .redbtn {\r\n  background: #ff5c75;\r\n  border-color: #ff5c75;\n}\n#dispatch-detail .app-dialog-form .contents {\r\n  display: block;\r\n  width: 100%;\n}\n#dispatch-detail .app-dialog-form .contents .el-textarea {\r\n  width: 100%;\n}\n#dispatch-detail .app-dialog-form .contents .el-form-item__content {\r\n  width: 623px;\n}\n#dispatch-detail .app-dialog-form .contents .el-textarea__inner {\r\n  width: 100%;\r\n  height: 100px;\n}\n#dispatch-detail .app-dialog-footer {\r\n  margin-top: 20px;\n}\n#dispatch-detail .app-dialog-footer .tips {\r\n  color: #ff5c75;\r\n  font-size: 16px;\n}\n#dispatch-detail .app-dialog-footer .el-button {\r\n  float: right;\r\n  margin-right: 30px;\n}\r\n", ""]);
 
-=======
-// load the styles
-var content = __webpack_require__("uCz8");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("010c5c44", content, true);
-
-/***/ }),
-
-/***/ "9bBU":
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__("mClu");
-var $Object = __webpack_require__("FeBl").Object;
-module.exports = function defineProperty(it, key, desc) {
-  return $Object.defineProperty(it, key, desc);
-};
+// exports
 
 
 /***/ }),
 
->>>>>>> a9f62a19db2bb48f558a31ab942bf539ab05d700
-/***/ "C4MV":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__("9bBU"), __esModule: true };
-
-/***/ }),
-
-/***/ "KYsC":
+/***/ "ARoL":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/defineProperty.js
-var defineProperty = __webpack_require__("bOdI");
-var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
+// EXTERNAL MODULE: ./node_modules/video.js/dist/video.es.js + 3 modules
+var video_es = __webpack_require__("63pp");
 
-// EXTERNAL MODULE: ./node_modules/babel-runtime/core-js/json/stringify.js
-var stringify = __webpack_require__("mvHQ");
-var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
+// EXTERNAL MODULE: ./node_modules/videojs-swf/package.json
+var videojs_swf_package = __webpack_require__("vA7V");
+var package_default = /*#__PURE__*/__webpack_require__.n(videojs_swf_package);
 
-// EXTERNAL MODULE: ./src/utils/common.js
-var common = __webpack_require__("X2Oc");
-<<<<<<< HEAD
+// EXTERNAL MODULE: ./node_modules/videojs-flash/node_modules/global/window.js
+var global_window = __webpack_require__("jPpr");
+var window_default = /*#__PURE__*/__webpack_require__.n(global_window);
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/project/index.vue
-
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-=======
-
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/project/index.vue
+// CONCATENATED MODULE: ./node_modules/videojs-flash/dist/videojs-flash.es.js
 
 
->>>>>>> a9f62a19db2bb48f558a31ab942bf539ab05d700
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
+var version$1 = "2.2.1";
+
+/**
+ * @file flash-rtmp.js
+ * @module flash-rtmp
+ */
+
+/**
+ * Add RTMP properties to the {@link Flash} Tech.
+ *
+ * @param {Flash} Flash
+ *        The flash tech class.
+ *
+ * @mixin FlashRtmpDecorator
+ *
+ * @return {Flash}
+ *         The flash tech with RTMP properties added.
+ */
+function FlashRtmpDecorator(Flash) {
+  Flash.streamingFormats = {
+    'rtmp/mp4': 'MP4',
+    'rtmp/flv': 'FLV'
+  };
+
+  /**
+   * Join connection and stream with an ampersand.
+   *
+   * @param {string} connection
+   *        The connection string.
+   *
+   * @param {string} stream
+   *        The stream string.
+   *
+   * @return {string}
+   *         The connection and stream joined with an `&` character
+   */
+  Flash.streamFromParts = function (connection, stream) {
+    return connection + '&' + stream;
+  };
+
+  /**
+   * The flash parts object that contains connection and stream info.
+   *
+   * @typedef {Object} Flash~PartsObject
+   *
+   * @property {string} connection
+   *           The connection string of a source, defaults to an empty string.
+   *
+   * @property {string} stream
+   *           The stream string of the source, defaults to an empty string.
+   */
+
+  /**
+   * Convert a source url into a stream and connection parts.
+   *
+   * @param {string} src
+   *        the source url
+   *
+   * @return {Flash~PartsObject}
+   *         The parts object that contains a connection and a stream
+   */
+  Flash.streamToParts = function (src) {
+    var parts = {
+      connection: '',
+      stream: ''
+    };
+
+    if (!src) {
+      return parts;
+    }
+
+    // Look for the normal URL separator we expect, '&'.
+    // If found, we split the URL into two pieces around the
+    // first '&'.
+    var connEnd = src.search(/&(?![\w-]+=)/);
+    var streamBegin = void 0;
+
+    if (connEnd !== -1) {
+      streamBegin = connEnd + 1;
+    } else {
+      // If there's not a '&', we use the last '/' as the delimiter.
+      connEnd = streamBegin = src.lastIndexOf('/') + 1;
+      if (connEnd === 0) {
+        // really, there's not a '/'?
+        connEnd = streamBegin = src.length;
+      }
+    }
+
+    parts.connection = src.substring(0, connEnd);
+    parts.stream = src.substring(streamBegin, src.length);
+
+    return parts;
+  };
+
+  /**
+   * Check if the source type is a streaming type.
+   *
+   * @param {string} srcType
+   *        The mime type to check.
+   *
+   * @return {boolean}
+   *          - True if the source type is a streaming type.
+   *          - False if the source type is not a streaming type.
+   */
+  Flash.isStreamingType = function (srcType) {
+    return srcType in Flash.streamingFormats;
+  };
+
+  // RTMP has four variations, any string starting
+  // with one of these protocols should be valid
+
+  /**
+   * Regular expression used to check if the source is an rtmp source.
+   *
+   * @property {RegExp} Flash.RTMP_RE
+   */
+  Flash.RTMP_RE = /^rtmp[set]?:\/\//i;
+
+  /**
+   * Check if the source itself is a streaming type.
+   *
+   * @param {string} src
+   *        The url to the source.
+   *
+   * @return {boolean}
+   *          - True if the source url indicates that the source is streaming.
+   *          - False if the shource url indicates that the source url is not streaming.
+   */
+  Flash.isStreamingSrc = function (src) {
+    return Flash.RTMP_RE.test(src);
+  };
+
+  /**
+   * A source handler for RTMP urls
+   * @type {Object}
+   */
+  Flash.rtmpSourceHandler = {};
+
+  /**
+   * Check if Flash can play the given mime type.
+   *
+   * @param {string} type
+   *        The mime type to check
+   *
+   * @return {string}
+   *         'maybe', or '' (empty string)
+   */
+  Flash.rtmpSourceHandler.canPlayType = function (type) {
+    if (Flash.isStreamingType(type)) {
+      return 'maybe';
+    }
+
+    return '';
+  };
+
+  /**
+   * Check if Flash can handle the source natively
+   *
+   * @param {Object} source
+   *        The source object
+   *
+   * @param {Object} [options]
+   *        The options passed to the tech
+   *
+   * @return {string}
+   *         'maybe', or '' (empty string)
+   */
+  Flash.rtmpSourceHandler.canHandleSource = function (source, options) {
+    var can = Flash.rtmpSourceHandler.canPlayType(source.type);
+
+    if (can) {
+      return can;
+    }
+
+    if (Flash.isStreamingSrc(source.src)) {
+      return 'maybe';
+    }
+
+    return '';
+  };
+
+  /**
+   * Pass the source to the flash object.
+   *
+   * @param {Object} source
+   *        The source object
+   *
+   * @param {Flash} tech
+   *        The instance of the Flash tech
+   *
+   * @param {Object} [options]
+   *        The options to pass to the source
+   */
+  Flash.rtmpSourceHandler.handleSource = function (source, tech, options) {
+    var srcParts = Flash.streamToParts(source.src);
+
+    tech.setRtmpConnection(srcParts.connection);
+    tech.setRtmpStream(srcParts.stream);
+  };
+
+  // Register the native source handler
+  Flash.registerSourceHandler(Flash.rtmpSourceHandler);
+
+  return Flash;
+}
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+var inherits = function (subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+};
+
+var possibleConstructorReturn = function (self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return call && (typeof call === "object" || typeof call === "function") ? call : self;
+};
+
+/**
+ * @file flash.js
+ * VideoJS-SWF - Custom Flash Player with HTML5-ish API
+ * https://github.com/zencoder/video-js-swf
+ * Not using setupTriggers. Using global onEvent func to distribute events
+ */
+
+var Tech = video_es["a" /* default */].getComponent('Tech');
+var Dom = video_es["a" /* default */].dom;
+var Url = video_es["a" /* default */].url;
+var createTimeRange = video_es["a" /* default */].createTimeRange;
+var mergeOptions = video_es["a" /* default */].mergeOptions;
+
+var videojs_flash_es_navigator = window_default.a && window_default.a.navigator || {};
+
+/**
+ * Flash Media Controller - Wrapper for Flash Media API
+ *
+ * @mixes FlashRtmpDecorator
+ * @mixes Tech~SouceHandlerAdditions
+ * @extends Tech
+ */
+
+var videojs_flash_es_Flash = function (_Tech) {
+  inherits(Flash, _Tech);
+
+  /**
+  * Create an instance of this Tech.
+  *
+  * @param {Object} [options]
+  *        The key/value store of player options.
+  *
+  * @param {Component~ReadyCallback} ready
+  *        Callback function to call when the `Flash` Tech is ready.
+  */
+  function Flash(options, ready) {
+    classCallCheck(this, Flash);
+
+    // Set the source when ready
+    var _this = possibleConstructorReturn(this, _Tech.call(this, options, ready));
+
+    if (options.source) {
+      _this.ready(function () {
+        this.setSource(options.source);
+      }, true);
+    }
+
+    // Having issues with Flash reloading on certain page actions
+    // (hide/resize/fullscreen) in certain browsers
+    // This allows resetting the playhead when we catch the reload
+    if (options.startTime) {
+      _this.ready(function () {
+        this.load();
+        this.play();
+        this.currentTime(options.startTime);
+      }, true);
+    }
+
+    // Add global window functions that the swf expects
+    // A 4.x workflow we weren't able to solve for in 5.0
+    // because of the need to hard code these functions
+    // into the swf for security reasons
+    window_default.a.videojs = window_default.a.videojs || {};
+    window_default.a.videojs.Flash = window_default.a.videojs.Flash || {};
+    window_default.a.videojs.Flash.onReady = Flash.onReady;
+    window_default.a.videojs.Flash.onEvent = Flash.onEvent;
+    window_default.a.videojs.Flash.onError = Flash.onError;
+
+    _this.on('seeked', function () {
+      this.lastSeekTarget_ = undefined;
+    });
+
+    return _this;
+  }
+
+  /**
+   * Create the `Flash` Tech's DOM element.
+   *
+   * @return {Element}
+   *         The element that gets created.
+   */
+
+
+  Flash.prototype.createEl = function createEl() {
+    var options = this.options_;
+
+    // If video.js is hosted locally you should also set the location
+    // for the hosted swf, which should be relative to the page (not video.js)
+    // Otherwise this adds a CDN url.
+    // The CDN also auto-adds a swf URL for that specific version.
+    if (!options.swf) {
+      options.swf = 'https://vjs.zencdn.net/swf/' + videojs_swf_package["version"] + '/video-js.swf';
+    }
+
+    // Generate ID for swf object
+    var objId = options.techId;
+
+    // Merge default flashvars with ones passed in to init
+    var flashVars = mergeOptions({
+
+      // SWF Callback Functions
+      readyFunction: 'videojs.Flash.onReady',
+      eventProxyFunction: 'videojs.Flash.onEvent',
+      errorEventProxyFunction: 'videojs.Flash.onError',
+
+      // Player Settings
+      autoplay: options.autoplay,
+      preload: options.preload,
+      loop: options.loop,
+      muted: options.muted
+
+    }, options.flashVars);
+
+    // Merge default parames with ones passed in
+    var params = mergeOptions({
+      // Opaque is needed to overlay controls, but can affect playback performance
+      wmode: 'opaque',
+      // Using bgcolor prevents a white flash when the object is loading
+      bgcolor: '#000000'
+    }, options.params);
+
+    // Merge default attributes with ones passed in
+    var attributes = mergeOptions({
+      // Both ID and Name needed or swf to identify itself
+      id: objId,
+      name: objId,
+      'class': 'vjs-tech'
+    }, options.attributes);
+
+    this.el_ = Flash.embed(options.swf, flashVars, params, attributes);
+    this.el_.tech = this;
+
+    return this.el_;
+  };
+
+  /**
+   * Called by {@link Player#play} to play using the `Flash` `Tech`.
+   */
+
+
+  Flash.prototype.play = function play() {
+    if (this.ended()) {
+      this.setCurrentTime(0);
+    }
+    this.el_.vjs_play();
+  };
+
+  /**
+   * Called by {@link Player#pause} to pause using the `Flash` `Tech`.
+   */
+
+
+  Flash.prototype.pause = function pause() {
+    this.el_.vjs_pause();
+  };
+
+  /**
+   * A getter/setter for the `Flash` Tech's source object.
+   * > Note: Please use {@link Flash#setSource}
+   *
+   * @param {Tech~SourceObject} [src]
+   *        The source object you want to set on the `Flash` techs.
+   *
+   * @return {Tech~SourceObject|undefined}
+   *         - The current source object when a source is not passed in.
+   *         - undefined when setting
+   *
+   * @deprecated Since version 5.
+   */
+
+
+  Flash.prototype.src = function src(_src) {
+    if (_src === undefined) {
+      return this.currentSrc();
+    }
+
+    // Setting src through `src` not `setSrc` will be deprecated
+    return this.setSrc(_src);
+  };
+
+  /**
+   * A getter/setter for the `Flash` Tech's source object.
+   *
+   * @param {Tech~SourceObject} [src]
+   *        The source object you want to set on the `Flash` techs.
+   */
+
+
+  Flash.prototype.setSrc = function setSrc(src) {
+    var _this2 = this;
+
+    // Make sure source URL is absolute.
+    src = Url.getAbsoluteURL(src);
+    this.el_.vjs_src(src);
+
+    // Currently the SWF doesn't autoplay if you load a source later.
+    // e.g. Load player w/ no source, wait 2s, set src.
+    if (this.autoplay()) {
+      this.setTimeout(function () {
+        return _this2.play();
+      }, 0);
+    }
+  };
+
+  /**
+   * Indicates whether the media is currently seeking to a new position or not.
+   *
+   * @return {boolean}
+   *         - True if seeking to a new position
+   *         - False otherwise
+   */
+
+
+  Flash.prototype.seeking = function seeking() {
+    return this.lastSeekTarget_ !== undefined;
+  };
+
+  /**
+   * Returns the current time in seconds that the media is at in playback.
+   *
+   * @param {number} time
+   *        Current playtime of the media in seconds.
+   */
+
+
+  Flash.prototype.setCurrentTime = function setCurrentTime(time) {
+    var seekable = this.seekable();
+
+    if (seekable.length) {
+      // clamp to the current seekable range
+      time = time > seekable.start(0) ? time : seekable.start(0);
+      time = time < seekable.end(seekable.length - 1) ? time : seekable.end(seekable.length - 1);
+
+      this.lastSeekTarget_ = time;
+      this.trigger('seeking');
+      this.el_.vjs_setProperty('currentTime', time);
+      _Tech.prototype.setCurrentTime.call(this);
+    }
+  };
+
+  /**
+   * Get the current playback time in seconds
+   *
+   * @return {number}
+   *         The current time of playback in seconds.
+   */
+
+
+  Flash.prototype.currentTime = function currentTime() {
+    // when seeking make the reported time keep up with the requested time
+    // by reading the time we're seeking to
+    if (this.seeking()) {
+      return this.lastSeekTarget_ || 0;
+    }
+    return this.el_.vjs_getProperty('currentTime');
+  };
+
+  /**
+   * Get the current source
+   *
+   * @method currentSrc
+   * @return {Tech~SourceObject}
+   *         The current source
+   */
+
+
+  Flash.prototype.currentSrc = function currentSrc() {
+    if (this.currentSource_) {
+      return this.currentSource_.src;
+    }
+    return this.el_.vjs_getProperty('currentSrc');
+  };
+
+  /**
+   * Get the total duration of the current media.
+   *
+   * @return {number}
+   8          The total duration of the current media.
+   */
+
+
+  Flash.prototype.duration = function duration() {
+    if (this.readyState() === 0) {
+      return NaN;
+    }
+    var duration = this.el_.vjs_getProperty('duration');
+
+    return duration >= 0 ? duration : Infinity;
+  };
+
+  /**
+   * Load media into Tech.
+   */
+
+
+  Flash.prototype.load = function load() {
+    this.el_.vjs_load();
+  };
+
+  /**
+   * Get the poster image that was set on the tech.
+   */
+
+
+  Flash.prototype.poster = function poster() {
+    this.el_.vjs_getProperty('poster');
+  };
+
+  /**
+   * Poster images are not handled by the Flash tech so make this is a no-op.
+   */
+
+
+  Flash.prototype.setPoster = function setPoster() {};
+
+  /**
+   * Determine the time ranges that can be seeked to in the media.
+   *
+   * @return {TimeRange}
+   *         Returns the time ranges that can be seeked to.
+   */
+
+
+  Flash.prototype.seekable = function seekable() {
+    var duration = this.duration();
+
+    if (duration === 0) {
+      return createTimeRange();
+    }
+    return createTimeRange(0, duration);
+  };
+
+  /**
+   * Get and create a `TimeRange` object for buffering.
+   *
+   * @return {TimeRange}
+   *         The time range object that was created.
+   */
+
+
+  Flash.prototype.buffered = function buffered() {
+    var ranges = this.el_.vjs_getProperty('buffered');
+
+    if (ranges.length === 0) {
+      return createTimeRange();
+    }
+    return createTimeRange(ranges[0][0], ranges[0][1]);
+  };
+
+  /**
+   * Get fullscreen support -
+   *
+   * Flash does not allow fullscreen through javascript
+   * so this always returns false.
+   *
+   * @return {boolean}
+   *         The Flash tech does not support fullscreen, so it will always return false.
+   */
+
+
+  Flash.prototype.supportsFullScreen = function supportsFullScreen() {
+    // Flash does not allow fullscreen through javascript
+    return false;
+  };
+
+  /**
+   * Flash does not allow fullscreen through javascript
+   * so this always returns false.
+   *
+   * @return {boolean}
+   *         The Flash tech does not support fullscreen, so it will always return false.
+   */
+
+
+  Flash.prototype.enterFullScreen = function enterFullScreen() {
+    return false;
+  };
+
+  /**
+   * Gets available media playback quality metrics as specified by the W3C's Media
+   * Playback Quality API.
+   *
+   * @see [Spec]{@link https://wicg.github.io/media-playback-quality}
+   *
+   * @return {Object}
+   *         An object with supported media playback quality metrics
+   */
+
+
+  Flash.prototype.getVideoPlaybackQuality = function getVideoPlaybackQuality() {
+    var videoPlaybackQuality = this.el_.vjs_getProperty('getVideoPlaybackQuality');
+
+    if (window_default.a.performance && typeof window_default.a.performance.now === 'function') {
+      videoPlaybackQuality.creationTime = window_default.a.performance.now();
+    } else if (window_default.a.performance && window_default.a.performance.timing && typeof window_default.a.performance.timing.navigationStart === 'number') {
+      videoPlaybackQuality.creationTime = window_default.a.Date.now() - window_default.a.performance.timing.navigationStart;
+    }
+
+    return videoPlaybackQuality;
+  };
+
+  return Flash;
+}(Tech);
+
+// Create setters and getters for attributes
+
+
+var _readWrite = ['rtmpConnection', 'rtmpStream', 'preload', 'defaultPlaybackRate', 'playbackRate', 'autoplay', 'loop', 'controls', 'volume', 'muted', 'defaultMuted'];
+var _readOnly = ['networkState', 'readyState', 'initialTime', 'startOffsetTime', 'paused', 'ended', 'videoWidth', 'videoHeight'];
+var _api = videojs_flash_es_Flash.prototype;
+
+/**
+ * Create setters for the swf on the element
+ *
+ * @param {string} attr
+ *        The name of the parameter
+ *
+ * @private
+ */
+function _createSetter(attr) {
+  var attrUpper = attr.charAt(0).toUpperCase() + attr.slice(1);
+
+  _api['set' + attrUpper] = function (val) {
+    return this.el_.vjs_setProperty(attr, val);
+  };
+}
+
+/**
+ * Create getters for the swf on the element
+ *
+ * @param {string} attr
+ *        The name of the parameter
+ *
+ * @private
+ */
+function _createGetter(attr) {
+  _api[attr] = function () {
+    return this.el_.vjs_getProperty(attr);
+  };
+}
+
+// Create getter and setters for all read/write attributes
+for (var i = 0; i < _readWrite.length; i++) {
+  _createGetter(_readWrite[i]);
+  _createSetter(_readWrite[i]);
+}
+
+// Create getters for read-only attributes
+for (var _i = 0; _i < _readOnly.length; _i++) {
+  _createGetter(_readOnly[_i]);
+}
+
+/** ------------------------------ Getters ------------------------------ **/
+/**
+ * Get the value of `rtmpConnection` from the swf.
+ *
+ * @method Flash#rtmpConnection
+ * @return {string}
+ *         The current value of `rtmpConnection` on the swf.
+ */
+
+/**
+ * Get the value of `rtmpStream` from the swf.
+ *
+ * @method Flash#rtmpStream
+ * @return {string}
+ *         The current value of `rtmpStream` on the swf.
+ */
+
+/**
+ * Get the value of `preload` from the swf. `preload` indicates
+ * what should download before the media is interacted with. It can have the following
+ * values:
+ * - none: nothing should be downloaded
+ * - metadata: poster and the first few frames of the media may be downloaded to get
+ *   media dimensions and other metadata
+ * - auto: allow the media and metadata for the media to be downloaded before
+ *    interaction
+ *
+ * @method Flash#preload
+ * @return {string}
+ *         The value of `preload` from the swf. Will be 'none', 'metadata',
+ *         or 'auto'.
+ */
+
+/**
+ * Get the value of `defaultPlaybackRate` from the swf.
+ *
+ * @method Flash#defaultPlaybackRate
+ * @return {number}
+ *         The current value of `defaultPlaybackRate` on the swf.
+ */
+
+/**
+ * Get the value of `playbackRate` from the swf. `playbackRate` indicates
+ * the rate at which the media is currently playing back. Examples:
+ *   - if playbackRate is set to 2, media will play twice as fast.
+ *   - if playbackRate is set to 0.5, media will play half as fast.
+ *
+ * @method Flash#playbackRate
+ * @return {number}
+ *         The value of `playbackRate` from the swf. A number indicating
+ *         the current playback speed of the media, where 1 is normal speed.
+ */
+
+/**
+ * Get the value of `autoplay` from the swf. `autoplay` indicates
+ * that the media should start to play as soon as the page is ready.
+ *
+ * @method Flash#autoplay
+ * @return {boolean}
+ *         - The value of `autoplay` from the swf.
+ *         - True indicates that the media ashould start as soon as the page loads.
+ *         - False indicates that the media should not start as soon as the page loads.
+ */
+
+/**
+ * Get the value of `loop` from the swf. `loop` indicates
+ * that the media should return to the start of the media and continue playing once
+ * it reaches the end.
+ *
+ * @method Flash#loop
+ * @return {boolean}
+ *         - The value of `loop` from the swf.
+ *         - True indicates that playback should seek back to start once
+ *           the end of a media is reached.
+ *         - False indicates that playback should not loop back to the start when the
+ *           end of the media is reached.
+ */
+
+/**
+ * Get the value of `mediaGroup` from the swf.
+ *
+ * @method Flash#mediaGroup
+ * @return {string}
+ *         The current value of `mediaGroup` on the swf.
+ */
+
+/**
+ * Get the value of `controller` from the swf.
+ *
+ * @method Flash#controller
+ * @return {string}
+ *         The current value of `controller` on the swf.
+ */
+
+/**
+ * Get the value of `controls` from the swf. `controls` indicates
+ * whether the native flash controls should be shown or hidden.
+ *
+ * @method Flash#controls
+ * @return {boolean}
+ *         - The value of `controls` from the swf.
+ *         - True indicates that native controls should be showing.
+ *         - False indicates that native controls should be hidden.
+ */
+
+/**
+ * Get the value of the `volume` from the swf. `volume` indicates the current
+ * audio level as a percentage in decimal form. This means that 1 is 100%, 0.5 is 50%, and
+ * so on.
+ *
+ * @method Flash#volume
+ * @return {number}
+ *         The volume percent as a decimal. Value will be between 0-1.
+ */
+
+/**
+ * Get the value of the `muted` from the swf. `muted` indicates the current
+ * audio level should be silent.
+ *
+ * @method Flash#muted
+ * @return {boolean}
+ *         - True if the audio should be set to silent
+ *         - False otherwise
+ */
+
+/**
+ * Get the value of `defaultMuted` from the swf. `defaultMuted` indicates
+ * whether the media should start muted or not. Only changes the default state of the
+ * media. `muted` and `defaultMuted` can have different values. `muted` indicates the
+ * current state.
+ *
+ * @method Flash#defaultMuted
+ * @return {boolean}
+ *         - The value of `defaultMuted` from the swf.
+ *         - True indicates that the media should start muted.
+ *         - False indicates that the media should not start muted.
+ */
+
+/**
+ * Get the value of `networkState` from the swf. `networkState` indicates
+ * the current network state. It returns an enumeration from the following list:
+ * - 0: NETWORK_EMPTY
+ * - 1: NEWORK_IDLE
+ * - 2: NETWORK_LOADING
+ * - 3: NETWORK_NO_SOURCE
+ *
+ * @method Flash#networkState
+ * @return {number}
+ *         The value of `networkState` from the swf. This will be a number
+ *         from the list in the description.
+ */
+
+/**
+ * Get the value of `readyState` from the swf. `readyState` indicates
+ * the current state of the media element. It returns an enumeration from the
+ * following list:
+ * - 0: HAVE_NOTHING
+ * - 1: HAVE_METADATA
+ * - 2: HAVE_CURRENT_DATA
+ * - 3: HAVE_FUTURE_DATA
+ * - 4: HAVE_ENOUGH_DATA
+ *
+ * @method Flash#readyState
+ * @return {number}
+ *         The value of `readyState` from the swf. This will be a number
+ *         from the list in the description.
+ */
+
+/**
+ * Get the value of `readyState` from the swf. `readyState` indicates
+ * the current state of the media element. It returns an enumeration from the
+ * following list:
+ * - 0: HAVE_NOTHING
+ * - 1: HAVE_METADATA
+ * - 2: HAVE_CURRENT_DATA
+ * - 3: HAVE_FUTURE_DATA
+ * - 4: HAVE_ENOUGH_DATA
+ *
+ * @method Flash#readyState
+ * @return {number}
+ *         The value of `readyState` from the swf. This will be a number
+ *         from the list in the description.
+ */
+
+/**
+ * Get the value of `initialTime` from the swf.
+ *
+ * @method Flash#initialTime
+ * @return {number}
+ *         The `initialTime` proprety on the swf.
+ */
+
+/**
+ * Get the value of `startOffsetTime` from the swf.
+ *
+ * @method Flash#startOffsetTime
+ * @return {number}
+ *         The `startOffsetTime` proprety on the swf.
+ */
+
+/**
+ * Get the value of `paused` from the swf. `paused` indicates whether the swf
+ * is current paused or not.
+ *
+ * @method Flash#paused
+ * @return {boolean}
+ *         The value of `paused` from the swf.
+ */
+
+/**
+ * Get the value of `ended` from the swf. `ended` indicates whether
+ * the media has reached the end or not.
+ *
+ * @method Flash#ended
+ * @return {boolean}
+ *         - True indicates that the media has ended.
+ *         - False indicates that the media has not ended.
+ *
+ * @see [Spec]{@link https://www.w3.org/TR/html5/embedded-content-0.html#dom-media-ended}
+ */
+
+/**
+ * Get the value of `videoWidth` from the swf. `videoWidth` indicates
+ * the current width of the media in css pixels.
+ *
+ * @method Flash#videoWidth
+ * @return {number}
+ *         The value of `videoWidth` from the swf. This will be a number
+ *         in css pixels.
+ */
+
+/**
+ * Get the value of `videoHeight` from the swf. `videoHeigth` indicates
+ * the current height of the media in css pixels.
+ *
+ * @method Flassh.prototype.videoHeight
+ * @return {number}
+ *         The value of `videoHeight` from the swf. This will be a number
+ *         in css pixels.
+ */
+/** ------------------------------ Setters ------------------------------ **/
+
+/**
+ * Set the value of `rtmpConnection` on the swf.
+ *
+ * @method Flash#setRtmpConnection
+ * @param {string} rtmpConnection
+ *        New value to set the `rtmpConnection` property to.
+ */
+
+/**
+ * Set the value of `rtmpStream` on the swf.
+ *
+ * @method Flash#setRtmpStream
+ * @param {string} rtmpStream
+ *        New value to set the `rtmpStream` property to.
+ */
+
+/**
+ * Set the value of `preload` on the swf. `preload` indicates
+ * what should download before the media is interacted with. It can have the following
+ * values:
+ * - none: nothing should be downloaded
+ * - metadata: poster and the first few frames of the media may be downloaded to get
+ *   media dimensions and other metadata
+ * - auto: allow the media and metadata for the media to be downloaded before
+ *    interaction
+ *
+ * @method Flash#setPreload
+ * @param {string} preload
+ *        The value of `preload` to set on the swf. Should be 'none', 'metadata',
+ *        or 'auto'.
+ */
+
+/**
+ * Set the value of `defaultPlaybackRate` on the swf.
+ *
+ * @method Flash#setDefaultPlaybackRate
+ * @param {number} defaultPlaybackRate
+ *        New value to set the `defaultPlaybackRate` property to.
+ */
+
+/**
+ * Set the value of `playbackRate` on the swf. `playbackRate` indicates
+ * the rate at which the media is currently playing back. Examples:
+ *   - if playbackRate is set to 2, media will play twice as fast.
+ *   - if playbackRate is set to 0.5, media will play half as fast.
+ *
+ * @method Flash#setPlaybackRate
+ * @param {number} playbackRate
+ *        New value of `playbackRate` on the swf. A number indicating
+ *        the current playback speed of the media, where 1 is normal speed.
+ */
+
+/**
+ * Set the value of `autoplay` on the swf. `autoplay` indicates
+ * that the media should start to play as soon as the page is ready.
+ *
+ * @method Flash#setAutoplay
+ * @param {boolean} autoplay
+ *        - The value of `autoplay` from the swf.
+ *        - True indicates that the media ashould start as soon as the page loads.
+ *        - False indicates that the media should not start as soon as the page loads.
+ */
+
+/**
+ * Set the value of `loop` on the swf. `loop` indicates
+ * that the media should return to the start of the media and continue playing once
+ * it reaches the end.
+ *
+ * @method Flash#setLoop
+ * @param {boolean} loop
+ *        - True indicates that playback should seek back to start once
+ *          the end of a media is reached.
+ *        - False indicates that playback should not loop back to the start when the
+ *          end of the media is reached.
+ */
+
+/**
+ * Set the value of `mediaGroup` on the swf.
+ *
+ * @method Flash#setMediaGroup
+ * @param {string} mediaGroup
+ *        New value of `mediaGroup` to set on the swf.
+ */
+
+/**
+ * Set the value of `controller` on the swf.
+ *
+ * @method Flash#setController
+ * @param {string} controller
+ *        New value the current value of `controller` on the swf.
+ */
+
+/**
+ * Get the value of `controls` from the swf. `controls` indicates
+ * whether the native flash controls should be shown or hidden.
+ *
+ * @method Flash#controls
+ * @return {boolean}
+ *         - The value of `controls` from the swf.
+ *         - True indicates that native controls should be showing.
+ *         - False indicates that native controls should be hidden.
+ */
+
+/**
+ * Set the value of the `volume` on the swf. `volume` indicates the current
+ * audio level as a percentage in decimal form. This means that 1 is 100%, 0.5 is 50%, and
+ * so on.
+ *
+ * @method Flash#setVolume
+ * @param {number} percentAsDecimal
+ *         The volume percent as a decimal. Value will be between 0-1.
+ */
+
+/**
+ * Set the value of the `muted` on the swf. `muted` indicates that the current
+ * audio level should be silent.
+ *
+ * @method Flash#setMuted
+ * @param {boolean} muted
+ *         - True if the audio should be set to silent
+ *         - False otherwise
+ */
+
+/**
+ * Set the value of `defaultMuted` on the swf. `defaultMuted` indicates
+ * whether the media should start muted or not. Only changes the default state of the
+ * media. `muted` and `defaultMuted` can have different values. `muted` indicates the
+ * current state.
+ *
+ * @method Flash#setDefaultMuted
+ * @param {boolean} defaultMuted
+ *         - True indicates that the media should start muted.
+ *         - False indicates that the media should not start muted.
+ */
+
+/* Flash Support Testing -------------------------------------------------------- */
+
+/**
+ * Check if the Flash tech is currently supported.
+ *
+ * @return {boolean}
+ *          - True for Chrome and Safari Desktop and Microsoft Edge and if flash tech is supported
+ *          - False otherwise
+ */
+videojs_flash_es_Flash.isSupported = function () {
+  // for Chrome Desktop and Safari Desktop
+  if (video_es["a" /* default */].browser.IS_CHROME && (!video_es["a" /* default */].browser.IS_ANDROID || !video_es["a" /* default */].browser.IS_IOS) || video_es["a" /* default */].browser.IS_SAFARI && !video_es["a" /* default */].browser.IS_IOS || video_es["a" /* default */].browser.IS_EDGE) {
+    return true;
+  }
+  // for other browsers
+  return videojs_flash_es_Flash.version()[0] >= 10;
+};
+
+// Add Source Handler pattern functions to this tech
+Tech.withSourceHandlers(videojs_flash_es_Flash);
+
+/*
+ * Native source handler for flash,  simply passes the source to the swf element.
+ *
+ * @property {Tech~SourceObject} source
+ *           The source object
+ *
+ * @property {Flash} tech
+ *           The instance of the Flash tech
+ */
+videojs_flash_es_Flash.nativeSourceHandler = {};
+
+/**
+ * Check if the Flash can play the given mime type.
+ *
+ * @param {string} type
+ *        The mimetype to check
+ *
+ * @return {string}
+ *         'maybe', or '' (empty string)
+ */
+videojs_flash_es_Flash.nativeSourceHandler.canPlayType = function (type) {
+  if (type in videojs_flash_es_Flash.formats) {
+    return 'maybe';
+  }
+
+  return '';
+};
+
+/**
+ * Check if the media element can handle a source natively.
+ *
+ * @param {Tech~SourceObject} source
+ *         The source object
+ *
+ * @param {Object} [options]
+ *         Options to be passed to the tech.
+ *
+ * @return {string}
+ *         'maybe', or '' (empty string).
+ */
+videojs_flash_es_Flash.nativeSourceHandler.canHandleSource = function (source, options) {
+  var type = void 0;
+
+  /**
+   * Guess the mime type of a file if it does not have one
+   *
+   * @param {Tech~SourceObject} src
+   *        The source object to guess the mime type for
+   *
+   * @return {string}
+   *         The mime type that was guessed
+   */
+  function guessMimeType(src) {
+    var ext = Url.getFileExtension(src);
+
+    if (ext) {
+      return 'video/' + ext;
+    }
+    return '';
+  }
+
+  if (!source.type) {
+    type = guessMimeType(source.src);
+  } else {
+    // Strip code information from the type because we don't get that specific
+    type = source.type.replace(/;.*/, '').toLowerCase();
+  }
+
+  return videojs_flash_es_Flash.nativeSourceHandler.canPlayType(type);
+};
+
+/**
+ * Pass the source to the swf.
+ *
+ * @param {Tech~SourceObject} source
+ *        The source object
+ *
+ * @param {Flash} tech
+ *        The instance of the Flash tech
+ *
+ * @param {Object} [options]
+ *        The options to pass to the source
+ */
+videojs_flash_es_Flash.nativeSourceHandler.handleSource = function (source, tech, options) {
+  tech.setSrc(source.src);
+};
+
+/**
+ * noop for native source handler dispose, as cleanup will happen automatically.
+ */
+videojs_flash_es_Flash.nativeSourceHandler.dispose = function () {};
+
+// Register the native source handler
+videojs_flash_es_Flash.registerSourceHandler(videojs_flash_es_Flash.nativeSourceHandler);
+
+/**
+ * Flash supported mime types.
+ *
+ * @constant {Object}
+ */
+videojs_flash_es_Flash.formats = {
+  'video/flv': 'FLV',
+  'video/x-flv': 'FLV',
+  'video/mp4': 'MP4',
+  'video/m4v': 'MP4'
+};
+
+/**
+ * Called when the the swf is "ready", and makes sure that the swf is really
+ * ready using {@link Flash#checkReady}
+ *
+ * @param {Object} currSwf
+ *        The current swf object
+ */
+videojs_flash_es_Flash.onReady = function (currSwf) {
+  var el = Dom.$('#' + currSwf);
+  var tech = el && el.tech;
+
+  // if there is no el then the tech has been disposed
+  // and the tech element was removed from the player div
+  if (tech && tech.el()) {
+    // check that the flash object is really ready
+    videojs_flash_es_Flash.checkReady(tech);
+  }
+};
+
+/**
+ * The SWF isn't always ready when it says it is. Sometimes the API functions still
+ * need to be added to the object. If it's not ready, we set a timeout to check again
+ * shortly.
+ *
+ * @param {Flash} tech
+ *        The instance of the flash tech to check.
+ */
+videojs_flash_es_Flash.checkReady = function (tech) {
+  // stop worrying if the tech has been disposed
+  if (!tech.el()) {
+    return;
+  }
+
+  // check if API property exists
+  if (tech.el().vjs_getProperty) {
+    // tell tech it's ready
+    tech.triggerReady();
+  } else {
+    // wait longer
+    this.setTimeout(function () {
+      videojs_flash_es_Flash.checkReady(tech);
+    }, 50);
+  }
+};
+
+/**
+ * Trigger events from the swf on the Flash Tech.
+ *
+ * @param {number} swfID
+ *        The id of the swf that had the event
+ *
+ * @param {string} eventName
+ *        The name of the event to trigger
+ */
+videojs_flash_es_Flash.onEvent = function (swfID, eventName) {
+  var tech = Dom.$('#' + swfID).tech;
+  var args = Array.prototype.slice.call(arguments, 2);
+
+  // dispatch Flash events asynchronously for two reasons:
+  // - Flash swallows any exceptions generated by javascript it
+  //   invokes
+  // - Flash is suspended until the javascript returns which may cause
+  //   playback performance issues
+  tech.setTimeout(function () {
+    tech.trigger(eventName, args);
+  }, 1);
+};
+
+/**
+ * Log errors from the swf on the Flash tech.
+ *
+ * @param {number} swfID
+ *        The id of the swf that had an error.
+ *
+ * @param {string} err
+ *        The error to set on the Flash Tech.
+ *
+ * @return {MediaError|undefined}
+ *          - Returns a MediaError when err is 'srcnotfound'
+ *          - Returns undefined otherwise.
+ */
+videojs_flash_es_Flash.onError = function (swfID, err) {
+  var tech = Dom.$('#' + swfID).tech;
+
+  // trigger MEDIA_ERR_SRC_NOT_SUPPORTED
+  if (err === 'srcnotfound') {
+    return tech.error(4);
+  }
+
+  // trigger a custom error
+  if (typeof err === 'string') {
+    tech.error('FLASH: ' + err);
+  } else {
+    err.origin = 'flash';
+    tech.error(err);
+  }
+};
+
+/**
+ * Get the current version of Flash that is in use on the page.
+ *
+ * @return {Array}
+ *          an array of versions that are available.
+ */
+videojs_flash_es_Flash.version = function () {
+  var version$$1 = '0,0,0';
+
+  // IE
+  try {
+    version$$1 = new window_default.a.ActiveXObject('ShockwaveFlash.ShockwaveFlash').GetVariable('$version').replace(/\D+/g, ',').match(/^,?(.+),?$/)[1];
+
+    // other browsers
+  } catch (e) {
+    try {
+      if (videojs_flash_es_navigator.mimeTypes['application/x-shockwave-flash'].enabledPlugin) {
+        version$$1 = (videojs_flash_es_navigator.plugins['Shockwave Flash 2.0'] || videojs_flash_es_navigator.plugins['Shockwave Flash']).description.replace(/\D+/g, ',').match(/^,?(.+),?$/)[1];
+      }
+    } catch (err) {
+      // satisfy linter
+    }
+  }
+  return version$$1.split(',');
+};
+
+/**
+ * Only use for non-iframe embeds.
+ *
+ * @param {Object} swf
+ *        The videojs-swf object.
+ *
+ * @param {Object} flashVars
+ *        Names and values to use as flash option variables.
+ *
+ * @param {Object} params
+ *        Style parameters to set on the object.
+ *
+ * @param {Object} attributes
+ *        Attributes to set on the element.
+ *
+ * @return {Element}
+ *          The embeded Flash DOM element.
+ */
+videojs_flash_es_Flash.embed = function (swf, flashVars, params, attributes) {
+  var code = videojs_flash_es_Flash.getEmbedCode(swf, flashVars, params, attributes);
+
+  // Get element by embedding code and retrieving created element
+  var obj = Dom.createEl('div', { innerHTML: code }).childNodes[0];
+
+  return obj;
+};
+
+/**
+ * Only use for non-iframe embeds.
+ *
+ * @param {Object} swf
+ *        The videojs-swf object.
+ *
+ * @param {Object} flashVars
+ *        Names and values to use as flash option variables.
+ *
+ * @param {Object} params
+ *        Style parameters to set on the object.
+ *
+ * @param {Object} attributes
+ *        Attributes to set on the element.
+ *
+ * @return {Element}
+ *          The embeded Flash DOM element.
+ */
+videojs_flash_es_Flash.getEmbedCode = function (swf, flashVars, params, attributes) {
+  var objTag = '<object type="application/x-shockwave-flash" ';
+  var flashVarsString = '';
+  var paramsString = '';
+  var attrsString = '';
+
+  // Convert flash vars to string
+  if (flashVars) {
+    Object.getOwnPropertyNames(flashVars).forEach(function (key) {
+      flashVarsString += key + '=' + flashVars[key] + '&amp;';
+    });
+  }
+
+  // Add swf, flashVars, and other default params
+  params = mergeOptions({
+    movie: swf,
+    flashvars: flashVarsString,
+    // Required to talk to swf
+    allowScriptAccess: 'always',
+    // All should be default, but having security issues.
+    allowNetworking: 'all'
+  }, params);
+
+  // Create param tags string
+  Object.getOwnPropertyNames(params).forEach(function (key) {
+    paramsString += '<param name="' + key + '" value="' + params[key] + '" />';
+  });
+
+  attributes = mergeOptions({
+    // Add swf to attributes (need both for IE and Others to work)
+    data: swf,
+
+    // Default to 100% width/height
+    width: '100%',
+    height: '100%'
+
+  }, attributes);
+
+  // Create Attributes string
+  Object.getOwnPropertyNames(attributes).forEach(function (key) {
+    attrsString += key + '="' + attributes[key] + '" ';
+  });
+
+  return '' + objTag + attrsString + '>' + paramsString + '</object>';
+};
+
+// Run Flash through the RTMP decorator
+FlashRtmpDecorator(videojs_flash_es_Flash);
+
+if (Tech.getTech('Flash')) {
+  video_es["a" /* default */].log.warn('Not using videojs-flash as it appears to already be registered');
+  video_es["a" /* default */].log.warn('videojs-flash should only be used with video.js@6 and above');
+} else {
+  video_es["a" /* default */].registerTech('Flash', videojs_flash_es_Flash);
+}
+
+videojs_flash_es_Flash.VERSION = version$1;
+
+/* harmony default export */ var videojs_flash_es = (videojs_flash_es_Flash);
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/dashboard/index.vue
 //
 //
 //
@@ -590,823 +1486,76 @@ var common = __webpack_require__("X2Oc");
 //
 
 
-/* harmony default export */ var project = (defineProperty_default()({
+/* harmony default export */ var dashboard = ({
   data: function data() {
     return {
-<<<<<<< HEAD
-=======
-      eschat: "/project/ecchat",
->>>>>>> a9f62a19db2bb48f558a31ab942bf539ab05d700
-      activeIndex: "1",
-      subIndex: "0",
-      workShow: true,
-      workLists: [],
-      workPage: 1,
-      workTotal: 0,
-      workVisible: false,
-      workData: {
-        line_type: []
-<<<<<<< HEAD
-      },
-      title: "添加作业信息",
-      wokRules: {
-        name: [{ required: true, message: "请输入名称", trigger: "blur" }],
-        type: [{ required: true, message: "请选择类别", trigger: "change" }],
-        line_type: [{ required: true, message: "请选择线别", trigger: "change" }],
-        start_time: [{ required: true, message: "请选择日期", trigger: "change" }],
-        end_time: [{ required: true, message: "请选择日期", trigger: "change" }],
-        total: [{ required: true, message: "请输入设计总量", trigger: "blur" }],
-        unit: [{ required: true, message: "请输入单位", trigger: "blur" }]
-      },
-      lineVisible: false, //查看线别
-      lineData: [],
-      planInputDisabled: true,
-      planShow: false,
-      lineTypeList: [],
-      planVisible: false,
-      planOneData: [],
-      echartShow: false,
-      echartDate: "",
-      curMonth: "",
-      echartDataList: [],
-      echartDataNames: "",
-      addDate: "",
-      planWorkName: "",
-      planDetailList: [],
-      detailVisible: false,
-      calendarLists: {},
-      detailShow: false,
-      detailListPages: [],
-      detailPage: 1,
-      detailTotal: 0,
-      searchForm: {},
-      pickerOptions2: common["a" /* publicData */].pickerOptions2,
-      addHistoryVisible: false,
-      historyData: {},
-      historyTitle: "",
-      historyRules: {
-        pro_id: [{ required: true, message: "请选择作业", trigger: "change" }],
-        line_type: [{ required: true, message: "请选择线别", trigger: "change" }],
-        start_flag: [{ required: true, message: "请输入计划里程", trigger: "blur" }],
-        t_start_flag: [{ required: true, message: "请输入实际里程", trigger: "blur" }],
-        plan_time: [{ required: true, message: "请选择日期", trigger: "change" }],
-        is_finish: [{ required: true, message: "请选择是否完成", trigger: "change" }]
-      },
-=======
-      },
-      title: "添加作业信息",
-      wokRules: {
-        name: [{ required: true, message: "请输入名称", trigger: "blur" }],
-        type: [{ required: true, message: "请选择类别", trigger: "change" }],
-        line_type: [{ required: true, message: "请选择线别", trigger: "change" }],
-        start_time: [{ required: true, message: "请选择日期", trigger: "change" }],
-        end_time: [{ required: true, message: "请选择日期", trigger: "change" }],
-        total: [{ required: true, message: "请输入设计总量", trigger: "blur" }],
-        unit: [{ required: true, message: "请输入单位", trigger: "blur" }]
-      },
-      lineVisible: false, //查看线别
-      lineData: [],
-      planShow: false,
-      lineTypeList: [],
-      planVisible: false,
-      planOneData: [],
-      echartShow: false,
-      echartDate: "",
-      curMonth: "",
-      echartDataList: [],
-      echartDataNames: "",
-      addDate: "",
-      planWorkName: "",
-      planDetailList: [],
-      detailVisible: false,
-      calendarLists: {},
-      detailShow: false,
-      detailListPages: [],
-      detailPage: 1,
-      detailTotal: 0,
-      searchForm: {},
-      pickerOptions2: common["a" /* publicData */].pickerOptions2,
-      addHistoryVisible: false,
-      historyData: {},
-      historyTitle: "",
-      historyRules: {
-        pro_id: [{ required: true, message: "请选择作业", trigger: "change" }],
-        line_type: [{ required: true, message: "请选择线别", trigger: "change" }],
-        start_flag: [{ required: true, message: "请输入计划里程", trigger: "blur" }],
-        t_start_flag: [{ required: true, message: "请输入实际里程", trigger: "blur" }],
-        plan_time: [{ required: true, message: "请选择日期", trigger: "change" }],
-        is_finish: [{ required: true, message: "请选择是否完成", trigger: "change" }]
-      },
->>>>>>> a9f62a19db2bb48f558a31ab942bf539ab05d700
-      selectedLineTypeLists: [],
-      addShow: true
+      videoList: []
     };
   },
+  updated: function updated() {
+    this.$nextTick(function () {
+      this.initVideo();
+    });
+  },
   created: function created() {
-    this.getWorkLists();
+    this.getVideos();
   },
 
   methods: {
-    handleSelect: function handleSelect(key, keyPath) {
-      if (key == 1) {
-        this.workShow = true;
-        this.planShow = false;
-        this.detailShow = false;
-        this.echartShow = false;
-        this.getWorkLists();
-      } else if (key == 2) {
-        this.workShow = false;
-        this.planShow = true;
-        this.getWorkTypeList();
-        this.detailShow = false;
-        this.echartShow = false;
-      } else if (key == 3) {
-        this.workShow = false;
-        this.planShow = false;
-        this.detailShow = true;
-        this.echartShow = false;
-        this.getDetailLists();
-        this.getWorkTypeList();
-      } else {
-        this.workShow = false;
-        this.planShow = false;
-        this.detailShow = false;
-        this.echartShow = true;
-        this.getChartWorkTypeList();
-      }
-    },
-    handleSubSelect: function handleSubSelect(key) {
-      this.subIndex = key;
-      this.getCurrData();
-      this.getPlanByDate(key);
-    },
-    initWorkData: function initWorkData() {
-      this.workData = {
-        line_type: []
-      };
-    },
-    workPageChange: function workPageChange(value) {
-      this.workPage = value;
-      this.getWorkLists();
-    },
-    detailPageChange: function detailPageChange() {
-      this.detailPage = value;
-      this.getDetailLists();
-    },
-    openAddWork: function openAddWork() {
-      this.title = "添加作业信息";
-      this.workVisible = true;
-      this.initWorkData();
-    },
-    getWorkLists: function getWorkLists() {
+    getVideos: function getVideos() {
       var _this = this;
 
-      var page = this.workPage;
       this.request({
-        url: "/project/getWorkLists",
-        method: "get",
-        params: { page: page }
-      }).then(function (response) {
-        var data = response.data;
+        url: "/video/getVideoList",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
         if (data.status == 1) {
-          _this.workLists = data.data.data;
-          _this.workPage = parseInt(data.data.current_page);
-          _this.workTotal = parseInt(data.data.total);
+          _this.videoList = data.data.data;
         }
       });
     },
-    addOrEditDo: function addOrEditDo() {
+    initVideo: function initVideo() {
       var _this2 = this;
 
-      this.$refs["workForm"].validate(function (valid) {
-        if (valid) {
-          var data = _this2.workData;
-          _this2.request({
-            url: "/project/addOrEditWork",
-            method: "post",
-            data: data
-          }).then(function (response) {
-            var data = response.data;
-            if (data.status == 1) {
-              _this2.workVisible = false;
-              _this2.getWorkLists();
-            }
-          });
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-      });
-    },
-    goDetail: function goDetail(id) {
-      var _this3 = this;
-
-      this.title = "修改作业信息";
-      this.workVisible = true;
-      this.request({
-        url: "/project/getWorkDetail",
-        method: "get",
-        params: { id: id }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this3.workData = data.data;
-        }
-      });
-    },
-    deleteWork: function deleteWork(id) {
-      var _this4 = this;
-
-      this.$confirm("您确定删除?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
-      }).then(function () {
-        var data = {
-          id: id
-        };
-        _this4.request({
-          url: "/project/deleteWork",
-          method: "post",
-          data: data
-        }).then(function (response) {
-          var data = response.data;
-          if (data.status == 1) {
-            _this4.$message({
-              showClose: true,
-              message: "删除成功",
-              type: "success"
-            });
-            _this4.getWorkLists();
-          } else {
-            _this4.$message({
-              showClose: true,
-              message: "删除失败",
-              type: "error"
-            });
-          }
+      //初始化video
+      this.videoList.map(function (item, i) {
+        var id = "myVideo" + item.id;
+        var myPlayer = _this2.$video(id, {
+          //确定播放器是否具有用户可以与之交互的控件。没有控件，启动视频播放的唯一方法是使用autoplay属性或通过Player API。
+          controls: true,
+          //自动播放属性,muted:静音播放
+          autoplay: true,
+          //建议浏览器是否应在<video>加载元素后立即开始下载视频数据。
+          preload: "none"
+          //设置视频播放器的显示宽度（以像素为单位）
+          // width: "400px",
+          // //设置视频播放器的显示高度（以像素为单位）
+          // height: "200px"
         });
       });
-    },
-    addOrEditLineDo: function addOrEditLineDo(data) {
-      var _this5 = this;
-
-      this.request({
-        url: "/project/addOrEditLineDo",
-        method: "post",
-        data: data
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this5.$message({
-            showClose: true,
-            message: "操作成功",
-            type: "success"
-          });
-        } else {
-          _this5.$message({
-            showClose: true,
-            message: "操作失败",
-            type: "error"
-          });
-        }
-      });
-    },
-    getLine: function getLine(id) {
-      var _this6 = this;
-
-      this.lineVisible = true;
-      this.request({
-        url: "/project/getLine",
-        method: "get",
-        params: { id: id }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this6.lineData = data.data;
-        }
-      });
-    },
-    getWorkTypeList: function getWorkTypeList() {
-      var _this7 = this;
-
-      this.request({
-        url: "/project/getWorkTypeList",
-        method: "get",
-        params: {}
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1 && data.data.length > 0) {
-          _this7.lineTypeList = data.data;
-          _this7.subIndex = _this7.lineTypeList[0]["id"].toString();
-          _this7.planWorkName = _this7.lineTypeList[0]["name"];
-          _this7.getPlanByDate(_this7.subIndex);
-        }
-      });
-    },
-    getCurrData: function getCurrData() {
-      var subIndex = this.subIndex;
-      var one = {};
-      this.lineTypeList.forEach(function (item, key) {
-        if (subIndex == item["id"]) {
-          one = item;
-        }
-      });
-      if (stringify_default()(one) !== "{}") {
-        this.planOneData = one["des"];
-        this.planWorkName = one["name"];
-      }
-    },
-    addDayPlay: function addDayPlay(date) {
-      this.addDate = date;
-      this.planVisible = true;
-      this.getCurrData();
-    },
-    addOnePlan: function addOnePlan() {
-      var _this8 = this;
-
-      var canSubmit = false;
-      this.planOneData.forEach(function (item) {
-        if (item["checked"] == true) {
-          canSubmit = true;
-<<<<<<< HEAD
-          this.planInputDisabled = false;
-=======
->>>>>>> a9f62a19db2bb48f558a31ab942bf539ab05d700
-        }
-      });
-      if (canSubmit == false) {
-        this.$message({
-          showClose: true,
-          message: "请选中要作业的线别",
-          type: "error"
-        });
-        return false;
-      }
-      var data = {
-        addDate: this.addDate,
-        checkedList: this.planOneData,
-        workName: this.planWorkName
-      };
-      this.request({
-        url: "/project/addOnedayPlan",
-        method: "post",
-        data: data
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this8.$message({
-            showClose: true,
-            message: "添加成功",
-            type: "success"
-          });
-        } else {
-          _this8.$message({
-            showClose: true,
-            message: "添加失败",
-            type: "error"
-          });
-        }
-      });
-    },
-    getPlanDetailLists: function getPlanDetailLists(addDate) {
-      var _this9 = this;
-
-      var proId = this.subIndex;
-      this.request({
-        url: "/project/getPlanDetailLists",
-        method: "get",
-        params: { addDate: addDate, proId: proId }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1 && data.data.length > 0) {
-          _this9.planDetailList = data.data;
-        }
-      });
-    },
-    getDetail: function getDetail(addDate) {
-      this.detailVisible = true;
-      this.getPlanDetailLists(addDate);
-    },
-    closeDetail: function closeDetail() {
-      this.detailVisible = false;
-    },
-    closePlan: function closePlan() {
-      this.planVisible = false;
-    },
-    getPlanByDate: function getPlanByDate() {
-      var _this10 = this;
-
-      var proId = this.subIndex;
-      this.request({
-        url: "/project/getPlanByDate",
-        method: "get",
-        params: { proId: proId }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this10.calendarLists = data.data;
-        }
-      });
-    },
-    getDetailLists: function getDetailLists() {
-      var _this11 = this;
-
-      var page = this.detailPage;
-      var pro_id = this.searchForm.work;
-      var time_range = this.searchForm.time_range;
-      var is_finish = this.searchForm.is_finish;
-      console.log(this.searchForm);
-      this.request({
-        url: "/project/getPlanPages",
-        method: "get",
-        params: { page: page, pro_id: pro_id, time_range: time_range, is_finish: is_finish }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this11.detailListPages = data.data.data;
-          _this11.detailPage = parseInt(data.data.current_page);
-          _this11.detailTotal = parseInt(data.data.total);
-        }
-      });
-    },
-    getPlanDetail: function getPlanDetail(id) {
-      var _this12 = this;
-
-      this.addHistoryVisible = true;
-      this.historyTitle = "修改进度信息";
-      this.addShow = false;
-      this.request({
-        url: "/project/getPlanDetail",
-        method: "get",
-        params: { id: id }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this12.historyData = data.data;
-          _this12.historyData.is_finish = _this12.historyData.is_finish.toString();
-        }
-      });
-    },
-    deletePlan: function deletePlan(id) {
-      var _this13 = this;
-
-<<<<<<< HEAD
-      this.$confirm("您确定删除作业?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
-      }).then(function () {
-        var data = {
-          id: id
-        };
-        _this13.request({
-          url: "/project/deletePlan",
-          method: "post",
-          data: data
-        }).then(function (response) {
-          var data = response.data;
-          if (data.status == 1) {
-            _this13.$message({
-              showClose: true,
-              message: "删除成功",
-              type: "success"
-            });
-            _this13.getDetailLists();
-          } else {
-            _this13.$message({
-              showClose: true,
-              message: "删除失败",
-              type: "error"
-            });
-          }
-        });
-=======
-      var data = {
-        id: id
-      };
-      this.request({
-        url: "/project/deletePlan",
-        method: "post",
-        data: data
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this13.$message({
-            showClose: true,
-            message: "删除成功",
-            type: "success"
-          });
-          _this13.getDetailLists();
-        } else {
-          _this13.$message({
-            showClose: true,
-            message: "删除失败",
-            type: "error"
-          });
-        }
->>>>>>> a9f62a19db2bb48f558a31ab942bf539ab05d700
-      });
-    },
-    addHistory: function addHistory() {
-      this.addHistoryVisible = true;
-      this.historyTitle = "添加历史记录";
-      this.initHistoryData();
-      this.addShow = true;
-    },
-    getTheLineType: function getTheLineType(value) {
-      var selectedLineTypeLists = [];
-      this.lineTypeList.forEach(function (item) {
-        if (item.id == value) {
-          selectedLineTypeLists = item.line_type_lists;
-        }
-      });
-      this.selectedLineTypeLists = selectedLineTypeLists;
-    },
-    initHistoryData: function initHistoryData() {
-      this.historyData = {};
-    },
-    addOrEditPlanDo: function addOrEditPlanDo() {
-      var _this14 = this;
-
-      this.$refs["detailForm"].validate(function (valid) {
-        if (valid) {
-          var data = _this14.historyData;
-          _this14.request({
-            url: "/project/addOrEditPlan",
-            method: "post",
-            data: data
-          }).then(function (response) {
-            var data = response.data;
-            var msg = "";
-            if (data.status == 1) {
-              if (typeof _this14.historyData.id == "undefined" || _this14.historyData.id == 0) {
-                msg = "新增成功";
-              } else {
-                msg = "修改成功";
-              }
-              _this14.$message({
-                showClose: true,
-                message: msg,
-                type: "success"
-              });
-              _this14.getDetailLists();
-              _this14.addHistoryVisible = false;
-            } else {
-              if (typeof _this14.historyData.id == "undefined" || _this14.historyData.id == 0) {
-                msg = "新增失败";
-              } else {
-                msg = "修改失败";
-              }
-              _this14.$message({
-                showClose: true,
-                message: msg,
-                type: "error"
-              });
-            }
-          });
-        }
-      });
-    },
-
-    // echart
-    getChartWorkTypeList: function getChartWorkTypeList() {
-      var _this15 = this;
-
-      this.request({
-        url: "/project/getWorkTypeList",
-        method: "get",
-        params: {}
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1 && data.data.length > 0) {
-          _this15.lineTypeList = data.data;
-          _this15.subIndex = _this15.lineTypeList[0]["id"].toString();
-          _this15.echartDate = "";
-          _this15.getCharData(_this15.subIndex, _this15.curMonth, _this15.lineTypeList[0]["name"]);
-        }
-      });
-    },
-    handleChartSubSelect: function handleChartSubSelect(key) {
-      var date = this.curMonth;
-      if (this.echartDate != "" && this.echartDate != null) {
-        date = this.echartDate;
-      }
-      var names = "";
-      this.lineTypeList.map(function (item, i) {
-        if (item.id == key) {
-          names = item.name;
-        }
-      });
-      //this.subIndex = key;
-      this.getCharData(key, date, names);
-    },
-    searchChartByDate: function searchChartByDate() {
-      var date = this.curMonth;
-      if (this.echartDate != "" && this.echartDate != null) {
-        date = this.echartDate;
-      }
-      // if (this.echartDate == "" || this.echartDate == null) {
-      //   this.$message.error("请选择年月查询");
-      //   this.echartDate="";
-      //   return;
-      // }
-      var key = this.subIndex;
-      var names = "";
-      this.lineTypeList.map(function (item, i) {
-        if (item.id == key) {
-          names = item.name;
-        }
-      });
-      this.getCharData(key, date, names);
-    },
-    getCharData: function getCharData(proId, date, proName) {
-      this.getOneChart(proId, date, proName);
-      this.getSecondChart(proId, date, proName);
-      this.getThirdChart(proId, date, proName);
-    },
-    getOneChart: function getOneChart(proId, date, proName) {
-      var _this16 = this;
-
-      this.request({
-        url: "/project/getData",
-        method: "get",
-        params: { proId: proId, date: date }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          var myChart = _this16.$echarts.init(document.getElementById("oneChart"));
-          myChart.setOption({
-            title: {
-              text: proName + "  " + date + "  单位：公里",
-              textStyle: {
-                color: "#1D397A",
-                fontWeight: "400",
-                fontSize: 14
-              }
-            },
-            tooltip: {
-              trigger: "axis"
-            },
-            color: ["#4b6eca", "#ff5c75"],
-            legend: {
-              data: ["计划", "实际"],
-              icon: "rectangle",
-              textStyle: {
-                fontSize: 14,
-                color: "#1d397a"
-              }
-            },
-            grid: {
-              left: "1%",
-              right: "1%",
-              bottom: "1%",
-              containLabel: true
-            },
-            toolbox: {
-              feature: {
-                saveAsImage: {}
-              }
-            },
-            xAxis: {
-              type: "category",
-              boundaryGap: false,
-              data: data.data.x
-            },
-            yAxis: {
-              type: "value"
-            },
-            series: [{
-              name: "计划",
-              type: "line",
-              data: data.data.list[0].data
-            }, {
-              name: "实际",
-              type: "line",
-              data: data.data.list[1].data
-            }]
-          });
-          myChart.resize();
-          window.addEventListener("resize", function () {
-            myChart.resize();
-          });
-          //end
-        }
-      });
-    },
-    getSecondChart: function getSecondChart(proId, date, proName) {
-      var _this17 = this;
-
-      this.request({
-        url: "/project/getSecond",
-        method: "get",
-        params: { proId: proId, date: date }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this17.echartDataList = data.data;
-          _this17.echartDataNames = proName;
-          console.log("echartDataList：" + _this17.echartDataList);
-        }
-      });
-    },
-    getThirdChart: function getThirdChart(proId, date, proName) {
-      var _this18 = this;
-
-      this.request({
-        url: "/project/getThird",
-        method: "get",
-        params: { proId: proId, date: date }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          var myChart = _this18.$echarts.init(document.getElementById("thirdChart"));
-          myChart.setOption({
-            title: {
-              text: ""
-            },
-            tooltip: {
-              trigger: "axis"
-            },
-            color: ["#4b6eca", "#ff5c75"],
-            legend: {
-              data: ["计划", "实际"],
-              icon: "rectangle",
-              textStyle: {
-                fontSize: 14,
-                color: "#1d397a"
-              }
-            },
-            grid: {
-              left: "1%",
-              right: "1%",
-              bottom: "1%",
-              containLabel: true
-            },
-            toolbox: {
-              feature: {
-                saveAsImage: {}
-              }
-            },
-            xAxis: [{
-              type: "category",
-              boundaryGap: false,
-              data: data.data.x
-            }],
-            yAxis: [{
-              type: "value"
-            }],
-            series: [{
-              name: "计划",
-              type: "bar",
-              data: data.data.list[0].data
-            }, {
-              name: "实际",
-              type: "bar",
-              data: data.data.list[1].data
-            }]
-          });
-          myChart.resize();
-          window.addEventListener("resize", function () {
-            myChart.resize();
-          });
-          //end
-        }
-      });
+      //
     }
+  },
+  beforeDestroy: function beforeDestroy() {
+    var _this3 = this;
+
+    this.videoList.map(function (item, i) {
+      _this3.$video("myVideo" + item.id).dispose();
+    });
+    //const videoDom = this.$refs.myVideo;
+    //this.$video(videoDom).dispose(); //销毁video实例，避免出现节点不存在 但是flash一直在执行，报 this.el.......is not function
+    //this.myPlayer.dispose(); //销毁video实例
   }
-}, "created", function created() {
-  var nowDate = new Date();
-  var date = {
-    y: nowDate.getFullYear(),
-    m: nowDate.getMonth() < 9 ? "0" + (nowDate.getMonth() + 1) : nowDate.getMonth() + 1
-  };
-  this.curMonth = date.y + "-" + date.m;
-  console.log(this.curMonth);
-}));
-<<<<<<< HEAD
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-57b7b39e","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/project/index.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"project"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"default-active":_vm.activeIndex,"mode":"horizontal"},on:{"select":_vm.handleSelect}},[_c('li',{staticClass:"ptitle"},[_c('img',{attrs:{"src":__webpack_require__("MV+A")}}),_vm._v("工程进度\n      ")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"1"}},[_vm._v("添加作业")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"2"}},[_vm._v("计划日程")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"3"}},[_vm._v("详情列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"4"}},[_vm._v("图表数据")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.workShow),expression:"workShow"}],staticClass:"app-table",attrs:{"id":"work"}},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"addbtn"},[_c('el-button',{attrs:{"type":"primary"},on:{"click":_vm.openAddWork}},[_vm._v("添加作业")])],1),_vm._v(" "),_c('el-table',{ref:"multipleTable",attrs:{"data":_vm.workLists}},[_c('el-table-column',{attrs:{"prop":"sort","label":"作业顺序","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"name","label":"作业名称","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"start_time","label":"计划开始时间","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"end_time","label":"计划结束时间","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"total","label":"设计总量","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"210px"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.getLine(scope.row.id)}}},[_vm._v("查看线别")]),_vm._v(" "),_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.goDetail(scope.row.id)}}},[_vm._v("修改")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.deleteWork(scope.row.id)}}},[_vm._v("删除")])],1)]}}])})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.workLists.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"prev, pager, next,total","current-page":this.workPage,"total":this.workTotal,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.workPageChange}}):_vm._e()],1)],1),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-work",attrs:{"title":this.title,"visible":_vm.workVisible},on:{"update:visible":function($event){_vm.workVisible=$event}}},[_c('el-form',{ref:"workForm",staticClass:"el-form-custom",attrs:{"model":_vm.workData,"rules":_vm.wokRules}},[_c('el-form-item',{attrs:{"label":"名称","prop":"name"}},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"请输入作业名称"},model:{value:(_vm.workData.name),callback:function ($$v) {_vm.$set(_vm.workData, "name", $$v)},expression:"workData.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"顺序"}},[_c('el-input',{attrs:{"autocomplete":"off","onkeyup":"this.value = this.value.replace(/[^\\d.]/g,'');","placeholder":"请输入数字，数字越大越靠后"},model:{value:(_vm.workData.sort),callback:function ($$v) {_vm.$set(_vm.workData, "sort", $$v)},expression:"workData.sort"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"类别","prop":"type"}},[_c('el-radio',{attrs:{"label":1},model:{value:(_vm.workData.type),callback:function ($$v) {_vm.$set(_vm.workData, "type", $$v)},expression:"workData.type"}},[_vm._v("里程")]),_vm._v(" "),_c('el-radio',{attrs:{"label":2},model:{value:(_vm.workData.type),callback:function ($$v) {_vm.$set(_vm.workData, "type", $$v)},expression:"workData.type"}},[_vm._v("计数（个，股，孔）")])],1),_vm._v(" "),(_vm.workData.type == 1)?_c('el-form-item',{attrs:{"label":"线别","prop":"line_type"}},[_c('el-checkbox-group',{model:{value:(_vm.workData.line_type),callback:function ($$v) {_vm.$set(_vm.workData, "line_type", $$v)},expression:"workData.line_type"}},[_c('el-checkbox',{attrs:{"label":"1"}},[_vm._v("左线")]),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"2"}},[_vm._v("右线")]),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"3"}},[_vm._v("入场线")]),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"4"}},[_vm._v("出场线")])],1)],1):_vm._e(),_vm._v(" "),_c('div',{staticClass:"el-form-item-inline"},[_c('el-form-item',{attrs:{"label":"设计总量","prop":"total"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.workData.total),callback:function ($$v) {_vm.$set(_vm.workData, "total", $$v)},expression:"workData.total"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"单位","prop":"unit"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.workData.unit),callback:function ($$v) {_vm.$set(_vm.workData, "unit", $$v)},expression:"workData.unit"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"el-form-item-inline"},[_c('el-form-item',{attrs:{"label":"计划开始时间","prop":"start_time"}},[_c('el-date-picker',{attrs:{"type":"date","placeholder":"选择日期"},model:{value:(_vm.workData.start_time),callback:function ($$v) {_vm.$set(_vm.workData, "start_time", $$v)},expression:"workData.start_time"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"计划结束时间","prop":"end_time"}},[_c('el-date-picker',{attrs:{"type":"date","placeholder":"选择日期"},model:{value:(_vm.workData.end_time),callback:function ($$v) {_vm.$set(_vm.workData, "end_time", $$v)},expression:"workData.end_time"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"blank"})],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.workVisible = false}}},[_vm._v("关闭")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.addOrEditDo()}}},[_vm._v("确定")])],1)],1),_vm._v(" "),_c('el-dialog',{attrs:{"title":"里程线别设置","visible":_vm.lineVisible},on:{"update:visible":function($event){_vm.lineVisible=$event}}},[_c('el-table',{attrs:{"data":_vm.lineData}},[_c('el-table-column',{attrs:{"label":"线别","width":"100"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.line_type == 1)?_c('span',[_vm._v("左线")]):(scope.row.line_type == 2)?_c('span',[_vm._v("右线")]):(scope.row.line_type == 3)?_c('span',[_vm._v("入场线")]):_c('span',[_vm._v("出场线")])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"开始里程","width":"180"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',[_c('span',[_vm._v("DK")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(scope.row.start_flag),expression:"scope.row.start_flag"}],staticClass:"diinput",attrs:{"type":"number"},domProps:{"value":(scope.row.start_flag)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(scope.row, "start_flag", $event.target.value)}}}),_vm._v(" "),_c('span',[_vm._v("+")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(scope.row.start_length),expression:"scope.row.start_length"}],staticClass:"diinput",attrs:{"type":"number"},domProps:{"value":(scope.row.start_length)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(scope.row, "start_length", $event.target.value)}}})])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"结束里程","width":"180"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',[_c('span',[_vm._v("DK")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(scope.row.end_flag),expression:"scope.row.end_flag"}],staticClass:"diinput",attrs:{"type":"number"},domProps:{"value":(scope.row.end_flag)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(scope.row, "end_flag", $event.target.value)}}}),_vm._v(" "),_c('span',[_vm._v("+")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(scope.row.end_length),expression:"scope.row.end_length"}],staticClass:"diinput",attrs:{"type":"number"},domProps:{"value":(scope.row.end_length)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(scope.row, "end_length", $event.target.value)}}})])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.id == 0)?_c('el-button',{attrs:{"size":"mini"},on:{"click":function($event){_vm.addOrEditLineDo(scope.row)}}},[_vm._v("设置")]):_c('el-button',{attrs:{"type":"primary","size":"mini"},on:{"click":function($event){_vm.addOrEditLineDo(scope.row)}}},[_vm._v("修改")])]}}])})],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.lineVisible = false}}},[_vm._v("关闭")])],1)],1)],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.planShow),expression:"planShow"}],attrs:{"id":"plan"}},[_c('div',{staticClass:"echart-top"},[_c('el-menu',{staticClass:"el-menu-cus",attrs:{"default-active":_vm.subIndex},on:{"select":_vm.handleSubSelect}},_vm._l((_vm.lineTypeList),function(item,index){return _c('el-menu-item',{attrs:{"index":item.id.toString()}},[_vm._v(_vm._s(item.name))])}))],1),_vm._v(" "),_c('div',{staticClass:"app-page-container"},[_c('el-calendar',{staticClass:"plancale",scopedSlots:_vm._u([{key:"dateCell",fn:function(ref){
-var date = ref.date;
-var data = ref.data;
-return [_c('div',{staticClass:"calendar-wapper"},[_c('p',{staticClass:"date"},[_vm._v(_vm._s(data.day.split('-').slice(2).join('-')))]),_vm._v(" "),_c('p',{staticClass:"calendar-operate add",on:{"click":function($event){_vm.addDayPlay(data.day)}}},[_vm._v("添加")]),_vm._v(" "),_c('p',{staticClass:"calendar-operate detail",on:{"click":function($event){_vm.getDetail(data.day)}}},[_vm._v("详情")]),_vm._v(" "),_c('div',{staticClass:"calendar-tips"},[_c('p',{staticClass:"calendar-show plan-finished"},[_c('span',[_vm._v("计划完成：")]),_vm._v(" "),(typeof(_vm.calendarLists[data.day])!=='undefined')?_c('span',_vm._l((_vm.calendarLists[data.day]),function(item,index){return _c('div',[_vm._v(_vm._s(item.plan_tip))])})):_vm._e()]),_vm._v(" "),_c('p',{staticClass:"calendar-show act-finished"},[_c('span',[_vm._v("实际完成：")]),_vm._v(" "),(typeof(_vm.calendarLists[data.day])!=='undefined')?_c('span',_vm._l((_vm.calendarLists[data.day]),function(item,index){return _c('div',[_vm._v(_vm._s(item.true_tip))])})):_vm._e()]),_vm._v(" "),_c('p',{staticClass:"calendar-show remark"},[_c('span',[_vm._v("备注：")]),_vm._v(" "),(typeof(_vm.calendarLists[data.day])!=='undefined')?_c('span',_vm._l((_vm.calendarLists[data.day]),function(item,index){return _c('div',[_vm._v(_vm._s(item.remark))])})):_vm._e()])])])]}}])}),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-plan-add",attrs:{"title":"添加信息","visible":_vm.planVisible},on:{"update:visible":function($event){_vm.planVisible=$event}}},[_c('span',{staticClass:"ptxt"},[_vm._v("添加日期："+_vm._s(_vm.addDate))]),_vm._v(" "),_c('span',{staticClass:"ptxt"},[_vm._v("作业："+_vm._s(_vm.planWorkName))]),_vm._v(" "),_c('ul',{attrs:{"id":"plan-ul"}},[_c('li',{staticClass:"pheader"},[_c('div',{staticClass:"pitem"},[_vm._v("线别")]),_vm._v(" "),_c('div',{staticClass:"pitem"},[_vm._v("计划开始里程")]),_vm._v(" "),_c('div',{staticClass:"pitem"},[_vm._v("计划结束里程")])]),_vm._v(" "),_vm._l((_vm.planOneData),function(item,index){return _c('li',{staticClass:"li-line"},[_c('div',{staticClass:"plan-content"},[_c('el-checkbox',{model:{value:(item.checked),callback:function ($$v) {_vm.$set(item, "checked", $$v)},expression:"item.checked"}}),_vm._v(" "),(item.line_type == 1)?_c('span',[_vm._v("左线")]):(item.line_type == 2)?_c('span',[_vm._v("右线")]):(item.line_type == 3)?_c('span',[_vm._v("入场线")]):_c('span',[_vm._v("出场线")])],1),_vm._v(" "),_c('div',{staticClass:"plan-content"},[_c('span',[_c('b',[_vm._v("DK")])]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(item.start_flag),expression:"item.start_flag"}],staticClass:"pinput",attrs:{"disabled":!item.checked,"type":"number"},domProps:{"value":(item.start_flag)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(item, "start_flag", $event.target.value)}}}),_vm._v(" "),_c('span',[_vm._v("+")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(item.start_length),expression:"item.start_length"}],staticClass:"pinput",attrs:{"disabled":!item.checked,"type":"number"},domProps:{"value":(item.start_length)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(item, "start_length", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"plan-content"},[_c('span',[_c('b',[_vm._v("DK")])]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(item.end_flag),expression:"item.end_flag"}],staticClass:"pinput",attrs:{"disabled":!item.checked,"type":"number"},domProps:{"value":(item.end_flag)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(item, "end_flag", $event.target.value)}}}),_vm._v(" "),_c('span',[_vm._v("+")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(item.end_length),expression:"item.end_length"}],staticClass:"pinput",attrs:{"disabled":!item.checked,"type":"number"},domProps:{"value":(item.end_length)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(item, "end_length", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"plan-tip"},[_vm._v(_vm._s(item.tip))])])}),_vm._v(" "),_c('p',{staticStyle:{"clear":"both"}})],2),_vm._v(" "),_c('div',{staticClass:"plan-btn"},[_c('el-button',{on:{"click":_vm.closePlan}},[_vm._v("关闭")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":_vm.addOnePlan}},[_vm._v("确定保存")])],1)]),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-plan-add",attrs:{"title":"详细信息","visible":_vm.detailVisible},on:{"update:visible":function($event){_vm.detailVisible=$event}}},[_c('div',[_c('span',{staticClass:"ptxt"},[_vm._v("施工日期：")]),_vm._v(" "),(_vm.planDetailList.length>0)?_c('span',{staticClass:"ptxt"},[_vm._v(_vm._s(_vm.planDetailList[0]['add_date']))]):_vm._e(),_vm._v(" "),_c('span',{staticClass:"ptxt"},[_vm._v("作业：")]),_vm._v(" "),_c('span',{staticClass:"ptxt"},[_vm._v(_vm._s(this.planWorkName))])]),_vm._v(" "),_c('el-table',{staticClass:"plan-show",attrs:{"data":_vm.planDetailList}},[_c('el-table-column',{attrs:{"property":"line_type_desc","label":"线别"}}),_vm._v(" "),_c('el-table-column',{attrs:{"property":"plan_tip","label":"计划里程"}}),_vm._v(" "),_c('el-table-column',{attrs:{"property":"true_tip","label":"实际里程"}}),_vm._v(" "),_c('el-table-column',{attrs:{"property":"remark","label":"备注"}})],1),_vm._v(" "),_c('div',{staticClass:"plan-btn"},[_c('el-button',{on:{"click":_vm.closeDetail}},[_vm._v("关闭")])],1)],1)],1)]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.detailShow),expression:"detailShow"}],attrs:{"id":"detail"}},[_c('div',{staticClass:"app-page-container"},[_c('el-form',{attrs:{"model":_vm.searchForm,"inline":true}},[_c('el-form-item',{attrs:{"label":"作业"}},[_c('el-select',{staticClass:"search-input search-select",staticStyle:{"width":"140px"},attrs:{"clearable":"","placeholder":"请选择作业"},model:{value:(_vm.searchForm.work),callback:function ($$v) {_vm.$set(_vm.searchForm, "work", $$v)},expression:"searchForm.work"}},_vm._l((_vm.lineTypeList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}},[_vm._v(_vm._s(item.name))])}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"选择时间"}},[_c('el-date-picker',{attrs:{"type":"daterange","align":"right","unlink-panels":"","range-separator":"至","start-placeholder":"开始日期","end-placeholder":"结束日期","picker-options":_vm.pickerOptions2,"value-format":"yyyy-MM-dd"},model:{value:(_vm.searchForm.time_range),callback:function ($$v) {_vm.$set(_vm.searchForm, "time_range", $$v)},expression:"searchForm.time_range"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"完成状态"}},[_c('el-select',{staticClass:"search-input search-select",staticStyle:{"width":"140px"},attrs:{"clearable":"","placeholder":"请选择状态"},model:{value:(_vm.searchForm.is_finish),callback:function ($$v) {_vm.$set(_vm.searchForm, "is_finish", $$v)},expression:"searchForm.is_finish"}},[_c('el-option',{key:"1",attrs:{"label":"已完成","value":"1"}},[_vm._v("已完成")]),_vm._v(" "),_c('el-option',{key:"0",attrs:{"label":"未完成","value":"0"}},[_vm._v("未完成")])],1)],1),_vm._v(" "),_c('el-form-item',[_c('el-button',{attrs:{"size":"small","icon":"el-icon-search","type":"primary"},on:{"click":_vm.getDetailLists}},[_vm._v("检索")])],1),_vm._v(" "),_c('el-form-item',[_c('el-button',{staticStyle:{"margin-left":"20px"},attrs:{"size":"small","icon":"el-icon-plus","type":"primary"},on:{"click":_vm.addHistory}},[_vm._v("添加历史记录")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{ref:"multipleTable",attrs:{"data":_vm.detailListPages}},[_c('el-table-column',{attrs:{"type":"index","label":"序号","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"pro_name","label":"作业名称","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"plan_tip","label":"计划完成","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"true_tip","label":"实际完成","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"状态","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.is_finish == 1)?_c('span',[_vm._v("已完成")]):_c('span',[_vm._v("未完成")])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"remark","label":"备注","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"plan_date","label":"日期","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.getPlanDetail(scope.row.id)}}},[_vm._v("修改")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.deletePlan(scope.row.id)}}},[_vm._v("删除")])],1)]}}])})],1)],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.detailListPages.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"prev, pager, next,total","current-page":this.detailPage,"total":this.detailTotal,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.detailPageChange}}):_vm._e()],1),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-plan-detail",attrs:{"title":this.historyTitle,"visible":_vm.addHistoryVisible},on:{"update:visible":function($event){_vm.addHistoryVisible=$event}}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.addShow),expression:"!addShow"}],staticClass:"ptxtbox"},[_c('span',{staticClass:"ptxt"},[_vm._v("作业名称：")]),_vm._v(" "),_c('span',{staticClass:"ptxt"},[_vm._v(_vm._s(_vm.historyData.pro_name))]),_vm._v(" "),_c('span',{staticClass:"ptxt"},[_vm._v("日期：")]),_vm._v(" "),_c('span',{staticClass:"ptxt"},[_vm._v(_vm._s(_vm.historyData.plan_time))]),_vm._v(" "),_c('span',{staticClass:"ptxt"},[_vm._v("线别：")]),_vm._v(" "),_c('span',{staticClass:"ptxt"},[_vm._v(_vm._s(_vm.historyData.line_type_desc))])]),_vm._v(" "),_c('el-form',{ref:"detailForm",attrs:{"model":_vm.historyData,"rules":_vm.historyRules}},[_c('el-form-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.addShow),expression:"addShow"}],attrs:{"label":"作业名称","label-width":"80px","prop":"pro_id"}},[_c('el-select',{attrs:{"clearable":"","placeholder":"请选择作业"},on:{"change":_vm.getTheLineType},model:{value:(_vm.historyData.pro_id),callback:function ($$v) {_vm.$set(_vm.historyData, "pro_id", $$v)},expression:"historyData.pro_id"}},_vm._l((_vm.lineTypeList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}},[_vm._v(_vm._s(item.name))])}))],1),_vm._v(" "),_c('el-form-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.addShow),expression:"addShow"}],attrs:{"label":"线别","label-width":"80px","prop":"line_type"}},[_c('el-select',{attrs:{"clearable":"","placeholder":"请选择线别"},model:{value:(_vm.historyData.line_type),callback:function ($$v) {_vm.$set(_vm.historyData, "line_type", $$v)},expression:"historyData.line_type"}},_vm._l((_vm.selectedLineTypeLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}},[_vm._v(_vm._s(item.name))])}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"计划里程","label-width":"80px","prop":"start_flag"}},[_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"公里"},model:{value:(_vm.historyData.start_flag),callback:function ($$v) {_vm.$set(_vm.historyData, "start_flag", $$v)},expression:"historyData.start_flag"}}),_vm._v("+\n              "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"米"},model:{value:(_vm.historyData.start_length),callback:function ($$v) {_vm.$set(_vm.historyData, "start_length", $$v)},expression:"historyData.start_length"}}),_c('em',[_vm._v("~")]),_vm._v(" "),_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"公里"},model:{value:(_vm.historyData.end_flag),callback:function ($$v) {_vm.$set(_vm.historyData, "end_flag", $$v)},expression:"historyData.end_flag"}}),_vm._v("+\n              "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"米"},model:{value:(_vm.historyData.end_length),callback:function ($$v) {_vm.$set(_vm.historyData, "end_length", $$v)},expression:"historyData.end_length"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"实际里程","label-width":"80px","prop":"t_start_flag"}},[_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"公里"},model:{value:(_vm.historyData.t_start_flag),callback:function ($$v) {_vm.$set(_vm.historyData, "t_start_flag", $$v)},expression:"historyData.t_start_flag"}}),_vm._v("+\n              "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"米"},model:{value:(_vm.historyData.t_start_length),callback:function ($$v) {_vm.$set(_vm.historyData, "t_start_length", $$v)},expression:"historyData.t_start_length"}}),_c('em',[_vm._v("~")]),_vm._v(" "),_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"公里"},model:{value:(_vm.historyData.t_end_flag),callback:function ($$v) {_vm.$set(_vm.historyData, "t_end_flag", $$v)},expression:"historyData.t_end_flag"}}),_vm._v("+\n              "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"米"},model:{value:(_vm.historyData.t_end_length),callback:function ($$v) {_vm.$set(_vm.historyData, "t_end_length", $$v)},expression:"historyData.t_end_length"}})],1),_vm._v(" "),_c('el-form-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.addShow),expression:"addShow"}],attrs:{"label":"完成日期","label-width":"80px","prop":"plan_time"}},[_c('el-date-picker',{attrs:{"type":"date","placeholder":"选择日期"},model:{value:(_vm.historyData.plan_time),callback:function ($$v) {_vm.$set(_vm.historyData, "plan_time", $$v)},expression:"historyData.plan_time"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"是否完成","label-width":"80px","prop":"is_finish"}},[_c('el-radio',{attrs:{"label":"1","value":"1"},model:{value:(_vm.historyData.is_finish),callback:function ($$v) {_vm.$set(_vm.historyData, "is_finish", $$v)},expression:"historyData.is_finish"}},[_vm._v("是")]),_vm._v(" "),_c('el-radio',{attrs:{"label":"0","value":"0"},model:{value:(_vm.historyData.is_finish),callback:function ($$v) {_vm.$set(_vm.historyData, "is_finish", $$v)},expression:"historyData.is_finish"}},[_vm._v("否")])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"备注","label-width":"80px"}},[_c('el-input',{attrs:{"placeholder":"填写备注","type":"textarea"},model:{value:(_vm.historyData.remark),callback:function ($$v) {_vm.$set(_vm.historyData, "remark", $$v)},expression:"historyData.remark"}})],1)],1),_vm._v(" "),_c('div',{attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.addHistoryVisible = false}}},[_vm._v("关闭")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.addOrEditPlanDo()}}},[_vm._v("确定")])],1)],1)],1)]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.echartShow),expression:"echartShow"}],attrs:{"id":"echart"}},[_c('div',{staticClass:"echart-top"},[_c('el-menu',{staticClass:"el-menu-cus",attrs:{"default-active":_vm.subIndex},on:{"select":_vm.handleChartSubSelect}},_vm._l((_vm.lineTypeList),function(item,index){return _c('el-menu-item',{attrs:{"index":item.id.toString()}},[_vm._v(_vm._s(item.name))])})),_vm._v(" "),_c('div',{staticClass:"el-serach"},[_c('el-date-picker',{attrs:{"type":"month","placeholder":"在此选择年月查询","format":"yyyy-MM","value-format":"yyyy-MM"},model:{value:(_vm.echartDate),callback:function ($$v) {_vm.echartDate=$$v},expression:"echartDate"}}),_vm._v(" "),_c('el-button',{on:{"click":_vm.searchChartByDate}},[_vm._v("查询")])],1)],1),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('div',{staticClass:"chart-ontainer"},[_c('el-row',{attrs:{"gutter":20}},[_c('el-col',{attrs:{"span":10}},[_c('div',{staticClass:"second-content"},[_c('h2',[_vm._v(_vm._s(_vm.echartDataNames)+" 总体完成情况")]),_vm._v(" "),_c('ul',{staticClass:"oneitem"},[_c('li',[_c('p',[_vm._v("设计工程量：")]),_vm._v(" "),_c('h3',{staticClass:"p1"},[_vm._v(_vm._s(_vm.echartDataList.designTotal)+"公里")])]),_vm._v(" "),_c('li',[_c('p',[_vm._v("完成百分比：")]),_vm._v(" "),_c('h3',{staticClass:"p2"},[_vm._v(_vm._s(_vm.echartDataList.percent)+"公里")])])]),_vm._v(" "),_c('ul',{staticClass:"twoitem"},[_c('li',[_c('p',[_vm._v("月累完成：")]),_vm._v(" "),_c('h3',[_vm._v(_vm._s(_vm.echartDataList.monthTotal))])]),_vm._v(" "),_c('li',[_c('p',[_vm._v("年累完成：")]),_vm._v(" "),_c('h3',[_vm._v(_vm._s(_vm.echartDataList.yearTotal))])]),_vm._v(" "),_c('li',[_c('p',[_vm._v("开累完成：")]),_vm._v(" "),_c('h3',[_vm._v(_vm._s(_vm.echartDataList.workTotal))])]),_vm._v(" "),_c('li',[_c('p',[_vm._v("剩余工程量：")]),_vm._v(" "),_c('h3',[_vm._v(_vm._s(_vm.echartDataList.leftTotal))])])])])]),_vm._v(" "),_c('el-col',{attrs:{"span":14}},[_c('div',{staticClass:"second-content"},[_c('div',{attrs:{"id":"thirdChart"}})])])],1)],1)])])])}
-=======
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-0cda547e","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/project/index.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"project"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"default-active":_vm.activeIndex,"mode":"horizontal"},on:{"select":_vm.handleSelect}},[_c('li',{staticClass:"ptitle"},[_c('img',{attrs:{"src":"/src/assets/image/icon-project.png"}}),_vm._v("工程进度\n      ")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"1"}},[_vm._v("添加作业")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"2"}},[_vm._v("计划日程")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"3"}},[_vm._v("详情列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"4"}},[_vm._v("图表数据")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.workShow),expression:"workShow"}],staticClass:"app-table",attrs:{"id":"work"}},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"addbtn"},[_c('el-button',{attrs:{"type":"primary"},on:{"click":_vm.openAddWork}},[_vm._v("添加作业")])],1),_vm._v(" "),_c('el-table',{ref:"multipleTable",attrs:{"data":_vm.workLists}},[_c('el-table-column',{attrs:{"prop":"sort","label":"作业顺序","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"name","label":"作业名称","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"start_time","label":"计划开始时间","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"end_time","label":"计划结束时间","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"total","label":"设计总量","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"210px"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.getLine(scope.row.id)}}},[_vm._v("查看线别")]),_vm._v(" "),_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.goDetail(scope.row.id)}}},[_vm._v("修改")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.deleteWork(scope.row.id)}}},[_vm._v("删除")])],1)]}}])})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.workLists.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"prev, pager, next,total","current-page":this.workPage,"total":this.workTotal,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.workPageChange}}):_vm._e()],1)],1),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-work",attrs:{"title":this.title,"visible":_vm.workVisible},on:{"update:visible":function($event){_vm.workVisible=$event}}},[_c('el-form',{ref:"workForm",staticClass:"el-form-custom",attrs:{"model":_vm.workData,"rules":_vm.wokRules}},[_c('el-form-item',{attrs:{"label":"名称","prop":"name"}},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"请输入作业名称"},model:{value:(_vm.workData.name),callback:function ($$v) {_vm.$set(_vm.workData, "name", $$v)},expression:"workData.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"顺序"}},[_c('el-input',{attrs:{"autocomplete":"off","onkeyup":"this.value = this.value.replace(/[^\\d.]/g,'');","placeholder":"请输入数字，数字越大越靠后"},model:{value:(_vm.workData.sort),callback:function ($$v) {_vm.$set(_vm.workData, "sort", $$v)},expression:"workData.sort"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"类别","prop":"type"}},[_c('el-radio',{attrs:{"label":1},model:{value:(_vm.workData.type),callback:function ($$v) {_vm.$set(_vm.workData, "type", $$v)},expression:"workData.type"}},[_vm._v("里程")]),_vm._v(" "),_c('el-radio',{attrs:{"label":2},model:{value:(_vm.workData.type),callback:function ($$v) {_vm.$set(_vm.workData, "type", $$v)},expression:"workData.type"}},[_vm._v("计数（个，股，孔）")])],1),_vm._v(" "),(_vm.workData.type == 1)?_c('el-form-item',{attrs:{"label":"线别","prop":"line_type"}},[_c('el-checkbox-group',{model:{value:(_vm.workData.line_type),callback:function ($$v) {_vm.$set(_vm.workData, "line_type", $$v)},expression:"workData.line_type"}},[_c('el-checkbox',{attrs:{"label":"1"}},[_vm._v("左线")]),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"2"}},[_vm._v("右线")]),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"3"}},[_vm._v("入场线")]),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"4"}},[_vm._v("出场线")])],1)],1):_vm._e(),_vm._v(" "),_c('div',{staticClass:"el-form-item-inline"},[_c('el-form-item',{attrs:{"label":"设计总量","prop":"total"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.workData.total),callback:function ($$v) {_vm.$set(_vm.workData, "total", $$v)},expression:"workData.total"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"单位","prop":"unit"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.workData.unit),callback:function ($$v) {_vm.$set(_vm.workData, "unit", $$v)},expression:"workData.unit"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"el-form-item-inline"},[_c('el-form-item',{attrs:{"label":"计划开始时间","prop":"start_time"}},[_c('el-date-picker',{attrs:{"type":"date","placeholder":"选择日期"},model:{value:(_vm.workData.start_time),callback:function ($$v) {_vm.$set(_vm.workData, "start_time", $$v)},expression:"workData.start_time"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"计划结束时间","prop":"end_time"}},[_c('el-date-picker',{attrs:{"type":"date","placeholder":"选择日期"},model:{value:(_vm.workData.end_time),callback:function ($$v) {_vm.$set(_vm.workData, "end_time", $$v)},expression:"workData.end_time"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"blank"})],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.workVisible = false}}},[_vm._v("关闭")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.addOrEditDo()}}},[_vm._v("确定")])],1)],1),_vm._v(" "),_c('el-dialog',{attrs:{"title":"里程线别设置","visible":_vm.lineVisible},on:{"update:visible":function($event){_vm.lineVisible=$event}}},[_c('el-table',{attrs:{"data":_vm.lineData}},[_c('el-table-column',{attrs:{"label":"线别","width":"100"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.line_type == 1)?_c('span',[_vm._v("左线")]):(scope.row.line_type == 2)?_c('span',[_vm._v("右线")]):(scope.row.line_type == 3)?_c('span',[_vm._v("入场线")]):_c('span',[_vm._v("出场线")])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"开始里程","width":"180"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',[_c('span',[_vm._v("DK")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(scope.row.start_flag),expression:"scope.row.start_flag"}],staticStyle:{"width":"40px"},attrs:{"type":"number"},domProps:{"value":(scope.row.start_flag)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(scope.row, "start_flag", $event.target.value)}}}),_vm._v(" "),_c('span',[_vm._v("+")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(scope.row.start_length),expression:"scope.row.start_length"}],staticStyle:{"width":"40px"},attrs:{"type":"number"},domProps:{"value":(scope.row.start_length)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(scope.row, "start_length", $event.target.value)}}})])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"结束里程","width":"180"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',[_c('span',[_vm._v("DK")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(scope.row.end_flag),expression:"scope.row.end_flag"}],staticStyle:{"width":"40px"},attrs:{"type":"number"},domProps:{"value":(scope.row.end_flag)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(scope.row, "end_flag", $event.target.value)}}}),_vm._v(" "),_c('span',[_vm._v("+")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(scope.row.end_length),expression:"scope.row.end_length"}],staticStyle:{"width":"40px"},attrs:{"type":"number"},domProps:{"value":(scope.row.end_length)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(scope.row, "end_length", $event.target.value)}}})])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.id == 0)?_c('el-button',{attrs:{"size":"mini"},on:{"click":function($event){_vm.addOrEditLineDo(scope.row)}}},[_vm._v("设置")]):_c('el-button',{attrs:{"size":"mini"},on:{"click":function($event){_vm.addOrEditLineDo(scope.row)}}},[_vm._v("修改")])]}}])})],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.lineVisible = false}}},[_vm._v("关闭")])],1)],1)],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.planShow),expression:"planShow"}],attrs:{"id":"plan"}},[_c('div',{staticClass:"echart-top"},[_c('el-menu',{staticClass:"el-menu-cus",attrs:{"default-active":_vm.subIndex},on:{"select":_vm.handleSubSelect}},_vm._l((_vm.lineTypeList),function(item,index){return _c('el-menu-item',{attrs:{"index":item.id.toString()}},[_vm._v(_vm._s(item.name))])}))],1),_vm._v(" "),_c('div',{staticClass:"app-page-container"},[_c('el-calendar',{staticClass:"plancale",scopedSlots:_vm._u([{key:"dateCell",fn:function(ref){
-var date = ref.date;
-var data = ref.data;
-return [_c('div',{staticClass:"calendar-wapper"},[_c('p',{staticClass:"date"},[_vm._v(_vm._s(data.day.split('-').slice(2).join('-')))]),_vm._v(" "),_c('p',{staticClass:"calendar-operate add",on:{"click":function($event){_vm.addDayPlay(data.day)}}},[_vm._v("添加")]),_vm._v(" "),_c('p',{staticClass:"calendar-operate detail",on:{"click":function($event){_vm.getDetail(data.day)}}},[_vm._v("详情")]),_vm._v(" "),_c('div',{staticClass:"calendar-tips"},[_c('p',{staticClass:"calendar-show plan-finished"},[_c('span',[_vm._v("计划完成：")]),_vm._v(" "),(typeof(_vm.calendarLists[data.day])!=='undefined')?_c('span',_vm._l((_vm.calendarLists[data.day]),function(item,index){return _c('div',[_vm._v(_vm._s(item.plan_tip))])})):_vm._e()]),_vm._v(" "),_c('p',{staticClass:"calendar-show act-finished"},[_c('span',[_vm._v("实际完成：")]),_vm._v(" "),(typeof(_vm.calendarLists[data.day])!=='undefined')?_c('span',_vm._l((_vm.calendarLists[data.day]),function(item,index){return _c('div',[_vm._v(_vm._s(item.true_tip))])})):_vm._e()]),_vm._v(" "),_c('p',{staticClass:"calendar-show remark"},[_c('span',[_vm._v("备注：")]),_vm._v(" "),(typeof(_vm.calendarLists[data.day])!=='undefined')?_c('span',_vm._l((_vm.calendarLists[data.day]),function(item,index){return _c('div',[_vm._v(_vm._s(item.remark))])})):_vm._e()])])])]}}])}),_vm._v(" "),_c('el-dialog',{attrs:{"title":"添加信息","visible":_vm.planVisible},on:{"update:visible":function($event){_vm.planVisible=$event}}},[_c('span',[_vm._v("添加日期："+_vm._s(_vm.addDate))]),_vm._v(" "),_c('span',[_vm._v("作业："+_vm._s(_vm.planWorkName))]),_vm._v(" "),_c('ul',{attrs:{"id":"plan-ul"}},[_c('li',[_c('div',{staticClass:"plan-content"},[_vm._v("线别")]),_vm._v(" "),_c('div',{staticClass:"plan-content"},[_vm._v("计划开始里程")]),_vm._v(" "),_c('div',{staticClass:"plan-content"},[_vm._v("计划结束里程")])]),_vm._v(" "),_vm._l((_vm.planOneData),function(item,index){return _c('li',{staticClass:"li-line"},[_c('div',{staticClass:"plan-content"},[_c('el-checkbox',{model:{value:(item.checked),callback:function ($$v) {_vm.$set(item, "checked", $$v)},expression:"item.checked"}}),_vm._v(" "),(item.line_type == 1)?_c('span',[_vm._v("左线")]):(item.line_type == 2)?_c('span',[_vm._v("右线")]):(item.line_type == 3)?_c('span',[_vm._v("入场线")]):_c('span',[_vm._v("出场线")])],1),_vm._v(" "),_c('div',{staticClass:"plan-content"},[_c('span',[_vm._v("DK")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(item.start_flag),expression:"item.start_flag"}],staticStyle:{"width":"40px"},attrs:{"type":"number"},domProps:{"value":(item.start_flag)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(item, "start_flag", $event.target.value)}}}),_vm._v(" "),_c('span',[_vm._v("+")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(item.start_length),expression:"item.start_length"}],staticStyle:{"width":"40px"},attrs:{"type":"number"},domProps:{"value":(item.start_length)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(item, "start_length", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"plan-content"},[_c('span',[_vm._v("DK")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(item.end_flag),expression:"item.end_flag"}],staticStyle:{"width":"40px"},attrs:{"type":"number"},domProps:{"value":(item.end_flag)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(item, "end_flag", $event.target.value)}}}),_vm._v(" "),_c('span',[_vm._v("+")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(item.end_length),expression:"item.end_length"}],staticStyle:{"width":"40px"},attrs:{"type":"number"},domProps:{"value":(item.end_length)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(item, "end_length", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"plan-tip"},[_vm._v(_vm._s(item.tip))])])}),_vm._v(" "),_c('p',{staticStyle:{"clear":"both"}})],2),_vm._v(" "),_c('div',{staticClass:"plan-btn"},[_c('el-button',{attrs:{"size":"mini"},on:{"click":_vm.closePlan}},[_vm._v("关闭")]),_vm._v(" "),_c('el-button',{attrs:{"size":"mini"},on:{"click":_vm.addOnePlan}},[_vm._v("确认")])],1)]),_vm._v(" "),_c('el-dialog',{attrs:{"title":"详细信息","visible":_vm.detailVisible},on:{"update:visible":function($event){_vm.detailVisible=$event}}},[_c('div',[_c('span',[_vm._v("施工日期：")]),_vm._v(" "),(_vm.planDetailList.length>0)?_c('span',[_vm._v(_vm._s(_vm.planDetailList[0]['add_date']))]):_vm._e(),_vm._v(" "),_c('span',[_vm._v("作业：")]),_vm._v(" "),_c('span',[_vm._v(_vm._s(this.planWorkName))])]),_vm._v(" "),_c('el-table',{attrs:{"data":_vm.planDetailList}},[_c('el-table-column',{attrs:{"property":"line_type_desc","label":"线别"}}),_vm._v(" "),_c('el-table-column',{attrs:{"property":"plan_tip","label":"计划里程"}}),_vm._v(" "),_c('el-table-column',{attrs:{"property":"true_tip","label":"实际里程"}}),_vm._v(" "),_c('el-table-column',{attrs:{"property":"remark","label":"备注"}})],1),_vm._v(" "),_c('div',{staticStyle:{"margin-top":"10px","position":"relative"}},[_c('el-button',{staticStyle:{"position":"absolute","right":"0px"},attrs:{"size":"mini"},on:{"click":_vm.closeDetail}},[_vm._v("关闭")])],1)],1)],1)]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.detailShow),expression:"detailShow"}],attrs:{"id":"detail"}},[_c('div',{staticClass:"app-page-container"},[_c('el-form',{attrs:{"model":_vm.searchForm,"inline":true}},[_c('el-form-item',{attrs:{"label":"作业"}},[_c('el-select',{staticClass:"search-input search-select",staticStyle:{"width":"140px"},attrs:{"clearable":"","placeholder":"请选择作业"},model:{value:(_vm.searchForm.work),callback:function ($$v) {_vm.$set(_vm.searchForm, "work", $$v)},expression:"searchForm.work"}},_vm._l((_vm.lineTypeList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}},[_vm._v(_vm._s(item.name))])}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"选择时间"}},[_c('el-date-picker',{attrs:{"type":"daterange","align":"right","unlink-panels":"","range-separator":"至","start-placeholder":"开始日期","end-placeholder":"结束日期","picker-options":_vm.pickerOptions2,"value-format":"yyyy-MM-dd"},model:{value:(_vm.searchForm.time_range),callback:function ($$v) {_vm.$set(_vm.searchForm, "time_range", $$v)},expression:"searchForm.time_range"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"完成状态"}},[_c('el-select',{staticClass:"search-input search-select",staticStyle:{"width":"140px"},attrs:{"clearable":"","placeholder":"请选择状态"},model:{value:(_vm.searchForm.is_finish),callback:function ($$v) {_vm.$set(_vm.searchForm, "is_finish", $$v)},expression:"searchForm.is_finish"}},[_c('el-option',{key:"1",attrs:{"label":"已完成","value":"1"}},[_vm._v("已完成")]),_vm._v(" "),_c('el-option',{key:"0",attrs:{"label":"未完成","value":"0"}},[_vm._v("未完成")])],1)],1),_vm._v(" "),_c('el-form-item',[_c('el-button',{attrs:{"size":"small","icon":"el-icon-search","type":"primary"},on:{"click":_vm.getDetailLists}},[_vm._v("检索")])],1),_vm._v(" "),_c('el-form-item',[_c('el-button',{staticStyle:{"margin-left":"20px"},attrs:{"size":"small","icon":"el-icon-plus","type":"primary"},on:{"click":_vm.addHistory}},[_vm._v("添加历史记录")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{ref:"multipleTable",attrs:{"data":_vm.detailListPages}},[_c('el-table-column',{attrs:{"type":"index","label":"序号","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"pro_name","label":"作业名称","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"plan_tip","label":"计划完成","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"true_tip","label":"实际完成","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"状态","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.is_finish == 1)?_c('span',[_vm._v("已完成")]):_c('span',[_vm._v("未完成")])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"remark","label":"备注","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"plan_date","label":"日期","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.getPlanDetail(scope.row.id)}}},[_vm._v("修改")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.deletePlan(scope.row.id)}}},[_vm._v("删除")])],1)]}}])})],1)],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.detailListPages.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"prev, pager, next,total","current-page":this.detailPage,"total":this.detailTotal,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.detailPageChange}}):_vm._e()],1),_vm._v(" "),_c('el-dialog',{attrs:{"title":this.historyTitle,"visible":_vm.addHistoryVisible},on:{"update:visible":function($event){_vm.addHistoryVisible=$event}}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.addShow),expression:"!addShow"}],staticStyle:{"padding":"10px","margin-top":"-35px","color":"#4d96e2","font-size":"16px"}},[_c('span',[_vm._v("作业名称：")]),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.historyData.pro_name))]),_vm._v(" "),_c('span',[_vm._v("日期：")]),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.historyData.plan_time))]),_vm._v(" "),_c('span',[_vm._v("线别：")]),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.historyData.line_type_desc))])]),_vm._v(" "),_c('el-form',{ref:"detailForm",attrs:{"model":_vm.historyData,"rules":_vm.historyRules}},[_c('el-form-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.addShow),expression:"addShow"}],attrs:{"label":"作业名称","label-width":"80px","prop":"pro_id"}},[_c('el-select',{attrs:{"clearable":"","placeholder":"请选择作业"},on:{"change":_vm.getTheLineType},model:{value:(_vm.historyData.pro_id),callback:function ($$v) {_vm.$set(_vm.historyData, "pro_id", $$v)},expression:"historyData.pro_id"}},_vm._l((_vm.lineTypeList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}},[_vm._v(_vm._s(item.name))])}))],1),_vm._v(" "),_c('el-form-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.addShow),expression:"addShow"}],attrs:{"label":"线别","label-width":"80px","prop":"line_type"}},[_c('el-select',{attrs:{"clearable":"","placeholder":"请选择线别"},model:{value:(_vm.historyData.line_type),callback:function ($$v) {_vm.$set(_vm.historyData, "line_type", $$v)},expression:"historyData.line_type"}},_vm._l((_vm.selectedLineTypeLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}},[_vm._v(_vm._s(item.name))])}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"计划里程","label-width":"80px","prop":"start_flag"}},[_vm._v("\n              DK\n              "),_c('el-input',{staticStyle:{"width":"70px"},attrs:{"placeholder":"公里"},model:{value:(_vm.historyData.start_flag),callback:function ($$v) {_vm.$set(_vm.historyData, "start_flag", $$v)},expression:"historyData.start_flag"}}),_vm._v("+\n              "),_c('el-input',{staticStyle:{"width":"50px"},attrs:{"placeholder":"米"},model:{value:(_vm.historyData.start_length),callback:function ($$v) {_vm.$set(_vm.historyData, "start_length", $$v)},expression:"historyData.start_length"}}),_vm._v("~\n              DK\n              "),_c('el-input',{staticStyle:{"width":"70px"},attrs:{"placeholder":"公里"},model:{value:(_vm.historyData.end_flag),callback:function ($$v) {_vm.$set(_vm.historyData, "end_flag", $$v)},expression:"historyData.end_flag"}}),_vm._v("+\n              "),_c('el-input',{staticStyle:{"width":"50px"},attrs:{"placeholder":"米"},model:{value:(_vm.historyData.end_length),callback:function ($$v) {_vm.$set(_vm.historyData, "end_length", $$v)},expression:"historyData.end_length"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"实际里程","label-width":"80px","prop":"t_start_flag"}},[_vm._v("\n              DK\n              "),_c('el-input',{staticStyle:{"width":"70px"},attrs:{"placeholder":"公里"},model:{value:(_vm.historyData.t_start_flag),callback:function ($$v) {_vm.$set(_vm.historyData, "t_start_flag", $$v)},expression:"historyData.t_start_flag"}}),_vm._v("+\n              "),_c('el-input',{staticStyle:{"width":"50px"},attrs:{"placeholder":"米"},model:{value:(_vm.historyData.t_start_length),callback:function ($$v) {_vm.$set(_vm.historyData, "t_start_length", $$v)},expression:"historyData.t_start_length"}}),_vm._v("~\n              DK\n              "),_c('el-input',{staticStyle:{"width":"70px"},attrs:{"placeholder":"公里"},model:{value:(_vm.historyData.t_end_flag),callback:function ($$v) {_vm.$set(_vm.historyData, "t_end_flag", $$v)},expression:"historyData.t_end_flag"}}),_vm._v("+\n              "),_c('el-input',{staticStyle:{"width":"50px"},attrs:{"placeholder":"米"},model:{value:(_vm.historyData.t_end_length),callback:function ($$v) {_vm.$set(_vm.historyData, "t_end_length", $$v)},expression:"historyData.t_end_length"}})],1),_vm._v(" "),_c('el-form-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.addShow),expression:"addShow"}],attrs:{"label":"完成日期","label-width":"80px","prop":"plan_time"}},[_c('el-date-picker',{attrs:{"type":"date","placeholder":"选择日期"},model:{value:(_vm.historyData.plan_time),callback:function ($$v) {_vm.$set(_vm.historyData, "plan_time", $$v)},expression:"historyData.plan_time"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"是否完成","label-width":"80px","prop":"is_finish"}},[_c('el-radio',{attrs:{"label":"1","value":"1"},model:{value:(_vm.historyData.is_finish),callback:function ($$v) {_vm.$set(_vm.historyData, "is_finish", $$v)},expression:"historyData.is_finish"}},[_vm._v("是")]),_vm._v(" "),_c('el-radio',{attrs:{"label":"0","value":"0"},model:{value:(_vm.historyData.is_finish),callback:function ($$v) {_vm.$set(_vm.historyData, "is_finish", $$v)},expression:"historyData.is_finish"}},[_vm._v("否")])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"备注","label-width":"80px"}},[_c('el-input',{attrs:{"placeholder":"填写备注","type":"textarea"},model:{value:(_vm.historyData.remark),callback:function ($$v) {_vm.$set(_vm.historyData, "remark", $$v)},expression:"historyData.remark"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.addHistoryVisible = false}}},[_vm._v("取 消")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.addOrEditPlanDo()}}},[_vm._v("确 定")])],1)],1)],1)]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.echartShow),expression:"echartShow"}],attrs:{"id":"echart"}},[_c('div',{staticClass:"echart-top"},[_c('el-menu',{staticClass:"el-menu-cus",attrs:{"default-active":_vm.subIndex},on:{"select":_vm.handleChartSubSelect}},_vm._l((_vm.lineTypeList),function(item,index){return _c('el-menu-item',{attrs:{"index":item.id.toString()}},[_vm._v(_vm._s(item.name))])})),_vm._v(" "),_c('div',{staticClass:"el-serach"},[_c('el-date-picker',{attrs:{"type":"month","placeholder":"在此选择年月查询","format":"yyyy-MM","value-format":"yyyy-MM"},model:{value:(_vm.echartDate),callback:function ($$v) {_vm.echartDate=$$v},expression:"echartDate"}}),_vm._v(" "),_c('el-button',{on:{"click":_vm.searchChartByDate}},[_vm._v("查询")])],1)],1),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('div',{staticClass:"chart-ontainer"},[_c('el-row',{attrs:{"gutter":20}},[_c('el-col',{attrs:{"span":10}},[_c('div',{staticClass:"second-content"},[_c('h2',[_vm._v(_vm._s(_vm.echartDataNames)+" 总体完成情况")]),_vm._v(" "),_c('ul',{staticClass:"oneitem"},[_c('li',[_c('p',[_vm._v("设计工程量：")]),_vm._v(" "),_c('h3',{staticClass:"p1"},[_vm._v(_vm._s(_vm.echartDataList.designTotal)+"公里")])]),_vm._v(" "),_c('li',[_c('p',[_vm._v("完成百分比：")]),_vm._v(" "),_c('h3',{staticClass:"p2"},[_vm._v(_vm._s(_vm.echartDataList.percent)+"公里")])])]),_vm._v(" "),_c('ul',{staticClass:"twoitem"},[_c('li',[_c('p',[_vm._v("月累完成：")]),_vm._v(" "),_c('h3',[_vm._v(_vm._s(_vm.echartDataList.monthTotal))])]),_vm._v(" "),_c('li',[_c('p',[_vm._v("年累完成：")]),_vm._v(" "),_c('h3',[_vm._v(_vm._s(_vm.echartDataList.yearTotal))])]),_vm._v(" "),_c('li',[_c('p',[_vm._v("开累完成：")]),_vm._v(" "),_c('h3',[_vm._v(_vm._s(_vm.echartDataList.workTotal))])]),_vm._v(" "),_c('li',[_c('p',[_vm._v("剩余工程量：")]),_vm._v(" "),_c('h3',[_vm._v(_vm._s(_vm.echartDataList.leftTotal))])])])])]),_vm._v(" "),_c('el-col',{attrs:{"span":14}},[_c('div',{staticClass:"second-content"},[_c('div',{attrs:{"id":"thirdChart"}})])])],1)],1)])])])}
->>>>>>> a9f62a19db2bb48f558a31ab942bf539ab05d700
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"chartbox"},[_c('div',{attrs:{"id":"oneChart"}})])])}]
+});
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-5454b90e","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dashboard/index.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-video"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('el-row',{attrs:{"gutter":20}},_vm._l((_vm.videoList),function(item,i){return _c('el-col',{key:i,attrs:{"span":6}},[_c('div',{staticClass:"grid-content"},[_c('video',{ref:"myVideo",refInFor:true,staticClass:"video-js",attrs:{"id":'myVideo'+item.id}},[_c('source',{attrs:{"src":item.url,"type":"rtmp/flv"}})])]),_vm._v(" "),_c('div',{staticClass:"grid-title"},[_vm._v(_vm._s(item.name))])])}))],1)])}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-topbar"},[_c('ul',[_c('li',{staticClass:"active"},[_vm._v("视图")]),_vm._v(" "),_c('li',[_vm._v("云台控制")]),_vm._v(" "),_c('li',[_vm._v("设置")])])])}]
 var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var views_project = (esExports);
-// CONCATENATED MODULE: ./src/views/project/index.vue
+/* harmony default export */ var views_dashboard = (esExports);
+// CONCATENATED MODULE: ./src/views/dashboard/index.vue
 function injectStyle (ssrContext) {
-<<<<<<< HEAD
-  __webpack_require__("bDrp")
-=======
-  __webpack_require__("+rXr")
->>>>>>> a9f62a19db2bb48f558a31ab942bf539ab05d700
+  __webpack_require__("Yspe")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -1422,295 +1571,20 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  project,
-  views_project,
+  dashboard,
+  views_dashboard,
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 
-/* harmony default export */ var src_views_project = __webpack_exports__["default"] = (Component.exports);
-<<<<<<< HEAD
-=======
+/* harmony default export */ var src_views_dashboard = __webpack_exports__["default"] = (Component.exports);
 
 
 /***/ }),
 
-/***/ "X2Oc":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return publicData; });
-
-var publicData = {
-
-  pickerOptions2: {
-    shortcuts: [{
-      text: '今天',
-      onClick: function onClick(picker) {
-        var end = new Date();
-        var start = new Date();
-        start.setTime(start.getTime() - 3600 * 1000 * 24 * 0);
-        picker.$emit('pick', [start, end]);
-      }
-    }, {
-      text: '最近三天',
-      onClick: function onClick(picker) {
-        var end = new Date();
-        var start = new Date();
-        start.setTime(start.getTime() - 3600 * 1000 * 24 * 2);
-        picker.$emit('pick', [start, end]);
-      }
-    }, {
-      text: '最近一周',
-      onClick: function onClick(picker) {
-        var end = new Date();
-        var start = new Date();
-        start.setTime(start.getTime() - 3600 * 1000 * 24 * 6);
-        picker.$emit('pick', [start, end]);
-      }
-    }, {
-      text: '最近一个月',
-      onClick: function onClick(picker) {
-        var end = new Date();
-        var start = new Date();
-        start.setTime(start.getTime() - 3600 * 1000 * 24 * 29);
-        picker.$emit('pick', [start, end]);
-      }
-    }, {
-      text: '最近三个月',
-      onClick: function onClick(picker) {
-        var end = new Date();
-        var start = new Date();
-        start.setTime(start.getTime() - 3600 * 1000 * 24 * 89);
-        picker.$emit('pick', [start, end]);
-      }
-    }]
-  },
-  pickerOptions3: {
-    shortcuts: [{
-      text: '本月',
-      onClick: function onClick(picker) {
-        picker.$emit('pick', [new Date(), new Date()]);
-      }
-    }, {
-      text: '今年至今',
-      onClick: function onClick(picker) {
-        var end = new Date();
-        var start = new Date(new Date().getFullYear(), 0);
-        picker.$emit('pick', [start, end]);
-      }
-    }, {
-      text: '最近六个月',
-      onClick: function onClick(picker) {
-        var end = new Date();
-        var start = new Date();
-        start.setMonth(start.getMonth() - 6);
-        picker.$emit('pick', [start, end]);
-      }
-    }]
-  }
-};
-
-/***/ }),
-
-/***/ "bOdI":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
->>>>>>> a9f62a19db2bb48f558a31ab942bf539ab05d700
-
-var _defineProperty = __webpack_require__("C4MV");
-
-var _defineProperty2 = _interopRequireDefault(_defineProperty);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (obj, key, value) {
-  if (key in obj) {
-    (0, _defineProperty2.default)(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-};
-
-/***/ }),
-
-<<<<<<< HEAD
-/***/ "MV+A":
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAABKElEQVRYhe3XTUoDMRQA4EC3XfQIPUIXfUnqKgsPIJgX0t2AB9Ab2CP0BhUmPzgbPYII7j2A0CO0NxgXdjDKMGOxzOsiD94qzMsHmbwkjB0RCqsxmPDB0deg3RvDanTM9ycNwFhw9HWT0paKDMMx3vzAGH+ZMRnzXwxgWIN2O2HCkyo2EzIMYDVLx+c63JFhpC3Vr/FVxmTMYBjAsG4KAcaCGrP/xoQXUkxaKGMoMIDVTNo4Jcekm6TzuBgI07lJBsX0zZExGZMxJ8f0HpTXYZkWW9h40YVpa2p/7jN9V4j0rS20e217awvj3g8T7dtavjR+1TXH+YS0ccp1vKdMgf5WFZsJEyZs03UmS+0eGDki/ZmF9s/UEI6+5ubxijHWXHZKRZdfu+4T43kgWohkF1IAAAAASUVORK5CYII="
-=======
-/***/ "mClu":
-/***/ (function(module, exports, __webpack_require__) {
-
-var $export = __webpack_require__("kM2E");
-// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-$export($export.S + $export.F * !__webpack_require__("+E39"), 'Object', { defineProperty: __webpack_require__("evD5").f });
->>>>>>> a9f62a19db2bb48f558a31ab942bf539ab05d700
-
-/***/ }),
-
-<<<<<<< HEAD
-/***/ "X2Oc":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return publicData; });
-
-var publicData = {
-
-  pickerOptions2: {
-    shortcuts: [{
-      text: '今天',
-      onClick: function onClick(picker) {
-        var end = new Date();
-        var start = new Date();
-        start.setTime(start.getTime() - 3600 * 1000 * 24 * 0);
-        picker.$emit('pick', [start, end]);
-      }
-    }, {
-      text: '最近三天',
-      onClick: function onClick(picker) {
-        var end = new Date();
-        var start = new Date();
-        start.setTime(start.getTime() - 3600 * 1000 * 24 * 2);
-        picker.$emit('pick', [start, end]);
-      }
-    }, {
-      text: '最近一周',
-      onClick: function onClick(picker) {
-        var end = new Date();
-        var start = new Date();
-        start.setTime(start.getTime() - 3600 * 1000 * 24 * 6);
-        picker.$emit('pick', [start, end]);
-      }
-    }, {
-      text: '最近一个月',
-      onClick: function onClick(picker) {
-        var end = new Date();
-        var start = new Date();
-        start.setTime(start.getTime() - 3600 * 1000 * 24 * 29);
-        picker.$emit('pick', [start, end]);
-      }
-    }, {
-      text: '最近三个月',
-      onClick: function onClick(picker) {
-        var end = new Date();
-        var start = new Date();
-        start.setTime(start.getTime() - 3600 * 1000 * 24 * 89);
-        picker.$emit('pick', [start, end]);
-      }
-    }]
-  },
-  pickerOptions3: {
-    shortcuts: [{
-      text: '本月',
-      onClick: function onClick(picker) {
-        picker.$emit('pick', [new Date(), new Date()]);
-      }
-    }, {
-      text: '今年至今',
-      onClick: function onClick(picker) {
-        var end = new Date();
-        var start = new Date(new Date().getFullYear(), 0);
-        picker.$emit('pick', [start, end]);
-      }
-    }, {
-      text: '最近六个月',
-      onClick: function onClick(picker) {
-        var end = new Date();
-        var start = new Date();
-        start.setMonth(start.getMonth() - 6);
-        picker.$emit('pick', [start, end]);
-      }
-    }]
-  }
-};
-
-/***/ }),
-
-/***/ "bDrp":
-=======
-/***/ }),
-
-/***/ "mvHQ":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__("qkKv"), __esModule: true };
-
-/***/ }),
-
-/***/ "qkKv":
->>>>>>> a9f62a19db2bb48f558a31ab942bf539ab05d700
-/***/ (function(module, exports, __webpack_require__) {
-
-var core = __webpack_require__("FeBl");
-var $JSON = core.JSON || (core.JSON = { stringify: JSON.stringify });
-module.exports = function stringify(it) { // eslint-disable-line no-unused-vars
-  return $JSON.stringify.apply($JSON, arguments);
-};
-
-<<<<<<< HEAD
-// load the styles
-var content = __webpack_require__("gld6");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("2bb6fb8a", content, true);
-
-/***/ }),
-
-/***/ "bOdI":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _defineProperty = __webpack_require__("C4MV");
-
-var _defineProperty2 = _interopRequireDefault(_defineProperty);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (obj, key, value) {
-  if (key in obj) {
-    (0, _defineProperty2.default)(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-};
-
-/***/ }),
-
-/***/ "gld6":
-=======
-
-/***/ }),
-
-/***/ "uCz8":
->>>>>>> a9f62a19db2bb48f558a31ab942bf539ab05d700
+/***/ "BpVk":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("FZ+f")(false);
@@ -1718,42 +1592,1277 @@ exports = module.exports = __webpack_require__("FZ+f")(false);
 
 
 // module
-<<<<<<< HEAD
-exports.push([module.i, "\n* {\r\n  margin: 0;\r\n  padding: 0;\n}\n.plancale .el-calendar-table {\r\n  border-radius: 6px 6px 0 0;\n}\n.plancale .el-calendar-table .prev .el-calendar-day {\r\n  display: none;\n}\n.plancale .el-calendar-table .next .el-calendar-day {\r\n  display: none;\n}\n.plancale .el-calendar-table thead th {\r\n  background: #3655a5;\r\n  color: #fff;\n}\n.plancale .el-calendar-table thead th:first-child {\r\n  border-radius: 6px 0 0 0;\n}\n.plancale .el-calendar-table thead th:last-child {\r\n  border-radius: 0 6px 0 0;\n}\n.plancale .el-calendar-table .el-calendar-day {\r\n  height: 110px;\r\n  padding: 10px;\n}\n.plancale .date {\r\n  font-size: 28px;\r\n  color: #4b6eca;\n}\n.plancale .calendar-wapper {\r\n  position: relative;\n}\n.plancale .calendar-operate {\r\n  position: absolute;\r\n  top: 0px;\r\n  font-size: 10px;\r\n  cursor: pointer;\n}\n.plancale .add {\r\n  right: 34px;\r\n  color: red;\n}\n.plancale .detail {\r\n  right: 0px;\r\n  color: #72acce;\n}\n.plancale .calendar-tips {\r\n  position: absolute;\r\n  font-size: 10px;\r\n  left: 0;\n}\n.plancale .calendar-show {\r\n  padding-top: 5px;\r\n  color: #666;\n}\n.plancale .is-today {\r\n  background: #c9d7f9;\n}\r\n\r\n/* work */\n.dialog-work .el-dialog {\r\n  width: 700px;\n}\n.dialog-work .el-form-item__label {\r\n  width: 110px;\n}\n.dialog-work .el-form-item__content {\r\n  margin-left: 110px;\n}\n.addbtn {\r\n  margin-bottom: 15px;\n}\n.diinput {\r\n  width: 60px;\r\n  height: 28px;\r\n  border: 1px #9db9fa solid;\r\n  text-align: center;\n}\r\n\r\n/*plan */\n.dialog-plan-add .ptxt {\r\n  color: #4b6eca;\r\n  display: inline-block;\r\n  margin-right: 15px;\r\n  font-size: 18px;\n}\n.dialog-plan-add .pinput {\r\n  width: 60px;\r\n  height: 31px;\r\n  border: 1px #9db9fa solid;\r\n  text-align: center;\n}\n.dialog-plan-add #plan-ul {\r\n  list-style: none;\r\n  border: 1px #ddd solid;\r\n  border-bottom: none;\r\n  margin-top: 20px;\n}\n.dialog-plan-add #plan-ul li {\r\n  border-bottom: 1px solid #ccc;\r\n  padding: 15px 20px;\r\n  overflow: hidden;\n}\n.dialog-plan-add #plan-ul .pheader {\r\n  background: #f2f2f2;\n}\n.dialog-plan-add #plan-ul .pitem {\r\n  width: 32%;\r\n  display: inline-block;\n}\n.dialog-plan-add .plan-content {\r\n  width: 33%;\r\n  float: left;\r\n  margin-bottom: 10px;\n}\n.dialog-plan-add .plan-content span {\r\n  color: #1d397a;\n}\n.dialog-plan-add .plan-tip {\r\n  color: #90a8e8;\r\n  text-align: center;\r\n  font-size: 12px;\r\n  display: block;\r\n  margin-left: -15px;\n}\n.plan-btn {\r\n  text-align: right;\r\n  margin-top: 20px;\n}\n.plan-show {\r\n  border: 1px #ddd solid;\r\n  border-bottom: none;\r\n  margin-top: 20px;\n}\n.plan-show .has-gutter th {\r\n  background: #f2f2f2;\n}\r\n\r\n/* end plan */\n.ptxtbox{padding:0 10px 10px 10px;margin-bottom:15px;\n}\n.dialog-plan-detail .ptxt {\r\n  color: #4b6eca;\r\n  display: inline-block;\r\n  margin-right: 15px;\r\n  font-size: 18px;\n}\n.dialog-plan-detail .el-form-item {\r\n  margin-bottom: 25px;\n}\n.dialog-plan-detail .el-form-item em{padding: 0 10px;\n}\n.dialog-plan-detail .el-form-item:last-child {\r\n  margin-bottom: 0;\n}\n.dialog-plan-detail .el-input__inner {\r\n  border: 1px #9db9fa solid;\r\n  color: #4b6eca;\r\n  width: 100%;\n}\n.dialog-plan-detail .el-form-item__error {\r\n  padding-top: 5px;\n}\n.dialog-plan-detail .el-select {\r\n  width: 100%;\n}\n.dialog-plan-detail .el-input {\r\n  width: auto;\n}\n.dialog-plan-detail .pinput input {\r\n  width: 80px;\r\n  text-align: center;\r\n  margin: 0 3px;\n}\n.dialog-plan-detail .el-form-item__label {\r\n  color: #1d397a;\n}\n.dialog-plan-detail .el-textarea {\r\n  width: 100%;\n}\n.dialog-plan-detail .el-textarea__inner {\r\n  width: 100%;\r\n  height: 60px;\r\n  -webkit-box-sizing: border-box;\r\n          box-sizing: border-box;\n}\n.dialog-plan-detail .el-dialog__body{padding: 20px;\n}\r\n\r\n/* end detail */\n.el-form-item-inline .el-form-item {\r\n  float: left;\r\n  white-space: nowrap;\n}\n.el-form-item-inline .el-input__inner {\r\n  width: 220px;\n}\n.chart-ontainer {\r\n  margin: 20px 0;\n}\n.second-content {\r\n  height: 340px;\r\n  background: #fff;\r\n  padding: 20px;\r\n  border-radius: 6px;\n}\n.second-content h2 {\r\n  color: #1d397a;\r\n  font-size: 18px;\r\n  margin-bottom: 50px;\r\n  font-weight: 400;\n}\n.second-content .oneitem {\r\n  text-align: center;\r\n  margin: 70px 40px;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-pack: justify;\r\n      -ms-flex-pack: justify;\r\n          justify-content: space-between;\n}\n.second-content .oneitem p {\r\n  color: #1d397a;\r\n  font-size: 15px;\r\n  line-height: 41px;\n}\n.second-content .oneitem .p1 {\r\n  color: #ff5c75;\r\n  font-size: 20px;\n}\n.second-content .oneitem .p2 {\r\n  color: #27db07;\r\n  font-size: 20px;\n}\n.second-content .twoitem {\r\n  padding: 0 -15px;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-pack: justify;\r\n      -ms-flex-pack: justify;\r\n          justify-content: space-between;\n}\n.second-content .twoitem li {\r\n  border-right: 1px #b8ccfb solid;\r\n  padding: 0 15px;\n}\n.second-content .twoitem li:last-child {\r\n  border: 0;\n}\n.second-content .twoitem p {\r\n  color: #4b6eca;\r\n  font-size: 14px;\r\n  line-height: 31px;\n}\n.second-content .twoitem h3 {\r\n  color: #1d397a;\r\n  font-size: 16px;\r\n  text-align: center;\n}\n.chartbox {\r\n  width: 100%;\r\n  height: 100%;\n}\n#oneChart {\r\n  width: 100%;\r\n  height: 400px;\r\n  -webkit-box-sizing: border-box;\r\n          box-sizing: border-box;\n}\n#thirdChart {\r\n  width: 100%;\r\n  height: 300px;\r\n  -webkit-box-sizing: border-box;\r\n          box-sizing: border-box;\n}\n.echart-top {\r\n  overflow: hidden;\r\n  margin-bottom: 20px;\n}\n.el-menu-cus {\r\n  float: left;\r\n  background: none;\r\n  border: 0;\n}\n.el-menu-cus .el-menu-item {\r\n  display: inline-block;\r\n  margin-right: 10px;\r\n  color: #1d397a;\r\n  height: 35px;\r\n  line-height: 36px;\r\n  font-size: 16px;\r\n  padding: 0 12px;\n}\n.el-menu-cus .el-menu-item.is-active {\r\n  background: #4b6eca;\r\n  color: #fff;\r\n  border-radius: 3px;\n}\n.el-serach {\r\n  float: right;\r\n  border: 2px #4b6eca solid;\r\n  border-radius: 3px;\n}\n.el-serach .el-date-editor {\r\n  width: 178px;\n}\n.el-serach .el-input__inner {\r\n  background: none;\r\n  border: none;\r\n  color: #4b6eca;\r\n  width: 178px;\n}\n.el-serach .el-input__inner:placeholder {\r\n  color: #4b6eca;\n}\n.el-serach .el-input__inner:-webkit-input-placeholder {\r\n  color: #4b6eca;\n}\n.el-serach .el-input__inner:-moz-placeholder {\r\n  color: #4b6eca;\n}\n.el-serach .el-input__inner:-ms-input-placeholder {\r\n  color: #4b6eca;\n}\n.el-serach .el-button {\r\n  background: #4b6eca;\r\n  color: #fff;\n}\n.app-page-container {\r\n  border-radius: 6px;\r\n  padding: 20px;\r\n  background: #fff;\n}\r\n", ""]);
-=======
-exports.push([module.i, "\n* {\n  margin: 0;\n  padding: 0;\n}\n.plancale .el-calendar-table {\n  border-radius: 6px 6px 0 0;\n}\n.plancale .el-calendar-table .prev .el-calendar-day {\n  display: none;\n}\n.plancale .el-calendar-table .next .el-calendar-day {\n  display: none;\n}\n.plancale .el-calendar-table thead th {\n  background: #3655a5;\n  color: #fff;\n}\n.plancale .el-calendar-table thead th:first-child {\n  border-radius: 6px 0 0 0;\n}\n.plancale .el-calendar-table thead th:last-child {\n  border-radius: 0 6px 0 0;\n}\n.plancale .el-calendar-table .el-calendar-day {\n  height: 110px;\n  padding: 10px;\n}\n.plancale .date {\n  font-size: 28px;\n  color: #4b6eca;\n}\n.plancale .calendar-wapper {\n  position: relative;\n}\n.plancale .calendar-operate {\n  position: absolute;\n  top: 0px;\n  font-size: 10px;\n  cursor: pointer;\n}\n.plancale .add {\n  right: 34px;\n  color: red;\n}\n.plancale .detail {\n  right: 0px;\n  color: #72acce;\n}\n.plancale .calendar-tips {\n  position: absolute;\n  font-size: 10px;\n  left: 0;\n}\n.plancale .calendar-show {\n  padding-top: 5px;\n  color: #666;\n}\n.plancale .is-today {\n  background: #c9d7f9;\n}\n#plan-ul {\n  list-style: none;\n}\n#plan-ul li {\n  width: 100%;\n  border-bottom: 1px solid #ccc;\n  padding: 20px 0;\n}\n#plan-ul li .plan-content {\n  width: 33%;\n  float: left;\n}\n.plan-tip {\n  margin-top: 30px;\n  margin-bottom: -10px;\n  text-align: center;\n  color: #66b6e4;\n  font-size: 12px;\n}\n.plan-btn {\n  text-align: right;\n  margin-top: 20px;\n}\n.dialog-work .el-dialog {\n  width: 700px;\n}\n.dialog-work .el-form-item__label {\n  width: 110px;\n}\n.dialog-work .el-form-item__content {\n  margin-left: 110px;\n}\n.addbtn {\n  margin-bottom: 15px;\n}\n.el-form-item-inline .el-form-item {\n  float: left;\n  white-space: nowrap;\n}\n.el-form-item-inline .el-input__inner {\n  width: 220px;\n}\n.chart-ontainer {\n  margin: 20px 0;\n}\n.second-content {\n  height: 340px;\n  background: #fff;\n  padding: 20px;\n  border-radius: 6px;\n}\n.second-content h2 {\n  color: #1d397a;\n  font-size: 18px;\n  margin-bottom: 50px;\n  font-weight: 400;\n}\n.second-content .oneitem {\n  text-align: center;\n  margin: 70px 40px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n.second-content .oneitem p {\n  color: #1d397a;\n  font-size: 15px;\n  line-height: 41px;\n}\n.second-content .oneitem .p1 {\n  color: #ff5c75;\n  font-size: 20px;\n}\n.second-content .oneitem .p2 {\n  color: #27db07;\n  font-size: 20px;\n}\n.second-content .twoitem {\n  padding: 0 -15px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n.second-content .twoitem li {\n  border-right: 1px #b8ccfb solid;\n  padding: 0 15px;\n}\n.second-content .twoitem li:last-child {\n  border: 0;\n}\n.second-content .twoitem p {\n  color: #4b6eca;\n  font-size: 14px;\n  line-height: 31px;\n}\n.second-content .twoitem h3 {\n  color: #1d397a;\n  font-size: 16px;\n}\n.chartbox {\n  width: 100%;\n  height: 100%;\n}\n#oneChart {\n  width: 100%;\n  height: 400px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n#thirdChart {\n  width: 100%;\n  height: 300px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.echart-top {\n  overflow: hidden;\n  margin-bottom: 20px;\n}\n.el-menu-cus {\n  float: left;\n  background: none;\n  border: 0;\n}\n.el-menu-cus .el-menu-item {\n  display: inline-block;\n  margin-right: 10px;\n  color: #1d397a;\n  height: 35px;\n  line-height: 36px;\n  font-size: 16px;\n  padding: 0 12px;\n}\n.el-menu-cus .el-menu-item.is-active {\n  background: #4b6eca;\n  color: #fff;\n  border-radius: 3px;\n}\n.el-serach {\n  float: right;\n  border: 2px #4b6eca solid;\n  border-radius: 3px;\n}\n.el-serach .el-date-editor {\n  width: 178px;\n}\n.el-serach .el-input__inner {\n  background: none;\n  border: none;\n  color: #4b6eca;\n  width: 178px;\n}\n.el-serach .el-input__inner:placeholder {\n  color: #4b6eca;\n}\n.el-serach .el-input__inner:-webkit-input-placeholder {\n  color: #4b6eca;\n}\n.el-serach .el-input__inner:-moz-placeholder {\n  color: #4b6eca;\n}\n.el-serach .el-input__inner:-ms-input-placeholder {\n  color: #4b6eca;\n}\n.el-serach .el-button {\n  background: #4b6eca;\n  color: #fff;\n}\n.app-page-container {\n  border-radius: 6px;\n  padding: 20px;\n  background: #fff;\n}\n", ""]);
->>>>>>> a9f62a19db2bb48f558a31ab942bf539ab05d700
+exports.push([module.i, "\n.app-video .video-js {\r\n  background: none;\r\n  width: 100%;\r\n  height: 180px;\n}\n.videolist {\r\n  overflow: hidden;\n}\n.videolist .grid-content {\r\n  background: #000;\r\n  border-radius: 6px;\r\n  padding: 2px;\n}\n.videolist .el-row {\r\n  margin-bottom: 20px;\n}\n.videolist .el-row :last-child {\r\n  margin-bottom: 0;\n}\n.videolist .el-col {\r\n  border-radius: 4px;\r\n  margin-bottom: 20px;\n}\n.app-topbar {\r\n  height: 50px;\r\n  background: #fff;\r\n  text-align: center;\n}\n.grid-title {\r\n  color: #1d397a;\r\n  text-align: right;\r\n  line-height: 28px;\n}\n.app-topbar ul {\r\n  margin: 0 auto;\n}\n.app-topbar li {\r\n  color: #1d397a;\r\n  display: inline-block;\r\n  font-size: 16px;\r\n  line-height: 50px;\r\n  padding: 0 30px;\r\n  cursor: 0;\n}\n.app-topbar li.active {\r\n  background: #4b6eca;\r\n  color: #fff;\n}\r\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ "mClu":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "FvKM":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var $export = __webpack_require__("kM2E");
-// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-$export($export.S + $export.F * !__webpack_require__("+E39"), 'Object', { defineProperty: __webpack_require__("evD5").f });
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+// EXTERNAL MODULE: ./node_modules/babel-runtime/core-js/json/stringify.js
+var stringify = __webpack_require__("mvHQ");
+var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
+
+// EXTERNAL MODULE: ./src/views/dashboard/index.vue + 3 modules
+var dashboard = __webpack_require__("ARoL");
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/dispatch/edit.vue
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ var edit = ({
+  data: function data() {
+    return {
+      tempForm: {
+        name: "",
+        description: ""
+      },
+      ruleForm: {
+        number: "",
+        lid: "",
+        type: "",
+        master_id: "",
+        location: "司机车长及施工负责人",
+        driver_id: "",
+        dispatch_id: "",
+        station_worker_id: "",
+        station: "",
+        description: "",
+        template_id: 1
+      },
+      locomotiveList: [],
+      masterList: [],
+      driverList: [],
+      dispatchList: [],
+      stationWorkerList: [],
+      templateList: [],
+      isVisible: false,
+      rules: {
+        number: [{ required: true, message: "请输入命令号码", trigger: "blur" }],
+        lid: [{ required: true, message: "请选择受令机车", trigger: "change" }],
+        type: [{ required: true, message: "请选择类型", trigger: "change" }],
+        master_id: [{ required: true, message: "请选择受令机长", trigger: "change" }],
+        location: [{ required: true, message: "请选择令处所", trigger: "blur" }],
+        driver_id: [{ required: true, message: "请选择受令机车", trigger: "change" }],
+        dispatch_id: [{ required: true, message: "请选择调度员", trigger: "change" }]
+      },
+      temprules: {
+        name: [{ required: true, message: "请输入名称", trigger: "blur" }],
+        description: [{ required: true, message: "请输入内容", trigger: "blur" }]
+      }
+    };
+  },
+  created: function created() {
+    this.getCreateNumber();
+    this.getLocomotiveLists(); //机车
+    this.getUsersListMaster(); //车长
+    this.getUsersListDriver(); //司机
+    this.getUsersListDispatch(); //调度员
+    this.getUsersListStationWorker(); //车站值班人
+    this.getTemplateLists(); //模板
+  },
+
+  methods: {
+    submitForm: function submitForm(formName) {
+      var _this = this;
+
+      this.$refs[formName].validate(function (valid) {
+        if (valid) {
+          var data = _this.ruleForm;
+          console.log(stringify_default()(data));
+          _this.request({
+            url: "/dispatch/addDispatch",
+            method: "post",
+            data: data
+          }).then(function (res) {
+            var data = res.data;
+            if (data.status == 1) {
+              _this.$message({
+                message: "恭喜您，新增成功",
+                type: "success"
+              });
+              _this.$layer.close(_this.layerid);
+              _this.$parent.getDataLists();
+            }
+          });
+        } else {
+          console.log("保存命令失败");
+          return false;
+        }
+      });
+    },
+    isCancel: function isCancel() {
+      this.$layer.close(this.layerid);
+    },
+    getCreateNumber: function getCreateNumber() {
+      var _this2 = this;
+
+      this.request({
+        url: "/dispatch/createNumber",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this2.ruleForm.number = data.data;
+          console.log(_this2.ruleForm.number);
+        }
+      });
+    },
+
+    //5:车长,6:司机,7:调度值班员，8：车站值班员 /dispatch/getUsersLists
+    getUsersListMaster: function getUsersListMaster() {
+      var _this3 = this;
+
+      this.request({
+        url: "/dispatch/getUsersLists?role_id=5",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this3.masterList = data.data;
+        }
+      });
+    },
+    getUsersListDriver: function getUsersListDriver() {
+      var _this4 = this;
+
+      this.request({
+        url: "/dispatch/getUsersLists?role_id=6",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this4.driverList = data.data;
+        }
+      });
+    },
+    getUsersListDispatch: function getUsersListDispatch() {
+      var _this5 = this;
+
+      this.request({
+        url: "/dispatch/getUsersLists?role_id=7",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this5.dispatchList = data.data;
+        }
+      });
+    },
+    getUsersListStationWorker: function getUsersListStationWorker() {
+      var _this6 = this;
+
+      this.request({
+        url: "/dispatch/getUsersLists?role_id=8",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this6.stationWorkerList = data.data;
+        }
+      });
+    },
+    getLocomotiveLists: function getLocomotiveLists() {
+      var _this7 = this;
+
+      this.request({
+        url: "/dispatch/getLocomotiveLists",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this7.locomotiveList = data.data;
+        }
+      });
+    },
+
+    //模板
+    getTemplateLists: function getTemplateLists() {
+      var _this8 = this;
+
+      this.request({
+        url: "/dispatch/getTemplateLists",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this8.templateList = data.data;
+          _this8.templateChange(1);
+        }
+      });
+    },
+    templateChange: function templateChange(params) {
+      var _this9 = this;
+
+      var value = params;
+      this.request({
+        url: "/dispatch/getTemplateDetail?id=" + value,
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this9.ruleForm.description = res.data.data.description;
+        }
+      });
+    },
+    templateShowDialog: function templateShowDialog() {
+      this.isVisible = true;
+      this.tempForm.name = "";
+      this.tempForm.description = "";
+    },
+    templateDel: function templateDel() {
+      var _this10 = this;
+
+      this.$confirm("您确定要删除此模板?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      }).then(function () {
+        _this10.request({
+          url: "/dispatch/deleteTemplate",
+          method: "post",
+          data: { id: _this10.ruleForm.template_id }
+        }).then(function (res) {
+          var data = res.data;
+          if (data.status == 1) {
+            _this10.ruleForm.template_id = 1;
+            _this10.getTemplateLists();
+            _this10.$message({
+              message: "恭喜您，删除成功",
+              type: "success"
+            });
+          } else {
+            _this10.$message.error("删除失败");
+          }
+        });
+      });
+    },
+    templateSubmitTempForm: function templateSubmitTempForm(formName) {
+      var _this11 = this;
+
+      this.$refs[formName].validate(function (valid) {
+        if (valid) {
+          var data = _this11.tempForm;
+          console.log("tempForm：" + stringify_default()(data));
+          _this11.request({
+            url: "/dispatch/addTemplate",
+            method: "post",
+            data: data
+          }).then(function (res) {
+            var data = res.data;
+            if (data.status == 1) {
+              _this11.isVisible = false;
+              _this11.$message({
+                message: "恭喜您，新增成功",
+                type: "success"
+              });
+              _this11.ruleForm.template_id = 1;
+              _this11.getTemplateLists();
+            }
+          });
+        } else {
+          console.log("保存模板失败");
+          return false;
+        }
+      });
+    }
+  },
+  props: {
+    layerid: {
+      type: String,
+      default: ""
+    }
+  }
+});
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-01802970","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dispatch/edit.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-page-layer",attrs:{"id":"dispatch-edit"}},[_c('div',{staticClass:"app-dialog-form"},[_c('el-form',{ref:"ruleForm",attrs:{"label-position":"top","model":_vm.ruleForm,"inline":true,"rules":_vm.rules}},[_c('el-form-item',{attrs:{"label":"命令号","prop":"number"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.ruleForm.number),callback:function ($$v) {_vm.$set(_vm.ruleForm, "number", $$v)},expression:"ruleForm.number"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令机车","prop":"lid"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.ruleForm.lid),callback:function ($$v) {_vm.$set(_vm.ruleForm, "lid", $$v)},expression:"ruleForm.lid"}},_vm._l((_vm.locomotiveList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"类型","prop":"type"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.ruleForm.type),callback:function ($$v) {_vm.$set(_vm.ruleForm, "type", $$v)},expression:"ruleForm.type"}},[_c('el-option',{attrs:{"label":"行车调度","value":"1"}}),_vm._v(" "),_c('el-option',{attrs:{"label":"施工调度","value":"2"}})],1)],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令车长","prop":"master_id"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.ruleForm.master_id),callback:function ($$v) {_vm.$set(_vm.ruleForm, "master_id", $$v)},expression:"ruleForm.master_id"}},_vm._l((_vm.masterList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令处所","prop":"location"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.ruleForm.location),callback:function ($$v) {_vm.$set(_vm.ruleForm, "location", $$v)},expression:"ruleForm.location"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令司机","prop":"driver_id"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.ruleForm.driver_id),callback:function ($$v) {_vm.$set(_vm.ruleForm, "driver_id", $$v)},expression:"ruleForm.driver_id"}},_vm._l((_vm.driverList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"值班调度","prop":"dispatch_id"}},[_c('el-select',{attrs:{"placeholder":"请选择调度员","clearable":""},model:{value:(_vm.ruleForm.dispatch_id),callback:function ($$v) {_vm.$set(_vm.ruleForm, "dispatch_id", $$v)},expression:"ruleForm.dispatch_id"}},_vm._l((_vm.dispatchList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令车站"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.ruleForm.station),callback:function ($$v) {_vm.$set(_vm.ruleForm, "station", $$v)},expression:"ruleForm.station"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"车站值班员"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.ruleForm.station_worker_id),callback:function ($$v) {_vm.$set(_vm.ruleForm, "station_worker_id", $$v)},expression:"ruleForm.station_worker_id"}},[_c('el-option',{attrs:{"label":"暂无值班员","value":"0"}}),_vm._v(" "),_vm._l((_vm.stationWorkerList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})})],2)],1),_vm._v(" "),_c('div',{staticClass:"blank"}),_vm._v(" "),_c('div',{staticClass:"contents-select"},[_c('el-select',{attrs:{"popper-class":"el-select-height"},on:{"change":_vm.templateChange},model:{value:(_vm.ruleForm.template_id),callback:function ($$v) {_vm.$set(_vm.ruleForm, "template_id", $$v)},expression:"ruleForm.template_id"}},_vm._l((_vm.templateList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})})),_vm._v(" "),_c('el-button',{staticClass:"bluebtn",attrs:{"type":"primary"},on:{"click":_vm.templateDel}},[_vm._v("删除选中模板")]),_vm._v(" "),_c('el-button',{staticClass:"redbtn",attrs:{"type":"primary"},on:{"click":_vm.templateShowDialog}},[_vm._v("\n          新建调度内容模板\n          "),_c('i',{staticClass:"el-icon-plus el-icon--right"})])],1),_vm._v(" "),_c('div',{staticClass:"blank"}),_vm._v(" "),_c('div',{staticClass:"contents-area"},[_c('p',[_vm._v("调度命令内容")]),_vm._v(" "),_c('el-input',{attrs:{"type":"textarea"},model:{value:(_vm.ruleForm.description),callback:function ($$v) {_vm.$set(_vm.ruleForm, "description", $$v)},expression:"ruleForm.description"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"app-dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('span',{staticClass:"tips"},[_vm._v("备注：*为必填项")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.submitForm('ruleForm')}}},[_vm._v("确定保存")]),_vm._v(" "),_c('el-button',{on:{"click":_vm.isCancel}},[_vm._v("关闭")])],1)],1),_vm._v(" "),_c('el-dialog',{staticClass:"app-dialog app-dialog-temp",attrs:{"width":"580px","title":"新增调度内容模板","visible":_vm.isVisible,"center":"","append-to-body":true},on:{"update:visible":function($event){_vm.isVisible=$event}}},[_c('el-form',{ref:"tempForm",attrs:{"model":_vm.tempForm,"rules":_vm.temprules,"label-width":"100px","label-position":"left"}},[_c('el-form-item',{attrs:{"label":"新增名称","prop":"name"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.tempForm.name),callback:function ($$v) {_vm.$set(_vm.tempForm, "name", $$v)},expression:"tempForm.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"新增内容","prop":"description"}},[_c('el-input',{attrs:{"type":"textarea"},model:{value:(_vm.tempForm.description),callback:function ($$v) {_vm.$set(_vm.tempForm, "description", $$v)},expression:"tempForm.description"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.isVisible = false}}},[_vm._v("取 消")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.templateSubmitTempForm('tempForm')}}},[_vm._v("确 定")])],1)],1)],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ var dispatch_edit = (esExports);
+// CONCATENATED MODULE: ./src/views/dispatch/edit.vue
+function injectStyle (ssrContext) {
+  __webpack_require__("cGxR")
+}
+var normalizeComponent = __webpack_require__("VU/8")
+/* script */
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  edit,
+  dispatch_edit,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+
+/* harmony default export */ var views_dispatch_edit = (Component.exports);
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/dispatch/detail.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var detail = ({
+  data: function data() {
+    return {
+      iframepar: {},
+      id: 1,
+      dataInfo: [],
+      iData: { id: 3 }
+    };
+  },
+
+  props: {
+    iframeData: {
+      type: Object,
+      default: function _default() {
+        return {};
+      }
+    },
+    layerid: {
+      type: String,
+      default: ""
+    }
+  },
+  created: function created() {
+    this.getDetail();
+  },
+
+  methods: {
+    getDetail: function getDetail() {
+      var _this = this;
+
+      this.request({
+        url: "/dispatch/getDispatchDetail?id=" + this.iframeData.id,
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this.dataInfo = data.data;
+          //console.log(JSON.stringify(this.dataInfo));
+        }
+      });
+    },
+    isCancel: function isCancel() {
+      this.$layer.close(this.layerid);
+    }
+  }
+});
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-25e7b4f4","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dispatch/detail.vue
+var detail_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-page-layer",attrs:{"id":"dispatch-detail"}},[_c('div',{staticClass:"app-dialog-form"},[_c('el-form',{attrs:{"inline":true}},[_c('el-form-item',{attrs:{"label":"命令号："}},[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.number),callback:function ($$v) {_vm.$set(_vm.dataInfo, "number", $$v)},expression:"dataInfo.number"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"值班调度："}},[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.dispatch),callback:function ($$v) {_vm.$set(_vm.dataInfo, "dispatch", $$v)},expression:"dataInfo.dispatch"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"命令状态："}},[(_vm.dataInfo.status=='1')?_c('p',[_c('el-input',{attrs:{"readonly":"","value":"新命令"}})],1):_vm._e(),_vm._v(" "),(_vm.dataInfo.status=='2')?_c('p',[_c('el-input',{attrs:{"readonly":"","value":"已确认"}})],1):_vm._e(),_vm._v(" "),(_vm.dataInfo.status=='3')?_c('p',[_c('el-input',{attrs:{"readonly":"","value":"已作废"}})],1):_vm._e()]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令机车："}},[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.loco),callback:function ($$v) {_vm.$set(_vm.dataInfo, "loco", $$v)},expression:"dataInfo.loco"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令司机："}},[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.driver),callback:function ($$v) {_vm.$set(_vm.dataInfo, "driver", $$v)},expression:"dataInfo.driver"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令车长："}},[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.master),callback:function ($$v) {_vm.$set(_vm.dataInfo, "master", $$v)},expression:"dataInfo.master"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"发令时间："}},[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.create_time),callback:function ($$v) {_vm.$set(_vm.dataInfo, "create_time", $$v)},expression:"dataInfo.create_time"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令车站："}},[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.station),callback:function ($$v) {_vm.$set(_vm.dataInfo, "station", $$v)},expression:"dataInfo.station"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"车站值班员："}},[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.station_worker),callback:function ($$v) {_vm.$set(_vm.dataInfo, "station_worker", $$v)},expression:"dataInfo.station_worker"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"确认时间："}},[(_vm.dataInfo.makesure_time=='')?_c('p',[_c('el-input',{attrs:{"readonly":"","value":"暂未确认"}})],1):_c('p',[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.makesure_time),callback:function ($$v) {_vm.$set(_vm.dataInfo, "makesure_time", $$v)},expression:"dataInfo.makesure_time"}})],1)]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令处所："}},[_c('el-input',{attrs:{"readonly":""},model:{value:(_vm.dataInfo.location),callback:function ($$v) {_vm.$set(_vm.dataInfo, "location", $$v)},expression:"dataInfo.location"}})],1),_vm._v(" "),_c('el-form-item'),_vm._v(" "),_c('el-form-item',{staticClass:"contents",attrs:{"label":"调度命令内容："}},[_c('el-input',{attrs:{"type":"textarea"},model:{value:(_vm.dataInfo.description),callback:function ($$v) {_vm.$set(_vm.dataInfo, "description", $$v)},expression:"dataInfo.description"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"app-dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":_vm.isCancel}},[_vm._v("关闭")])],1)],1)])}
+var detail_staticRenderFns = []
+var detail_esExports = { render: detail_render, staticRenderFns: detail_staticRenderFns }
+/* harmony default export */ var dispatch_detail = (detail_esExports);
+// CONCATENATED MODULE: ./src/views/dispatch/detail.vue
+function detail_injectStyle (ssrContext) {
+  __webpack_require__("JtCB")
+}
+var detail_normalizeComponent = __webpack_require__("VU/8")
+/* script */
+
+/* template */
+
+/* template functional */
+var detail___vue_template_functional__ = false
+/* styles */
+var detail___vue_styles__ = detail_injectStyle
+/* scopeId */
+var detail___vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var detail___vue_module_identifier__ = null
+var detail_Component = detail_normalizeComponent(
+  detail,
+  dispatch_detail,
+  detail___vue_template_functional__,
+  detail___vue_styles__,
+  detail___vue_scopeId__,
+  detail___vue_module_identifier__
+)
+
+/* harmony default export */ var views_dispatch_detail = (detail_Component.exports);
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/dispatch/printing.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var printing = ({
+  data: function data() {
+    return {
+      iframepar: {},
+      id: 1,
+      dataInfo: [],
+      iData: { id: 3 }
+    };
+  },
+
+  props: {
+    iframeData: {
+      type: Object,
+      default: function _default() {
+        return {};
+      }
+    },
+    layerid: {
+      type: String,
+      default: ""
+    }
+  },
+  created: function created() {
+    this.getDetail();
+  },
+
+  methods: {
+    getDetail: function getDetail() {
+      var _this = this;
+
+      this.request({
+        url: "/dispatch/getDispatchDetail?id=" + this.iframeData.id,
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this.dataInfo = data.data;
+          //console.log(JSON.stringify(this.dataInfo));
+        }
+      });
+    },
+    isCancel: function isCancel() {
+      this.$layer.close(this.layerid);
+    }
+  }
+});
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-06b8aabc","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dispatch/printing.vue
+var printing_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-page-layer",attrs:{"id":"dispatch-print"}},[_c('div',{staticClass:"app-dialog-form"},[_c('el-form',{attrs:{"id":"printMe","inline":true}},[_c('el-form-item',{attrs:{"label":"命令号："}},[_c('div',{staticClass:"txt"},[_vm._v(_vm._s(_vm.dataInfo.number))])]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"调度："}},[_c('div',{staticClass:"txt"},[_vm._v(_vm._s(_vm.dataInfo.dispatch))])]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"车站："}},[_c('div',{staticClass:"txt"},[_vm._v(_vm._s(_vm.dataInfo.station))])]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"机车："}},[_c('div',{staticClass:"txt"},[_vm._v(_vm._s(_vm.dataInfo.loco))])]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"机长"}},[_c('div',{staticClass:"txt"},[_vm._v(_vm._s(_vm.dataInfo.master))])]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"司机："}},[_c('div',{staticClass:"txt"},[_vm._v(_vm._s(_vm.dataInfo.driver))])]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"值班员："}},[_c('div',{staticClass:"txt"},[_vm._v(_vm._s(_vm.dataInfo.station_worker))])]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令处所："}},[_c('div',{staticClass:"txt"},[_vm._v(_vm._s(_vm.dataInfo.location))])]),_vm._v(" "),_c('el-form-item'),_vm._v(" "),_c('el-form-item',{staticClass:"contents",attrs:{"label":"命令内容："}},[_c('div',{staticClass:"conn"},[_vm._v(_vm._s(_vm.dataInfo.description))])]),_vm._v(" "),_c('p',{staticClass:"info"},[_vm._v("注：本调度命令一式四份")])],1),_vm._v(" "),_c('div',{staticClass:"app-dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{staticClass:"bluebtn",on:{"click":_vm.isCancel}},[_vm._v("返回列表")]),_vm._v(" "),_c('el-button',{directives:[{name:"print",rawName:"v-print",value:('#printMe'),expression:"'#printMe'"}],staticClass:"redbtn"},[_vm._v("打印信息")])],1)],1)])}
+var printing_staticRenderFns = []
+var printing_esExports = { render: printing_render, staticRenderFns: printing_staticRenderFns }
+/* harmony default export */ var dispatch_printing = (printing_esExports);
+// CONCATENATED MODULE: ./src/views/dispatch/printing.vue
+function printing_injectStyle (ssrContext) {
+  __webpack_require__("h0b4")
+}
+var printing_normalizeComponent = __webpack_require__("VU/8")
+/* script */
+
+/* template */
+
+/* template functional */
+var printing___vue_template_functional__ = false
+/* styles */
+var printing___vue_styles__ = printing_injectStyle
+/* scopeId */
+var printing___vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var printing___vue_module_identifier__ = null
+var printing_Component = printing_normalizeComponent(
+  printing,
+  dispatch_printing,
+  printing___vue_template_functional__,
+  printing___vue_styles__,
+  printing___vue_scopeId__,
+  printing___vue_module_identifier__
+)
+
+/* harmony default export */ var views_dispatch_printing = (printing_Component.exports);
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/dispatch/index.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ var dispatch = ({
+  name: "",
+  data: function data() {
+    return {
+      page_cur: 1,
+      pageTotal: 0,
+      page_size: 20,
+      page_total: 0,
+      lidList: [],
+      masterList: [],
+      driverList: [],
+      dispatchList: [],
+      dataList: [],
+      searchForm: {
+        lid: "",
+        dispatch_id: "",
+        master_id: "",
+        driver_id: "",
+        status: "",
+        time_range: []
+      }
+    };
+  },
+  created: function created() {
+    this.getlibLists(); //机车
+    this.getUsersListDispatch(); //调度员
+    this.getUsersListMaster(); //车长
+    this.getUsersListDriver(); //司机
+    this.getDataLists();
+  },
+
+  methods: {
+    onLoadPage: function onLoadPage() {
+      this.$router.go(0);
+    },
+    getlibLists: function getlibLists() {
+      var _this = this;
+
+      this.request({
+        url: "/dispatch/getLocomotiveLists",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this.lidList = data.data;
+        }
+      });
+    },
+
+    //5:车长,6:司机,7:调度值班员
+    getUsersListMaster: function getUsersListMaster() {
+      var _this2 = this;
+
+      this.request({
+        url: "/dispatch/getUsersLists?role_id=5",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this2.masterList = data.data;
+        }
+      });
+    },
+    getUsersListDriver: function getUsersListDriver() {
+      var _this3 = this;
+
+      this.request({
+        url: "/dispatch/getUsersLists?role_id=6",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this3.driverList = data.data;
+        }
+      });
+    },
+    getUsersListDispatch: function getUsersListDispatch() {
+      var _this4 = this;
+
+      this.request({
+        url: "/dispatch/getUsersLists?role_id=7",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this4.dispatchList = data.data;
+        }
+      });
+    },
+    getDataLists: function getDataLists() {
+      var _this5 = this;
+
+      var page = this.page_cur;
+      var lid = this.searchForm.lid;
+      var dispatch_id = this.searchForm.dispatch_id;
+      var master_id = this.searchForm.master_id;
+      var driver_id = this.searchForm.driver_id;
+      var status = this.searchForm.status;
+      var time_range = this.searchForm.time_range;
+      //alert(time_range);
+      this.request({
+        url: "/dispatch/getDispatchPages",
+        method: "get",
+        params: {
+          page: page,
+          lid: lid,
+          dispatch_id: dispatch_id,
+          master_id: master_id,
+          driver_id: driver_id,
+          status: status,
+          time_range: time_range
+        }
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this5.dataList = data.data.data;
+          _this5.page_cur = parseInt(data.data.current_page);
+          _this5.pageTotal = data.data.total;
+          _this5.page_size = data.data.per_page;
+          _this5.page_total = data.data.last_page;
+        }
+      });
+    },
+    pageChange: function pageChange(value) {
+      this.page_cur = value;
+      this.getDataLists();
+    },
+    toFirstPage: function toFirstPage() {
+      this.pageChange(1);
+    },
+    toLastPage: function toLastPage() {
+      this.page_cur = this.page_total;
+      this.pageChange(this.page_total);
+    },
+
+    addInfo: function addInfo() {
+      this.$layer.iframe({
+        area: ["800px", "590px"],
+        title: "新建调度命令",
+        skin: "layers",
+        shadeClose: false,
+        scrollbar: false,
+        content: {
+          content: views_dispatch_edit,
+          parent: this,
+          data: {}
+        }
+      });
+    },
+    goDetail: function goDetail(id) {
+      this.$layer.iframe({
+        area: ["800px", "590px"],
+        title: "调度命令详情",
+        shadeClose: false,
+        scrollbar: false,
+        content: {
+          content: views_dispatch_detail,
+          parent: this,
+          data: { iframeData: { id: id } }
+        }
+      });
+    },
+    goInvalid: function goInvalid(id, index) {
+      var _this6 = this;
+
+      this.$confirm("您确定作废命令?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      }).then(function () {
+        _this6.request({
+          url: "/dispatch/changeStatus",
+          method: "post",
+          data: { id: id, status: 3 },
+          contentType: "application/x-www-form-urlencoded"
+        }).then(function (res) {
+          var data = res.data;
+          if (data.status == 1) {
+            _this6.$message({
+              type: "success",
+              message: "作废成功!"
+            });
+            _this6.$set(_this6.dataList[index], "status", 3);
+          }
+        });
+      });
+    },
+    goDel: function goDel(id) {
+      var _this7 = this;
+
+      this.$confirm("您确定删除命令?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      }).then(function () {
+        _this7.request({
+          url: "/dispatch/changeStatus",
+          method: "post",
+          data: { id: id, status: 0 },
+          contentType: "application/x-www-form-urlencoded"
+        }).then(function (res) {
+          var data = res.data;
+          if (data.status == 1) {
+            _this7.$message({
+              type: "success",
+              message: "删除成功!"
+            });
+            _this7.getDataLists();
+          }
+        });
+      });
+    },
+
+    goPrint: function goPrint(id) {
+      this.$layer.iframe({
+        area: ["960px", "590px"],
+        title: "调度命令（行车调度）",
+        shadeClose: false,
+        scrollbar: false,
+        content: {
+          content: views_dispatch_printing,
+          parent: this,
+          data: { iframeData: { id: id } }
+        }
+      });
+    }
+  }
+});
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-42ddb9ba","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dispatch/index.vue
+var dispatch_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{attrs:{"model":_vm.searchForm,"inline":true}},[_c('div',{staticClass:"select-from-inline"},[_c('el-form-item',[_c('el-button',{staticClass:"redbtn",staticStyle:{"width":"145px"},attrs:{"type":"primary","icon":"el-icon-plus"},on:{"click":_vm.addInfo}},[_vm._v("新建调度命令")])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"机车名称"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.searchForm.lid),callback:function ($$v) {_vm.$set(_vm.searchForm, "lid", $$v)},expression:"searchForm.lid"}},_vm._l((_vm.lidList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"值班调度"}},[_c('el-select',{attrs:{"placeholder":"请选择调度员","clearable":""},model:{value:(_vm.searchForm.dispatch_id),callback:function ($$v) {_vm.$set(_vm.searchForm, "dispatch_id", $$v)},expression:"searchForm.dispatch_id"}},_vm._l((_vm.dispatchList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"车长"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.searchForm.master_id),callback:function ($$v) {_vm.$set(_vm.searchForm, "master_id", $$v)},expression:"searchForm.master_id"}},_vm._l((_vm.masterList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"司机"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.searchForm.driver_id),callback:function ($$v) {_vm.$set(_vm.searchForm, "driver_id", $$v)},expression:"searchForm.driver_id"}},_vm._l((_vm.driverList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1)],1),_vm._v(" "),_c('div',{staticClass:"select-from-inline"},[_c('el-form-item',[_c('el-button',{staticClass:"bluebtn",staticStyle:{"width":"145px"},attrs:{"type":"primary","icon":"el-icon-refresh-right"},on:{"click":_vm.onLoadPage}},[_vm._v("更新信息")])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"命令状态"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.searchForm.status),callback:function ($$v) {_vm.$set(_vm.searchForm, "status", $$v)},expression:"searchForm.status"}},[_c('el-option',{attrs:{"label":"新命令","value":"1"}}),_vm._v(" "),_c('el-option',{attrs:{"label":"已确认","value":"2"}}),_vm._v(" "),_c('el-option',{attrs:{"label":"已作废","value":"3"}})],1)],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"开始时间"}},[_c('el-date-picker',{attrs:{"type":"daterange","range-separator":"至","start-placeholder":"开始日期","end-placeholder":"结束日期","default-time":['00:00:00', '23:59:59']},model:{value:(_vm.searchForm.time_range),callback:function ($$v) {_vm.$set(_vm.searchForm, "time_range", $$v)},expression:"searchForm.time_range"}})],1),_vm._v(" "),_c('el-form-item',{staticClass:"form-so"},[_c('label',{staticClass:"el-form-item__label"}),_vm._v(" "),_c('el-button',{attrs:{"size":"small","icon":"el-icon-search","type":"primary"},on:{"click":_vm.getDataLists}},[_vm._v("查询")])],1)],1)])],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{attrs:{"data":_vm.dataList}},[_c('el-table-column',{attrs:{"prop":"number","label":"命令号"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"loco","label":"受令机长"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"master","label":"受令车长"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"driver","label":"受令司机"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"location","label":"受令处所"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"dispatch","label":"值班调度"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"status","label":"状态"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.status=='1')?_c('span',{staticClass:"statused"},[_vm._v("新命令")]):_vm._e(),_vm._v(" "),(scope.row.status=='2')?_c('span',{staticClass:"statused"},[_vm._v("已确认")]):_vm._e(),_vm._v(" "),(scope.row.status=='3')?_c('span',{staticClass:"statused"},[_vm._v("已作废")]):_vm._e()]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"create_time","min-width":"80","label":"发令时间"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"makesure_time","min-width":"80","label":"确认时间"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.makesure_time.length==0)?_c('span',[_vm._v("暂未确认")]):_c('span',[_vm._v(_vm._s(scope.row.makesure_time))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"240"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.goDetail(scope.row.id)}}},[_vm._v("详情")]),_vm._v(" "),_c('el-button',{staticClass:"btn-blue",attrs:{"disabled":scope.row.status == '3',"size":"mini"},on:{"click":function($event){_vm.goInvalid(scope.row.id,scope.$index)}}},[_vm._v("作废")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"title":"作废后才能删除","disabled":scope.row.status != '3',"size":"mini"},on:{"click":function($event){_vm.goDel(scope.row.id)}}},[_vm._v("删除")]),_vm._v(" "),_c('el-button',{staticClass:"btn-green",attrs:{"size":"mini"},on:{"click":function($event){_vm.goPrint(scope.row.id)}}},[_vm._v("打印")])],1)]}}])})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.dataList.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","page-size":this.page_size,"current-page":this.page_cur,"total":this.pageTotal,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.pageChange}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.toFirstPage}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.toLastPage}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1)],1)])])}
+var dispatch_staticRenderFns = []
+var dispatch_esExports = { render: dispatch_render, staticRenderFns: dispatch_staticRenderFns }
+/* harmony default export */ var views_dispatch = (dispatch_esExports);
+// CONCATENATED MODULE: ./src/views/dispatch/index.vue
+function dispatch_injectStyle (ssrContext) {
+  __webpack_require__("agI8")
+}
+var dispatch_normalizeComponent = __webpack_require__("VU/8")
+/* script */
+
+/* template */
+
+/* template functional */
+var dispatch___vue_template_functional__ = false
+/* styles */
+var dispatch___vue_styles__ = dispatch_injectStyle
+/* scopeId */
+var dispatch___vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var dispatch___vue_module_identifier__ = null
+var dispatch_Component = dispatch_normalizeComponent(
+  dispatch,
+  views_dispatch,
+  dispatch___vue_template_functional__,
+  dispatch___vue_styles__,
+  dispatch___vue_scopeId__,
+  dispatch___vue_module_identifier__
+)
+
+/* harmony default export */ var src_views_dispatch = __webpack_exports__["default"] = (dispatch_Component.exports);
 
 
 /***/ }),
 
-/***/ "mvHQ":
+/***/ "JtCB":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__("qkKv"), __esModule: true };
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("1Pr4");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("7e59d655", content, true);
 
 /***/ }),
 
-/***/ "qkKv":
+/***/ "KauB":
 /***/ (function(module, exports, __webpack_require__) {
 
-var core = __webpack_require__("FeBl");
-var $JSON = core.JSON || (core.JSON = { stringify: JSON.stringify });
-module.exports = function stringify(it) { // eslint-disable-line no-unused-vars
-  return $JSON.stringify.apply($JSON, arguments);
-};
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.app-page-select {\r\n  margin-bottom: 10px;\r\n  width: 100%;\n}\n.app-page-select .select-from-inline .el-form-item__label {\r\n  width: 70px;\n}\n.app-page-select .select-from-inline {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\n}\n.app-page-select .select-from-inline .el-form-item {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\n}\n.app-page-select .select-from-inline .bluebtn {\r\n  width: 120px;\r\n  margin-right: 20px;\n}\n.app-page-select .select-from-inline .redbtn {\r\n  background: #ff5c75;\r\n  width: 120px;\r\n  border-color: #ff5c75;\r\n  margin-right: 20px;\n}\n.app-page-select .select-from-inline .input {\r\n  width: auto;\n}\n.app-page-select .select-from-inline .form-so {\r\n  width: 29%;\r\n  text-align: right;\n}\n.app-page-select .select-from-inline .form-so .el-form-item__content {\r\n  width: 100%;\n}\n.app-page-select .select-from-inline .form-so .el-button- {\r\n  float: right;\n}\r\n\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "Yspe":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("BpVk");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("2f342b71", content, true);
+
+/***/ }),
+
+/***/ "agI8":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("KauB");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("5cd41b7b", content, true);
+
+/***/ }),
+
+/***/ "cGxR":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("vg2o");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("4ed54eb8", content, true);
+
+/***/ }),
+
+/***/ "cd7n":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n#dispatch-print .app-dialog-form {\r\n  padding: 30px 0px 30px 30px;\r\n  display: block;\r\n  margin-top: 1px;\n}\n#dispatch-print .app-dialog-form .el-form-item {\r\n  margin-bottom: 15px;\n}\n#dispatch-print .app-dialog-form .el-form-item__label {\r\n  width: 90px;\r\n  color: #1d397a;\n}\n#dispatch-print .app-dialog-form .contents {\r\n  display: block;\r\n  width: 100%;\n}\n#dispatch-print .app-dialog-form .contents .el-textarea {\r\n  width: 100%;\n}\n#dispatch-print .app-dialog-form .contents .el-form-item__content {\r\n  width: 723px;\n}\n#dispatch-print .conn {\r\n  border: 1px #9db9fa solid;\r\n  color: #4b6eca;\r\n  padding: 10px;\r\n  border-radius: 3px;\n}\n#dispatch-print .info {\r\n  color: #4b6eca;\n}\n#dispatch-print .app-dialog-footer {\r\n  text-align: center;\r\n  margin-top: 30px;\n}\n#dispatch-print .app-dialog-footer .el-button {\r\n  margin-right: 10px;\r\n  padding: 12px 80px;\r\n  font-size: 16px;\r\n  color: #fff;\n}\n#dispatch-print .app-dialog-footer .bluebtn {\r\n  background: #4b6eca;\r\n  border-color: #4b6eca;\r\n  margin-left: 10px;\n}\n#dispatch-print .app-dialog-footer .redbtn {\r\n  background: #ff5c75;\r\n  border-color: #ff5c75;\n}\n#dispatch-print .txt {\r\n  border: 1px #9db9fa solid;\r\n  color: #4b6eca;\r\n  height: 37px;\r\n  padding: 0 10px;\r\n  width: 200px;\r\n  border-radius: 3px;\n}\n#printMe .el-form-item__label {\r\n  width: 90px;\r\n  color: #1d397a;\n}\n#printMe p{color: #4b6eca\n}\n#printMe .txt{color: #4b6eca; width: 200px;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "h0b4":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("cd7n");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("1e3573a9", content, true);
+
+/***/ }),
+
+/***/ "jPpr":
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {var win;
+
+if (typeof window !== "undefined") {
+    win = window;
+} else if (typeof global !== "undefined") {
+    win = global;
+} else if (typeof self !== "undefined"){
+    win = self;
+} else {
+    win = {};
+}
+
+module.exports = win;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("DuR2")))
+
+/***/ }),
+
+/***/ "vA7V":
+/***/ (function(module, exports) {
+
+module.exports = {"_from":"videojs-swf@5.4.2","_id":"videojs-swf@5.4.2","_inBundle":false,"_integrity":"sha512-FGg+Csioa8/A/EacvFefBdb9Z0rSiMlheHDunZnN3xXfUF43jvjawcWFQnZvrv1Cs1nE1LBrHyUZjF7j2mKOLw==","_location":"/videojs-swf","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"videojs-swf@5.4.2","name":"videojs-swf","escapedName":"videojs-swf","rawSpec":"5.4.2","saveSpec":null,"fetchSpec":"5.4.2"},"_requiredBy":["/videojs-flash"],"_resolved":"https://registry.npmjs.org/videojs-swf/-/videojs-swf-5.4.2.tgz","_shasum":"6964a9bff903b732f3e465314ae478a02a17e8ab","_spec":"videojs-swf@5.4.2","_where":"D:\\my_codes\\subway_pre\\node_modules\\videojs-flash","author":{"name":"Brightcove"},"bugs":{"url":"https://github.com/videojs/video-js-swf/issues"},"bundleDependencies":false,"copyright":"Copyright 2014 Brightcove, Inc. https://github.com/videojs/video-js-swf/blob/master/LICENSE","deprecated":false,"description":"The Flash-fallback video player for video.js (http://videojs.com)","devDependencies":{"async":"~0.2.9","chg":"^0.3.2","flex-sdk":"4.6.0-0","grunt":"~0.4.0","grunt-bumpup":"~0.5.0","grunt-cli":"~0.1.0","grunt-connect":"~0.2.0","grunt-contrib-jshint":"~0.4.3","grunt-contrib-qunit":"~0.2.1","grunt-contrib-watch":"~0.1.4","grunt-npm":"~0.0.2","grunt-prompt":"~0.1.2","grunt-shell":"~0.6.1","grunt-tagrelease":"~0.3.1","qunitjs":"~1.12.0","video.js":"^5.9.2"},"homepage":"http://videojs.com","keywords":["flash","video","player"],"name":"videojs-swf","repository":{"type":"git","url":"git+https://github.com/videojs/video-js-swf.git"},"scripts":{"version":"chg release -y && grunt dist && git add -f dist/ && git add CHANGELOG.md"},"version":"5.4.2"}
+
+/***/ }),
+
+/***/ "vg2o":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n#dispatch-edit .app-dialog-form {\r\n  padding: 10px 0px 30px 30px;\r\n  display: block;\n}\n#dispatch-edit .app-dialog-form .el-form-item__label {\r\n  width: 100px;\n}\n#dispatch-edit .app-dialog-form .el-input input {\r\n  width: 240px;\n}\n#dispatch-edit .app-dialog-form .el-form--label-top .el-form-item__label {\r\n  padding-bottom: 5px;\n}\n#dispatch-edit .app-dialog-form .bluebtn {\r\n  margin-left: 10px;\n}\n#dispatch-edit .app-dialog-form .redbtn {\r\n  background: #ff5c75;\r\n  border-color: #ff5c75;\n}\n#dispatch-edit .app-dialog-form .contents-select {\r\n  text-align: right;\r\n  margin-right: 20px;\n}\n#dispatch-edit .app-dialog-form .contents-select .el-input input {\r\n  width: auto;\n}\n#dispatch-edit .app-dialog-form .contents-area {\r\n  display: block;\r\n  margin-right: 20px;\n}\n#dispatch-edit .app-dialog-form .contents-area .el-textarea {\r\n  width: 100%;\n}\n#dispatch-edit .app-dialog-form .contents-area .el-textarea__inner {\r\n  width: 100%;\r\n  height: 100px;\r\n  box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n  -moz-box-sizing: border-box;\n}\n#dispatch-edit .app-dialog-form .contents-area p {\r\n  color: #1d397a;\r\n  padding-bottom: 10px;\n}\n#dispatch-edit .app-dialog-form .el-form-item__error {\r\n  padding-top: 5px;\n}\n#dispatch-edit .app-dialog-footer {\r\n  margin-top: 20px;\r\n  margin-right: 20px;\n}\n#dispatch-edit .app-dialog-footer .tips {\r\n  color: #ff5c75;\r\n  font-size: 14px;\n}\n#dispatch-edit .app-dialog-footer .el-button {\r\n  float: right;\r\n  margin-right: 10px;\n}\n.app-dialog-temp .el-textarea__inner {\r\n  height: 120px;\r\n  width: 100%;\r\n  box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n  -moz-box-sizing: border-box;\n}\n.app-dialog-temp .el-textarea {\r\n  width: 100%;\n}\n.app-dialog-temp .el-form-item__error {\r\n  padding-top: 5px;\n}\n.app-dialog-temp .el-form-item {\r\n  margin-bottom: 25px;\n}\n.el-select-height .el-select-dropdown__wrap {\r\n  max-height: 200px;\n}\r\n", ""]);
+
+// exports
 
 
 /***/ })
