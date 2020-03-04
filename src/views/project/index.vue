@@ -72,11 +72,6 @@
             </el-form-item>
             <el-form-item label="线别" prop="line_type" v-if="workData.type == 1">
               <el-checkbox-group v-model="workData.line_type">
-                <!-- <el-checkbox label="1">左线</el-checkbox>
-                <el-checkbox label="2">右线</el-checkbox>
-                <el-checkbox label="3">入场线</el-checkbox>
-                <el-checkbox label="4">出场线</el-checkbox>-->
-
                 <el-checkbox
                   v-for="item in lineList"
                   :key="item.id"
@@ -410,18 +405,19 @@
                     :key="item.id"
                     :label="item.name"
                     :value="item.id"
-                  >{{item.name}}</el-option>
+                  ></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item label="线别" label-width="80px" prop="line_type" v-show="addShow">
-                <el-select v-model="historyData.line_type" clearable placeholder="请选择线别">
+                <el-select v-model="historyData.line_type" @change="historyLineTypeChange" clearable placeholder="请选择线别">
                   <el-option
                     v-for="item in selectedLineTypeLists"
                     :key="item.id"
                     :label="item.name"
                     :value="item.id"
-                  >{{item.name}}</el-option>
+                  ></el-option>
                 </el-select>
+                <div class="el-form-item__error">{{lineTypeDes}}</div>
               </el-form-item>
               <el-form-item label="计划里程" label-width="80px" prop="start_flag">
                 <b>DK</b>
@@ -548,6 +544,7 @@ export default {
       workVisible: false,
       lineList: [],
       workData: {
+        type:1,
         line_type: []
       },
       title: "添加作业信息",
@@ -612,6 +609,8 @@ export default {
         ]
       },
       selectedLineTypeLists: [],
+      lineTypeListDes:[],
+      lineTypeDes:'',
       addShow: true
     };
   },
@@ -665,6 +664,7 @@ export default {
     },
     initWorkData() {
       this.workData = {
+        type:1,
         line_type: []
       };
     },
@@ -733,7 +733,7 @@ export default {
       });
     },
     goDetail(id) {
-      this.title = "修改作业信息";
+      this.title = "修改信息";
       this.workVisible = true;
       this.request({
         url: "/project/getWorkDetail",
@@ -747,7 +747,7 @@ export default {
       });
     },
     deleteWork(id) {
-      this.$confirm("您确定删除?", "提示", {
+      this.$confirm("请确认要删除，删除后不可恢复", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
@@ -1008,15 +1008,30 @@ export default {
       this.historyTitle = "添加历史记录";
       this.initHistoryData();
       this.addShow = true;
+      this.lineTypeDes='';
     },
+  
     getTheLineType(value) {
       let selectedLineTypeLists = [];
+      let selectedLineTypeDes=[];
       this.lineTypeList.forEach(function(item) {
+       
         if (item.id == value) {
           selectedLineTypeLists = item.line_type_lists;
+           selectedLineTypeDes=item.des;
         }
       });
       this.selectedLineTypeLists = selectedLineTypeLists;
+      this.lineTypeListDes=selectedLineTypeDes;
+       //console.log(JSON.stringify(this.lineTypeListDes));
+    },
+      historyLineTypeChange(value){
+       this.lineTypeListDes.map((item,i)=>{
+          if (item.line_type == value) {
+            this.lineTypeDes=item.tip
+            //console.log(item.tip);
+          }
+       })
     },
     initHistoryData() {
       this.historyData = {};
@@ -1372,7 +1387,7 @@ export default {
   font-size: 18px;
 }
 .dialog-plan-add .pinput {
-  width: 60px;
+  width: 80px;
   height: 31px;
   border: 1px #9db9fa solid;
   text-align: center;
@@ -1458,9 +1473,10 @@ export default {
   width: auto;
 }
 .dialog-plan-detail .pinput input {
-  width: 80px;
+  width: 60px;
   text-align: center;
   margin: 0 3px;
+  padding:0 5px;
 }
 .dialog-plan-detail .el-form-item__label {
   color: #1d397a;

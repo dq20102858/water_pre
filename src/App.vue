@@ -101,7 +101,7 @@ ul,li{list-style-type: none}
 .el-dialog{border-radius: 6px; margin-top: 10vh!important;}
 .el-dialog__header{border-radius:6px 6px 0 0; background: #3655a5;text-align: center;padding:12px;}
 .el-dialog__title{color: #fff;font-size: 18px;}
-.el-dialog__headerbtn{top:16px; background: #1d397a;border-radius: 100%;height: 22px;width: 22px;padding: 2px;color:#fff;}
+.el-dialog__headerbtn{top:14px; right:14px; background: #1d397a;border-radius: 100%;height: 22px;width: 22px;padding: 2px;color:#fff;}
 .el-dialog__headerbtn .el-dialog__close {color: #fff;font-weight: 700;}
 .el-dialog__headerbtn:hover{background: #fff;color:#1d397a!important }
 .el-dialog__headerbtn:hover .el-dialog__close {color: #1d397a;}
