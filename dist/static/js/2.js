@@ -1,19 +1,5 @@
 webpackJsonp([2],{
 
-/***/ "5Ww5":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("NSdu");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("0946a762", content, true);
-
-/***/ }),
-
 /***/ "ARoL":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1491,15 +1477,10 @@ videojs_flash_es_Flash.VERSION = version$1;
       videoList: []
     };
   },
-
-
-  beforeDestroy: function beforeDestroy() {
-    var videoDom = this.$refs.myVideo; //不能用document 获取节点
-    this.$video(videoDom).dispose(); //销毁video实例，避免出现节点不存在 但是flash一直在执行，报 this.el.......is not function
-    this.myPlayer.dispose(); //销毁video实例
-  },
-  mounted: function mounted() {
-    this.initVideo();
+  updated: function updated() {
+    this.$nextTick(function () {
+      this.initVideo();
+    });
   },
   created: function created() {
     this.getVideos();
@@ -1524,31 +1505,42 @@ videojs_flash_es_Flash.VERSION = version$1;
 
       //初始化video
       this.videoList.map(function (item, i) {
-        var myPlayer = _this2.$video("myVideo" + item.id, {
+        var id = "myVideo" + item.id;
+        var myPlayer = _this2.$video(id, {
           //确定播放器是否具有用户可以与之交互的控件。没有控件，启动视频播放的唯一方法是使用autoplay属性或通过Player API。
           controls: true,
           //自动播放属性,muted:静音播放
           autoplay: true,
           //建议浏览器是否应在<video>加载元素后立即开始下载视频数据。
-          preload: "metadata"
+          preload: "none"
           //设置视频播放器的显示宽度（以像素为单位）
           // width: "400px",
-          //设置视频播放器的显示高度（以像素为单位）
-          //height: "200px"
+          // //设置视频播放器的显示高度（以像素为单位）
+          // height: "200px"
         });
       });
       //
     }
+  },
+  beforeDestroy: function beforeDestroy() {
+    var _this3 = this;
+
+    this.videoList.map(function (item, i) {
+      _this3.$video("myVideo" + item.id).dispose();
+    });
+    //const videoDom = this.$refs.myVideo;
+    //this.$video(videoDom).dispose(); //销毁video实例，避免出现节点不存在 但是flash一直在执行，报 this.el.......is not function
+    //this.myPlayer.dispose(); //销毁video实例
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-c58ba58c","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dashboard/index.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-video"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('el-row',{staticClass:"videolist",attrs:{"gutter":20}},_vm._l((_vm.videoList),function(item){return _c('el-col',{key:item.id,attrs:{"span":6}},[_c('div',{staticClass:"grid-content"},[_c('video',{ref:"myVideo",refInFor:true,staticClass:"video-js",attrs:{"id":'myVideo'+item.id}},[_c('source',{attrs:{"src":item.url,"type":"rtmp/flv"}})])]),_vm._v(" "),_c('div',{staticClass:"grid-title"},[_vm._v(_vm._s(item.name))])])}))],1)])}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-5454b90e","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dashboard/index.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-video"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('el-row',{attrs:{"gutter":20}},_vm._l((_vm.videoList),function(item,i){return _c('el-col',{key:i,attrs:{"span":6}},[_c('div',{staticClass:"grid-content"},[_c('video',{ref:"myVideo",refInFor:true,staticClass:"video-js",attrs:{"id":'myVideo'+item.id}},[_c('source',{attrs:{"src":item.url,"type":"rtmp/flv"}})])]),_vm._v(" "),_c('div',{staticClass:"grid-title"},[_vm._v(_vm._s(item.name))])])}))],1)])}
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-topbar"},[_c('ul',[_c('li',{staticClass:"active"},[_vm._v("视图")]),_vm._v(" "),_c('li',[_vm._v("云台控制")]),_vm._v(" "),_c('li',[_vm._v("设置")])])])}]
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ var views_dashboard = (esExports);
 // CONCATENATED MODULE: ./src/views/dashboard/index.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("5Ww5")
+  __webpack_require__("Yspe")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -1577,7 +1569,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ "NSdu":
+/***/ "BpVk":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("FZ+f")(false);
@@ -1585,10 +1577,24 @@ exports = module.exports = __webpack_require__("FZ+f")(false);
 
 
 // module
-exports.push([module.i, "\n.app-video .video-js {\n  background: none;\n  width: 100%;\n  height: 180px;\n}\n.videolist {\n  overflow: hidden;\n}\n.videolist .grid-content {\n  background: #000;\n  border-radius: 6px;\n  padding: 2px;\n}\n.videolist .el-row {\n  margin-bottom: 20px;\n}\n.videolist .el-row :last-child {\n  margin-bottom: 0;\n}\n.videolist .el-col {\n  border-radius: 4px;\n  margin-bottom: 20px;\n}\n.app-topbar {\n  height: 50px;\n  background: #fff;\n  text-align: center;\n}\n.grid-title {\n  color: #1d397a;\n  text-align: right;\n  line-height: 28px;\n}\n.app-topbar ul {\n  margin: 0 auto;\n}\n.app-topbar li {\n  color: #1d397a;\n  display: inline-block;\n  font-size: 16px;\n  line-height: 50px;\n  padding: 0 30px;\n  cursor: 0;\n}\n.app-topbar li.active {\n  background: #4b6eca;\n  color: #fff;\n}\n", ""]);
+exports.push([module.i, "\n.app-video .video-js {\r\n  background: none;\r\n  width: 100%;\r\n  height: 180px;\n}\n.videolist {\r\n  overflow: hidden;\n}\n.videolist .grid-content {\r\n  background: #000;\r\n  border-radius: 6px;\r\n  padding: 2px;\n}\n.videolist .el-row {\r\n  margin-bottom: 20px;\n}\n.videolist .el-row :last-child {\r\n  margin-bottom: 0;\n}\n.videolist .el-col {\r\n  border-radius: 4px;\r\n  margin-bottom: 20px;\n}\n.app-topbar {\r\n  height: 50px;\r\n  background: #fff;\r\n  text-align: center;\n}\n.grid-title {\r\n  color: #1d397a;\r\n  text-align: right;\r\n  line-height: 28px;\n}\n.app-topbar ul {\r\n  margin: 0 auto;\n}\n.app-topbar li {\r\n  color: #1d397a;\r\n  display: inline-block;\r\n  font-size: 16px;\r\n  line-height: 50px;\r\n  padding: 0 30px;\r\n  cursor: 0;\n}\n.app-topbar li.active {\r\n  background: #4b6eca;\r\n  color: #fff;\n}\r\n", ""]);
 
 // exports
 
+
+/***/ }),
+
+/***/ "Yspe":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("BpVk");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("2f342b71", content, true);
 
 /***/ }),
 
@@ -1616,7 +1622,7 @@ module.exports = win;
 /***/ "vA7V":
 /***/ (function(module, exports) {
 
-module.exports = {"_from":"videojs-swf@5.4.2","_id":"videojs-swf@5.4.2","_inBundle":false,"_integrity":"sha512-FGg+Csioa8/A/EacvFefBdb9Z0rSiMlheHDunZnN3xXfUF43jvjawcWFQnZvrv1Cs1nE1LBrHyUZjF7j2mKOLw==","_location":"/videojs-swf","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"videojs-swf@5.4.2","name":"videojs-swf","escapedName":"videojs-swf","rawSpec":"5.4.2","saveSpec":null,"fetchSpec":"5.4.2"},"_requiredBy":["/videojs-flash"],"_resolved":"https://registry.npmjs.org/videojs-swf/-/videojs-swf-5.4.2.tgz","_shasum":"6964a9bff903b732f3e465314ae478a02a17e8ab","_spec":"videojs-swf@5.4.2","_where":"/Users/dq20102828/Documents/my-project/pre/subway_pre/node_modules/videojs-flash","author":{"name":"Brightcove"},"bugs":{"url":"https://github.com/videojs/video-js-swf/issues"},"bundleDependencies":false,"copyright":"Copyright 2014 Brightcove, Inc. https://github.com/videojs/video-js-swf/blob/master/LICENSE","deprecated":false,"description":"The Flash-fallback video player for video.js (http://videojs.com)","devDependencies":{"async":"~0.2.9","chg":"^0.3.2","flex-sdk":"4.6.0-0","grunt":"~0.4.0","grunt-bumpup":"~0.5.0","grunt-cli":"~0.1.0","grunt-connect":"~0.2.0","grunt-contrib-jshint":"~0.4.3","grunt-contrib-qunit":"~0.2.1","grunt-contrib-watch":"~0.1.4","grunt-npm":"~0.0.2","grunt-prompt":"~0.1.2","grunt-shell":"~0.6.1","grunt-tagrelease":"~0.3.1","qunitjs":"~1.12.0","video.js":"^5.9.2"},"homepage":"http://videojs.com","keywords":["flash","video","player"],"name":"videojs-swf","repository":{"type":"git","url":"git+https://github.com/videojs/video-js-swf.git"},"scripts":{"version":"chg release -y && grunt dist && git add -f dist/ && git add CHANGELOG.md"},"version":"5.4.2"}
+module.exports = {"_from":"videojs-swf@5.4.2","_id":"videojs-swf@5.4.2","_inBundle":false,"_integrity":"sha512-FGg+Csioa8/A/EacvFefBdb9Z0rSiMlheHDunZnN3xXfUF43jvjawcWFQnZvrv1Cs1nE1LBrHyUZjF7j2mKOLw==","_location":"/videojs-swf","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"videojs-swf@5.4.2","name":"videojs-swf","escapedName":"videojs-swf","rawSpec":"5.4.2","saveSpec":null,"fetchSpec":"5.4.2"},"_requiredBy":["/videojs-flash"],"_resolved":"https://registry.npmjs.org/videojs-swf/-/videojs-swf-5.4.2.tgz","_shasum":"6964a9bff903b732f3e465314ae478a02a17e8ab","_spec":"videojs-swf@5.4.2","_where":"D:\\my_codes\\subway_pre\\node_modules\\videojs-flash","author":{"name":"Brightcove"},"bugs":{"url":"https://github.com/videojs/video-js-swf/issues"},"bundleDependencies":false,"copyright":"Copyright 2014 Brightcove, Inc. https://github.com/videojs/video-js-swf/blob/master/LICENSE","deprecated":false,"description":"The Flash-fallback video player for video.js (http://videojs.com)","devDependencies":{"async":"~0.2.9","chg":"^0.3.2","flex-sdk":"4.6.0-0","grunt":"~0.4.0","grunt-bumpup":"~0.5.0","grunt-cli":"~0.1.0","grunt-connect":"~0.2.0","grunt-contrib-jshint":"~0.4.3","grunt-contrib-qunit":"~0.2.1","grunt-contrib-watch":"~0.1.4","grunt-npm":"~0.0.2","grunt-prompt":"~0.1.2","grunt-shell":"~0.6.1","grunt-tagrelease":"~0.3.1","qunitjs":"~1.12.0","video.js":"^5.9.2"},"homepage":"http://videojs.com","keywords":["flash","video","player"],"name":"videojs-swf","repository":{"type":"git","url":"git+https://github.com/videojs/video-js-swf.git"},"scripts":{"version":"chg release -y && grunt dist && git add -f dist/ && git add CHANGELOG.md"},"version":"5.4.2"}
 
 /***/ })
 
