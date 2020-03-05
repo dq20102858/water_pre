@@ -461,6 +461,7 @@ export default {
   width: 185px;
   min-height: 38px;
 }
+
 .clblue {
   color: #4b6eca;
 }

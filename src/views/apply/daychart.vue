@@ -131,6 +131,7 @@ export default {
               scale: true,
               minInterval: 0.5,
               maxInterval: 5,
+             
               splitLine: {
                 show: false,
                 lineStyle: {
@@ -192,6 +193,7 @@ export default {
               {
                 type: "inside",
                 yAxisIndex: [0],
+                zoomOnMouseWheel:false,
                 start: 0,
                 end: 100
               }
