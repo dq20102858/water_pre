@@ -2,7 +2,7 @@
   <div id="app-apply">
     <div class="el-menu-top">
       <el-menu router default-active="daychart" mode="horizontal">
-        <li class="ptitle">无锡地铁三号线</li>
+        <li class="ptitle">{{projectName}}</li>
         <el-submenu index="1">
           <template slot="title">日班计划</template>
           <el-menu-item index="daychart">日班图表</el-menu-item>
@@ -27,6 +27,7 @@ export default {
   name: "daychart",
   data() {
     return {
+       projectName:'',
       mark_line: [],
       project_kind_name: [],
       kcolor: ["red", "green", "yellow", "#467aff", "#44ddb5", "#c245d3"]
@@ -35,7 +36,9 @@ export default {
   mounted() {
     this.getChart();
   },
-  created() {},
+  created() {
+    this.projectName= localStorage.getItem('projectName');
+  },
   methods: {
     getChart() {
       this.request({

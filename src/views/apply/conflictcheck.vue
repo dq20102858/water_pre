@@ -2,7 +2,7 @@
   <div id="app-apply">
     <div class="el-menu-top">
       <el-menu router mode="horizontal" default-active="conflictcheck">
-        <li class="ptitle">无锡地铁三号线</li>
+        <li class="ptitle">{{projectName}}</li>
         <el-submenu index="1" class="is-active">
           <template slot="title">日班计划</template>
           <el-menu-item index="daychart">日班图表</el-menu-item>
@@ -47,10 +47,12 @@ export default {
   name: "conflictcheck",
   data() {
     return {
+      projectName: "",
       checkList: []
     };
   },
   created() {
+     this.projectName= localStorage.getItem('projectName');
     this.getconflictCheck();
   },
   methods: {

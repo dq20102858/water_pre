@@ -2,7 +2,7 @@
   <div id="app-apply">
     <div class="el-menu-top">
       <el-menu router mode="horizontal">
-        <li class="ptitle">无锡地铁三号线</li>
+        <li class="ptitle">{{projectName}}</li>
         <el-submenu index="1" class="is-active">
           <template slot="title">日班计划</template>
           <el-menu-item index="daychart">日班图表</el-menu-item>
@@ -102,10 +102,11 @@
             <el-table-column prop="status" label="当前状态"></el-table-column>
             <el-table-column prop="next_status" label="下一步状态"></el-table-column>
             <el-table-column prop="company" label="公司简称"></el-table-column>
-            <el-table-column label="操作" width="80">
+            <el-table-column label="操作" width="140">
               <template slot-scope="scope">
                 <div class="app-operation">
-                  <el-button class="btn-blue" size="mini" @click="goDetail(scope.row.id)">详情</el-button>
+                  <el-button class="btn-blue" size="mini" @click="goDetail(scope.row.id)">完成</el-button>
+                  <el-button class="btn-red" size="mini" @click="goDetail(scope.row.id)">详情</el-button>
                 </div>
               </template>
             </el-table-column>
@@ -141,6 +142,7 @@ import detailForm from "./applydetail.vue";
 export default {
   data() {
     return {
+      projectName:'',
       page_cur: 1,
       pageTotal: 0,
       page_size: 20,
@@ -174,12 +176,27 @@ export default {
     };
   },
   created() {
+    this.getProjectName();
     this.getDataList();
     this.getCompanyList();
     this.getLineType(); //线别
     this.getStationList(); //车站
   },
   methods: {
+ getProjectName() {
+      this.request({
+        url: "/common/getItemDetail",
+        method: "get"
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.projectName = data.data.name;
+          localStorage.setItem('projectName', data.data.name);
+        }
+      });
+    },
+
+    
     getDataList() {
       let page = this.page_cur;
       let depart_id = this.searchForm.depart_id;
@@ -259,7 +276,7 @@ export default {
     },
     goDetail(id) {
       this.$layer.iframe({
-        area: ["890px", "590px"],
+        area: ["85%", "90%"],
         title: "调度命令详情",
         shadeClose: false,
         scrollbar: false,

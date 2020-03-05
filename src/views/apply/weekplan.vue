@@ -2,7 +2,7 @@
   <div id="app-apply">
     <div class="el-menu-top">
       <el-menu router default-active="weekplan" mode="horizontal">
-        <li class="ptitle">无锡地铁三号线</li>
+        <li class="ptitle">{{projectName}}</li>
         <el-submenu index="1">
           <template slot="title" style="font-size:16px;">日班计划</template>
           <el-menu-item index="daychart">日班图表</el-menu-item>
@@ -107,7 +107,6 @@
                 </div>
               </template>
             </el-table-column>
-            
           </el-table>
         </div>
       </div>
@@ -121,17 +120,13 @@
 </template>
 
 <script>
-import * as fecha from 'element-ui/lib/utils/date';
+import * as fecha from "element-ui/lib/utils/date";
 export default {
   name: "weekplan",
 
   data() {
-    const item = {
-      txt: "测试数据库",
-      datatimes: "2019-02-16"
-    };
     return {
-      tableData: Array(10).fill(item),
+      projectName: "",
       isParent: true,
       page_cur: 1,
       pageTotal: 0,
@@ -147,6 +142,7 @@ export default {
     };
   },
   created() {
+    this.projectName= localStorage.getItem('projectName');
     this.getCompanyList();
     this.getWeekList();
   },
@@ -214,7 +210,9 @@ export default {
       this.isParent = true;
     },
     dateFormat(row, column, cellValue) {
-      return cellValue ? fecha.format(new Date(cellValue), "yyyy年MM月dd日") : "";
+      return cellValue
+        ? fecha.format(new Date(cellValue), "yyyy年MM月dd日")
+        : "";
     }
     //end
   }
