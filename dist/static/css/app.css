@@ -872,7 +872,7 @@ ul,li{list-style-type: none
 }
 .app-table .el-table__body-wrapper tr td{color: #1D397A;
 }
-.app-operation{display: inline;white-space: nowrap
+.app-operation{white-space: nowrap;text-align: right;
 }
 .app-operation .btn-blue{ border: 1px #4b6eca solid;color: #1d397a
 }
@@ -977,7 +977,7 @@ ul,li{list-style-type: none
 }
 .el-menu-top li {color: #1d397a;font-size: 16px;
 }
-.el-menu-top .ptitle {float: left;line-height: 61px;padding-left: 120px;padding-right: 60px;font-weight: 700;font-size: 18px;
+.el-menu-top .ptitle {float: left;min-width: 120px; line-height: 61px;padding-left: 120px;padding-right: 60px;font-weight: 700;font-size: 18px;
 }
 .el-menu-top .ptitle img {width: 18px;margin-right: 5px;display: inline-block;vertical-align: text-top;
 }
