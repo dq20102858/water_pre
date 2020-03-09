@@ -98,7 +98,7 @@
           <el-table :data="dataList">
             <el-table-column prop="number" label="作业编号"></el-table-column>
             <el-table-column prop="command_num" label="作业令号"></el-table-column>
-            <el-table-column prop="description" label="作业内容"></el-table-column>
+            <el-table-column prop="description" label="作业内容"  show-overflow-tooltip></el-table-column>
             <el-table-column prop="status" label="当前状态"></el-table-column>
             <el-table-column prop="next_status" label="下一步状态"></el-table-column>
             <el-table-column prop="company" label="公司简称"></el-table-column>
@@ -232,7 +232,7 @@ export default {
     },
     pageChange(value) {
       this.page_cur = value;
-      this.getDataLists();
+      this.getDataList();
     },
     toFirstPage() {
       this.pageChange(1);
