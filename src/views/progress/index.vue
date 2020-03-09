@@ -17,7 +17,7 @@
           <span class="lineStyle"></span>
         </div>
       </div>
-    </div> -->
+    </div>-->
     <!-- <div class="ptable">
       <table>
         <tr>
@@ -151,7 +151,7 @@ export default {
       cansText.lineTo(canvasWidth, 300);
       cansText.stroke();
       //起终点里程
-      cansText.lineWidth =2;
+      cansText.lineWidth = 2;
       cansText.moveTo(0, 245);
       cansText.lineTo(0, 365);
       cansText.stroke();
@@ -161,7 +161,7 @@ export default {
 
       //Station=====================Station
       let json = this.stationList.reverse();
-       console.log(JSON.stringify(json));
+      console.log(JSON.stringify(json));
       //找到最大数与最小数
       let first = json[0];
       let end = json[0];
@@ -181,7 +181,7 @@ export default {
       console.log("每米长度：" + every);
       let img = new Image();
       img.src = require("@/assets/image/sta.png");
-     
+
       img.onload = function() {
         let start = 0;
         for (let i = 0; i < json.length; i++) {
@@ -225,10 +225,11 @@ export default {
         }
       }
       console.log("lineData:" + lineData);
-      let from0 = "DK" + lineData[0].start_flag +"+"+ lineData[0].start_length,
-        end0 = "DK" + lineData[0].end_flag +"+"+ lineData[0].end_length,
-        from1 = "DK" + lineData[1].start_flag +"+"+ lineData[1].start_length,
-        end1 = "DK" + lineData[1].end_flag +"+"+ lineData[1].end_length,
+      let from0 =
+          "DK" + lineData[0].start_flag + "+" + lineData[0].start_length,
+        end0 = "DK" + lineData[0].end_flag + "+" + lineData[0].end_length,
+        from1 = "DK" + lineData[1].start_flag + "+" + lineData[1].start_length,
+        end1 = "DK" + lineData[1].end_flag + "+" + lineData[1].end_length,
         name0 = lineData[0].name,
         name1 = lineData[1].name;
 
@@ -317,8 +318,10 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
 };
 </script>
 <style>
+.sttitle{color: #fff; padding: 22px 0 0 25px;font-size: 24px;}
 #progress {
   background: #081c33;
+  height: 100vh;
 }
 .canvasbox {
   margin-left: 200px;

@@ -98,14 +98,26 @@
           <el-table :data="dataList">
             <el-table-column prop="number" label="作业编号"></el-table-column>
             <el-table-column prop="command_num" label="作业令号"></el-table-column>
-            <el-table-column prop="description" label="作业内容"  show-overflow-tooltip></el-table-column>
+            <el-table-column prop="description" label="作业内容" show-overflow-tooltip></el-table-column>
             <el-table-column prop="status" label="当前状态"></el-table-column>
             <el-table-column prop="next_status" label="下一步状态"></el-table-column>
             <el-table-column prop="company" label="公司简称"></el-table-column>
             <el-table-column label="操作" width="140">
               <template slot-scope="scope">
                 <div class="app-operation">
-                  <el-button class="btn-blue" size="mini" @click="goDetail(scope.row.id)">完成</el-button>
+                  <el-button
+                    v-if="scope.row.status=='未批复'"
+                    class="btn-blue"
+                    size="mini"
+                    @click="goApply(scope.row.id,scope.row.company)"
+                  >审批</el-button>
+                  <!-- <el-button v-if="scope.row.status!='未批复'" class="btn-blue" size="mini" disabled>审批</el-button> -->
+                  <el-button
+                    v-if="scope.row.status=='同意'"
+                    class="btn-blue"
+                    size="mini"
+                    @click="goApplyOk(scope.row.id,scope.row.company)"
+                  >完成</el-button>
                   <el-button class="btn-red" size="mini" @click="goDetail(scope.row.id)">详情</el-button>
                 </div>
               </template>
@@ -135,6 +147,20 @@
         <!-- end table -->
       </div>
     </div>
+    <el-dialog title="审批" :visible.sync="dialogVisible" width="30%" center>
+      <span>请选择审批状态？</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="ApplyClick(dialogId,2)">同意</el-button>
+        <el-button @click="ApplyClick(dialogId,3)">拒绝</el-button>
+      </span>
+    </el-dialog>
+    <el-dialog title="审批" :visible.sync="dialogVisibleOk" width="30%" center>
+      <span>完成请点击确认？</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="ApplyClick(dialogId,4)">完成</el-button>
+        <el-button @click="dialogVisibleOk=false">取消</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -142,7 +168,7 @@ import detailForm from "./applydetail.vue";
 export default {
   data() {
     return {
-      projectName:'',
+      projectName: "",
       page_cur: 1,
       pageTotal: 0,
       page_size: 20,
@@ -172,7 +198,11 @@ export default {
         end_station: "",
         time_range: [],
         status: ""
-      }
+      },
+      dialogVisible: false,
+      dialogVisibleOk:false,
+      dialogId: 0,
+      dialogContent: ""
     };
   },
   created() {
@@ -183,7 +213,7 @@ export default {
     this.getStationList(); //车站
   },
   methods: {
- getProjectName() {
+    getProjectName() {
       this.request({
         url: "/common/getItemDetail",
         method: "get"
@@ -191,12 +221,11 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.projectName = data.data.name;
-          localStorage.setItem('projectName', data.data.name);
+          localStorage.setItem("projectName", data.data.name);
         }
       });
     },
 
-    
     getDataList() {
       let page = this.page_cur;
       let depart_id = this.searchForm.depart_id;
@@ -286,6 +315,41 @@ export default {
           data: { iframeData: { id: id } }
         }
       });
+    },
+    goApply(id, company) {
+      this.dialogVisible = true;
+      this.dialogId = id;
+      this.dialogContent = company;
+    },
+    goApplyOk(id, company) {
+      this.dialogVisibleOk = true;
+      this.dialogId = id;
+      this.dialogContent = company;
+    },
+    ApplyClick(id, status) {
+      this.request({
+        url: "/apply/changeStatus",
+        method: "POST",
+        data: { id: id, status: status }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.$message({
+            type: "success",
+            message: "恭喜您，操作成功"
+          });
+          this.dialogVisible = false;
+          this.dialogVisibleOk=false;
+          this.getDataList();
+        } else {
+          this.$message({
+            type: "success",
+            message: "审批失败"
+          });
+          this.dialogVisible = false;
+          this.dialogVisibleOk=false;
+        }
+      });
     }
   }
 };
@@ -306,5 +370,27 @@ export default {
   text-align: right;
   color: #1d397a;
   padding-bottom: 20px;
+}
+#app-apply .el-dialog__footer {
+  text-align: center;
+}
+.confirmButtonClass {
+  font-size: 14px;
+  padding: 8px 15px;
+  background: #ff5c75 !important;
+  border-color: #ff5c75 !important;
+  margin-left: 15px !important;
+}
+.cancelButtonClass {
+  padding: 8px 15px;
+  font-size: 14px;
+  background: #1d397a;
+  border-color: #1d397a;
+  color: #fff;
+}
+.cancelButtonClass:hover {
+  background: #1d397a;
+  border-color: #1d397a;
+  color: #fff;
 }
 </style>

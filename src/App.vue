@@ -60,7 +60,7 @@ ul,li{list-style-type: none}
 .app-table .el-table__body-wrapper {border:1px #e7eeff solid}
 .app-table .el-table__body-wrapper tr:nth-child(odd){background:#e7eeff;}
 .app-table .el-table__body-wrapper tr td{color: #1D397A;}
-.app-operation{display: inline;white-space: nowrap}
+.app-operation{white-space: nowrap;text-align: right;}
 .app-operation .btn-blue{ border: 1px #4b6eca solid;color: #1d397a}
 .app-operation .btn-red{border: 1px #ff5c75 solid;color: #ff5c75}
 .app-operation .btn-green{border: 1px #27db07 solid;color: #243f7e}
