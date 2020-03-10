@@ -7,67 +7,22 @@
         <p>您的系统不支持此程序!</p>
       </canvas>
     </div>
-    <!-- <div class="canvasbox">
-      <div style="position: relative;text-align: left;padding-left: 66px;">
-        <canvas id="myCanvas" width="1000" height="400" style="border: 2px solid #ddd;">
-          <p>您的系统不支持此程序!</p>
-        </canvas>
-        <div id="alertDataDiv">
-          <span id="alertDataSpan"></span>
-          <span class="lineStyle"></span>
-        </div>
+    <div class="linebar" v-for="item in listSchedule" :key="item.id">
+      <div class="title">{{item.name}}</div>
+      <div class="bar" v-for="lines in item.lines" :key="lines.id">
+        <span>{{lines.name}}</span>
+        <em :style="{width: cwidth + 'px' }" v-html="lineFill(lines.lists)">
+          <!-- <i v-for="lists in lines.lists" :key="lists.id" :style="{{lineFill(lists.start_flag)}}"></i> -->
+        </em>
       </div>
-    </div>-->
-    <!-- <div class="ptable">
-      <table>
-        <tr>
-          <td class="thone">1</td>
-          <td colspan="2">2</td>
-        </tr>
-        <tr>
-          <td rowspan="3" class="thone">1</td>
-          <td>2</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td class="thone">1</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td class="thone">1</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td rowspan="3" class="thone">1</td>
-          <td>2</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td class="thone">1</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td class="thone">1</td>
-          <td>2</td>
-        </tr>
-      </table>
-    </div>-->
-
-    <!-- <div id="imgDiv">
-        <div id="img1Div">
-          <img id="img1" src />
-        </div>
-
-        <div id="img2Div">
-          <img id="img2" src />
-        </div>
-    </div>-->
+    </div>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
+      cwidth: 0,
       stationList: [],
       lineList: [],
       lineTypeList: [
@@ -103,7 +58,10 @@ export default {
           end_flag: 0,
           end_length: 0
         }
-      ]
+      ],
+      listSchedule: [],
+      minMileage: 0,
+      every: 0
     };
   },
   created() {
@@ -137,6 +95,7 @@ export default {
     getStationList() {
       let clientWidth = this.$refs.proWrapper.clientWidth;
       let canvasWidth = clientWidth - 200;
+      this.cwidth = canvasWidth;
       console.log("canvasWidth" + canvasWidth);
       const canvas = this.$refs.canvasStation;
       let cansText = canvas.getContext("2d");
@@ -151,17 +110,13 @@ export default {
       cansText.lineTo(canvasWidth, 300);
       cansText.stroke();
       //起终点里程
-      cansText.lineWidth = 2;
-      cansText.moveTo(0, 245);
-      cansText.lineTo(0, 365);
-      cansText.stroke();
-      // cansText.moveTo(1729, 215);
-      // cansText.lineTo(1729, 365);
+      // cansText.lineWidth = 3;
+      // cansText.moveTo(0, 245);
+      // cansText.lineTo(0, 380);
       // cansText.stroke();
-
       //Station=====================Station
-      let json = this.stationList.reverse();
-      console.log(JSON.stringify(json));
+      let json = this.stationList;
+      console.log(JSON.stringify(json))
       //找到最大数与最小数
       let first = json[0];
       let end = json[0];
@@ -170,15 +125,20 @@ export default {
         if (first.start_flag > tmp.start_flag) first = tmp;
         if (end.start_flag < tmp.start_flag) end = tmp;
       }
+
       // 总里程（最大数 - 最小数)
       let mileage =
         (end.start_flag - first.start_flag) * 1000 +
         end.start_length -
         first.start_length;
-      console.log("mileage：" + mileage);
+      console.log("总里程mileage：" + mileage);
+      this.minMileage = first.start_flag * 1000 + first.start_length; //最小里程
+      console.log("最小里程minMileage：" + this.minMileage);
       //每米长度
       let every = (canvasWidth / mileage).toFixed(5);
-      console.log("每米长度：" + every);
+      this.every = every;
+      console.log("每米长度every：" + every);
+      //
       let img = new Image();
       img.src = require("@/assets/image/sta.png");
 
@@ -190,12 +150,15 @@ export default {
           let total =
             parseInt(json[i].start_flag) * 1000 +
             parseInt(json[i].start_length);
-          //console.log("total：" + total);
+          //  console.log("total：" + total);
           // 计算当前站点的x轴
           let startX = total * every;
-          // 不知什么原因，粗线向右移动了100像素，所以需要修正x轴
-          if (i == 0) start = startX - 126; //从左侧126像素开始绘制
+          // 粗线向右移动了100像素，所以需要修正x轴
+          if (i == 0) start = startX; //从左侧126像素开始绘制
+          //console.log("startX:" + startX);
+          //console.log("start:" + start);
           cansText.drawImage(img, startX - start, 126, 22, 120);
+          //console.log("startX-start:" + parseInt(startX - start));
           //站名
           cansText.font = "16px Microsoft Yahei";
           cansText.fillStyle = "#0AE39A";
@@ -211,7 +174,7 @@ export default {
           let codes = "DK" + json[i].start_flag + " +" + json[i].start_length;
           cansText.fillStyle = "#fff";
           cansText.font = "12px  Microsoft Yahei";
-          cansText.fillTextVertical(codes, startX - start - 3, 165);
+          cansText.fillTextVertical(codes, startX - start + 20, 165);
         }
       };
 
@@ -248,7 +211,77 @@ export default {
       cansText.fillText(end0, canvasWidth, 270);
       cansText.fillText(from1, 60, 320);
       cansText.fillText(name1, 5, 320);
-      cansText.fillText(end1, 1693 - endLength, 290);
+      cansText.fillText(end1, 1193 - endLength, 290);
+      //Line=====================workline
+      let datas = [
+        {
+          name: "焊接1",
+          lines: [
+            {
+              name: "左线1",
+              lists: [
+                {
+                  start_flag: "21",
+                  start_length: "370",
+                  end_flag: "22",
+                  end_length: "520"
+                },
+                {
+                  start_flag: "23",
+                  start_length: "300",
+                  end_flag: "23",
+                  end_length: "500"
+                }
+              ]
+            },
+            {
+              name: "右线1",
+              lists: [
+                {
+                  start_flag: "30",
+                  start_length: "100",
+                  end_flag: "30",
+                  end_length: "500"
+                },
+                {
+                  start_flag: "33",
+                  start_length: "20",
+                  end_flag: "33",
+                  end_length: "400"
+                }
+              ]
+            }
+          ]
+        }
+      ];
+
+      this.listSchedule = datas;
+
+      //
+    },
+    lineFill: function(paras) {
+      let result = "";
+      let start = 0;
+      for (let i = 0; i < paras.length; i++) {
+        let starMileage =
+          parseInt(paras[i].start_flag) * 1000 +
+          parseInt(paras[i].start_length);
+        let endMileage =
+          parseInt(paras[i].end_flag) * 1000 + parseInt(paras[i].end_length);
+        let leftPosition = (parseInt(starMileage - this.minMileage) * this.every)+10;
+        let widthPosition = parseInt(endMileage - starMileage) * this.every;
+        console.log("starNum:" + starMileage + " endNum:" + endMileage);
+        console.log(
+          "leftPosition:" + leftPosition + " widthPosition:" + widthPosition
+        );
+        result +=
+          "<i style='width:" +
+          widthPosition +
+          "px;left:" +
+          leftPosition +
+          "px'>";
+      }
+      return result;
     }
   },
   mounted() {
@@ -318,33 +351,51 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
 };
 </script>
 <style>
-.sttitle{color: #fff; padding: 22px 0 0 25px;font-size: 24px;}
+.sttitle {
+  color: #fff;
+  padding: 22px 0 0 25px;
+  font-size: 24px;
+}
 #progress {
   background: #081c33;
   height: 100vh;
 }
-.canvasbox {
-  margin-left: 200px;
-  margin-top: 300px;
-  border-left: 3px #fff solid;
-}
+
 .station {
-  margin: 100px;
+  margin: 100px 100px 0px 100px;
 }
 
-.ptable {
-  margin: 0px 100px 100px 100px;
+.linebar {
+  overflow: hidden;
 }
-.ptable table {
-  border-collapse: collapse;
-  width: 100%;
+.linebar .title {
+  margin-left: 102px;
+  color: #fff;
+  font-weight: 700;
+  color: #fff;
 }
-.ptable table td {
-  border: 2px solid #fff;
-  line-height: 30px;
-  padding: 10px;
+.linebar .bar {
+  margin-bottom: 10px;
 }
-.ptable table .thone {
-  width: 200px;
+.linebar .bar span {
+  width: 96px;
+  font-size: 12px;
+  text-align: right;
+  color: #fff;
+  display: inline-block;
 }
+.linebar .bar em {
+  border: 1px #27db07 solid;
+  height: 10px;
+  display: inline-block;
+  position: relative;
+}
+.linebar .bar em i {
+  position: absolute;
+  top: 0;
+  background: #27db07;
+  height: 8px;
+  display: inline-block;
+}
+/* //#27DB07 */
 </style>
