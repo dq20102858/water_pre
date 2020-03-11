@@ -11,7 +11,7 @@
 						<b>作业编号：</b>
 					</td>
 					<td class="auto-style3 clblue" rowspan="2">{{ dataInfo.number}}</td>
-					<td class="auto-style3" rowspan="2">施工单位:{{dataInfo.company}}/td>
+					<td class="auto-style3" rowspan="2">施工单位:{{dataInfo.company}}</td>
 					<td>是否需要动车： <b v-if="dataInfo.is_need_car==0">否</b>
                     <b v-if="dataInfo.is_need_car==1">是</b></td>
 					<td>是否需要动火： <b v-if="dataInfo.is_need_fire==0">否</b>
@@ -124,7 +124,7 @@
 						<b>保护措施：</b>
 					</td>
 					<td colspan="2" rowspan="3">
-						<div class="textoverflow">{{dataInfo.attention}}</div>
+						<div class="textoverflow">{{funIsEmpty(dataInfo.attention)}}</div>
 						</td>
 					<td colspan="2" style="text-align: center">
 						<b>其他信息</b>
@@ -132,26 +132,26 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-					<div class="textoverflow" style="max-width:400px">{{dataInfo.other}}</div>
+					<div class="textoverflow" style="max-width:400px">{{funIsEmpty(dataInfo.other)}}</div>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						监理确认并签字：
+						监理确认并签字：{{funIsEmpty(dataInfo.supervisor)}}
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2" rowspan="2">
-						<b>承运人签名（章）：</b>
+						<b>承运人签名（章）：</b>暂无
 					</td>
 					<td style="width:200px;">审批人：{{dataInfo.approver}}</td>
-					<td style="width:200px;">消点人:</td>
-					<td style="width:200px;">批准人：{{dataInfo.logout}}</td>
+					<td style="width:200px;">消点人:{{dataInfo.logout}}</td>
+					<td style="width:200px;">注销人：{{dataInfo.logoff}}</td>
 				</tr>
 				<tr>
 					<td>审批时间：{{dataInfo.approve_time}}</td>
-					<td>消点时间：</td>
-					<td>批准时间：{{dataInfo.logout_time}}</td>
+					<td>消点时间：{{dataInfo.logout_time}}</td>
+					<td>注销时间：{{dataInfo.logoff_time}}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -189,8 +189,8 @@
                 <label class="labels">联系电话：</label>
                 <span
                   class="input"
-                  style="width:550px;"
-                >{{ dataInfo.phone}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;带领 ( {{dataInfo.worker_num}} ) 人进行以下工作：</span>
+                  style="width:250px;"
+                >{{ dataInfo.phone}}</span><label class="labels">带领 ( {{dataInfo.worker_num}} ) 人进行以下工作：</label>
               </div>
               <div class="item">
                 <label class="labels">A区域/车辆：</label>
@@ -213,13 +213,13 @@
               <div class="item">
                 <label class="labels">B工作内容：</label>
                 <div class="conn">
-                  <em>{{dataInfo.description}}</em>
+                  <em>{{funIsEmpty(dataInfo.description)}}</em>
                 </div>
               </div>
               <div class="item">
                 <label class="labels">C安全措施及注意事项：</label>
                 <div class="conn">
-                  <em>{{dataInfo.attention}}</em>
+                  <em>{{funIsEmpty(dataInfo.attention)}}</em>
                 </div>
               </div>
               <div class="item">
@@ -252,7 +252,7 @@
               >本单位及本人谨此声明：愿意在规定时间内完成上述工作，并确保本人属下员工遵守上述安全措施，同时本人或本人属 下员工不会试图损坏其它单位的设备，在其它区域或车辆上工作。</div>
               <div class="singn">
                 <span class="pull-left">工点负责人（签名）{{dataInfo.p_in_charge}}</span>
-                <span class="pull-right">暂无</span>
+                <span class="pull-right">{{dataInfo.create_time}}</span>
               </div>
             </div>
           </el-timeline-item>
@@ -300,9 +300,9 @@
               <div class="singn lines">
                 <span class="pull-left">
                   批准人（签名）
-                  <b>{{dataInfo.logout}}</b>
+                  <b>{{dataInfo.logoff}}</b>
                 </span>
-                <span class="pull-right">{{dataInfo.logout_time}}</span>
+                <span class="pull-right">{{dataInfo.logoff_time}}</span>
               </div>
             </div>
           </el-timeline-item>
@@ -354,7 +354,17 @@ export default {
     },
     isCancel() {
       this.$layer.close(this.layerid);
-    }
+    },
+    funIsEmpty(item){
+       if( Object.keys(item).length==0)
+       {
+         return "暂无";
+       }
+       else
+       {
+         return item;
+       }
+    },
   }
 };
 </script>

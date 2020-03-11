@@ -89,10 +89,10 @@
             </div>
             <div class="el-form-item-inline">
               <el-form-item label="计划开始时间" prop="start_time">
-                <el-date-picker v-model="workData.start_time" type="date" placeholder="选择日期"></el-date-picker>
+                <el-date-picker  @change="changeStarttime" v-model="workData.start_time" type="date" placeholder="选择日期"></el-date-picker>
               </el-form-item>
               <el-form-item label="计划结束时间" prop="end_time">
-                <el-date-picker v-model="workData.end_time" type="date" placeholder="选择日期"></el-date-picker>
+                <el-date-picker  @change="changeEndtime" v-model="workData.end_time" type="date" placeholder="选择日期"></el-date-picker>
               </el-form-item>
             </div>
             <div class="blank"></div>
@@ -549,7 +549,8 @@ export default {
       },
       title: "添加作业信息",
       wokRules: {
-        name: [{ required: true, message: "请输入名称", trigger: "blur" }],
+        name: [{ required: true, message: "请输入名称3~60个字符", trigger: "blur" },
+        { min: 3, max:60, message: '长度在3到60个字符', trigger: 'blur' }],
         type: [{ required: true, message: "请选择类别", trigger: "change" }],
         line_type: [
           { required: true, message: "请选择线别", trigger: "change" }
@@ -560,7 +561,8 @@ export default {
         end_time: [
           { required: true, message: "请选择日期", trigger: "change" }
         ],
-        total: [{ required: true, message: "请输入设计总量", trigger: "blur" }],
+        total: [{ required: true, message: "请输入设计总量", trigger: "blur" },
+         { type: 'number', message: '请输入数字'}],
         unit: [{ required: true, message: "请输入单位", trigger: "blur" }]
       },
       lineVisible: false, //查看线别
@@ -611,7 +613,8 @@ export default {
       selectedLineTypeLists: [],
       lineTypeListDes:[],
       lineTypeDes:'',
-      addShow: true
+      addShow: true,
+    
     };
   },
   created() {
@@ -1294,7 +1297,20 @@ export default {
           //end
         }
       });
-    }
+    },
+    changeStarttime(){
+      if (this.workData.start_time>this.workData.end_time) {
+      this.$message.error('开始日期不能大于结束日期');
+      this.workData.start_time="";
+     }
+    },
+    changeEndtime(){
+      if (this.workData.end_time < this.workData.start_time) {
+      this.$message.error('结束日期需大于开始日期');
+      this.workData.end_time="";
+     }
+  }
+    //
   }
 };
 </script>
