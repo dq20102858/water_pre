@@ -11,7 +11,7 @@
 						<b>作业编号：</b>
 					</td>
 					<td class="auto-style3 clblue" rowspan="2">{{ dataInfo.number}}</td>
-					<td class="auto-style2" rowspan="2">施工单位:{{dataInfo.company}}/td>
+					<td class="auto-style3" rowspan="2">施工单位:{{dataInfo.company}}/td>
 					<td>是否需要动车： <b v-if="dataInfo.is_need_car==0">否</b>
                     <b v-if="dataInfo.is_need_car==1">是</b></td>
 					<td>是否需要动火： <b v-if="dataInfo.is_need_fire==0">否</b>
@@ -31,9 +31,9 @@
 					<td colspan="2" >
              <!--  -->
 						<div>
-              联系人：<span class="clblue">{{dataInfo.contact}}</span> 联系电话： <span class="clblue">{{dataInfo.phone}}</span></div>
-						<div v-for="item in dataInfo.holder" :key="item.id">持证人：<span class="clblue">{{item.name}}</span> 联系电话：<span class="clblue">{{item.phone}}</span></div>
-						<div>负责人：<span class="clblue">{{dataInfo.p_in_charge}}</span> 联系电话：<span class="clblue">{{dataInfo.p_in_charge_phone}}</span></div>
+              联系人：<span  style="width:120px;display:inline-block" class="clblue">{{dataInfo.contact}}</span> 联系电话： <span class="clblue">{{dataInfo.phone}}</span></div>
+						<div v-for="item in dataInfo.holder" :key="item.id">持证人：<span  style="width:120px;display:inline-block" class="clblue">{{item.name}}</span> 联系电话：<span class="clblue">{{item.phone}}</span></div>
+						<div>负责人：<span  style="width:120px;display:inline-block" class="clblue">{{dataInfo.p_in_charge}}</span> 联系电话：<span class="clblue">{{dataInfo.p_in_charge_phone}}</span></div>
 					</td>
 					<td>人数 <span class="clblue">{{dataInfo.worker_num}}人</span></td>
 				</tr>
@@ -142,12 +142,12 @@
 						<b>承运人签名（章）：</b>
 					</td>
 					<td style="width:200px;">批准人：{{dataInfo.approver}}</td>
-					<td style="width:200px;">销点人:</td>
+					<td style="width:200px;">消点人:</td>
 					<td style="width:200px;">批准人：{{dataInfo.logout}}</td>
 				</tr>
 				<tr>
 					<td>批准时间：{{dataInfo.approve_time}}</td>
-					<td>销点时间：</td>
+					<td>消点时间：</td>
 					<td>批准时间：{{dataInfo.logout_time}}</td>
 				</tr>
 			</tbody>
@@ -210,7 +210,7 @@
               <div class="item">
                 <label class="labels">B工作内容：</label>
                 <div class="conn">
-                  <em>人防门调试。油漆，工具包，电焊机，脚手架。人防门调试。油漆，工具包，电焊机，脚手架。人防门调试。油漆，工具包，电焊机，脚手架。人防门调试。油漆，工具包，电焊机，脚手架。</em>
+                  <em>{{dataInfo.description}}</em>
                 </div>
               </div>
               <div class="item">
@@ -264,7 +264,7 @@
               <div class="itemconn">兹批准此许可证生效，或按红笔修改的执行。</div>
               <div class="singn lines">
                 <span class="pull-left">批准人（签名）{{dataInfo.approver}}</span>
-                <span class="pull-right">暂无</span>
+                <span class="pull-right">{{dataInfo.approve_time}}</span>
               </div>
             </div>
           </el-timeline-item>
@@ -280,8 +280,8 @@
                 class="itemconn"
               >本人谨此声明：⑴ 此进场作业许可证所述工作现已完成，本人及属下员工已经撤离，安全措施已经撤除，并已被告之在轨道区域/车辆上工作已不再安全。⑵ 完成情况及所有故障/损坏已经书面呈报。</div>
               <div class="singn lines">
-                <span class="pull-left">工点负责人（签名）</span>
-                <span class="pull-right">暂无</span>
+                <span class="pull-left">工点负责人（签名）{{dataInfo.approver}}</span>
+                <span class="pull-right">{{dataInfo.approve_time}}</span>
               </div>
             </div>
           </el-timeline-item>
@@ -461,7 +461,10 @@ export default {
   width: 185px;
   min-height: 38px;
 }
-
+.auto-style3 {
+  width:30%;
+ 
+}
 .clblue {
   color: #4b6eca;
 }
