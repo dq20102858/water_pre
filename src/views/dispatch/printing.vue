@@ -151,5 +151,5 @@ export default {
 }
 #printMe p{color: #4b6eca}
 
-#printMe .txt{color: #4b6eca; width: 200px;}
+#printMe .txt{color: #4b6eca; width: 200px;overflow: hidden;}
 </style>
