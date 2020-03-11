@@ -31,11 +31,14 @@
 					<td colspan="2" >
              <!--  -->
 						<div>
-              联系人：<span  style="width:120px;display:inline-block" class="clblue">{{dataInfo.contact}}</span> 联系电话： <span class="clblue">{{dataInfo.phone}}</span></div>
-						<div v-for="item in dataInfo.holder" :key="item.id">持证人：<span  style="width:120px;display:inline-block" class="clblue">{{item.name}}</span> 联系电话：<span class="clblue">{{item.phone}}</span></div>
-						<div>负责人：<span  style="width:120px;display:inline-block" class="clblue">{{dataInfo.p_in_charge}}</span> 联系电话：<span class="clblue">{{dataInfo.p_in_charge_phone}}</span></div>
+              联系人：<span  style="width:40%;display:inline-block" class="clblue">{{dataInfo.contact}}</span> 
+              联系电话： <span class="clblue">{{dataInfo.phone}}</span></div>
+						<div v-for="item in dataInfo.holder" :key="item.id">持证人：<span  style="width:40%;display:inline-block" class="clblue">{{item.name}}</span> 
+                 联系电话：<span class="clblue">{{item.phone}}</span></div>
+						<div>负责人：<span  style="width:40%;display:inline-block;overflow: hidden;white-space: nowrap; vertical-align: middle;" class="clblue">{{dataInfo.p_in_charge}}</span> 
+                 联系电话：<span class="clblue">{{dataInfo.p_in_charge_phone}}</span></div>
 					</td>
-					<td>人数 <span class="clblue">{{dataInfo.worker_num}}人</span></td>
+					<td>人数： <span class="clblue">{{dataInfo.worker_num}}人</span></td>
 				</tr>
 				<tr>
 					<td colspan="5">
@@ -83,13 +86,13 @@
 					<td class="auto-style1">
 						<b>计划运行路径：</b>
 					</td>
-					<td colspan="4" style="padding:40px 10px;color: #4b6eca;">{{dataInfo.plan_route}}</td>
+					<td colspan="4" style="padding:40px 10px;color: #4b6eca;word-wrap:break-word;">{{dataInfo.plan_route}}</td>
 				</tr>
 				<tr>
 					<td class="auto-style1">
 						<b>工作内容：</b>
 					</td>
-					<td colspan="4" style="padding:40px 10px;color: #4b6eca;">{{dataInfo.description}}</td>
+					<td colspan="4" style="padding:40px 10px;color: #4b6eca;word-wrap:break-word;">{{dataInfo.description}}</td>
 				</tr>
 				<tr>
 					<td  class="auto-style1">车辆类型</td>
@@ -121,15 +124,15 @@
 						<b>保护措施：</b>
 					</td>
 					<td colspan="2" rowspan="3">
-						<div>	{{dataInfo.attention}}</div>
+						<div class="textoverflow">{{dataInfo.attention}}</div>
 						</td>
 					<td colspan="2" style="text-align: center">
-						<b>其他信息</b><br />
+						<b>其他信息</b>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						{{dataInfo.other}}
+					<div class="textoverflow" style="max-width:400px">{{dataInfo.other}}</div>
 					</td>
 				</tr>
 				<tr>
@@ -141,12 +144,12 @@
 					<td colspan="2" rowspan="2">
 						<b>承运人签名（章）：</b>
 					</td>
-					<td style="width:200px;">批准人：{{dataInfo.approver}}</td>
+					<td style="width:200px;">审批人：{{dataInfo.approver}}</td>
 					<td style="width:200px;">消点人:</td>
 					<td style="width:200px;">批准人：{{dataInfo.logout}}</td>
 				</tr>
 				<tr>
-					<td>批准时间：{{dataInfo.approve_time}}</td>
+					<td>审批时间：{{dataInfo.approve_time}}</td>
 					<td>消点时间：</td>
 					<td>批准时间：{{dataInfo.logout_time}}</td>
 				</tr>
@@ -254,16 +257,16 @@
             </div>
           </el-timeline-item>
           <el-timeline-item
-            timestamp="批准"
+            timestamp="审批"
             placement="top"
             type="warning "
             color="#ff5c75"
             size="large"
           >
             <div class="onebox">
-              <div class="itemconn">兹批准此许可证生效，或按红笔修改的执行。</div>
+              <div class="itemconn">兹审批此许可证生效，或按红笔修改的执行。</div>
               <div class="singn lines">
-                <span class="pull-left">批准人（签名）{{dataInfo.approver}}</span>
+                <span class="pull-left">审批人（签名）{{dataInfo.approver}}</span>
                 <span class="pull-right">{{dataInfo.approve_time}}</span>
               </div>
             </div>
@@ -334,6 +337,7 @@ export default {
   },
   methods: {
     getDetail() {
+      this.$layer.title="dsfds";
       this.request({
         url: "/apply/getApplyDetail",
         method: "get",
@@ -469,6 +473,8 @@ export default {
   color: #4b6eca;
 }
 .clcenter {
-  text-align: center
+  text-align: center;
+ 
 }
+.textoverflow{ word-wrap:break-word;}
 </style>

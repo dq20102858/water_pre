@@ -22,43 +22,8 @@
 export default {
   data() {
     return {
-      cwidth: 0,
       stationList: [],
-      lineList: [],
-      lineTypeList: [
-        {
-          id: 1,
-          name: "左线",
-          start_flag: 14,
-          start_length: 100,
-          end_flag: 42,
-          end_length: 410
-        },
-        {
-          id: 2,
-          name: "右线",
-          start_flag: 14,
-          start_length: 100,
-          end_flag: 42,
-          end_length: 410
-        },
-        {
-          id: 3,
-          name: "入场线",
-          start_flag: 0,
-          start_length: 0,
-          end_flag: 0,
-          end_length: 0
-        },
-        {
-          id: 4,
-          name: "出场线",
-          start_flag: 0,
-          start_length: 0,
-          end_flag: 0,
-          end_length: 0
-        }
-      ],
+      lineTypeList: [],
       listSchedule: [],
       minMileage: 0,
       every: 0
@@ -76,27 +41,18 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.stationList = data.data.stations;
-          this.lineList = data.data.line_types;
+          this.lineTypeList = data.data.line_types;
+          this.listSchedule=data.data.datas;
           this.getStationList();
           //  this.getLineType();
         }
       });
     },
-    getLineType() {
-      //                 console.log(json);
-      //起终点名称
-      // window.mileageType = json.data.is_large_mileage;
-      // window.projectFrom = json.data.from;
-      // window.projectEnd = json.data.end;
-      // window.rate = (1553 / (projectEnd - projectFrom)).toFixed(5); //作业施工显示图比率
-      // $.get(webUrl.getline,
-      //     function(json){
-    },
+
     getStationList() {
       let clientWidth = this.$refs.proWrapper.clientWidth;
       let canvasWidth = clientWidth - 200;
-      this.cwidth = canvasWidth;
-      console.log("canvasWidth" + canvasWidth);
+      console.log("canvasWidth：" + canvasWidth);
       const canvas = this.$refs.canvasStation;
       let cansText = canvas.getContext("2d");
       canvas.width = canvasWidth;
@@ -116,7 +72,7 @@ export default {
       // cansText.stroke();
       //Station=====================Station
       let json = this.stationList;
-      console.log(JSON.stringify(json))
+      //console.log(JSON.stringify(json))
       //找到最大数与最小数
       let first = json[0];
       let end = json[0];
@@ -134,31 +90,27 @@ export default {
       console.log("总里程mileage：" + mileage);
       this.minMileage = first.start_flag * 1000 + first.start_length; //最小里程
       console.log("最小里程minMileage：" + this.minMileage);
-      //每米长度
-      let every = (canvasWidth / mileage).toFixed(5);
+      //每米长度等于px
+      let every = (parseInt(canvasWidth - 30) / mileage).toFixed(5);
       this.every = every;
       console.log("每米长度every：" + every);
       //
       let img = new Image();
       img.src = require("@/assets/image/sta.png");
-
       img.onload = function() {
         let start = 0;
         for (let i = 0; i < json.length; i++) {
           // 绘制站点图
-          //console.log(json[i].start_flag);
           let total =
             parseInt(json[i].start_flag) * 1000 +
             parseInt(json[i].start_length);
-          //  console.log("total：" + total);
+          //console.log("total：" + total);
           // 计算当前站点的x轴
           let startX = total * every;
           // 粗线向右移动了100像素，所以需要修正x轴
           if (i == 0) start = startX; //从左侧126像素开始绘制
-          //console.log("startX:" + startX);
-          //console.log("start:" + start);
+          //console.log("startX：" + parseInt(startX - start) );
           cansText.drawImage(img, startX - start, 126, 22, 120);
-          //console.log("startX-start:" + parseInt(startX - start));
           //站名
           cansText.font = "16px Microsoft Yahei";
           cansText.fillStyle = "#0AE39A";
@@ -166,8 +118,8 @@ export default {
           for (let x = 0; x < origin.length; x++) {
             cansText.fillText(
               origin[x],
-              startX - start,
-              138 - origin.length * 19 + 18 * x
+              startX - start + 2,
+              138 - origin.length * 19 + 19 * x
             );
           }
           //DK
@@ -180,14 +132,14 @@ export default {
 
       //Line=====================line
       let lineJson = this.lineTypeList;
-      console.log("lineJson:" + lineJson);
+      console.log("lineJson:" + JSON.stringify(lineJson));
       let lineData = [];
       for (let i = 0; i < lineJson.length; i++) {
         if (lineJson[i].name == "左线" || lineJson[i].name == "右线") {
           lineData.push(lineJson[i]);
         }
       }
-      console.log("lineData:" + lineData);
+
       let from0 =
           "DK" + lineData[0].start_flag + "+" + lineData[0].start_length,
         end0 = "DK" + lineData[0].end_flag + "+" + lineData[0].end_length,
@@ -206,56 +158,57 @@ export default {
       cansText.font = "12px Microsoft Yahei";
       cansText.fillStyle = "#E8C640";
 
-      cansText.fillText(from0, 60, 270);
+      cansText.fillText(from0, 50, 270);
       cansText.fillText(name0, 5, 270);
-      cansText.fillText(end0, canvasWidth, 270);
-      cansText.fillText(from1, 60, 320);
+      cansText.fillText(end0, parseInt( endLength+canvasWidth-120), 320);
+      cansText.fillText(from1, 50, 320);
       cansText.fillText(name1, 5, 320);
-      cansText.fillText(end1, 1193 - endLength, 290);
+      cansText.fillText(end1, parseInt( endLength+canvasWidth-120), 270);
       //Line=====================workline
-      let datas = [
-        {
-          name: "焊接1",
-          lines: [
-            {
-              name: "左线1",
-              lists: [
-                {
-                  start_flag: "21",
-                  start_length: "370",
-                  end_flag: "22",
-                  end_length: "520"
-                },
-                {
-                  start_flag: "23",
-                  start_length: "300",
-                  end_flag: "23",
-                  end_length: "500"
-                }
-              ]
-            },
-            {
-              name: "右线1",
-              lists: [
-                {
-                  start_flag: "30",
-                  start_length: "100",
-                  end_flag: "30",
-                  end_length: "500"
-                },
-                {
-                  start_flag: "33",
-                  start_length: "20",
-                  end_flag: "33",
-                  end_length: "400"
-                }
-              ]
-            }
-          ]
-        }
-      ];
 
-      this.listSchedule = datas;
+      // let datas = [
+      //   {
+      //     name: "焊接1",
+      //     lines: [
+      //       {
+      //         name: "左线1",
+      //         lists: [
+      //           {
+      //             start_flag: "21",
+      //             start_length: "370",
+      //             end_flag: "22",
+      //             end_length: "520"
+      //           },
+      //           {
+      //             start_flag: "23",
+      //             start_length: "300",
+      //             end_flag: "23",
+      //             end_length: "500"
+      //           }
+      //         ]
+      //       },
+      //       {
+      //         name: "右线1",
+      //         lists: [
+      //           {
+      //             start_flag: "30",
+      //             start_length: "100",
+      //             end_flag: "30",
+      //             end_length: "500"
+      //           },
+      //           {
+      //             start_flag: "33",
+      //             start_length: "20",
+      //             end_flag: "33",
+      //             end_length: "400"
+      //           }
+      //         ]
+      //       }
+      //     ]
+      //   }
+      // ];
+
+      // this.listSchedule = datas;
 
       //
     },
@@ -268,12 +221,13 @@ export default {
           parseInt(paras[i].start_length);
         let endMileage =
           parseInt(paras[i].end_flag) * 1000 + parseInt(paras[i].end_length);
-        let leftPosition = (parseInt(starMileage - this.minMileage) * this.every)+10;
+        let leftPosition =
+          parseInt(starMileage - this.minMileage) * this.every + 10;
         let widthPosition = parseInt(endMileage - starMileage) * this.every;
-        console.log("starNum:" + starMileage + " endNum:" + endMileage);
-        console.log(
-          "leftPosition:" + leftPosition + " widthPosition:" + widthPosition
-        );
+        // console.log("starNum:" + starMileage + " endNum:" + endMileage);
+        // console.log(
+        //   "leftPosition:" + leftPosition + " widthPosition:" + widthPosition
+        // );
         result +=
           "<i style='width:" +
           widthPosition +

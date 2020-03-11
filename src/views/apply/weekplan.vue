@@ -9,7 +9,7 @@
           <el-menu-item index="apply">日班列表</el-menu-item>
           <el-menu-item index="conflictcheck">冲突检测</el-menu-item>
         </el-submenu>
-        <el-menu-item index="weekplan">周计划</el-menu-item>
+        <el-menu-item class="is-active" @click="refpage">周计划</el-menu-item>
       </el-menu>
     </div>
     <div v-if="isParent">
@@ -142,11 +142,15 @@ export default {
     };
   },
   created() {
-    this.projectName= localStorage.getItem('projectName');
+    this.projectName = localStorage.getItem("projectName");
     this.getCompanyList();
     this.getWeekList();
   },
   methods: {
+    refpage() {
+      this.isParent = true;
+      this.getWeekList();
+    },
     getCompanyList() {
       this.request({
         url: "/apply/getCompanyLists",
@@ -202,7 +206,7 @@ export default {
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
-          this.weekdailyList = data;
+          this.weekdailyList = data.data;
         }
       });
     },
@@ -302,14 +306,14 @@ export default {
   margin-top: 20px;
   overflow: hidden;
   display: flex;
-  justify-content: space-between;
+  justify-content:flex-start;
 }
 .wfoot span {
   color: #4b6eca;
   float: left;
   margin-right: 24px;
   font-size: 18px;
-  display: block;
+  display: block;min-width: 160px;
 }
 .wfoot .fr {
   float: right;

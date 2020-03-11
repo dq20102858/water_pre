@@ -100,7 +100,15 @@
             <el-table-column prop="number" label="作业编号"></el-table-column>
             <el-table-column prop="command_num" label="作业令号"></el-table-column>
             <el-table-column prop="description" label="作业内容" show-overflow-tooltip></el-table-column>
-            <el-table-column prop="status" label="当前状态"></el-table-column>
+            <el-table-column prop="status" label="当前状态">
+              <template slot-scope="scope">
+                 <span class="statuse1" v-if="scope.row.status=='未批复'">未批复</span>
+                 <span class="statuse2" v-if="scope.row.status=='同意'">同意</span>
+              <span class="statuse3" v-if="scope.row.status=='拒绝'">拒绝</span>
+               <span class="statuse4" v-if="scope.row.status=='完成'">完成</span>
+              <span class="statuse6" v-if="scope.row.status=='已消点'">已消点</span>
+            </template>
+            </el-table-column>
             <el-table-column prop="next_status" label="下一步状态"></el-table-column>
             <el-table-column prop="company" label="公司简称"></el-table-column>
             <el-table-column label="操作" width="140">
@@ -114,12 +122,18 @@
                   >审批</el-button>
                   <!-- <el-button v-if="scope.row.status!='未批复'" class="btn-blue" size="mini" disabled>审批</el-button> -->
                   <el-button
-                    v-if="scope.row.status=='同意'"
+                    v-if="scope.row.status=='已消点'"
                     class="btn-blue"
                     size="mini"
                     @click="goApplyOk(scope.row.id,scope.row.company)"
                   >完成</el-button>
-                  <el-button class="btn-red" size="mini" @click="goDetail(scope.row.id)">详情</el-button>
+                   <el-button
+                    v-if="scope.row.status=='已完成'"
+                    class="btn-blue"
+                    size="mini"
+                    @click="goApplyNo(scope.row.id,scope.row.company)"
+                  >注销</el-button>
+                  <el-button class="btn-red" size="mini" @click="goDetail(scope.row.id,scope.row.type)">详情</el-button>
                 </div>
               </template>
             </el-table-column>
@@ -148,18 +162,25 @@
         <!-- end table -->
       </div>
     </div>
-    <el-dialog title="审批" :visible.sync="dialogVisible" width="30%" center>
+    <el-dialog class="dialogStyle" title="审批" :visible.sync="dialogVisible" width="300px" center>
       <span>请选择审批状态？</span>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="ApplyClick(dialogId,2)">同意</el-button>
         <el-button @click="ApplyClick(dialogId,3)">拒绝</el-button>
       </span>
     </el-dialog>
-    <el-dialog title="审批" :visible.sync="dialogVisibleOk" width="30%" center>
-      <span>完成请点击确认？</span>
+    <el-dialog class="dialogStyle" title="完成审批" :visible.sync="dialogVisibleOk" width="300px" center>
+      <span>您确定要完成审批？</span>
       <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="ApplyClick(dialogId,4)">完成</el-button>
+        <el-button type="primary" @click="ApplyClick(dialogId,4)">确定</el-button>
         <el-button @click="dialogVisibleOk=false">取消</el-button>
+      </span>
+    </el-dialog>
+     <el-dialog  class="dialogStyle" title="注销审批" :visible.sync="dialogVisibleNo" width="300px" center>
+      <span>您确定要注销审批？</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="ApplyClick(dialogId,6)">确定</el-button>
+        <el-button @click="dialogVisibleNo=false">取消</el-button>
       </span>
     </el-dialog>
   </div>
@@ -188,7 +209,7 @@ export default {
         { id: 2, name: "同意" },
         { id: 3, name: "拒绝" },
         { id: 4, name: "完成" },
-        { id: 5, name: "已消点" }
+        { id: 6, name: "已消点" }
       ],
       dataList: [],
       searchForm: {
@@ -202,6 +223,7 @@ export default {
       },
       dialogVisible: false,
       dialogVisibleOk:false,
+      dialogVisibleNo:false,
       dialogId: 0,
       dialogContent: ""
     };
@@ -304,10 +326,18 @@ export default {
         }
       });
     },
-    goDetail(id) {
+    goDetail(id,type) {
+      let laytitle="";
+      if(type=='A1' || type=='A2'){
+      laytitle="轨行区及施工作业许可证";
+      }
+      else
+      {
+          laytitle=this.projectName+"进场作业许可证";
+      }
       this.$layer.iframe({
         area: ["85%", "90%"],
-        title: "调度命令详情",
+        title: laytitle,
         shadeClose: false,
         scrollbar: false,
         content: {
@@ -327,6 +357,11 @@ export default {
       this.dialogId = id;
       this.dialogContent = company;
     },
+     goApplyNo(id, company) {
+      this.dialogVisibleNo = true;
+      this.dialogId = id;
+      this.dialogContent = company;
+    },
     ApplyClick(id, status) {
       this.request({
         url: "/apply/changeStatus",
@@ -341,6 +376,7 @@ export default {
           });
           this.dialogVisible = false;
           this.dialogVisibleOk=false;
+          this.dialogVisibleNo=false;
           this.getDataList();
         } else {
           this.$message({
@@ -349,6 +385,7 @@ export default {
           });
           this.dialogVisible = false;
           this.dialogVisibleOk=false;
+          this.dialogVisibleNo=false;
         }
       });
     }
@@ -394,4 +431,9 @@ export default {
   border-color: #1d397a;
   color: #fff;
 }
+.dialogStyle .el-button--medium{padding: 7px 20px;}
+.statuse2{color:#029b02}
+.statuse3{color:#ff5c75}
+.statuse4{color:#0a0693}
+.statuse6{color:#4072d1}
 </style>

@@ -1,5 +1,9 @@
 <template>
-  <div>welcoem vue page</div>
+  <div>
+    
+
+    
+  </div>
 </template>
 
 <script>
