@@ -20,13 +20,26 @@
           <el-table :data="workLists" ref="multipleTable">
             <el-table-column prop="sort" label="作业顺序" align="center"></el-table-column>
             <el-table-column prop="name" label="作业名称" align="center"></el-table-column>
+            <!-- <el-table-column prop="type" label="类型" align="center">
+            <template slot-scope="scope">
+              <span v-if="scope.row.type==1">里程</span>
+              <span v-else>计数</span>
+            </template>
+            </el-table-column>-->
             <el-table-column prop="start_time" label="计划开始时间" align="center"></el-table-column>
             <el-table-column prop="end_time" label="计划结束时间" align="center"></el-table-column>
-            <el-table-column prop="total" label="设计总量" align="center"></el-table-column>
+            <el-table-column prop="total" label="设计总量" align="center">
+              <template slot-scope="scope">{{scope.row.total}}({{scope.row.unit}})</template>
+            </el-table-column>
             <el-table-column label="操作" width="210px">
               <template slot-scope="scope">
                 <div class="app-operation">
-                  <el-button class="btn-blue" size="mini" @click="getLine(scope.row.id)">查看线别</el-button>
+                  <el-button
+                    v-if="scope.row.type==1"
+                    class="btn-blue"
+                    size="mini"
+                    @click="getLine(scope.row.id)"
+                  >查看线别</el-button>
                   <el-button class="btn-blue" size="mini" @click="goDetail(scope.row.id)">修改</el-button>
                   <el-button class="btn-red" size="mini" @click="deleteWork(scope.row.id)">删除</el-button>
                 </div>
@@ -53,12 +66,17 @@
             </el-pagination>
           </div>
         </div>
-        <el-dialog :close-on-click-modal="false" class="dialog-work" :title="this.title" :visible.sync="workVisible">
+        <el-dialog
+          :close-on-click-modal="false"
+          class="dialog-work"
+          :title="this.title"
+          :visible.sync="workVisible"
+        >
           <el-form class="el-form-custom" :model="workData" :rules="wokRules" ref="workForm">
-            <el-form-item label="名称" prop="name">
+            <el-form-item label="名称：" prop="name">
               <el-input v-model="workData.name" autocomplete="off" placeholder="请输入作业名称"></el-input>
             </el-form-item>
-            <el-form-item label="顺序">
+            <el-form-item label="顺序：">
               <el-input
                 v-model="workData.sort"
                 autocomplete="off"
@@ -66,33 +84,45 @@
                 placeholder="请输入数字，数字越大越靠后"
               ></el-input>
             </el-form-item>
-            <el-form-item label="类别" prop="type">
-              <el-radio v-model="workData.type" :label="1">里程</el-radio>
-              <el-radio v-model="workData.type" :label="2">计数（个，股，孔）</el-radio>
-            </el-form-item>
-            <el-form-item label="线别" prop="line_type" v-if="workData.type == 1">
-              <el-checkbox-group v-model="workData.line_type">
-                <el-checkbox
-                  v-for="item in lineList"
-                  :key="item.id"
-                  :label="item.name"
-                >{{item.name}}</el-checkbox>
-              </el-checkbox-group>
-            </el-form-item>
-            <div class="el-form-item-inline">
-              <el-form-item label="设计总量" prop="total">
-                <el-input v-model="workData.total" autocomplete="off" placeholder="请输入数字"></el-input>
+            <div v-if="this.title=='添加作业信息'">
+              <el-form-item label="类别：" prop="type">
+                <el-radio v-model="workData.type" :label="1">里程</el-radio>
+                <el-radio v-model="workData.type" :label="2">计数（个，股，孔）</el-radio>
               </el-form-item>
-              <el-form-item label="单位" prop="unit">
-                <el-input v-model="workData.unit" autocomplete="off" placeholder="请输入公里，个，股，孔等"></el-input>
+              <el-form-item label="线别：" prop="line_type" v-if="workData.type == 1">
+                <el-checkbox-group v-model="workData.line_type">
+                  <el-checkbox
+                    v-for="item in lineList"
+                    :key="item.id"
+                    :label="item.id"
+                  >{{item.name}}</el-checkbox>
+                </el-checkbox-group>
               </el-form-item>
+              <div class="el-form-item-inline" v-if="workData.type==2">
+                <el-form-item label="设计总量：" prop="total">
+                  <el-input v-model="workData.total" autocomplete="off" placeholder="请输入数字"></el-input>
+                </el-form-item>
+                <el-form-item label="单位：" prop="unit" v-if="workData.type==2">
+                  <el-input v-model="workData.unit" autocomplete="off" placeholder="请输入个，股，孔等"></el-input>
+                </el-form-item>
+              </div>
             </div>
             <div class="el-form-item-inline">
-              <el-form-item label="计划开始时间" prop="start_time">
-                <el-date-picker  @change="changeStarttime" v-model="workData.start_time" type="date" placeholder="选择日期"></el-date-picker>
+              <el-form-item label="开始时间：" prop="start_time">
+                <el-date-picker
+                  @change="changeStarttime"
+                  v-model="workData.start_time"
+                  type="date"
+                  placeholder="选择计划开始时间"
+                ></el-date-picker>
               </el-form-item>
-              <el-form-item label="计划结束时间" prop="end_time">
-                <el-date-picker  @change="changeEndtime" v-model="workData.end_time" type="date" placeholder="选择日期"></el-date-picker>
+              <el-form-item label="结束时间：" prop="end_time">
+                <el-date-picker
+                  @change="changeEndtime"
+                  v-model="workData.end_time"
+                  type="date"
+                  placeholder="选择计划结束时间"
+                ></el-date-picker>
               </el-form-item>
             </div>
             <div class="blank"></div>
@@ -323,7 +353,7 @@
                 icon="el-icon-search"
                 type="primary"
                 @click="getDetailLists"
-              >检索</el-button>
+              >查询</el-button>
             </el-form-item>
             <el-form-item>
               <el-button
@@ -393,7 +423,7 @@
               <span class="ptxt">{{historyData.line_type_desc}}</span>
             </div>
             <el-form :model="historyData" :rules="historyRules" ref="detailForm">
-              <el-form-item label="作业名称" label-width="80px" prop="pro_id" v-show="addShow">
+              <el-form-item label="作业名称：" label-width="100px" prop="pro_id" v-show="addShow">
                 <el-select
                   v-model="historyData.pro_id"
                   clearable
@@ -408,44 +438,63 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="线别" label-width="80px" prop="line_type" v-show="addShow">
-                <el-select v-model="historyData.line_type" @change="historyLineTypeChange" clearable placeholder="请选择线别">
-                  <el-option
-                    v-for="item in selectedLineTypeLists"
-                    :key="item.id"
-                    :label="item.name"
-                    :value="item.id"
-                  ></el-option>
-                </el-select>
-                <div class="el-form-item__error">{{lineTypeDes}}</div>
-              </el-form-item>
-              <el-form-item label="计划里程" label-width="80px" prop="start_flag">
-                <b>DK</b>
-                <el-input class="pinput" v-model="historyData.start_flag" placeholder="公里"></el-input>+
-                <el-input class="pinput" v-model="historyData.start_length" placeholder="米"></el-input>
-                <em>~</em>
-                <b>DK</b>
-                <el-input class="pinput" v-model="historyData.end_flag" placeholder="公里"></el-input>+
-                <el-input class="pinput" v-model="historyData.end_length" placeholder="米"></el-input>
-              </el-form-item>
-              <el-form-item label="实际里程" label-width="80px" prop="t_start_flag">
-                <b>DK</b>
-                <el-input class="pinput" v-model="historyData.t_start_flag" placeholder="公里"></el-input>+
-                <el-input class="pinput" v-model="historyData.t_start_length" placeholder="米"></el-input>
-                <em>~</em>
-                <b>DK</b>
-                <el-input class="pinput" v-model="historyData.t_end_flag" placeholder="公里"></el-input>+
-                <el-input class="pinput" v-model="historyData.t_end_length" placeholder="米"></el-input>
-              </el-form-item>
 
-              <el-form-item label="完成日期" label-width="80px" prop="plan_time" v-show="addShow">
+                <el-form-item label="计划数量：" label-width="100px" prop="plan_num" v-if="historyDataType==2">
+                  <el-input v-model="historyData.plan_num" autocomplete="off" placeholder="请输入数字"></el-input>
+                </el-form-item>
+                <el-form-item label="实际数量：" label-width="100px" prop="true_num" v-if="historyDataType==2">
+                  <el-input
+                    v-model="historyData.true_num"
+                    autocomplete="off"
+                    placeholder="请输入个，股，孔等"
+                  ></el-input>
+                </el-form-item>
+              
+              <div v-if="historyDataType==1">
+                <el-form-item label="线别：" label-width="100px" prop="line_type" v-show="addShow">
+                  <el-select
+                    v-model="historyData.line_type"
+                    @change="historyLineTypeChange"
+                    clearable
+                    placeholder="请选择线别"
+                  >
+                    <el-option
+                      v-for="item in selectedLineTypeLists"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id"
+                    ></el-option>
+                  </el-select>
+                  <div class="el-form-item__error">{{lineTypeDes}}</div>
+                </el-form-item>
+                <el-form-item label="计划里程：" label-width="100px" prop="start_flag">
+                  <b>DK</b>
+                  <el-input class="pinput" v-model="historyData.start_flag" placeholder="公里"></el-input>+
+                  <el-input class="pinput" v-model="historyData.start_length" placeholder="米"></el-input>
+                  <em>~</em>
+                  <b>DK</b>
+                  <el-input class="pinput" v-model="historyData.end_flag" placeholder="公里"></el-input>+
+                  <el-input class="pinput" v-model="historyData.end_length" placeholder="米"></el-input>
+                </el-form-item>
+                <el-form-item label="实际里程：" label-width="100px" prop="t_start_flag">
+                  <b>DK</b>
+                  <el-input class="pinput" v-model="historyData.t_start_flag" placeholder="公里"></el-input>+
+                  <el-input class="pinput" v-model="historyData.t_start_length" placeholder="米"></el-input>
+                  <em>~</em>
+                  <b>DK</b>
+                  <el-input class="pinput" v-model="historyData.t_end_flag" placeholder="公里"></el-input>+
+                  <el-input class="pinput" v-model="historyData.t_end_length" placeholder="米"></el-input>
+                </el-form-item>
+              </div>
+            
+              <el-form-item label="完成日期：" label-width="100px" prop="plan_time" v-show="addShow" style="margin-top:20px;">
                 <el-date-picker v-model="historyData.plan_time" type="date" placeholder="选择日期"></el-date-picker>
               </el-form-item>
-              <el-form-item label="是否完成" label-width="80px" prop="is_finish">
+              <el-form-item label="是否完成：" label-width="100px" prop="is_finish">
                 <el-radio v-model="historyData.is_finish" label="1" value="1">是</el-radio>
                 <el-radio v-model="historyData.is_finish" label="0" value="0">否</el-radio>
               </el-form-item>
-              <el-form-item label="备注" label-width="80px">
+              <el-form-item label="备注：" label-width="100px">
                 <el-input v-model="historyData.remark" placeholder="填写备注" type="textarea"></el-input>
               </el-form-item>
             </el-form>
@@ -544,13 +593,15 @@ export default {
       workVisible: false,
       lineList: [],
       workData: {
-        type:1,
+        type: 1,
         line_type: []
       },
       title: "添加作业信息",
       wokRules: {
-        name: [{ required: true, message: "请输入名称3~60个字符", trigger: "blur" },
-        { min: 2, max:60, message: '长度在2到60个字符', trigger: 'blur' }],
+        name: [
+          { required: true, message: "请输入名称2~60个字符", trigger: "blur" },
+          { min: 2, max: 60, message: "长度在2到60个字符", trigger: "blur" }
+        ],
         type: [{ required: true, message: "请选择类别", trigger: "change" }],
         line_type: [
           { required: true, message: "请选择线别", trigger: "change" }
@@ -561,10 +612,21 @@ export default {
         end_time: [
           { required: true, message: "请选择日期", trigger: "change" }
         ],
-        total: [{ required: true, message: "请输入设计总量", trigger: "blur" },
-         { pattern: /^(0|[1-9][0-9]*)$/, message: '请输入正整数', trigger: "blur" },
-         { min: 2, max: 30, message: "请输入长度在2到30个字符", trigger: "blur" }],
-        unit: [{ required: true, message: "请输入单位公里，个，股，孔等", trigger: "blur" }]
+        total: [
+          { required: true, message: "请输入设计总量", trigger: "blur" },
+          {
+            pattern: /^(0|[1-9][0-9]*)$/,
+            message: "请输入正整数",
+            trigger: "blur"
+          }
+        ],
+        unit: [
+          {
+            required: true,
+            message: "请输入单位公里，个，股，孔等",
+            trigger: "blur"
+          }
+        ]
       },
       lineVisible: false, //查看线别
       lineData: [],
@@ -591,7 +653,8 @@ export default {
       searchForm: {},
       pickerOptions2: publicData.pickerOptions2,
       addHistoryVisible: false,
-      historyData: {},
+      historyData: [],
+      historyDataType: 1,
       historyTitle: "",
       historyRules: {
         pro_id: [{ required: true, message: "请选择作业", trigger: "change" }],
@@ -607,15 +670,29 @@ export default {
         plan_time: [
           { required: true, message: "请选择日期", trigger: "change" }
         ],
+        plan_num: [
+          { required: true, message: "请输入计划数量", trigger: "blur" },
+          {
+            pattern: /^(0|[1-9][0-9]*)$/,
+            message: "请输入正整数",
+            trigger: "blur"
+          }
+        ],
+        true_num: [
+          {
+            pattern: /^(0|[1-9][0-9]*)$/,
+            message: "请输入正整数",
+            trigger: "blur"
+          }
+        ],
         is_finish: [
           { required: true, message: "请选择是否完成", trigger: "change" }
         ]
       },
       selectedLineTypeLists: [],
-      lineTypeListDes:[],
-      lineTypeDes:'',
-      addShow: true,
-    
+      lineTypeListDes: [],
+      lineTypeDes: "",
+      addShow: true
     };
   },
   created() {
@@ -668,7 +745,7 @@ export default {
     },
     initWorkData() {
       this.workData = {
-        type:1,
+        type: 1,
         line_type: []
       };
     },
@@ -719,6 +796,7 @@ export default {
       this.$refs["workForm"].validate(valid => {
         if (valid) {
           let data = this.workData;
+          console.log(JSON.stringify(data));
           this.request({
             url: "/project/addOrEditWork",
             method: "post",
@@ -832,7 +910,6 @@ export default {
       this.request({
         url: "/project/getWorkTypeList",
         method: "get",
-        params: {}
       }).then(response => {
         let data = response.data;
         if (data.status == 1 && data.data.length > 0) {
@@ -1012,30 +1089,31 @@ export default {
       this.historyTitle = "添加历史记录";
       this.initHistoryData();
       this.addShow = true;
-      this.lineTypeDes='';
+      this.lineTypeDes = "";
     },
-  
+
     getTheLineType(value) {
+      const that = this;
       let selectedLineTypeLists = [];
-      let selectedLineTypeDes=[];
+      let selectedLineTypeDes = [];
       this.lineTypeList.forEach(function(item) {
-       
         if (item.id == value) {
           selectedLineTypeLists = item.line_type_lists;
-           selectedLineTypeDes=item.des;
+          selectedLineTypeDes = item.des;
+          that.historyDataType = item.type;
+          console.log("this.historyDataType:" + that.historyDataType);
         }
       });
       this.selectedLineTypeLists = selectedLineTypeLists;
-      this.lineTypeListDes=selectedLineTypeDes;
-       //console.log(JSON.stringify(this.lineTypeListDes));
+      this.lineTypeListDes = selectedLineTypeDes;
     },
-      historyLineTypeChange(value){
-       this.lineTypeListDes.map((item,i)=>{
-          if (item.line_type == value) {
-            this.lineTypeDes=item.tip
-            //console.log(item.tip);
-          }
-       })
+    historyLineTypeChange(value) {
+      this.lineTypeListDes.map((item, i) => {
+        if (item.line_type == value) {
+          this.lineTypeDes = item.tip;
+          //console.log(item.tip);
+        }
+      });
     },
     initHistoryData() {
       this.historyData = {};
@@ -1299,18 +1377,18 @@ export default {
         }
       });
     },
-    changeStarttime(){
-      if (this.workData.start_time>this.workData.end_time) {
-      this.$message.error('开始日期不能大于结束日期');
-      this.workData.start_time="";
-     }
+    changeStarttime() {
+      if (this.workData.start_time > this.workData.end_time) {
+        this.$message.error("开始日期不能大于结束日期");
+        this.workData.start_time = "";
+      }
     },
-    changeEndtime(){
+    changeEndtime() {
       if (this.workData.end_time < this.workData.start_time) {
-      this.$message.error('结束日期需大于开始日期');
-      this.workData.end_time="";
-     }
-  }
+        this.$message.error("结束日期需大于开始日期");
+        this.workData.end_time = "";
+      }
+    }
     //
   }
 };
@@ -1490,10 +1568,11 @@ export default {
   width: auto;
 }
 .dialog-plan-detail .pinput input {
-  width: 60px;
+  width: 55px;
   text-align: center;
   margin: 0 3px;
-  padding:0 5px;
+  padding: 0 5px;
+  height: 31px!important;
 }
 .dialog-plan-detail .el-form-item__label {
   color: #1d397a;
