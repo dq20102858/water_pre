@@ -135,7 +135,7 @@
 
         <el-dialog title="里程线别设置" :visible.sync="lineVisible">
           <el-table :data="lineData">
-            <el-table-column label="线别" width="100">
+            <el-table-column label="线别">
               <template slot-scope="scope">
                 <span v-if="scope.row.line_type == 1">左线</span>
                 <span v-else-if="scope.row.line_type == 2">右线</span>
@@ -143,7 +143,7 @@
                 <span v-else>出场线</span>
               </template>
             </el-table-column>
-            <el-table-column label="开始里程" width="180">
+            <el-table-column label="开始里程">
               <template slot-scope="scope">
                 <div>
                   <span>DK</span>
@@ -153,7 +153,7 @@
                 </div>
               </template>
             </el-table-column>
-            <el-table-column label="结束里程" width="180">
+            <el-table-column label="结束里程">
               <template slot-scope="scope">
                 <div>
                   <span>DK</span>
@@ -163,7 +163,7 @@
                 </div>
               </template>
             </el-table-column>
-            <el-table-column label="操作">
+            <!-- <el-table-column label="操作">
               <template slot-scope="scope">
                 <el-button
                   size="mini"
@@ -172,7 +172,7 @@
                 >设置</el-button>
                 <el-button type="primary" size="mini" @click="addOrEditLineDo(scope.row)" v-else>修改</el-button>
               </template>
-            </el-table-column>
+            </el-table-column>-->
           </el-table>
           <div slot="footer" class="dialog-footer">
             <el-button @click="lineVisible = false">关闭</el-button>
@@ -220,69 +220,76 @@
               </div>
             </template>
           </el-calendar>
-          <el-dialog class="dialog-plan-add" title="添加信息" :visible.sync="planVisible">
+          <el-dialog :close-on-click-modal="false" class="dialog-plan-add" title="添加信息" :visible.sync="planVisible">
             <span class="ptxt">添加日期：{{addDate}}</span>
             <span class="ptxt">作业：{{planWorkName}}</span>
-            <ul id="plan-ul">
-              <li class="pheader">
-                <div class="pitem">线别</div>
-                <div class="pitem">计划开始里程</div>
-                <div class="pitem">计划结束里程</div>
-              </li>
-              <li v-for="(item,index) in planOneData" class="li-line">
-                <div class="plan-content">
-                  <el-checkbox v-model="item.checked"></el-checkbox>
-                  <span v-if="item.line_type == 1">左线</span>
-                  <span v-else-if="item.line_type == 2">右线</span>
-                  <span v-else-if="item.line_type == 3">入场线</span>
-                  <span v-else>出场线</span>
-                </div>
-                <div class="plan-content">
-                  <span>
-                    <b>DK</b>
-                  </span>
-                  <input
-                    v-model="item.start_flag"
-                    :disabled="!item.checked"
-                    class="pinput"
-                    type="number"
-                  />
-                  <span>+</span>
-                  <input
-                    v-model="item.start_length"
-                    :disabled="!item.checked"
-                    class="pinput"
-                    type="number"
-                  />
-                </div>
-                <div class="plan-content">
-                  <span>
-                    <b>DK</b>
-                  </span>
-                  <input
-                    v-model="item.end_flag"
-                    :disabled="!item.checked"
-                    class="pinput"
-                    type="number"
-                  />
-                  <span>+</span>
-                  <input
-                    v-model="item.end_length"
-                    :disabled="!item.checked"
-                    class="pinput"
-                    type="number"
-                  />
-                </div>
-                <div class="plan-tip">{{item.tip}}</div>
-              </li>
-              <p style="clear:both"></p>
-            </ul>
+            <div v-if="planOneDataType==1">
+              <ul id="plan-ul">
+                <li class="pheader">
+                  <div class="pitem">线别</div>
+                  <div class="pitem">计划开始里程</div>
+                  <div class="pitem">计划结束里程</div>
+                </li>
+                <li v-for="(item,index) in planOneData" class="li-line">
+                  <div class="plan-content">
+                    <el-checkbox v-model="item.checked"></el-checkbox>
+                    <span v-if="item.line_type == 1">左线</span>
+                    <span v-else-if="item.line_type == 2">右线</span>
+                    <span v-else-if="item.line_type == 3">入场线</span>
+                    <span v-else>出场线</span>
+                  </div>
+                  <div class="plan-content">
+                    <span>
+                      <b>DK</b>
+                    </span>
+                    <input
+                      v-model="item.start_flag"
+                      :disabled="!item.checked"
+                      class="pinput"
+                      type="number"
+                    />
+                    <span>+</span>
+                    <input
+                      v-model="item.start_length"
+                      :disabled="!item.checked"
+                      class="pinput"
+                      type="number"
+                    />
+                  </div>
+                  <div class="plan-content">
+                    <span>
+                      <b>DK</b>
+                    </span>
+                    <input
+                      v-model="item.end_flag"
+                      :disabled="!item.checked"
+                      class="pinput"
+                      type="number"
+                    />
+                    <span>+</span>
+                    <input
+                      v-model="item.end_length"
+                      :disabled="!item.checked"
+                      class="pinput"
+                      type="number"
+                    />
+                  </div>
+                  <div class="plan-tip">{{item.tip}}</div>
+                </li>
+                <p style="clear:both"></p>
+              </ul>
+            </div>
+            <div v-else style="margin-top:20px;width:280px;">
+            <el-input placeholder="请输入内容" v-model="planWorkNum" onkeyup="this.value = this.value.replace(/[^\d.]/g,'');">
+              <template slot="prepend">计划数量</template>
+            </el-input>
+          </div>
             <div class="plan-btn">
               <el-button @click="closePlan">关闭</el-button>
               <el-button type="primary" @click="addOnePlan">确定保存</el-button>
             </div>
           </el-dialog>
-          <el-dialog class="dialog-plan-add" title="详细信息" :visible.sync="detailVisible">
+          <el-dialog  :close-on-click-modal="false" class="dialog-plan-add" title="详细信息" :visible.sync="detailVisible">
             <div>
               <span class="ptxt">施工日期：</span>
               <span class="ptxt" v-if="planDetailList.length>0">{{planDetailList[0]['add_date']}}</span>
@@ -409,7 +416,7 @@
               </button>
             </el-pagination>
           </div>
-          <el-dialog
+          <el-dialog  :close-on-click-modal="false"
             class="dialog-plan-detail"
             :title="this.historyTitle"
             :visible.sync="addHistoryVisible"
@@ -439,17 +446,23 @@
                 </el-select>
               </el-form-item>
 
-                <el-form-item label="计划数量：" label-width="100px" prop="plan_num" v-if="historyDataType==2">
-                  <el-input v-model="historyData.plan_num" autocomplete="off" placeholder="请输入数字"></el-input>
-                </el-form-item>
-                <el-form-item label="实际数量：" label-width="100px" prop="true_num" v-if="historyDataType==2">
-                  <el-input
-                    v-model="historyData.true_num"
-                    autocomplete="off"
-                    placeholder="请输入个，股，孔等"
-                  ></el-input>
-                </el-form-item>
-              
+              <el-form-item
+                label="计划数量："
+                label-width="100px"
+                prop="plan_num"
+                v-if="historyDataType==2"
+              >
+                <el-input v-model="historyData.plan_num" autocomplete="off" placeholder="请输入数字"></el-input>
+              </el-form-item>
+              <el-form-item
+                label="实际数量："
+                label-width="100px"
+                prop="true_num"
+                v-if="historyDataType==2"
+              >
+                <el-input v-model="historyData.true_num" autocomplete="off" placeholder="请输入个，股，孔等"></el-input>
+              </el-form-item>
+
               <div v-if="historyDataType==1">
                 <el-form-item label="线别：" label-width="100px" prop="line_type" v-show="addShow">
                   <el-select
@@ -486,8 +499,14 @@
                   <el-input class="pinput" v-model="historyData.t_end_length" placeholder="米"></el-input>
                 </el-form-item>
               </div>
-            
-              <el-form-item label="完成日期：" label-width="100px" prop="plan_time" v-show="addShow" style="margin-top:20px;">
+
+              <el-form-item
+                label="完成日期："
+                label-width="100px"
+                prop="plan_time"
+                v-show="addShow"
+                style="margin-top:20px;"
+              >
                 <el-date-picker v-model="historyData.plan_time" type="date" placeholder="选择日期"></el-date-picker>
               </el-form-item>
               <el-form-item label="是否完成：" label-width="100px" prop="is_finish">
@@ -506,7 +525,6 @@
         </div>
       </div>
       <!-- echarts -->
-
       <div id="echart" v-show="echartShow">
         <div class="echart-top">
           <el-menu :default-active="subIndex" class="el-menu-cus" @select="handleChartSubSelect">
@@ -635,6 +653,7 @@ export default {
       lineTypeList: [],
       planVisible: false,
       planOneData: [],
+      planOneDataType: 1,
       echartShow: false,
       echartDate: "",
       curMonth: "",
@@ -642,6 +661,7 @@ export default {
       echartDataNames: "",
       addDate: "",
       planWorkName: "",
+      planWorkNum: 0,
       planDetailList: [],
       detailVisible: false,
       calendarLists: {},
@@ -909,7 +929,7 @@ export default {
     getWorkTypeList() {
       this.request({
         url: "/project/getWorkTypeList",
-        method: "get",
+        method: "get"
       }).then(response => {
         let data = response.data;
         if (data.status == 1 && data.data.length > 0) {
@@ -921,11 +941,14 @@ export default {
       });
     },
     getCurrData() {
+      const that = this;
       let subIndex = this.subIndex;
       let one = {};
       this.lineTypeList.forEach(function(item, key) {
         if (subIndex == item["id"]) {
           one = item;
+          that.planOneDataType = item.type;
+          console.log("planOneDataType：" + that.planOneDataType);
         }
       });
       if (JSON.stringify(one) !== "{}") {
@@ -939,25 +962,30 @@ export default {
       this.getCurrData();
     },
     addOnePlan() {
-      let canSubmit = false;
-      this.planOneData.forEach(function(item) {
-        if (item["checked"] == true) {
-          canSubmit = true;
-          this.planInputDisabled = false;
-        }
-      });
-      if (canSubmit == false) {
-        this.$message({
-          showClose: true,
-          message: "请选中要作业的线别",
-          type: "error"
+      if (this.planOneDataType == 1) {
+        let canSubmit = false;
+        this.planOneData.forEach(function(item) {
+          if (item["checked"] == true) {
+            canSubmit = true;
+            this.planInputDisabled = false;
+          }
         });
-        return false;
+        if (canSubmit == false) {
+          this.$message({
+            showClose: true,
+            message: "请选中要作业的线别",
+            type: "error"
+          });
+          return false;
+        }
       }
+
       let data = {
         addDate: this.addDate,
         checkedList: this.planOneData,
-        workName: this.planWorkName
+        workName: this.planWorkName,
+        pro_id: this.subIndex,
+        plan_num: this.planWorkNum
       };
       this.request({
         url: "/project/addOnedayPlan",
@@ -1134,7 +1162,7 @@ export default {
                 typeof this.historyData.id == "undefined" ||
                 this.historyData.id == 0
               ) {
-                msg = "新增成功";
+                msg = "添加成功";
               } else {
                 msg = "修改成功";
               }
@@ -1150,7 +1178,7 @@ export default {
                 typeof this.historyData.id == "undefined" ||
                 this.historyData.id == 0
               ) {
-                msg = "新增失败";
+                msg = "添加失败";
               } else {
                 msg = "修改失败";
               }
@@ -1572,7 +1600,7 @@ export default {
   text-align: center;
   margin: 0 3px;
   padding: 0 5px;
-  height: 31px!important;
+  height: 31px !important;
 }
 .dialog-plan-detail .el-form-item__label {
   color: #1d397a;
