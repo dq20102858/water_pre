@@ -54,7 +54,7 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="受令车站">
+        <el-form-item label="受令车站" prop="station">
           <el-input autocomplete="off" v-model="ruleForm.station"></el-input>
         </el-form-item>
         <el-form-item label="车站值班员">
@@ -170,10 +170,14 @@ export default {
           { required: true, message: "请选择受令机长", trigger: "change" }
         ],
         location: [
-          { required: true, message: "请选择令处所", trigger: "blur" }
+          { required: true, message: "请输入令处所", trigger: "blur" },
+          { min: 2, max: 30, message: "请输入长度在2到30个字符", trigger: "blur" }
         ],
         driver_id: [
           { required: true, message: "请选择受令机车", trigger: "change" }
+        ],
+        station: [
+          { min: 2, max: 30, message: "请输入长度在2到30个字符", trigger: "blur" }
         ],
         dispatch_id: [
           { required: true, message: "请选择调度员", trigger: "change" }

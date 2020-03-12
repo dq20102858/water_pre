@@ -11,7 +11,6 @@
 export default {
   data() {
     return {
-      cwidth: 0,
       stationList: [],
       lineTypeList: [],
       listSchedule: [],

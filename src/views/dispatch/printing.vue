@@ -14,7 +14,7 @@
         <el-form-item label="机车：">
           <div class="txt">{{dataInfo.loco}}</div>
         </el-form-item>
-        <el-form-item label="机长">
+        <el-form-item label="机长：">
           <div class="txt">{{dataInfo.master}}</div>
         </el-form-item>
         <el-form-item label="司机：">
@@ -140,7 +140,7 @@ export default {
 #dispatch-print .txt {
   border: 1px #9db9fa solid;
   color: #4b6eca;
-  height: 37px;
+  min-height: 37px;
   padding: 0 10px;
   width: 200px;
   border-radius: 3px;
