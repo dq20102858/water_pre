@@ -32,7 +32,7 @@
              <!--  -->
 						<div>
               联系人：<span  style="width:40%;display:inline-block" class="clblue">{{dataInfo.contact}}</span> 
-              联系电话： <span class="clblue">{{dataInfo.phone}}</span></div>
+              联系电话：<span class="clblue">{{dataInfo.phone}}</span></div>
 						<div v-for="item in dataInfo.holder" :key="item.id">持证人：<span  style="width:40%;display:inline-block" class="clblue">{{item.name}}</span> 
                  联系电话：<span class="clblue">{{item.phone}}</span></div>
 						<div>负责人：<span  style="width:40%;display:inline-block;overflow: hidden;white-space: nowrap; vertical-align: middle;" class="clblue">{{dataInfo.p_in_charge}}</span> 
@@ -145,12 +145,12 @@
 						<b>承运人签名（章）：</b>暂无
 					</td>
 					<td style="width:200px;">审批人：{{dataInfo.approver}}</td>
-					<td style="width:200px;">消点人:{{dataInfo.logout}}</td>
+					<td style="width:200px;">销点人:{{dataInfo.logout}}</td>
 					<td style="width:200px;">注销人：{{dataInfo.logoff}}</td>
 				</tr>
 				<tr>
 					<td>审批时间：{{dataInfo.approve_time}}</td>
-					<td>消点时间：{{dataInfo.logout_time}}</td>
+					<td>销点时间：{{dataInfo.logout_time}}</td>
 					<td>注销时间：{{dataInfo.logoff_time}}</td>
 				</tr>
 			</tbody>
@@ -272,7 +272,7 @@
             </div>
           </el-timeline-item>
           <el-timeline-item
-            timestamp="消点"
+            timestamp="销点"
             placement="top"
             type="warning "
             color="#ff5c75"
@@ -348,7 +348,7 @@ export default {
           this.dataInfo = data.data;
          // let car=data.data.area_or_car;
           this.carUse=data.data.area_or_car[0].car_use;
-          console.log(JSON.stringify(this.carUse));
+         // console.log(JSON.stringify(this.carUse));
         }
       });
     },
@@ -356,7 +356,7 @@ export default {
       this.$layer.close(this.layerid);
     },
     funIsEmpty(item){
-       if( Object.keys(item).length==0)
+       if(item=="")
        {
          return "暂无";
        }

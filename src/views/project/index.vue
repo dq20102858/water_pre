@@ -53,7 +53,7 @@
             </el-pagination>
           </div>
         </div>
-        <el-dialog class="dialog-work" :title="this.title" :visible.sync="workVisible">
+        <el-dialog :close-on-click-modal="false" class="dialog-work" :title="this.title" :visible.sync="workVisible">
           <el-form class="el-form-custom" :model="workData" :rules="wokRules" ref="workForm">
             <el-form-item label="名称" prop="name">
               <el-input v-model="workData.name" autocomplete="off" placeholder="请输入作业名称"></el-input>
@@ -81,10 +81,10 @@
             </el-form-item>
             <div class="el-form-item-inline">
               <el-form-item label="设计总量" prop="total">
-                <el-input v-model="workData.total" autocomplete="off"></el-input>
+                <el-input v-model="workData.total" autocomplete="off" placeholder="请输入数字"></el-input>
               </el-form-item>
               <el-form-item label="单位" prop="unit">
-                <el-input v-model="workData.unit" autocomplete="off"></el-input>
+                <el-input v-model="workData.unit" autocomplete="off" placeholder="请输入公里，个，股，孔等"></el-input>
               </el-form-item>
             </div>
             <div class="el-form-item-inline">
@@ -550,7 +550,7 @@ export default {
       title: "添加作业信息",
       wokRules: {
         name: [{ required: true, message: "请输入名称3~60个字符", trigger: "blur" },
-        { min: 3, max:60, message: '长度在3到60个字符', trigger: 'blur' }],
+        { min: 2, max:60, message: '长度在2到60个字符', trigger: 'blur' }],
         type: [{ required: true, message: "请选择类别", trigger: "change" }],
         line_type: [
           { required: true, message: "请选择线别", trigger: "change" }
@@ -562,8 +562,9 @@ export default {
           { required: true, message: "请选择日期", trigger: "change" }
         ],
         total: [{ required: true, message: "请输入设计总量", trigger: "blur" },
-         { type: 'number', message: '请输入数字'}],
-        unit: [{ required: true, message: "请输入单位", trigger: "blur" }]
+         { pattern: /^(0|[1-9][0-9]*)$/, message: '请输入正整数', trigger: "blur" },
+         { min: 2, max: 30, message: "请输入长度在2到30个字符", trigger: "blur" }],
+        unit: [{ required: true, message: "请输入单位公里，个，股，孔等", trigger: "blur" }]
       },
       lineVisible: false, //查看线别
       lineData: [],
