@@ -1,41 +1,79 @@
 <template>
   <div id="dispatch-print" class="app-page-layer">
-    <div class="app-dialog-form">
-      <el-form id="printMe" :inline="true">
-        <el-form-item label="命令号：">
-          <div class="txt">{{dataInfo.number}}</div>
-        </el-form-item>
-        <el-form-item label="调度：">
-          <div class="txt">{{dataInfo.dispatch}}</div>
-        </el-form-item>
-        <el-form-item label="车站：">
-          <div class="txt">{{dataInfo.station}}</div>
-        </el-form-item>
-        <el-form-item label="机车：">
-          <div class="txt">{{dataInfo.loco}}</div>
-        </el-form-item>
-        <el-form-item label="机长：">
-          <div class="txt">{{dataInfo.master}}</div>
-        </el-form-item>
-        <el-form-item label="司机：">
-          <div class="txt">{{dataInfo.driver}}</div>
-        </el-form-item>
-        <el-form-item label="值班员：">
-          <div class="txt">{{dataInfo.station_worker}}</div>
-        </el-form-item>
-        <el-form-item label="受令处所：">
-          <div class="txt">{{dataInfo.location}}</div>
-        </el-form-item>
-        <el-form-item></el-form-item>
-        <el-form-item class="contents" label="命令内容：">
-          <div class="conn">{{dataInfo.description}}</div>
-        </el-form-item>
-        <p class="info">注：本调度命令一式四份</p>
-      </el-form>
-      <div slot="footer" class="app-dialog-footer">
-        <el-button class="bluebtn" @click="isCancel">返回列表</el-button>
-        <el-button class="redbtn" v-print="'#printMe'">打印信息</el-button>
-      </div>
+    <div id="printMe">
+      <h3 class="ptitle">调度命令 （行车调度）</h3>
+      <p class="pdate">发令时间 ： {{dataInfo.create_time}}</p>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <b class="tname">命令号</b>
+            </td>
+            <td>
+              <p>{{dataInfo.number}}</p>
+            </td>
+            <td>
+              <b class="tname">调度</b>
+            </td>
+            <td>
+              <p>{{dataInfo.dispatch}}</p>
+            </td>
+            <td>
+              <b class="tname">车站</b>
+            </td>
+            <td>
+              <p>{{dataInfo.station==""?"暂无":dataInfo.station}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b class="tname">机车</b>
+            </td>
+            <td>
+              <p>{{dataInfo.loco}}</p>
+            </td>
+            <td>
+              <b class="tname">车长</b>
+            </td>
+            <td>
+              <p>{{dataInfo.master}}</p>
+            </td>
+            <td>
+              <b class="tname">司机</b>
+            </td>
+            <td>
+              <p>{{dataInfo.driver==""?"暂无":dataInfo.driver}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b class="tname">值班员</b>
+            </td>
+            <td>
+              <p>{{dataInfo.station_worker==""?"暂无":dataInfo.station_worker}}</p>
+            </td>
+            <td>
+              <b class="tname">受令处所</b>
+            </td>
+            <td colspan="3">
+              <p>{{dataInfo.location==""?"暂无":dataInfo.location}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b class="tname">内容</b>
+            </td>
+            <td colspan="5">
+              <p>{{dataInfo.description}}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="padding-top:10px;">注：本调度命令一式四份，调度留存一份，联络员，施工负责人各一份。</p>
+    </div>
+    <div slot="footer" class="app-dialog-footer">
+      <el-button class="bluebtn" @click="isCancel">返回列表</el-button>
+      <el-button class="redbtn" v-print="'#printMe'">打印信息</el-button>
     </div>
   </div>
 </template>
@@ -86,38 +124,58 @@ export default {
 </script>
 
 <style>
+@media print {
+  #printMe table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  #printMe table td {
+    border: 1px solid #9db9fa;
+    line-height: 30px;
+    padding: 10px;
+  }
+  undefined{display: none;}
+}
+#dispatch-print {
+  width: 100%;
+}
+#printMe {
+  padding: 30px;
+}
+#printMe table {
+  border-collapse: collapse;
+  width: 100%;
+}
+#printMe table td {
+  border: 1px solid #9db9fa;
+  line-height: 30px;
+  padding: 10px;
+}
+#printMe p {
+  line-height: 33px;
+}
+#printMe .ptitle {
+  font-size: 18px;
+  text-align: center;
+  color: #1d397a;
+}
+#printMe .pdate {
+  text-align: center;
+}
+#printMe p {
+  line-height: 33px;
+  color: #4b6eca;
+}
+#printMe .tname {
+  white-space: nowrap;
+  color: #1d397a;
+}
 #dispatch-print .app-dialog-form {
   padding: 30px 0px 30px 30px;
   display: block;
   margin-top: 1px;
 }
-#dispatch-print .app-dialog-form .el-form-item {
-  margin-bottom: 15px;
-}
-#dispatch-print .app-dialog-form .el-form-item__label {
-  width: 90px;
-  color: #1d397a;
-}
 
-#dispatch-print .app-dialog-form .contents {
-  display: block;
-  width: 100%;
-}
-#dispatch-print .app-dialog-form .contents .el-textarea {
-  width: 100%;
-}
-#dispatch-print .app-dialog-form .contents .el-form-item__content {
-  width: 723px;
-}
-#dispatch-print .conn {
-  border: 1px #9db9fa solid;
-  color: #4b6eca;
-  padding: 10px;
-  border-radius: 3px;
-}
-#dispatch-print .info {
-  color: #4b6eca;
-}
 #dispatch-print .app-dialog-footer {
   text-align: center;
   margin-top: 30px;
@@ -137,19 +195,4 @@ export default {
   background: #ff5c75;
   border-color: #ff5c75;
 }
-#dispatch-print .txt {
-  border: 1px #9db9fa solid;
-  color: #4b6eca;
-  min-height: 37px;
-  padding: 0 10px;
-  width: 200px;
-  border-radius: 3px;
-}
-#printMe .el-form-item__label {
-  width: 90px;
-  color: #1d397a;
-}
-#printMe p{color: #4b6eca}
-
-#printMe .txt{color: #4b6eca; width: 200px;overflow: hidden;}
 </style>

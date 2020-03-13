@@ -162,7 +162,8 @@ export default {
       isVisible: false,
       rules: {
         number: [
-          { required: true, message: "请输入命令号码", trigger: "blur" }
+          { required: true, message: "请输入命令号码", trigger: "blur" },
+           { min: 2, max: 60, message: "请输入长度在2到60个字符", trigger: "blur" }
         ],
         lid: [{ required: true, message: "请选择受令机车", trigger: "change" }],
         type: [{ required: true, message: "请选择类型", trigger: "change" }],
