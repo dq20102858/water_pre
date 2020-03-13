@@ -1,5 +1,26 @@
 <template>
   <div id="progress">
+    <div class="station-top">
+      <div class="startend">
+        <div class="sleft">
+          {{firstStation}}方向
+          <i class="line-a"></i>
+        </div>
+        <div class="sright">
+          {{lastStation}}方向
+          <i class="line-b"></i>
+        </div>
+      </div>
+      <div class="stations">
+        <i class="el-icon-arrow-left" @click="leftMove"></i>
+        <div class="item" :style="{width:scrollwidth  + 'px'}">
+          <ul :style="{width: stationList.length * 100 + 'px','margin-left': wdpx * 100 + 'px'}">
+            <li v-for="item in stationList" :key="item.id">{{item.name}}</li>
+          </ul>
+        </div>
+        <i class="el-icon-arrow-right" @click="rightMove"></i>
+      </div>
+    </div>
     <div class="main-canvas">
       <div class="group-canvas">
         <canvas id="mycanvas" height="480" ref="mycanvas">
@@ -14,7 +35,11 @@
 export default {
   data() {
     return {
+      wdpx: 0,
       stationList: [],
+      firstStation: "",
+      lastStation: "",
+      scrollwidth: 900,
       minKM: 0,
       minMileage: 0,
       totalMileage: 0,
@@ -28,14 +53,14 @@ export default {
   methods: {
     getProjectProcessMap() {
       this.request({
-        url: "/project/projectProcessMap",
+        url: "/monitor/getMointorDatas",
         method: "get"
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
           this.stationList = data.data.stations;
           let json = data.data.stations;
-          //找到最大数与最小数
+          //找到最大数与最小数公里数
           let first = json[0];
           let end = json[0];
           for (let i = 1; i < json.length; i++) {
@@ -43,6 +68,11 @@ export default {
             if (first.start_flag > tmp.start_flag) first = tmp;
             if (end.start_flag < tmp.start_flag) end = tmp;
           }
+          this.scrollwidth = document.documentElement.clientWidth - 380;
+          console.log(this.scrollwidth);
+          this.firstStation = json[0].name; // 第一个站
+          this.lastStation = json[json.length - 1].name; // 最后一个站
+
           // 总里程
           this.totalMileage =
             (end.start_flag - first.start_flag) * 1000 +
@@ -222,7 +252,7 @@ export default {
           context.textAlign = "left";
           let origin = json[i].name;
           let lens = json[i].name.length;
-          context.fillText(origin,  startX + 90, 55);
+          context.fillText(origin, startX + 90, 55);
           //DK
           let codes = "DK" + json[i].start_flag + " +" + json[i].start_length;
           context.fillStyle = "#0AE39A";
@@ -235,9 +265,25 @@ export default {
       drawAxes();
       drawAxisLabels(this.minKM, axis_Origin.x, axis_Origin.y);
       drawAxisLabels(this.minKM, axis_Origin_two.x, axis_Origin_two.y);
+    },
+    //top
+    leftMove() {
+      if (this.wdpx < 0) {
+        this.wdpx += 1;
+      }
+    },
+    rightMove() {
+      if (this.wdpx > -(this.stationList.length + this.wdpx)) {
+        this.wdpx -= 1;
+      }
     }
 
     //
+  },
+  mounted() {
+    window.addEventListener("resize", () => {
+      this.scrollwidth = document.documentElement.clientWidth - 380;
+    });
   }
 };
 </script>
@@ -256,5 +302,93 @@ export default {
   padding-right: 100px;
 }
 
+.station-top {
+  margin: 0 40px;
+}
+.startend {
+  padding-top: 40px;
+  overflow: hidden;
+}
+.startend div {
+  background: #4b6eca;
+  color: #fff;
+  padding: 15px 15px;
+  display: block;
+  font-size: 18px;
+}
+.startend .sleft {
+  float: left;
+}
+.startend .sright {
+  float: right;
+  margin-right: 10px;
+}
+.startend .line-a {
+  position: relative;
+  background: #fff;
+  height: 1px;
+  display: block;
+  margin-top: 10px;
+}
+.startend .line-a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 10px;
+  height: 3px;
+  border-bottom: 1px solid #fff;
+  transform: rotateZ(45deg);
+}
+.startend .line-b {
+  position: relative;
+  background: #fff;
+  height: 1px;
+  display: block;
+  margin-top: 10px;
+}
+.startend .line-b::before {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: 4px;
+  width: 10px;
+  height: 3px;
+  border-bottom: 1px solid #fff;
+  transform: rotateZ(135deg);
+}
+.stations {
+  padding-top: 30px;
+  margin-bottom: 50px;
+}
+.stations .item {
+  width: 900px;
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+}
+.stations ul li {
+  display: inline-block;
+  background: #4b6eca;
+  color: #fff;
+  padding: 10px 15px;
+  margin-left: 15px;
+  cursor: pointer;
+}
+.stations ul li:hover {
+  background: #2359e2;
+}
+.stations i {
+  display: inline-block;
+  background: #3062e2;
+  color: #fff;
+  padding: 8px 15px;
+  font-size: 20px;
+  vertical-align: top;
+  cursor: pointer;
+}
+.stations i:hover {
+ background: #2359e2;
+}
 /* //#27DB07 */
 </style>

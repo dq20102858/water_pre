@@ -73,7 +73,7 @@
     </div>
     <div slot="footer" class="app-dialog-footer">
       <el-button class="bluebtn" @click="isCancel">返回列表</el-button>
-      <el-button class="redbtn" v-print="'#printMe'">打印信息</el-button>
+      <el-button class="redbtn" v-print="printObj">打印信息</el-button>
     </div>
   </div>
 </template>
@@ -82,10 +82,13 @@
 export default {
   data() {
     return {
-      iframepar: {},
-      id: 1,
-      dataInfo: [],
-      iData: { id: 3 }
+       printObj: {
+        id: "#printMe",
+        popTitle: " ",
+        extraCss: "",
+        extraHead: '<meta http-equiv="Content-Language"content="zh-cn"/>'
+      },
+      dataInfo: []
     };
   },
   props: {
