@@ -5,7 +5,13 @@
         <el-form :model="searchForm" :inline="true">
           <div class="select-from-inline">
             <el-form-item>
-              <el-button type="primary" class="redbtn" style="width:145px;" icon="el-icon-plus" @click="addInfo">新建调度命令</el-button>
+              <el-button
+                type="primary"
+                class="redbtn"
+                style="width:145px;"
+                icon="el-icon-plus"
+                @click="addInfo"
+              >新建调度命令</el-button>
             </el-form-item>
             <el-form-item label="机车名称">
               <el-select v-model="searchForm.lid" placeholder="请选择" clearable>
@@ -50,7 +56,13 @@
           </div>
           <div class="select-from-inline">
             <el-form-item>
-              <el-button type="primary" style="width:145px;" class="bluebtn"  icon="el-icon-refresh-right" @click="onLoadPage">更新信息</el-button>
+              <el-button
+                type="primary"
+                style="width:145px;"
+                class="bluebtn"
+                icon="el-icon-refresh-right"
+                @click="onLoadPage"
+              >更新信息</el-button>
             </el-form-item>
             <el-form-item label="命令状态">
               <el-select v-model="searchForm.status" placeholder="请选择" clearable>
@@ -62,16 +74,16 @@
             <el-form-item label="开始时间">
               <el-date-picker
                 v-model="searchForm.time_range"
-                 type="daterange"
-                  range-separator="至"
-                  start-placeholder="开始日期"
-                  end-placeholder="结束日期"
-                  :default-time="['00:00:00', '23:59:59']"
+                type="daterange"
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
+                :default-time="['00:00:00', '23:59:59']"
               ></el-date-picker>
             </el-form-item>
             <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
-              <el-button size="small" icon="el-icon-search" type="primary" @click="getDataLists">查询</el-button>
+              <el-button size="small" icon="el-icon-search" type="primary" @click="searchEvent">查询</el-button>
             </el-form-item>
           </div>
         </el-form>
@@ -91,7 +103,11 @@
               <span class="statused" v-if="scope.row.status=='3'">已作废</span>
             </template>
           </el-table-column>
-          <el-table-column prop="create_time" min-width="80" label="发令时间"></el-table-column>
+          <el-table-column prop="create_time" min-width="80" label="发令时间">
+ <template slot-scope="scope">
+   <p v-html="changeTime(scope.row.create_time)"></p>
+ </template>
+          </el-table-column>
           <el-table-column prop="makesure_time" min-width="80" label="确认时间">
             <template slot-scope="scope">
               <span v-if="scope.row.makesure_time.length==0">暂未确认</span>
@@ -132,8 +148,12 @@
             prev-text="上一页"
             next-text="下一页"
           >
-          <button @click="toFirstPage" type="button" class="btn-first"><span>首页</span></button>
-          <button @click="toLastPage" type="button" class="btn-last"><span>尾页</span></button>
+            <button @click="toFirstPage" type="button" class="btn-first">
+              <span>首页</span>
+            </button>
+            <button @click="toLastPage" type="button" class="btn-last">
+              <span>尾页</span>
+            </button>
           </el-pagination>
         </div>
       </div>
@@ -256,6 +276,10 @@ export default {
         }
       });
     },
+     searchEvent() {
+      this.page_cur = 1;
+      this.getDataLists();
+    },
     pageChange(value) {
       this.page_cur = value;
       this.getDataLists();
@@ -352,7 +376,15 @@ export default {
           data: { iframeData: { id: id } }
         }
       });
+    },
+    changeTime(time) {
+      if (time !== null && time !== undefined && time !== "") {
+        return "<span style='display:block'>"+time.substring(0, 10)+"</span><span style='display:block'>"+time.substring(time.length-8)+"</span>";
+      } else {
+        return "";
+      }
     }
+    //
   }
 };
 </script>
@@ -394,6 +426,4 @@ export default {
 .app-page-select .select-from-inline .form-so .el-button- {
   float: right;
 }
-
-
 </style>
