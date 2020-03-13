@@ -22,7 +22,12 @@
       </div>
     </div>
     <div class="main-canvas">
-      <div class="group-canvas">
+      <div
+        class="group-canvas"
+      @mousedown="touchStart($event)"
+        v-on:mousedown="touchMove($event)"
+      
+      >
         <canvas id="mycanvas" height="480" ref="mycanvas">
           <p>您的系统不支持此程序!</p>
         </canvas>
@@ -35,6 +40,13 @@
 export default {
   data() {
     return {
+      flag: false,
+      startX: 0,
+      endX: 0,
+      slideStyle: {
+        left: 0,
+        transition: "none"
+      },
       wdpx: 0,
       stationList: [],
       firstStation: "",
@@ -51,6 +63,19 @@ export default {
   },
   mounted() {},
   methods: {
+    touchStart(e) {
+       var x = e.clientX;
+      console.log("start:"+x);
+    },
+    touchMove(e) {
+     
+      var x = e.clientX;
+      console.log("move：" + x);
+    },
+    touchEnd(e) {
+    
+      console.log("end");
+    },
     getProjectProcessMap() {
       this.request({
         url: "/monitor/getMointorDatas",
@@ -277,7 +302,6 @@ export default {
         this.wdpx -= 1;
       }
     }
-
     //
   },
   mounted() {
@@ -388,7 +412,7 @@ export default {
   cursor: pointer;
 }
 .stations i:hover {
- background: #2359e2;
+  background: #2359e2;
 }
 /* //#27DB07 */
 </style>
