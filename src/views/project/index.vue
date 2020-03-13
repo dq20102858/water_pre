@@ -280,7 +280,7 @@
               </ul>
             </div>
             <div v-else style="margin-top:20px;width:280px;">
-            <el-input placeholder="请输入内容" v-model="planWorkNum" onkeyup="this.value = this.value.replace(/[^\d.]/g,'');">
+            <el-input placeholder="请输入计划数量" v-model="planWorkNum" onkeyup="this.value = this.value.replace(/[^\d.]/g,'');">
               <template slot="prepend">计划数量</template>
             </el-input>
           </div>
@@ -661,7 +661,7 @@ export default {
       echartDataNames: "",
       addDate: "",
       planWorkName: "",
-      planWorkNum: 0,
+      planWorkNum: '',
       planDetailList: [],
       detailVisible: false,
       calendarLists: {},
@@ -962,12 +962,13 @@ export default {
       this.getCurrData();
     },
     addOnePlan() {
+      const that=this;
       if (this.planOneDataType == 1) {
         let canSubmit = false;
         this.planOneData.forEach(function(item) {
           if (item["checked"] == true) {
             canSubmit = true;
-            this.planInputDisabled = false;
+            that.planInputDisabled = false;
           }
         });
         if (canSubmit == false) {
@@ -999,6 +1000,7 @@ export default {
             message: "添加成功",
             type: "success"
           });
+          this.planVisible=false;
         } else {
           this.$message({
             showClose: true,
