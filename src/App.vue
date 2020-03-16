@@ -44,14 +44,12 @@ ul,li{list-style-type: none}
 /* hideSidebar */
 #app .sidebar-container{z-index: 500;}
 #app .hideSidebar .submenu-title-noDropdown .el-tooltip{padding:0 5px!important;}
-
 /* bg */
 .app-body-black{background: #000; }
 .app-page{padding: 20px;}
 .app-page-container{border-radius: 6px;padding: 20px; background: #fff;}
 .app-page-select{display: block;}
 .app-page-select .select-from-inline{display: inline-block;white-space: nowrap;width: 100%;}
-
 /* table css */
 .app-table .el-table-column--selection .cell{padding-left: 17px;}
 .app-table .el-table__header-wrapper{background: #3655a5;border-radius: 6px 6px 0 0;padding: 0 0;}
