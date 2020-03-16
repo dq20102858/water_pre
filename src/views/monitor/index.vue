@@ -12,22 +12,21 @@
         </div>
       </div>
       <div class="stations">
-        <i class="el-icon-arrow-left" @click="leftMove"></i>
+        <i class="el-icon-arrow-left" @click="stationLeftMove"></i>
         <div class="item" :style="{width:scrollwidth  + 'px'}">
           <ul :style="{width: stationList.length * 100 + 'px','margin-left': wdpx * 100 + 'px'}">
-            <li v-for="item in stationList" :key="item.id">{{item.name}}</li>
+            <li
+              @click="scrollPosition(item.start_flag,item.start_length)"
+              v-for="item in stationList"
+              :key="item.id"
+            >{{item.name}}</li>
           </ul>
         </div>
-        <i class="el-icon-arrow-right" @click="rightMove"></i>
+        <i class="el-icon-arrow-right" @click="stationRightMove"></i>
       </div>
     </div>
     <div class="main-canvas">
-      <div
-        class="group-canvas"
-      @mousedown="touchStart($event)"
-        v-on:mousedown="touchMove($event)"
-      
-      >
+      <div class="group-canvas" @mousedown="touchStart($event)" v-on:mousedown="touchMove($event)">
         <canvas id="mycanvas" height="480" ref="mycanvas">
           <p>您的系统不支持此程序!</p>
         </canvas>
@@ -64,16 +63,14 @@ export default {
   mounted() {},
   methods: {
     touchStart(e) {
-       var x = e.clientX;
-      console.log("start:"+x);
+      var x = e.clientX;
+      console.log("start:" + x);
     },
     touchMove(e) {
-     
       var x = e.clientX;
       console.log("move：" + x);
     },
     touchEnd(e) {
-    
       console.log("end");
     },
     getProjectProcessMap() {
@@ -292,15 +289,21 @@ export default {
       drawAxisLabels(this.minKM, axis_Origin_two.x, axis_Origin_two.y);
     },
     //top
-    leftMove() {
+    stationLeftMove() {
       if (this.wdpx < 0) {
         this.wdpx += 1;
       }
     },
-    rightMove() {
+    stationRightMove() {
       if (this.wdpx > -(this.stationList.length + this.wdpx)) {
         this.wdpx -= 1;
       }
+    },
+    scrollPosition(start_flag,start_length) {
+      let total = start_flag;
+      let startX =((total-this.minKM)* 1000) *0.5;
+      console.log(startX);
+      document.querySelector(".group-canvas").scrollTo(startX, 0);
     }
     //
   },
