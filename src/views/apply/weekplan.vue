@@ -112,8 +112,8 @@
       </div>
       <div class="wfoot">
         <span>注：监理需对此项施工或运输的相关条件（如材料设备已到位，边界条件已满足等），进行确认。</span>
-        <span class="fr">主管领导：</span>
-        <span class="fr">总监：</span>
+        <span class="fr">主管领导：暂无</span>
+        <span class="fr">总监：暂无</span>
       </div>
     </div>
   </div>

@@ -22,6 +22,7 @@
 export default {
   data() {
     return {
+      cwidth:0,
       stationList: [],
       lineTypeList: [],
       listSchedule: [],
@@ -52,6 +53,7 @@ export default {
     getStationList() {
       let clientWidth = this.$refs.proWrapper.clientWidth;
       let canvasWidth = clientWidth - 200;
+      this.cwidth=canvasWidth;
       console.log("canvasWidth：" + canvasWidth);
       const canvas = this.$refs.canvasStation;
       let cansText = canvas.getContext("2d");
@@ -148,7 +150,7 @@ export default {
         name0 = lineData[0].name,
         name1 = lineData[1].name;
 
-      // console.log(lineData);
+       console.log(lineData);
 
       let startLength = cansText.measureText(from0).width,
         endLength = cansText.measureText(end0).width,
