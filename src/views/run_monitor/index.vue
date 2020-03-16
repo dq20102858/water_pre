@@ -105,7 +105,7 @@ export default {
 }
 .box{ overflow-x: scroll; width: 3000px;}
 .test {
-  width: 2000px;
+  width: 3000px;
   height: 50px;
   text-align: center;
   background-color: Efff;

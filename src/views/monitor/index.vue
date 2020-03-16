@@ -317,8 +317,7 @@ export default {
   background: #081c33;
   height: 100vh;
 }
-.main-canvas {
-}
+
 .group-canvas {
   overflow-x: scroll;
   overflow-y: hidden;
