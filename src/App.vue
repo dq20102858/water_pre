@@ -74,6 +74,7 @@ ul,li{list-style-type: none}
 .el-form-custom .el-form-item__error {padding-top: 5px;}
 .el-form-custom .el-radio__label{color: #4b6eca;}
 .el-form-custom .el-checkbox__label{color: #4b6eca;}
+.el-form-custom .el-textarea__inner{border: 1px #9db9fa solid;color: #4b6eca;}
 
 .app-dialog-form .el-form-item__label {color: #1d397a;}
 .app-dialog-form .el-input input {border: 1px #9db9fa solid;color: #4b6eca}
