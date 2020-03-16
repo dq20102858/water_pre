@@ -50,6 +50,8 @@ ul,li{list-style-type: none}
 .app-page-container{border-radius: 6px;padding: 20px; background: #fff;}
 .app-page-select{display: block;}
 .app-page-select .select-from-inline{display: inline-block;white-space: nowrap;width: 100%;}
+.btn-red-addedit {background: #ff5c75;border-color: #ff5c75;margin-right: 20px;}
+.btn-red-addedit:hover, .btn-red-addedit:focus{background: #fe3a58;border-color: #fe3a58;}
 /* table css */
 .app-table .el-table-column--selection .cell{padding-left: 17px;}
 .app-table .el-table__header-wrapper{background: #3655a5;border-radius: 6px 6px 0 0;padding: 0 0;}

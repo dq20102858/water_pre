@@ -366,7 +366,7 @@
               <el-button
                 size="small"
                 icon="el-icon-plus"
-                type="primary"
+                type="primary" 
                 @click="addHistory"
                 style="margin-left:20px;"
               >添加历史记录</el-button>
