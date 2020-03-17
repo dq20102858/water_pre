@@ -107,6 +107,7 @@ ul,li{list-style-type: none}
 .el-dialog__headerbtn:hover{background: #fff;color:#1d397a!important }
 .el-dialog__headerbtn:hover .el-dialog__close {color: #1d397a;}
 .el-dialog .el-dialog__body{padding: 30px 30px 30px 20px;}
+.el-dialog .el-dialog__footer{padding: 0 30px 30px 30px;}
 /* layer */
 .vl-notify-mask { background-color: #000;opacity: .5;}
 .vl-notify .vl-notice-title{height: 49px!important;line-height:50px!important;border-radius:6px 6px 0 0; background: #3655a5!important;text-align: center;}

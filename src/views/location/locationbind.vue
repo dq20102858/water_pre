@@ -1,6 +1,6 @@
 <template>
   <div id="location">
-   <div class="el-menu-top">
+    <div class="el-menu-top">
       <el-menu router default-active="locationbind" mode="horizontal">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-location.png')" />定位管理
@@ -19,32 +19,29 @@
             <el-form-item>
               <el-button type="primary" icon="el-icon-plus" @click="addDialogInfo">添加设备</el-button>
             </el-form-item>
-            <el-form-item label="公司：" prop="depart_id">
+            <el-form-item label="公司">
               <el-select v-model="searchForm.depart_id" placeholder="请选择公司" clearable>
                 <el-option
-                  v-for="item in linTypeList"
+                  v-for="item in companySelectLists"
                   :key="item.id"
                   :label="item.name"
                   :value="item.id"
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="类型" prop="depart_id">
-              <el-select v-model="searchForm.depart_id" placeholder="请选择公司" clearable>
-                <el-option
-                  v-for="item in linTypeList"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                ></el-option>
+            <el-form-item label="类型">
+              <el-select v-model="searchForm.type" placeholder="请选择公司" clearable>
+                <el-option label="人" value="1"></el-option>
+                <el-option label="车" value="2"></el-option>
+                <el-option label="机具" value="3"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="编号或名称：" prop="number">
-              <el-input v-model="searchForm.number" autocomplete="off"></el-input>
+            <el-form-item label="编号或名称">
+              <el-input v-model="searchForm.keyword" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
-              <el-button size="small" icon="el-icon-search" @click="getDataList" type="primary">查询</el-button>
+              <el-button size="small" icon="el-icon-search" @click="pageSearch" type="primary">查询</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -86,10 +83,10 @@
               prev-text="上一页"
               next-text="下一页"
             >
-              <button @click="toFirstPage" type="button" class="btn-first">
+              <button @click="pageToFirst" type="button" class="btn-first">
                 <span>首页</span>
               </button>
-              <button @click="toLastPage" type="button" class="btn-last">
+              <button @click="pageToLast" type="button" class="btn-last">
                 <span>尾页</span>
               </button>
             </el-pagination>
@@ -109,51 +106,85 @@
         class="el-form-custom"
         :model="locationData"
         :rules="detectorRules"
-        ref="carDetectorForm"
+        ref="detectorRulesForm"
       >
         <el-form-item label="设备编号：" prop="number">
           <el-input v-model="locationData.number" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="设备类型：" prop="type">
-          <el-select v-model="locationData.type" placeholder="请选择" clearable>
-            <el-option label="人" value="1"></el-option>
-            <el-option label="车" value="2"></el-option>
-            <el-option label="机具" value="3"></el-option>
-          </el-select>
-        </el-form-item>
-        <div v-if="locationData.type==1">
-          <el-form-item label="所属部门：" prop="type">
-            <el-select v-model="locationData.bumen" placeholder="请选择" clearable>
-              <el-option label="人" value="1"></el-option>
-              <el-option label="车" value="2"></el-option>
-              <el-option label="机具" value="3"></el-option>
+        <div v-if="locationData.id>0">
+          <el-form-item label="设备类型：" prop="type">
+            <el-select v-model="locationData.type" placeholder="请选择" clearable disabled>
+              <el-option label="人" :value="1"></el-option>
+              <el-option label="车" :value="2"></el-option>
+              <el-option label="机具" :value="3"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="所属职位：" prop="type">
-            <el-select v-model="locationData.zhiwei" placeholder="请选择" clearable>
-              <el-option label="人" value="1"></el-option>
-              <el-option label="车" value="2"></el-option>
-              <el-option label="机具" value="3"></el-option>
+          <el-form-item label="绑定对象：" prop="bind_obj">
+            <el-select v-model="locationData.bind_obj" placeholder="请选择" clearable>
+              <el-option label="heekey" :value="12"></el-option>
             </el-select>
           </el-form-item>
         </div>
-        <el-form-item label="所属公司：" prop="depart_id">
-          <el-select v-model="locationData.depart_id" placeholder="请选择公司" clearable>
-            <el-option
-              v-for="item in companyList"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="绑定对象：" prop="bind_obj">
-          <el-select v-model="locationData.bind_obj" placeholder="请选择" clearable>
-            <el-option label="人" value="1"></el-option>
-            <el-option label="车" value="2"></el-option>
-            <el-option label="机具" value="3"></el-option>
-          </el-select>
-        </el-form-item>
+        <div v-else>
+          <el-form-item label="设备类型：" prop="type">
+            <el-select
+              v-model="locationData.type"
+              placeholder="请选择"
+              clearable
+              @change="selectDeviceType($event)"
+            >
+              <el-option label="人" :value="1"></el-option>
+              <el-option label="车" :value="2"></el-option>
+              <el-option label="机具" :value="3"></el-option>
+            </el-select>
+          </el-form-item>
+
+          <!-- <div v-if="this.diaLogTitle=='添加设备信息'"> -->
+
+          <el-form-item label="所属公司：" prop="depart_id">
+            <el-select
+              v-model="locationData.depart_id"
+              placeholder="请选择公司"
+              clearable
+              @change="getDepartLists($event)"
+            >
+              <el-option
+                v-for="item in companySelectLists"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id"
+              ></el-option>
+            </el-select>
+          </el-form-item>
+          <div v-if="locationData.type==1">
+            <el-form-item label="所属部门：">
+              <el-select v-model="locationData.sub_pid" @change="getPostLists($event)">
+                <el-option
+                  v-for="item in this.departSelectLists"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="所属职位：">
+              <el-select v-model="locationData.post_pid">
+                <el-option
+                  v-for="item in this.postSelectLists"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </div>
+          <el-form-item label="绑定对象：" prop="bind_obj">
+            <el-select v-model="locationData.bind_obj" placeholder="请选择" clearable>
+              <el-option label="heekey" :value="12"></el-option>
+            </el-select>
+          </el-form-item>
+        </div>
+        <!-- </div> -->
 
         <div class="blank"></div>
       </el-form>
@@ -168,7 +199,6 @@
 export default {
   data() {
     return {
-      activeIndex: 1,
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
       locationData: {},
@@ -200,44 +230,19 @@ export default {
       pageTotal: 0,
       page_size: 20,
       page_total: 0,
+      searchForm: {},
+      deviceType: 1,
       dataList: [],
-      companyList: [],
-      linTypeList: [],
-      searchForm: []
+      companySelectLists: [],
+      departSelectLists: [],
+      postSelectLists: []
     };
   },
   created() {
-    this.getCompanyList();
-    this.getLiTypeList();
+    this.getCompanyLists();
     this.getDataList();
   },
   methods: {
-    getCompanyList() {
-      this.request({
-        url: "/apply/getCompanyLists",
-        method: "get"
-      }).then(res => {
-        let data = res.data;
-        if (data.status == 1) {
-          this.companyList = data.data;
-        }
-      });
-    },
-    getLiTypeList() {
-      this.request({
-        url: "/common/getLineType",
-        method: "get"
-      }).then(res => {
-        let data = res.data;
-        if (data.status == 1) {
-          this.linTypeList = data.data;
-        }
-      });
-    },
-    searchEvent() {
-      this.page_cur = 1;
-      this.getDataList();
-    },
     getDataList() {
       let page = this.page_cur;
       let depart_id = this.searchForm.depart_id;
@@ -267,20 +272,29 @@ export default {
       this.page_cur = value;
       this.getDataList();
     },
-    toFirstPage() {
+    pageToFirst() {
       this.pageChange(1);
     },
-    toLastPage() {
+    pageToLast() {
       this.page_cur = this.page_total;
       this.pageChange(this.page_total);
     },
+    pageSearch() {
+      this.page_cur = 1;
+      this.getDataList();
+    },
+
+    selectDeviceType(val) {
+      this.deviceType = val;
+      console.log("this.deviceType：" + this.deviceType);
+    },
     addDialogInfo() {
-      this.locationData = [];
+      this.locationData = {};
       this.diaLogTitle = "添加设备信息";
       this.diaLogFormVisible = true;
     },
     addOrEditDialog() {
-      this.$refs["carDetectorForm"].validate(valid => {
+      this.$refs["detectorRulesForm"].validate(valid => {
         if (valid) {
           let data = this.locationData;
           this.request({
@@ -307,7 +321,7 @@ export default {
       });
     },
     goEdit(id) {
-      this.title = "修改设备信息";
+      this.diaLogTitle = "修改设备信息";
       this.diaLogFormVisible = true;
       this.request({
         url: "/location/localBindDetail",
@@ -320,7 +334,6 @@ export default {
         }
       });
     },
-
     goDel(id) {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
@@ -341,6 +354,52 @@ export default {
             this.getDataList();
           }
         });
+      });
+    },
+    //公司 部门 职位
+    getCompanyLists() {
+      this.request({
+        url: "/apply/getCompanyLists",
+        method: "get"
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.companySelectLists = data.data;
+        }
+      });
+    },
+    getDepartLists(val) {
+      console.log("select_company_id：" + val);
+      this.departSelectLists = [];
+      console.log("this.locationData.sub_pid：" + this.locationData.sub_pid);
+       console.log("this.deviceType1：" + this.deviceType);
+      let pid = val;
+      let type = 2;
+      this.request({
+        url: "/company/getDepartLists",
+        method: "get",
+        params: { pid, type }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.departSelectLists = data.data;
+        }
+      });
+    },
+    getPostLists(val) {
+      console.log("select_depart_id：" + pid);
+      this.postSelectLists = [];
+      let pid = val;
+      let type = 3;
+      this.request({
+        url: "/company/getDepartLists",
+        method: "get",
+        params: { pid, type }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.postSelectLists = data.data;
+        }
       });
     },
     changeTime(time) {

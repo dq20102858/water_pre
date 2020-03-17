@@ -11,13 +11,6 @@
         <el-menu-item index="4">人员列表</el-menu-item>
       </el-menu>
     </div>
-
-    <!-- <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-      <el-menu-item index="1">公司列表</el-menu-item>
-      <el-menu-item index="2">部门列表</el-menu-item >
-      <el-menu-item index="3">职位列表</el-menu-item>
-      <el-menu-item index="4">人员列表</el-menu-item>
-    </el-menu>-->
     <div id="company" v-show="companyShow">
       <div class="app-page">
         <div class="app-page-container">
@@ -116,6 +109,7 @@
         </div>
       </div>
     </div>
+    <!-- departShow -->
     <div id="department" v-show="departShow">
       <div class="app-page">
         <div class="app-page-container">
@@ -125,7 +119,7 @@
                 <el-button type="primary" icon="el-icon-plus" @click="openAddDepart">添加部门</el-button>
               </el-form-item>
               <el-form-item label="公司" label-width="80px">
-                <el-select v-model="pid" @change="getDepartLists">
+                <el-select v-model="pid">
                   <el-option
                     v-for="item in this.companySelectLists"
                     :key="item.id"
@@ -240,7 +234,7 @@
         </div>
       </div>
     </div>
-
+    <!-- postShow -->
     <div id="post" v-show="postShow">
       <div class="app-page">
         <div class="app-page-container">
@@ -251,7 +245,7 @@
               </el-form-item>
 
               <el-form-item label="公司">
-                <el-select v-model="pid" @change="getDepartLists">
+                <el-select v-model="pid" @change="getDepartLists(pid)">
                   <el-option
                     v-for="item in this.companySelectLists"
                     :key="item.id"
@@ -260,8 +254,8 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="部门" @change="getPostLists">
-                <el-select v-model="sub_pid">
+              <el-form-item label="部门">
+                <el-select v-model="sub_pid" ref="departselectClear">
                   <el-option
                     v-for="item in this.departSelectLists"
                     :key="item.id"
@@ -270,13 +264,9 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
-                <el-form-item class="form-so">
+              <el-form-item class="form-so">
                 <label class="el-form-item__label"></label>
-                <el-button
-                  size="small"
-                  icon="el-icon-search"
-                  type="primary"
-                >查询</el-button>
+                <el-button size="small" icon="el-icon-search" type="primary">查询</el-button>
               </el-form-item>
             </el-form>
           </div>
@@ -323,7 +313,7 @@
               ref="postRulesForm"
             >
               <el-form-item label="公司名称：" prop="pid">
-                <el-select v-model="companyData.pid" @change="getDepartLists">
+                <el-select v-model="companyData.pid" @change="getDepartLists($event)">
                   <el-option
                     v-for="item in this.companySelectLists"
                     :key="item.id"
@@ -332,7 +322,7 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="部门名称：" prop="sub_pid">
+              <el-form-item label="部门名称：" prop="sub_pid" ref="departselectClear">
                 <el-select v-model="companyData.sub_pid">
                   <el-option
                     v-for="item in this.departSelectLists"
@@ -357,6 +347,7 @@
         </div>
       </div>
     </div>
+    <!-- usersShow -->
     <div id="users" v-show="usersShow">
       <div class="app-page">
         <div class="app-page-container">
@@ -369,7 +360,7 @@
                 <el-input></el-input>
               </el-form-item>
               <el-form-item label="公司">
-                <el-select v-model="pid" @change="getDepartLists">
+                <el-select v-model="pid" @change="getDepartLists(pid)">
                   <el-option
                     v-for="item in this.companySelectLists"
                     :key="item.id"
@@ -379,7 +370,7 @@
                 </el-select>
               </el-form-item>
               <el-form-item label="部门">
-                <el-select v-model="sub_pid" @change="getPostLists">
+                <el-select v-model="sub_pid" @change="getPostLists(sub_pid)">
                   <el-option
                     v-for="item in this.departSelectLists"
                     :key="item.id"
@@ -398,13 +389,9 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
-                 <el-form-item class="form-so">
+              <el-form-item class="form-so">
                 <label class="el-form-item__label"></label>
-                <el-button
-                  size="small"
-                  icon="el-icon-search"
-                  type="primary"
-                >查询</el-button>
+                <el-button size="small" icon="el-icon-search" type="primary">查询</el-button>
               </el-form-item>
             </el-form>
           </div>
@@ -458,6 +445,10 @@
               <el-form-item label="用户名：" prop="user_name">
                 <el-input v-model="userData.user_name" autocomplete="off"></el-input>
               </el-form-item>
+
+              <el-form-item label="密码：" prop="password">
+                <el-input v-model="userData.password" autocomplete="off"></el-input>
+              </el-form-item>
               <el-form-item label="公司名称：" prop="company_id">
                 <el-select v-model="userData.company_id" @change="getDepartLists">
                   <el-option
@@ -467,9 +458,6 @@
                     :value="item.id"
                   ></el-option>
                 </el-select>
-              </el-form-item>
-              <el-form-item label="密码：" prop="password">
-                <el-input v-model="userData.password" autocomplete="off"></el-input>
               </el-form-item>
               <el-form-item label="部门名称：" prop="depart_id">
                 <el-select v-model="userData.depart_id" @change="getPostLists">
@@ -481,9 +469,6 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="邮箱：">
-                <el-input v-model="userData.email" autocomplete="off"></el-input>
-              </el-form-item>
               <el-form-item label="职位名称：" prop="post_id">
                 <el-select v-model="userData.post_id">
                   <el-option
@@ -494,6 +479,10 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
+              <el-form-item label="邮箱：">
+                <el-input v-model="userData.email" autocomplete="off"></el-input>
+              </el-form-item>
+
               <el-form-item label="调度信息：" prop="dispatch">
                 <el-select v-model="userData.dispatch">
                   <el-option label="普通" value="1"></el-option>
@@ -613,8 +602,8 @@ export default {
           { min: 2, max: 500, message: "长度在2到500个字符", trigger: "blur" }
         ]
       },
-        userAddRules: {
-           name: [
+      userAddRules: {
+        name: [
           {
             required: true,
             message: "请输入姓名2~30个字符",
@@ -622,7 +611,7 @@ export default {
           },
           { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
         ],
-            user_name: [
+        user_name: [
           {
             required: true,
             message: "请输入用户名2~30个字符",
@@ -637,7 +626,7 @@ export default {
             trigger: "change"
           }
         ],
-          password: [
+        password: [
           {
             required: true,
             message: "请输入密码2~30个字符",
@@ -652,14 +641,14 @@ export default {
             trigger: "change"
           }
         ],
-         post_id: [
+        post_id: [
           {
             required: true,
             message: "请选择职位",
             trigger: "change"
           }
         ],
-         dispatch: [
+        dispatch: [
           {
             required: true,
             message: "请选择调度信息",
@@ -719,7 +708,41 @@ export default {
         this.getAdminListsPage();
       }
     },
-
+    getPageLists(type) {
+      let page = 1;
+      if (type == 1) {
+        page = this.companyPage;
+      } else if (type == 2) {
+        page = this.departPage;
+      } else {
+        page = this.postPage;
+      }
+      this.request({
+        url: "/company/getPageLists",
+        method: "get",
+        params: { page, type }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          if (type == 1) {
+            this.companyLists = data.data.data;
+            this.companyPage = parseInt(data.data.current_page);
+            this.companyTotal = parseInt(data.data.total);
+            this.companyPageTotal = parseInt(data.data.last_page);
+          } else if (type == 2) {
+            this.departLists = data.data.data;
+            this.departPage = parseInt(data.data.current_page);
+            this.departTotal = parseInt(data.data.total);
+            this.departPageTotal = parseInt(data.data.last_page);
+          } else {
+            this.postLists = data.data.data;
+            this.postPage = parseInt(data.data.current_page);
+            this.postTotal = parseInt(data.data.total);
+            this.postPageTotal = parseInt(data.data.last_page);
+          }
+        }
+      });
+    },
     //公司
     companyPageChange(value) {
       this.getPageLists(1);
@@ -845,6 +868,19 @@ export default {
       });
     },
     //人员 userRulesForm
+    getAdminListsPage() {
+      let page = this.adminPage;
+      this.request({
+        url: "/user/getUserPage",
+        method: "get",
+        params: { page }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.adminLists = data.data.data;
+        }
+      });
+    },
     openAddUser() {
       this.usersVisible = true;
     },
@@ -870,65 +906,7 @@ export default {
       this.getAdminListsPage();
     },
 
-    //other
-    addDo(type) {
-      this.companyData.type = type;
-      let data = this.companyData;
-      if (this.companyData.color == "默认") {
-        this.companyData.color = 0;
-      }
-      this.request({
-        url: "/company/addCompanyDo",
-        method: "post",
-        data
-      }).then(response => {
-        var data = response.data;
-        if (data.status == 1) {
-          this.companyVisible = false;
-          this.departVisible = false;
-          this.postVisible = false;
-          this.getPageLists(type);
-          this.companyData = {
-            color: "默认"
-          };
-        }
-      });
-    },
-    getPageLists(type) {
-      let page = 1;
-      if (type == 1) {
-        page = this.companyPage;
-      } else if (type == 2) {
-        page = this.departPage;
-      } else {
-        page = this.postPage;
-      }
-      this.request({
-        url: "/company/getPageLists",
-        method: "get",
-        params: { page, type }
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          if (type == 1) {
-            this.companyLists = data.data.data;
-            this.companyPage = parseInt(data.data.current_page);
-            this.companyTotal = parseInt(data.data.total);
-            this.companyPageTotal = parseInt(data.data.last_page);
-          } else if (type == 2) {
-            this.departLists = data.data.data;
-            this.departPage = parseInt(data.data.current_page);
-            this.departTotal = parseInt(data.data.total);
-            this.departPageTotal = parseInt(data.data.last_page);
-          } else {
-            this.postLists = data.data.data;
-            this.postPage = parseInt(data.data.current_page);
-            this.postTotal = parseInt(data.data.total);
-            this.postPageTotal = parseInt(data.data.last_page);
-          }
-        }
-      });
-    },
+    //公司 部门 职位
     getCompanyLists() {
       let pid = 0;
       let type = 1;
@@ -943,16 +921,15 @@ export default {
         }
       });
     },
-    getDepartLists() {
-      let pid = this.pid;
-      if (pid == 0 || pid == "") {
-        pid = this.companyData["pid"];
-      }
-      if (pid == 0 || pid == "" || typeof pid == "undefined") {
-        pid = this.userData["company_id"];
-      }
+    
+    getDepartLists(val) {
+      console.log("select_company_id：" + val);
+      //this.companyData.sub_pid = null;
+       //this.companyData.sub_pid= '';
+      this.departSelectLists = [];
+      console.log("this.companyData.sub_pid：" + this.companyData.sub_pid);
+      let pid = val;
       let type = 2;
-
       this.request({
         url: "/company/getDepartLists",
         method: "get",
@@ -961,19 +938,18 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.departSelectLists = data.data;
-          this.companyData.sub_pid = this.departSelectLists[0].name;
         }
-        this.pid = "";
       });
     },
-    getPostLists() {
-      let pid = this.sub_pid;
-      if (pid == 0 || pid == "") {
-        pid = this.companyData["sub_pid"];
-      }
-      if (pid == 0 || pid == "" || typeof pid == "undefined") {
-        pid = this.userData["depart_id"];
-      }
+    getPostLists(pid) {
+      // let pid = this.sub_pid;
+      // if (pid == 0 || pid == "") {
+      //   pid = this.companyData["sub_pid"];
+      // }
+      // if (pid == 0 || pid == "" || typeof pid == "undefined") {
+      //   pid = this.userData["depart_id"];
+      // }
+      console.log("select_depart_id：" + pid);
       let type = 3;
       this.request({
         url: "/company/getDepartLists",
@@ -984,24 +960,21 @@ export default {
         if (data.status == 1) {
           this.postSelectLists = data.data;
         }
-        this.sub_pid = "";
-      });
-    },
-
-    getAdminListsPage() {
-      let page = this.adminPage;
-      this.request({
-        url: "/user/getUserPage",
-        method: "get",
-        params: { page }
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          this.adminLists = data.data.data;
-        }
+        // this.sub_pid = "";
       });
     }
+  },
+  watch: {
+    // companySelectLists: function(newValue) {
+    //   this.companySelectLists = newValue;
+    //   this.pid = null;
+    //   this.sub_pid = null;
+    //   this.companyData.pid=null;
+    //   this.companyData.sub_pid=null;
+    //     console.log('watch');
+    // }
   }
+  //
 };
 </script>
 

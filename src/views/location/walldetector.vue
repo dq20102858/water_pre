@@ -1,6 +1,6 @@
 <template>
   <div id="location">
-     <div class="el-menu-top">
+    <div class="el-menu-top">
       <el-menu router default-active="walldetector" mode="horizontal">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-location.png')" />定位管理
@@ -10,6 +10,11 @@
         <el-menu-item index="cardetector">车载探测器</el-menu-item>
         <el-menu-item index="locationbind">定位从设备</el-menu-item>
         <el-menu-item index="device">机具</el-menu-item>
+        <!-- <router-link to="location">人员定位统计</router-link>
+        <router-link to="walldetector">墙壁探测器</router-link>
+        <router-link to="cardetector">车载探测器</router-link>
+        <router-link to="locationbind">定位从设备</router-link>
+        <router-link to="device">机具</router-link> -->
       </el-menu>
     </div>
     <div class="app-page">
@@ -20,7 +25,7 @@
               <el-button type="primary" icon="el-icon-plus" @click="addDialogInfo">添加设备</el-button>
             </el-form-item>
             <div class="el-serach">
-              <el-input v-model="numberSearch" autocomplete="off" placeholder="请输入编号查询"></el-input>
+              <el-input v-model="numberSearch" autocomplete="off" placeholder="请输入设备编号查询" clearable></el-input>
               <el-button @click="searchEvent">查询</el-button>
             </div>
           </el-form>
@@ -183,7 +188,8 @@ export default {
             trigger: "blur"
           },
           {
-            pattern: /(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}/,
+            pattern:
+              "((?:(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d)))\\.){3}(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d))))",
             message: "请输入正确的IP地址",
             trigger: "blur"
           }

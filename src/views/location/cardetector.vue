@@ -1,6 +1,6 @@
 <template>
   <div id="location">
-      <div class="el-menu-top">
+    <div class="el-menu-top">
       <el-menu router default-active="cardetector" mode="horizontal">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-location.png')" />定位管理
@@ -26,7 +26,12 @@
             <el-table-column prop="id" label="序号"></el-table-column>
             <el-table-column prop="name" label="名称"></el-table-column>
             <el-table-column prop="number" label="设备编号"></el-table-column>
-            <el-table-column prop="loco" label="所属列车"></el-table-column>
+            <el-table-column prop="loco" label="所属列车">
+                <template slot-scope="scope">
+                <span v-if="scope.row.loco==''">暂无列车 </span>
+                <span v-else>{{scope.row.loco}}</span>
+              </template>
+            </el-table-column>
             <el-table-column prop="company" label="公司名称"></el-table-column>
             <el-table-column prop="create_time" label="创建时间">
               <template slot-scope="scope">
@@ -75,18 +80,18 @@
     >
       <el-form
         class="el-form-custom"
-        :model="carDetectorData"
+        :model="detectorData"
         :rules="detectorRules"
-        ref="carDetectorForm"
+        ref="detectorRulesForm"
       >
         <el-form-item label="设备名称：" prop="name">
-          <el-input v-model="carDetectorData.name" autocomplete="off"></el-input>
+          <el-input v-model="detectorData.name" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="设备编号：" prop="number">
-          <el-input v-model="carDetectorData.number" autocomplete="off"></el-input>
+          <el-input v-model="detectorData.number" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="公司名称：" prop="depart_id">
-          <el-select v-model="carDetectorData.depart_id" placeholder="请选择公司" clearable>
+          <el-select v-model="detectorData.depart_id" placeholder="请选择公司" clearable>
             <el-option
               v-for="item in companyList"
               :key="item.id"
@@ -96,14 +101,14 @@
           </el-select>
         </el-form-item>
         <el-form-item label="所属列车" prop="loco_id">
-          <el-select v-model="carDetectorData.loco_id" placeholder="请选择" clearable>
-            <el-option label="暂无列车" value="0"></el-option>
-            <el-option
+          <el-select v-model="detectorData.loco_id" placeholder="请选择" clearable>
+            <el-option label="暂无列车" :value="0"></el-option>
+            <!-- <el-option
               v-for="item in linTypeList"
               :key="item.id"
               :label="item.name"
               :value="item.id"
-            ></el-option>
+            ></el-option>-->
           </el-select>
         </el-form-item>
 
@@ -120,14 +125,10 @@
 export default {
   data() {
     return {
-      activeIndex: 1,
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
-      carDetectorData: {},
+      detectorData: {},
       detectorRules: {
-        depart_id: [
-          { required: true, message: "请选择公司", trigger: "change" }
-        ],
         name: [
           {
             required: true,
@@ -144,6 +145,9 @@ export default {
           },
           { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
         ],
+        depart_id: [
+          { required: true, message: "请选择公司", trigger: "change" }
+        ],
         loco_id: [
           { required: true, message: "请选择所属列车", trigger: "change" }
         ]
@@ -154,13 +158,11 @@ export default {
       page_total: 0,
       dataList: [],
       companyList: [],
-      linTypeList: [],
-      numberSearch: ""
+      linTypeList: []
     };
   },
   created() {
     this.getCompanyList();
-    this.getLiTypeList();
     this.getDataList();
   },
   methods: {
@@ -174,21 +176,6 @@ export default {
           this.companyList = data.data;
         }
       });
-    },
-    getLiTypeList() {
-      this.request({
-        url: "/common/getLineType",
-        method: "get"
-      }).then(res => {
-        let data = res.data;
-        if (data.status == 1) {
-          this.linTypeList = data.data;
-        }
-      });
-    },
-    searchEvent() {
-      this.page_cur = 1;
-      this.getDataList();
     },
     getDataList() {
       let page = this.page_cur;
@@ -220,25 +207,29 @@ export default {
       this.page_cur = this.page_total;
       this.pageChange(this.page_total);
     },
+    searchEvent() {
+      this.page_cur = 1;
+      this.getDataList();
+    },
     addDialogInfo() {
-      this.carDetectorData = [];
+      this.detectorData ={};
       this.diaLogTitle = "添加车载探测器信息";
       this.diaLogFormVisible = true;
     },
     addOrEditDialog() {
-      this.$refs["carDetectorForm"].validate(valid => {
+      this.$refs["detectorRulesForm"].validate(valid => {
         if (valid) {
-          let data = this.carDetectorData;
+          let data = this.detectorData;
           this.request({
             url: "/location/addOrEditCarDetector",
             method: "post",
-            data: data
+            data
           }).then(response => {
             var data = response.data;
             if (data.status == 1) {
               this.diaLogFormVisible = false;
-              this.carDetectorData.name = "";
-              this.carDetectorData.description = "";
+              this.detectorData.name = "";
+              this.detectorData.description = "";
               this.getDataList();
               this.$message({
                 type: "success",
@@ -262,7 +253,7 @@ export default {
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
-          this.carDetectorData = data.data;
+          this.detectorData = data.data;
         }
       });
     },
