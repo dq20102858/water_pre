@@ -200,21 +200,15 @@
                 <div class="calendar-tips">
                   <p class="calendar-show plan-finished">
                     <span>计划完成：</span>
-                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">
-                      <div v-for="(item,index) in calendarLists[data.day]">{{item.plan_tip}}</div>
-                    </span>
+                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">{{calendarLists[data.day]["plan"]}}公里</span>
                   </p>
                   <p class="calendar-show act-finished">
                     <span>实际完成：</span>
-                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">
-                      <div v-for="(item,index) in calendarLists[data.day]">{{item.true_tip}}</div>
-                    </span>
+                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">{{calendarLists[data.day]["true"]}}公里</span>
                   </p>
                   <p class="calendar-show remark">
                     <span>备注：</span>
-                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">
-                      <div v-for="(item,index) in calendarLists[data.day]">{{item.remark}}</div>
-                    </span>
+                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">{{calendarLists[data.day]["remark"]}}</span>
                   </p>
                 </div>
               </div>
@@ -366,7 +360,7 @@
               <el-button
                 size="small"
                 icon="el-icon-plus"
-                type="primary" 
+                type="primary"
                 @click="addHistory"
                 style="margin-left:20px;"
               >添加历史记录</el-button>

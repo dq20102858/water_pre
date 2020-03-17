@@ -857,6 +857,10 @@ ul,li{list-style-type: none
 }
 .app-page-select .select-from-inline{display: inline-block;white-space: nowrap;width: 100%;
 }
+.btn-red-addedit {background: #ff5c75;border-color: #ff5c75;margin-right: 20px;
+}
+.btn-red-addedit:hover, .btn-red-addedit:focus{background: #fe3a58;border-color: #fe3a58;
+}
 /* table css */
 .app-table .el-table-column--selection .cell{padding-left: 17px;
 }
@@ -872,7 +876,7 @@ ul,li{list-style-type: none
 }
 .app-table .el-table__body-wrapper tr td{color: #1D397A;
 }
-.app-operation{display: inline;white-space: nowrap
+.app-operation{white-space: nowrap;text-align: right;
 }
 .app-operation .btn-blue{ border: 1px #4b6eca solid;color: #1d397a
 }
@@ -898,6 +902,8 @@ ul,li{list-style-type: none
 .el-form-custom .el-radio__label{color: #4b6eca;
 }
 .el-form-custom .el-checkbox__label{color: #4b6eca;
+}
+.el-form-custom .el-textarea__inner{border: 1px #9db9fa solid;color: #4b6eca;
 }
 .app-dialog-form .el-form-item__label {color: #1d397a;
 }
@@ -977,7 +983,7 @@ ul,li{list-style-type: none
 }
 .el-menu-top li {color: #1d397a;font-size: 16px;
 }
-.el-menu-top .ptitle {float: left;line-height: 61px;padding-left: 120px;padding-right: 60px;font-weight: 700;font-size: 18px;
+.el-menu-top .ptitle {float: left;min-width: 120px; line-height: 61px;padding-left: 120px;padding-right: 60px;font-weight: 700;font-size: 18px;
 }
 .el-menu-top .ptitle img {width: 18px;margin-right: 5px;display: inline-block;vertical-align: text-top;
 }
