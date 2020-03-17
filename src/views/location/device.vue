@@ -1,6 +1,6 @@
 <template>
   <div id="location">
-   <div class="el-menu-top">
+    <div class="el-menu-top">
       <el-menu router default-active="device" mode="horizontal">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-location.png')" />定位管理
@@ -175,7 +175,11 @@ export default {
     addOrEditDialog() {
       this.$refs["deviceForm"].validate(valid => {
         if (valid) {
+           if (this.deviceData.description == "") {
+            this.deviceData.description = "暂无";
+          }
           let data = this.deviceData;
+         
           this.request({
             url: "/location/addOrEditDevice",
             method: "post",
@@ -250,7 +254,7 @@ export default {
   width: 100% !important;
 }
 .dialog-jiju .el-select {
-  width: 100% ;
+  width: 100%;
 }
 .dialog-jiju .el-form-item__label {
   width: 110px;
