@@ -1,15 +1,15 @@
 <template>
   <div id="location">
-    <div class="el-menu-top">
-      <el-menu router mode="horizontal">
+   <div class="el-menu-top">
+      <el-menu router default-active="device" mode="horizontal">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-location.png')" />定位管理
         </li>
-        <el-menu-item index="locationstatisticForm">人员定位统计</el-menu-item>
-        <el-menu-item index="2">墙壁探测器</el-menu-item>
-        <el-menu-item index="3">车载探测器</el-menu-item>
-        <el-menu-item index="4">定位从设备</el-menu-item>
-        <el-menu-item index="5">机具</el-menu-item>
+        <el-menu-item index="location">人员定位统计</el-menu-item>
+        <el-menu-item index="walldetector">墙壁探测器</el-menu-item>
+        <el-menu-item index="cardetector">车载探测器</el-menu-item>
+        <el-menu-item index="locationbind">定位从设备</el-menu-item>
+        <el-menu-item index="device">机具</el-menu-item>
       </el-menu>
     </div>
     <div class="app-page">
@@ -81,7 +81,7 @@
         <el-form-item label="机具名称：" prop="name">
           <el-input v-model="deviceData.name" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="详情" prop="description">
+        <el-form-item label="详情：" prop="description">
           <el-input type="textarea" v-model="deviceData.description"></el-input>
         </el-form-item>
         <div class="blank"></div>
@@ -248,6 +248,9 @@ export default {
 }
 .dialog-jiju .el-textarea {
   width: 100% !important;
+}
+.dialog-jiju .el-select {
+  width: 100% ;
 }
 .dialog-jiju .el-form-item__label {
   width: 110px;

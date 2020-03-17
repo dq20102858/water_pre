@@ -1,15 +1,15 @@
 <template>
   <div id="location">
-    <div class="el-menu-top">
-      <el-menu router mode="horizontal">
+      <div class="el-menu-top">
+      <el-menu router default-active="cardetector" mode="horizontal">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-location.png')" />定位管理
         </li>
-        <el-menu-item index="locationstatisticForm">人员定位统计</el-menu-item>
-        <el-menu-item index="2">墙壁探测器</el-menu-item>
-        <el-menu-item index="3">车载探测器</el-menu-item>
-        <el-menu-item index="4">定位从设备</el-menu-item>
-        <el-menu-item index="5">机具</el-menu-item>
+        <el-menu-item index="location">人员定位统计</el-menu-item>
+        <el-menu-item index="walldetector">墙壁探测器</el-menu-item>
+        <el-menu-item index="cardetector">车载探测器</el-menu-item>
+        <el-menu-item index="locationbind">定位从设备</el-menu-item>
+        <el-menu-item index="device">机具</el-menu-item>
       </el-menu>
     </div>
     <div class="app-page">
@@ -316,10 +316,10 @@ export default {
   width: 100% !important;
 }
 .dialog-car .el-form-item__label {
-  width: 170px;
+  width: 110px;
 }
 .dialog-car .el-form-item__content {
-  margin-left: 170px;
+  margin-left: 110px;
 }
 .dialog-car .el-form-item-inline .el-input--medium {
   display: inline-block;

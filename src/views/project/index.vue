@@ -1615,9 +1615,6 @@ export default {
   height: 60px;
   box-sizing: border-box;
 }
-.dialog-plan-detail .el-dialog__body {
-  padding: 20px;
-}
 /* end detail */
 .el-form-item-inline .el-form-item {
   float: left;
