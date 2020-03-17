@@ -13,30 +13,30 @@
             :rules="formRules"
             ref="formRulesForm"
           >
-            <el-form-item label="添加事件公司：">
+            <el-form-item label="添加事件公司：" prop="depart_id">
               <el-select v-model="formData.depart_id" placeholder="请选择活动区域">
                 <el-option label="区域一" value="shanghai"></el-option>
                 <el-option label="区域二" value="beijing"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="人员：">
+            <el-form-item label="人员：" prop="admin_id">
               <el-select v-model="formData.admin_id" placeholder="请选择活动区域">
                 <el-option label="区域一" value="shanghai"></el-option>
                 <el-option label="区域二" value="beijing"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="安全事件标题：">
+            <el-form-item label="安全事件标题：" prop="title">
               <el-input v-model="formData.title"></el-input>
             </el-form-item>
-            <el-form-item label="安全事件地址：">
+            <el-form-item label="安全事件地址：" prop="address">
               <el-input v-model="formData.address"></el-input>
             </el-form-item>
-            <el-form-item label="安全事件描述：">
+            <el-form-item label="安全事件描述：" prop="description">
               <el-input type="textarea" v-model="formData.description"></el-input>
             </el-form-item>
             <el-form-item label="相关图片：">
-              <el-upload
-                action="https://jsonplaceholder.typicode.com/posts/"
+              <el-upload limit="2"
+                action="http://129.211.168.161/upload/uploadFile"
                 list-type="picture-card"
                 :on-preview="handlePictureCardPreview"
                 :on-remove="handleRemove"
@@ -56,7 +56,6 @@
     </div>
   </div>
 </template>
- 
 <script>
 export default {
   data() {
@@ -64,6 +63,9 @@ export default {
       formData: {},
       formRules: {
         depart_id: [
+          { required: true, message: "请选择公司", trigger: "change" }
+        ],
+         admin_id: [
           { required: true, message: "请选择公司", trigger: "change" }
         ],
         title: [
