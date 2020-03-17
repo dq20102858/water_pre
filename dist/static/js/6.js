@@ -1,348 +1,390 @@
 webpackJsonp([6],{
 
-/***/ "Hl7/":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("szom");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("1228fb06", content, true);
-
-/***/ }),
-
-/***/ "mC5q":
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAB4CAYAAAD2SgIRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF7WlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDggNzkuMTY0MDM2LCAyMDE5LzA4LzEzLTAxOjA2OjU3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUuNSAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIwLTAzLTA5VDEzOjM1OjU1KzA4OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMC0wMy0wOVQxMzo0MTowNCswODowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMC0wMy0wOVQxMzo0MTowNCswODowMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo3MmU0NDMyNi05MWZmLWIyNGYtYjBlNC1kMmQ4NDU1ZGM3ZjYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QzFDNDIyOTVGQzIxMTFFNzgyMTFDQzIwRTFCNkNBQjIiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpDMUM0MjI5NUZDMjExMUU3ODIxMUNDMjBFMUI2Q0FCMiIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkMxQzQyMjkyRkMyMTExRTc4MjExQ0MyMEUxQjZDQUIyIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkMxQzQyMjkzRkMyMTExRTc4MjExQ0MyMEUxQjZDQUIyIi8+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjcyZTQ0MzI2LTkxZmYtYjI0Zi1iMGU0LWQyZDg0NTVkYzdmNiIgc3RFdnQ6d2hlbj0iMjAyMC0wMy0wOVQxMzo0MTowNCswODowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIxLjAgKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PrFLz64AAAJLSURBVGiB7dlPiIxxGAfwz7wrrfdg13vAYXv9aXMSSlJOnFBckHLjLMXFwdXBwWEPTpzJxa6EuDlsuTmwCiWZSRG740+7i02tw/sO7/7M2DFJqd+3pul95nk+M/POvM8cplafmtEhK3AEe7EJqzGHV3iOO7iaZ+n7dsO1NnA/TuE0Bjs9a5kPOI+RPEs//w5ei5vYuAgY5jH251n6slVIKg8OYbwHVDkz3mjODoVwP8ZKvJpJnFGc4/7ytqmsTQa9QxhrNGeXVeGT2BY0jmEY5zCBr+VtoqwNYzSY2VZaavWpmQwvMFBpuI6DmG/7xn+mhms4UKl9xPpE8ZWqopM42gWq7DmGd5XaAI4k2B00X8CnLlCQZ+knjATlPQm2BMUb3aKV3AqONydYFRSf9gA/C45XJYoPoJq+HuAlwfG3BG+C4oYe4HDmdYKHQXFfD3A48yRRbKlqjlt8+fxIozk7UM5UczfBFcWWamU1LuruXPfhUjnTygdcThRXSvg9PIyrFl44YZaXPYeD+kiepR9ba3Mp7mNr0PRWccHcVuwIik22DyewMuh/gB15ls5V9/Ea3MO6Dq/wS3nf3+Hxl9iZZ2mdhfu4jl141GGwtTbbZaKKhnAL346zmO6AVDNd9m6vorT/zWtlEIewR7FCqxnFXYz+yY9pu4Qr9McayLO07UB4Kv5aIhzhCEc4whGOcIQjHOEIRzjCEY5whCMc4QhHOMIR/qdwbX5+8T8aG83ZBU15lob/qP2S/+9URDjCEY5whCMc4QhH+P+BvwN7e4CFmUzVxQAAAABJRU5ErkJggg=="
-
-/***/ }),
-
-/***/ "naN1":
+/***/ "43N1":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// EXTERNAL MODULE: ./node_modules/babel-runtime/core-js/json/stringify.js
-var stringify = __webpack_require__("mvHQ");
-var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/apply/applydetail.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/progress/index.vue
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ var progress = ({
+/* harmony default export */ var applydetail = ({
   data: function data() {
     return {
-      stationList: [],
-      lineList: [],
-      lineTypeList: [{
-        id: 1,
-        name: "左线",
-        start_flag: 14,
-        start_length: 100,
-        end_flag: 42,
-        end_length: 410
-      }, {
-        id: 2,
-        name: "右线",
-        start_flag: 14,
-        start_length: 100,
-        end_flag: 42,
-        end_length: 410
-      }, {
-        id: 3,
-        name: "入场线",
-        start_flag: 0,
-        start_length: 0,
-        end_flag: 0,
-        end_length: 0
-      }, {
-        id: 4,
-        name: "出场线",
-        start_flag: 0,
-        start_length: 0,
-        end_flag: 0,
-        end_length: 0
-      }]
+      isShow: false,
+      dataInfo: [],
+      carUse: []
     };
   },
+
+  props: {
+    iframeData: {
+      type: Object,
+      default: function _default() {
+        return {};
+      }
+    },
+    layerid: {
+      type: String,
+      default: ""
+    }
+  },
   created: function created() {
-    this.getProjectProcessMap();
+    this.getDetail();
   },
 
   methods: {
-    getProjectProcessMap: function getProjectProcessMap() {
+    getDetail: function getDetail() {
       var _this = this;
 
+      this.$layer.title = "dsfds";
       this.request({
-        url: "/project/projectProcessMap",
-        method: "get"
-      }).then(function (response) {
-        var data = response.data;
+        url: "/apply/getApplyDetail",
+        method: "get",
+        params: { id: this.iframeData.id }
+      }).then(function (res) {
+        var data = res.data;
         if (data.status == 1) {
-          _this.stationList = data.data.stations;
-          _this.lineList = data.data.line_types;
-          _this.getStationList();
-          //  this.getLineType();
+          _this.dataInfo = data.data;
+          // let car=data.data.area_or_car;
+          _this.carUse = data.data.area_or_car[0].car_use;
+          // console.log(JSON.stringify(this.carUse));
         }
       });
     },
-    getLineType: function getLineType() {
-      //                 console.log(json);
-      //起终点名称
-      // window.mileageType = json.data.is_large_mileage;
-      // window.projectFrom = json.data.from;
-      // window.projectEnd = json.data.end;
-      // window.rate = (1553 / (projectEnd - projectFrom)).toFixed(5); //作业施工显示图比率
-      // $.get(webUrl.getline,
-      //     function(json){
+    isCancel: function isCancel() {
+      this.$layer.close(this.layerid);
     },
-    getStationList: function getStationList() {
-      var clientWidth = this.$refs.proWrapper.clientWidth;
-      var canvasWidth = clientWidth - 200;
-      console.log("canvasWidth" + canvasWidth);
-      var canvas = this.$refs.canvasStation;
-      var cansText = canvas.getContext("2d");
-      canvas.width = canvasWidth;
-
-      cansText.moveTo(0, 250);
-      cansText.lineTo(canvasWidth, 250);
-      cansText.strokeStyle = "#B4D3E5";
-      cansText.lineWidth = 10;
-      cansText.stroke();
-      cansText.moveTo(0, 300);
-      cansText.lineTo(canvasWidth, 300);
-      cansText.stroke();
-      //起终点里程
-      cansText.lineWidth = 2;
-      cansText.moveTo(0, 245);
-      cansText.lineTo(0, 365);
-      cansText.stroke();
-      // cansText.moveTo(1729, 215);
-      // cansText.lineTo(1729, 365);
-      // cansText.stroke();
-
-      //Station=====================Station
-      var json = this.stationList.reverse();
-      console.log(stringify_default()(json));
-      //找到最大数与最小数
-      var first = json[0];
-      var end = json[0];
-      for (var i = 1; i < json.length; i++) {
-        var tmp = json[i];
-        if (first.start_flag > tmp.start_flag) first = tmp;
-        if (end.start_flag < tmp.start_flag) end = tmp;
+    funIsEmpty: function funIsEmpty(item) {
+      if (item == "") {
+        return "暂无";
+      } else {
+        return item;
       }
-      // 总里程（最大数 - 最小数)
-      var mileage = (end.start_flag - first.start_flag) * 1000 + end.start_length - first.start_length;
-      console.log("mileage：" + mileage);
-      //每米长度
-      var every = (canvasWidth / mileage).toFixed(5);
-      console.log("每米长度：" + every);
-      var img = new Image();
-      img.src = __webpack_require__("mC5q");
-
-      img.onload = function () {
-        var start = 0;
-        for (var _i = 0; _i < json.length; _i++) {
-          // 绘制站点图
-          //console.log(json[i].start_flag);
-          var total = parseInt(json[_i].start_flag) * 1000 + parseInt(json[_i].start_length);
-          //console.log("total：" + total);
-          // 计算当前站点的x轴
-          var startX = total * every;
-          // 不知什么原因，粗线向右移动了100像素，所以需要修正x轴
-          if (_i == 0) start = startX - 126; //从左侧126像素开始绘制
-          cansText.drawImage(img, startX - start, 126, 22, 120);
-          //站名
-          cansText.font = "16px Microsoft Yahei";
-          cansText.fillStyle = "#0AE39A";
-          var origin = json[_i].name.split("");
-          for (var x = 0; x < origin.length; x++) {
-            cansText.fillText(origin[x], startX - start, 138 - origin.length * 19 + 18 * x);
-          }
-          //DK
-          var codes = "DK" + json[_i].start_flag + " +" + json[_i].start_length;
-          cansText.fillStyle = "#fff";
-          cansText.font = "12px  Microsoft Yahei";
-          cansText.fillTextVertical(codes, startX - start - 3, 165);
-        }
-      };
-
-      //Line=====================line
-      var lineJson = this.lineTypeList;
-      console.log("lineJson:" + lineJson);
-      var lineData = [];
-      for (var _i2 = 0; _i2 < lineJson.length; _i2++) {
-        if (lineJson[_i2].name == "左线" || lineJson[_i2].name == "右线") {
-          lineData.push(lineJson[_i2]);
-        }
-      }
-      console.log("lineData:" + lineData);
-      var from0 = "DK" + lineData[0].start_flag + "+" + lineData[0].start_length,
-          end0 = "DK" + lineData[0].end_flag + "+" + lineData[0].end_length,
-          from1 = "DK" + lineData[1].start_flag + "+" + lineData[1].start_length,
-          end1 = "DK" + lineData[1].end_flag + "+" + lineData[1].end_length,
-          name0 = lineData[0].name,
-          name1 = lineData[1].name;
-
-      // console.log(lineData);
-
-      var startLength = cansText.measureText(from0).width,
-          endLength = cansText.measureText(end0).width,
-          n0Length = cansText.measureText(name0).width,
-          n1Length = cansText.measureText(name1).width;
-
-      cansText.font = "12px Microsoft Yahei";
-      cansText.fillStyle = "#E8C640";
-
-      cansText.fillText(from0, 60, 270);
-      cansText.fillText(name0, 5, 270);
-      cansText.fillText(end0, canvasWidth, 270);
-      cansText.fillText(from1, 60, 320);
-      cansText.fillText(name1, 5, 320);
-      cansText.fillText(end1, 1693 - endLength, 290);
     }
-  },
-  mounted: function mounted() {
-    window.addEventListener("resize", this.getProjectProcessMap);
-  },
-  destroyed: function destroyed() {
-    window.removeEventListener("resize", this.getProjectProcessMap);
   }
 });
-
-//prototype
-CanvasRenderingContext2D.prototype.fillTextVertical = function (text, x, y) {
-  var context = this;
-  var canvas = context.canvas;
-
-  var arrText = text.split("");
-  var arrWidth = arrText.map(function (letter) {
-    return context.measureText(letter).width;
-  });
-
-  var align = context.textAlign;
-  var baseline = context.textBaseline;
-
-  if (align == "left") {
-    x = x + Math.max.apply(null, arrWidth) / 2;
-  } else if (align == "right") {
-    x = x - Math.max.apply(null, arrWidth) / 2;
-  }
-  if (baseline == "bottom" || baseline == "alphabetic" || baseline == "ideographic") {
-    y = y - arrWidth[0] / 2;
-  } else if (baseline == "top" || baseline == "hanging") {
-    y = y + arrWidth[0] / 2;
-  }
-
-  context.textAlign = "center";
-  context.textBaseline = "middle";
-
-  // 开始逐字绘制
-  arrText.forEach(function (letter, index) {
-    // 确定下一个字符的纵坐标位置
-    var letterWidth = arrWidth[index];
-    // 是否需要旋转判断
-    var code = letter.charCodeAt(0);
-    if (code <= 256) {
-      context.translate(x, y);
-      // 英文字符，旋转90°
-      context.rotate(90 * Math.PI / 180);
-      context.translate(-x, -y);
-    } else if (index > 0 && text.charCodeAt(index - 1) < 256) {
-      // y修正
-      y = y + arrWidth[index - 1] / 2;
-    }
-    context.fillText(letter, x, y);
-    // 旋转坐标系还原成初始态
-    context.setTransform(1, 0, 0, 1, 0, 0);
-    // 确定下一个字符的纵坐标位置
-    var letterWidth = arrWidth[index];
-    y = y + letterWidth;
-  });
-  // 水平垂直对齐方式还原
-  context.textAlign = align;
-  context.textBaseline = baseline;
-};
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-d4f23732","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/progress/index.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"proWrapper",attrs:{"id":"progress"}},[_c('div',{staticClass:"sttitle"},[_vm._v("施工形象进度图")]),_vm._v(" "),_c('div',{staticClass:"station"},[_c('canvas',{ref:"canvasStation",attrs:{"id":"canvasStation","height":"380"}},[_c('p',[_vm._v("您的系统不支持此程序!")])])])])}
-var staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-1811c454","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/apply/applydetail.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app-apply"}},[_c('div',{staticClass:"app-page"},[(_vm.dataInfo.type=='A1' || _vm.dataInfo.type=='A2')?_c('div',{staticClass:"app-apply-tempone"},[_c('div',{staticClass:"vtable"},[_c('table',[_c('tbody',[_c('tr',[_vm._m(0),_vm._v(" "),_c('td',{staticClass:"auto-style3 clblue",attrs:{"rowspan":"2"}},[_vm._v(_vm._s(_vm.dataInfo.number))]),_vm._v(" "),_c('td',{staticClass:"auto-style3",attrs:{"rowspan":"2"}},[_vm._v("施工单位:"+_vm._s(_vm.dataInfo.company))]),_vm._v(" "),_c('td',[_vm._v("是否需要动车： "),(_vm.dataInfo.is_need_car==0)?_c('b',[_vm._v("否")]):_vm._e(),_vm._v(" "),(_vm.dataInfo.is_need_car==1)?_c('b',[_vm._v("是")]):_vm._e()]),_vm._v(" "),_c('td',[_vm._v("是否需要动火： "),(_vm.dataInfo.is_need_fire==0)?_c('b',[_vm._v("否")]):_vm._e(),_vm._v(" "),(_vm.dataInfo.is_need_fire==1)?_c('b',[_vm._v("是")]):_vm._e()])]),_vm._v(" "),_c('tr',[_c('td',[_vm._v("是否需要帮助：  "),(_vm.dataInfo.is_need_help==0)?_c('b',[_vm._v("否")]):_vm._e(),_vm._v(" "),(_vm.dataInfo.is_need_help==1)?_c('b',[_vm._v("是")]):_vm._e()]),_vm._v(" "),_c('td',[_vm._v("是否需要断电：  "),(_vm.dataInfo.is_need_break_ele==0)?_c('b',[_vm._v("否")]):_vm._e(),_vm._v(" "),(_vm.dataInfo.is_need_break_ele==1)?_c('b',[_vm._v("是")]):_vm._e()])]),_vm._v(" "),_c('tr',[_vm._m(1),_vm._v(" "),_c('td',{staticClass:"clblue"},[_vm._v(_vm._s(_vm.dataInfo.command_num))]),_vm._v(" "),_c('td',{attrs:{"colspan":"2"}},[_c('div',[_vm._v("\n              联系人："),_c('span',{staticClass:"clblue",staticStyle:{"width":"40%","display":"inline-block"}},[_vm._v(_vm._s(_vm.dataInfo.contact))]),_vm._v(" \n              联系电话："),_c('span',{staticClass:"clblue"},[_vm._v(_vm._s(_vm.dataInfo.phone))])]),_vm._v(" "),_vm._l((_vm.dataInfo.holder),function(item){return _c('div',{key:item.id},[_vm._v("持证人："),_c('span',{staticClass:"clblue",staticStyle:{"width":"40%","display":"inline-block"}},[_vm._v(_vm._s(item.name))]),_vm._v(" \n                 联系电话："),_c('span',{staticClass:"clblue"},[_vm._v(_vm._s(item.phone))])])}),_vm._v(" "),_c('div',[_vm._v("负责人："),_c('span',{staticClass:"clblue",staticStyle:{"width":"40%","display":"inline-block","overflow":"hidden","white-space":"nowrap","vertical-align":"middle"}},[_vm._v(_vm._s(_vm.dataInfo.p_in_charge))]),_vm._v(" \n                 联系电话："),_c('span',{staticClass:"clblue"},[_vm._v(_vm._s(_vm.dataInfo.p_in_charge_phone))])])],2),_vm._v(" "),_c('td',[_vm._v("人数： "),_c('span',{staticClass:"clblue"},[_vm._v(_vm._s(_vm.dataInfo.worker_num)+"人")])])]),_vm._v(" "),_vm._m(2),_vm._v(" "),_vm._m(3),_vm._v(" "),_vm._l((_vm.dataInfo.area_or_car),function(areas){return _c('tr',{key:areas.id},[_c('td',{staticClass:"auto-style1"},[_vm._v(_vm._s(areas.start_station_name)+" DK"+_vm._s(areas.start_flag)+" + "+_vm._s(areas.start_length))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(areas.end_station_name)+" DK"+_vm._s(areas.end_flag)+" + "+_vm._s(areas.end_length)+" ")]),_vm._v(" "),_c('td',[_vm._v(_vm._s(areas.line_type_name))]),_vm._v(" "),_c('td',_vm._l((_vm.carUse),function(item){return _c('span',{key:item.id,staticClass:"clblue",staticStyle:{"margin-right":"10px"}},[_vm._v(_vm._s(item.car_type))])})),_vm._v(" "),_c('td',{staticClass:"clblue"},[_vm._v(_vm._s(areas.start_time)+" ~ "+_vm._s(areas.end_time))])])}),_vm._v(" "),_vm._m(4),_vm._v(" "),_vm._m(5),_vm._v(" "),_vm._m(6),_vm._v(" "),_c('tr',[_vm._m(7),_vm._v(" "),_c('td',{staticStyle:{"padding":"40px 10px","color":"#4b6eca","word-wrap":"break-word"},attrs:{"colspan":"4"}},[_vm._v(_vm._s(_vm.dataInfo.plan_route))])]),_vm._v(" "),_c('tr',[_vm._m(8),_vm._v(" "),_c('td',{staticStyle:{"padding":"40px 10px","color":"#4b6eca","word-wrap":"break-word"},attrs:{"colspan":"4"}},[_vm._v(_vm._s(_vm.dataInfo.description))])]),_vm._v(" "),_vm._m(9),_vm._v(" "),_vm._l((_vm.carUse),function(item){return _c('tr',{key:item.id},[_c('td',{staticClass:"auto-style1 clblue"},[_vm._v(_vm._s(item.car_type))]),_vm._v(" "),_c('td',{attrs:{"colspan":"2"}},[_vm._v(_vm._s(item.car_number))]),_vm._v(" "),_c('td',{attrs:{"colspan":"2"}},[_vm._v(_vm._s(item.car_weight))])])}),_vm._v(" "),_vm._m(10),_vm._v(" "),_vm._m(11),_vm._v(" "),_vm._m(12),_vm._v(" "),_c('tr',[_vm._m(13),_vm._v(" "),_c('td',{attrs:{"colspan":"2","rowspan":"3"}},[_c('div',{staticClass:"textoverflow"},[_vm._v(_vm._s(_vm.funIsEmpty(_vm.dataInfo.attention)))])]),_vm._v(" "),_vm._m(14)]),_vm._v(" "),_c('tr',[_c('td',{attrs:{"colspan":"2"}},[_c('div',{staticClass:"textoverflow",staticStyle:{"max-width":"400px"}},[_vm._v(_vm._s(_vm.funIsEmpty(_vm.dataInfo.other)))])])]),_vm._v(" "),_c('tr',[_c('td',{attrs:{"colspan":"2"}},[_vm._v("\n\t\t\t\t\t\t监理确认并签字："+_vm._s(_vm.funIsEmpty(_vm.dataInfo.supervisor))+"\n\t\t\t\t\t")])]),_vm._v(" "),_c('tr',[_vm._m(15),_vm._v(" "),_c('td',{staticStyle:{"width":"200px"}},[_vm._v("审批人："+_vm._s(_vm.dataInfo.approver))]),_vm._v(" "),_c('td',{staticStyle:{"width":"200px"}},[_vm._v("销点人:"+_vm._s(_vm.dataInfo.logout))]),_vm._v(" "),_c('td',{staticStyle:{"width":"200px"}},[_vm._v("注销人："+_vm._s(_vm.dataInfo.logoff))])]),_vm._v(" "),_c('tr',[_c('td',[_vm._v("审批时间："+_vm._s(_vm.dataInfo.approve_time))]),_vm._v(" "),_c('td',[_vm._v("销点时间："+_vm._s(_vm.dataInfo.logout_time))]),_vm._v(" "),_c('td',[_vm._v("注销时间："+_vm._s(_vm.dataInfo.logoff_time))])])],2)])])]):_c('div',{staticClass:"app-apply-detail"},[_c('el-form',{staticStyle:{"margin":"0 auto","text-align":"center"},attrs:{"inline":true}},[_c('el-form-item',{attrs:{"label":"作业编号"}},[_c('span',{staticClass:"input"},[_vm._v(_vm._s(_vm.dataInfo.number))])]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"作业令号"}},[_c('span',{staticClass:"input"},[_vm._v(_vm._s(_vm.dataInfo.command_num))])])],1),_vm._v(" "),_c('el-timeline',[_c('el-timeline-item',{attrs:{"timestamp":"申请","placement":"top","type":"warning ","color":"#ff5c75","size":"large"}},[_c('div',{staticClass:"onebox"},[_c('div',{staticClass:"item"},[_c('label',{staticClass:"labels"},[_vm._v("兹申请允许持证人（主站）")]),_vm._v(" "),_c('span',{staticClass:"input"},[_vm._v(_vm._s(_vm.dataInfo.main_apply_user))]),_vm._v(" "),_c('label',{staticClass:"labels"},[_vm._v("辅站及负责人")]),_vm._v(" "),_c('span',{staticClass:"input"},[_vm._v(_vm._s(_vm.dataInfo.sub_apply_user))])]),_vm._v(" "),_c('div',{staticClass:"item"},[_c('label',{staticClass:"labels"},[_vm._v("单位：")]),_vm._v(" "),_c('span',{staticClass:"input",staticStyle:{"width":"550px"}},[_vm._v(_vm._s(_vm.dataInfo.company))])]),_vm._v(" "),_c('div',{staticClass:"item"},[_c('label',{staticClass:"labels"},[_vm._v("联系电话：")]),_vm._v(" "),_c('span',{staticClass:"input",staticStyle:{"width":"250px"}},[_vm._v(_vm._s(_vm.dataInfo.phone))]),_c('label',{staticClass:"labels"},[_vm._v("带领 ( "+_vm._s(_vm.dataInfo.worker_num)+" ) 人进行以下工作：")])]),_vm._v(" "),_c('div',{staticClass:"item"},[_c('label',{staticClass:"labels"},[_vm._v("A区域/车辆：")]),_vm._v(" "),_c('div',{staticClass:"conn"},_vm._l((_vm.dataInfo.area_or_car),function(areas){return _c('div',{key:areas.id},[_c('p',[_c('em',[_vm._v(_vm._s(areas.start_station_name)+" - "+_vm._s(areas.end_station_name)+" 区间 "+_vm._s(areas.line_type_name)+" ( DK"+_vm._s(areas.start_flag)+" + "+_vm._s(areas.start_length)+" - DK"+_vm._s(areas.end_flag)+" + "+_vm._s(areas.end_length)+" )")])]),_vm._v(" "),_c('p',[_c('i',[_vm._v("开始时间："+_vm._s(areas.start_time))]),_vm._v(" "),_c('i',[_vm._v("结束时间："+_vm._s(areas.end_time))])])])}))]),_vm._v(" "),_c('div',{staticClass:"item"},[_c('label',{staticClass:"labels"},[_vm._v("B工作内容：")]),_vm._v(" "),_c('div',{staticClass:"conn"},[_c('em',[_vm._v(_vm._s(_vm.funIsEmpty(_vm.dataInfo.description)))])])]),_vm._v(" "),_c('div',{staticClass:"item"},[_c('label',{staticClass:"labels"},[_vm._v("C安全措施及注意事项：")]),_vm._v(" "),_c('div',{staticClass:"conn"},[_c('em',[_vm._v(_vm._s(_vm.funIsEmpty(_vm.dataInfo.attention)))])])]),_vm._v(" "),_c('div',{staticClass:"item"},[_c('ul',{staticClass:"scheck"},[_c('li',[_vm._v("\n                    是否需要动车：\n                    "),(_vm.dataInfo.is_need_car==0)?_c('b',[_vm._v("否")]):_vm._e(),_vm._v(" "),(_vm.dataInfo.is_need_car==1)?_c('b',[_vm._v("是")]):_vm._e()]),_vm._v(" "),_c('li',[_vm._v("\n                    是否需要动火：\n                    "),(_vm.dataInfo.is_need_fire==0)?_c('b',[_vm._v("否")]):_vm._e(),_vm._v(" "),(_vm.dataInfo.is_need_fire==1)?_c('b',[_vm._v("是")]):_vm._e()]),_vm._v(" "),_c('li',[_vm._v("\n                    是否需要帮助：\n                    "),(_vm.dataInfo.is_need_help==0)?_c('b',[_vm._v("否")]):_vm._e(),_vm._v(" "),(_vm.dataInfo.is_need_help==1)?_c('b',[_vm._v("是")]):_vm._e()]),_vm._v(" "),_c('li',[_vm._v("\n                    是否需要断电：\n                    "),(_vm.dataInfo.is_need_break_ele==0)?_c('b',[_vm._v("否")]):_vm._e(),_vm._v(" "),(_vm.dataInfo.is_need_break_ele==1)?_c('b',[_vm._v("是")]):_vm._e()])])]),_vm._v(" "),_c('div',{staticClass:"itemconn",staticStyle:{"margin-bottom":"30px"}},[_vm._v("本单位及本人谨此声明：愿意在规定时间内完成上述工作，并确保本人属下员工遵守上述安全措施，同时本人或本人属 下员工不会试图损坏其它单位的设备，在其它区域或车辆上工作。")]),_vm._v(" "),_c('div',{staticClass:"singn"},[_c('span',{staticClass:"pull-left"},[_vm._v("工点负责人（签名）"+_vm._s(_vm.dataInfo.p_in_charge))]),_vm._v(" "),_c('span',{staticClass:"pull-right"},[_vm._v(_vm._s(_vm.dataInfo.create_time))])])])]),_vm._v(" "),_c('el-timeline-item',{attrs:{"timestamp":"审批","placement":"top","type":"warning ","color":"#ff5c75","size":"large"}},[_c('div',{staticClass:"onebox"},[_c('div',{staticClass:"itemconn"},[_vm._v("兹审批此许可证生效，或按红笔修改的执行。")]),_vm._v(" "),_c('div',{staticClass:"singn lines"},[_c('span',{staticClass:"pull-left"},[_vm._v("审批人（签名）"+_vm._s(_vm.dataInfo.approver))]),_vm._v(" "),_c('span',{staticClass:"pull-right"},[_vm._v(_vm._s(_vm.dataInfo.approve_time))])])])]),_vm._v(" "),_c('el-timeline-item',{attrs:{"timestamp":"销点","placement":"top","type":"warning ","color":"#ff5c75","size":"large"}},[_c('div',{staticClass:"onebox"},[_c('div',{staticClass:"itemconn"},[_vm._v("本人谨此声明：⑴ 此进场作业许可证所述工作现已完成，本人及属下员工已经撤离，安全措施已经撤除，并已被告之在轨道区域/车辆上工作已不再安全。⑵ 完成情况及所有故障/损坏已经书面呈报。")]),_vm._v(" "),_c('div',{staticClass:"singn lines"},[_c('span',{staticClass:"pull-left"},[_vm._v("工点负责人（签名）"+_vm._s(_vm.dataInfo.approver))]),_vm._v(" "),_c('span',{staticClass:"pull-right"},[_vm._v(_vm._s(_vm.dataInfo.approve_time))])])])]),_vm._v(" "),_c('el-timeline-item',{attrs:{"timestamp":"注销","placement":"top","type":"warning ","color":"#ff5c75","size":"large"}},[_c('div',{staticClass:"onebox"},[_c('div',{staticClass:"itemconn"},[_vm._v("此许可证已经原批准人或联合办公室经理同意注销。")]),_vm._v(" "),_c('div',{staticClass:"singn lines"},[_c('span',{staticClass:"pull-left"},[_vm._v("\n                  批准人（签名）\n                  "),_c('b',[_vm._v(_vm._s(_vm.dataInfo.logoff))])]),_vm._v(" "),_c('span',{staticClass:"pull-right"},[_vm._v(_vm._s(_vm.dataInfo.logoff_time))])])])])],1)],1)])])}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',{staticClass:"auto-style1",attrs:{"rowspan":"2"}},[_c('b',[_vm._v("作业编号：")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',{staticClass:"auto-style1"},[_c('b',[_vm._v("作业令号：")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',[_c('td',{attrs:{"colspan":"5"}},[_c('b',[_vm._v("工作地点 （上/下行线）：")])])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',[_c('td',{staticClass:"auto-style1 clcenter"},[_vm._v("由")]),_vm._v(" "),_c('td',{staticClass:"clcenter"},[_vm._v("至")]),_vm._v(" "),_c('td',{staticClass:"clcenter"},[_vm._v("线别")]),_vm._v(" "),_c('td',{staticClass:"clcenter"},[_vm._v("列车编组")]),_vm._v(" "),_c('td',{staticClass:"clcenter"},[_vm._v("工作时间")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',[_c('td',{staticClass:"auto-style1",staticStyle:{"height":"40px"}}),_vm._v(" "),_c('td'),_vm._v(" "),_c('td'),_vm._v(" "),_c('td'),_vm._v(" "),_c('td')])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',[_c('td',{staticClass:"auto-style1",staticStyle:{"height":"40px"}}),_vm._v(" "),_c('td'),_vm._v(" "),_c('td'),_vm._v(" "),_c('td'),_vm._v(" "),_c('td')])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',[_c('td',{staticClass:"auto-style1",staticStyle:{"height":"40px"}}),_vm._v(" "),_c('td'),_vm._v(" "),_c('td'),_vm._v(" "),_c('td'),_vm._v(" "),_c('td')])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',{staticClass:"auto-style1"},[_c('b',[_vm._v("计划运行路径：")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',{staticClass:"auto-style1"},[_c('b',[_vm._v("工作内容：")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',[_c('td',{staticClass:"auto-style1"},[_vm._v("车辆类型")]),_vm._v(" "),_c('td',{attrs:{"colspan":"2"}},[_vm._v("车号")]),_vm._v(" "),_c('td',{attrs:{"colspan":"2"}},[_vm._v("装载重量")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',[_c('td',{staticClass:"auto-style1 clblue",staticStyle:{"height":"40px"}}),_vm._v(" "),_c('td',{attrs:{"colspan":"2"}}),_vm._v(" "),_c('td',{attrs:{"colspan":"2"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',[_c('td',{staticClass:"auto-style1 clblue",staticStyle:{"height":"40px"}}),_vm._v(" "),_c('td',{attrs:{"colspan":"2"}}),_vm._v(" "),_c('td',{attrs:{"colspan":"2"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',[_c('td',{staticClass:"auto-style1 clblue",staticStyle:{"height":"40px"}}),_vm._v(" "),_c('td',{attrs:{"colspan":"2"}}),_vm._v(" "),_c('td',{attrs:{"colspan":"2"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',{staticClass:"auto-style1",attrs:{"rowspan":"3"}},[_c('b',[_vm._v("保护措施：")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',{staticStyle:{"text-align":"center"},attrs:{"colspan":"2"}},[_c('b',[_vm._v("其他信息")])])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',{attrs:{"colspan":"2","rowspan":"2"}},[_c('b',[_vm._v("承运人签名（章）：")]),_vm._v("暂无\n\t\t\t\t\t")])}]
 var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var views_progress = (esExports);
-// CONCATENATED MODULE: ./src/views/progress/index.vue
+/* harmony default export */ var apply_applydetail = (esExports);
+// CONCATENATED MODULE: ./src/views/apply/applydetail.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("Hl7/")
+  __webpack_require__("wmT7")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -358,20 +400,463 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  progress,
-  views_progress,
+  applydetail,
+  apply_applydetail,
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 
-/* harmony default export */ var src_views_progress = __webpack_exports__["default"] = (Component.exports);
+/* harmony default export */ var views_apply_applydetail = (Component.exports);
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/apply/index.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ var apply = ({
+  data: function data() {
+    return {
+      projectName: "",
+      page_cur: 1,
+      pageTotal: 0,
+      page_size: 20,
+      page_total: 0,
+      companyList: [],
+      lineList: [],
+      typeList: [{ id: "A1", name: "A1" }, { id: "A2", name: "A2" }, { id: "A3", name: "A3" }, { id: "A4", name: "A4" }],
+      stationList: [],
+      statusList: [{ id: 1, name: "未批复" }, { id: 2, name: "同意" }, { id: 3, name: "拒绝" }, { id: 4, name: "完成" }, { id: 5, name: "已销点" }, { id: 6, name: "注销" }],
+      dataList: [],
+      searchForm: {
+        depart_id: "",
+        line_type: "",
+        type: "",
+        start_station: "",
+        end_station: "",
+        time_range: [],
+        status: ""
+      },
+      dialogVisible: false,
+      dialogVisibleOk: false,
+      dialogVisibleNo: false,
+      dialogId: 0,
+      dialogContent: ""
+    };
+  },
+  created: function created() {
+    this.getProjectName();
+    this.getDataList();
+    this.getCompanyList();
+    this.getLineType(); //线别
+    this.getStationList(); //车站
+  },
+
+  methods: {
+    getProjectName: function getProjectName() {
+      var _this = this;
+
+      this.request({
+        url: "/common/getItemDetail",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this.projectName = data.data.name;
+          localStorage.setItem("projectName", data.data.name);
+        }
+      });
+    },
+    getDataList: function getDataList() {
+      var _this2 = this;
+
+      var page = this.page_cur;
+      var depart_id = this.searchForm.depart_id;
+      var line_type = this.searchForm.line_type;
+      var type = this.searchForm.type;
+      var start_station = this.searchForm.start_station;
+      var end_station = this.searchForm.end_station;
+      var time_range = this.searchForm.time_range;
+      var status = this.searchForm.status;
+      this.request({
+        url: "/apply/getApplyPages",
+        method: "get",
+        params: {
+          page: page,
+          depart_id: depart_id,
+          line_type: line_type,
+          type: type,
+          start_station: start_station,
+          end_station: end_station,
+          time_range: time_range,
+          status: status
+        }
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this2.dataList = data.data.data;
+          _this2.page_cur = parseInt(data.data.current_page);
+          _this2.pageTotal = data.data.total;
+          _this2.page_size = data.data.per_page;
+          _this2.page_total = data.data.last_page;
+        }
+      });
+    },
+    pageChange: function pageChange(value) {
+      this.page_cur = value;
+      this.getDataList();
+    },
+    toFirstPage: function toFirstPage() {
+      this.pageChange(1);
+    },
+    toLastPage: function toLastPage() {
+      this.page_cur = this.page_total;
+      this.pageChange(this.page_total);
+    },
+    getCompanyList: function getCompanyList() {
+      var _this3 = this;
+
+      this.request({
+        url: "/apply/getCompanyLists",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this3.companyList = data.data;
+        }
+      });
+    },
+    getLineType: function getLineType() {
+      var _this4 = this;
+
+      this.request({
+        url: "/common/getLineType",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this4.lineList = data.data;
+        }
+      });
+    },
+    getStationList: function getStationList() {
+      var _this5 = this;
+
+      this.request({
+        url: "/apply/getStationLists",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this5.stationList = data.data;
+        }
+      });
+    },
+    goDetail: function goDetail(id, type) {
+      var laytitle = "";
+      if (type == "A1" || type == "A2") {
+        laytitle = "轨行区及施工作业许可证";
+      } else {
+        laytitle = this.projectName + "进场作业许可证";
+      }
+      this.$layer.iframe({
+        area: ["85%", "90%"],
+        title: laytitle,
+        shadeClose: false,
+        scrollbar: false,
+        content: {
+          content: views_apply_applydetail,
+          parent: this,
+          data: { iframeData: { id: id } }
+        }
+      });
+    },
+    goApply: function goApply(id, company) {
+      this.dialogVisible = true;
+      this.dialogId = id;
+      this.dialogContent = company;
+    },
+    goApplyOk: function goApplyOk(id, company) {
+      this.dialogVisibleOk = true;
+      this.dialogId = id;
+      this.dialogContent = company;
+    },
+    goApplyNo: function goApplyNo(id, company) {
+      this.dialogVisibleNo = true;
+      this.dialogId = id;
+      this.dialogContent = company;
+    },
+    ApplyClick: function ApplyClick(id, status) {
+      var _this6 = this;
+
+      this.request({
+        url: "/apply/changeStatus",
+        method: "POST",
+        data: { id: id, status: status }
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this6.$message({
+            type: "success",
+            message: "恭喜您，操作成功"
+          });
+          _this6.dialogVisible = false;
+          _this6.dialogVisibleOk = false;
+          _this6.dialogVisibleNo = false;
+          _this6.getDataList();
+        } else {
+          _this6.$message({
+            type: "success",
+            message: "审批失败"
+          });
+          _this6.dialogVisible = false;
+          _this6.dialogVisibleOk = false;
+          _this6.dialogVisibleNo = false;
+        }
+      });
+    }
+  }
+});
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-5e77b193","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/apply/index.vue
+var apply_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app-apply"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"router":"","mode":"horizontal"}},[_c('li',{staticClass:"ptitle"},[_vm._v(_vm._s(_vm.projectName))]),_vm._v(" "),_c('el-submenu',{staticClass:"is-active",attrs:{"index":"1"}},[_c('template',{slot:"title"},[_vm._v("日班计划")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"daychart"}},[_vm._v("日班图表")]),_vm._v(" "),_c('el-menu-item',{staticClass:"is-active",attrs:{"index":"apply"}},[_vm._v("日班列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"conflictcheck"}},[_vm._v("冲突检测")])],2),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"weekplan"}},[_vm._v("周计划")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{attrs:{"model":_vm.searchForm,"inline":true}},[_c('el-form-item',[_c('el-select',{attrs:{"placeholder":"请选择公司","clearable":""},model:{value:(_vm.searchForm.depart_id),callback:function ($$v) {_vm.$set(_vm.searchForm, "depart_id", $$v)},expression:"searchForm.depart_id"}},_vm._l((_vm.companyList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',[_c('el-select',{attrs:{"placeholder":"请选择线别","clearable":""},model:{value:(_vm.searchForm.line_type),callback:function ($$v) {_vm.$set(_vm.searchForm, "line_type", $$v)},expression:"searchForm.line_type"}},_vm._l((_vm.lineList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',[_c('el-select',{attrs:{"placeholder":"请选择类型","clearable":""},model:{value:(_vm.searchForm.type),callback:function ($$v) {_vm.$set(_vm.searchForm, "type", $$v)},expression:"searchForm.type"}},_vm._l((_vm.typeList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',[_c('el-select',{attrs:{"placeholder":"请选择起始车站","clearable":""},model:{value:(_vm.searchForm.start_station),callback:function ($$v) {_vm.$set(_vm.searchForm, "start_station", $$v)},expression:"searchForm.start_station"}},_vm._l((_vm.stationList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',[_c('el-select',{attrs:{"placeholder":"请选择结束车站","clearable":""},model:{value:(_vm.searchForm.end_station),callback:function ($$v) {_vm.$set(_vm.searchForm, "end_station", $$v)},expression:"searchForm.end_station"}},_vm._l((_vm.stationList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',[_c('el-date-picker',{attrs:{"type":"daterange","range-separator":"至","start-placeholder":"选择开始日期","end-placeholder":"选择结束日期","default-time":['00:00:00', '23:59:59']},model:{value:(_vm.searchForm.time_range),callback:function ($$v) {_vm.$set(_vm.searchForm, "time_range", $$v)},expression:"searchForm.time_range"}})],1),_vm._v(" "),_c('el-form-item',[_c('el-select',{attrs:{"placeholder":"请选择状态","clearable":""},model:{value:(_vm.searchForm.status),callback:function ($$v) {_vm.$set(_vm.searchForm, "status", $$v)},expression:"searchForm.status"}},_vm._l((_vm.statusList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{staticClass:"form-so"},[_c('label',{staticClass:"el-form-item__label"}),_vm._v(" "),_c('el-button',{attrs:{"size":"small","icon":"el-icon-search","type":"primary"},on:{"click":_vm.getDataList}},[_vm._v("查询")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"page-count"},[_vm._v("找到"+_vm._s(_vm.pageTotal)+"条相关作业令")]),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{attrs:{"data":_vm.dataList}},[_c('el-table-column',{attrs:{"prop":"number","label":"作业编号"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"command_num","label":"作业令号"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"description","label":"作业内容","show-overflow-tooltip":""}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"status","label":"当前状态"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.status=='未批复')?_c('span',{staticClass:"statuse1"},[_vm._v("未批复")]):_vm._e(),_vm._v(" "),(scope.row.status=='同意')?_c('span',{staticClass:"statuse2"},[_vm._v("同意")]):_vm._e(),_vm._v(" "),(scope.row.status=='拒绝')?_c('span',{staticClass:"statuse3"},[_vm._v("拒绝")]):_vm._e(),_vm._v(" "),(scope.row.status=='完成')?_c('span',{staticClass:"statuse4"},[_vm._v("完成")]):_vm._e(),_vm._v(" "),(scope.row.status=='已销点')?_c('span',{staticClass:"statuse6"},[_vm._v("已销点")]):_vm._e(),_vm._v(" "),(scope.row.status=='注销')?_c('span',{staticClass:"statuse1"},[_vm._v("注销")]):_vm._e()]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"next_status","label":"下一步状态"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"company","label":"公司简称"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"140"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[(scope.row.status=='未批复')?_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.goApply(scope.row.id,scope.row.company)}}},[_vm._v("审批")]):_vm._e(),_vm._v(" "),(scope.row.status=='已销点')?_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.goApplyOk(scope.row.id,scope.row.company)}}},[_vm._v("完成")]):_vm._e(),_vm._v(" "),(scope.row.status=='已完成')?_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.goApplyNo(scope.row.id,scope.row.company)}}},[_vm._v("注销")]):_vm._e(),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.goDetail(scope.row.id,scope.row.type)}}},[_vm._v("详情")])],1)]}}])})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.dataList.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","page-size":this.page_size,"current-page":this.page_cur,"total":this.pageTotal,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.pageChange}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.toFirstPage}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.toLastPage}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1)],1)])]),_vm._v(" "),_c('el-dialog',{staticClass:"dialogStyle",attrs:{"title":"审批","visible":_vm.dialogVisible,"width":"300px","center":""},on:{"update:visible":function($event){_vm.dialogVisible=$event}}},[_c('span',[_vm._v("请选择审批状态？")]),_vm._v(" "),_c('span',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.ApplyClick(_vm.dialogId,2)}}},[_vm._v("同意")]),_vm._v(" "),_c('el-button',{on:{"click":function($event){_vm.ApplyClick(_vm.dialogId,3)}}},[_vm._v("拒绝")])],1)]),_vm._v(" "),_c('el-dialog',{staticClass:"dialogStyle",attrs:{"title":"完成审批","visible":_vm.dialogVisibleOk,"width":"300px","center":""},on:{"update:visible":function($event){_vm.dialogVisibleOk=$event}}},[_c('span',[_vm._v("您确定要完成审批？")]),_vm._v(" "),_c('span',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.ApplyClick(_vm.dialogId,4)}}},[_vm._v("确定")]),_vm._v(" "),_c('el-button',{on:{"click":function($event){_vm.dialogVisibleOk=false}}},[_vm._v("取消")])],1)]),_vm._v(" "),_c('el-dialog',{staticClass:"dialogStyle",attrs:{"title":"注销审批","visible":_vm.dialogVisibleNo,"width":"300px","center":""},on:{"update:visible":function($event){_vm.dialogVisibleNo=$event}}},[_c('span',[_vm._v("您确定要注销审批？")]),_vm._v(" "),_c('span',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.ApplyClick(_vm.dialogId,6)}}},[_vm._v("确定")]),_vm._v(" "),_c('el-button',{on:{"click":function($event){_vm.dialogVisibleNo=false}}},[_vm._v("取消")])],1)])],1)}
+var apply_staticRenderFns = []
+var apply_esExports = { render: apply_render, staticRenderFns: apply_staticRenderFns }
+/* harmony default export */ var views_apply = (apply_esExports);
+// CONCATENATED MODULE: ./src/views/apply/index.vue
+function apply_injectStyle (ssrContext) {
+  __webpack_require__("vr1T")
+}
+var apply_normalizeComponent = __webpack_require__("VU/8")
+/* script */
+
+/* template */
+
+/* template functional */
+var apply___vue_template_functional__ = false
+/* styles */
+var apply___vue_styles__ = apply_injectStyle
+/* scopeId */
+var apply___vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var apply___vue_module_identifier__ = null
+var apply_Component = apply_normalizeComponent(
+  apply,
+  views_apply,
+  apply___vue_template_functional__,
+  apply___vue_styles__,
+  apply___vue_scopeId__,
+  apply___vue_module_identifier__
+)
+
+/* harmony default export */ var src_views_apply = __webpack_exports__["default"] = (apply_Component.exports);
 
 
 /***/ }),
 
-/***/ "szom":
+/***/ "NdCU":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("FZ+f")(false);
@@ -379,10 +864,53 @@ exports = module.exports = __webpack_require__("FZ+f")(false);
 
 
 // module
-exports.push([module.i, "\n.sttitle{color: #fff; padding: 22px 0 0 25px;font-size: 24px;\n}\n#progress {\r\n  background: #081c33;\r\n  height: 100vh;\n}\n.canvasbox {\r\n  margin-left: 200px;\r\n  margin-top: 300px;\r\n  border-left: 3px #fff solid;\n}\n.station {\r\n  margin: 100px;\n}\n.ptable {\r\n  margin: 0px 100px 100px 100px;\n}\n.ptable table {\r\n  border-collapse: collapse;\r\n  width: 100%;\n}\n.ptable table td {\r\n  border: 2px solid #fff;\r\n  line-height: 30px;\r\n  padding: 10px;\n}\n.ptable table .thone {\r\n  width: 200px;\n}\r\n", ""]);
+exports.push([module.i, "\n.el-menu--collapse .el-menu .el-submenu,\r\n.el-menu--popup {\r\n  min-width: 124px;\r\n  text-align: center;\r\n  padding: 0;\n}\n.el-menu--horizontal .el-menu .el-menu-item.is-active,\r\n.el-menu--horizontal .el-menu .el-submenu.is-active > .el-submenu__title {\r\n  background: #4b6eca;\r\n  color: #fff;\n}\n.page-count {\r\n  text-align: right;\r\n  color: #1d397a;\r\n  padding-bottom: 20px;\n}\n#app-apply .el-dialog__footer {\r\n  text-align: center;\n}\n.confirmButtonClass {\r\n  font-size: 14px;\r\n  padding: 8px 15px;\r\n  background: #ff5c75 !important;\r\n  border-color: #ff5c75 !important;\r\n  margin-left: 15px !important;\n}\n.cancelButtonClass {\r\n  padding: 8px 15px;\r\n  font-size: 14px;\r\n  background: #1d397a;\r\n  border-color: #1d397a;\r\n  color: #fff;\n}\n.cancelButtonClass:hover {\r\n  background: #1d397a;\r\n  border-color: #1d397a;\r\n  color: #fff;\n}\n.dialogStyle .el-button--medium {\r\n  padding: 7px 20px;\n}\n.statuse2 {\r\n  color: #029b02;\n}\n.statuse3 {\r\n  color: #ff5c75;\n}\n.statuse4 {\r\n  color: #0a0693;\n}\n.statuse6 {\r\n  color: #4072d1;\n}\r\n", ""]);
 
 // exports
 
+
+/***/ }),
+
+/***/ "TMa6":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.vl-notify-content{height:91.5%!important;\n}\n.app-apply-detail {\r\n  width: 100%;\n}\n.app-apply-detail .app-page {\r\n  overflow: hidden;padding-bottom: 200px;\n}\n.app-apply-detail .el-form-item {\r\n  margin-bottom: 25px;\n}\n.app-apply-detail .el-form-item__label {\r\n  color: #1d397a;\n}\n.app-apply-detail .el-form-item .input {\r\n  width: 280px;\r\n  text-align: left;\n}\n.app-apply-detail .input {\r\n  height: 36px;\r\n  border: 1px #9db9fa solid;\r\n  color: #4b6eca;\r\n  border-radius: 4px;\r\n  line-height: 36px;\r\n  display: inline-block;\r\n  padding: 0 12px;\n}\n.app-apply-detail .onebox {\r\n  padding: 0 50px;\r\n  margin-bottom: 60px;\r\n  font-size: 15px;\n}\n.app-apply-detail .el-timeline-item__timestamp {\r\n  color: #1d397a;\r\n  font-size: 16px;\r\n  font-weight: 700;\n}\n.app-apply-detail .item {\r\n  margin-bottom: 20px;\r\n  overflow: hidden;\n}\n.app-apply-detail .item .labels {\r\n  color: #1d397a;\r\n  margin: 0 15px 0 15px;\r\n  min-width: 75px;\r\n  display: inline-block;\n}\n.app-apply-detail .item em {\r\n  display: block;\r\n  color: #4b6eca;\r\n  font-style: normal;\n}\n.app-apply-detail .item i {\r\n  display: inline-block;\r\n  color: #1d397a;\r\n  font-size: 13px;\r\n  margin-right: 10px;\r\n  font-style: normal;\n}\n.app-apply-detail .conn {\r\n  display: block;\r\n  padding-left: 110px;\r\n  line-height: 24px;\n}\n.app-apply-detail .scheck {\r\n  margin-left: 15px;\n}\n.app-apply-detail .scheck li {\r\n  display: inline-block;\r\n  color: #1d397a;\r\n  margin-right: 40px;\n}\n.app-apply-detail .scheck b {\r\n  font-size: 16px;\n}\n.app-apply-detail .itemconn {\r\n  color: #1d397a;\r\n  margin-left: 15px;\r\n  line-height: 24px;\n}\n.app-apply-detail .singn {\r\n  color: #1d397a;\r\n  margin: 20px 0 20px 15px;\r\n  line-height: 24px;\n}\n.app-apply-detail .lines {\r\n  border-top: 1px #ededed solid;\r\n  margin-top: 35px;\r\n  padding-top: 10px;\n}\n.vtable {\r\n  margin: 0px;\n}\n.vtable table {\r\n  border-collapse: collapse;\r\n  width: 100%;\n}\n.vtable table td {\r\n  border: 1px solid #9db9fa;\r\n  line-height: 30px;\r\n  padding: 10px;\n}\n.auto-style1 {\r\n  width: 185px;\r\n  min-height: 38px;\n}\n.auto-style3 {\r\n  width:30%;\n}\n.clblue {\r\n  color: #4b6eca;\n}\n.clcenter {\r\n  text-align: center;\n}\n.textoverflow{ word-wrap:break-word;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "vr1T":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("NdCU");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("b42d2500", content, true);
+
+/***/ }),
+
+/***/ "wmT7":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("TMa6");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("41240531", content, true);
 
 /***/ })
 

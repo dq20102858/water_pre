@@ -1,4 +1,4 @@
-webpackJsonp([26],{
+webpackJsonp([30],{
 
 /***/ "+4G4":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -91,13 +91,6 @@ var symbol = new __WEBPACK_IMPORTED_MODULE_0_svg_baker_runtime_browser_symbol___
 });
 var result = __WEBPACK_IMPORTED_MODULE_1_svg_sprite_loader_runtime_browser_sprite_build___default.a.add(symbol);
 /* harmony default export */ __webpack_exports__["default"] = (symbol);
-
-/***/ }),
-
-/***/ "0Zyp":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -2207,14 +2200,14 @@ var css_default = /*#__PURE__*/__webpack_require__.n(css);
     });
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-57959a62","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/App.vue
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-728fc20f","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/App.vue
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"loading",rawName:"v-loading.fullscreen",value:(_vm.showLoading),expression:"showLoading",modifiers:{"fullscreen":true}}],attrs:{"id":"app","element-loading-text":"拼命加载中","element-loading-spinner":"el-icon-loading","element-loading-background":"rgba(0, 0, 0, 0.01)"}},[(_vm.reload)?_c('router-view'):_vm._e()],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ var selectortype_template_index_0_src_App = (esExports);
 // CONCATENATED MODULE: ./src/App.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("0Zyp")
+  __webpack_require__("s4q7")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -3329,7 +3322,7 @@ var constantRouterMap = [{
   children: [{
     path: '/redirect/:path*',
     component: function component() {
-      return __webpack_require__.e/* import() */(18).then(__webpack_require__.bind(null, "v86N"));
+      return __webpack_require__.e/* import() */(23).then(__webpack_require__.bind(null, "v86N"));
     }
   }]
 }, {
@@ -3341,7 +3334,7 @@ var constantRouterMap = [{
 }, {
   path: '/authredirect',
   component: function component() {
-    return __webpack_require__.e/* import() */(21).then(__webpack_require__.bind(null, "+abo"));
+    return __webpack_require__.e/* import() */(26).then(__webpack_require__.bind(null, "+abo"));
   },
   hidden: true
 }, {
@@ -3353,7 +3346,7 @@ var constantRouterMap = [{
 }, {
   path: '/401',
   component: function component() {
-    return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, "eRLo"));
+    return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, "eRLo"));
   },
   hidden: true
 }];
@@ -3373,63 +3366,77 @@ var asyncRouterMap = {
     return new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, "AkUR"));
   },
   '/views/dashboard/index': function viewsDashboardIndex() {
-    return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, "ARoL"));
+    return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, "ARoL"));
   }, //视频监控
   '/views/admin/index': function viewsAdminIndex() {
-    return __webpack_require__.e/* import() */(12).then(__webpack_require__.bind(null, "x0vE"));
+    return __webpack_require__.e/* import() */(11).then(__webpack_require__.bind(null, "x0vE"));
   }, //人员管理
   '/views/project/index': function viewsProjectIndex() {
-    return Promise.all/* import() */([__webpack_require__.e(8), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, "KYsC"));
+    return Promise.all/* import() */([__webpack_require__.e(9), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, "KYsC"));
   }, //工程进度
   '/views/monitor/index': function viewsMonitorIndex() {
-    return __webpack_require__.e/* import() */(14).then(__webpack_require__.bind(null, "lZYz"));
+    return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, "lZYz"));
   }, //行车监控
   '/views/run_monitor/index': function viewsRun_monitorIndex() {
-    return __webpack_require__.e/* import() */(11).then(__webpack_require__.bind(null, "WfHw"));
+    return __webpack_require__.e/* import() */(14).then(__webpack_require__.bind(null, "WfHw"));
   }, //列车运行监控
   '/views/location/index': function viewsLocationIndex() {
-    return __webpack_require__.e/* import() */(22).then(__webpack_require__.bind(null, "Sp6l"));
+    return Promise.all/* import() */([__webpack_require__.e(16), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, "Sp6l"));
   }, //定位管理
   '/views/real_time/index': function viewsReal_timeIndex() {
-    return __webpack_require__.e/* import() */(19).then(__webpack_require__.bind(null, "2jNM"));
+    return __webpack_require__.e/* import() */(24).then(__webpack_require__.bind(null, "2jNM"));
   }, //实时管理
   '/views/progress/index': function viewsProgressIndex() {
-    return Promise.all/* import() */([__webpack_require__.e(6), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, "naN1"));
+    return Promise.all/* import() */([__webpack_require__.e(10), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, "naN1"));
   }, //进度形象图
   '/views/security/index': function viewsSecurityIndex() {
-    return __webpack_require__.e/* import() */(16).then(__webpack_require__.bind(null, "h5Rs"));
+    return __webpack_require__.e/* import() */(21).then(__webpack_require__.bind(null, "h5Rs"));
   }, //安全管理
   '/views/dispatch/index': function viewsDispatchIndex() {
     return Promise.all/* import() */([__webpack_require__.e(1), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, "FvKM"));
   }, //调度命令
   '/views/apply/index': function viewsApplyIndex() {
-    return Promise.all/* import() */([__webpack_require__.e(3), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, "43N1"));
+    return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, "43N1"));
   }, //施工请点
   '/views/plan/index': function viewsPlanIndex() {
-    return __webpack_require__.e/* import() */(20).then(__webpack_require__.bind(null, "aJNJ"));
+    return __webpack_require__.e/* import() */(25).then(__webpack_require__.bind(null, "aJNJ"));
   }, //施工计划
   '/views/search/index': function viewsSearchIndex() {
-    return __webpack_require__.e/* import() */(17).then(__webpack_require__.bind(null, "Rv23"));
+    return __webpack_require__.e/* import() */(22).then(__webpack_require__.bind(null, "Rv23"));
   }, //查询统计
   '/views/description/index': function viewsDescriptionIndex() {
-    return __webpack_require__.e/* import() */(23).then(__webpack_require__.bind(null, "ap+h"));
+    return __webpack_require__.e/* import() */(27).then(__webpack_require__.bind(null, "ap+h"));
   }, //项目介绍
   '/views/set/index': function viewsSetIndex() {
-    return __webpack_require__.e/* import() */(15).then(__webpack_require__.bind(null, "bUWe"));
+    return __webpack_require__.e/* import() */(20).then(__webpack_require__.bind(null, "bUWe"));
   }, //设置
   '/views/back/index': function viewsBackIndex() {
-    return __webpack_require__.e/* import() */(24).then(__webpack_require__.bind(null, "FKtP"));
+    return __webpack_require__.e/* import() */(28).then(__webpack_require__.bind(null, "FKtP"));
   }, //返回
 
   '/views/apply/daychart': function viewsApplyDaychart() {
-    return Promise.all/* import() */([__webpack_require__.e(13), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, "wpBv"));
+    return Promise.all/* import() */([__webpack_require__.e(19), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, "wpBv"));
   }, //日班图表
   '/views/apply/conflictcheck': function viewsApplyConflictcheck() {
-    return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, "JXxd"));
+    return __webpack_require__.e/* import() */(12).then(__webpack_require__.bind(null, "JXxd"));
   }, //冲突检测
   '/views/apply/weekplan': function viewsApplyWeekplan() {
-    return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, "mz+a"));
-  } //周计划
+    return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, "mz+a"));
+  }, //周计划
+
+  '/views/location/walldetector': function viewsLocationWalldetector() {
+    return Promise.all/* import() */([__webpack_require__.e(15), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, "RwO4"));
+  }, //墙壁探测器
+  '/views/location/cardetector': function viewsLocationCardetector() {
+    return Promise.all/* import() */([__webpack_require__.e(17), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, "4nWN"));
+  }, //车载探测器
+  '/views/location/locationbind': function viewsLocationLocationbind() {
+    return Promise.all/* import() */([__webpack_require__.e(18), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, "6QbA"));
+  }, //定位从设备
+  '/views/location/device': function viewsLocationDevice() {
+    return Promise.all/* import() */([__webpack_require__.e(13), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, "ZFGK"));
+  } //机具
+
 
 };
 
@@ -3760,6 +3767,13 @@ var symbol = new __WEBPACK_IMPORTED_MODULE_0_svg_baker_runtime_browser_symbol___
 });
 var result = __WEBPACK_IMPORTED_MODULE_1_svg_sprite_loader_runtime_browser_sprite_build___default.a.add(symbol);
 /* harmony default export */ __webpack_exports__["default"] = (symbol);
+
+/***/ }),
+
+/***/ "s4q7":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
