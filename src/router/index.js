@@ -69,7 +69,6 @@ export const asyncRouterMap = {
   '/views/apply/conflictcheck': () => import('@/views/apply/conflictcheck'),//冲突检测
   '/views/apply/weekplan': () => import('@/views/apply/weekplan'),//周计划
 
-  '/views/location/locationstatistic': () => import('@/views/location/locationstatistic'),//人员定位统计
   '/views/location/walldetector': () => import('@/views/location/walldetector'),//墙壁探测器
   '/views/location/cardetector': () => import('@/views/location/cardetector'),//车载探测器
   '/views/location/locationbind': () => import('@/views/location/locationbind'),//定位从设备

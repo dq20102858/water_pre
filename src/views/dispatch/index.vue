@@ -7,7 +7,7 @@
             <el-form-item>
               <el-button
                 type="primary"
-                class="redbtn"
+                class="btn-red-addedit"
                 style="width:145px;"
                 icon="el-icon-plus"
                 @click="addInfo"
@@ -383,7 +383,7 @@ export default {
       } else {
         return "";
       }
-    }
+    },
     //
   }
 };
@@ -407,12 +407,7 @@ export default {
   width: 120px;
   margin-right: 20px;
 }
-.app-page-select .select-from-inline .redbtn {
-  background: #ff5c75;
-  width: 120px;
-  border-color: #ff5c75;
-  margin-right: 20px;
-}
+
 .app-page-select .select-from-inline .input {
   width: auto;
 }
