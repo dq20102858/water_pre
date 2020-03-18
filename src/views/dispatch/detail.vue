@@ -8,7 +8,7 @@
         <el-form-item label="值班调度：">
           <el-input v-model="dataInfo.dispatch" readonly></el-input>
         </el-form-item>
-        <el-form-item label="命令状态：">
+        <el-form-item label="命令状态：" class="redinput">
           <p v-if="dataInfo.status=='1'">
             <el-input readonly value="新命令"></el-input>
           </p>
@@ -152,5 +152,8 @@ export default {
 #dispatch-detail .app-dialog-footer .el-button {
   float: right;
   margin-right: 30px;
+}
+.redinput input {
+  color: #ff5c75!important;
 }
 </style>

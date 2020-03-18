@@ -107,7 +107,7 @@
       title="新增调度内容模板"
       :visible.sync="isVisible"
       center
-      :append-to-body="true"
+      :close-on-click-modal="false"
     >
       <el-form
         :model="tempForm"
@@ -163,7 +163,7 @@ export default {
       rules: {
         number: [
           { required: true, message: "请输入命令号码", trigger: "blur" },
-           { min: 2, max: 60, message: "请输入长度在2到60个字符", trigger: "blur" }
+           { min: 2, max: 30, message: "请输入长度在2到30个字符", trigger: "blur" }
         ],
         lid: [{ required: true, message: "请选择受令机车", trigger: "change" }],
         type: [{ required: true, message: "请选择类型", trigger: "change" }],
@@ -185,9 +185,11 @@ export default {
         ]
       },
       temprules: {
-        name: [{ required: true, message: "请输入名称", trigger: "blur" }],
+        name: [{ required: true, message: "请输入名称", trigger: "blur" },
+         { min: 2, max: 30, message: "请输入长度在2到30个字符", trigger: "blur" }],
         description: [
-          { required: true, message: "请输入内容", trigger: "blur" }
+          { required: true, message: "请输入内容", trigger: "blur" },
+           { min: 2, max:500, message: "请输入长度在2到500个字符", trigger: "blur" }
         ]
       }
     };

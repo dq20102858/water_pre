@@ -82,6 +82,7 @@
                 autocomplete="off"
                 onkeyup="this.value = this.value.replace(/[^\d.]/g,'');"
                 placeholder="请输入数字，数字越大越靠后"
+                maxlength="4"
               ></el-input>
             </el-form-item>
             <div v-if="this.title=='添加作业信息'">
@@ -107,24 +108,24 @@
                 </el-form-item>
               </div>
             </div>
-            <div class="el-form-item-inline">
-              <el-form-item label="开始时间：" prop="start_time">
-                <el-date-picker
-                  @change="changeStarttime"
-                  v-model="workData.start_time"
-                  type="date"
-                  placeholder="选择计划开始时间"
-                ></el-date-picker>
-              </el-form-item>
-              <el-form-item label="结束时间：" prop="end_time">
-                <el-date-picker
-                  @change="changeEndtime"
-                  v-model="workData.end_time"
-                  type="date"
-                  placeholder="选择计划结束时间"
-                ></el-date-picker>
-              </el-form-item>
-            </div>
+            <div class="blank"></div>
+            <el-form-item label="计划开始时间" prop="start_time">
+              <el-date-picker
+                @change="changeStarttime"
+                v-model="workData.start_time"
+                type="date"
+                placeholder="选择时间"
+              ></el-date-picker>
+            </el-form-item>
+            <el-form-item label="计划结束时间" prop="end_time">
+              <el-date-picker
+                @change="changeEndtime"
+                v-model="workData.end_time"
+                type="date"
+                placeholder="选择时间"
+              ></el-date-picker>
+            </el-form-item>
+
             <div class="blank"></div>
           </el-form>
           <div slot="footer" class="dialog-footer">
@@ -160,7 +161,6 @@
                 </div>
               </template>
             </el-table-column>
-
           </el-table>
           <div slot="footer" class="dialog-footer">
             <el-button @click="lineVisible = false">关闭</el-button>
@@ -188,21 +188,32 @@
                 <div class="calendar-tips">
                   <p class="calendar-show plan-finished">
                     <span>计划完成：</span>
-                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">{{calendarLists[data.day]["plan"]}}{{calendarLists[data.day]["unit"]}}</span>
+                    <span
+                      v-if="typeof(calendarLists[data.day])!=='undefined'"
+                    >{{calendarLists[data.day]["plan"]}}{{calendarLists[data.day]["unit"]}}</span>
                   </p>
                   <p class="calendar-show act-finished">
                     <span>实际完成：</span>
-                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">{{calendarLists[data.day]["true"]}}{{calendarLists[data.day]["unit"]}}</span>
+                    <span
+                      v-if="typeof(calendarLists[data.day])!=='undefined'"
+                    >{{calendarLists[data.day]["true"]}}{{calendarLists[data.day]["unit"]}}</span>
                   </p>
                   <p class="calendar-show remark">
                     <span>备注：</span>
-                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">{{calendarLists[data.day]["remark"]}}</span>
+                    <span
+                      v-if="typeof(calendarLists[data.day])!=='undefined'"
+                    >{{calendarLists[data.day]["remark"]}}</span>
                   </p>
                 </div>
               </div>
             </template>
           </el-calendar>
-          <el-dialog :close-on-click-modal="false" class="dialog-plan-add" title="添加信息" :visible.sync="planVisible">
+          <el-dialog
+            :close-on-click-modal="false"
+            class="dialog-plan-add"
+            title="添加信息"
+            :visible.sync="planVisible"
+          >
             <span class="ptxt">添加日期：{{addDate}}</span>
             <span class="ptxt">作业：{{planWorkName}}</span>
             <div v-if="planOneDataType==1">
@@ -259,16 +270,25 @@
               </ul>
             </div>
             <div v-else style="margin-top:20px;width:280px;">
-            <el-input placeholder="请输入计划数量" v-model="planWorkNum" onkeyup="this.value = this.value.replace(/[^\d.]/g,'');">
-              <template slot="prepend">计划数量</template>
-            </el-input>
-          </div>
+              <el-input
+                placeholder="请输入计划数量"
+                v-model="planWorkNum"
+                onkeyup="this.value = this.value.replace(/[^\d.]/g,'');"
+              >
+                <template slot="prepend">计划数量</template>
+              </el-input>
+            </div>
             <div class="plan-btn">
               <el-button @click="closePlan">关闭</el-button>
               <el-button type="primary" @click="addOnePlan">确定保存</el-button>
             </div>
           </el-dialog>
-          <el-dialog  :close-on-click-modal="false" class="dialog-plan-add" title="详细信息" :visible.sync="detailVisible">
+          <el-dialog
+            :close-on-click-modal="false"
+            class="dialog-plan-add"
+            title="详细信息"
+            :visible.sync="detailVisible"
+          >
             <div>
               <span class="ptxt">施工日期：</span>
               <span class="ptxt" v-if="planDetailList.length>0">{{planDetailList[0]['add_date']}}</span>
@@ -338,7 +358,7 @@
                 size="small"
                 icon="el-icon-search"
                 type="primary"
-                @click="getDetailLists"
+                @click="detailSearchPage"
               >查询</el-button>
             </el-form-item>
             <el-form-item>
@@ -364,7 +384,7 @@
                   <span v-else>未完成</span>
                 </template>
               </el-table-column>
-              <el-table-column prop="remark" label="备注" align="center"></el-table-column>
+              <el-table-column prop="remark" label="备注" align="center" show-overflow-tooltip></el-table-column>
               <el-table-column prop="plan_date" label="日期" align="center"></el-table-column>
               <el-table-column label="操作">
                 <template slot-scope="scope">
@@ -383,6 +403,7 @@
               layout="slot,prev, pager, next,slot,total"
               :current-page="this.detailPage"
               :total="this.detailTotal"
+              :page-size="this.detailPageSize"
               @current-change="detailPageChange"
               prev-text="上一页"
               next-text="下一页"
@@ -395,7 +416,8 @@
               </button>
             </el-pagination>
           </div>
-          <el-dialog  :close-on-click-modal="false"
+          <el-dialog
+            :close-on-click-modal="false"
             class="dialog-plan-detail"
             :title="this.historyTitle"
             :visible.sync="addHistoryVisible"
@@ -492,7 +514,7 @@
                 <el-radio v-model="historyData.is_finish" label="1" value="1">是</el-radio>
                 <el-radio v-model="historyData.is_finish" label="0" value="0">否</el-radio>
               </el-form-item>
-              <el-form-item label="备注：" label-width="100px">
+              <el-form-item label="备注：" prop="remark" label-width="100px">
                 <el-input v-model="historyData.remark" placeholder="填写备注" type="textarea"></el-input>
               </el-form-item>
             </el-form>
@@ -610,10 +632,16 @@ export default {
           { required: true, message: "请选择日期", trigger: "change" }
         ],
         total: [
-          { required: true, message: "请输入设计总量", trigger: "blur" },
+          {
+            required: true,
+            min: 2,
+            max: 5,
+            message: "请输入1-5位正整数",
+            trigger: "blur"
+          },
           {
             pattern: /^(0|[1-9][0-9]*)$/,
-            message: "请输入正整数",
+            message: "请输入1-5位正整数",
             trigger: "blur"
           }
         ],
@@ -622,7 +650,8 @@ export default {
             required: true,
             message: "请输入单位公里，个，股，孔等",
             trigger: "blur"
-          }
+          },
+          { min: 1, max: 5, message: "长度在1到5个字符", trigger: "blur" }
         ]
       },
       lineVisible: false, //查看线别
@@ -640,7 +669,7 @@ export default {
       echartDataNames: "",
       addDate: "",
       planWorkName: "",
-      planWorkNum: '',
+      planWorkNum: "",
       planDetailList: [],
       detailVisible: false,
       calendarLists: {},
@@ -648,6 +677,7 @@ export default {
       detailListPages: [],
       detailPage: 1,
       detailTotal: 0,
+      detailPageSize: 20,
       detailPage_total: 0,
       searchForm: {},
       pickerOptions2: publicData.pickerOptions2,
@@ -686,7 +716,15 @@ export default {
         ],
         is_finish: [
           { required: true, message: "请选择是否完成", trigger: "change" }
-        ]
+        ],
+         remark: [
+          {
+            required: true,
+            message: "请输入备注2~60个字符",
+            trigger: "blur"
+          },
+          { min: 2, max: 60, message: "长度在2到60个字符", trigger: "blur" }
+        ],
       },
       selectedLineTypeLists: [],
       lineTypeListDes: [],
@@ -769,6 +807,10 @@ export default {
     detailPageLast() {
       this.detailPage = this.detailPage_total;
       this.detailPageChange(this.detailPage_total);
+    },
+    detailSearchPage() {
+      this.detailPage = 1;
+      this.getDetailLists();
     },
     openAddWork() {
       this.title = "添加作业信息";
@@ -941,7 +983,7 @@ export default {
       this.getCurrData();
     },
     addOnePlan() {
-      const that=this;
+      const that = this;
       if (this.planOneDataType == 1) {
         let canSubmit = false;
         this.planOneData.forEach(function(item) {
@@ -979,7 +1021,7 @@ export default {
             message: "添加成功",
             type: "success"
           });
-          this.planVisible=false;
+          this.planVisible = false;
         } else {
           this.$message({
             showClose: true,
@@ -1041,6 +1083,7 @@ export default {
           this.detailListPages = data.data.data;
           this.detailPage = parseInt(data.data.current_page);
           this.detailTotal = parseInt(data.data.total);
+          this.detailPageSize = data.data.per_page;
           this.detailPage_total = parseInt(data.data.last_page);
         }
       });
@@ -1387,14 +1430,18 @@ export default {
       });
     },
     changeStarttime() {
-      if (this.workData.start_time > this.workData.end_time) {
+      if (this.workData.start_time >= this.workData.end_time) {
         this.$message.error("开始日期不能大于结束日期");
         this.workData.start_time = "";
       }
     },
     changeEndtime() {
-      if (this.workData.end_time < this.workData.start_time) {
-        this.$message.error("结束日期需大于开始日期");
+      var start_time = new Date(this.workData.start_time);
+      var end_time = new Date(this.workData.end_time);
+      //alert(start_time);
+      //alert(end_time);
+      if (end_time <= start_time) {
+        this.$message.error("结束日期不能小于开始日期");
         this.workData.end_time = "";
       }
     }

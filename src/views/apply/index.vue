@@ -89,7 +89,7 @@
             </el-form-item>
             <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
-              <el-button size="small" icon="el-icon-search" @click="getDataList" type="primary">查询</el-button>
+              <el-button size="small" icon="el-icon-search" @click="pageSearchEvent" type="primary">查询</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -155,10 +155,10 @@
               prev-text="上一页"
               next-text="下一页"
             >
-              <button @click="toFirstPage" type="button" class="btn-first">
+              <button @click="pageToFirst" type="button" class="btn-first">
                 <span>首页</span>
               </button>
-              <button @click="toLastPage" type="button" class="btn-last">
+              <button @click="pageToLast" type="button" class="btn-last">
                 <span>尾页</span>
               </button>
             </el-pagination>
@@ -304,12 +304,16 @@ export default {
       this.page_cur = value;
       this.getDataList();
     },
-    toFirstPage() {
+    pageToFirst() {
       this.pageChange(1);
     },
-    toLastPage() {
+    pageToLast() {
       this.page_cur = this.page_total;
       this.pageChange(this.page_total);
+    },
+    pageSearchEvent() {
+      this.page_cur = 1;
+      this.getDataList();
     },
     getCompanyList() {
       this.request({

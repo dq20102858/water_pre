@@ -413,7 +413,6 @@ export default {
 }
 .app-page-select .select-from-inline .form-so {
   width: 29%;
-  text-align: right;
 }
 .app-page-select .select-from-inline .form-so .el-form-item__content {
   width: 100%;
