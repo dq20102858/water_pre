@@ -180,7 +180,14 @@
           </div>
           <el-form-item label="绑定对象：" prop="bind_obj">
             <el-select v-model="locationData.bind_obj" placeholder="请选择" clearable>
-              <el-option label="heekey" :value="12"></el-option>
+                            
+               <el-option
+                  v-for="item in this.objSelectLists"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              <!-- <el-option label="heekey" :value="12"></el-option> -->
             </el-select>
           </el-form-item>
         </div>
@@ -206,6 +213,9 @@ export default {
         depart_id: [
           { required: true, message: "请选择公司", trigger: "change" }
         ],
+        type: [
+          { required: true, message: "请选择设备类型：", trigger: "change" }
+        ],
         name: [
           {
             required: true,
@@ -224,7 +234,10 @@ export default {
         ],
         loco_id: [
           { required: true, message: "请选择所属列车", trigger: "change" }
-        ]
+        ],
+         bind_obj: [
+          { required: true, message: "请选择绑定对象：", trigger: "change" }
+        ],
       },
       page_cur: 1,
       pageTotal: 0,
@@ -235,7 +248,8 @@ export default {
       dataList: [],
       companySelectLists: [],
       departSelectLists: [],
-      postSelectLists: []
+      postSelectLists: [],
+      objSelectLists:[]
     };
   },
   created() {
@@ -286,6 +300,8 @@ export default {
 
     selectDeviceType(val) {
       this.deviceType = val;
+      this.locationData.depart_id=null;
+      this.locationData.bind_obj=null;
       console.log("this.deviceType：" + this.deviceType);
     },
     addDialogInfo() {
@@ -372,7 +388,7 @@ export default {
       console.log("select_company_id：" + val);
       this.departSelectLists = [];
       console.log("this.locationData.sub_pid：" + this.locationData.sub_pid);
-       console.log("this.deviceType1：" + this.deviceType);
+      console.log("this.deviceType1：" + this.deviceType);
       let pid = val;
       let type = 2;
       this.request({
@@ -382,7 +398,13 @@ export default {
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
-          this.departSelectLists = data.data;
+          if (this.locationData.type == 1) {
+            this.departSelectLists = data.data;
+          } else if (this.locationData.type == 2) {
+            this.getTrainList(val);
+          } else {
+
+          }
         }
       });
     },
@@ -399,6 +421,19 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.postSelectLists = data.data;
+        }
+      });
+    },
+    //获取车辆
+    getTrainList(val) {
+      this.request({
+        url: "/common/getLocosByDepart",
+        method: "get",
+        params: { depart_id: val }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.objSelectLists = data.data;
         }
       });
     },

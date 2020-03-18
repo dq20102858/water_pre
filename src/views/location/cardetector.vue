@@ -27,8 +27,8 @@
             <el-table-column prop="name" label="名称"></el-table-column>
             <el-table-column prop="number" label="设备编号"></el-table-column>
             <el-table-column prop="loco" label="所属列车">
-                <template slot-scope="scope">
-                <span v-if="scope.row.loco==''">暂无列车 </span>
+              <template slot-scope="scope">
+                <span v-if="scope.row.loco==''">暂无列车</span>
                 <span v-else>{{scope.row.loco}}</span>
               </template>
             </el-table-column>
@@ -91,7 +91,11 @@
           <el-input v-model="detectorData.number" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="公司名称：" prop="depart_id">
-          <el-select v-model="detectorData.depart_id" placeholder="请选择公司" clearable>
+          <el-select
+            v-model="detectorData.depart_id"
+            placeholder="请选择公司"
+            @change="selectGetCompanyList($event)"
+          >
             <el-option
               v-for="item in companyList"
               :key="item.id"
@@ -101,14 +105,14 @@
           </el-select>
         </el-form-item>
         <el-form-item label="所属列车" prop="loco_id">
-          <el-select v-model="detectorData.loco_id" placeholder="请选择" clearable>
-            <el-option label="暂无列车" :value="0"></el-option>
-            <!-- <el-option
-              v-for="item in linTypeList"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
-            ></el-option>-->
+          <el-select
+            id="loco_id"
+            v-model="detectorData.loco_id"
+            placeholder="请选择"
+            @change="selectGetTrainList($event)"
+          >
+            <!-- <el-option label="暂无列车" :value="0"></el-option> -->
+            <el-option v-for="item in trainList" :key="item.id" :label="item.name" :value="item.id"></el-option>
           </el-select>
         </el-form-item>
 
@@ -127,7 +131,9 @@ export default {
     return {
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
-      detectorData: {},
+      detectorData: {
+        loco_id: null
+      },
       detectorRules: {
         name: [
           {
@@ -158,7 +164,7 @@ export default {
       page_total: 0,
       dataList: [],
       companyList: [],
-      linTypeList: []
+      trainList: []
     };
   },
   created() {
@@ -174,6 +180,26 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.companyList = data.data;
+        }
+      });
+    },
+    selectGetCompanyList(val) {
+     // this.detectorData.loco_id = null;
+      this.getTrainList(val);
+    },
+    selectGetTrainList(val) {
+     // this.detectorData.loco_id = val;
+    },
+    getTrainList(id) {
+    
+      this.request({
+        url: "/common/getLocosByDepart",
+        method: "get",
+        params: { depart_id: id }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.trainList = data.data;
         }
       });
     },
@@ -212,7 +238,7 @@ export default {
       this.getDataList();
     },
     addDialogInfo() {
-      this.detectorData ={};
+      this.detectorData = {};
       this.diaLogTitle = "添加车载探测器信息";
       this.diaLogFormVisible = true;
     },

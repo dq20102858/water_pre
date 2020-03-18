@@ -79,6 +79,7 @@
       </div>
     </div>
     <div v-if="!isParent" class="wdetail">
+      <div class="app-page-container">
       <div class="wtop">
         <span class="item">作业单位： {{weekdailyList.company}}</span>
         <span class="item">申报时间： {{weekdailyList.create_time}}</span>
@@ -116,6 +117,7 @@
         <span class="fr">总监：暂无</span>
       </div>
     </div>
+  </div> 
   </div>
 </template>
 
