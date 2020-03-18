@@ -105,13 +105,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="所属列车" prop="loco_id">
-          <el-select
-            id="loco_id"
-            v-model="detectorData.loco_id"
-            placeholder="请选择"
-            @change="selectGetTrainList($event)"
-          >
-            <!-- <el-option label="暂无列车" :value="0"></el-option> -->
+          <el-select v-model="detectorData.loco_id" placeholder="请选择" no-data-text="暂无列车">
             <el-option v-for="item in trainList" :key="item.id" :label="item.name" :value="item.id"></el-option>
           </el-select>
         </el-form-item>
@@ -131,9 +125,7 @@ export default {
     return {
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
-      detectorData: {
-        loco_id: null
-      },
+      detectorData: {},
       detectorRules: {
         name: [
           {
@@ -184,18 +176,15 @@ export default {
       });
     },
     selectGetCompanyList(val) {
-     // this.detectorData.loco_id = null;
+      this.$set(this.detectorData, "loco_id", "");
       this.getTrainList(val);
     },
-    selectGetTrainList(val) {
-     // this.detectorData.loco_id = val;
-    },
+    resetDetectorData() {},
     getTrainList(id) {
-    
       this.request({
         url: "/common/getLocosByDepart",
         method: "get",
-        params: { depart_id: id }
+        params: { depart_id: id, type: 1 }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {

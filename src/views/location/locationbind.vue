@@ -145,8 +145,7 @@
             <el-select
               v-model="locationData.depart_id"
               placeholder="请选择公司"
-              clearable
-              @change="getDepartLists($event)"
+              @change="selectCompanyLists($event)"
             >
               <el-option
                 v-for="item in companySelectLists"
@@ -157,8 +156,8 @@
             </el-select>
           </el-form-item>
           <div v-if="locationData.type==1">
-            <el-form-item label="所属部门：">
-              <el-select v-model="locationData.sub_pid" @change="getPostLists($event)">
+            <el-form-item label="所属部门：" prop="sub_pid">
+              <el-select v-model="locationData.sub_pid" @change="selectDepartLists($event)">
                 <el-option
                   v-for="item in this.departSelectLists"
                   :key="item.id"
@@ -168,7 +167,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="所属职位：">
-              <el-select v-model="locationData.post_pid">
+              <el-select v-model="locationData.post_pid" @change="selectPostLists($event)">
                 <el-option
                   v-for="item in this.postSelectLists"
                   :key="item.id"
@@ -179,15 +178,13 @@
             </el-form-item>
           </div>
           <el-form-item label="绑定对象：" prop="bind_obj">
-            <el-select v-model="locationData.bind_obj" placeholder="请选择" clearable>
-                            
-               <el-option
-                  v-for="item in this.objSelectLists"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                ></el-option>
-              <!-- <el-option label="heekey" :value="12"></el-option> -->
+            <el-select v-model="locationData.bind_obj" placeholder="请选择">
+              <el-option
+                v-for="item in this.objSelectLists"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id"
+              ></el-option>
             </el-select>
           </el-form-item>
         </div>
@@ -208,7 +205,10 @@ export default {
     return {
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
-      locationData: {},
+      locationData: {
+        sub_pid: "",
+        post_pid: ""
+      },
       detectorRules: {
         depart_id: [
           { required: true, message: "请选择公司", trigger: "change" }
@@ -232,12 +232,18 @@ export default {
           },
           { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
         ],
+        sub_pid: [
+          { required: true, message: "请选择所属部门：", trigger: "change" }
+        ],
+        post_pid: [
+          { required: true, message: "请选择所属职位：", trigger: "change" }
+        ],
         loco_id: [
           { required: true, message: "请选择所属列车", trigger: "change" }
         ],
-         bind_obj: [
+        bind_obj: [
           { required: true, message: "请选择绑定对象：", trigger: "change" }
-        ],
+        ]
       },
       page_cur: 1,
       pageTotal: 0,
@@ -249,7 +255,7 @@ export default {
       companySelectLists: [],
       departSelectLists: [],
       postSelectLists: [],
-      objSelectLists:[]
+      objSelectLists: []
     };
   },
   created() {
@@ -298,12 +304,6 @@ export default {
       this.getDataList();
     },
 
-    selectDeviceType(val) {
-      this.deviceType = val;
-      this.locationData.depart_id=null;
-      this.locationData.bind_obj=null;
-      console.log("this.deviceType：" + this.deviceType);
-    },
     addDialogInfo() {
       this.locationData = {};
       this.diaLogTitle = "添加设备信息";
@@ -373,6 +373,16 @@ export default {
       });
     },
     //公司 部门 职位
+    selectDeviceType(val) {
+      this.deviceType = val;
+      this.resetLocationData();
+    },
+    resetLocationData() {
+      this.$set(this.locationData, "depart_id", "");
+      this.$set(this.locationData, "sub_pid", "");
+      this.$set(this.locationData, "post_pid", "");
+      this.$set(this.locationData, "bind_obj", "");
+    },
     getCompanyLists() {
       this.request({
         url: "/apply/getCompanyLists",
@@ -384,39 +394,37 @@ export default {
         }
       });
     },
-    getDepartLists(val) {
-      console.log("select_company_id：" + val);
-      this.departSelectLists = [];
-      console.log("this.locationData.sub_pid：" + this.locationData.sub_pid);
-      console.log("this.deviceType1：" + this.deviceType);
-      let pid = val;
-      let type = 2;
+
+    //选择公司
+    selectCompanyLists(val) {
+      this.$set(this.locationData, "sub_pid", "");
+      this.$set(this.locationData, "post_pid", "");
+      this.$set(this.locationData, "bind_obj", "");
       this.request({
         url: "/company/getDepartLists",
         method: "get",
-        params: { pid, type }
+        params: { pid:pid, type:2 }
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
           if (this.locationData.type == 1) {
             this.departSelectLists = data.data;
           } else if (this.locationData.type == 2) {
-            this.getTrainList(val);
+            this.getTrainList(val, 1);
           } else {
-
+            this.getTrainList(val, 2);
           }
         }
       });
     },
-    getPostLists(val) {
-      console.log("select_depart_id：" + pid);
-      this.postSelectLists = [];
-      let pid = val;
-      let type = 3;
+    //选择部门
+    selectDepartLists(val) {
+      this.$set(this.locationData, "post_pid", "");
+      this.$set(this.locationData, "bind_obj", "");
       this.request({
         url: "/company/getDepartLists",
         method: "get",
-        params: { pid, type }
+        params: { pid:val, type:3 }
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
@@ -424,12 +432,26 @@ export default {
         }
       });
     },
+    //选择职位
+    selectPostLists(val) {
+      this.$set(this.locationData, "bind_obj", "");
+      this.request({
+        url: "/user/getUserByDepart",
+        method: "get",
+        params: { id:val, type:2 }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.objSelectLists = data.data;
+        }
+      });
+    },
     //获取车辆
-    getTrainList(val) {
+    getTrainList(val, type) {
       this.request({
         url: "/common/getLocosByDepart",
         method: "get",
-        params: { depart_id: val }
+        params: { depart_id: val, type: type }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {

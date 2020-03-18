@@ -450,7 +450,7 @@
                 <el-input v-model="userData.password" autocomplete="off"></el-input>
               </el-form-item>
               <el-form-item label="公司名称：" prop="company_id">
-                <el-select v-model="userData.company_id" @change="getDepartLists">
+                <el-select v-model="userData.company_id" @change="getDepartLists($event)">
                   <el-option
                     v-for="item in this.companySelectLists"
                     :key="item.id"
@@ -460,7 +460,7 @@
                 </el-select>
               </el-form-item>
               <el-form-item label="部门名称：" prop="depart_id">
-                <el-select v-model="userData.depart_id" @change="getPostLists">
+                <el-select v-model="userData.depart_id" @change="getPostLists($event)">
                   <el-option
                     v-for="item in this.departSelectLists"
                     :key="item.id"
@@ -928,9 +928,9 @@ export default {
     },
 
     getDepartLists(val) {
-      console.log("select_company_id：" + val);
-      //this.companyData.sub_pid = null;
-       //this.companyData.sub_pid= '';
+     this.$set(this.companyData,"sub_pid","");
+     this.$set(this.userData,"depart_id","");
+      this.$set(this.userData,"post_id","");
       this.departSelectLists = [];
       console.log("this.companyData.sub_pid：" + this.companyData.sub_pid);
       let pid = val;
@@ -947,14 +947,7 @@ export default {
       });
     },
     getPostLists(pid) {
-      // let pid = this.sub_pid;
-      // if (pid == 0 || pid == "") {
-      //   pid = this.companyData["sub_pid"];
-      // }
-      // if (pid == 0 || pid == "" || typeof pid == "undefined") {
-      //   pid = this.userData["depart_id"];
-      // }
-      console.log("select_depart_id：" + pid);
+     this.$set(this.userData,"post_id","")
       let type = 3;
       this.request({
         url: "/company/getDepartLists",

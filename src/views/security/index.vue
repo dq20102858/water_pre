@@ -1,4 +1,3 @@
-
 <template>
   <div id="security">
     <div class="el-menu-top">
@@ -25,7 +24,11 @@
               ref="formRulesForm"
             >
               <el-form-item label="添加事件公司：" prop="depart_id">
-                <el-select v-model="formData.depart_id" placeholder="请选择公司">
+                <el-select
+                  v-model="formData.depart_id"
+                  placeholder="请选择公司"
+                  @change="selectCompanyList($event)"
+                >
                   <el-option
                     v-for="item in companySelectLists"
                     :key="item.id"
@@ -36,7 +39,12 @@
               </el-form-item>
               <el-form-item label="人员：" prop="admin_id">
                 <el-select v-model="formData.admin_id" placeholder="请选择人员：">
-                  <el-option label="heekey" :value="12"></el-option>
+                  <el-option
+                    v-for="item in this.objSelectLists"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id"
+                  ></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item label="安全事件标题：" prop="title">
@@ -192,16 +200,16 @@ export default {
   data() {
     return {
       defaultActive: "1",
-      addPageShow: false,
-      listPageShow: true,
+      addPageShow: true,
+      listPageShow: false,
       setPageShow: false,
       searchForm: {
         type: 1,
         time_range: []
       },
       dataList: [],
-
       companySelectLists: [],
+      objSelectLists: [],
       formData: {},
       formRules: {
         depart_id: [
@@ -263,11 +271,11 @@ export default {
     //列表
     getDataList() {
       let page = this.page_cur;
-   
+
       let start_time = null;
       let end_time = null;
       let array_time = this.searchForm.time_range;
-         console.log(this.searchForm.time_range);
+      console.log(this.searchForm.time_range);
       if (array_time != null) {
         start_time = this.searchForm.time_range[0];
         end_time = this.searchForm.time_range[1];
@@ -380,6 +388,21 @@ export default {
         }
       });
     },
+    selectCompanyList(val) {
+      this.$set(this.formData, "admin_id", "");
+      this.request({
+        url: "/user/getUserByDepart",
+        method: "get",
+        params: { id: val, type: 1 }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.objSelectLists = data.data;
+        }
+      });
+    },
+    //选择职位
+    selectPostLists(val) {},
     addEvent() {
       this.$refs["formRulesForm"].validate(valid => {
         if (valid) {
@@ -409,6 +432,7 @@ export default {
         }
       });
     },
+
     changeTime(time) {
       if (time !== null && time !== undefined && time !== "") {
         return (
