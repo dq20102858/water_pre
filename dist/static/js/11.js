@@ -1,6 +1,6 @@
 webpackJsonp([11],{
 
-/***/ "0V0j":
+/***/ "TJN0":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("FZ+f")(false);
@@ -8,449 +8,46 @@ exports = module.exports = __webpack_require__("FZ+f")(false);
 
 
 // module
-exports.push([module.i, "\n.admins .el-dialog {\r\n  width: 500px !important;\n}\n.dialog-company .el-textarea {\r\n  width: 100% !important;\n}\n.dialog-company .el-form-item__label {\r\n  width: 110px;\n}\n.dialog-company .el-form-item__content {\r\n  margin-left: 110px;\n}\n.dialog-company .el-input--medium {\r\n  width: 100%;\n}\n.dialog-company .el-select {\r\n  width: 100%;\n}\r\n", ""]);
+exports.push([module.i, "\n.sttitle {\r\n  color: #fff;\r\n  padding: 22px 0 0 25px;\r\n  font-size: 24px;\n}\n#progress {\r\n  background: #081c33;\r\n  height: 100vh;\n}\n.station {\r\n  margin: 100px 100px 0px 100px;\n}\n.linebar {\r\n  overflow: hidden;\n}\n.linebar .title {\r\n  margin-left: 102px;\r\n  color: #fff;\r\n  font-weight: 700;\r\n  color: #fff;\n}\n.linebar .bar {\r\n  margin-bottom: 10px;\n}\n.linebar .bar span {\r\n  width: 96px;\r\n  font-size: 12px;\r\n  text-align: right;\r\n  color: #fff;\r\n  display: inline-block;\n}\n.linebar .bar em {\r\n  border: 1px #27db07 solid;\r\n  height: 10px;\r\n  display: inline-block;\r\n  position: relative;\n}\n.linebar .bar em i {\r\n  position: absolute;\r\n  top: 0;\r\n  background: #27db07;\r\n  height: 8px;\r\n  display: inline-block;\n}\r\n/* //#27DB07 */\r\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ "V5iB":
+/***/ "ayIP":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("0V0j");
+var content = __webpack_require__("TJN0");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("rjj0")("70bbbe16", content, true);
+var update = __webpack_require__("rjj0")("e5d9f972", content, true);
 
 /***/ }),
 
-/***/ "x0vE":
+/***/ "mC5q":
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAB4CAYAAAD2SgIRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF7WlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDggNzkuMTY0MDM2LCAyMDE5LzA4LzEzLTAxOjA2OjU3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUuNSAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIwLTAzLTA5VDEzOjM1OjU1KzA4OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMC0wMy0wOVQxMzo0MTowNCswODowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMC0wMy0wOVQxMzo0MTowNCswODowMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo3MmU0NDMyNi05MWZmLWIyNGYtYjBlNC1kMmQ4NDU1ZGM3ZjYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QzFDNDIyOTVGQzIxMTFFNzgyMTFDQzIwRTFCNkNBQjIiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpDMUM0MjI5NUZDMjExMUU3ODIxMUNDMjBFMUI2Q0FCMiIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkMxQzQyMjkyRkMyMTExRTc4MjExQ0MyMEUxQjZDQUIyIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkMxQzQyMjkzRkMyMTExRTc4MjExQ0MyMEUxQjZDQUIyIi8+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjcyZTQ0MzI2LTkxZmYtYjI0Zi1iMGU0LWQyZDg0NTVkYzdmNiIgc3RFdnQ6d2hlbj0iMjAyMC0wMy0wOVQxMzo0MTowNCswODowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIxLjAgKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PrFLz64AAAJLSURBVGiB7dlPiIxxGAfwz7wrrfdg13vAYXv9aXMSSlJOnFBckHLjLMXFwdXBwWEPTpzJxa6EuDlsuTmwCiWZSRG740+7i02tw/sO7/7M2DFJqd+3pul95nk+M/POvM8cplafmtEhK3AEe7EJqzGHV3iOO7iaZ+n7dsO1NnA/TuE0Bjs9a5kPOI+RPEs//w5ei5vYuAgY5jH251n6slVIKg8OYbwHVDkz3mjODoVwP8ZKvJpJnFGc4/7ytqmsTQa9QxhrNGeXVeGT2BY0jmEY5zCBr+VtoqwNYzSY2VZaavWpmQwvMFBpuI6DmG/7xn+mhms4UKl9xPpE8ZWqopM42gWq7DmGd5XaAI4k2B00X8CnLlCQZ+knjATlPQm2BMUb3aKV3AqONydYFRSf9gA/C45XJYoPoJq+HuAlwfG3BG+C4oYe4HDmdYKHQXFfD3A48yRRbKlqjlt8+fxIozk7UM5UczfBFcWWamU1LuruXPfhUjnTygdcThRXSvg9PIyrFl44YZaXPYeD+kiepR9ba3Mp7mNr0PRWccHcVuwIik22DyewMuh/gB15ls5V9/Ea3MO6Dq/wS3nf3+Hxl9iZZ2mdhfu4jl141GGwtTbbZaKKhnAL346zmO6AVDNd9m6vorT/zWtlEIewR7FCqxnFXYz+yY9pu4Qr9McayLO07UB4Kv5aIhzhCEc4whGOcIQjHOEIRzjCEY5whCMc4QhHOMIR/qdwbX5+8T8aG83ZBU15lob/qP2S/+9URDjCEY5whCMc4QhH+P+BvwN7e4CFmUzVxQAAAABJRU5ErkJggg=="
+
+/***/ }),
+
+/***/ "naN1":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/admin/index.vue
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// EXTERNAL MODULE: ./node_modules/babel-runtime/core-js/json/stringify.js
+var stringify = __webpack_require__("mvHQ");
+var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/progress/index.vue
+
 //
 //
 //
@@ -472,306 +69,280 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ var admin = ({
+/* harmony default export */ var progress = ({
   data: function data() {
     return {
-      activeIndex: "1",
-      companyLists: [],
-      companyPage: 1,
-      companyTotal: 0,
-      departLists: [],
-      departPage: 1,
-      departTotal: 0,
-      postLists: [],
-      postPage: 1,
-      postTotal: 0,
-      adminLists: [],
-      adminPage: 1,
-      adminTotal: 0,
-      companyShow: true,
-      companyVisible: false,
-      companyData: {
-        color: "默认"
-      },
-      companyRules: {
-        name: [{
-          required: true,
-          message: "请输入公司名称2~60个字符",
-          trigger: "blur"
-        }, { min: 2, max: 60, message: "长度在2到60个字符", trigger: "blur" }]
-      },
-      departShow: false,
-      departVisible: false,
-      postShow: false,
-      postVisible: false,
-      usersShow: false,
-      usersVisible: false,
-      pid: "",
-      sub_pid: "",
-      post_pid: "",
-      companySelectLists: [],
-      departSelectLists: [],
-      postSelectLists: [],
-      userData: {}
+      cwidth: 0,
+      stationList: [],
+      lineTypeList: [],
+      listSchedule: [],
+      minMileage: 0,
+      every: 0
     };
   },
   created: function created() {
-    this.getPageLists(1);
+    this.getProjectProcessMap();
   },
 
   methods: {
-    handleSelect: function handleSelect(key, keyPath) {
-      this.pid = "";
-      this.sub_pid = "";
-      this.post_pid = "";
-      if (key == 1) {
-        this.companyShow = true;
-        this.departShow = false;
-        this.postShow = false;
-        this.usersShow = false;
-        this.getPageLists(1);
-      } else if (key == 2) {
-        this.companyShow = false;
-        this.departShow = true;
-        this.postShow = false;
-        this.usersShow = false;
-        this.getPageLists(2);
-        this.getCompanyLists();
-      } else if (key == 3) {
-        this.companyShow = false;
-        this.departShow = false;
-        this.postShow = true;
-        this.usersShow = false;
-        this.getPageLists(3);
-        this.getCompanyLists();
-      } else {
-        this.companyShow = false;
-        this.departShow = false;
-        this.postShow = false;
-        this.usersShow = true;
-        this.getCompanyLists();
-        this.getAdminListsPage();
-      }
-    },
-    companyPageChange: function companyPageChange(value) {
-      this.getPageLists(1);
-      this.companyPage = value;
-    },
-    companyFirstPage: function companyFirstPage() {
-      this.getPageLists(1);
-    },
-    companyLastPage: function companyLastPage() {
-      this.page_cur = this.companyTotal;
-      this.getPageLists(this.companyTotal);
-    },
-    departPageChange: function departPageChange(value) {
-      this.getPageLists(2);
-      this.departPage = value;
-    },
-    postPageChange: function postPageChange(value) {
-      this.getPageLists(3);
-      this.postPage = value;
-    },
-    adminPageChange: function adminPageChange(value) {
-      this.adminPage = value;
-      this.getAdminListsPage();
-    },
-    openAddCompany: function openAddCompany() {
-      this.companyVisible = true;
-    },
-    openAddDepart: function openAddDepart() {
-      this.departVisible = true;
-    },
-    openAddPost: function openAddPost() {
-      this.postVisible = true;
-    },
-    openAddUser: function openAddUser() {
-      this.usersVisible = true;
-    },
-    addCompany: function addCompany(type) {
+    getProjectProcessMap: function getProjectProcessMap() {
       var _this = this;
 
-      this.$refs["companyForm"].validate(function (valid) {
-        if (valid) {
-          _this.companyData.type = type;
-          var data = _this.companyData;
-          _this.request({
-            url: "/company/addCompanyDo",
-            method: "post",
-            data: data
-          }).then(function (response) {
-            var data = response.data;
-            if (data.status == 1) {
-              _this.companyVisible = false;
-              _this.departVisible = false;
-              _this.postVisible = false;
-              _this.getPageLists(type);
-              _this.companyData = {
-                color: "默认"
-              };
-            }
-          });
-        }
-      });
-    },
-    addDo: function addDo(type) {
-      var _this2 = this;
-
-      this.companyData.type = type;
-      var data = this.companyData;
       this.request({
-        url: "/company/addCompanyDo",
-        method: "post",
-        data: data
+        url: "/project/projectProcessMap",
+        method: "get"
       }).then(function (response) {
         var data = response.data;
         if (data.status == 1) {
-          _this2.companyVisible = false;
-          _this2.departVisible = false;
-          _this2.postVisible = false;
-          _this2.getPageLists(type);
-          _this2.companyData = {
-            color: "默认"
-          };
+          _this.stationList = data.data.stations;
+          _this.lineTypeList = data.data.line_types;
+          _this.listSchedule = data.data.datas;
+          _this.getStationList();
+          //  this.getLineType();
         }
       });
     },
-    getPageLists: function getPageLists(type) {
-      var _this3 = this;
+    getStationList: function getStationList() {
+      var clientWidth = this.$refs.proWrapper.clientWidth;
+      var canvasWidth = clientWidth - 200;
+      this.cwidth = canvasWidth;
+      console.log("canvasWidth：" + canvasWidth);
+      var canvas = this.$refs.canvasStation;
+      var cansText = canvas.getContext("2d");
+      canvas.width = canvasWidth;
 
-      var page = 1;
-      if (type == 1) {
-        page = this.companyPage;
-      } else if (type == 2) {
-        page = this.departPage;
-      } else {
-        page = this.postPage;
+      cansText.moveTo(0, 250);
+      cansText.lineTo(canvasWidth, 250);
+      cansText.strokeStyle = "#B4D3E5";
+      cansText.lineWidth = 10;
+      cansText.stroke();
+      cansText.moveTo(0, 300);
+      cansText.lineTo(canvasWidth, 300);
+      cansText.stroke();
+      //起终点里程
+      // cansText.lineWidth = 3;
+      // cansText.moveTo(0, 245);
+      // cansText.lineTo(0, 380);
+      // cansText.stroke();
+      //Station=====================Station
+      var json = this.stationList;
+      //console.log(JSON.stringify(json))
+      //找到最大数与最小数
+      var first = json[0];
+      var end = json[0];
+      for (var i = 1; i < json.length; i++) {
+        var tmp = json[i];
+        if (first.start_flag > tmp.start_flag) first = tmp;
+        if (end.start_flag < tmp.start_flag) end = tmp;
       }
-      this.request({
-        url: "/company/getPageLists",
-        method: "get",
-        params: { page: page, type: type }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          if (type == 1) {
-            _this3.companyLists = data.data.data;
-            _this3.companyPage = parseInt(data.data.current_page);
-            _this3.companyTotal = parseInt(data.data.total);
-          } else if (type == 2) {
-            _this3.departLists = data.data.data;
-            _this3.departPage = parseInt(data.data.current_page);
-            _this3.departTotal = parseInt(data.data.total);
-          } else {
-            _this3.postLists = data.data.data;
-            _this3.postPage = parseInt(data.data.current_page);
-            _this3.postTotal = parseInt(data.data.total);
+
+      // 总里程（最大数 - 最小数)
+      var mileage = (end.start_flag - first.start_flag) * 1000 + end.start_length - first.start_length;
+      console.log("总里程mileage：" + mileage);
+      this.minMileage = first.start_flag * 1000 + first.start_length; //最小里程
+      console.log("最小里程minMileage：" + this.minMileage);
+      //每米长度等于px
+      var every = (parseInt(canvasWidth - 30) / mileage).toFixed(5);
+      this.every = every;
+      console.log("每米长度every：" + every);
+      //
+      var img = new Image();
+      img.src = __webpack_require__("mC5q");
+      img.onload = function () {
+        var start = 0;
+        for (var _i = 0; _i < json.length; _i++) {
+          // 绘制站点图
+          var total = parseInt(json[_i].start_flag) * 1000 + parseInt(json[_i].start_length);
+          //console.log("total：" + total);
+          // 计算当前站点的x轴
+          var startX = total * every;
+          // 粗线向右移动了100像素，所以需要修正x轴
+          if (_i == 0) start = startX; //从左侧126像素开始绘制
+          //console.log("startX：" + parseInt(startX - start) );
+          cansText.drawImage(img, startX - start, 126, 22, 120);
+          //站名
+          cansText.font = "16px Microsoft Yahei";
+          cansText.fillStyle = "#0AE39A";
+          var origin = json[_i].name.split("");
+          for (var x = 0; x < origin.length; x++) {
+            cansText.fillText(origin[x], startX - start + 2, 138 - origin.length * 19 + 19 * x);
           }
+          //DK
+          var codes = "DK" + json[_i].start_flag + " +" + json[_i].start_length;
+          cansText.fillStyle = "#fff";
+          cansText.font = "12px  Microsoft Yahei";
+          cansText.fillTextVertical(codes, startX - start + 20, 165);
         }
-      });
-    },
-    getCompanyLists: function getCompanyLists() {
-      var _this4 = this;
+      };
 
-      var pid = 0;
-      var type = 1;
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: pid, type: type }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this4.companySelectLists = data.data;
+      //Line=====================line
+      var lineJson = this.lineTypeList;
+      console.log("lineJson:" + stringify_default()(lineJson));
+      var lineData = [];
+      for (var _i2 = 0; _i2 < lineJson.length; _i2++) {
+        if (lineJson[_i2].name == "左线" || lineJson[_i2].name == "右线") {
+          lineData.push(lineJson[_i2]);
         }
-      });
-    },
-    getDepartLists: function getDepartLists() {
-      var _this5 = this;
-
-      var pid = this.pid;
-      if (pid == 0 || pid == "") {
-        pid = this.companyData["pid"];
       }
-      if (pid == 0 || pid == "" || typeof pid == "undefined") {
-        pid = this.userData["company_id"];
-      }
-      var type = 2;
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: pid, type: type }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this5.departSelectLists = data.data;
-        }
-        _this5.pid = "";
-      });
-    },
-    getPostLists: function getPostLists() {
-      var _this6 = this;
 
-      var pid = this.sub_pid;
-      if (pid == 0 || pid == "") {
-        pid = this.companyData["sub_pid"];
-      }
-      if (pid == 0 || pid == "" || typeof pid == "undefined") {
-        pid = this.userData["depart_id"];
-      }
-      var type = 3;
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: pid, type: type }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this6.postSelectLists = data.data;
-        }
-        _this6.sub_pid = "";
-      });
-    },
-    addUserDo: function addUserDo() {
-      var _this7 = this;
+      var from0 = "DK" + lineData[0].start_flag + "+" + lineData[0].start_length,
+          end0 = "DK" + lineData[0].end_flag + "+" + lineData[0].end_length,
+          from1 = "DK" + lineData[1].start_flag + "+" + lineData[1].start_length,
+          end1 = "DK" + lineData[1].end_flag + "+" + lineData[1].end_length,
+          name0 = lineData[0].name,
+          name1 = lineData[1].name;
 
-      var data = this.userData;
-      this.request({
-        url: "/user/addUser",
-        method: "post",
-        data: data
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this7.usersVisible = false;
-        }
-      });
-    },
-    getAdminListsPage: function getAdminListsPage() {
-      var _this8 = this;
+      console.log(lineData);
 
-      var page = this.adminPage;
-      this.request({
-        url: "/user/getUserPage",
-        method: "get",
-        params: { page: page }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this8.adminLists = data.data.data;
-        }
-      });
+      var startLength = cansText.measureText(from0).width,
+          endLength = cansText.measureText(end0).width,
+          n0Length = cansText.measureText(name0).width,
+          n1Length = cansText.measureText(name1).width;
+
+      cansText.font = "12px Microsoft Yahei";
+      cansText.fillStyle = "#E8C640";
+
+      cansText.fillText(from0, 50, 270);
+      cansText.fillText(name0, 5, 270);
+      cansText.fillText(end0, parseInt(endLength + canvasWidth - 120), 320);
+      cansText.fillText(from1, 50, 320);
+      cansText.fillText(name1, 5, 320);
+      cansText.fillText(end1, parseInt(endLength + canvasWidth - 120), 270);
+      //Line=====================workline
+
+      // let datas = [
+      //   {
+      //     name: "焊接1",
+      //     lines: [
+      //       {
+      //         name: "左线1",
+      //         lists: [
+      //           {
+      //             start_flag: "21",
+      //             start_length: "370",
+      //             end_flag: "22",
+      //             end_length: "520"
+      //           },
+      //           {
+      //             start_flag: "23",
+      //             start_length: "300",
+      //             end_flag: "23",
+      //             end_length: "500"
+      //           }
+      //         ]
+      //       },
+      //       {
+      //         name: "右线1",
+      //         lists: [
+      //           {
+      //             start_flag: "30",
+      //             start_length: "100",
+      //             end_flag: "30",
+      //             end_length: "500"
+      //           },
+      //           {
+      //             start_flag: "33",
+      //             start_length: "20",
+      //             end_flag: "33",
+      //             end_length: "400"
+      //           }
+      //         ]
+      //       }
+      //     ]
+      //   }
+      // ];
+
+      // this.listSchedule = datas;
+
+      //
+    },
+
+    lineFill: function lineFill(paras) {
+      var result = "";
+      var start = 0;
+      for (var i = 0; i < paras.length; i++) {
+        var starMileage = parseInt(paras[i].start_flag) * 1000 + parseInt(paras[i].start_length);
+        var endMileage = parseInt(paras[i].end_flag) * 1000 + parseInt(paras[i].end_length);
+        var leftPosition = parseInt(starMileage - this.minMileage) * this.every + 10;
+        var widthPosition = parseInt(endMileage - starMileage) * this.every;
+        // console.log("starNum:" + starMileage + " endNum:" + endMileage);
+        // console.log(
+        //   "leftPosition:" + leftPosition + " widthPosition:" + widthPosition
+        // );
+        result += "<i style='width:" + widthPosition + "px;left:" + leftPosition + "px'>";
+      }
+      return result;
     }
+  },
+  mounted: function mounted() {
+    window.addEventListener("resize", this.getProjectProcessMap);
+  },
+  destroyed: function destroyed() {
+    window.removeEventListener("resize", this.getProjectProcessMap);
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-0a5c9eae","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/admin/index.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"admins"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"default-active":_vm.activeIndex,"mode":"horizontal"},on:{"select":_vm.handleSelect}},[_c('li',{staticClass:"ptitle"},[_c('img',{attrs:{"src":__webpack_require__("xX+s")}}),_vm._v("人员管理\n      ")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"1"}},[_vm._v("公司列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"2"}},[_vm._v("部门列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"3"}},[_vm._v("职位列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"4"}},[_vm._v("人员列表")])],1)],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.companyShow),expression:"companyShow"}],attrs:{"id":"company"}},[_c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{attrs:{"inline":true}},[_c('el-form-item',[_c('el-button',{attrs:{"type":"primary","icon":"el-icon-plus"},on:{"click":_vm.openAddCompany}},[_vm._v("添加公司")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{attrs:{"data":_vm.companyLists}},[_c('el-table-column',{attrs:{"type":"index","label":"序号","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"name","label":"公司名称","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"description","label":"公司详情","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"color_tag","label":"标签颜色","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"create_time","label":"创建时间","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"update_time","label":"修改时间","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"140"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.goDetail(scope.row.id)}}},[_vm._v("修改")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.delProd(scope.row.id)}}},[_vm._v("删除")])],1)]}}])})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.companyLists.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","current-page":this.companyPage,"total":this.companyTotal,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.companyPageChange}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.companyFirstPage}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.companyLastPage}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1)],1),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-company",attrs:{"title":"添加公司信息","visible":_vm.companyVisible,"close-on-click-modal":false},on:{"update:visible":function($event){_vm.companyVisible=$event}}},[_c('el-form',{ref:"companyForm",staticClass:"el-form-custom",attrs:{"model":_vm.companyData,"rules":_vm.companyRules}},[_c('el-form-item',{attrs:{"label":"公司名称：","prop":"name"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.companyData.name),callback:function ($$v) {_vm.$set(_vm.companyData, "name", $$v)},expression:"companyData.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"标签颜色："}},[_c('el-select',{model:{value:(_vm.companyData.color),callback:function ($$v) {_vm.$set(_vm.companyData, "color", $$v)},expression:"companyData.color"}},[_c('el-option',{attrs:{"label":"默认","value":"0"}}),_vm._v(" "),_c('el-option',{attrs:{"label":"红色","value":"1"}}),_vm._v(" "),_c('el-option',{attrs:{"label":"橙色","value":"2"}}),_vm._v(" "),_c('el-option',{attrs:{"label":"黄色","value":"3"}}),_vm._v(" "),_c('el-option',{attrs:{"label":"绿色","value":"4"}}),_vm._v(" "),_c('el-option',{attrs:{"label":"青色","value":"5"}}),_vm._v(" "),_c('el-option',{attrs:{"label":"蓝色","value":"6"}})],1)],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"公司详情："}},[_c('el-input',{attrs:{"autocomplete":"off","type":"textarea"},model:{value:(_vm.companyData.description),callback:function ($$v) {_vm.$set(_vm.companyData, "description", $$v)},expression:"companyData.description"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.companyVisible = false}}},[_vm._v("取 消")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.addCompany(1)}}},[_vm._v("确 定")])],1)],1)],1)])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.departShow),expression:"departShow"}],attrs:{"id":"department"}},[_c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('el-button',{attrs:{"type":"primary"},on:{"click":_vm.openAddDepart}},[_vm._v("添加部门")]),_vm._v(" "),_c('div',{staticClass:"search"},[_c('el-form',[_c('el-form-item',{attrs:{"label":"公司","label-width":"80px"}},[_c('el-select',{on:{"change":_vm.getDepartLists},model:{value:(_vm.pid),callback:function ($$v) {_vm.pid=$$v},expression:"pid"}},_vm._l((this.companySelectLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{ref:"multipleTable",attrs:{"data":_vm.departLists}},[_c('el-table-column',{attrs:{"type":"index","label":"序号","width":"100","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"company","label":"公司名称","width":"150","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"name","label":"部门名称","width":"150","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"是否属于施工队","width":"200","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.is_work_team === 0)?_c('el-tag',[_vm._v("否")]):_c('el-tag',{attrs:{"type":"success"}},[_vm._v("是")])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"description","label":"部门详情","width":"200","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"create_time","label":"创建时间","width":"200","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"update_time","label":"修改时间","width":"200","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('el-button',{attrs:{"size":"mini"},on:{"click":function($event){_vm.goDetail(scope.row.id)}}},[_vm._v("编辑")]),_vm._v(" "),_c('el-button',{attrs:{"size":"mini","type":"danger"},on:{"click":function($event){_vm.delProd(scope.row.id)}}},[_vm._v("删除")])]}}])})],1),_vm._v(" "),_c('div',{staticClass:"pagination"},[(_vm.departLists.length !== 0)?_c('el-pagination',{attrs:{"background":"","layout":"prev, pager, next","current-page":this.departPage,"total":this.departTotal},on:{"current-change":_vm.departPageChange}}):_vm._e()],1)],1),_vm._v(" "),_c('el-dialog',{attrs:{"title":"添加部门信息","visible":_vm.departVisible},on:{"update:visible":function($event){_vm.departVisible=$event}}},[_c('el-form',{attrs:{"model":_vm.companyData}},[_c('el-form-item',{attrs:{"label":"公司名称","label-width":"120px"}},[_c('el-select',{model:{value:(_vm.companyData.pid),callback:function ($$v) {_vm.$set(_vm.companyData, "pid", $$v)},expression:"companyData.pid"}},_vm._l((this.companySelectLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"部门名称","label-width":"120px"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.companyData.name),callback:function ($$v) {_vm.$set(_vm.companyData, "name", $$v)},expression:"companyData.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"是否属于施工队","label-width":"120px"}},[_c('el-radio',{attrs:{"label":"1"},model:{value:(_vm.companyData.is_work_team),callback:function ($$v) {_vm.$set(_vm.companyData, "is_work_team", $$v)},expression:"companyData.is_work_team"}},[_vm._v("是")]),_vm._v(" "),_c('el-radio',{attrs:{"label":"0"},model:{value:(_vm.companyData.is_work_team),callback:function ($$v) {_vm.$set(_vm.companyData, "is_work_team", $$v)},expression:"companyData.is_work_team"}},[_vm._v("否")])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"部门详情","label-width":"120px"}},[_c('el-input',{attrs:{"autocomplete":"off","type":"textarea"},model:{value:(_vm.companyData.description),callback:function ($$v) {_vm.$set(_vm.companyData, "description", $$v)},expression:"companyData.description"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.dialogFormVisible = false}}},[_vm._v("取 消")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.addDo(2)}}},[_vm._v("确 定")])],1)],1)],1)])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.postShow),expression:"postShow"}],attrs:{"id":"post"}},[_c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('el-button',{attrs:{"type":"primary"},on:{"click":_vm.openAddPost}},[_vm._v("添加职位")]),_vm._v(" "),_c('div',{staticClass:"search"},[_c('el-form',[_c('el-form-item',{attrs:{"label":"公司","label-width":"80px"}},[_c('el-select',{on:{"change":_vm.getDepartLists},model:{value:(_vm.pid),callback:function ($$v) {_vm.pid=$$v},expression:"pid"}},_vm._l((this.companySelectLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"部门","label-width":"80px"},on:{"change":_vm.getPostLists}},[_c('el-select',{model:{value:(_vm.sub_pid),callback:function ($$v) {_vm.sub_pid=$$v},expression:"sub_pid"}},_vm._l((this.departSelectLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{ref:"multipleTable",attrs:{"data":_vm.postLists}},[_c('el-table-column',{attrs:{"type":"index","label":"序号","width":"100","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"company","label":"公司名称","width":"150","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"depart","label":"部门名称","width":"150","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"name","label":"职位名称","width":"200","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"description","label":"职位详情","width":"200","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"create_time","label":"创建时间","width":"200","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"update_time","label":"修改时间","width":"200","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('el-button',{attrs:{"size":"mini"},on:{"click":function($event){_vm.goDetail(scope.row.id)}}},[_vm._v("编辑")]),_vm._v(" "),_c('el-button',{attrs:{"size":"mini","type":"danger"},on:{"click":function($event){_vm.delProd(scope.row.id)}}},[_vm._v("删除")])]}}])})],1),_vm._v(" "),_c('div',{staticClass:"pagination"},[(_vm.postLists.length !== 0)?_c('el-pagination',{attrs:{"background":"","layout":"prev, pager, next","current-page":this.postPage,"total":this.postTotal},on:{"current-change":_vm.postPageChange}}):_vm._e()],1)],1),_vm._v(" "),_c('el-dialog',{attrs:{"title":"添加职位信息","visible":_vm.postVisible},on:{"update:visible":function($event){_vm.postVisible=$event}}},[_c('el-form',{attrs:{"model":_vm.companyData}},[_c('el-form-item',{attrs:{"label":"公司名称","label-width":"120px"}},[_c('el-select',{on:{"change":_vm.getDepartLists},model:{value:(_vm.companyData.pid),callback:function ($$v) {_vm.$set(_vm.companyData, "pid", $$v)},expression:"companyData.pid"}},_vm._l((this.companySelectLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"部门名称","label-width":"120px"}},[_c('el-select',{model:{value:(_vm.companyData.sub_pid),callback:function ($$v) {_vm.$set(_vm.companyData, "sub_pid", $$v)},expression:"companyData.sub_pid"}},_vm._l((this.departSelectLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"职位名称","label-width":"120px"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.companyData.name),callback:function ($$v) {_vm.$set(_vm.companyData, "name", $$v)},expression:"companyData.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"职位详情","label-width":"120px"}},[_c('el-input',{attrs:{"autocomplete":"off","type":"textarea"},model:{value:(_vm.companyData.description),callback:function ($$v) {_vm.$set(_vm.companyData, "description", $$v)},expression:"companyData.description"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.dialogFormVisible = false}}},[_vm._v("取 消")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.addDo(3)}}},[_vm._v("确 定")])],1)],1)],1)])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.usersShow),expression:"usersShow"}],attrs:{"id":"users"}},[_c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{attrs:{"inline":true}},[_c('el-form-item',[_c('el-button',{attrs:{"type":"primary","icon":"el-icon-plus"},on:{"click":_vm.openAddUser}},[_vm._v("添加人员")])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"姓名"}},[_c('el-input')],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"公司"}},[_c('el-select',{on:{"change":_vm.getDepartLists},model:{value:(_vm.pid),callback:function ($$v) {_vm.pid=$$v},expression:"pid"}},_vm._l((this.companySelectLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"部门"}},[_c('el-select',{on:{"change":_vm.getPostLists},model:{value:(_vm.sub_pid),callback:function ($$v) {_vm.sub_pid=$$v},expression:"sub_pid"}},_vm._l((this.departSelectLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"职位"}},[_c('el-select',{model:{value:(_vm.post_pid),callback:function ($$v) {_vm.post_pid=$$v},expression:"post_pid"}},_vm._l((this.postSelectLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{attrs:{"data":_vm.adminLists}},[_c('el-table-column',{attrs:{"type":"index","label":"序号","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"user_name","label":"用户名","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"name","label":"姓名","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"company","label":"公司","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"depart","label":"部门","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"post","label":"职位","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"create_time","label":"邮箱","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"update_time","label":"电话","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"dispatch_desc","label":"调度信息","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('el-button',{attrs:{"size":"mini"},on:{"click":function($event){_vm.goDetail(scope.row.id)}}},[_vm._v("编辑")]),_vm._v(" "),_c('el-button',{attrs:{"size":"mini","type":"danger"},on:{"click":function($event){_vm.delProd(scope.row.id)}}},[_vm._v("删除")])]}}])})],1),_vm._v(" "),_c('div',{staticClass:"pagination"},[(_vm.adminLists.length !== 0)?_c('el-pagination',{attrs:{"background":"","layout":"prev, pager, next","current-page":this.adminPage,"total":this.adminTotal},on:{"current-change":_vm.adminPageChange}}):_vm._e()],1)],1),_vm._v(" "),_c('el-dialog',{attrs:{"title":"添加人员","visible":_vm.usersVisible},on:{"update:visible":function($event){_vm.usersVisible=$event}}},[_c('el-form',{attrs:{"model":_vm.userData}},[_c('el-form-item',{attrs:{"label":"姓名","label-width":"120px"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.userData.name),callback:function ($$v) {_vm.$set(_vm.userData, "name", $$v)},expression:"userData.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"用户名","label-width":"120px"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.userData.user_name),callback:function ($$v) {_vm.$set(_vm.userData, "user_name", $$v)},expression:"userData.user_name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"公司名称","label-width":"120px"}},[_c('el-select',{on:{"change":_vm.getDepartLists},model:{value:(_vm.userData.company_id),callback:function ($$v) {_vm.$set(_vm.userData, "company_id", $$v)},expression:"userData.company_id"}},_vm._l((this.companySelectLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"密码","label-width":"120px"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.userData.password),callback:function ($$v) {_vm.$set(_vm.userData, "password", $$v)},expression:"userData.password"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"部门名称","label-width":"120px"}},[_c('el-select',{on:{"change":_vm.getPostLists},model:{value:(_vm.userData.depart_id),callback:function ($$v) {_vm.$set(_vm.userData, "depart_id", $$v)},expression:"userData.depart_id"}},_vm._l((this.departSelectLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"邮箱","label-width":"120px"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.userData.email),callback:function ($$v) {_vm.$set(_vm.userData, "email", $$v)},expression:"userData.email"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"职位名称","label-width":"120px"}},[_c('el-select',{model:{value:(_vm.userData.post_id),callback:function ($$v) {_vm.$set(_vm.userData, "post_id", $$v)},expression:"userData.post_id"}},_vm._l((this.postSelectLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"调度信息","label-width":"120px"}},[_c('el-select',{model:{value:(_vm.userData.dispatch),callback:function ($$v) {_vm.$set(_vm.userData, "dispatch", $$v)},expression:"userData.dispatch"}},[_c('el-option',{attrs:{"label":"普通","value":"1"}}),_vm._v(" "),_c('el-option',{attrs:{"label":"司机","value":"2"}}),_vm._v(" "),_c('el-option',{attrs:{"label":"车长","value":"3"}}),_vm._v(" "),_c('el-option',{attrs:{"label":"值班调度","value":"4"}}),_vm._v(" "),_c('el-option',{attrs:{"label":"车站值班员","value":"5"}}),_vm._v(" "),_c('el-option',{attrs:{"label":"施工队长","value":"6"}})],1)],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"手机号码","label-width":"120px"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.companyData.description),callback:function ($$v) {_vm.$set(_vm.companyData, "description", $$v)},expression:"companyData.description"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.dialogFormVisible = false}}},[_vm._v("取 消")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":_vm.addUserDo}},[_vm._v("确 定")])],1)],1)],1)])])])}
+
+//prototype
+CanvasRenderingContext2D.prototype.fillTextVertical = function (text, x, y) {
+  var context = this;
+  var canvas = context.canvas;
+
+  var arrText = text.split("");
+  var arrWidth = arrText.map(function (letter) {
+    return context.measureText(letter).width;
+  });
+
+  var align = context.textAlign;
+  var baseline = context.textBaseline;
+
+  if (align == "left") {
+    x = x + Math.max.apply(null, arrWidth) / 2;
+  } else if (align == "right") {
+    x = x - Math.max.apply(null, arrWidth) / 2;
+  }
+  if (baseline == "bottom" || baseline == "alphabetic" || baseline == "ideographic") {
+    y = y - arrWidth[0] / 2;
+  } else if (baseline == "top" || baseline == "hanging") {
+    y = y + arrWidth[0] / 2;
+  }
+
+  context.textAlign = "center";
+  context.textBaseline = "middle";
+
+  // 开始逐字绘制
+  arrText.forEach(function (letter, index) {
+    // 确定下一个字符的纵坐标位置
+    var letterWidth = arrWidth[index];
+    // 是否需要旋转判断
+    var code = letter.charCodeAt(0);
+    if (code <= 256) {
+      context.translate(x, y);
+      // 英文字符，旋转90°
+      context.rotate(90 * Math.PI / 180);
+      context.translate(-x, -y);
+    } else if (index > 0 && text.charCodeAt(index - 1) < 256) {
+      // y修正
+      y = y + arrWidth[index - 1] / 2;
+    }
+    context.fillText(letter, x, y);
+    // 旋转坐标系还原成初始态
+    context.setTransform(1, 0, 0, 1, 0, 0);
+    // 确定下一个字符的纵坐标位置
+    var letterWidth = arrWidth[index];
+    y = y + letterWidth;
+  });
+  // 水平垂直对齐方式还原
+  context.textAlign = align;
+  context.textBaseline = baseline;
+};
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-24c1ccf6","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/progress/index.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"proWrapper",attrs:{"id":"progress"}},[_c('div',{staticClass:"sttitle"},[_vm._v("施工形象进度图")]),_vm._v(" "),_c('div',{staticClass:"station"},[_c('canvas',{ref:"canvasStation",attrs:{"id":"canvasStation","height":"380"}},[_c('p',[_vm._v("您的系统不支持此程序!")])])]),_vm._v(" "),_vm._l((_vm.listSchedule),function(item){return _c('div',{key:item.id,staticClass:"linebar"},[_c('div',{staticClass:"title"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_vm._l((item.lines),function(lines){return _c('div',{key:lines.id,staticClass:"bar"},[_c('span',[_vm._v(_vm._s(lines.name))]),_vm._v(" "),_c('em',{style:({width: _vm.cwidth + 'px' }),domProps:{"innerHTML":_vm._s(_vm.lineFill(lines.lists))}})])})],2)})],2)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var views_admin = (esExports);
-// CONCATENATED MODULE: ./src/views/admin/index.vue
+/* harmony default export */ var views_progress = (esExports);
+// CONCATENATED MODULE: ./src/views/progress/index.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("V5iB")
+  __webpack_require__("ayIP")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -787,23 +358,16 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  admin,
-  views_admin,
+  progress,
+  views_progress,
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 
-/* harmony default export */ var src_views_admin = __webpack_exports__["default"] = (Component.exports);
+/* harmony default export */ var src_views_progress = __webpack_exports__["default"] = (Component.exports);
 
-
-/***/ }),
-
-/***/ "xX+s":
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAiCAYAAADYmxC7AAACSElEQVRYhe2XzXHbMBCFUYJKUAk6GAR8MjtIZoJFeAs7iDsIO4g7oGeEBW2e1AHVgdWB0gHVAXOQQIPgLyjamskEM3sTgA+7bx9XhEK+YVIfA8DqFkGFKniUrYm9bglkggncNaBuDRQAVhT0/j/Uvwl1J/QjIYRQyOIAsGJSHcI4XZGRRUE/fRiUDRAAVlxiMgZECCE82oZ9l3GJCY+2YR0SEwp6PxmKAab3kD8wwDQArKhQJfv+8uUe8oehoEIVjXME7lre03pItmYCd5+iKQpZPCW7ZlHI4g+F4tE2dMtKpfpNhSqoUAUDTPk3/cMFa+l2MSBLf2GcrtySNsor9ZFCvulN3xJATOAfG2jKp4sKVbqZXRTK1pHbWYOPkfrYaTntC/R+SjCpDmaPOZhCvvF9kPHGfij5+rW3zh2LCdwxqQ5WlrxNlEl9HIQa8xZ3GSO0oCaXzo5BqADwbYpZXgz2JxWq/AyoGSJ/hzIO7bn/tDiUrYk7oR+997tTpwtFQZ8CoZ65xKQr+jJhtBjG6YqCPvlAdXrV6A+c1dVhtpv7ZKszS22o8e7rutR2dEIICYR6Hi/7wKzmdl8gsl99cfm4lm2xNicDLjEZhQJMp0LN6L53IB5l6wDwzadJRjV1TedM/RC3HiVU2ZoY5mdIn+yu88lQF1hDz1dAPfloaAJYsQDUOeUXHV0FZKLW1ywtWZPBElmqzzUavbZ09ly1RMyGsgezJYFqWcwZN0zt50ya41BZXP8pnDoGn+Ms8jBOV/57h4NH2fovy8Bhn7QMGdYAAAAASUVORK5CYII="
 
 /***/ })
 

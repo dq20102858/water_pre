@@ -961,6 +961,10 @@ ul,li{list-style-type: none
 }
 .el-dialog__headerbtn:hover .el-dialog__close {color: #1d397a;
 }
+.el-dialog .el-dialog__body{padding: 30px 30px 30px 20px;
+}
+.el-dialog .el-dialog__footer{padding: 0 30px 30px 30px;
+}
 /* layer */
 .vl-notify-mask { background-color: #000;opacity: .5;
 }

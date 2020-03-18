@@ -137,10 +137,7 @@
           <el-table :data="lineData">
             <el-table-column label="线别">
               <template slot-scope="scope">
-                <span v-if="scope.row.line_type == 1">左线</span>
-                <span v-else-if="scope.row.line_type == 2">右线</span>
-                <span v-else-if="scope.row.line_type == 3">入场线</span>
-                <span v-else>出场线</span>
+                <span v-if="scope.row.line_type == item.id" v-for="item in lineList">{{item.name}}</span>
               </template>
             </el-table-column>
             <el-table-column label="开始里程">
@@ -163,16 +160,7 @@
                 </div>
               </template>
             </el-table-column>
-            <!-- <el-table-column label="操作">
-              <template slot-scope="scope">
-                <el-button
-                  size="mini"
-                  @click="addOrEditLineDo(scope.row)"
-                  v-if="scope.row.id == 0"
-                >设置</el-button>
-                <el-button type="primary" size="mini" @click="addOrEditLineDo(scope.row)" v-else>修改</el-button>
-              </template>
-            </el-table-column>-->
+
           </el-table>
           <div slot="footer" class="dialog-footer">
             <el-button @click="lineVisible = false">关闭</el-button>
@@ -200,11 +188,11 @@
                 <div class="calendar-tips">
                   <p class="calendar-show plan-finished">
                     <span>计划完成：</span>
-                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">{{calendarLists[data.day]["plan"]}}公里</span>
+                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">{{calendarLists[data.day]["plan"]}}{{calendarLists[data.day]["unit"]}}</span>
                   </p>
                   <p class="calendar-show act-finished">
                     <span>实际完成：</span>
-                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">{{calendarLists[data.day]["true"]}}公里</span>
+                    <span v-if="typeof(calendarLists[data.day])!=='undefined'">{{calendarLists[data.day]["true"]}}{{calendarLists[data.day]["unit"]}}</span>
                   </p>
                   <p class="calendar-show remark">
                     <span>备注：</span>
@@ -227,10 +215,7 @@
                 <li v-for="(item,index) in planOneData" class="li-line">
                   <div class="plan-content">
                     <el-checkbox v-model="item.checked"></el-checkbox>
-                    <span v-if="item.line_type == 1">左线</span>
-                    <span v-else-if="item.line_type == 2">右线</span>
-                    <span v-else-if="item.line_type == 3">入场线</span>
-                    <span v-else>出场线</span>
+                    <span v-if="item.line_type == ii.id" v-for="ii in lineList">{{ii.name}}</span>
                   </div>
                   <div class="plan-content">
                     <span>
