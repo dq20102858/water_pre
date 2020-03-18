@@ -357,10 +357,10 @@
                 <el-button type="primary" icon="el-icon-plus" @click="openAddUser">添加人员</el-button>
               </el-form-item>
               <el-form-item label="姓名">
-                <el-input></el-input>
+                <el-input v-model="userSearch.user_name" autocomplete="off"></el-input>
               </el-form-item>
               <el-form-item label="公司">
-                <el-select v-model="pid" @change="getDepartLists(pid)">
+                <el-select v-model="userSearch.company_id" @change="getDepartLists(pid)">
                   <el-option
                     v-for="item in this.companySelectLists"
                     :key="item.id"
@@ -370,7 +370,7 @@
                 </el-select>
               </el-form-item>
               <el-form-item label="部门">
-                <el-select v-model="sub_pid" @change="getPostLists(sub_pid)">
+                <el-select v-model="userSearch.depart_id" @change="getPostLists(sub_pid)">
                   <el-option
                     v-for="item in this.departSelectLists"
                     :key="item.id"
@@ -380,7 +380,7 @@
                 </el-select>
               </el-form-item>
               <el-form-item label="职位">
-                <el-select v-model="post_pid">
+                <el-select v-model="userSearch.post_id">
                   <el-option
                     v-for="item in this.postSelectLists"
                     :key="item.id"
@@ -391,7 +391,7 @@
               </el-form-item>
               <el-form-item class="form-so">
                 <label class="el-form-item__label"></label>
-                <el-button size="small" icon="el-icon-search" type="primary">查询</el-button>
+                <el-button size="small" icon="el-icon-search" type="primary" @click="getAdminListsPage">查询</el-button>
               </el-form-item>
             </el-form>
           </div>
@@ -668,7 +668,8 @@ export default {
       companySelectLists: [],
       departSelectLists: [],
       postSelectLists: [],
-      userData: {}
+      userData: {},
+      userSearch:{}
     };
   },
   created() {
@@ -870,10 +871,14 @@ export default {
     //人员 userRulesForm
     getAdminListsPage() {
       let page = this.adminPage;
+      let user_name = this.userSearch.user_name;
+      let company_id = this.userSearch.company_id;
+      let depart_id = this.userSearch.depart_id;
+      let post_id = this.userSearch.post_id;
       this.request({
         url: "/user/getUserPage",
         method: "get",
-        params: { page }
+        params: { page ,user_name,company_id,depart_id,post_id}
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
@@ -921,7 +926,7 @@ export default {
         }
       });
     },
-    
+
     getDepartLists(val) {
       console.log("select_company_id：" + val);
       //this.companyData.sub_pid = null;
