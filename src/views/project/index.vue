@@ -31,15 +31,15 @@
             <el-table-column prop="total" label="设计总量" align="center">
               <template slot-scope="scope">{{scope.row.total}}({{scope.row.unit}})</template>
             </el-table-column>
-            <el-table-column label="操作" width="210px">
+            <el-table-column label="操作" width="180px">
               <template slot-scope="scope">
-                <div class="app-operation">
+                <div class="app-operation" style="text-al">
                   <el-button
                     v-if="scope.row.type==1"
                     class="btn-blue"
                     size="mini"
                     @click="getLine(scope.row.id)"
-                  >查看线别</el-button>
+                  >查看</el-button>
                   <el-button class="btn-blue" size="mini" @click="goDetail(scope.row.id)">修改</el-button>
                   <el-button class="btn-red" size="mini" @click="deleteWork(scope.row.id)">删除</el-button>
                 </div>
@@ -178,7 +178,7 @@
           </el-menu>
         </div>
         <div class="app-page-container" style="padding-top:0;">
-          <el-calendar class="plancale"  v-model="dateCellValue">
+          <el-calendar class="plancale" v-model="dateCellValue">
             <!-- 这里使用的是 2.5 slot 语法，对于新项目请使用 2.6 slot 语法-->
             <template slot="dateCell" slot-scope="{date, data}">
               <div class="calendar-wapper">
@@ -386,7 +386,7 @@
               </el-table-column>
               <el-table-column prop="remark" label="备注" align="center" show-overflow-tooltip></el-table-column>
               <el-table-column prop="plan_date" label="日期" align="center"></el-table-column>
-              <el-table-column label="操作">
+              <el-table-column label="操作" width="120">
                 <template slot-scope="scope">
                   <div class="app-operation">
                     <el-button class="btn-blue" size="mini" @click="getPlanDetail(scope.row.id)">修改</el-button>
@@ -732,7 +732,7 @@ export default {
       lineTypeListDes: [],
       lineTypeDes: "",
       addShow: true,
-      dateCellValue:''
+      dateCellValue: ""
     };
   },
   created() {
@@ -760,7 +760,7 @@ export default {
       } else if (key == 2) {
         this.workShow = false;
         this.planShow = true;
-        this.dateCellValue=new Date();
+        this.dateCellValue = new Date();
         this.getWorkTypeList();
         this.detailShow = false;
         this.echartShow = false;
@@ -1075,9 +1075,9 @@ export default {
       let page = this.detailPage;
       let pro_id = this.searchForm.work;
       let time_range = this.searchForm.time_range;
-        let is_finish = this.searchForm.is_finish;
-      if (this.searchForm.is_finish ==-1) {
-         is_finish =null;
+      let is_finish = this.searchForm.is_finish;
+      if (this.searchForm.is_finish == -1) {
+        is_finish = null;
       }
       console.log(this.searchForm);
       this.request({
@@ -1225,6 +1225,7 @@ export default {
     },
     // echart
     getChartWorkTypeList() {
+      this.subIndex = 0;
       this.request({
         url: "/project/getWorkTypeList",
         method: "get",
@@ -1244,6 +1245,7 @@ export default {
       });
     },
     handleChartSubSelect(key) {
+
       let date = this.curMonth;
       if (this.echartDate != "" && this.echartDate != null) {
         date = this.echartDate;
@@ -1254,7 +1256,7 @@ export default {
           names = item.name;
         }
       });
-      //this.subIndex = key;
+      this.subIndex = key;
       this.getCharData(key, date, names);
     },
     searchChartByDate() {
@@ -1262,11 +1264,6 @@ export default {
       if (this.echartDate != "" && this.echartDate != null) {
         date = this.echartDate;
       }
-      // if (this.echartDate == "" || this.echartDate == null) {
-      //   this.$message.error("请选择年月查询");
-      //   this.echartDate="";
-      //   return;
-      // }
       var key = this.subIndex;
       let names = "";
       this.lineTypeList.map((item, i) => {

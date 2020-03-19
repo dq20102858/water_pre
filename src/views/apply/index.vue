@@ -112,14 +112,10 @@
             </el-table-column>
             <el-table-column prop="next_status" label="下一步状态"></el-table-column>
             <el-table-column prop="company" label="公司简称"  show-overflow-tooltip></el-table-column>
-            <el-table-column label="操作" width="140">
+            <el-table-column label="操作" width="120">
               <template slot-scope="scope">
                 <div class="app-operation">
-              <el-button
-                    class="btn-blue"
-                    size="mini"
-                    @click="goDetail(scope.row.id,scope.row.type)"
-                  >详情</el-button>
+             
                         <el-button
                     v-if="scope.row.status=='未批复'"
                     class="btn-red"
@@ -139,7 +135,11 @@
                     size="mini"
                     @click="goApplyNo(scope.row.id,scope.row.company)"
                   >注销</el-button>
-                
+                 <el-button
+                    class="btn-blue"
+                    size="mini"
+                    @click="goDetail(scope.row.id,scope.row.type)"
+                  >详情</el-button>
                 </div>
               </template>
             </el-table-column>

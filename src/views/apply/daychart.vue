@@ -1,5 +1,5 @@
 <template>
-  <div id="app-apply">
+  <div id="app-apply-chart">
     <div class="el-menu-top">
       <el-menu router default-active="daychart" mode="horizontal">
         <li class="ptitle">{{projectName}}</li>
@@ -48,6 +48,7 @@ export default {
         if (resdata.status == 1) {
           //myChart
           var myChart = this.$echarts.init(document.getElementById("main"));
+           myChart.getDom().style.height =document.body.clientHeight-280+'px';
           //根据项目具体类别配置创建出对应格式
           this.mark_line = JSON.parse(
             JSON.stringify(resdata.data.y).replace(/value/g, "yAxis")
@@ -297,6 +298,7 @@ export default {
 };
 </script>
 <style>
+#app-apply-chart{ background-color: #030a2e;height: 100vh;}
 .maintitle{text-align: center;font-size: 24px;color:#fff;}
 .el-menu--collapse .el-menu .el-submenu,
 .el-menu--popup {
@@ -311,21 +313,11 @@ export default {
 }
 .app-page-chart {
   font-size: 16px !important;
-  background-color: #030a2e;
   padding: 30px;
 }
 .canvas_main {
   /*width: 100%;*/
 }
 
-.head_btn {
-  /*width: 100%;*/
 
-  padding-top: 20px;
-}
-.list_btn {
-  position: absolute;
-  top: 84px;
-  right: 250px;
-}
 </style>

@@ -27,7 +27,7 @@
             <el-table-column prop="name" label="名称"></el-table-column>
             <el-table-column prop="description" label="详情" show-overflow-tooltip></el-table-column>
             <el-table-column prop="company" label="公司名称"></el-table-column>
-            <el-table-column label="操作" width="140">
+            <el-table-column label="操作" width="120">
               <template slot-scope="scope">
                 <div class="app-operation">
                   <el-button class="btn-blue" size="mini" @click="goEdit(scope.row.id)">修改</el-button>

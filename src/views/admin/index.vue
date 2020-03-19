@@ -29,7 +29,7 @@
               <el-table-column prop="color_tag" label="标签颜色" align="center"></el-table-column>
               <el-table-column prop="create_time" label="创建时间" align="center"></el-table-column>
               <el-table-column prop="update_time" label="修改时间" align="center"></el-table-column>
-              <el-table-column label="操作" width="140">
+              <el-table-column label="操作" width="120">
                 <template slot-scope="scope">
                   <div class="app-operation">
                     <el-button class="btn-blue" size="mini" @click="goDetail(scope.row.id)">修改</el-button>
@@ -153,7 +153,7 @@
               <el-table-column prop="description" label="部门详情" width="200" align="center"></el-table-column>
               <el-table-column prop="create_time" label="创建时间" width="200" align="center"></el-table-column>
               <el-table-column prop="update_time" label="修改时间" width="200" align="center"></el-table-column>
-              <el-table-column label="操作" width="140">
+              <el-table-column label="操作" width="120">
                 <template slot-scope="scope">
                   <div class="app-operation">
                     <el-button class="btn-blue" size="mini" @click="goDetail(scope.row.id)">修改</el-button>
@@ -279,7 +279,7 @@
               <el-table-column prop="description" label="职位详情" align="center"></el-table-column>
               <el-table-column prop="create_time" label="创建时间" align="center"></el-table-column>
               <el-table-column prop="update_time" label="修改时间" align="center"></el-table-column>
-              <el-table-column label="操作" width="140">
+              <el-table-column label="操作" width="120">
                 <template slot-scope="scope">
                   <div class="app-operation">
                     <el-button class="btn-blue" size="mini" @click="goDetail(scope.row.id)">修改</el-button>
@@ -406,7 +406,7 @@
               <el-table-column prop="create_time" label="邮箱" align="center"></el-table-column>
               <el-table-column prop="update_time" label="电话" align="center"></el-table-column>
               <el-table-column prop="dispatch_desc" label="调度信息" align="center"></el-table-column>
-              <el-table-column label="操作" width="140">
+              <el-table-column label="操作" width="120">
                 <template slot-scope="scope">
                   <div class="app-operation">
                     <el-button class="btn-blue" size="mini" @click="goDetail(scope.row.id)">修改</el-button>

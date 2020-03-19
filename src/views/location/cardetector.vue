@@ -38,7 +38,7 @@
                 <p v-html="changeTime(scope.row.create_time)"></p>
               </template>
             </el-table-column>
-            <el-table-column label="操作" width="140">
+            <el-table-column label="操作" width="120">
               <template slot-scope="scope">
                 <div class="app-operation">
                   <el-button class="btn-blue" size="mini" @click="goEdit(scope.row.id)">修改</el-button>
