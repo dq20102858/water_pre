@@ -15,8 +15,7 @@
       </el-menu>
     </div>
     <div class="app-page-chart">
-      <!-- :style="{height: scrollerHeight,width: scrollerWidth}" -->
-
+      <div class="maintitle">日班图表</div>
       <div id="main" style="height:500px;width:100%;"></div>
     </div>
   </div>
@@ -298,6 +297,7 @@ export default {
 };
 </script>
 <style>
+.maintitle{text-align: center;font-size: 24px;color:#fff;}
 .el-menu--collapse .el-menu .el-submenu,
 .el-menu--popup {
   min-width: 124px;

@@ -108,6 +108,7 @@
       :visible.sync="isVisible"
       center
       :close-on-click-modal="false"
+      append-to-body
     >
       <el-form
         :model="tempForm"
@@ -394,6 +395,7 @@ export default {
 </script>
 
 <style>
+body{padding-right:0 !important;}
 #dispatch-edit .app-dialog-form {
   padding: 10px 0px 30px 30px;
   display: block;

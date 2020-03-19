@@ -27,18 +27,31 @@
             <el-table-column prop="company2" label="公司名称"></el-table-column>
             <el-table-column prop="number2" label="作业编号"></el-table-column>
             <el-table-column prop="txt" label="操作" width="140">
-              <template slot-scope="scope">
+              <!-- <template slot-scope="scope">
                 <div class="app-operation">
-                  <!-- @click="goDetail(scope.row.id)" -->
-                  <!-- <el-button class="btn-blue" size="mini">已转换</el-button>
-                  <el-button class="btn-blue" size="mini">报表</el-button>-->
+                  <el-button class="btn-blue" size="mini" @click="goApply(scope.row.id)">同意</el-button>
+                  <el-button class="btn-red" size="mini" @click="goRefuse(scope.row.id)">拒绝</el-button>
                 </div>
-              </template>
+              </template> -->
             </el-table-column>
           </el-table>
         </div>
       </div>
     </div>
+    <el-dialog class="dialogVisible" title="同意" :visible.sync="dialogVisible" width="300px" center>
+      <span>您确定同意此任务？</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="ApplyClick(dialogId,2)">确定</el-button>
+        <el-button @click="dialogVisible=false">关闭</el-button>
+      </span>
+    </el-dialog>
+    <el-dialog class="dialogVisible" title="拒绝" :visible.sync="dialogRefuseVisible" width="300px" center>
+      <span>您确定拒绝此任务？</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="ApplyClick(dialogId,3)">确定</el-button>
+        <el-button @click="dialogRefuseVisible=false">关闭</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -48,11 +61,14 @@ export default {
   data() {
     return {
       projectName: "",
+      dialogId: 0,
+      dialogVisible: false,
+      dialogRefuseVisible: false,
       checkList: []
     };
   },
   created() {
-     this.projectName= localStorage.getItem('projectName');
+    this.projectName = localStorage.getItem("projectName");
     this.getconflictCheck();
   },
   methods: {
@@ -67,7 +83,41 @@ export default {
           this.checkList = data.data;
         }
       });
+    },
+    goApply(id) {
+      this.dialogVisible = true;
+      this.dialogId = id;
+         console.log( this.dialogId)
+    },
+    goRefuse(id) {
+      this.dialogRefuseVisible = true;
+      this.dialogId = id;
+      console.log( this.dialogId)
+    },
+    ApplyClick(id, status) {
+      this.request({
+        url: "/apply/changeStatus",
+        method: "POST",
+        data: { id:  this.dialogId, status: status }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.$message({
+            type: "success",
+            message: "恭喜您，操作成功"
+          });
+          this.dialogVisible = false;
+          this.dialogRefuseVisible = false;
+          this.getconflictCheck();
+        } else {
+          // this.$message({
+          //   type: "success",
+          //   message: "审批失败"
+          // });
+        }
+      });
     }
+    //
   }
 };
 </script>

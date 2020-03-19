@@ -111,34 +111,35 @@
               </template>
             </el-table-column>
             <el-table-column prop="next_status" label="下一步状态"></el-table-column>
-            <el-table-column prop="company" label="公司简称"></el-table-column>
+            <el-table-column prop="company" label="公司简称"  show-overflow-tooltip></el-table-column>
             <el-table-column label="操作" width="140">
               <template slot-scope="scope">
                 <div class="app-operation">
-                  <el-button
-                    v-if="scope.row.status=='未批复'"
+              <el-button
                     class="btn-blue"
+                    size="mini"
+                    @click="goDetail(scope.row.id,scope.row.type)"
+                  >详情</el-button>
+                        <el-button
+                    v-if="scope.row.status=='未批复'"
+                    class="btn-red"
                     size="mini"
                     @click="goApply(scope.row.id,scope.row.company)"
                   >审批</el-button>
                   <!-- <el-button v-if="scope.row.status!='未批复'" class="btn-blue" size="mini" disabled>审批</el-button> -->
                   <el-button
                     v-if="scope.row.status=='已销点'"
-                    class="btn-blue"
+                    class="btn-red"
                     size="mini"
                     @click="goApplyOk(scope.row.id,scope.row.company)"
                   >完成</el-button>
                   <el-button
                     v-if="scope.row.status=='已完成'"
-                    class="btn-blue"
+                    class="btn-red"
                     size="mini"
                     @click="goApplyNo(scope.row.id,scope.row.company)"
                   >注销</el-button>
-                  <el-button
-                    class="btn-red"
-                    size="mini"
-                    @click="goDetail(scope.row.id,scope.row.type)"
-                  >详情</el-button>
+                
                 </div>
               </template>
             </el-table-column>
@@ -181,7 +182,7 @@
       width="300px"
       center
     >
-      <span>您确定要完成审批？</span>
+      <span>您确定任务已完成？</span>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="ApplyClick(dialogId,4)">确定</el-button>
         <el-button @click="dialogVisibleOk=false">取消</el-button>
@@ -194,7 +195,7 @@
       width="300px"
       center
     >
-      <span>您确定要注销审批？</span>
+      <span>您确定注销此任务？</span>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="ApplyClick(dialogId,6)">确定</el-button>
         <el-button @click="dialogVisibleNo=false">取消</el-button>

@@ -177,8 +177,8 @@
             >{{item.name}}</el-menu-item>
           </el-menu>
         </div>
-        <div class="app-page-container">
-          <el-calendar class="plancale">
+        <div class="app-page-container" style="padding-top:0;">
+          <el-calendar class="plancale"  v-model="dateCellValue">
             <!-- 这里使用的是 2.5 slot 语法，对于新项目请使用 2.6 slot 语法-->
             <template slot="dateCell" slot-scope="{date, data}">
               <div class="calendar-wapper">
@@ -344,13 +344,13 @@
             <el-form-item label="完成状态">
               <el-select
                 v-model="searchForm.is_finish"
-                clearable
                 placeholder="请选择状态"
                 class="search-input search-select"
                 style="width:140px;"
               >
-                <el-option key="1" label="已完成" value="1">已完成</el-option>
-                <el-option key="0" label="未完成" value="0">未完成</el-option>
+                <el-option label="全部" value="-1" selected>全部</el-option>
+                <el-option label="已完成" value="1">已完成</el-option>
+                <el-option label="未完成" value="0">未完成</el-option>
               </el-select>
             </el-form-item>
             <el-form-item>
@@ -679,7 +679,9 @@ export default {
       detailTotal: 0,
       detailPageSize: 20,
       detailPage_total: 0,
-      searchForm: {},
+      searchForm: {
+        is_finish: "全部"
+      },
       pickerOptions2: publicData.pickerOptions2,
       addHistoryVisible: false,
       historyData: [],
@@ -717,19 +719,20 @@ export default {
         is_finish: [
           { required: true, message: "请选择是否完成", trigger: "change" }
         ],
-         remark: [
+        remark: [
           {
             required: true,
             message: "请输入备注2~60个字符",
             trigger: "blur"
           },
           { min: 2, max: 60, message: "长度在2到60个字符", trigger: "blur" }
-        ],
+        ]
       },
       selectedLineTypeLists: [],
       lineTypeListDes: [],
       lineTypeDes: "",
-      addShow: true
+      addShow: true,
+      dateCellValue:''
     };
   },
   created() {
@@ -757,6 +760,7 @@ export default {
       } else if (key == 2) {
         this.workShow = false;
         this.planShow = true;
+        this.dateCellValue=new Date();
         this.getWorkTypeList();
         this.detailShow = false;
         this.echartShow = false;
@@ -1071,7 +1075,10 @@ export default {
       let page = this.detailPage;
       let pro_id = this.searchForm.work;
       let time_range = this.searchForm.time_range;
-      let is_finish = this.searchForm.is_finish;
+        let is_finish = this.searchForm.is_finish;
+      if (this.searchForm.is_finish ==-1) {
+         is_finish =null;
+      }
       console.log(this.searchForm);
       this.request({
         url: "/project/getPlanPages",
@@ -1509,7 +1516,7 @@ export default {
   color: #666;
 }
 .plancale .is-today {
-  background: #c9d7f9;
+  background: #bce3fa;
 }
 /* work */
 .dialog-work .el-dialog {

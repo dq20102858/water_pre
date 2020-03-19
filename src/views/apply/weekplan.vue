@@ -259,6 +259,7 @@ export default {
   font-size: 16px;
   padding: 12px 0;
   border-radius: 6px 6px 0 0;
+  text-align: center;
 }
 .grid-content .grid-box {
   padding: 30px 0;

@@ -3,8 +3,8 @@
     <div class="app-topbar">
       <ul>
         <li class="active">视图</li>
-        <li>云台控制</li>
-        <li>设置</li>
+        <!-- <li>云台控制</li>
+        <li>设置</li> -->
       </ul>
     </div>
     <div class="app-page">

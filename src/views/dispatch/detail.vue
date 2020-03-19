@@ -32,10 +32,10 @@
           <el-input readonly v-model="dataInfo.create_time"></el-input>
         </el-form-item>
         <el-form-item label="受令车站：">
-          <el-input v-model="dataInfo.station" readonly></el-input>
+          <el-input v-model="dataInfo.station==''?'无' : dataInfo.station" readonly></el-input>
         </el-form-item>
         <el-form-item label="车站值班员：">
-          <el-input v-model="dataInfo.station_worker" readonly></el-input>
+          <el-input v-model="dataInfo.station_worker==''?'无' : dataInfo.station_worker" readonly></el-input>
         </el-form-item>
         <el-form-item label="确认时间：">
           <p v-if="dataInfo.makesure_time==''">

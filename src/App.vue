@@ -60,7 +60,7 @@ ul,li{list-style-type: none}
 .app-table .el-table__body-wrapper {border:1px #e7eeff solid}
 .app-table .el-table__body-wrapper tr:nth-child(odd){background:#e7eeff;}
 .app-table .el-table__body-wrapper tr td{color: #1D397A;}
-.app-operation{white-space: nowrap;text-align: right;}
+.app-operation{white-space: nowrap;}
 .app-operation .btn-blue{ border: 1px #4b6eca solid;color: #1d397a}
 .app-operation .btn-red{border: 1px #ff5c75 solid;color: #ff5c75}
 .app-operation .btn-green{border: 1px #27db07 solid;color: #243f7e}
@@ -120,7 +120,7 @@ ul,li{list-style-type: none}
 .el-menu-top .el-menu.el-menu--horizontal{border-bottom: none}
 .el-menu-top ul {margin: 0 auto;display: block;}
 .el-menu-top li {color: #1d397a;font-size: 16px;}
-.el-menu-top .ptitle {float: left;min-width: 120px; line-height: 61px;padding-left: 120px;padding-right: 60px;font-weight: 700;font-size: 18px;}
+.el-menu-top .ptitle {outline:none;float: left;min-width: 120px; line-height: 61px;padding-left: 120px;padding-right: 60px;font-weight: 700;font-size: 18px;}
 .el-menu-top .ptitle img {width: 18px;margin-right: 5px;display: inline-block;vertical-align: text-top;}
 .el-menu-top1 .el-menu-item:hover{height: 61px; background-color: #4b6eca!important;border: none;color: #fff!important}
 .el-menu-top .is-active {height: 61px; background-color: #4b6eca!important;border: none!important;color: #fff!important}

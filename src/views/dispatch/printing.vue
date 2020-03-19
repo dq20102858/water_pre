@@ -22,7 +22,7 @@
               <b class="tname">车站</b>
             </td>
             <td>
-              <p>{{dataInfo.station==""?"暂无":dataInfo.station}}</p>
+              <p>{{dataInfo.station==""?"无":dataInfo.station}}</p>
             </td>
           </tr>
           <tr>
@@ -42,7 +42,7 @@
               <b class="tname">司机</b>
             </td>
             <td>
-              <p>{{dataInfo.driver==""?"暂无":dataInfo.driver}}</p>
+              <p>{{dataInfo.driver==""?"无":dataInfo.driver}}</p>
             </td>
           </tr>
           <tr>
@@ -50,13 +50,13 @@
               <b class="tname">值班员</b>
             </td>
             <td>
-              <p>{{dataInfo.station_worker==""?"暂无":dataInfo.station_worker}}</p>
+              <p>{{dataInfo.station_worker==""?"无":dataInfo.station_worker}}</p>
             </td>
             <td>
               <b class="tname">受令处所</b>
             </td>
             <td colspan="3">
-              <p>{{dataInfo.location==""?"暂无":dataInfo.location}}</p>
+              <p>{{dataInfo.location==""?"无":dataInfo.location}}</p>
             </td>
           </tr>
           <tr>

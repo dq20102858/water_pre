@@ -30,7 +30,7 @@
                   @change="selectCompanyList($event)"
                 >
                   <el-option
-                    v-for="item in companySelectLists"
+                    v-for="item in companyList"
                     :key="item.id"
                     :label="item.name"
                     :value="item.id"
@@ -95,29 +95,43 @@
                   <el-option label="机车提交" :value="2"></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="隐患类型">
-                <el-select v-model="searchForm.danger_type">
-                  <el-option label="人员提交" :value="1"></el-option>
-                  <el-option label="机车提交" :value="2"></el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item label="隐患判定">
-                <el-select v-model="searchForm.danger_determine">
-                  <el-option label="人员提交" :value="1"></el-option>
-                  <el-option label="机车提交" :value="2"></el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item label="机车">
-                <el-select v-model="searchForm.loco_id">
-                  <el-option label="人员提交" :value="1"></el-option>
-                  <el-option label="机车提交" :value="2"></el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item label="位置范围" class="el-form-item-inline">
-                <el-input v-model="searchForm.start_location" autocomplete="off"></el-input>
-                <b>~</b>
-                <el-input v-model="searchForm.end_location" autocomplete="off"></el-input>
-              </el-form-item>
+              <span  v-if="searchForm.type==2">
+                <el-form-item label="隐患类型">
+                  <el-select v-model="searchForm.danger_type">
+                    <el-option
+                      v-for="item in dangerType"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="隐患判定">
+                  <el-select v-model="searchForm.danger_determine">
+                    <el-option
+                      v-for="item in this.dangerDetermine"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="机车">
+                  <el-select v-model="searchForm.loco_id">
+                    <el-option
+                      v-for="item in this.trainList"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="位置范围" class="el-form-item-inline">
+                  <el-input v-model="searchForm.start_location" autocomplete="off"></el-input>
+                  <b>~</b>
+                  <el-input v-model="searchForm.end_location" autocomplete="off"></el-input>
+                </el-form-item>
+              </span>
               <el-form-item label="发现时间段">
                 <el-date-picker
                   v-model="searchForm.time_range"
@@ -158,6 +172,7 @@
               <el-table-column label="操作" width="140">
                 <template slot-scope="scope">
                   <div class="app-operation">
+                    <el-button class="btn-blue" size="mini" @click="goEdit(scope.row.id)">查看</el-button>
                     <el-button class="btn-blue" size="mini" @click="goEdit(scope.row.id)">指派</el-button>
                     <el-button class="btn-red" size="mini" @click="goDel(scope.row.id)">隐患判定</el-button>
                   </div>
@@ -200,15 +215,18 @@ export default {
   data() {
     return {
       defaultActive: "1",
-      addPageShow: true,
-      listPageShow: false,
+      addPageShow: false,
+      listPageShow: true,
       setPageShow: false,
       searchForm: {
         type: 1,
         time_range: []
       },
       dataList: [],
-      companySelectLists: [],
+      companyList: [],
+      trainList: [],
+      dangerType: [],
+      dangerDetermine: [],
       objSelectLists: [],
       formData: {},
       formRules: {
@@ -249,6 +267,9 @@ export default {
   },
   created() {
     this.getCompanyLists();
+    this.getTrainList();
+    this.getDangerType();
+    this.getDangerDetermine();
     this.getDataList();
   },
   methods: {
@@ -268,10 +289,15 @@ export default {
         this.setPageShow = true;
       }
     },
-    //列表
+    //====列表数据
     getDataList() {
       let page = this.page_cur;
-
+      let type = this.searchForm.type;
+      let danger_type = this.searchForm.danger_type;
+      let danger_determine = this.searchForm.danger_determine;
+      let loco_id = this.searchForm.loco_id;
+      let start_location = this.searchForm.start_location;
+      let end_location = this.searchForm.end_location;
       let start_time = null;
       let end_time = null;
       let array_time = this.searchForm.time_range;
@@ -281,14 +307,18 @@ export default {
         end_time = this.searchForm.time_range[1];
       }
       console.log(start_time + "_" + end_time);
-      // let depart_id = this.searchForm.depart_id;
-      // let type = this.searchForm.type;
-      // let keyword = this.searchForm.keyword;
+
       this.request({
         url: "/security/getSecurityPages",
         method: "get",
         params: {
           page,
+          type,
+          danger_type,
+          danger_determine,
+          loco_id,
+          start_location,
+          end_location,
           start_time,
           end_time
         }
@@ -318,7 +348,7 @@ export default {
       this.page_cur = 1;
       this.getDataList();
     },
-    //上传图片
+    //====上传图片
     handleRemove(file, fileList) {
       console.log(file, fileList);
     },
@@ -376,7 +406,8 @@ export default {
       }
       console.log(file);
     },
-    //表单提交
+    //====表单提交
+    //获取公司
     getCompanyLists() {
       this.request({
         url: "/apply/getCompanyLists",
@@ -384,7 +415,7 @@ export default {
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
-          this.companySelectLists = data.data;
+          this.companyList = data.data;
         }
       });
     },
@@ -401,8 +432,43 @@ export default {
         }
       });
     },
-    //选择职位
-    selectPostLists(val) {},
+    //获取机车
+    getTrainList() {
+      this.request({
+        url: "/dispatch/getLocomotiveLists",
+        method: "get"
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.trainList = data.data;
+        }
+      });
+    },
+    //获取隐患类型
+    getDangerType() {
+    this.request({
+        url: "/security/getDangerType",
+        method: "get"
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.dangerType = data.data.data.reverse();
+        }
+      });
+    },
+    //获取隐患判定
+    getDangerDetermine() {
+      this.request({
+        url: "/security/getDangerDetermine",
+        method: "get"
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.dangerDetermine = data.data.data.reverse();
+        }
+      });
+    },
+    //添加事件
     addEvent() {
       this.$refs["formRulesForm"].validate(valid => {
         if (valid) {

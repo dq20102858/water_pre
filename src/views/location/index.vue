@@ -157,7 +157,7 @@ export default {
         }
       });
     },
-   
+
     getDataList() {
       let page = this.page_cur;
       let depart_id = this.searchForm.depart_id;
@@ -206,15 +206,15 @@ export default {
       this.page_cur = this.page_total;
       this.pageChange(this.page_total);
     },
-     searchEvent() {
+    searchEvent() {
       this.page_cur = 1;
       this.getDataList();
-    },
+    }
     //
   }
 };
 </script>
-<style >
+<style>
 .app-page-select .el-form-item-inline .el-input--medium {
   display: inline-block;
   width: 80px;
