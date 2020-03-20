@@ -310,7 +310,7 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
 .sttitle {
   color: #fff;
   padding: 22px 0 0 25px;
-  font-size: 24px;
+  font-size: 24px; text-align: center;
 }
 #progress {
   background: #081c33;
@@ -318,7 +318,7 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
 }
 
 .station {
-  margin: 100px 100px 0px 100px;
+  margin: 50px 100px 0px 100px;
 }
 
 .linebar {
