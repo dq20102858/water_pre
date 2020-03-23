@@ -52,6 +52,10 @@ ul,li{list-style-type: none}
 .app-page-select .select-from-inline{display: inline-block;white-space: nowrap;width: 100%;}
 .btn-red-addedit {background: #ff5c75;border-color: #ff5c75;margin-right: 20px;}
 .btn-red-addedit:hover, .btn-red-addedit:focus{background: #fe3a58;border-color: #fe3a58;}
+.el-serach {float: right;border: 2px #4b6eca solid; border-radius: 3px;}
+.el-serach .el-input {width: 178px;}
+.el-serach .el-input__inner {background: none;border: none;color: #4b6eca;width: 178px;}
+.el-serach .el-button {background: #4b6eca;color: #fff;}
 /* table css */
 .app-table .el-table-column--selection .cell{padding-left: 17px;}
 .app-table .el-table__header-wrapper{background: #3655a5;border-radius: 6px 6px 0 0;padding: 0 0;}

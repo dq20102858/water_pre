@@ -240,10 +240,7 @@ export default {
         }
       });
     },
-    searchEvent() {
-      this.page_cur = 1;
-      this.getDataList();
-    },
+   
     getDataList() {
       let page = this.page_cur;
       let number = this.numberSearch;
@@ -276,6 +273,11 @@ export default {
       this.page_cur = this.page_total;
       this.pageChange(this.page_total);
     },
+     searchEvent() {
+      this.page_cur = 1;
+      this.getDataList();
+    },
+    //
     addDialogInfo() {
       this.diaLogTitle = "添加墙壁探测器信息";
       this.diaLogFormVisible = true;
@@ -389,22 +391,5 @@ export default {
 .dialog-sebei .el-select {
   width: 100%;
 }
-.el-serach {
-  float: right;
-  border: 2px #4b6eca solid;
-  border-radius: 3px;
-}
-.el-serach .el-input {
-  width: 178px;
-}
-.el-serach .el-input__inner {
-  background: none;
-  border: none;
-  color: #4b6eca;
-  width: 178px;
-}
-.el-serach .el-button {
-  background: #4b6eca;
-  color: #fff;
-}
+
 </style>

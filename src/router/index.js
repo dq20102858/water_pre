@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
 import Layout from '@/views/layout/Layout'
+
 Vue.use(Router)
 
 const constantRouterMap = [
@@ -35,6 +35,22 @@ const constantRouterMap = [
     path: '/401',
     component: () => import('@/views/errorPage/401'),
     hidden: true
+  },
+  {
+    path: '/set',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/set/',
+        component: () => import('@/views/set/index')
+      },
+      {
+        path: '/set/speed',
+        component: () => import('@/views/set/speed')
+      }
+    ]
+
   }
 ]
 export { constantRouterMap }
@@ -74,5 +90,6 @@ export const asyncRouterMap = {
   '/views/location/locationbind': () => import('@/views/location/locationbind'),//定位从设备
   '/views/location/device': () => import('@/views/location/device'),//机具
 
-  
+
+
 }

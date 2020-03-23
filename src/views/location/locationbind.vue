@@ -403,7 +403,7 @@ export default {
       this.request({
         url: "/company/getDepartLists",
         method: "get",
-        params: { pid:pid, type:2 }
+        params: { pid:val, type:2 }
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
