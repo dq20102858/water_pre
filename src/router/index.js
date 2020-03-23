@@ -42,15 +42,34 @@ const constantRouterMap = [
     hidden: true,
     children: [
       {
-        path: '/set/',
+        path: '/set',
         component: () => import('@/views/set/index')
       },
       {
-        path: '/set/speed',
+        path: '/speed',
+        meta: {
+          title: "限速设置"
+        },
         component: () => import('@/views/set/speed')
+      },
+      {
+        path: '/alert',
+        component: () => import('@/views/set/alert')
+      },
+      {
+        path: '/bridge',
+        component: () => import('@/views/set/bridge')
+      }
+      , {
+        path: '/tunnel',
+        component: () => import('@/views/set/tunnel')
+      }
+      ,
+      {
+        path: '/slope',
+        component: () => import('@/views/set/slope')
       }
     ]
-
   }
 ]
 export { constantRouterMap }

@@ -27,15 +27,8 @@ export default {
     }
   },
   methods: {
-    linkUrl(paras){
-      this.$router.push(paras)
-    },
     getBreadcrumb() {
       let matched = this.$route.matched;
-      // const first = matched[0];
-      // if (first && first.name !== 'collect') {
-      //   matched = [{ path: '/collect', meta: { title: 'collect' }}].concat(matched)
-      // }
       this.levelList = matched;
       console.log(this.levelList);
     }

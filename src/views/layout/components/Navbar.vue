@@ -1,7 +1,20 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
     <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
-    <breadcrumb class="breadcrumb-container"></breadcrumb>
+    <!-- <breadcrumb class="breadcrumb-container"></breadcrumb> -->
+    <el-breadcrumb class="app-breadcrumb" separator-class="el-icon-arrow-right">
+      <!-- <el-breadcrumb-item>当前位置</el-breadcrumb-item>
+      <el-breadcrumb-item
+        v-for="(item,index)  in levelList"
+        :key="item.path"
+        v-if="item.meta.title"
+      >
+        <router-link v-if="index==levelList.length-1" :to="item.path">
+        <span class="no-redirect">{{item.meta.title}}</span> 
+        </router-link>
+        <span v-else style="cursor:text;">{{item.meta.title}}</span>
+      </el-breadcrumb-item> -->
+    </el-breadcrumb>
     <div class="right-menu">
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
         <div class="avatar-wrapper">
@@ -25,11 +38,12 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
-import Breadcrumb from "@/components/Breadcrumb";
+// import Breadcrumb from "@/components/Breadcrumb";
 import Hamburger from "@/components/Hamburger";
 export default {
   data() {
     return {
+      levelList: null,
       systems: ["", "蜂巢办"],
       Anumber: 0,
       Bnumber: 0,
@@ -39,14 +53,26 @@ export default {
   },
   props: ["msg"],
   components: {
-    Breadcrumb,
+    // Breadcrumb,
     Hamburger
   },
   computed: {
     ...mapGetters(["sidebar", "name", "avatar", "roles", "system"])
   },
-  created: function() {},
+  watch: {
+    $route() {
+      this.getBreadcrumb();
+    }
+  },
+  created() {
+    this.getBreadcrumb();
+  },
   methods: {
+    getBreadcrumb() {
+      let matched = this.$route.matched;
+      this.levelList = matched;
+      console.log(this.levelList);
+    },
     toggleSideBar() {
       this.$store.dispatch("toggleSideBar");
     },
@@ -67,6 +93,16 @@ export default {
 };
 </script>
 <style rel="stylesheet/scss" lang="scss">
+.app-breadcrumb.el-breadcrumb {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 50px;
+  margin-left: 10px;
+  .no-redirect {
+    color: #97a8be;
+    cursor: text;
+  }
+}
 .navbar {
   height: 50px;
   line-height: 50px;

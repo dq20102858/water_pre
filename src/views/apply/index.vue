@@ -97,6 +97,7 @@
         <!-- end search -->
         <div class="app-table">
           <el-table :data="dataList">
+            
             <el-table-column prop="number" label="作业编号"></el-table-column>
             <el-table-column prop="command_num" label="作业令号"></el-table-column>
             <el-table-column prop="description" label="作业内容" show-overflow-tooltip></el-table-column>
