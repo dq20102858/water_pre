@@ -47,9 +47,6 @@ const constantRouterMap = [
       },
       {
         path: '/speed',
-        meta: {
-          title: "限速设置"
-        },
         component: () => import('@/views/set/speed')
       },
       {
@@ -68,6 +65,21 @@ const constantRouterMap = [
       {
         path: '/slope',
         component: () => import('@/views/set/slope')
+      }
+    ]
+  },
+  {
+    path: '/search',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/search',
+        component: () => import('@/views/search/index')
+      },
+      {
+        path: '/overspeed',
+        component: () => import('@/views/search/overspeed')
       }
     ]
   }

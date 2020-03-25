@@ -12,7 +12,6 @@
         <el-menu-item index="tunnel">隧道设置</el-menu-item>
         <el-menu-item index="slope">坡度设置</el-menu-item>
       </el-menu>
-      <!-- <div @click="goDetail()">to apple</div> -->
     </div>
     <div class="app-page">
       <div class="app-page-container">

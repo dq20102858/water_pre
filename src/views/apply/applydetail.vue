@@ -3,159 +3,211 @@
     <div class="app-page">
       <!-- temp1 -->
       <div v-if="dataInfo.type=='A1' || dataInfo.type=='A2'" class="app-apply-tempone">
-    <div class="vtable">
-		<table>
-			<tbody>
-				<tr>
-					<td class="auto-style1" rowspan="2">
-						<b>作业编号：</b>
-					</td>
-					<td class="auto-style3 clblue" rowspan="2">{{ dataInfo.number}}</td>
-					<td class="auto-style3" rowspan="2">施工单位:{{dataInfo.company}}</td>
-					<td>是否需要动车： <b v-if="dataInfo.is_need_car==0">否</b>
-                    <b v-if="dataInfo.is_need_car==1">是</b></td>
-					<td>是否需要动火： <b v-if="dataInfo.is_need_fire==0">否</b>
-                    <b v-if="dataInfo.is_need_fire==1">是</b></td>
-				</tr>
-				<tr>
-					<td>是否需要帮助：  <b v-if="dataInfo.is_need_help==0">否</b>
-                    <b v-if="dataInfo.is_need_help==1">是</b></td>
-					<td>是否需要断电：  <b v-if="dataInfo.is_need_break_ele==0">否</b>
-                    <b v-if="dataInfo.is_need_break_ele==1">是</b></td>
-				</tr>
-				<tr>
-					<td class="auto-style1">
-						<b>作业令号：</b>
-					</td>
-					<td class="clblue">{{dataInfo.command_num}}</td>
-					<td colspan="2" >
-             <!--  -->
-						<div>
-              联系人：<span  style="width:40%;display:inline-block" class="clblue">{{dataInfo.contact}}</span> 
-              联系电话：<span class="clblue">{{dataInfo.phone}}</span></div>
-						<div v-for="item in dataInfo.holder" :key="item.id">持证人：<span  style="width:40%;display:inline-block" class="clblue">{{item.name}}</span> 
-                 联系电话：<span class="clblue">{{item.phone}}</span></div>
-						<div>负责人：<span  style="width:40%;display:inline-block;overflow: hidden;white-space: nowrap; vertical-align: middle;" class="clblue">{{dataInfo.p_in_charge}}</span> 
-                 联系电话：<span class="clblue">{{dataInfo.p_in_charge_phone}}</span></div>
-					</td>
-					<td>人数： <span class="clblue">{{dataInfo.worker_num}}人</span></td>
-				</tr>
-				<tr>
-					<td colspan="5">
-						<b>工作地点 （上/下行线）：</b>
-					</td>
-				</tr>
-				<tr>
-					<td class="auto-style1 clcenter">由</td>
-					<td class="clcenter">至</td>
-					<td  class="clcenter">线别</td>
-					<td class="clcenter">列车编组</td>
-					<td class="clcenter">工作时间</td>
-				</tr>
-				<tr v-for="areas in dataInfo.area_or_car" :key="areas.id">
-					<td class="auto-style1">{{areas.start_station_name}} DK{{areas.start_flag}} + {{areas.start_length}}</td>
-					<td>{{areas.end_station_name}} DK{{areas.end_flag}} + {{areas.end_length}} </td>
-					<td>{{areas.line_type_name}}</td>
-					<td>
-            <span  class="clblue" style="margin-right:10px;" v-for="item in carUse" :key="item.id">{{item.car_type}}</span>
-          </td>
-					<td class="clblue">{{areas.start_time}} ~ {{areas.end_time}}</td>
-				</tr>
-        	<tr>
-					<td class="auto-style1" style="height:40px;"></td>
-					<td></td>
-					<td></td>
-          <td></td>
-					<td></td>
-				</tr>
-        	<tr>
-					<td class="auto-style1" style="height:40px;"></td>
-					<td></td>
-					<td></td>
-          <td></td>
-					<td></td>
-				</tr>
-        	<tr>
-					<td  class="auto-style1" style="height:40px;"></td>
-					<td></td>
-					<td></td>
-          <td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td class="auto-style1">
-						<b>计划运行路径：</b>
-					</td>
-					<td colspan="4" style="padding:40px 10px;color: #4b6eca;word-wrap:break-word;">{{dataInfo.plan_route}}</td>
-				</tr>
-				<tr>
-					<td class="auto-style1">
-						<b>工作内容：</b>
-					</td>
-					<td colspan="4" style="padding:40px 10px;color: #4b6eca;word-wrap:break-word;">{{dataInfo.description}}</td>
-				</tr>
-				<tr>
-					<td  class="auto-style1">车辆类型</td>
-					<td colspan="2">车号</td>
-					<td colspan="2">装载重量</td>
-				</tr>
-				<tr v-for="item in carUse" :key="item.id">
-					<td  class="auto-style1 clblue">{{item.car_type}}</td>
-					<td colspan="2">{{item.car_number}}</td>
-					<td colspan="2">{{item.car_weight}}</td>
-				</tr>
-					<tr>
-					<td  class="auto-style1 clblue" style="height:40px;"></td>
-					<td colspan="2"></td>
-					<td colspan="2"></td>
-				</tr>
-        	<tr>
-					<td  class="auto-style1 clblue" style="height:40px;"></td>
-					<td colspan="2"></td>
-					<td colspan="2"></td>
-				</tr>
-        	<tr>
-					<td  class="auto-style1 clblue" style="height:40px;"></td>
-					<td colspan="2"></td>
-					<td colspan="2"></td>
-				</tr>
-				<tr>
-					<td class="auto-style1" rowspan="3">
-						<b>保护措施：</b>
-					</td>
-					<td colspan="2" rowspan="3">
-						<div class="textoverflow">{{funIsEmpty(dataInfo.attention)}}</div>
-						</td>
-					<td colspan="2" style="text-align: center">
-						<b>其他信息</b>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-					<div class="textoverflow" style="max-width:400px">{{funIsEmpty(dataInfo.other)}}</div>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						监理确认并签字：{{funIsEmpty(dataInfo.supervisor)}}
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" rowspan="2">
-						<b>承运人签名（章）：</b>暂无
-					</td>
-					<td style="width:200px;">审批人：{{dataInfo.approver}}</td>
-					<td style="width:200px;">销点人:{{dataInfo.logout}}</td>
-					<td style="width:200px;">注销人：{{dataInfo.logoff}}</td>
-				</tr>
-				<tr>
-					<td>审批时间：{{dataInfo.approve_time}}</td>
-					<td>销点时间：{{dataInfo.logout_time}}</td>
-					<td>注销时间：{{dataInfo.logoff_time}}</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+        <div class="vtable">
+          <table>
+            <tbody>
+              <tr>
+                <td class="auto-style" rowspan="2">
+                  <b>作业编号：</b>
+                </td>
+                <td class="auto-style2 clblue" rowspan="2">{{ dataInfo.number}}</td>
+                <td class="clblue" rowspan="2">施工单位:{{dataInfo.company}}</td>
+                <td>
+                  是否需要动车：
+                  <b v-if="dataInfo.is_need_car==0">否</b>
+                  <b v-if="dataInfo.is_need_car==1">是</b>
+                </td>
+                <td>
+                  是否需要动火：
+                  <b v-if="dataInfo.is_need_fire==0">否</b>
+                  <b v-if="dataInfo.is_need_fire==1">是</b>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  是否需要帮助：
+                  <b v-if="dataInfo.is_need_help==0">否</b>
+                  <b v-if="dataInfo.is_need_help==1">是</b>
+                </td>
+                <td>
+                  是否需要断电：
+                  <b v-if="dataInfo.is_need_break_ele==0">否</b>
+                  <b v-if="dataInfo.is_need_break_ele==1">是</b>
+                </td>
+              </tr>
+              <tr>
+                <td class="auto-style">
+                  <b>作业令号：</b>
+                </td>
+                <td class="clblue">{{dataInfo.command_num}}</td>
+                <td colspan="2">
+                  <!--  -->
+                  <div>
+                    联系人：
+                    <span
+                      style="width:40%;display:inline-block"
+                      class="clblue"
+                    >{{dataInfo.contact}}</span>
+                    联系电话：
+                    <span class="clblue">{{dataInfo.phone}}</span>
+                  </div>
+                  <div v-for="item in dataInfo.holder" :key="item.id">
+                    持证人：
+                    <span style="width:40%;display:inline-block" class="clblue">{{item.name}}</span>
+                    联系电话：
+                    <span class="clblue">{{item.phone}}</span>
+                  </div>
+                  <div>
+                    负责人：
+                    <span
+                      style="width:40%;display:inline-block;overflow: hidden;white-space: nowrap; vertical-align: middle;"
+                      class="clblue"
+                    >{{dataInfo.p_in_charge}}</span>
+                    联系电话：
+                    <span class="clblue">{{dataInfo.p_in_charge_phone}}</span>
+                  </div>
+                </td>
+                <td>
+                  人数：
+                  <span class="clblue">{{dataInfo.worker_num}}人</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="auto-style">
+                  <b>工作地点 （上/下行线）：</b>
+                </td>
+                <td colspan="4" style="padding:0;">
+                  <table class="innertable">
+                    <tr>
+                      <th>由</th>
+                      <th>至</th>
+                      <th style="width:120px;">线别</th>
+                      <th>列车编组</th>
+                      <th>工作时间</th>
+                    </tr>
+                    <tr v-for="areas in dataInfo.area_or_car" :key="areas.id">
+                      <td>{{areas.start_station_name}} DK{{areas.start_flag}} + {{areas.start_length}}</td>
+                      <td>{{areas.end_station_name}} DK{{areas.end_flag}} + {{areas.end_length}}</td>
+                      <td>{{areas.line_type_name}}</td>
+                      <td>
+                        <span
+                          style="margin-right:10px;"
+                          v-for="item in areas.car_use"
+                          :key="item.id"
+                        >{{item.car_type}}</span>
+                      </td>
+                      <td>{{areas.start_time}} ~ {{areas.end_time}}</td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="auto-style">
+                  <b>计划运行路径：</b>
+                </td>
+                <td colspan="4">
+                  <div class="textoverflow clblue">{{dataInfo.plan_route}}</div>
+                </td>
+              </tr>
+              <tr>
+                <td class="auto-style">
+                  <b>工作内容：</b>
+                </td>
+                <td colspan="4">
+                  <div class="textoverflow clblue">{{dataInfo.description}}</div>
+                </td>
+              </tr>
+              <tr>
+                <td class="auto-style">
+                  <b>车辆：</b>
+                </td>
+                <td colspan="4" style="padding:0;">
+                  <table class="innertable">
+                    <tr>
+                      <th>车辆类型</th>
+                      <th>车号</th>
+                      <th>装载重量</th>
+                    </tr>
+                    <tbody v-for="areas in dataInfo.area_or_car" :key="areas.id">
+                      <tr v-for="item in areas.car_use" :key="item.id">
+                        <td>{{item.car_type}}</td>
+                        <td>{{item.car_number}}</td>
+                        <td>{{item.car_weight}}</td>
+                      </tr>
+                    </tbody>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="auto-style">
+                  <b>保护措施：</b>
+                </td>
+                <td colspan="4">
+                  <div class="textoverflow clblue">{{funIsEmpty(dataInfo.attention)}}</div>
+                </td>
+              </tr>
+              <tr>
+                <td class="auto-style">
+                  <b>其他信息</b>
+                </td>
+                <td colspan="2">
+                  <div class="textoverflow clblue">{{funIsEmpty(dataInfo.other)}}</div>
+                </td>
+                <td colspan="2">监理确认并签字：{{funIsEmpty(dataInfo.supervisor)}}</td>
+              </tr>
+
+              <tr>
+                <td colspan="2" rowspan="2">
+                  <b>承运人签名（章）：</b>暂无
+                </td>
+                <td style="width:200px;">审批人：{{dataInfo.approver}}</td>
+                <td style="width:200px;">销点人:{{dataInfo.logout}}</td>
+                <td style="width:200px;">注销人：{{dataInfo.logoff}}</td>
+              </tr>
+              <tr>
+                <td>审批时间：{{dataInfo.approve_time}}</td>
+                <td>销点时间：{{dataInfo.logout_time}}</td>
+                <td>注销时间：{{dataInfo.logoff_time}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div v-else class="app-apply-detail">
         <el-form :inline="true" style="margin:0 auto; text-align: center">
@@ -187,10 +239,8 @@
               </div>
               <div class="item">
                 <label class="labels">联系电话：</label>
-                <span
-                  class="input"
-                  style="width:250px;"
-                >{{ dataInfo.phone}}</span><label class="labels">带领 ( {{dataInfo.worker_num}} ) 人进行以下工作：</label>
+                <span class="input" style="width:250px;">{{ dataInfo.phone}}</span>
+                <label class="labels">带领 ( {{dataInfo.worker_num}} ) 人进行以下工作：</label>
               </div>
               <div class="item">
                 <label class="labels">A区域/车辆：</label>
@@ -317,7 +367,7 @@ export default {
     return {
       isShow: false,
       dataInfo: [],
-      carUse:[],
+      carUse: []
     };
   },
   props: {
@@ -337,7 +387,7 @@ export default {
   },
   methods: {
     getDetail() {
-      this.$layer.title="dsfds";
+      this.$layer.title = "dsfds";
       this.request({
         url: "/apply/getApplyDetail",
         method: "get",
@@ -346,35 +396,35 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.dataInfo = data.data;
-         // let car=data.data.area_or_car;
-          this.carUse=data.data.area_or_car[0].car_use;
-         // console.log(JSON.stringify(this.carUse));
+          // let car=data.data.area_or_car;
+          this.carUse = data.data.area_or_car[0].car_use;
+          // console.log(JSON.stringify(this.carUse));
         }
       });
     },
     isCancel() {
       this.$layer.close(this.layerid);
     },
-    funIsEmpty(item){
-       if(item=="")
-       {
-         return "暂无";
-       }
-       else
-       {
-         return item;
-       }
-    },
+    funIsEmpty(item) {
+      if (item == "") {
+        return "暂无";
+      } else {
+        return item;
+      }
+    }
   }
 };
 </script>
 <style>
-.vl-notify-content{height:91.5%!important;}
+.vl-notify-content {
+  height: 91.5% !important;
+}
 .app-apply-detail {
-  width: 100%; 
+  width: 100%;
 }
 .app-apply-detail .app-page {
-  overflow: hidden;padding-bottom: 200px;
+  overflow: hidden;
+  padding-bottom: 200px;
 }
 .app-apply-detail .el-form-item {
   margin-bottom: 25px;
@@ -471,20 +521,45 @@ export default {
   padding: 10px;
 }
 
-.auto-style1 {
-  width: 185px;
-  min-height: 38px;
+.vtable .auto-style {
+  width: 190px;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: nowrap;
 }
-.auto-style3 {
-  width:30%;
- 
+.vtable .auto-style2 {
+  width: 19.2%;
 }
 .clblue {
   color: #4b6eca;
 }
 .clcenter {
   text-align: center;
- 
 }
-.textoverflow{ word-wrap:break-word;}
+.textoverflow {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.innertable {
+  width: 100%;
+}
+.innertable {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: -1px;
+  margin-left: -1px;
+}
+.innertable th {
+  color: #111;
+  border-left: 1px #9db9fa solid;
+  border-bottom: 1px #9db9fa solid;
+}
+.innertable td {
+  border-top: 0 !important;
+  border-right: 0 !important;
+  padding: 0 10px !important;
+  height: 40px;
+  text-align: center;
+  color: #444;
+}
 </style>

@@ -1,30 +1,19 @@
 <template>
   <div id="monitor">
     <div class="el-menu-top">
-      <el-menu router default-active="search" mode="horizontal">
+      <el-menu router default-active="overspeed" mode="horizontal">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-search.png')" />查询统计
         </li>
         <el-menu-item index="search">报警查询</el-menu-item>
         <el-menu-item index="overspeed">车辆超速处理</el-menu-item>
       </el-menu>
-      <!-- <div @click="goDetail()">to apple</div> -->
     </div>
     <div class="app-page">
       <div class="app-page-container">
         <div class="app-page-select">
           <el-form :model="searchForm" :inline="true">
             <el-form-item label="列车">
-              <el-select v-model="searchForm.loco_id" placeholder="请选择列车" clearable>
-                <el-option
-                  v-for="item in getLocomotiveList"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                ></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="类型">
               <el-select v-model="searchForm.loco_id" placeholder="请选择列车" clearable>
                 <el-option
                   v-for="item in getLocomotiveList"
@@ -57,31 +46,24 @@
               </template>
             </el-table-column>
             <el-table-column prop="loco_id" label="机车名称"></el-table-column>
-            <el-table-column prop="speed" label="速度"></el-table-column>
+            <el-table-column label="违规类型">
+              <template scope="scope">
+                <span v-if="scope.row.loco_id==1">超速报警</span>
+                <span v-if="scope.row.loco_id==2">临近报警</span>
+                <span v-if="scope.row.loco_id==3">防区报警</span>
+                <span v-if="scope.row.loco_id==4">防护牌报警</span>
+              </template>
+            </el-table-column>
             <el-table-column label="位置">
               <template slot-scope="scope">
                 <b>DK</b>
                 {{scope.row.start_flag}} + {{scope.row.start_length}}
               </template>
             </el-table-column>
-            <el-table-column prop="line_type" label="线别"></el-table-column>
-            <el-table-column label="报警类型">
-              <template scope="scope">
-                <span v-if="scope.row.alert_type==1">超速报警</span>
-                <span v-if="scope.row.alert_type==2">临近报警</span>
-                <span v-if="scope.row.alert_type==3">防区报警</span>
-                <span v-if="scope.row.alert_type==4">防护牌报警</span>
-              </template>
-            </el-table-column>
-            <el-table-column prop="create_time" label="报警时间"></el-table-column>
-            <el-table-column prop="description" label="报警内容"></el-table-column>
-            <el-table-column label="操作" width="140">
-              <template slot-scope="scope">
-                <div class="app-operation">
-                  <el-button class="btn-red" size="mini" @click="goDel(scope.row.id)">删除</el-button>
-                </div>
-              </template>
-            </el-table-column>
+            <el-table-column prop="create_time" label="速度"></el-table-column>
+            <el-table-column prop="create_time" label="限速值"></el-table-column>
+
+            <el-table-column prop="create_time" label="记录时间"></el-table-column>
           </el-table>
           <div class="app-pagination">
             <el-pagination
@@ -126,18 +108,6 @@ export default {
     this.getDataList();
   },
   methods: {
-    //选择机车
-    getLocomotiveLists() {
-      this.request({
-        url: "dispatch/getLocomotiveLists",
-        method: "get"
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          this.getLocomotiveList = data.data;
-        }
-      });
-    },
     getDataList() {
       let page = this.page_cur;
       let loco_id = this.searchForm.loco_id;
@@ -145,7 +115,7 @@ export default {
       let start_time = this.searchForm.start_time;
       let end_time = this.searchForm.end_time;
       this.request({
-        url: "/search/getAlertPages",
+        url: "/search/getStationPages",
         method: "get",
         params: {
           page,
@@ -181,26 +151,16 @@ export default {
       this.page_cur = 1;
       this.getDataList();
     },
-    goDel(id) {
-      this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
-      }).then(() => {
-        this.request({
-          url: "/search/deleteAlert",
-          method: "post",
-          data: { id: id }
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.$message({
-              type: "success",
-              message: "删除成功！"
-            });
-            this.getDataList();
-          }
-        });
+    //选择机车
+    getLocomotiveLists() {
+      this.request({
+        url: "dispatch/getLocomotiveLists",
+        method: "get"
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.getLocomotiveList = data.data;
+        }
       });
     }
     //

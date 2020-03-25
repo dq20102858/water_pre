@@ -56,32 +56,29 @@
               <el-form-item label="安全事件描述：" prop="description">
                 <el-input type="textarea" v-model="formData.description"></el-input>
               </el-form-item>
+
+              <!-- <el-form-item>
+<el-upload class="upload-demo" action="http://localhost:80" :limit='5'
+ :auto-upload="false" :on-exceed='uploadOverrun' ref="upload" :http-request='submitUpload' :on-change='changeUpload'>
+      <el-button size="small" type="primary">点击上传</el-button>
+      <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+</el-upload>
+              </el-form-item>-->
+
               <el-form-item label="相关图片：">
                 <p style="color:#3655a5">最多可以上传5张图片</p>
-                <!-- action="http://129.211.168.161/upload/uploadFile" -->
                 <el-upload
-                  class="uploader el-upload-list--picture-card"
-                  action="/upload/uploadFile"
+                  action="aaa"
                   :limit="5"
-                  list-type="picture-card"
                   :auto-upload="false"
-                  ref="uploadRef"
-                  :on-exceed="uploadExceed"
-                  :on-change="uploadChange"
-                  :http-request="uploadRequest"
-                >
-                  <!-- <el-upload
-                  :limit="5"
-                  :action="this.uploadAction"
                   list-type="picture-card"
-                  :on-remove="handleRemove"
-                  :on-success="handleSuccess"
-                  :on-error="handleError"
-                  :before-upload="beforeUpload"
-                  :on-exceed="handleExceed"
-                  :auto-upload="true"
+                  :on-preview="handlePictureCardPreview"
                   ref="uploadFive"
-                  >-->
+                  :before-upload="uploadEBefore"
+                  :on-exceed="uploadExceed"
+                  :http-request="uploadSubmit"
+                  :on-change="uploadChange"
+                >
                   <i class="el-icon-plus"></i>
                 </el-upload>
                 <el-dialog :visible.sync="dialogVisible">
@@ -90,6 +87,8 @@
               </el-form-item>
               <el-form-item>
                 <el-button type="primary" @click="addEvent">信息确认无误，点击上传</el-button>
+
+                <el-button type="primary" @click="addEventTest">确认无误，点击上传</el-button>
               </el-form-item>
             </el-form>
           </div>
@@ -163,21 +162,24 @@
           <div class="app-table">
             <el-table :data="dataList">
               <el-table-column prop="id" label="序号"></el-table-column>
+              <el-table-column prop="title" label="事件类型"></el-table-column>
               <el-table-column prop="title" label="事件名称"></el-table-column>
+              <el-table-column prop="title" label="隐患判定"></el-table-column>
               <el-table-column prop="address" label="事件地址"></el-table-column>
-              <el-table-column prop="type" label="事件类型">
-                <template slot-scope="scope">{{scope.row.type==1?"人员提交":"机车提交"}}</template>
-              </el-table-column>
-              <el-table-column prop="danger_type" label="隐患判定"></el-table-column>
               <el-table-column prop="status" label="状态"></el-table-column>
               <el-table-column prop="status" label="当前情况"></el-table-column>
-              <el-table-column prop="admin" label="提交者"></el-table-column>
-              <el-table-column prop="create_time" label="发布时间">
+              <el-table-column prop="status" label="提交者"></el-table-column>
+              <el-table-column prop="create_time" label="发现时间">
                 <template slot-scope="scope">
                   <p v-html="changeTime(scope.row.create_time)"></p>
                 </template>
               </el-table-column>
-              <el-table-column label="操作" width="200">
+              <el-table-column prop="update_time" label="修改时间">
+                <template slot-scope="scope">
+                  <p v-html="changeTime(scope.row.update_time)"></p>
+                </template>
+              </el-table-column>
+              <el-table-column label="操作" width="210">
                 <template slot-scope="scope">
                   <div class="app-operation">
                     <el-button class="btn-blue" size="mini" @click="goDetail(scope.row.id)">查看</el-button>
@@ -216,10 +218,7 @@
             <div class="app-page-container">
               <div class="steps-info">
                 <h3>{{eventTitle}}</h3>
-                {{eventDesc}}
-                <div class="imgs">
-                  <img v-for="item  in eventPictureList" :key="item.id" :src="item.src" />
-                </div>
+                {{eventDescription}}
               </div>
             </div>
           </div>
@@ -244,7 +243,7 @@
         <el-dialog
           width="400px"
           :close-on-click-modal="false"
-          class="dialog-dangers"
+          class="dialog-station"
           title="隐患类型设置"
           :visible.sync="diaDangerFormVisible"
         >
@@ -270,7 +269,7 @@
         <el-dialog
           width="700px"
           :close-on-click-modal="false"
-          class="dialog-danger"
+          class="dialog-station"
           title="指派人员"
           :visible.sync="diaPeopleFormVisible"
         >
@@ -280,10 +279,10 @@
             :rules="peopleRules"
             ref="peopleRulesRef"
           >
-            <el-form-item label="指派人员：" prop="user_id">
-              <el-select v-model="peopleData.user_id">
+            <el-form-item label="指派人员">
+              <el-select v-model="peopleData.loco_id">
                 <el-option
-                  v-for="item in this.assignersList"
+                  v-for="item in this.trainList"
                   :key="item.id"
                   :label="item.name"
                   :value="item.id"
@@ -291,33 +290,35 @@
               </el-select>
             </el-form-item>
 
-            <el-form-item label="相关图片：">
-              <p style="color:#3655a5">最多可以上传3张图片</p>
+            <!-- <el-form-item label="相关图片：">
+              <p style="color:#3655a5">最多可以上传5张图片</p>
               <el-upload
-                class="uploader el-upload-list--picture-card"
+                :limit="5"
                 action="/upload/uploadFile"
-                :limit="3"
                 list-type="picture-card"
-                :auto-upload="false"
-                ref="uploadThreeRef"
-                :on-exceed="uploadThreeExceed"
-                :on-change="uploadThreeChange"
-                :http-request="uploadThreeRequest"
+                :on-preview="handlePictureCardPreview"
+                :on-remove="handleRemove"
+                ref="upload"
+                :on-success="handleSuccess"
+                :on-error="handleError"
+                :before-upload="beforeUpload"
+                :on-exceed="handleExceed"
+                :auto-upload="true"
               >
                 <i class="el-icon-plus"></i>
               </el-upload>
               <el-dialog :visible.sync="dialogVisible">
                 <img width="100%" :src="dialogImageUrl" alt />
               </el-dialog>
-            </el-form-item>
-            <el-form-item label="备注描述：" prop="remark">
-              <el-input type="textarea" v-model="peopleData.remark"></el-input>
+            </el-form-item>-->
+            <el-form-item label="安全事件描述：" prop="description">
+              <el-input type="textarea" v-model="peopleData.description"></el-input>
             </el-form-item>
             <div class="blank"></div>
           </el-form>
           <div slot="footer" class="dialog-footer">
             <el-button @click="diaPeopleFormVisible = false">关闭</el-button>
-            <el-button type="primary" @click="saveAssignDialog()">确定</el-button>
+            <el-button type="primary" @click="setAssignDialog()">确定</el-button>
           </div>
         </el-dialog>
         <!-- // -->
@@ -334,22 +335,22 @@ export default {
   data() {
     return {
       defaultActive: "1",
-      addPageShow: false,
-      listPageShow: true,
+      addPageShow: true,
+      listPageShow: false,
       setPageShow: false,
       searchForm: {
         type: 1,
         time_range: []
       },
-      uploadAction: "/upload/uploadFile",
-      uploadFiveFlies: [],
       dataList: [],
       companyList: [],
       trainList: [],
       dangerTypeList: [],
       dangerDetermineList: [],
       objSelectLists: [],
-      formData: {},
+      formData: {
+        silderimgList: []
+      },
       formRules: {
         depart_id: [
           { required: true, message: "请选择公司", trigger: "change" }
@@ -385,37 +386,52 @@ export default {
       dialogImageUrl: "",
       dialogVisible: false,
       eventTitle: "",
-      eventDesc: "",
-      eventPictureList: [],
+      eventDescription: "",
       eventPeopleList: [],
       diaDangerFormVisible: false,
       dangerIdValue: 0,
       dangerTypeValue: "",
       diaPeopleFormVisible: false,
       peopleData: [],
-      assignersList: [],
       peopleRules: {
-        user_id: [
-          { required: true, message: "请选择指派人员", trigger: "change" }
+        depart_id: [
+          { required: true, message: "请选择公司", trigger: "change" }
         ],
-        remark: [
+        admin_id: [
+          { required: true, message: "请选择公司", trigger: "change" }
+        ],
+        title: [
           {
-            min: 2,
-            max: 200,
-            message: "请输入备注描述长度在2到200个字符",
+            required: true,
+            message: "请输入安全事件标题2~60个字符",
             trigger: "blur"
-          }
+          },
+          { min: 2, max: 60, message: "长度在2到60个字符", trigger: "blur" }
+        ],
+        address: [
+          {
+            required: true,
+            message: "请输入安全事件地址2~60个字符",
+            trigger: "blur"
+          },
+          { min: 2, max: 60, message: "长度在2到60个字符", trigger: "blur" }
+        ],
+        description: [
+          {
+            required: true,
+            message: "请输入安全事件描述2~500个字符",
+            trigger: "blur"
+          },
+          { min: 2, max: 500, message: "长度在2到500个字符", trigger: "blur" }
         ]
       }
     };
   },
   created() {
-    //alert(document.location.hostname);
     this.getCompanyLists();
     this.getTrainList();
     this.getDangerType();
     this.getDangerDetermine();
-    this.getAssigners();
     this.getDataList();
   },
   methods: {
@@ -494,8 +510,77 @@ export default {
       this.page_cur = 1;
       this.getDataList();
     },
+    //====上传图片
+    uploadExceed() {
+      this.$message({
+        type: "warning",
+        message: `最多可以上传5张图片`
+      });
+    },
+    uploadEBefore(file) {
+      //上传前检验
+      if (!file) {
+        return false;
+      }
+      const isJPG = file.type === "image/jpeg";
+      const isPNG = file.type === "image/png";
+      const isBMP = file.type === "image/bmp";
+      const isGIF = file.type === "image/gif";
+      const isLt2M = file.size / 1024 / 1024 < 2;
 
-    //================事件表单操作
+      if (!isJPG && !isPNG && !isBMP && !isGIF) {
+        this.$message.error("上传头像图片只能是 jpg|png|gif|bmp 格式!");
+        this.$refs.upload.clearFiles();
+        return false;
+      }
+      if (!isLt2M) {
+        this.$message.error("上传图片大小不能超过 2MB!");
+        this.$refs.upload.clearFiles();
+        return false;
+      }
+      // console.log(file);
+    },
+    uploadChange(file, fileList) {
+      this.formData.silderimgList = [];
+      for (let i = 0; i < fileList.length; i++) {
+        let obj = {};
+        obj = fileList[i].raw;
+        this.formData.silderimgList.push(obj);
+      }
+      console.log("formData.silderimgList：" + this.formData.silderimgList);
+    },
+    uploadSubmit(content) {
+      const that = this;
+      this.formData.file = [];
+      let formData = new FormData();
+      // for (let i = 0; i < this.formData.silderimgList.length; i++) {
+      // formData.append("file", that.formData.silderimgList[i]);
+      formData.append("file", content.file);
+      this.request({
+        url: "/upload/uploadFile",
+        method: "POST",
+        data: formData
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          if (data.data.url != "") {
+            this.formData.file.push(data.data.url);
+            console.log("formData.file：" + this.formData.file);
+          }
+        }
+      });
+      //  }
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+    },
+
+    addEventTest() {
+      this.$refs.uploadFive.submit(); //调用submit方法
+      //其他业务代码。
+    },
+    //====表单提交
     //获取公司
     getCompanyLists() {
       this.request({
@@ -557,70 +642,14 @@ export default {
         }
       });
     },
-    //上传图片
-    uploadExceed() {
-      this.$message({
-        type: "warning",
-        message: `最多可以上传5张图片`
-      });
-    },
-    uploadChange(file, fileList) {
-      let fileName = file.name;
-      let regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
-      if (regex.test(fileName.toLowerCase())) {
-        //this.form.silder_image = file.url;
-      } else {
-        this.$message.error(
-          "请选择图片格式文件.jpg | .jpeg | .gif | .png | .bmp"
-        );
-        this.$refs.uploadRef.clearFiles();
-      }
-      this.$refs.uploadRef.submit();
-    },
-    uploadRequest(file) {
-      let upload_list_li = document.getElementsByClassName("el-upload-list")[0]
-        .children;
-      const that = this;
-      let formData = new FormData();
-      formData.append("file", file.file);
-      this.request({
-        url: "/upload/uploadFile",
-        method: "POST",
-        data: formData
-      }).then(res => {
-        let data = res.data;
-        if (data.status == 1) {
-          if (data.data.url != "") {
-            for (let i = 0; i < upload_list_li.length; i++) {
-              let li_a = upload_list_li[i];
-              let imgElement = document.createElement("img");
-              imgElement.setAttribute("src", "http://" + data.data.url);
-              imgElement.setAttribute("class", "imgfileitem");
-              if (li_a.lastElementChild.nodeName !== "IMG") {
-                li_a.appendChild(imgElement);
-              }
-            }
-          }
-        }
-      });
-    },
-    //保存
+    //添加事件
     addEvent() {
       this.$refs["formRulesRef"].validate(valid => {
         if (valid) {
+          this.addEventTest(); //调用submit方法
+          let filed = this.formData.file;
           let data = this.formData;
-          let img_urls = [];
-          let uls = document.getElementsByClassName("el-upload-list");
-          for (let i = 0; i < uls.length; i++) {
-            let imgs = uls[i].getElementsByClassName("imgfileitem");
-            for (let j = 0; j < imgs.length; j++) {
-              //img_urls[i][j] = imgs[j].src;
-              img_urls.push({
-                src: imgs[j].src
-              });
-            }
-          }
-          this.formData.file = img_urls;
+          // this.formData.file = this.uploadFiveFlies;
           this.request({
             url: "/security/addSecurity",
             method: "post",
@@ -633,7 +662,7 @@ export default {
                 message: "添加成功",
                 type: "success"
               });
-              window.location.reload();
+              //window.location.reload();
             } else {
               this.$message({
                 showClose: true,
@@ -653,9 +682,9 @@ export default {
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
+          console.log(data.data);
           this.eventTitle = " 发起新事件：";
-          this.eventDesc = data.data.description;
-          this.eventPictureList = data.data.file;
+          this.eventDescription = data.data.description;
         }
       });
       this.request({
@@ -666,6 +695,7 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.eventPeopleList = data.data;
+          console.log(data.data);
         }
       });
     },
@@ -684,7 +714,7 @@ export default {
       let type = values;
       this.request({
         url: "/security/securityJudge",
-        method: "post",
+        method: "get",
         params: { sid: id, type: type }
       }).then(res => {
         let data = res.data;
@@ -694,120 +724,17 @@ export default {
             message: "设置成功",
             type: "success"
           });
-          this.diaDangerFormVisible = false;
-          this.addPageShow = false;
-          this.listPageShow = true;
-          this.getDataList();
         } else {
           this.$message.error("设置失败，请稍后再试");
         }
       });
     },
-    //===============人员指派
-    //上传图片
-    uploadThreeExceed() {
-      this.$message({
-        type: "warning",
-        message: `最多可以上传3张图片`
-      });
-    },
-    uploadThreeChange(file, fileList) {
-      let fileName = file.name;
-      let regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
-      if (regex.test(fileName.toLowerCase())) {
-        //this.form.silder_image = file.url;
-      } else {
-        this.$message.error(
-          "请选择图片格式文件.jpg | .jpeg | .gif | .png | .bmp"
-        );
-      }
-      this.$refs.uploadThreeRef.submit();
-    },
-    uploadThreeRequest(file) {
-      let upload_list_li = document.getElementsByClassName("el-upload-list")[0]
-        .children;
-      const that = this;
-      let formData = new FormData();
-      formData.append("file", file.file);
-      this.request({
-        url: "/upload/uploadFile",
-        method: "POST",
-        data: formData
-      }).then(res => {
-        let data = res.data;
-        if (data.status == 1) {
-          if (data.data.url != "") {
-            for (let i = 0; i < upload_list_li.length; i++) {
-              let li_a = upload_list_li[i];
-              let imgElement = document.createElement("img");
-              imgElement.setAttribute("src", "http://" + data.data.url);
-              imgElement.setAttribute("class", "imgfileitems");
-              if (li_a.lastElementChild.nodeName !== "IMG") {
-                li_a.appendChild(imgElement);
-              }
-            }
-          }
-        }
-      });
-    },
-    //获取人员
-    getAssigners() {
-      this.request({
-        url: "/security/getAssigners",
-        method: "get"
-      }).then(res => {
-        let data = res.data;
-        if (data.status == 1) {
-          this.assignersList = data.data;
-        }
-      });
-    },
+    //指派
     goAssign(id) {
       this.diaPeopleFormVisible = true;
       this.dangerIdValue = id;
     },
-    saveAssignDialog() {
-      this.$refs["peopleRulesRef"].validate(valid => {
-        if (valid) {
-          debugger
-          let data = this.peopleData;
-          this.peopleData.sid = this.dangerIdValue;
-          // let img_urls = [];
-          // let uls = document.getElementsByClassName("el-upload-list");
-          // for (let i = 0; i < uls.length; i++) {
-          //   let imgs = uls[i].getElementsByClassName("imgfileitem");
-          //   for (let j = 0; j < imgs.length; j++) {
-          //     img_urls.push({
-          //       src: imgs[j].src
-          //     });
-          //   }
-          // }
-          // this.peopleData.file = img_urls;
-          this.request({
-            url: "/security/assignPeople",
-            method: "POST",
-            data
-          }).then(res => {
-            let data = res.data;
-            if (data.status == 1) {
-              this.$message({
-                showClose: true,
-                message: "添加成功",
-                type: "success"
-              });
-              this.addPageShow = false;
-              this.listPageShow = true;
-            } else {
-              this.$message({
-                showClose: true,
-                message: "添加失败",
-                type: "error"
-              });
-            }
-          });
-        }
-      });
-    },
+    setAssignDialog() {},
     changeTime(time) {
       if (time !== null && time !== undefined && time !== "") {
         return (
@@ -872,12 +799,6 @@ export default {
 }
 .steps-info {
   line-height: 28px;
-}
-.steps-info .imgs img {
-  width: 148px;
-  height: 148px;
-  margin-right: 10px;
-  border-radius: 6px;
 }
 .steps-section {
   overflow-x: auto;
@@ -962,40 +883,5 @@ export default {
   color: #888;
   padding-bottom: 50px;
   font-size: 16px;
-}
-
-.uploader .el-upload {
-  border: 1px dashed #9db9fa;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  font-size: 28px;
-  color: #8c939d;
-  width: 148px;
-  height: 148px;
-  line-height: 148px;
-  text-align: center;
-}
-.uploader .imgfileitem {
-  width: 100%;
-  margin-top: 10px;
-}
-.dialog-danger .el-textarea__inner {
-  border: 1px #9db9fa solid;
-  color: #4b6eca;
-  height: 100px;
-}
-.dialog-danger .el-textarea {
-  width: 100% !important;
-}
-.dialog-danger .el-select {
-  width: 100%;
-}
-.dialog-danger .el-form-item__label {
-  width: 110px;
-}
-.dialog-danger .el-form-item__content {
-  margin-left: 110px;
 }
 </style>
