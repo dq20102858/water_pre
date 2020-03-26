@@ -1,5 +1,5 @@
 <template>
-  <div id="monitor">
+  <div id="search">
     <div class="el-menu-top">
       <el-menu router default-active="search" mode="horizontal">
         <li class="ptitle">
@@ -8,7 +8,6 @@
         <el-menu-item index="search">报警查询</el-menu-item>
         <el-menu-item index="overspeed">车辆超速处理</el-menu-item>
       </el-menu>
-      <!-- <div @click="goDetail()">to apple</div> -->
     </div>
     <div class="app-page">
       <div class="app-page-container">
@@ -25,17 +24,12 @@
               </el-select>
             </el-form-item>
             <el-form-item label="类型">
-              <el-select v-model="searchForm.loco_id" placeholder="请选择列车" clearable>
-                <el-option
-                  v-for="item in getLocomotiveList"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                ></el-option>
+              <el-select v-model="searchForm.alert_type" placeholder="请选择类型" clearable>
+                <el-option label="超速报警" value="1"></el-option>
+                <el-option label="临近报警" value="2"></el-option>
+                <el-option label="防区报警" value="3"></el-option>
+                <el-option label="防护牌报警" value="4"></el-option>
               </el-select>
-            </el-form-item>
-            <el-form-item label=" 最大速度">
-              <el-input v-model="searchForm.speed" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item label="开始时间">
               <el-date-picker v-model="searchForm.start_time" type="date"></el-date-picker>
@@ -45,7 +39,7 @@
             </el-form-item>
             <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
-              <el-button size="small" icon="el-icon-search" @click="pageSearch" type="primary">查询</el-button>
+              <el-button size="small" icon="el-icon-search" type="primary" @click="pageSearch">查询</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -74,7 +68,7 @@
               </template>
             </el-table-column>
             <el-table-column prop="create_time" label="报警时间"></el-table-column>
-            <el-table-column prop="description" label="报警内容"></el-table-column>
+            <el-table-column prop="description" label="报警内容" show-overflow-tooltip></el-table-column>
             <el-table-column label="操作" width="140">
               <template slot-scope="scope">
                 <div class="app-operation">
@@ -90,7 +84,7 @@
               layout="slot,prev, pager, next,slot,total"
               :page-size="this.page_size"
               :current-page="this.page_cur"
-              :total="this.pageTotal"
+              :total="this.page_items"
               @current-change="pageChange"
               prev-text="上一页"
               next-text="下一页"
@@ -112,9 +106,9 @@
 export default {
   data() {
     return {
-      searchForm: [],
+      searchForm: {},
       page_cur: 1,
-      pageTotal: 0,
+      page_items: 0,
       page_size: 20,
       page_total: 0,
       dataList: [],
@@ -141,7 +135,7 @@ export default {
     getDataList() {
       let page = this.page_cur;
       let loco_id = this.searchForm.loco_id;
-      let speed = this.speed.type;
+      let alert_type = this.searchForm.alert_type;
       let start_time = this.searchForm.start_time;
       let end_time = this.searchForm.end_time;
       this.request({
@@ -150,7 +144,7 @@ export default {
         params: {
           page,
           loco_id,
-          speed,
+          alert_type,
           start_time,
           end_time
         }
@@ -159,7 +153,7 @@ export default {
         if (data.status == 1) {
           this.dataList = data.data.data;
           this.page_cur = parseInt(data.data.current_page);
-          this.pageTotal = data.data.total;
+          this.page_items = data.data.total;
           this.page_size = data.data.per_page;
           this.page_total = data.data.last_page;
         }

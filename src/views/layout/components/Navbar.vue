@@ -71,7 +71,6 @@ export default {
     getBreadcrumb() {
       let matched = this.$route.matched;
       this.levelList = matched;
-      console.log(this.levelList);
     },
     toggleSideBar() {
       this.$store.dispatch("toggleSideBar");

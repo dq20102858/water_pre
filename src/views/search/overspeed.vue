@@ -1,5 +1,5 @@
 <template>
-  <div id="monitor">
+  <div id="overspeed">
     <div class="el-menu-top">
       <el-menu router default-active="overspeed" mode="horizontal">
         <li class="ptitle">
@@ -48,10 +48,10 @@
             <el-table-column prop="loco_id" label="机车名称"></el-table-column>
             <el-table-column label="违规类型">
               <template scope="scope">
-                <span v-if="scope.row.loco_id==1">超速报警</span>
-                <span v-if="scope.row.loco_id==2">临近报警</span>
-                <span v-if="scope.row.loco_id==3">防区报警</span>
-                <span v-if="scope.row.loco_id==4">防护牌报警</span>
+                <span v-if="scope.row.alert_type==1">超速报警</span>
+                <span v-if="scope.row.alert_type==2">临近报警</span>
+                <span v-if="scope.row.alert_type==3">防区报警</span>
+                <span v-if="scope.row.alert_type==4">防护牌报警</span>
               </template>
             </el-table-column>
             <el-table-column label="位置">
@@ -60,8 +60,8 @@
                 {{scope.row.start_flag}} + {{scope.row.start_length}}
               </template>
             </el-table-column>
-            <el-table-column prop="create_time" label="速度"></el-table-column>
-            <el-table-column prop="create_time" label="限速值"></el-table-column>
+            <el-table-column prop="speed" label="速度"></el-table-column>
+            <el-table-column prop="speed" label="限速值"></el-table-column>
 
             <el-table-column prop="create_time" label="记录时间"></el-table-column>
           </el-table>
@@ -72,7 +72,7 @@
               layout="slot,prev, pager, next,slot,total"
               :page-size="this.page_size"
               :current-page="this.page_cur"
-              :total="this.pageTotal"
+              :total="this.page_items"
               @current-change="pageChange"
               prev-text="上一页"
               next-text="下一页"
@@ -94,9 +94,9 @@
 export default {
   data() {
     return {
-      searchForm: [],
+      searchForm:{},
       page_cur: 1,
-      pageTotal: 0,
+      page_items: 0,
       page_size: 20,
       page_total: 0,
       dataList: [],
@@ -111,11 +111,11 @@ export default {
     getDataList() {
       let page = this.page_cur;
       let loco_id = this.searchForm.loco_id;
-      let speed = this.speed.type;
+      let speed = this.searchForm.speed;
       let start_time = this.searchForm.start_time;
       let end_time = this.searchForm.end_time;
       this.request({
-        url: "/search/getStationPages",
+        url: "/search/getSpeedPages",
         method: "get",
         params: {
           page,
@@ -129,7 +129,7 @@ export default {
         if (data.status == 1) {
           this.dataList = data.data.data;
           this.page_cur = parseInt(data.data.current_page);
-          this.pageTotal = data.data.total;
+          this.page_items = data.data.total;
           this.page_size = data.data.per_page;
           this.page_total = data.data.last_page;
         }

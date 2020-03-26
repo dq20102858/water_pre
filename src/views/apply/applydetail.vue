@@ -210,7 +210,7 @@
         </div>
       </div>
       <div v-else class="app-apply-detail">
-        <el-form :inline="true" style="margin:0 auto; text-align: center">
+        <el-form :inline="true" style="margin-left:95px;">
           <el-form-item label="作业编号">
             <span class="input">{{ dataInfo.number}}</span>
           </el-form-item>
@@ -269,7 +269,7 @@
               <div class="item">
                 <label class="labels">C安全措施及注意事项：</label>
                 <div class="conn">
-                  <em>{{funIsEmpty(dataInfo.attention)}}</em>
+                  <em> {{funIsEmpty(dataInfo.attention)}}</em>
                 </div>
               </div>
               <div class="item">
@@ -333,8 +333,8 @@
                 class="itemconn"
               >本人谨此声明：⑴ 此进场作业许可证所述工作现已完成，本人及属下员工已经撤离，安全措施已经撤除，并已被告之在轨道区域/车辆上工作已不再安全。⑵ 完成情况及所有故障/损坏已经书面呈报。</div>
               <div class="singn lines">
-                <span class="pull-left">工点负责人（签名）{{dataInfo.approver}}</span>
-                <span class="pull-right">{{dataInfo.approve_time}}</span>
+                <span class="pull-left">工点负责人（签名）{{dataInfo.logout}}</span>
+                <span class="pull-right">{{dataInfo.logout_time}}</span>
               </div>
             </div>
           </el-timeline-item>
@@ -480,7 +480,8 @@ export default {
 .app-apply-detail .conn {
   display: block;
   padding-left: 110px;
-  line-height: 24px;
+  line-height: 24px;  word-wrap: break-word;
+  word-break: break-all;
 }
 .app-apply-detail .scheck {
   margin-left: 15px;

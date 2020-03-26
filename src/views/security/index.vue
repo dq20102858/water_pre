@@ -769,24 +769,26 @@ export default {
     saveAssignDialog() {
       this.$refs["peopleRulesRef"].validate(valid => {
         if (valid) {
-          debugger
+          // debugger;
           let data = this.peopleData;
-          this.peopleData.sid = this.dangerIdValue;
-          // let img_urls = [];
-          // let uls = document.getElementsByClassName("el-upload-list");
-          // for (let i = 0; i < uls.length; i++) {
-          //   let imgs = uls[i].getElementsByClassName("imgfileitem");
-          //   for (let j = 0; j < imgs.length; j++) {
-          //     img_urls.push({
-          //       src: imgs[j].src
-          //     });
-          //   }
-          // }
+          let user_id = this.peopleData.user_id;
+          let sid = this.dangerIdValue;
+          let img_urls = [];
+          let uls = document.getElementsByClassName("el-upload-list");
+          for (let i = 0; i < uls.length; i++) {
+            let imgs = uls[i].getElementsByClassName("imgfileitem");
+            for (let j = 0; j < imgs.length; j++) {
+              img_urls.push({
+                src: imgs[j].src
+              });
+            }
+          }
           // this.peopleData.file = img_urls;
           this.request({
             url: "/security/assignPeople",
             method: "POST",
-            data
+            header: { "Content-Type": "application/x-www-form-urlencoded" },
+            data: { user_id: user_id, sid: sid, file: img_urls }
           }).then(res => {
             let data = res.data;
             if (data.status == 1) {
@@ -795,8 +797,10 @@ export default {
                 message: "添加成功",
                 type: "success"
               });
+              this.diaPeopleFormVisible = false;
               this.addPageShow = false;
               this.listPageShow = true;
+              this.goDetail(this.dangerIdValue);
             } else {
               this.$message({
                 showClose: true,
@@ -924,7 +928,7 @@ export default {
   -webkit-border-radius: 100%;
   border-radius: 100%;
   background-size: 10px 10px;
-  z-index: 9999;
+  z-index: 100;
 }
 
 .timeline li .time:after {
@@ -937,7 +941,7 @@ export default {
   left: 0;
   top: 65px;
   margin-left: -2px;
-  z-index: 999;
+  z-index: 99;
 }
 .timeline li:last-child .time:before {
   content: "";
