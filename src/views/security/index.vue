@@ -561,25 +561,15 @@ export default {
       const isGIF = file.type === "image/gif";
       const isLt2M = file.size / 1024 / 1024 < 2;
 
-      if (!isJPG && !isJPG && !isPNG && !isGIF) {
-        this.$message.error("上传头像图片只能是 jpg  png  gif 格式!");
+      if (!isJPEG && !isJPG && !isPNG && !isGIF) {
+        this.$message.error("上传图片只能是 jpg  png  gif 格式!");
       }
       if (!isLt2M) {
-        this.$message.error("上传头像图片大小不能超过 2MB!");
+        this.$message.error("上传图片大小不能超过 2MB!");
       }
       return isJPEG || isJPG || isPNG || (isGIF && isLt2M);
     },
     uploadChange(file, fileList) {
-      // let fileName = file.name;
-      // let regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
-      // if (regex.test(fileName.toLowerCase())) {
-      //   //this.form.silder_image = file.url;
-      // } else {
-      //   this.$message.error(
-      //     "请选择图片格式文件.jpg | .jpeg | .gif | .png | .bmp"
-      //   );
-      //   this.$refs.uploadRef.clearFiles();
-      // }
       this.$refs.uploadRef.submit();
     },
     uploadRequest(file) {
@@ -638,7 +628,8 @@ export default {
                 message: "添加成功",
                 type: "success"
               });
-              window.location.reload();
+              this.formData={};
+              // window.location.reload();
             } else {
               this.$message({
                 showClose: true,
