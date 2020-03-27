@@ -12,11 +12,11 @@ const service = axios.create({
 })
 // 请求前进行统一处理
 service.interceptors.request.use(
-  function(config) {
+  function (config) {
     Vue.globalEvBus.$emit('showLoading')
     return config
   },
-  function(error) {
+  function (error) {
     // 对请求错误做些什么
     return Promise.reject(error)
   }
@@ -52,8 +52,13 @@ service.interceptors.response.use(
   }
 )
 Object.defineProperties(Vue.prototype, {
+  hostURL: {
+    get: function () {
+      return host
+    }
+  },
   request: {
-    get: function() {
+    get: function () {
       return service
     }
   }
