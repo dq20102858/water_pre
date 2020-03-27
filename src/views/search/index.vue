@@ -40,6 +40,7 @@
             <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
               <el-button size="small" icon="el-icon-search" type="primary" @click="pageSearch">查询</el-button>
+              <el-button size="small" plain @click="resetSerach">重置</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -69,7 +70,7 @@
             </el-table-column>
             <el-table-column prop="create_time" label="报警时间"></el-table-column>
             <el-table-column prop="description" label="报警内容" show-overflow-tooltip></el-table-column>
-            <el-table-column label="操作" width="140">
+            <el-table-column label="操作" width="70">
               <template slot-scope="scope">
                 <div class="app-operation">
                   <el-button class="btn-red" size="mini" @click="goDel(scope.row.id)">删除</el-button>
@@ -175,28 +176,34 @@ export default {
       this.page_cur = 1;
       this.getDataList();
     },
+    resetSerach() {
+      this.searchForm = {};
+      this.getDataList();
+    },
     goDel(id) {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
-        ,customClass:"el-message-box-new"
-      }).then(() => {
-        this.request({
-          url: "/search/deleteAlert",
-          method: "post",
-          data: { id: id }
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.$message({
-              type: "success",
-              message: "删除成功！"
-            });
-            this.getDataList();
-          }
-        });
-      }).catch(()=>{});
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/search/deleteAlert",
+            method: "post",
+            data: { id: id }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "删除成功！"
+              });
+              this.getDataList();
+            }
+          });
+        })
+        .catch(() => {});
     }
     //
   }

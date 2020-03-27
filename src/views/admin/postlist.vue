@@ -206,6 +206,7 @@ export default {
         let pid =0;
       if (this.search_departid == "" && this.search_pid != "") {
          pid = this.search_pid;
+         type=2;
       } else {
          pid = this.search_departid;
       }
