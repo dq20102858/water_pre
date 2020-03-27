@@ -252,6 +252,9 @@ export default {
       lineTypeList: []
     };
   },
+   mounted() {
+    document.querySelector("#app-menu-items #menu_set") .classList.add("is-active");
+  },
   created() {
     this.getLineTypeLists();
     this.getDataList();
@@ -411,7 +414,7 @@ export default {
             this.getDataList();
           }
         });
-      });
+      }).catch(()=>{});
     }
     //
   }

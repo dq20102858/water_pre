@@ -1972,6 +1972,7 @@ var dashboard = __webpack_require__("ARoL");
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
+        ,customClass:"el-message-box-new"
       }).then(function () {
         _this10.request({
           url: "/dispatch/deleteTemplate",
@@ -1990,7 +1991,7 @@ var dashboard = __webpack_require__("ARoL");
             _this10.$message.error("删除失败");
           }
         });
-      });
+      }).catch(()=>{});
     },
     templateSubmitTempForm: function templateSubmitTempForm(formName) {
       var _this11 = this;

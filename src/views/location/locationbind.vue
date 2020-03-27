@@ -258,6 +258,9 @@ export default {
       objSelectLists: []
     };
   },
+  mounted() {
+     document.querySelector("#app-menu-items #menu_location").classList.add("is-active");
+  },
   created() {
     this.getCompanyLists();
     this.getDataList();
@@ -355,6 +358,7 @@ export default {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
+        ,customClass:"el-message-box-new"
       }).then(() => {
         this.request({
           url: "/location/deleteBind",
@@ -370,7 +374,7 @@ export default {
             this.getDataList();
           }
         });
-      });
+      }).catch(()=>{});
     },
     //公司 部门 职位
     selectDeviceType(val) {

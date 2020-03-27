@@ -320,6 +320,7 @@ export default {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
+        ,customClass:"el-message-box-new"
       }).then(() => {
         this.request({
           url: "/search/deleteStation",
@@ -335,7 +336,7 @@ export default {
             this.getDataList();
           }
         });
-      });
+      }).catch(()=>{});
     }
     //
   }

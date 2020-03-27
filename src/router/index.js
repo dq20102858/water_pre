@@ -83,6 +83,35 @@ const constantRouterMap = [
       }
     ]
   }
+  ,
+  {
+    path: '/admin',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/admin',
+        component: () => import('@/views/admin/index')
+      },
+      {
+        path: '/departlist',
+        component: () => import('@/views/admin/departlist')
+      }  ,
+      {
+        path: '/postlist',
+        component: () => import('@/views/admin/postlist')
+      }
+      ,
+      {
+        path: '/userlist',
+        component: () => import('@/views/admin/userlist')
+      } ,
+      {
+        path: '/demo',
+        component: () => import('@/views/admin/demo')
+      }
+    ]
+  }
 ]
 export { constantRouterMap }
 

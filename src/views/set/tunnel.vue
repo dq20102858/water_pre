@@ -245,6 +245,9 @@ export default {
       lineTypeList: []
     };
   },
+   mounted() {
+    document.querySelector("#app-menu-items #menu_set") .classList.add("is-active");
+  },
   created() {
     this.getLineTypeLists();
     this.getDataList();
@@ -390,6 +393,7 @@ export default {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
+        ,customClass:"el-message-box-new"
       }).then(() => {
         this.request({
           url: "/search/deleteRoadDevice",
@@ -405,7 +409,7 @@ export default {
             this.getDataList();
           }
         });
-      });
+      }).catch(()=>{});
     },
     changeStarttime() {
       if (this.workData.start_time >= this.workData.end_time) {
