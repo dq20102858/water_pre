@@ -1,20 +1,145 @@
 webpackJsonp([4],{
 
-/***/ "AejC":
+/***/ "9bBU":
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__("mClu");
+var $Object = __webpack_require__("FeBl").Object;
+module.exports = function defineProperty(it, key, desc) {
+  return $Object.defineProperty(it, key, desc);
+};
+
+
+/***/ }),
+
+/***/ "C4MV":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__("9bBU"), __esModule: true };
+
+/***/ }),
+
+/***/ "DCd+":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("WhSm");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("7fe8885a", content, true);
+
+/***/ }),
+
+/***/ "WhSm":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n#progress {\r\n  background: #081c33;\r\n  height: 100vh;\n}\n.main-canvas{  background: #081c33;\n}\n.group-canvas {\r\n  overflow-x: scroll;\r\n  overflow-y: hidden;\r\n  height:680px;\r\n  padding-right: 100px;\n}\n.station-top {\r\n  margin: 0 40px;\n}\n.startend {\r\n  padding-top: 40px;\r\n  overflow: hidden;\n}\n.startend .sleft  ,.startend .sright {\r\n  background: #4b6eca;\r\n  color: #fff;\r\n  padding: 15px 15px;\r\n  display: block;\r\n  font-size: 18px;font-weight: 700;\n}\n.startend .sleft {\r\n  float: left;\n}\n.startend .sright {\r\n  float: right;\n}\n.startend .line-a {\r\n  position: relative;\r\n  background: #fff;\r\n  height: 1px;\r\n  display: block;\r\n  margin-top: 10px;\n}\n.startend .line-a::before {\r\n  content: \"\";\r\n  position: absolute;\r\n  left: 0;\r\n  top: 2px;\r\n  width: 10px;\r\n  height: 3px;\r\n  border-bottom: 1px solid #fff;\r\n  -webkit-transform: rotateZ(45deg);\r\n          transform: rotateZ(45deg);\n}\n.startend .line-b {\r\n  position: relative;\r\n  background: #fff;\r\n  height: 1px;\r\n  display: block;\r\n  margin-top: 10px;\n}\n.startend .line-b::before {\r\n  content: \"\";\r\n  position: absolute;\r\n  right: -1px;\r\n  top: 4px;\r\n  width: 10px;\r\n  height: 3px;\r\n  border-bottom: 1px solid #fff;\r\n  -webkit-transform: rotateZ(135deg);\r\n          transform: rotateZ(135deg);\n}\n.stations {\r\n  float: left; margin-left: 25px;margin-top: 15px;\n}\n.stations .item {\r\n  width: 500px;\r\n  overflow: hidden;\r\n  display: inline-block;\r\n  white-space: nowrap;\n}\n.stations ul li {\r\n  display: inline-block;\r\n  background: #4b6eca;\r\n  color: #fff;\r\n  padding: 10px 15px;\r\n  margin-left: 10px;\r\n  cursor: pointer;\n}\n.stations ul li:hover {\r\n  background: #2359e2;\n}\n.stations i {\r\n  display: inline-block;\r\n  background: #3062e2;\r\n  color: #fff;\r\n  padding: 8px 15px;\r\n  font-size: 20px;\r\n  vertical-align: top;\r\n  cursor: pointer;\n}\n.stations i:hover {\r\n  background: #2359e2;\n}\n.stations-select {\r\n  margin-top: 30px;\r\n  padding-bottom: 30px;;\r\n  text-align: center;\n}\r\n/* .stations-select .el-checkbox {\r\n  margin-right: 0;\r\n}\r\n\r\n.stations-select .el-checkbox.is-bordered.is-checked {\r\n  border-color: #27db07;\r\n}\r\n.stations-select .el-checkbox__input.is-checked + .el-checkbox__label {\r\n  color: #27db07;\r\n}\r\n.stations-select .el-checkbox__input.is-checked .el-checkbox__inner {\r\n  background-color: #27db07;\r\n  border-color: #27db07;\r\n} */\n.stations-select .el-checkbox__label {\r\n  color: #fff;\n}\n.bridgechk.is-checked {\r\n  border-color: #ffa918 !important;\n}\n.bridgechk .el-checkbox__input.is-checked .el-checkbox__inner {\r\n  background-color: #ffa918;\r\n  border-color: #ffa918;\n}\n.bridgechk.is-checked .el-checkbox__label {\r\n  color: #ffa918;\n}\n.tunnelchk.is-checked {\r\n  border-color: #18dbff !important;\n}\n.tunnelchk .el-checkbox__input.is-checked .el-checkbox__inner {\r\n  background-color: #18dbff;\r\n  border-color: #18dbff;\n}\n.tunnelchk.is-checked .el-checkbox__label {\r\n  color: #18dbff;\n}\n.speedchk.is-checked {\r\n  border-color: #ff18d3 !important;\n}\n.speedchk .el-checkbox__input.is-checked .el-checkbox__inner {\r\n  background-color: #ff18d3;\r\n  border-color: #ff18d3;\n}\n.speedchk.is-checked .el-checkbox__label {\r\n  color: #ff18d3;\n}\n.slopechk.is-checked {\r\n  border-color: #ff5f18 !important;\n}\n.slopechk .el-checkbox__input.is-checked .el-checkbox__inner {\r\n  background-color: #ff5f18;\r\n  border-color: #ff5f18;\n}\n.slopechk.is-checked .el-checkbox__label {\r\n  color: #ff5f18;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "bOdI":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _defineProperty = __webpack_require__("C4MV");
+
+var _defineProperty2 = _interopRequireDefault(_defineProperty);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (obj, key, value) {
+  if (key in obj) {
+    (0, _defineProperty2.default)(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+};
+
+/***/ }),
+
+/***/ "lZYz":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// EXTERNAL MODULE: ./src/assets/image/404.png
-var _04 = __webpack_require__("NvXF");
-var _04_default = /*#__PURE__*/__webpack_require__.n(_04);
+// EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/defineProperty.js
+var defineProperty = __webpack_require__("bOdI");
+var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 
-// EXTERNAL MODULE: ./src/assets/image/404_cloud.png
-var _04_cloud = __webpack_require__("zZS3");
-var _04_cloud_default = /*#__PURE__*/__webpack_require__.n(_04_cloud);
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/monitor/index.vue
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/errorPage/404.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -37,31 +162,568 @@ var _04_cloud_default = /*#__PURE__*/__webpack_require__.n(_04_cloud);
 //
 //
 
-
-
-/* harmony default export */ var errorPage_404 = ({
-  name: "page404",
+/* harmony default export */ var monitor = (defineProperty_default()({
   data: function data() {
     return {
-      img_404: _04_default.a,
-      img_404_cloud: _04_cloud_default.a
+      flag: false,
+      startX: 0,
+      endX: 0,
+      slideStyle: {
+        left: 0,
+        transition: "none"
+      },
+      wdpx: 0,
+      stationList: [],
+      firstStation: "",
+      lastStation: "",
+      scrollwidth: 900,
+      minKM: 0,
+      minMileage: 0,
+      totalMileage: 0,
+      every: 0.5,
+      bridgeCheckValue: false,
+      bridgeList: [],
+      tunnelCheckValue: false,
+      tunnelList: [],
+      speedCheckValue: true,
+      speedList: [],
+      alertCheckValue: true,
+      checked5: true,
+      slopeCheckValue: true,
+      slopeList: []
     };
   },
+  created: function created() {
+    this.getProjectProcessMap();
+  },
+  mounted: function mounted() {},
 
-  computed: {
-    message: function message() {
-      return "老板说这个页面你不能进......";
+  methods: {
+    getProjectProcessMap: function getProjectProcessMap() {
+      var _this = this;
+
+      this.request({
+        url: "/monitor/getMointorDatas",
+        method: "get"
+      }).then(function (response) {
+        var data = response.data;
+        if (data.status == 1) {
+          //======站点
+          _this.stationList = data.data.stations;
+          var json = data.data.stations;
+          //找到最大数与最小数公里数
+          var first = json[0];
+          var end = json[0];
+          for (var i = 1; i < json.length; i++) {
+            var tmp = json[i];
+            if (first.start_flag > tmp.start_flag) first = tmp;
+            if (end.start_flag < tmp.start_flag) end = tmp;
+          }
+          _this.scrollwidth = document.documentElement.clientWidth - 510;
+          console.log(_this.scrollwidth);
+          _this.firstStation = json[0].name; // 第一个站
+          _this.lastStation = json[json.length - 1].name; // 最后一个站
+          // 总里程
+          _this.totalMileage = (end.start_flag - first.start_flag) * 1000 + end.start_length - first.start_length;
+          _this.minMileage = first.start_flag * 1000 + first.start_length; //最小里程
+          _this.minKM = first.start_flag; //最小公里
+          console.log("总里程mileage：" + _this.totalMileage + " 最小里程minMileage：" + _this.minMileage + " minKM：" + _this.minKM);
+          //桥 隧道等
+          _this.bridgeList = data.data.bridge_lists; //桥
+          _this.speedList = data.data.speed_lists; //限速区
+          _this.slopeList = data.data.slope_lists; //坡度
+          _this.initCanvas();
+          //  this.getLineType();
+        }
+      });
+    },
+    initCanvas: function initCanvas() {
+      //坐标轴宽度高度
+      var axis_Width = this.totalMileage / 2 + 600;
+      var axis_Height = "680";
+      //标尺起点
+      var axis_Origin = {
+        x: 100,
+        y: axis_Height - 450
+      };
+      var axis_Origin_Two = {
+        x: 100,
+        y: axis_Height - 200
+      };
+      //刻度的间隔
+      var tick_Spacing = 100;
+      //标记数值
+      var num_Horizontal_Ticks = axis_Width / tick_Spacing;
+      //刻度线高度
+      var tick_Height = 8;
+      var everys = this.every; //每米长度等于px
+      var minkm = this.minKM; //最小的公里数
+      var offsetX = 100; //偏移100像素 找不到原因
+      //初始化
+      var canvas = this.$refs.mycanvas;
+      canvas.width = axis_Width;
+      var context = canvas.getContext("2d");
+      //开始
+      function drawAxes() {
+        context.save();
+        context.lineWidth = 10;
+        context.strokeStyle = "#27DB07";
+        context.beginPath();
+        context.moveTo(axis_Origin.x, axis_Origin.y);
+        context.lineTo(axis_Width, axis_Origin.y);
+        context.moveTo(axis_Origin_Two.x, axis_Origin_Two.y);
+        context.lineTo(axis_Width, axis_Origin_Two.y);
+        context.stroke();
+        //drawHorizontalAxis();
+        drawHorizontalAxisTicks(axis_Origin.x, axis_Origin.y);
+        drawHorizontalAxisTicks(axis_Origin_Two.x, axis_Origin_Two.y);
+        context.restore();
+      }
+      //绘制水平的小标
+      function drawHorizontalAxisTicks(axis_Origin_X, axis_Origin_y) {
+        context.lineWidth = 2;
+        context.strokeStyle = "white";
+        var deltaY;
+        for (var i = 1; i < num_Horizontal_Ticks; i++) {
+          context.beginPath();
+          //判断画的是大坐标还是短坐标
+          if (i % 5 == 0) {
+            deltaY = tick_Height;
+            context.moveTo(axis_Origin_X + i * tick_Spacing, axis_Origin_y - deltaY + 13);
+            context.lineTo(axis_Origin_X + i * tick_Spacing, axis_Origin_y + deltaY + 9);
+          } else {
+            deltaY = tick_Height / 2;
+            context.moveTo(axis_Origin_X + i * tick_Spacing, axis_Origin_y - deltaY + 9);
+            context.lineTo(axis_Origin_X + i * tick_Spacing, axis_Origin_y + deltaY + 9);
+          }
+
+          context.stroke();
+        }
+      }
+      //绘制标注
+      function drawAxisLabels(axis_Origin_X, axis_Origin_y) {
+        context.fillStyle = "white";
+        context.textAlign = "center";
+        context.textBaseline = "top";
+        var s = parseInt(minkm) - 1;
+        var num = 0;
+        for (var i = 0; i <= num_Horizontal_Ticks; i++) {
+          if (i % 5 === 0) {
+            s++;
+            context.fillText("ZDK" + s, axis_Origin_X + i * tick_Spacing, axis_Origin_y + 20);
+            num = 0;
+          } else {
+            num++;
+            context.fillText(200 * num, axis_Origin_X + i * tick_Spacing, axis_Origin_y + 20);
+          }
+        }
+      }
+      //绘制地铁站
+      function drawStations(stationListJson) {
+        var json = stationListJson;
+        var img = new Image();
+        img.src = __webpack_require__("mC5q");
+        img.onload = function () {
+          var start = 0;
+          for (var i = 0; i < json.length; i++) {
+            // 绘制站点图
+            var total = parseInt(json[i].start_flag) * 1000 + parseInt(json[i].start_length);
+            //console.log("total：" + total);
+            // 计算当前站点的x轴坐标
+            var startX = (total - parseInt(minkm * 1000)) * everys;
+            context.drawImage(img, startX + 89.5, 105, 22, 120);
+            //站名
+            context.font = "bold 24px Microsoft Yahei";
+            context.fillStyle = "#fff";
+            context.textAlign = "left";
+            var origin = json[i].name;
+            var lens = json[i].name.length;
+            context.fillText(origin, startX + 90, 55);
+            //DK
+            var codes = "DK" + json[i].start_flag + " +" + json[i].start_length;
+            context.fillStyle = "#0AE39A";
+            context.font = "14px Microsoft Yahei";
+            context.fillText(codes, startX + 90, 85);
+          }
+        };
+      }
+      //绘制桥
+      function drawBridgeAxis(bridgeListJson) {
+        var json1 = bridgeListJson;
+        var json = [{
+          id: 7,
+          name: "桥的名称桥的名称",
+          line_type: 1,
+          start_flag: 14,
+          start_length: 200,
+          end_flag: 14,
+          end_length: 800
+        }, {
+          id: 7,
+          name: "桥的名称",
+          line_type: 2,
+          start_flag: 14,
+          start_length: 200,
+          end_flag: 15,
+          end_length: 100
+        }];
+
+        for (var i = 0; i < json.length; i++) {
+          var start = parseInt(json[i].start_flag) * 1000 + parseInt(json[i].start_length);
+          var end = parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
+          var betweenMeters = end - start; //两点之间距离米
+          var startX = (start - parseInt(minkm * 1000)) * everys; //开始值
+          var endX = (end - parseInt(minkm * 1000)) * everys; //结束值
+          var centerX = (endX + startX) / 2; //开始结束平均值
+
+          // console.log(
+          //   "startX：" +
+          //     startX +
+          //     " endX：" +
+          //     endX +
+          //     " centerX：" +
+          //     centerX +
+          //     " betweenMeters：" +
+          //     betweenMeters
+          // );
+
+          context.lineWidth = 2;
+          context.fillStyle = "#ffa918";
+          context.strokeStyle = "#ffa918";
+          var desc = json[i].name + " 共" + betweenMeters + "米";
+          var codes = "DK" + json[i].start_flag + " +" + json[i].start_length + " ~ " + "DK" + json[i].end_flag + " +" + json[i].end_length;
+          if (json[i].line_type == 1) {
+            //画垂直线
+            context.fillRect(centerX + offsetX, axis_Origin.y + 5, 2, 105);
+            //画矩形
+            context.strokeRect(startX + offsetX, axis_Origin.y + 110, betweenMeters * everys, 45);
+            // context.moveTo(startX + offsetX+30, axis_Origin.y + 55) //起点
+            // context.lineTo(startX + offsetX, axis_Origin.y + 105) //终点
+            // context.moveTo(endX + offsetX-30, axis_Origin.y + 55) //起点
+            // context.lineTo(endX + offsetX, axis_Origin.y + 105) //终点
+            // context.stroke();
+            //文字
+            context.font = "13px Microsoft Yahei";
+            context.fillText(desc, centerX + offsetX, axis_Origin.y + 120);
+            context.font = "11px Microsoft Yahei";
+            context.fillStyle = "#fff";
+            context.fillText(codes, centerX + offsetX, axis_Origin.y + 138);
+          } else {
+            //
+            context.fillRect(centerX + offsetX, axis_Origin_Two.y + 5, 2, 105);
+            context.strokeRect(startX + offsetX, axis_Origin_Two.y + 110, betweenMeters * everys, 45);
+            //    context.moveTo(startX + offsetX+30, axis_Origin_Two.y + 60) //起点
+            //   context.lineTo(startX + offsetX, axis_Origin_Two.y + 105) //终点
+            //  context.moveTo(endX + offsetX-30, axis_Origin_Two.y + 60) //起点
+            // context.lineTo(endX + offsetX, axis_Origin_Two.y + 105) //终点
+            // context.stroke();
+            //文字
+            context.font = "13px Microsoft Yahei";
+            context.fillText(desc, centerX + offsetX, axis_Origin_Two.y + 120);
+            context.font = "11px Microsoft Yahei";
+            context.fillStyle = "#fff";
+            context.fillText(codes, centerX + offsetX, axis_Origin_Two.y + 138);
+          }
+
+          //
+        }
+      }
+      //绘隧道
+      function drawTunnelAxis(tunnelListJson) {
+        var json1 = tunnelListJson;
+        var json = [{
+          id: 7,
+          name: "隧道名称一",
+          line_type: 1,
+          start_flag: 15,
+          start_length: 200,
+          end_flag: 15,
+          end_length: 800
+        }, {
+          id: 7,
+          name: "隧道名称二",
+          line_type: 2,
+          start_flag: 14,
+          start_length: 200,
+          end_flag: 16,
+          end_length: 100
+        }];
+
+        for (var i = 0; i < json.length; i++) {
+          var start = parseInt(json[i].start_flag) * 1000 + parseInt(json[i].start_length);
+          var end = parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
+          var betweenMeters = end - start; //两点之间距离米
+          var startX = (start - parseInt(minkm * 1000)) * everys; //开始值
+          var endX = (end - parseInt(minkm * 1000)) * everys; //结束值
+          var centerX = (endX + startX) / 2; //开始结束平均值
+
+          console.log("startX：" + startX + " endX：" + endX + " centerX：" + centerX + " betweenMeters：" + betweenMeters);
+
+          context.lineWidth = 2;
+          context.strokeStyle = "#18DBFF";
+          var desc = json[i].name + " 共" + betweenMeters + "米";
+          var codes = "DK" + json[i].start_flag + " +" + json[i].start_length + " ~ " + "DK" + json[i].end_flag + " +" + json[i].end_length;
+          if (json[i].line_type == 1) {
+            //画垂直线
+            context.fillStyle = "#18DBFF";
+            context.fillRect(startX + offsetX - 1, axis_Origin.y - 45, 2, 40);
+            context.fillRect(endX + offsetX - 1, axis_Origin.y - 45, 2, 40);
+            //画矩形
+            context.strokeRect(startX + offsetX, axis_Origin.y - 90, betweenMeters * everys, 45);
+            //文字
+            context.fillStyle = "#18DBFF";
+            context.font = "13px Microsoft Yahei";
+            context.fillText(desc, centerX + offsetX, axis_Origin.y - 80);
+            context.font = "11px Microsoft Yahei";
+            context.fillStyle = "#fff";
+            context.fillText(codes, centerX + offsetX, axis_Origin.y - 62);
+          } else {
+            //画垂直线
+            context.fillStyle = "#18DBFF";
+            context.fillRect(startX + offsetX - 1, axis_Origin_Two.y - 45, 2, 40);
+            context.fillRect(endX + offsetX - 1, axis_Origin_Two.y - 45, 2, 40);
+
+            //画矩形
+            context.strokeRect(startX + offsetX, axis_Origin_Two.y - 90, betweenMeters * everys, 45);
+            //文字
+            context.font = "13px Microsoft Yahei";
+            context.fillText(desc, centerX + offsetX, axis_Origin_Two.y - 80);
+            context.font = "11px Microsoft Yahei";
+            context.fillStyle = "#fff";
+            context.fillText(codes, centerX + offsetX, axis_Origin_Two.y - 62);
+          }
+
+          //
+        }
+      }
+      //绘制限速区
+      function drawSpeedAxis(speedListJson) {
+        var json1 = speedListJson;
+        var json = [{
+          id: 7,
+          name: "\u9650\u901F",
+          line_type: 1,
+          start_flag: 14,
+          start_length: 200,
+          end_flag: 15,
+          end_length: 400,
+          speed: "5.00"
+        }, {
+          id: 7,
+          name: "\u9650\u901F",
+          line_type: 2,
+          start_flag: 16,
+          start_length: 200,
+          end_flag: 16,
+          end_length: 600,
+          speed: "5.00"
+        }, {
+          id: 7,
+          name: "\u9650\u901F",
+          line_type: 1,
+          start_flag: 30,
+          start_length: 200,
+          end_flag: 32,
+          end_length: 200,
+          speed: "5.00"
+        }];
+
+        for (var i = 0; i < json.length; i++) {
+          var start = parseInt(json[i].start_flag) * 1000 + parseInt(json[i].start_length);
+          var end = parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
+          console.log("start：" + start + " end：" + end);
+          // 计算当前站点的x轴坐标
+          var startX = (start - parseInt(minkm * 1000)) * everys;
+          var endX = (end - parseInt(minkm * 1000)) * everys;
+          //console.log("startX：" + startX + " endX：" + endX);
+          context.strokeStyle = "#FF18D3";
+          context.lineWidth = 10;
+          context.fillStyle = "#FF18D3";
+          context.font = "14px Microsoft Yahei";
+          var desc = json[i].name + json[i].speed + "公里/小时";
+          context.beginPath();
+          if (json[i].line_type == 1) {
+            //画水平直线
+            context.moveTo(startX + offsetX, axis_Origin.y);
+            context.lineTo(endX + offsetX, axis_Origin.y);
+            //文字
+            context.fillText(desc, startX + 160, axis_Origin.y + 35);
+          } else {
+            context.moveTo(startX + offsetX, axis_Origin_Two.y);
+            context.lineTo(endX + offsetX, axis_Origin_Two.y);
+            context.fillText(desc, startX + 160, axis_Origin_Two.y + 35);
+          }
+          context.stroke();
+          //
+        }
+      }
+      //绘制坡度
+      function drawSlopeAxis(slopeListJson) {
+        var json1 = slopeListJson;
+        var json = [{
+          id: 7,
+          name: "\u9650\u901F",
+          line_type: 1,
+          start_flag: 14,
+          start_length: 200,
+          end_flag: 14,
+          end_length: 400,
+          height: "3.00",
+          length: "300"
+        }, {
+          id: 7,
+          name: "\u9650\u901F",
+          line_type: 1,
+          start_flag: 14,
+          start_length: 400,
+          end_flag: 14,
+          end_length: 600,
+          height: "3.00",
+          length: "200"
+        }, {
+          id: 7,
+          name: "\u9650\u901F",
+          line_type: 3,
+          start_flag: 15,
+          start_length: 200,
+          end_flag: 15,
+          end_length: 800,
+          height: "3.00",
+          length: "600"
+        }];
+
+        for (var i = 0; i < json.length; i++) {
+          var start = parseInt(json[i].start_flag) * 1000 + parseInt(json[i].start_length);
+          var end = parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
+          var betweenMeters = end - start; //两点之间距离米
+          var startX = (start - parseInt(minkm * 1000)) * everys; //开始值
+          var endX = (end - parseInt(minkm * 1000)) * everys; //结束值
+          var centerX = (endX + startX) / 2; //开始结束平均值
+
+          console.log("startX：" + startX + " endX：" + endX + " centerX：" + centerX + " betweenMeters：" + betweenMeters);
+
+          context.lineWidth = 2;
+          context.strokeStyle = "#FF5F18";
+          var desc = json[i].name + " 共" + betweenMeters + "米";
+          var codes = "DK" + json[i].start_flag + " +" + json[i].start_length + " ~ " + "DK" + json[i].end_flag + " +" + json[i].end_length;
+          if (json[i].line_type == 1) {
+            //画垂直线
+            context.fillStyle = "#FF5F18";
+
+            context.moveTo(startX + offsetX + 30, axis_Origin.y + 55); //起点
+            context.lineTo(startX + offsetX, axis_Origin.y + 105); //终点
+            context.stroke();
+            // context.fillRect(startX + offsetX - 1, axis_Origin.y - 45, 2, 40);
+            // context.fillRect(endX + offsetX - 1, axis_Origin.y - 45, 2, 40);
+            //画矩形
+            context.strokeRect(startX + offsetX, axis_Origin.y + 90, betweenMeters * everys, 45);
+            //文字
+            context.fillStyle = "#FF5F18";
+            context.font = "13px Microsoft Yahei";
+            context.fillText(desc, centerX + offsetX, axis_Origin.y - 80);
+            context.font = "11px Microsoft Yahei";
+            context.fillStyle = "#fff";
+            context.fillText(codes, centerX + offsetX, axis_Origin.y - 62);
+          } else {
+            //画垂直线
+            context.fillStyle = "#FF5F18";
+            context.fillRect(startX + offsetX - 1, axis_Origin_Two.y - 45, 2, 40);
+            context.fillRect(endX + offsetX - 1, axis_Origin_Two.y - 45, 2, 40);
+
+            //画矩形
+            context.strokeRect(startX + offsetX, axis_Origin_Two.y - 90, betweenMeters * everys, 45);
+            //文字
+            context.font = "13px Microsoft Yahei";
+            context.fillText(desc, centerX + offsetX, axis_Origin_Two.y - 80);
+            context.font = "11px Microsoft Yahei";
+            context.fillStyle = "#fff";
+            context.fillText(codes, centerX + offsetX, axis_Origin_Two.y - 62);
+          }
+
+          //
+        }
+      }
+      //
+      drawAxes();
+      drawAxisLabels(axis_Origin.x, axis_Origin.y);
+      drawAxisLabels(axis_Origin_Two.x, axis_Origin_Two.y);
+      //画地铁站
+      drawStations(this.stationList);
+      //桥
+      if (this.bridgeCheckValue) {
+        drawBridgeAxis(this.bridgeList);
+      }
+      //隧道
+      if (this.tunnelCheckValue) {
+        drawTunnelAxis(this.tunnelList);
+      }
+      //限速区
+      if (this.speedCheckValue) {
+        drawSpeedAxis(this.speedList);
+      }
+      //坡度
+      // if (this.slopeCheckValue) {
+      //   drawSlopeAxis(this.slopeList);
+      // }
+    },
+
+    // =============桥 隧道 限速区 防区 道岔 坡度
+    bridgeCheckSelect: function bridgeCheckSelect() {
+      this.getProjectProcessMap();
+    },
+
+    //隧道
+    tunnelCheckSelect: function tunnelCheckSelect() {
+      this.getProjectProcessMap();
+    },
+
+    //限速区
+    speedCheckSelect: function speedCheckSelect() {
+      this.getProjectProcessMap();
+    },
+
+    //防区
+    alertCheckSelect: function alertCheckSelect() {},
+    slopeCheckSelect: function slopeCheckSelect() {
+      this.getProjectProcessMap();
+    },
+
+    //=====================end 桥
+    //top
+    stationLeftMove: function stationLeftMove() {
+      if (this.wdpx < 0) {
+        this.wdpx += 1;
+      }
+    },
+    stationRightMove: function stationRightMove() {
+      if (this.wdpx > -(this.stationList.length + this.wdpx)) {
+        this.wdpx -= 1;
+      }
+    },
+    scrollPosition: function scrollPosition(start_flag, start_length) {
+      var total = start_flag;
+      var startX = (total - this.minKM) * 1000 * 0.5;
+      console.log(startX);
+      document.querySelector(".group-canvas").scrollTo(startX, 0);
     }
+    //
+
   }
-});
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-20c00c50","hasScoped":true,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/errorPage/404.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticStyle:{"background":"#f0f2f5","margin-top":"-20px","height":"100%"}},[_c('div',{staticClass:"wscn-http404"},[_c('div',{staticClass:"pic-404"},[_c('img',{staticClass:"pic-404__parent",attrs:{"src":_vm.img_404,"alt":"404"}}),_vm._v(" "),_c('img',{staticClass:"pic-404__child left",attrs:{"src":_vm.img_404_cloud,"alt":"404"}}),_vm._v(" "),_c('img',{staticClass:"pic-404__child mid",attrs:{"src":_vm.img_404_cloud,"alt":"404"}}),_vm._v(" "),_c('img',{staticClass:"pic-404__child right",attrs:{"src":_vm.img_404_cloud,"alt":"404"}})]),_vm._v(" "),_c('div',{staticClass:"bullshit"},[_c('div',{staticClass:"bullshit__oops"},[_vm._v("OOPS!")]),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('div',{staticClass:"bullshit__headline"},[_vm._v(_vm._s(_vm.message))]),_vm._v(" "),_c('div',{staticClass:"bullshit__info"},[_vm._v("请检查您输入的网址是否正确，请点击以下按钮返回主页或者发送错误报告")]),_vm._v(" "),_c('a',{staticClass:"bullshit__return-home",attrs:{"href":"/"}},[_vm._v("返回首页")])])])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"bullshit__info"},[_vm._v("版权所有\n                "),_c('a',{staticClass:"link-type",attrs:{"href":"https://www.912zf.com","target":"_blank"}},[_vm._v("912租房网")])])}]
+}, "mounted", function mounted() {
+  var _this2 = this;
+
+  window.addEventListener("resize", function () {
+    _this2.scrollwidth = document.documentElement.clientWidth - 510;
+  });
+}));
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-2d3d127f","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/monitor/index.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"progress"}},[_c('div',{staticClass:"station-top"},[_c('div',{staticClass:"startend"},[_c('div',{staticClass:"sleft"},[_vm._v("\n        "+_vm._s(_vm.firstStation)+"方向\n        "),_c('i',{staticClass:"line-a"})]),_vm._v(" "),_c('div',{staticClass:"stations"},[_c('i',{staticClass:"el-icon-arrow-left",on:{"click":_vm.stationLeftMove}}),_vm._v(" "),_c('div',{staticClass:"item",style:({width:_vm.scrollwidth  + 'px'})},[_c('ul',{style:({width: _vm.stationList.length * 100 + 'px','margin-left': _vm.wdpx * 100 + 'px'})},_vm._l((_vm.stationList),function(item){return _c('li',{key:item.id,on:{"click":function($event){_vm.scrollPosition(item.start_flag,item.start_length)}}},[_vm._v(_vm._s(item.name))])}))]),_vm._v(" "),_c('i',{staticClass:"el-icon-arrow-right",on:{"click":_vm.stationRightMove}})]),_vm._v(" "),_c('div',{staticClass:"sright"},[_vm._v("\n        "+_vm._s(_vm.lastStation)+"方向\n        "),_c('i',{staticClass:"line-b"})])])]),_vm._v(" "),_c('div',{staticClass:"main-canvas"},[_c('div',{staticClass:"group-canvas scrollbar"},[_c('canvas',{ref:"mycanvas",attrs:{"id":"mycanvas","height":"680"}},[_c('p',[_vm._v("您的系统不支持此程序!")])])]),_vm._v(" "),_c('div',{staticClass:"stations-select"},[_c('el-checkbox',{staticClass:"bridgechk",attrs:{"label":"桥","border":""},on:{"change":_vm.bridgeCheckSelect},model:{value:(_vm.bridgeCheckValue),callback:function ($$v) {_vm.bridgeCheckValue=$$v},expression:"bridgeCheckValue"}}),_vm._v(" "),_c('el-checkbox',{staticClass:"tunnelchk",attrs:{"label":"隧道","border":""},on:{"change":_vm.tunnelCheckSelect},model:{value:(_vm.tunnelCheckValue),callback:function ($$v) {_vm.tunnelCheckValue=$$v},expression:"tunnelCheckValue"}}),_vm._v(" "),_c('el-checkbox',{staticClass:"speedchk",attrs:{"label":"限速区","border":""},on:{"change":_vm.speedCheckSelect},model:{value:(_vm.speedCheckValue),callback:function ($$v) {_vm.speedCheckValue=$$v},expression:"speedCheckValue"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"防区","border":""},on:{"change":_vm.alertCheckSelect},model:{value:(_vm.alertCheckValue),callback:function ($$v) {_vm.alertCheckValue=$$v},expression:"alertCheckValue"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"道岔","border":""},model:{value:(_vm.checked5),callback:function ($$v) {_vm.checked5=$$v},expression:"checked5"}}),_vm._v(" "),_c('el-checkbox',{staticClass:"slopechk",attrs:{"label":"坡度","border":""},on:{"change":_vm.slopeCheckSelect},model:{value:(_vm.slopeCheckValue),callback:function ($$v) {_vm.slopeCheckValue=$$v},expression:"slopeCheckValue"}})],1)])])}
+var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var views_errorPage_404 = (esExports);
-// CONCATENATED MODULE: ./src/views/errorPage/404.vue
+/* harmony default export */ var views_monitor = (esExports);
+// CONCATENATED MODULE: ./src/views/monitor/index.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("Fmt0")
+  __webpack_require__("DCd+")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -73,63 +735,37 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-20c00c50"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  errorPage_404,
-  views_errorPage_404,
+  monitor,
+  views_monitor,
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 
-/* harmony default export */ var src_views_errorPage_404 = __webpack_exports__["default"] = (Component.exports);
+/* harmony default export */ var src_views_monitor = __webpack_exports__["default"] = (Component.exports);
 
 
 /***/ }),
 
-/***/ "Fmt0":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("wT8q");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("0b1a541e", content, true);
-
-/***/ }),
-
-/***/ "NvXF":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "static/img/404.a57b6f3.png";
-
-/***/ }),
-
-/***/ "wT8q":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("FZ+f")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.wscn-http404[data-v-20c00c50] {\n  position: relative;\n  width: 1200px;\n  margin: 20px auto 60px;\n  padding: 0 100px;\n  overflow: hidden;\n}\n.wscn-http404 .pic-404[data-v-20c00c50] {\n    position: relative;\n    float: left;\n    width: 600px;\n    padding: 150px 0;\n    overflow: hidden;\n}\n.wscn-http404 .pic-404__parent[data-v-20c00c50] {\n      width: 100%;\n}\n.wscn-http404 .pic-404__child[data-v-20c00c50] {\n      position: absolute;\n}\n.wscn-http404 .pic-404__child.left[data-v-20c00c50] {\n        width: 80px;\n        top: 17px;\n        left: 220px;\n        opacity: 0;\n        -webkit-animation-name: cloudLeft-data-v-20c00c50;\n                animation-name: cloudLeft-data-v-20c00c50;\n        -webkit-animation-duration: 2s;\n                animation-duration: 2s;\n        -webkit-animation-timing-function: linear;\n                animation-timing-function: linear;\n        -webkit-animation-fill-mode: forwards;\n                animation-fill-mode: forwards;\n        -webkit-animation-delay: 1s;\n                animation-delay: 1s;\n}\n.wscn-http404 .pic-404__child.mid[data-v-20c00c50] {\n        width: 46px;\n        top: 10px;\n        left: 420px;\n        opacity: 0;\n        -webkit-animation-name: cloudMid-data-v-20c00c50;\n                animation-name: cloudMid-data-v-20c00c50;\n        -webkit-animation-duration: 2s;\n                animation-duration: 2s;\n        -webkit-animation-timing-function: linear;\n                animation-timing-function: linear;\n        -webkit-animation-fill-mode: forwards;\n                animation-fill-mode: forwards;\n        -webkit-animation-delay: 1.2s;\n                animation-delay: 1.2s;\n}\n.wscn-http404 .pic-404__child.right[data-v-20c00c50] {\n        width: 62px;\n        top: 100px;\n        left: 500px;\n        opacity: 0;\n        -webkit-animation-name: cloudRight-data-v-20c00c50;\n                animation-name: cloudRight-data-v-20c00c50;\n        -webkit-animation-duration: 2s;\n                animation-duration: 2s;\n        -webkit-animation-timing-function: linear;\n                animation-timing-function: linear;\n        -webkit-animation-fill-mode: forwards;\n                animation-fill-mode: forwards;\n        -webkit-animation-delay: 1s;\n                animation-delay: 1s;\n}\n@-webkit-keyframes cloudLeft-data-v-20c00c50 {\n0% {\n    top: 17px;\n    left: 220px;\n    opacity: 0;\n}\n20% {\n    top: 33px;\n    left: 188px;\n    opacity: 1;\n}\n80% {\n    top: 81px;\n    left: 92px;\n    opacity: 1;\n}\n100% {\n    top: 97px;\n    left: 60px;\n    opacity: 0;\n}\n}\n@keyframes cloudLeft-data-v-20c00c50 {\n0% {\n    top: 17px;\n    left: 220px;\n    opacity: 0;\n}\n20% {\n    top: 33px;\n    left: 188px;\n    opacity: 1;\n}\n80% {\n    top: 81px;\n    left: 92px;\n    opacity: 1;\n}\n100% {\n    top: 97px;\n    left: 60px;\n    opacity: 0;\n}\n}\n@-webkit-keyframes cloudMid-data-v-20c00c50 {\n0% {\n    top: 10px;\n    left: 420px;\n    opacity: 0;\n}\n20% {\n    top: 40px;\n    left: 360px;\n    opacity: 1;\n}\n70% {\n    top: 130px;\n    left: 180px;\n    opacity: 1;\n}\n100% {\n    top: 160px;\n    left: 120px;\n    opacity: 0;\n}\n}\n@keyframes cloudMid-data-v-20c00c50 {\n0% {\n    top: 10px;\n    left: 420px;\n    opacity: 0;\n}\n20% {\n    top: 40px;\n    left: 360px;\n    opacity: 1;\n}\n70% {\n    top: 130px;\n    left: 180px;\n    opacity: 1;\n}\n100% {\n    top: 160px;\n    left: 120px;\n    opacity: 0;\n}\n}\n@-webkit-keyframes cloudRight-data-v-20c00c50 {\n0% {\n    top: 100px;\n    left: 500px;\n    opacity: 0;\n}\n20% {\n    top: 120px;\n    left: 460px;\n    opacity: 1;\n}\n80% {\n    top: 180px;\n    left: 340px;\n    opacity: 1;\n}\n100% {\n    top: 200px;\n    left: 300px;\n    opacity: 0;\n}\n}\n@keyframes cloudRight-data-v-20c00c50 {\n0% {\n    top: 100px;\n    left: 500px;\n    opacity: 0;\n}\n20% {\n    top: 120px;\n    left: 460px;\n    opacity: 1;\n}\n80% {\n    top: 180px;\n    left: 340px;\n    opacity: 1;\n}\n100% {\n    top: 200px;\n    left: 300px;\n    opacity: 0;\n}\n}\n.wscn-http404 .bullshit[data-v-20c00c50] {\n    position: relative;\n    float: left;\n    width: 300px;\n    padding: 150px 0;\n    overflow: hidden;\n}\n.wscn-http404 .bullshit__oops[data-v-20c00c50] {\n      font-size: 32px;\n      font-weight: bold;\n      line-height: 40px;\n      color: #1482f0;\n      opacity: 0;\n      margin-bottom: 20px;\n      -webkit-animation-name: slideUp-data-v-20c00c50;\n              animation-name: slideUp-data-v-20c00c50;\n      -webkit-animation-duration: 0.5s;\n              animation-duration: 0.5s;\n      -webkit-animation-fill-mode: forwards;\n              animation-fill-mode: forwards;\n}\n.wscn-http404 .bullshit__headline[data-v-20c00c50] {\n      font-size: 20px;\n      line-height: 24px;\n      color: #1482f0;\n      opacity: 0;\n      margin-bottom: 10px;\n      -webkit-animation-name: slideUp-data-v-20c00c50;\n              animation-name: slideUp-data-v-20c00c50;\n      -webkit-animation-duration: 0.5s;\n              animation-duration: 0.5s;\n      -webkit-animation-delay: 0.1s;\n              animation-delay: 0.1s;\n      -webkit-animation-fill-mode: forwards;\n              animation-fill-mode: forwards;\n}\n.wscn-http404 .bullshit__info[data-v-20c00c50] {\n      font-size: 13px;\n      line-height: 21px;\n      color: grey;\n      opacity: 0;\n      margin-bottom: 30px;\n      -webkit-animation-name: slideUp-data-v-20c00c50;\n              animation-name: slideUp-data-v-20c00c50;\n      -webkit-animation-duration: 0.5s;\n              animation-duration: 0.5s;\n      -webkit-animation-delay: 0.2s;\n              animation-delay: 0.2s;\n      -webkit-animation-fill-mode: forwards;\n              animation-fill-mode: forwards;\n}\n.wscn-http404 .bullshit__return-home[data-v-20c00c50] {\n      display: block;\n      float: left;\n      width: 110px;\n      height: 36px;\n      background: #1482f0;\n      border-radius: 100px;\n      text-align: center;\n      color: #ffffff;\n      opacity: 0;\n      font-size: 14px;\n      line-height: 36px;\n      cursor: pointer;\n      -webkit-animation-name: slideUp-data-v-20c00c50;\n              animation-name: slideUp-data-v-20c00c50;\n      -webkit-animation-duration: 0.5s;\n              animation-duration: 0.5s;\n      -webkit-animation-delay: 0.3s;\n              animation-delay: 0.3s;\n      -webkit-animation-fill-mode: forwards;\n              animation-fill-mode: forwards;\n}\n@-webkit-keyframes slideUp-data-v-20c00c50 {\n0% {\n    -webkit-transform: translateY(60px);\n            transform: translateY(60px);\n    opacity: 0;\n}\n100% {\n    -webkit-transform: translateY(0);\n            transform: translateY(0);\n    opacity: 1;\n}\n}\n@keyframes slideUp-data-v-20c00c50 {\n0% {\n    -webkit-transform: translateY(60px);\n            transform: translateY(60px);\n    opacity: 0;\n}\n100% {\n    -webkit-transform: translateY(0);\n            transform: translateY(0);\n    opacity: 1;\n}\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "zZS3":
+/***/ "mC5q":
 /***/ (function(module, exports) {
 
-module.exports = "data:image/png;base64,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"
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAB4CAYAAAD2SgIRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF7WlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDggNzkuMTY0MDM2LCAyMDE5LzA4LzEzLTAxOjA2OjU3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUuNSAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIwLTAzLTA5VDEzOjM1OjU1KzA4OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMC0wMy0wOVQxMzo0MTowNCswODowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMC0wMy0wOVQxMzo0MTowNCswODowMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo3MmU0NDMyNi05MWZmLWIyNGYtYjBlNC1kMmQ4NDU1ZGM3ZjYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QzFDNDIyOTVGQzIxMTFFNzgyMTFDQzIwRTFCNkNBQjIiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpDMUM0MjI5NUZDMjExMUU3ODIxMUNDMjBFMUI2Q0FCMiIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkMxQzQyMjkyRkMyMTExRTc4MjExQ0MyMEUxQjZDQUIyIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkMxQzQyMjkzRkMyMTExRTc4MjExQ0MyMEUxQjZDQUIyIi8+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjcyZTQ0MzI2LTkxZmYtYjI0Zi1iMGU0LWQyZDg0NTVkYzdmNiIgc3RFdnQ6d2hlbj0iMjAyMC0wMy0wOVQxMzo0MTowNCswODowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIxLjAgKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PrFLz64AAAJLSURBVGiB7dlPiIxxGAfwz7wrrfdg13vAYXv9aXMSSlJOnFBckHLjLMXFwdXBwWEPTpzJxa6EuDlsuTmwCiWZSRG740+7i02tw/sO7/7M2DFJqd+3pul95nk+M/POvM8cplafmtEhK3AEe7EJqzGHV3iOO7iaZ+n7dsO1NnA/TuE0Bjs9a5kPOI+RPEs//w5ei5vYuAgY5jH251n6slVIKg8OYbwHVDkz3mjODoVwP8ZKvJpJnFGc4/7ytqmsTQa9QxhrNGeXVeGT2BY0jmEY5zCBr+VtoqwNYzSY2VZaavWpmQwvMFBpuI6DmG/7xn+mhms4UKl9xPpE8ZWqopM42gWq7DmGd5XaAI4k2B00X8CnLlCQZ+knjATlPQm2BMUb3aKV3AqONydYFRSf9gA/C45XJYoPoJq+HuAlwfG3BG+C4oYe4HDmdYKHQXFfD3A48yRRbKlqjlt8+fxIozk7UM5UczfBFcWWamU1LuruXPfhUjnTygdcThRXSvg9PIyrFl44YZaXPYeD+kiepR9ba3Mp7mNr0PRWccHcVuwIik22DyewMuh/gB15ls5V9/Ea3MO6Dq/wS3nf3+Hxl9iZZ2mdhfu4jl141GGwtTbbZaKKhnAL346zmO6AVDNd9m6vorT/zWtlEIewR7FCqxnFXYz+yY9pu4Qr9McayLO07UB4Kv5aIhzhCEc4whGOcIQjHOEIRzjCEY5whCMc4QhHOMIR/qdwbX5+8T8aG83ZBU15lob/qP2S/+9URDjCEY5whCMc4QhH+P+BvwN7e4CFmUzVxQAAAABJRU5ErkJggg=="
+
+/***/ }),
+
+/***/ "mClu":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__("kM2E");
+// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
+$export($export.S + $export.F * !__webpack_require__("+E39"), 'Object', { defineProperty: __webpack_require__("evD5").f });
+
 
 /***/ })
 
