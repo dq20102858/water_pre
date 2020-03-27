@@ -50,7 +50,7 @@
                 <span>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
               </template>
             </el-table-column>
-            <el-table-column prop="loco_id" label="机车名称"></el-table-column>
+            <el-table-column prop="loco" label="机车名称"></el-table-column>
             <el-table-column prop="speed" label="速度"></el-table-column>
             <el-table-column label="位置">
               <template slot-scope="scope">
