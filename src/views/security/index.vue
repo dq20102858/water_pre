@@ -382,7 +382,7 @@ export default {
       dangerIdValue: 0,
       dangerTypeValue: "",
       diaPeopleFormVisible: false,
-      peopleData: [],
+      peopleData: {},
       assignersList: [],
       peopleRules: {
         user_id: [
