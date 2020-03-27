@@ -18,8 +18,8 @@
             <el-form-item>
               <el-button type="primary" icon="el-icon-plus" @click="openAddDepart">添加部门</el-button>
             </el-form-item>
-            <el-form-item label="公司" label-width="80px">
-              <el-select v-model="search_pid" clearable>
+            <el-form-item>
+              <el-select v-model="search_pid" placeholder="请选择公司" clearable>
                 <el-option
                   v-for="item in this.companySelectList"
                   :key="item.id"
@@ -36,6 +36,7 @@
                 @click="departSearchPage"
                 type="primary"
               >查询</el-button>
+                <el-button size="small"   plain  @click="resetSerach">重置</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -115,7 +116,7 @@
                 <el-radio :label="0">否</el-radio>
               </el-radio-group>
             </el-form-item>
-            <el-form-item label="部门详情：" prop="description">
+            <el-form-item label="部门简介：" prop="description">
               <el-input v-model="departData.description" autocomplete="off" type="textarea"></el-input>
             </el-form-item>
           </el-form>
@@ -218,6 +219,10 @@ export default {
       this.departPage_cur = 1;
       this.getPageLists();
     },
+     resetSerach() {
+      this.search_pid = "";
+      this.getPageLists();
+    },
     openAddDepart() {
       this.departDialogVisible = true;
       this.departDialogTitle = "添加部门信息";
@@ -245,7 +250,7 @@ export default {
                 type: "success",
                 message: "保存成功！"
               });
-              this.getPageLists(2);
+              this.getPageLists();
             }
           });
         }
@@ -283,7 +288,7 @@ export default {
               type: "success",
               message: "删除成功！"
             });
-            this.getPageLists(2);
+            this.getPageLists();
           }
         });
       }).catch(()=>{});
@@ -303,67 +308,7 @@ export default {
         }
       });
     },
-    getDepartLists(val) {
-      this.$set(this.postData, "sub_pid", "");
-      this.$set(this.userData, "depart_id", "");
-      this.$set(this.userData, "post_id", "");
-      this.departSelectLists = [];
-      console.log("this.companyData.sub_pid：" + this.companyData.sub_pid);
-      let pid = val;
-      let type = 2;
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid, type }
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          this.departSelectLists = data.data;
-        }
-      });
-    },
-    getPostLists(pid) {
-      this.$set(this.userData, "post_id", "");
-      let type = 3;
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid, type }
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          this.postSelectLists = data.data;
-        }
-      });
-    },
-    getDepartListSearch(val) {
-      console.log("this.companyData.sub_pid：" + this.companyData.sub_pid);
-      let pid = val;
-      let type = 2;
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid, type }
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          this.departSelectLists = data.data;
-        }
-      });
-    },
-    getPostListSearch(pid) {
-      let type = 3;
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid, type }
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          this.postSelectLists = data.data;
-        }
-      });
-    }
+   
   }
   //
 };

@@ -10,7 +10,6 @@
         <el-menu-item index="departlist">部门列表</el-menu-item>
         <el-menu-item index="postlist">职位列表</el-menu-item>
         <el-menu-item index="userlist">人员列表</el-menu-item>
-                <el-menu-item index="demo">人员列表</el-menu-item>
       </el-menu>
     </div>
     <div class="app-page">
@@ -88,7 +87,7 @@
                 <el-option label="蓝色" :value="6"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="公司详情：" prop="description">
+            <el-form-item label="公司简介：" prop="description">
               <el-input v-model="companyData.description" autocomplete="off" type="textarea"></el-input>
             </el-form-item>
           </el-form>
@@ -201,7 +200,7 @@ export default {
                 type: "success",
                 message: "保存成功！"
               });
-              this.getPageLists(1);
+              this.getPageLists();
             }
           });
         }
@@ -239,7 +238,7 @@ export default {
               type: "success",
               message: "删除成功！"
             });
-            this.getPageLists(1);
+            this.getPageLists();
           }
         });
       }).catch(()=>{});
