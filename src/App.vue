@@ -43,7 +43,7 @@ ul,li{list-style-type: none}
 .blank{height:5px;clear: both;}
 /* hideSidebar */
 #app .sidebar-container{z-index: 500;}
-#app .hideSidebar .submenu-title-noDropdown .el-tooltip{padding:0 5px!important;}
+#app .hideSidebar  #app-menu-items .el-tooltip{padding:0 5px!important;}
 /* bg */
 .app-body-black{background: #000; }
 .app-page{padding: 20px;}
@@ -112,6 +112,17 @@ ul,li{list-style-type: none}
 .el-dialog__headerbtn:hover .el-dialog__close {color: #1d397a;}
 .el-dialog .el-dialog__body{padding: 30px 30px 30px 20px;}
 .el-dialog .el-dialog__footer{padding: 0 30px 30px 30px;}
+
+.el-message-box-new {padding-bottom: 20px;border: #fff;}
+.el-message-box-new  .el-message-box__header{border-radius:6px 6px 0 0; background: #3655a5;text-align: center;padding:12px;}
+.el-message-box-new  .el-message-box__title{  color: #fff;font-size: 18px;}
+.el-message-box-new  .el-message-box__headerbtn{top:12px;}
+.el-message-box-new  .el-message-box__close{top:11px; right:14px; background: #1d397a;border-radius: 100%;height: 22px;width: 22px;padding: 2px;color:#fff;}
+.el-message-box-new  .el-message-box__close:hover{background: #fff;color:#1d397a!important }
+.el-message-box-new  .el-message-box__content{padding:30px 20px;}
+.el-message-box-new  .el-message-box__btns{ text-align: center;}
+.el-message-box-new  .el-message-box__btns  .el-button{padding: 9px 20px;font-size: 14px;border-radius: 4px;}
+.el-message-box-new   .el-button--primary{background: #4b6eca!important;border-color: #4b6eca;}
 /* layer */
 .vl-notify-mask { background-color: #000;opacity: .5;}
 .vl-notify .vl-notice-title{height: 49px!important;line-height:50px!important;border-radius:6px 6px 0 0; background: #3655a5!important;text-align: center;}

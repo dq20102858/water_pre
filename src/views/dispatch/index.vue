@@ -323,6 +323,7 @@ export default {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
+        ,customClass:"el-message-box-new"
       }).then(() => {
         this.request({
           url: "/dispatch/changeStatus",
@@ -339,13 +340,14 @@ export default {
             this.$set(this.dataList[index], "status", 3);
           }
         });
-      });
+      }).catch(()=>{});
     },
     goDel(id) {
       this.$confirm("您确定删除命令?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
+        ,customClass:"el-message-box-new"
       }).then(() => {
         this.request({
           url: "/dispatch/changeStatus",
@@ -362,7 +364,7 @@ export default {
             this.getDataLists();
           }
         });
-      });
+      }).catch(()=>{});
     },
     goPrint: function(id) {
       this.$layer.iframe({

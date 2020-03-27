@@ -159,6 +159,9 @@ export default {
       trainList: []
     };
   },
+  mounted() {
+    document.querySelector("#app-menu-items #menu_location") .classList.add("is-active");
+  },
   created() {
     this.getCompanyList();
     this.getDataList();
@@ -278,6 +281,7 @@ export default {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
+        ,customClass:"el-message-box-new"
       }).then(() => {
         this.request({
           url: "/location/deleteCarDetector",
@@ -293,7 +297,7 @@ export default {
             this.getDataList();
           }
         });
-      });
+      }).catch(()=>{});
     },
     changeTime(time) {
       if (time !== null && time !== undefined && time !== "") {

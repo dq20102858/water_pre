@@ -878,6 +878,7 @@ export default {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
+        ,customClass:"el-message-box-new"
       }).then(() => {
         let data = {
           id: id
@@ -903,7 +904,7 @@ export default {
             });
           }
         });
-      });
+      }).catch(()=>{});
     },
     addOrEditLineDo(data) {
       this.request({
@@ -1116,6 +1117,7 @@ export default {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
+        ,customClass:"el-message-box-new"
       }).then(() => {
         let data = {
           id: id
@@ -1141,7 +1143,7 @@ export default {
             });
           }
         });
-      });
+      }).catch(()=>{});
     },
     addHistory() {
       this.addHistoryVisible = true;

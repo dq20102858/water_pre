@@ -337,6 +337,7 @@ export default {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
+        ,customClass:"el-message-box-new"
       }).then(() => {
         this.request({
           url: "/dispatch/deleteTemplate",
@@ -355,7 +356,7 @@ export default {
             this.$message.error("删除失败");
           }
         });
-      });
+      }).catch(()=>{});
     },
     templateSubmitTempForm(formName) {
       this.$refs[formName].validate(valid => {

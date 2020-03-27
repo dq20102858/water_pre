@@ -33,6 +33,7 @@
               <template scope="scope"><span>{{scope.$index+(page_cur - 1) * page_size + 1}} </span></template>
            </el-table-column>
             <el-table-column prop="name" label="名称"></el-table-column>
+              <el-table-column prop="line" label="线别"></el-table-column>
             <el-table-column prop="position" label="起始里程">
               <template slot-scope="scope">
                 <b>DK</b>
@@ -233,6 +234,9 @@ export default {
       lineTypeList: []
     };
   },
+    mounted() {
+    document.querySelector("#app-menu-items #menu_set") .classList.add("is-active");
+  },
   created() {
     this.getLineTypeLists();
     this.getDataList();
@@ -376,6 +380,7 @@ export default {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
+        ,customClass:"el-message-box-new"
       }).then(() => {
         this.request({
           url: "/search/deleteRoadDevice",
@@ -391,7 +396,7 @@ export default {
             this.getDataList();
           }
         });
-      });
+      }).catch(()=>{});
     }
     //
   }

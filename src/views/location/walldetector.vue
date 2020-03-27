@@ -14,7 +14,7 @@
         <router-link to="walldetector">墙壁探测器</router-link>
         <router-link to="cardetector">车载探测器</router-link>
         <router-link to="locationbind">定位从设备</router-link>
-        <router-link to="device">机具</router-link> -->
+        <router-link to="device">机具</router-link>-->
       </el-menu>
     </div>
     <div class="app-page">
@@ -33,7 +33,9 @@
         <div class="app-table">
           <el-table :data="dataList">
             <el-table-column prop="id" label="序号">
-              <template scope="scope"><span>{{scope.$index+(page_cur - 1) * page_size + 1}} </span></template>
+              <template scope="scope">
+                <span>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
+              </template>
             </el-table-column>
             <el-table-column prop="name" label="名称"></el-table-column>
             <el-table-column prop="number" label="设备编号"></el-table-column>
@@ -214,6 +216,9 @@ export default {
       numberSearch: ""
     };
   },
+  mounted() {
+     document.querySelector("#app-menu-items #menu_location").classList.add("is-active");
+  },
   created() {
     this.getCompanyList();
     this.getLiTypeList();
@@ -242,7 +247,7 @@ export default {
         }
       });
     },
-   
+
     getDataList() {
       let page = this.page_cur;
       let number = this.numberSearch;
@@ -275,7 +280,7 @@ export default {
       this.page_cur = this.page_total;
       this.pageChange(this.page_total);
     },
-     searchEvent() {
+    searchEvent() {
       this.page_cur = 1;
       this.getDataList();
     },
@@ -331,6 +336,7 @@ export default {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
+        ,customClass:"el-message-box-new"
       }).then(() => {
         this.request({
           url: "/location/deleteWallDetector",
@@ -346,7 +352,7 @@ export default {
             this.getDataList();
           }
         });
-      });
+      }).catch(()=>{});
     },
     changeTime(time) {
       if (time !== null && time !== undefined && time !== "") {
@@ -393,5 +399,4 @@ export default {
 .dialog-sebei .el-select {
   width: 100%;
 }
-
 </style>
