@@ -66,22 +66,11 @@
                   list-type="picture-card"
                   :auto-upload="false"
                   ref="uploadRef"
+                  :before-upload="uploadBefore"
                   :on-exceed="uploadExceed"
                   :on-change="uploadChange"
                   :http-request="uploadRequest"
                 >
-                  <!-- <el-upload
-                  :limit="5"
-                  :action="this.uploadAction"
-                  list-type="picture-card"
-                  :on-remove="handleRemove"
-                  :on-success="handleSuccess"
-                  :on-error="handleError"
-                  :before-upload="beforeUpload"
-                  :on-exceed="handleExceed"
-                  :auto-upload="true"
-                  ref="uploadFive"
-                  >-->
                   <i class="el-icon-plus"></i>
                 </el-upload>
                 <el-dialog :visible.sync="dialogVisible">
@@ -300,6 +289,7 @@
                 list-type="picture-card"
                 :auto-upload="false"
                 ref="uploadThreeRef"
+                :before-upload="uploadThreeBefore"
                 :on-exceed="uploadThreeExceed"
                 :on-change="uploadThreeChange"
                 :http-request="uploadThreeRequest"
@@ -334,8 +324,8 @@ export default {
   data() {
     return {
       defaultActive: "1",
-      addPageShow: false,
-      listPageShow: true,
+      addPageShow: true,
+      listPageShow: false,
       setPageShow: false,
       searchForm: {
         type: 1,
@@ -564,17 +554,32 @@ export default {
         message: `最多可以上传5张图片`
       });
     },
-    uploadChange(file, fileList) {
-      let fileName = file.name;
-      let regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
-      if (regex.test(fileName.toLowerCase())) {
-        //this.form.silder_image = file.url;
-      } else {
-        this.$message.error(
-          "请选择图片格式文件.jpg | .jpeg | .gif | .png | .bmp"
-        );
-        this.$refs.uploadRef.clearFiles();
+    uploadBefore(file) {
+      const isJPEG = file.type === "image/jpeg";
+      const isJPG = file.type === "image/jpg";
+      const isPNG = file.type === "image/png";
+      const isGIF = file.type === "image/gif";
+      const isLt2M = file.size / 1024 / 1024 < 2;
+
+      if (!isJPG && !isJPG && !isPNG && !isGIF) {
+        this.$message.error("上传头像图片只能是 jpg  png  gif 格式!");
       }
+      if (!isLt2M) {
+        this.$message.error("上传头像图片大小不能超过 2MB!");
+      }
+      return isJPEG || isJPG || isPNG || (isGIF && isLt2M);
+    },
+    uploadChange(file, fileList) {
+      // let fileName = file.name;
+      // let regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
+      // if (regex.test(fileName.toLowerCase())) {
+      //   //this.form.silder_image = file.url;
+      // } else {
+      //   this.$message.error(
+      //     "请选择图片格式文件.jpg | .jpeg | .gif | .png | .bmp"
+      //   );
+      //   this.$refs.uploadRef.clearFiles();
+      // }
       this.$refs.uploadRef.submit();
     },
     uploadRequest(file) {
@@ -710,6 +715,21 @@ export default {
         type: "warning",
         message: `最多可以上传3张图片`
       });
+    },
+    uploadThreeBefore(file) {
+      const isJPEG = file.type === "image/jpeg";
+      const isJPG = file.type === "image/jpg";
+      const isPNG = file.type === "image/png";
+      const isGIF = file.type === "image/gif";
+      const isLt2M = file.size / 1024 / 1024 < 2;
+
+      if (!isJPG && !isJPG && !isPNG && !isGIF) {
+        this.$message.error("上传头像图片只能是 jpg  png  gif 格式!");
+      }
+      if (!isLt2M) {
+        this.$message.error("上传头像图片大小不能超过 2MB!");
+      }
+      return isJPEG || isJPG || isPNG || (isGIF && isLt2M);
     },
     uploadThreeChange(file, fileList) {
       let fileName = file.name;
