@@ -25,13 +25,7 @@
         </div>
       </div>
     </div>
-    <div class="main-canvas">
-      <div class="group-canvas scrollbar">
-        <canvas id="mycanvas" height="680" ref="mycanvas">
-          <p>您的系统不支持此程序!</p>
-        </canvas>
-      </div>
-      <div class="stations-select">
+        <div class="stations-select">
         <el-checkbox
           class="bridgechk"
           v-model="bridgeCheckValue"
@@ -69,6 +63,13 @@
           border
         ></el-checkbox>
       </div>
+    <div class="main-canvas">
+      <div class="group-canvas scrollbar">
+        <canvas id="mycanvas" height="680" ref="mycanvas">
+          <p>您的系统不支持此程序!</p>
+        </canvas>
+      </div>
+  
     </div>
   </div>
 </template>
@@ -554,8 +555,8 @@ export default {
       }
       //绘制坡度
       function drawSlopeAxis(slopeListJson) {
-        let json1 = slopeListJson;
-        let json = [
+        let json = slopeListJson;
+        let json1 = [
           {
             id: 7,
             name: "\u9650\u901f",
@@ -669,8 +670,8 @@ export default {
           context.strokeStyle = "#FF5F18";
           context.fillStyle = "#FF5F18";
 
-          let slope_height=json[i].height;
-          let slope_length=json[i].length;
+          let slope_height=parseFloat(json[i].height);
+          let slope_length=parseFloat(json[i].length);
           let  slope_center=(betweenMeters * everys)/2;
           //type  1 2 3 代表上坡 平坡 下坡
           if (json[i].line_type == 1) {

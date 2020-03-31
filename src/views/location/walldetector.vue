@@ -169,18 +169,18 @@ export default {
         name: [
           {
             required: true,
-            message: "请输入设备名称2~30个字符",
+            message: "请输入设备名称2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
         ],
         number: [
           {
             required: true,
-            message: "请输入设备编号2~30个字符",
+            message: "请输入设备编号2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
         ],
         line_type: [
           { required: true, message: "请选择线路", trigger: "change" }

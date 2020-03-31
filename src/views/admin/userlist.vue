@@ -336,7 +336,6 @@ export default {
           let url = "/user/addUser";
           let baseid = this.userData.id;
           console.log("this.userData.id：" + this.userData.id);
-          debugger;
           if (typeof baseid != "undefined") {
             url = "/user/editUser";
             let pwdEdit = this.userData.passwordEdit;

@@ -40,7 +40,7 @@
               <el-input
                 v-model="searchForm.keyword"
                 autocomplete="off"
-                placeholder="输入编号或被绑定对象名"
+                placeholder="按编号/被绑定名称"
                 clearable
               ></el-input>
             </el-form-item>
@@ -119,15 +119,20 @@
         </el-form-item>
         <div v-if="locationData.id>0">
           <el-form-item label="设备类型：" prop="type">
-            <el-select v-model="locationData.type" placeholder="请选择" clearable disabled>
+            <el-select v-model="locationData.type" placeholder="请选择" disabled>
               <el-option label="人" :value="1"></el-option>
               <el-option label="车" :value="2"></el-option>
               <el-option label="机具" :value="3"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="绑定对象：" prop="bind_obj">
-            <el-select v-model="locationData.bind_obj" placeholder="请选择" clearable>
-              <el-option label="heekey" :value="12"></el-option>
+          <el-form-item label="被绑定对象：" prop="bind_obj">
+            <el-select v-model="locationData.bind_obj" placeholder="请选择">
+              <el-option
+                v-for="item in objSelectLists"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id"
+              ></el-option>
             </el-select>
           </el-form-item>
         </div>
@@ -165,7 +170,7 @@
             <el-form-item label="所属部门：" prop="sub_pid">
               <el-select v-model="locationData.sub_pid" @change="selectDepartLists($event)">
                 <el-option
-                  v-for="item in this.departSelectLists"
+                  v-for="item in departSelectLists"
                   :key="item.id"
                   :label="item.name"
                   :value="item.id"
@@ -175,7 +180,7 @@
             <el-form-item label="所属职位：">
               <el-select v-model="locationData.post_pid" @change="selectPostLists($event)">
                 <el-option
-                  v-for="item in this.postSelectLists"
+                  v-for="item in postSelectLists"
                   :key="item.id"
                   :label="item.name"
                   :value="item.id"
@@ -183,19 +188,19 @@
               </el-select>
             </el-form-item>
           </div>
-          <el-form-item label="绑定对象：" prop="bind_obj">
+          <el-form-item label="被绑定对象：" prop="bind_obj">
             <el-select v-model="locationData.bind_obj" placeholder="请选择">
               <el-option
-                v-for="item in this.objSelectLists"
+                v-for="item in objSelectLists"
                 :key="item.id"
-                :label="item.name"
                 :value="item.id"
+                :label="item.name"
               ></el-option>
             </el-select>
           </el-form-item>
         </div>
         <!-- </div> -->
-
+        <div v-html="locationData.type"></div>
         <div class="blank"></div>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -222,21 +227,13 @@ export default {
         type: [
           { required: true, message: "请选择设备类型：", trigger: "change" }
         ],
-        name: [
-          {
-            required: true,
-            message: "请输入设备名称2~30个字符",
-            trigger: "blur"
-          },
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
-        ],
         number: [
           {
             required: true,
-            message: "请输入设备编号2~30个字符",
+            message: "请输入设备编号2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到30个字符", trigger: "blur" }
         ],
         sub_pid: [
           { required: true, message: "请选择所属部门：", trigger: "change" }
@@ -355,6 +352,7 @@ export default {
       });
     },
     goEdit(id) {
+      this.objSelectLists = [];
       this.diaLogTitle = "修改设备信息";
       this.diaLogFormVisible = true;
       this.request({
@@ -364,7 +362,28 @@ export default {
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
+          //人 车 机具
+          if (data.data.type == 1) {
+            this.request({
+              url: "/user/getUserDetial",
+              method: "get",
+              params: { id: data.data.bind_obj }
+            }).then(response => {
+              let res = response.data;
+              if (res.status == 1) {
+                this.selectPostLists(res.data.post_id, 1);
+              }
+            });
+
+            // 
+          } else if (data.data.type == 2) {
+            this.getTrainList(data.data.depart_id, 1);
+          } else {
+            this.getTrainList(data.data.depart_id, 2);
+          }
+
           this.locationData = data.data;
+          this.locationData.bind_obj = parseInt(data.data.bind_obj);
         }
       });
     },
@@ -455,7 +474,8 @@ export default {
     },
     //选择职位
     selectPostLists(val) {
-      this.$set(this.locationData, "bind_obj", "");
+      this.objSelectLists = [];
+      //this.$set(this.locationData, "bind_obj", "");
       this.request({
         url: "/user/getUserByDepart",
         method: "get",
@@ -467,8 +487,17 @@ export default {
         }
       });
     },
-    //获取车辆
+
+    //     //获取用户信息
+    //  getUserPostIdbyId(val) {
+    //       this.objSelectLists = [];
+    //       //this.$set(this.locationData, "bind_obj", "");
+
+    //     },
+
+    //获取车辆和人员
     getTrainList(val, type) {
+      this.objSelectLists = [];
       this.request({
         url: "/common/getLocosByDepart",
         method: "get",

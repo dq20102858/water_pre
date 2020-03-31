@@ -109,10 +109,13 @@ export default {
         name: [
           {
             required: true,
-            message: "请输入机具名称2~60个字符",
+            message: "请输入机具名称2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 60, message: "长度在2到60个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
+        ],
+           description: [,
+          { min: 0, max: 200, message: "长度在0到200个字符", trigger: "blur" }
         ]
       },
       page_cur: 1,

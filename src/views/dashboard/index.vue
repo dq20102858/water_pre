@@ -1,14 +1,13 @@
 <template>
   <div class="app-video">
-    <div class="app-topbar">
-      <ul>
-        <li class="active">视图</li>
-        <!-- <li>云台控制</li>
-        <li>设置</li> -->
-      </ul>
+ <div class="el-menu-top">
+      <el-menu  mode="horizontal">
+        <li class="ptitle">
+          <img :src="require('@/assets/image/icon-dashboard.png')" />视频监控
+        </li>
+      </el-menu>
     </div>
     <div class="app-page">
-
       <el-row :gutter="20">
         <el-col :span="6" v-for="(item,i) in videoList" :key="i">
           <div class="grid-content">
@@ -105,29 +104,5 @@ export default {
   border-radius: 4px;
   margin-bottom: 20px;
 }
-.app-topbar {
-  height: 50px;
-  background: #fff;
-  text-align: center;
-}
-.grid-title {
-  color: #1d397a;
-  text-align: right;
-  line-height: 28px;
-}
-.app-topbar ul {
-  margin: 0 auto;
-}
-.app-topbar li {
-  color: #1d397a;
-  display: inline-block;
-  font-size: 16px;
-  line-height: 50px;
-  padding: 0 30px;
-  cursor: 0;
-}
-.app-topbar li.active {
-  background: #4b6eca;
-  color: #fff;
-}
+
 </style>

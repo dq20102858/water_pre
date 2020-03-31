@@ -22,10 +22,7 @@
               <el-button type="primary" icon="el-icon-plus" @click="goAdd">添加坡度</el-button>
             </el-form-item>
             <div class="el-serach">
- <el-select
-                v-model="search_line_type"
-                placeholder="请选择线别" clearable=""
-              >
+              <el-select v-model="search_line_type" placeholder="请选择线别" clearable>
                 <el-option
                   v-for="item in lineTypeList"
                   :key="item.id"
@@ -72,7 +69,9 @@
               <template slot-scope="scope">{{parseFloat(scope.row.length)}}</template>
             </el-table-column>
             <el-table-column prop="create_time" label="创建时间"></el-table-column>
-            <el-table-column prop="update_time" label="修改时间"></el-table-column>
+            <el-table-column prop="update_time" label="修改时间" :formatter="timestampToTime">
+              <!-- <template slot-scope="scope">{{timestampToTime(update_time)}}</template> -->
+            </el-table-column>
             <el-table-column label="操作" width="120">
               <template slot-scope="scope">
                 <div class="app-operation">
@@ -115,7 +114,7 @@
               <el-select
                 v-model="formData.line_type"
                 placeholder="请选择"
-                @change="selectLineType($event)" 
+                @change="selectLineType($event)"
               >
                 <el-option
                   v-for="item in lineTypeList"
@@ -196,7 +195,7 @@ export default {
     return {
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
-      search_line_type:"",
+
       formData: { type: 1 },
       formRules: {
         line_type: [
@@ -268,7 +267,7 @@ export default {
       page_size: 20,
       page_total: 0,
       dataList: [],
-      searchName: "",
+      search_line_type: "",
       lineTypeStart: "",
       lineTypeEnd: "",
       lineTypeDes: "",
@@ -287,14 +286,14 @@ export default {
   methods: {
     getDataList() {
       let page = this.page_cur;
-      let name = this.search_line_type;
+      let line_type = this.search_line_type;
       let road_type = 3; //1桥，2隧道，3坡度，4防区，5限速
       this.request({
         url: "/search/getRoadDevicePages",
         method: "get",
         params: {
           page,
-          name,
+          line_type,
           road_type
         }
       }).then(res => {
@@ -417,7 +416,7 @@ export default {
               this.lineTypeDes = "里程范围：" + item.tip;
               this.lineTypeStart = item.start;
               this.lineTypeEnd = item.end;
-              this.formData.height=parseFloat(data.data.height);
+              this.formData.height = parseFloat(data.data.height);
             }
           });
         }
@@ -448,22 +447,14 @@ export default {
         })
         .catch(() => {});
     },
-    changeStarttime() {
-      if (this.workData.start_time >= this.workData.end_time) {
-        this.$message.error("开始日期不能大于结束日期");
-        this.workData.start_time = "";
+      timestampToTime(row, column){
+           let data = row[column.property]
+                if(data == null) {
+                    return null
+                }
+           let dt = new Date(data*1000)
+           return dt.getFullYear() + '-' + (dt.getMonth() + 1) + '-' + dt.getDate() + ' ' + dt.getHours() + ':' + dt.getMinutes() + ':' + dt.getSeconds()
       }
-    },
-    changeEndtime() {
-      var start_time = new Date(this.workData.start_time);
-      var end_time = new Date(this.workData.end_time);
-      //alert(start_time);
-      //alert(end_time);
-      if (end_time <= start_time) {
-        this.$message.error("结束日期不能小于开始日期");
-        this.workData.end_time = "";
-      }
-    }
     //
   }
 };

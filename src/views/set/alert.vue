@@ -35,13 +35,13 @@
             </el-table-column>
             <el-table-column prop="name" label="名称"></el-table-column>
             <el-table-column prop="line" label="线别"></el-table-column>
-            <el-table-column label="起始里程">
+            <el-table-column label="起始里程(米)">
               <template slot-scope="scope">
                 <b>DK</b>
                 {{scope.row.start_flag}} + {{scope.row.start_length}}
               </template>
             </el-table-column>
-            <el-table-column label="结束里程">
+            <el-table-column label="结束里程(米)">
               <template slot-scope="scope">
                 <b>DK</b>
                 {{scope.row.end_flag}} + {{scope.row.end_length}}
@@ -398,9 +398,9 @@ export default {
               this.lineTypeDes = "里程范围：" + item.tip;
               this.lineTypeStart = item.start;
               this.lineTypeEnd = item.end;
-               var timestamp= new Date( data.data.end_time);
-               console.log("timestamp:"+timestamp);
-               this.formData.end_time=timestamp;
+              var timestamp = new Date(data.data.end_time);
+              console.log("timestamp:" + timestamp);
+              this.formData.end_time = timestamp;
             }
           });
         }

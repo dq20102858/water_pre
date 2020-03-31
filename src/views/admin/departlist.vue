@@ -170,7 +170,7 @@ export default {
           { min: 2, max: 500, message: "长度在2到500个字符", trigger: "blur" }
         ]
       },
-      search_pid: "",
+      search_pid: '',
       companySelectList: [],
       departSelectLists: [],
       postSelectLists: []

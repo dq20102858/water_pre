@@ -52,7 +52,7 @@
             <el-table-column prop="line" label="线别"></el-table-column>
             <el-table-column prop="company" label="公司"></el-table-column>
             <el-table-column prop="create_time" label="创建时间"></el-table-column>
-            <el-table-column prop="update_time" label="修改时间"></el-table-column>
+            <el-table-column prop="update_time" label="修改时间" :formatter="timestampToTime"></el-table-column>
             <el-table-column label="操作" width="120">
               <template slot-scope="scope">
                 <div class="app-operation">
@@ -317,6 +317,7 @@ export default {
               this.lineTypeDes = "里程范围：" + item.tip;
               this.lineTypeStart = item.start;
               this.lineTypeEnd = item.end;
+              this.formData.position=parseFloat(data.data.position);
             }
           });
         }
@@ -346,7 +347,15 @@ export default {
           });
         })
         .catch(() => {});
-    }
+    },
+         timestampToTime(row, column){
+           let data = row[column.property]
+                if(data == null) {
+                    return null
+                }
+           let dt = new Date(data*1000)
+           return dt.getFullYear() + '-' + (dt.getMonth() + 1) + '-' + dt.getDate() + ' ' + dt.getHours() + ':' + dt.getMinutes() + ':' + dt.getSeconds()
+      }
     //
   }
 };

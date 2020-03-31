@@ -85,9 +85,9 @@
         <div class="app-table">
           <el-table :data="dataList">
             <el-table-column prop="id" label="序号"></el-table-column>
-            <el-table-column prop="id" label="姓名"></el-table-column>
-            <el-table-column prop="id" label="公司名称"></el-table-column>
-            <el-table-column prop="id" label="在线时长"></el-table-column>
+            <el-table-column prop="name" label="姓名"></el-table-column>
+            <el-table-column prop="company" label="公司名称"></el-table-column>
+            <el-table-column prop="num" label="在线时长"></el-table-column>
             <el-table-column prop="id" label="出入场次数查询"></el-table-column>
           </el-table>
           <div class="app-pagination">
