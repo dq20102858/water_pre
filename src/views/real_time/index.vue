@@ -30,14 +30,23 @@
               </el-select>
             </el-form-item>
             <el-form-item label="开始时间">
-              <el-date-picker v-model="searchForm.start_time" type="date"></el-date-picker>
+              <el-date-picker
+                v-model="searchForm.start_time"
+                :picker-options="pickerOptionsStart"
+                type="date"
+              ></el-date-picker>
             </el-form-item>
             <el-form-item label="结束时间">
-              <el-date-picker v-model="searchForm.end_time" type="date"></el-date-picker>
+              <el-date-picker
+                v-model="searchForm.end_time"
+                :picker-options="pickerOptionsEnd"
+                type="date"
+              ></el-date-picker>
             </el-form-item>
             <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
               <el-button size="small" icon="el-icon-search" type="primary" @click="pageSearch">查询</el-button>
+              <el-button size="small" plain @click="resetSerach">重置</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -90,6 +99,24 @@
 export default {
   data() {
     return {
+      pickerOptionsStart: {
+        disabledDate: time => {
+          if (this.searchForm.end_time) {
+            return (
+              time.getTime() > new Date(this.searchForm.end_time).getTime()
+            );
+          }
+        }
+      },
+      pickerOptionsEnd: {
+        disabledDate: time => {
+          if (this.searchForm.start_time) {
+            return (
+              time.getTime() < new Date(this.searchForm.start_time).getTime()
+            );
+          }
+        }
+      },
       searchForm: {},
       page_cur: 1,
       page_items: 0,
@@ -159,28 +186,39 @@ export default {
       this.page_cur = 1;
       this.getDataList();
     },
+    resetSerach() {
+      this.searchForm = {
+        loco_id: "",
+        alert_type: "",
+        start_time: "",
+        end_time: ""
+      };
+      this.getDataList();
+    },
     goDel(id) {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
-        ,customClass:"el-message-box-new"
-      }).then(() => {
-        this.request({
-          url: "/search/deleteAlert",
-          method: "post",
-          data: { id: id }
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.$message({
-              type: "success",
-              message: "删除成功！"
-            });
-            this.getDataList();
-          }
-        });
-      }).catch(()=>{});
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/search/deleteAlert",
+            method: "post",
+            data: { id: id }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "删除成功！"
+              });
+              this.getDataList();
+            }
+          });
+        })
+        .catch(() => {});
     }
     //
   }

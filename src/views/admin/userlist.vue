@@ -318,7 +318,10 @@ export default {
       this.getUserLists();
     },
     resetSerach() {
-      this.userSearch = {};
+    this.userSearch.user_name="";
+     this.userSearch.company_id="";
+    this.userSearch.depart_id="";
+      this.userSearch.post_id="";
       this.getUserLists();
     },
     openAddUser() {

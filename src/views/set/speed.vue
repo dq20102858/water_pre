@@ -234,8 +234,8 @@ export default {
             trigger: "blur"
           },
           {
-            pattern: /^\d{1,3}$/,
-            message: "请输入1-3位正整数",
+            pattern:/^\d{0,3}.\d{0,2}$/,
+            message: "请输入1-3位带小数点的数字",
             trigger: "blur"
           }
         ]
@@ -373,7 +373,7 @@ export default {
       });
     },
     goEdit(id) {
-      this.title = "修改信息";
+      this.diaLogTitle = "修改信息";
       this.diaLogFormVisible = true;
 
       this.request({
@@ -398,7 +398,8 @@ export default {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
+        type: "warning",
+          customClass:"el-message-box-new"
       }).then(() => {
         this.request({
           url: "/search/deleteRoadDevice",
@@ -413,7 +414,7 @@ export default {
             });
             this.getDataList();
           }
-        });
+        }).catch(()=>{});
       }).catch(()=>{});
     }
     //

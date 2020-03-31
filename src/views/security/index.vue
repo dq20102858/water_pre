@@ -7,7 +7,7 @@
         </li>
         <el-menu-item index="1">添加事件</el-menu-item>
         <el-menu-item index="2">事件管理</el-menu-item>
-        <el-menu-item index="3">设置</el-menu-item>
+        <!-- <el-menu-item index="3">设置</el-menu-item> -->
       </el-menu>
     </div>
     <div class="app-page">
@@ -159,7 +159,7 @@
               <el-form-item class="form-so">
                 <label class="el-form-item__label"></label>
                 <el-button size="small" icon="el-icon-search" @click="pageSearch" type="primary">查询</el-button>
-              </el-form-item>
+           <el-button size="small" plain @click="resetSerach">重置</el-button>   </el-form-item>
             </el-form>
           </div>
           <div class="app-table">
@@ -355,7 +355,7 @@ export default {
           { required: true, message: "请选择公司", trigger: "change" }
         ],
         admin_id: [
-          { required: true, message: "请选择公司", trigger: "change" }
+          { required: true, message: "请选择人员", trigger: "change" }
         ],
         title: [
           {

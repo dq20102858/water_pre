@@ -22,7 +22,17 @@
               <el-button type="primary" icon="el-icon-plus" @click="goAdd">添加坡度</el-button>
             </el-form-item>
             <div class="el-serach">
-              <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable></el-input>
+ <el-select
+                v-model="search_line_type"
+                placeholder="请选择线别" clearable=""
+              >
+                <el-option
+                  v-for="item in lineTypeList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
               <el-button @click="searchEvent">查询</el-button>
             </div>
           </el-form>
@@ -43,20 +53,24 @@
                 <span v-if="scope.row.type==3">下坡</span>
               </template>
             </el-table-column>
-            <el-table-column label="起始里程">
+            <el-table-column label="起始里程(米)">
               <template slot-scope="scope">
                 <b>DK</b>
                 {{scope.row.start_flag}} + {{scope.row.start_length}}
               </template>
             </el-table-column>
-            <el-table-column label="结束里程">
+            <el-table-column label="结束里程(米)">
               <template slot-scope="scope">
                 <b>DK</b>
                 {{scope.row.end_flag}} + {{scope.row.end_length}}
               </template>
             </el-table-column>
-            <el-table-column prop="height" label="高度"></el-table-column>
-            <el-table-column prop="length" label="长度"></el-table-column>
+            <el-table-column prop="height" label="高度(米)">
+              <template slot-scope="scope">{{parseFloat(scope.row.height)}}</template>
+            </el-table-column>
+            <el-table-column prop="length" label="长度(米)">
+              <template slot-scope="scope">{{parseFloat(scope.row.length)}}</template>
+            </el-table-column>
             <el-table-column prop="create_time" label="创建时间"></el-table-column>
             <el-table-column prop="update_time" label="修改时间"></el-table-column>
             <el-table-column label="操作" width="120">
@@ -101,7 +115,7 @@
               <el-select
                 v-model="formData.line_type"
                 placeholder="请选择"
-                @change="selectLineType($event)"
+                @change="selectLineType($event)" 
               >
                 <el-option
                   v-for="item in lineTypeList"
@@ -122,9 +136,9 @@
             <el-form-item label="高度：" prop="height">
               <el-input v-model="formData.height" autocomplete="off"></el-input>
             </el-form-item>
-            <el-form-item label="长度：" prop="length">
+            <!-- <el-form-item label="长度：" prop="length">
               <el-input v-model="formData.length" autocomplete="off"></el-input>
-            </el-form-item>
+            </el-form-item>-->
             <el-form-item label="开始里程：" class="el-form-item-inlines is-required">
               <el-form-item prop="start_flag">
                 <b>DK</b>
@@ -182,6 +196,7 @@ export default {
     return {
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
+      search_line_type:"",
       formData: { type: 1 },
       formRules: {
         line_type: [
@@ -242,20 +257,8 @@ export default {
             trigger: "blur"
           },
           {
-            pattern: /^\d{1,3}$/,
-            message: "请输入1-3位正整数",
-            trigger: "blur"
-          }
-        ],
-        length: [
-          {
-            required: true,
-            message: "请输入长度",
-            trigger: "blur"
-          },
-          {
-            pattern: /^\d{1,3}$/,
-            message: "请输入1-3位正整数",
+            pattern: /^\d{0,3}.\d{0,2}$/,
+            message: "请输入1-3位带小数点的数字",
             trigger: "blur"
           }
         ]
@@ -272,8 +275,10 @@ export default {
       lineTypeList: []
     };
   },
-   mounted() {
-    document.querySelector("#app-menu-items #menu_set") .classList.add("is-active");
+  mounted() {
+    document
+      .querySelector("#app-menu-items #menu_set")
+      .classList.add("is-active");
   },
   created() {
     this.getLineTypeLists();
@@ -282,7 +287,7 @@ export default {
   methods: {
     getDataList() {
       let page = this.page_cur;
-      let name = this.searchName;
+      let name = this.search_line_type;
       let road_type = 3; //1桥，2隧道，3坡度，4防区，5限速
       this.request({
         url: "/search/getRoadDevicePages",
@@ -353,7 +358,7 @@ export default {
         if (valid) {
           let data = that.formData;
           this.formData.road_type = 3; //1桥，2隧道，3坡度，4防区，5限速
-          this.formData.name="坡度";
+          this.formData.name = "坡度";
           // //里程判断
           let startTotal =
             parseInt(data.start_flag * 1000) + parseInt(data.start_length);
@@ -373,6 +378,7 @@ export default {
             this.$message.error("输入的结束里程不能小于结束里程");
             return false;
           }
+          this.formData.length = endTotal - startTotal;
           this.request({
             url: "/search/addOrEditRoadDevice",
             method: "post",
@@ -396,7 +402,7 @@ export default {
       });
     },
     goEdit(id) {
-      this.title = "修改信息";
+      this.diaLogTitle = "修改信息";
       this.diaLogFormVisible = true;
       this.request({
         url: "/search/getRoadDeviceDetail",
@@ -411,6 +417,7 @@ export default {
               this.lineTypeDes = "里程范围：" + item.tip;
               this.lineTypeStart = item.start;
               this.lineTypeEnd = item.end;
+              this.formData.height=parseFloat(data.data.height);
             }
           });
         }
@@ -420,24 +427,26 @@ export default {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
-        ,customClass:"el-message-box-new"
-      }).then(() => {
-        this.request({
-          url: "/search/deleteRoadDevice",
-          method: "post",
-          data: { id: id }
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.$message({
-              type: "success",
-              message: "删除成功！"
-            });
-            this.getDataList();
-          }
-        });
-      }).catch(()=>{});
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/search/deleteRoadDevice",
+            method: "post",
+            data: { id: id }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "删除成功！"
+              });
+              this.getDataList();
+            }
+          });
+        })
+        .catch(() => {});
     },
     changeStarttime() {
       if (this.workData.start_time >= this.workData.end_time) {

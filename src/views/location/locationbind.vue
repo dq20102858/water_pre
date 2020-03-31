@@ -19,7 +19,7 @@
             <el-form-item>
               <el-button type="primary" icon="el-icon-plus" @click="addDialogInfo">添加设备</el-button>
             </el-form-item>
-            <el-form-item label="公司">
+            <el-form-item>
               <el-select v-model="searchForm.depart_id" placeholder="请选择公司" clearable>
                 <el-option
                   v-for="item in companySelectLists"
@@ -29,19 +29,25 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="类型">
-              <el-select v-model="searchForm.type" placeholder="请选择公司" clearable>
+            <el-form-item>
+              <el-select v-model="searchForm.type" placeholder="请选择类型" clearable>
                 <el-option label="人" value="1"></el-option>
                 <el-option label="车" value="2"></el-option>
                 <el-option label="机具" value="3"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="编号或名称">
-              <el-input v-model="searchForm.keyword" autocomplete="off"></el-input>
+            <el-form-item label>
+              <el-input
+                v-model="searchForm.keyword"
+                autocomplete="off"
+                placeholder="输入编号或被绑定对象名"
+                clearable
+              ></el-input>
             </el-form-item>
             <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
               <el-button size="small" icon="el-icon-search" @click="pageSearch" type="primary">查询</el-button>
+              <el-button size="small" plain @click="resetSerach">重置</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -259,7 +265,9 @@ export default {
     };
   },
   mounted() {
-     document.querySelector("#app-menu-items #menu_location").classList.add("is-active");
+    document
+      .querySelector("#app-menu-items #menu_location")
+      .classList.add("is-active");
   },
   created() {
     this.getCompanyLists();
@@ -306,7 +314,14 @@ export default {
       this.page_cur = 1;
       this.getDataList();
     },
-
+    resetSerach() {
+      this.searchForm = {
+        depart_id: "",
+        type: "",
+        keyword: ""
+      };
+      this.getDataList();
+    },
     addDialogInfo() {
       this.locationData = {};
       this.diaLogTitle = "添加设备信息";
@@ -357,24 +372,26 @@ export default {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
-        ,customClass:"el-message-box-new"
-      }).then(() => {
-        this.request({
-          url: "/location/deleteBind",
-          method: "post",
-          data: { id: id }
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.$message({
-              type: "success",
-              message: "删除成功！"
-            });
-            this.getDataList();
-          }
-        });
-      }).catch(()=>{});
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/location/deleteBind",
+            method: "post",
+            data: { id: id }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "删除成功！"
+              });
+              this.getDataList();
+            }
+          });
+        })
+        .catch(() => {});
     },
     //公司 部门 职位
     selectDeviceType(val) {
@@ -407,7 +424,7 @@ export default {
       this.request({
         url: "/company/getDepartLists",
         method: "get",
-        params: { pid:val, type:2 }
+        params: { pid: val, type: 2 }
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
@@ -428,7 +445,7 @@ export default {
       this.request({
         url: "/company/getDepartLists",
         method: "get",
-        params: { pid:val, type:3 }
+        params: { pid: val, type: 3 }
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
@@ -442,7 +459,7 @@ export default {
       this.request({
         url: "/user/getUserByDepart",
         method: "get",
-        params: { id:val, type:2 }
+        params: { id: val, type: 2 }
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
