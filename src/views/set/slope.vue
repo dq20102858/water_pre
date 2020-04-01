@@ -133,7 +133,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="高度：" prop="height">
-              <el-input v-model="formData.height" autocomplete="off"></el-input>
+              <el-input v-model="formData.height" autocomplete="off" placeholder="请输入高度米"></el-input>
             </el-form-item>
             <!-- <el-form-item label="长度：" prop="length">
               <el-input v-model="formData.length" autocomplete="off"></el-input>
@@ -256,8 +256,8 @@ export default {
             trigger: "blur"
           },
           {
-            pattern: /^\d{0,3}.\d{0,2}$/,
-            message: "请输入1-3位带小数点的数字",
+            pattern: /^\d{1,3}.\d{0,2}$/,
+            message: "请输入1-3位可带两位小数点的数字",
             trigger: "blur"
           }
         ]

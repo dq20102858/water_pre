@@ -117,10 +117,10 @@
           </el-select>
         </el-form-item>
         <el-form-item label="设备名称：" prop="name">
-          <el-input v-model="detectorData.name" autocomplete="off"></el-input>
+          <el-input v-model="detectorData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
         </el-form-item>
         <el-form-item label="设备编号：" prop="number">
-          <el-input v-model="detectorData.number" autocomplete="off"></el-input>
+          <el-input v-model="detectorData.number" autocomplete="off"  maxlength="20" show-word-limit></el-input>
         </el-form-item>
         <el-form-item label="设定线路" prop="line_type">
           <el-select v-model="detectorData.line_type" placeholder="请选择" clearable>
@@ -135,11 +135,29 @@
         <el-form-item label="IP地址：" prop="ip">
           <el-input v-model="detectorData.ip" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="所在位置：" class="el-form-item-inline">
-          <b>DK</b>
+        <el-form-item label="所在位置："  class="el-form-item-inlines is-required">
+            <el-form-item prop="start_flag">
+                <b>DK</b>
+                <el-input
+                  v-model="detectorData.start_flag"
+                  autocomplete="off"
+                  placeholder="公里"
+                  maxlength="3"
+                ></el-input>
+              </el-form-item>
+              <el-form-item prop="start_length">
+                <b>+</b>
+                <el-input
+                  v-model="detectorData.start_length"
+                  autocomplete="off"
+                  placeholder="米"
+                  maxlength="3"
+                ></el-input>
+              </el-form-item>
+          <!-- <b>DK</b>
           <el-input v-model="detectorData.start_flag" autocomplete="off"></el-input>
           <b>+</b>
-          <el-input v-model="detectorData.start_length" autocomplete="off"></el-input>
+          <el-input v-model="detectorData.start_length" autocomplete="off"></el-input> -->
         </el-form-item>
         <el-form-item label="设备是否装在出入口：" prop="is_enter">
           <el-radio v-model="detectorData.is_enter" :label="1">是</el-radio>
@@ -193,15 +211,39 @@ export default {
           },
           {
             pattern:
-              "((?:(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d)))\\.){3}(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d))))",
+              "^((25[0-5]|2[0-4]\\d|[1]{1}\\d{1}\\d{1}|[1-9]{1}\\d{1}|\\d{1})($|(?!\\.$)\\.)){4}$",
             message: "请输入正确的IP地址",
+            trigger: "blur"
+          }
+        ],
+         start_flag: [
+          {
+            required: true,
+            message: "请输入位置公里",
+            trigger: "blur"
+          },
+          {
+            pattern: /^\d{1,3}$/,
+            message: "请输入1-3位正整数",
+            trigger: "blur"
+          }
+        ],
+        start_length: [
+          {
+            required: true,
+            message: "请请输入位置米",
+            trigger: "blur"
+          },
+          {
+            pattern: /^\d{1,3}$/,
+            message: "请输入1-3位正整数",
             trigger: "blur"
           }
         ],
         is_enter: [
           {
             required: true,
-            message: "请选择设备是否装在出入口：",
+            message: "请选择",
             trigger: "change"
           }
         ]
@@ -327,6 +369,8 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.detectorData = data.data;
+          this.detectorData.start_flag=parseInt(data.data.start_flag);
+            this.detectorData.start_length=parseInt(data.data.start_length);
         }
       });
     },
@@ -398,5 +442,25 @@ export default {
 }
 .dialog-sebei .el-select {
   width: 100%;
+}
+.el-form-item-inlines {
+  display: inline-block;
+}
+.el-form-item-inlines .el-form-item {
+  display: inline-block;
+}
+.el-form-item-inlines .el-form-item .el-form-item__content {
+  margin-left: 0;
+}
+.el-form-item-inlines .el-input {
+  width: 100px;
+}
+.el-form-item-inlines input {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+}
+.el-form-item-inlines .el-form-item {
+  margin-bottom: 1px !important;
 }
 </style>

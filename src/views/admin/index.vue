@@ -74,7 +74,12 @@
             ref="companyRulesForm"
           >
             <el-form-item label="公司名称：" prop="name">
-              <el-input v-model="companyData.name" autocomplete="off"></el-input>
+              <el-input
+                v-model="companyData.name"
+                autocomplete="off"
+                maxlength="20"
+                show-word-limit
+              ></el-input>
             </el-form-item>
             <el-form-item label="标签颜色：">
               <el-select v-model="companyData.color">
@@ -88,7 +93,13 @@
               </el-select>
             </el-form-item>
             <el-form-item label="公司简介：" prop="description">
-              <el-input v-model="companyData.description" autocomplete="off" type="textarea"></el-input>
+              <el-input
+                v-model="companyData.description"
+                autocomplete="off"
+                type="textarea"
+                maxlength="30"
+                show-word-limit
+              ></el-input>
             </el-form-item>
           </el-form>
           <div slot="footer" class="dialog-footer">
@@ -122,10 +133,10 @@ export default {
             message: "请输入公司名称2~30个字符",
             trigger: "blur"
           },
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
         ],
         description: [
-          { min: 2, max: 500, message: "长度在2到500个字符", trigger: "blur" }
+          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
         ]
       }
     };
@@ -224,24 +235,26 @@ export default {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
-        ,customClass:"el-message-box-new"
-      }).then(() => {
-        this.request({
-          url: "/company/deleteCompany",
-          method: "post",
-          data: { id: id }
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.$message({
-              type: "success",
-              message: "删除成功！"
-            });
-            this.getPageLists();
-          }
-        });
-      }).catch(()=>{});
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/company/deleteCompany",
+            method: "post",
+            data: { id: id }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "删除成功！"
+              });
+              this.getPageLists();
+            }
+          });
+        })
+        .catch(() => {});
     }
   }
   //

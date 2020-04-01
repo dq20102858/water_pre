@@ -115,7 +115,7 @@
         ref="detectorRulesForm"
       >
         <el-form-item label="设备编号：" prop="number">
-          <el-input v-model="locationData.number" autocomplete="off"></el-input>
+          <el-input v-model="locationData.number" autocomplete="off"  maxlength="20" show-word-limit></el-input>
         </el-form-item>
         <div v-if="locationData.id>0">
           <el-form-item label="设备类型：" prop="type">
@@ -233,7 +233,7 @@ export default {
             message: "请输入设备编号2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 20, message: "长度在2到30个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
         ],
         sub_pid: [
           { required: true, message: "请选择所属部门：", trigger: "change" }

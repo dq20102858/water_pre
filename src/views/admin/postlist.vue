@@ -129,10 +129,10 @@
               </el-select>
             </el-form-item>
             <el-form-item label="职位名称：" prop="name">
-              <el-input v-model="postData.name" autocomplete="off"></el-input>
+              <el-input v-model="postData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
             </el-form-item>
             <el-form-item label="职位简介：" prop="description">
-              <el-input v-model="postData.description" autocomplete="off" type="textarea"></el-input>
+              <el-input v-model="postData.description" autocomplete="off" type="textarea" maxlength="30" show-word-limit></el-input>
             </el-form-item>
           </el-form>
           <div slot="footer" class="dialog-footer">
@@ -177,13 +177,13 @@ export default {
         name: [
           {
             required: true,
-            message: "请输入职位名称2~30个字符",
+            message: "请输入职位名称2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
         ],
         description: [
-          { min: 2, max: 500, message: "长度在2到500个字符", trigger: "blur" }
+          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
         ]
       },
       search_pid: "",

@@ -92,7 +92,7 @@
         >
           <el-form class="el-form-custom" :model="formData" :rules="formRules" ref="formRules">
             <el-form-item label="名称：" prop="name">
-              <el-input v-model="formData.name" autocomplete="off"></el-input>
+              <el-input v-model="formData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
             </el-form-item>
             <el-form-item label="线别：" prop="line_type">
               <el-select
@@ -120,7 +120,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="排序：" prop="sort">
-              <el-input v-model="formData.sort" autocomplete="off"></el-input>
+              <el-input v-model="formData.sort" autocomplete="off" maxlength="3" show-word-limit></el-input>
             </el-form-item>
             <div class="blank"></div>
           </el-form>
@@ -146,10 +146,10 @@ export default {
         name: [
           {
             required: true,
-            message: "请输入名称2~30个字符",
+            message: "请输入名称2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
         ],
         line_type: [
           { required: true, message: "请选择线别", trigger: "change" }
@@ -161,8 +161,8 @@ export default {
             trigger: "blur"
           },
           {
-            pattern: /^\d{1,7}.\d{0,2}$/,
-            message: "请输入1-7位数字可带小数点的",
+            pattern: /^\d{1,7}$/,
+            message: "请输入1-7位正整数",
             trigger: "blur"
           }
         ],
