@@ -48,10 +48,10 @@
               prev-text="上一页"
               next-text="下一页"
             >
-              <button @click="toFirstPage" type="button" class="btn-first">
+              <button @click="pageToFirst" type="button" class="btn-first">
                 <span>首页</span>
               </button>
-              <button @click="toLastPage" type="button" class="btn-last">
+              <button @click="pageToLast" type="button" class="btn-last">
                 <span>尾页</span>
               </button>
             </el-pagination>
@@ -79,10 +79,10 @@
           </el-select>
         </el-form-item>
         <el-form-item label="机具名称：" prop="name">
-          <el-input v-model="deviceData.name" autocomplete="off"></el-input>
+          <el-input v-model="deviceData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
         </el-form-item>
         <el-form-item label="详情：" prop="description">
-          <el-input type="textarea" v-model="deviceData.description"></el-input>
+          <el-input type="textarea" v-model="deviceData.description" maxlength="50" show-word-limit></el-input>
         </el-form-item>
         <div class="blank"></div>
       </el-form>
@@ -109,10 +109,14 @@ export default {
         name: [
           {
             required: true,
-            message: "请输入机具名称2~60个字符",
+            message: "请输入机具名称2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 60, message: "长度在2到60个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
+        ],
+        description: [
+          ,
+          { min: 0, max: 50, message: "长度在0到50个字符", trigger: "blur" }
         ]
       },
       page_cur: 1,
@@ -123,7 +127,9 @@ export default {
     };
   },
   mounted() {
-     document.querySelector("#app-menu-items #menu_location").classList.add("is-active");
+    document
+      .querySelector("#app-menu-items #menu_location")
+      .classList.add("is-active");
   },
   created() {
     this.getCompanyList();
@@ -164,25 +170,30 @@ export default {
       this.page_cur = value;
       this.getDataList();
     },
-    toFirstPage() {
+    pageToFirst() {
       this.pageChange(1);
     },
-    toLastPage() {
+    pageToLast() {
       this.page_cur = this.page_total;
       this.pageChange(this.page_total);
     },
     addDialogInfo() {
+      this.deviceData = {
+        depart_id: "",
+        name: "",
+        description: ""
+      };
       this.diaLogTitle = "添加机具";
       this.diaLogFormVisible = true;
     },
     addOrEditDialog() {
       this.$refs["deviceForm"].validate(valid => {
         if (valid) {
-           if (this.deviceData.description == "") {
+          if (this.deviceData.description == "") {
             this.deviceData.description = "暂无";
           }
           let data = this.deviceData;
-         
+
           this.request({
             url: "/location/addOrEditDevice",
             method: "post",
@@ -225,24 +236,26 @@ export default {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
-        ,customClass:"el-message-box-new"
-      }).then(() => {
-        this.request({
-          url: "/location/deleteDevice",
-          method: "post",
-          data: { id: id }
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.$message({
-              type: "success",
-              message: "删除成功！"
-            });
-            this.getDataList();
-          }
-        });
-      }).catch(()=>{});
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/location/deleteDevice",
+            method: "post",
+            data: { id: id }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "删除成功！"
+              });
+              this.getDataList();
+            }
+          });
+        })
+        .catch(() => {});
     }
     //
   }

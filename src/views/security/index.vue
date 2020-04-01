@@ -7,7 +7,7 @@
         </li>
         <el-menu-item index="1">添加事件</el-menu-item>
         <el-menu-item index="2">事件管理</el-menu-item>
-        <el-menu-item index="3">设置</el-menu-item>
+        <!-- <el-menu-item index="3">设置</el-menu-item> -->
       </el-menu>
     </div>
     <div class="app-page">
@@ -58,8 +58,20 @@
               </el-form-item>
               <el-form-item label="相关图片：">
                 <p style="color:#3655a5">最多可以上传5张图片</p>
-                <!-- action="http://129.211.168.161/upload/uploadFile" -->
+                <!-- action="http://129.211.168.161/upload/uploadFile" 
+                  :on-success="handleAvatarSuccess"
+                -->
                 <el-upload
+                  class="uploader el-upload-list--picture-card"
+                  :action="uploadAction"
+                  :limit="5"
+                  list-type="picture-card"
+                  :auto-upload="true"
+                  :on-exceed="uploadExceed"
+                  :before-upload="uploadBefore"
+                  :on-success="uploadSuccess"
+                >
+                  <!-- <el-upload
                   class="uploader el-upload-list--picture-card"
                   action="/upload/uploadFile"
                   :limit="5"
@@ -67,10 +79,11 @@
                   :auto-upload="false"
                   ref="uploadRef"
                   :before-upload="uploadBefore"
+                  :on-success="uploadSuccess"
                   :on-exceed="uploadExceed"
                   :on-change="uploadChange"
                   :http-request="uploadRequest"
-                >
+                  >-->
                   <i class="el-icon-plus"></i>
                 </el-upload>
                 <el-dialog :visible.sync="dialogVisible">
@@ -146,7 +159,7 @@
               <el-form-item class="form-so">
                 <label class="el-form-item__label"></label>
                 <el-button size="small" icon="el-icon-search" @click="pageSearch" type="primary">查询</el-button>
-              </el-form-item>
+           <el-button size="small" plain @click="resetSerach">重置</el-button>   </el-form-item>
             </el-form>
           </div>
           <div class="app-table">
@@ -157,7 +170,7 @@
               <el-table-column prop="type" label="事件类型">
                 <template slot-scope="scope">{{scope.row.type==1?"人员提交":"机车提交"}}</template>
               </el-table-column>
-              <el-table-column prop="danger_type" label="隐患判定"></el-table-column>
+              <el-table-column prop="danger_determine_name" label="隐患判定"></el-table-column>
               <el-table-column prop="status" label="状态"></el-table-column>
               <el-table-column prop="status" label="当前情况"></el-table-column>
               <el-table-column prop="admin" label="提交者"></el-table-column>
@@ -283,16 +296,14 @@
             <el-form-item label="相关图片：">
               <p style="color:#3655a5">最多可以上传3张图片</p>
               <el-upload
-                class="uploader el-upload-list--picture-card"
-                action="/upload/uploadFile"
+                class="uploaderthree el-upload-list--picture-card"
+                :action="uploadAction"
                 :limit="3"
                 list-type="picture-card"
-                :auto-upload="false"
-                ref="uploadThreeRef"
-                :before-upload="uploadThreeBefore"
+                :auto-upload="true"
+                :before-upload="uploadBefore"
                 :on-exceed="uploadThreeExceed"
-                :on-change="uploadThreeChange"
-                :http-request="uploadThreeRequest"
+                :on-success="uploadThreeSuccess"
               >
                 <i class="el-icon-plus"></i>
               </el-upload>
@@ -331,8 +342,7 @@ export default {
         type: 1,
         time_range: []
       },
-      uploadAction: "/upload/uploadFile",
-      uploadFiveFlies: [],
+      uploadAction: this.hostURL + "upload/uploadFile",
       dataList: [],
       companyList: [],
       trainList: [],
@@ -345,7 +355,7 @@ export default {
           { required: true, message: "请选择公司", trigger: "change" }
         ],
         admin_id: [
-          { required: true, message: "请选择公司", trigger: "change" }
+          { required: true, message: "请选择人员", trigger: "change" }
         ],
         title: [
           {
@@ -414,10 +424,12 @@ export default {
         this.addPageShow = true;
         this.listPageShow = false;
         this.setPageShow = false;
+        this.peopleData = {};
       } else if (key == 2) {
         this.addPageShow = false;
         this.listPageShow = true;
         this.setPageShow = false;
+        this.formData = {};
         this.getDataList();
       } else {
         this.addPageShow = false;
@@ -554,6 +566,23 @@ export default {
         message: `最多可以上传5张图片`
       });
     },
+    uploadSuccess(res, file) {
+      // let result= URL.createObjectURL(file.raw);
+      console.log("图上传成功", res);
+      let upload_list_li = document.getElementsByClassName("el-upload-list")[0]
+        .children;
+      if (res.data.url != "") {
+        for (let i = 0; i < upload_list_li.length; i++) {
+          let li_a = upload_list_li[i];
+          let imgElement = document.createElement("img");
+          imgElement.setAttribute("src", "http://" + res.data.url);
+          imgElement.setAttribute("class", "upimgitem");
+          if (li_a.lastElementChild.nodeName !== "IMG") {
+            li_a.appendChild(imgElement);
+          }
+        }
+      }
+    },
     uploadBefore(file) {
       const isJPEG = file.type === "image/jpeg";
       const isJPG = file.type === "image/jpg";
@@ -569,36 +598,6 @@ export default {
       }
       return isJPEG || isJPG || isPNG || (isGIF && isLt2M);
     },
-    uploadChange(file, fileList) {
-      this.$refs.uploadRef.submit();
-    },
-    uploadRequest(file) {
-      let upload_list_li = document.getElementsByClassName("el-upload-list")[0]
-        .children;
-      const that = this;
-      let formData = new FormData();
-      formData.append("file", file.file);
-      this.request({
-        url: "/upload/uploadFile",
-        method: "POST",
-        data: formData
-      }).then(res => {
-        let data = res.data;
-        if (data.status == 1) {
-          if (data.data.url != "") {
-            for (let i = 0; i < upload_list_li.length; i++) {
-              let li_a = upload_list_li[i];
-              let imgElement = document.createElement("img");
-              imgElement.setAttribute("src", "http://" + data.data.url);
-              imgElement.setAttribute("class", "imgfileitem");
-              if (li_a.lastElementChild.nodeName !== "IMG") {
-                li_a.appendChild(imgElement);
-              }
-            }
-          }
-        }
-      });
-    },
     //保存
     addEvent() {
       this.$refs["formRulesRef"].validate(valid => {
@@ -607,7 +606,7 @@ export default {
           let img_urls = [];
           let uls = document.getElementsByClassName("el-upload-list");
           for (let i = 0; i < uls.length; i++) {
-            let imgs = uls[i].getElementsByClassName("imgfileitem");
+            let imgs = uls[i].getElementsByClassName("upimgitem");
             for (let j = 0; j < imgs.length; j++) {
               //img_urls[i][j] = imgs[j].src;
               img_urls.push({
@@ -628,8 +627,10 @@ export default {
                 message: "添加成功",
                 type: "success"
               });
-              this.formData={};
-              // window.location.reload();
+              this.formData = {};
+              this.addPageShow = false;
+              this.listPageShow = true;
+              this.getDataList();
             } else {
               this.$message({
                 showClose: true,
@@ -681,7 +682,7 @@ export default {
       this.request({
         url: "/security/securityJudge",
         method: "post",
-        params: { sid: id, type: type }
+        data: { sid: id, type: type }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
@@ -707,59 +708,21 @@ export default {
         message: `最多可以上传3张图片`
       });
     },
-    uploadThreeBefore(file) {
-      const isJPEG = file.type === "image/jpeg";
-      const isJPG = file.type === "image/jpg";
-      const isPNG = file.type === "image/png";
-      const isGIF = file.type === "image/gif";
-      const isLt2M = file.size / 1024 / 1024 < 2;
-
-      if (!isJPG && !isJPG && !isPNG && !isGIF) {
-        this.$message.error("上传头像图片只能是 jpg  png  gif 格式!");
-      }
-      if (!isLt2M) {
-        this.$message.error("上传头像图片大小不能超过 2MB!");
-      }
-      return isJPEG || isJPG || isPNG || (isGIF && isLt2M);
-    },
-    uploadThreeChange(file, fileList) {
-      let fileName = file.name;
-      let regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
-      if (regex.test(fileName.toLowerCase())) {
-        //this.form.silder_image = file.url;
-      } else {
-        this.$message.error(
-          "请选择图片格式文件.jpg | .jpeg | .gif | .png | .bmp"
-        );
-      }
-      this.$refs.uploadThreeRef.submit();
-    },
-    uploadThreeRequest(file) {
-      let upload_list_li = document.getElementsByClassName("el-upload-list")[0]
+    uploadThreeSuccess(res, file) {
+      console.log("图上传成功", res);
+      let upload_list_li = document.getElementsByClassName("el-upload-list")[1]
         .children;
-      const that = this;
-      let formData = new FormData();
-      formData.append("file", file.file);
-      this.request({
-        url: "/upload/uploadFile",
-        method: "POST",
-        data: formData
-      }).then(res => {
-        let data = res.data;
-        if (data.status == 1) {
-          if (data.data.url != "") {
-            for (let i = 0; i < upload_list_li.length; i++) {
-              let li_a = upload_list_li[i];
-              let imgElement = document.createElement("img");
-              imgElement.setAttribute("src", "http://" + data.data.url);
-              imgElement.setAttribute("class", "imgfileitems");
-              if (li_a.lastElementChild.nodeName !== "IMG") {
-                li_a.appendChild(imgElement);
-              }
-            }
+      if (res.data.url != "") {
+        for (let i = 0; i < upload_list_li.length; i++) {
+          let li_a = upload_list_li[i];
+          let imgElement = document.createElement("img");
+          imgElement.setAttribute("src", "http://" + res.data.url);
+          imgElement.setAttribute("class", "upimgitems");
+          if (li_a.lastElementChild.nodeName !== "IMG") {
+            li_a.appendChild(imgElement);
           }
         }
-      });
+      }
     },
     //获取人员
     getAssigners() {
@@ -780,21 +743,20 @@ export default {
     saveAssignDialog() {
       this.$refs["peopleRulesRef"].validate(valid => {
         if (valid) {
-          // debugger;
           let data = this.peopleData;
           let user_id = this.peopleData.user_id;
           let sid = this.dangerIdValue;
           let img_urls = [];
           let uls = document.getElementsByClassName("el-upload-list");
           for (let i = 0; i < uls.length; i++) {
-            let imgs = uls[i].getElementsByClassName("imgfileitem");
+            let imgs = uls[i].getElementsByClassName("upimgitems");
             for (let j = 0; j < imgs.length; j++) {
               img_urls.push({
                 src: imgs[j].src
               });
             }
           }
-          // this.peopleData.file = img_urls;
+          console.log("img_urls：" + img_urls);
           this.request({
             url: "/security/assignPeople",
             method: "POST",
@@ -992,10 +954,28 @@ export default {
   line-height: 148px;
   text-align: center;
 }
-.uploader .imgfileitem {
+.uploader .upimgitem {
   width: 100%;
   margin-top: 10px;
 }
+.uploaderthree .el-upload {
+  border: 1px dashed #9db9fa;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  font-size: 28px;
+  color: #8c939d;
+  width: 148px;
+  height: 148px;
+  line-height: 148px;
+  text-align: center;
+}
+.uploaderthree .upimgitem {
+  width: 100%;
+  margin-top: 10px;
+}
+
 .dialog-danger .el-textarea__inner {
   border: 1px #9db9fa solid;
   color: #4b6eca;

@@ -1,7 +1,7 @@
 <template>
   <div id="monitor">
     <div class="el-menu-top">
-      <el-menu router  default-active="set" mode="horizontal">
+      <el-menu router default-active="set" mode="horizontal">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-set.png')" />设置
         </li>
@@ -30,21 +30,29 @@
         <div class="app-table">
           <el-table :data="dataList">
             <el-table-column label="序号">
-              <template scope="scope"><span>{{scope.$index+(page_cur - 1) * page_size + 1}} </span></template>
-           </el-table-column>
-            <el-table-column prop="name" label="姓名"></el-table-column>
+              <template scope="scope">
+                <span>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column prop="name" label="名称"></el-table-column>
             <el-table-column prop="sort" label="排序"></el-table-column>
             <el-table-column prop="position" label="位置">
               <template slot-scope="scope">
                 <b>DK</b>
-                {{scope.row.start_flag}} + {{scope.row.start_length}}
+                {{parseFloat(scope.row.start_flag)}} + {{parseFloat(scope.row.start_length)}}
               </template>
             </el-table-column>
-            <el-table-column prop="type" label="站点类型"></el-table-column>
+            <el-table-column prop="type" label="站点类型">
+              <template slot-scope="scope">
+                <span v-show="scope.row.type==1">客运站</span>
+                <span v-show="scope.row.type==2">中间站</span>
+                <span v-show="scope.row.type==3">越行站</span>
+              </template>
+            </el-table-column>
             <el-table-column prop="line" label="线别"></el-table-column>
             <el-table-column prop="company" label="公司"></el-table-column>
             <el-table-column prop="create_time" label="创建时间"></el-table-column>
-            <el-table-column prop="update_time" label="修改时间"></el-table-column>
+            <el-table-column prop="update_time" label="修改时间" :formatter="timestampToTime"></el-table-column>
             <el-table-column label="操作" width="120">
               <template slot-scope="scope">
                 <div class="app-operation">
@@ -84,7 +92,7 @@
         >
           <el-form class="el-form-custom" :model="formData" :rules="formRules" ref="formRules">
             <el-form-item label="名称：" prop="name">
-              <el-input v-model="formData.name" autocomplete="off"></el-input>
+              <el-input v-model="formData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
             </el-form-item>
             <el-form-item label="线别：" prop="line_type">
               <el-select
@@ -112,7 +120,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="排序：" prop="sort">
-              <el-input v-model="formData.sort" autocomplete="off"></el-input>
+              <el-input v-model="formData.sort" autocomplete="off" maxlength="3" show-word-limit></el-input>
             </el-form-item>
             <div class="blank"></div>
           </el-form>
@@ -138,10 +146,10 @@ export default {
         name: [
           {
             required: true,
-            message: "请输入名称2~30个字符",
+            message: "请输入名称2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
         ],
         line_type: [
           { required: true, message: "请选择线别", trigger: "change" }
@@ -152,12 +160,11 @@ export default {
             message: "请输入位置",
             trigger: "blur"
           },
-           {
+          {
             pattern: /^\d{1,7}$/,
             message: "请输入1-7位正整数",
             trigger: "blur"
           }
-        
         ],
         sort: [
           {
@@ -294,7 +301,7 @@ export default {
       });
     },
     goEdit(id) {
-      this.title = "修改信息";
+      this.diaLogTitle = "修改信息";
       this.diaLogFormVisible = true;
 
       this.request({
@@ -310,6 +317,7 @@ export default {
               this.lineTypeDes = "里程范围：" + item.tip;
               this.lineTypeStart = item.start;
               this.lineTypeEnd = item.end;
+              this.formData.position=parseFloat(data.data.position);
             }
           });
         }
@@ -319,25 +327,35 @@ export default {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
-        ,customClass:"el-message-box-new"
-      }).then(() => {
-        this.request({
-          url: "/search/deleteStation",
-          method: "post",
-          data: { id: id }
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.$message({
-              type: "success",
-              message: "删除成功！"
-            });
-            this.getDataList();
-          }
-        });
-      }).catch(()=>{});
-    }
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/search/deleteStation",
+            method: "post",
+            data: { id: id }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "删除成功！"
+              });
+              this.getDataList();
+            }
+          });
+        })
+        .catch(() => {});
+    },
+         timestampToTime(row, column){
+           let data = row[column.property]
+                if(data == null) {
+                    return null
+                }
+           let dt = new Date(data*1000)
+           return dt.getFullYear() + '-' + (dt.getMonth() + 1) + '-' + dt.getDate() + ' ' + dt.getHours() + ':' + dt.getMinutes() + ':' + dt.getSeconds()
+      }
     //
   }
 };

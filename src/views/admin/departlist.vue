@@ -86,7 +86,7 @@
         </div>
         <el-dialog
           width="580px"
-          class="dialog-company"
+          class="dialog-depart"
           :title="departDialogTitle"
           :visible.sync="departDialogVisible"
           :close-on-click-modal="false"
@@ -108,7 +108,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="部门名称：" prop="name">
-              <el-input v-model="departData.name" autocomplete="off"></el-input>
+              <el-input v-model="departData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
             </el-form-item>
             <el-form-item label="是否属于施工队：" prop="is_work_team">
               <el-radio-group v-model="departData.is_work_team">
@@ -117,7 +117,7 @@
               </el-radio-group>
             </el-form-item>
             <el-form-item label="部门简介：" prop="description">
-              <el-input v-model="departData.description" autocomplete="off" type="textarea"></el-input>
+              <el-input v-model="departData.description" autocomplete="off" type="textarea" maxlength="30" show-word-limit></el-input>
             </el-form-item>
           </el-form>
           <div slot="footer" class="dialog-footer">
@@ -154,10 +154,10 @@ export default {
         name: [
           {
             required: true,
-            message: "请输入部门名称2~30个字符",
+            message: "请输入部门名称2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
         ],
         is_work_team: [
           {
@@ -167,10 +167,10 @@ export default {
           }
         ],
         description: [
-          { min: 2, max: 500, message: "长度在2到500个字符", trigger: "blur" }
+          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
         ]
       },
-      search_pid: "",
+      search_pid: '',
       companySelectList: [],
       departSelectLists: [],
       postSelectLists: []
@@ -318,22 +318,22 @@ export default {
 .admins .el-dialog {
   width: 500px !important;
 }
-.dialog-company .el-textarea {
+.dialog-depart .el-textarea {
   width: 100% !important;
 }
-.dialog-company .el-textarea__inner {
+.dialog-depart .el-textarea__inner {
   height: 80px;
 }
-.dialog-company .el-form-item__label {
-  width: 110px;
+.dialog-depart .el-form-item__label {
+  width: 140px;
 }
-.dialog-company .el-form-item__content {
-  margin-left: 110px;
+.dialog-depart .el-form-item__content {
+  margin-left: 140px;
 }
-.dialog-company .el-input--medium {
+.dialog-depart .el-input--medium {
   width: 100%;
 }
-.dialog-company .el-select {
+.dialog-depart .el-select {
   width: 100%;
 }
 </style>

@@ -38,6 +38,11 @@
                 <p v-html="changeTime(scope.row.create_time)"></p>
               </template>
             </el-table-column>
+                <el-table-column prop="update_time" label="修改时间">
+              <template slot-scope="scope">
+                <p v-html="changeTime(scope.row.update_time)"></p>
+              </template>
+            </el-table-column>
             <el-table-column label="操作" width="120">
               <template slot-scope="scope">
                 <div class="app-operation">
@@ -85,10 +90,10 @@
         ref="detectorRulesForm"
       >
         <el-form-item label="设备名称：" prop="name">
-          <el-input v-model="detectorData.name" autocomplete="off"></el-input>
+          <el-input v-model="detectorData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
         </el-form-item>
         <el-form-item label="设备编号：" prop="number">
-          <el-input v-model="detectorData.number" autocomplete="off"></el-input>
+          <el-input v-model="detectorData.number" autocomplete="off" maxlength="20" show-word-limit></el-input>
         </el-form-item>
         <el-form-item label="公司名称：" prop="depart_id">
           <el-select
@@ -130,18 +135,18 @@ export default {
         name: [
           {
             required: true,
-            message: "请输入设备名称2~30个字符",
+            message: "请输入设备名称2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
         ],
         number: [
           {
             required: true,
-            message: "请输入设备编号2~30个字符",
+            message: "请输入设备编号2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
         ],
         depart_id: [
           { required: true, message: "请选择公司", trigger: "change" }

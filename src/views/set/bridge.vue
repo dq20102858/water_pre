@@ -86,7 +86,7 @@
         >
           <el-form class="el-form-custom" :model="formData" :rules="formRules" ref="formRules">
             <el-form-item label="名称：" prop="name">
-              <el-input v-model="formData.name" autocomplete="off"></el-input>
+              <el-input v-model="formData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
             </el-form-item>
             <el-form-item label="线别：" prop="line_type">
               <el-select
@@ -165,10 +165,10 @@ export default {
         name: [
           {
             required: true,
-            message: "请输入名称2~30个字符",
+            message: "请输入名称2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
         ],
         line_type: [
           { required: true, message: "请选择线别", trigger: "change" }
@@ -355,7 +355,7 @@ export default {
       });
     },
     goEdit(id) {
-      this.title = "修改信息";
+      this.diaLogTitle = "修改信息";
       this.diaLogFormVisible = true;
       this.request({
         url: "/search/getRoadDeviceDetail",

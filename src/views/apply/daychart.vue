@@ -242,7 +242,8 @@ export default {
           myChart.setOption(option);
           //视觉映射开关事件
           var global_v_selected = "";
-          myChart.on("datarangeselected", function(params) {
+          myChart.on("datarangeselected", function(params) { 
+          
             // var filter_data = [];
             // for (var k in project_line_name) {
             //   filter_data[project_line_name[k].name] = [];

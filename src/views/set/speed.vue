@@ -30,12 +30,18 @@
         <div class="app-table">
           <el-table :data="dataList">
             <el-table-column label="序号">
-              <template scope="scope"><span>{{scope.$index+(page_cur - 1) * page_size + 1}} </span></template>
-           </el-table-column>
+              <template scope="scope">
+                <span>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
+              </template>
+            </el-table-column>
             <el-table-column prop="name" label="名称"></el-table-column>
-             <el-table-column prop="line" label="线别"></el-table-column>
-               <el-table-column prop="speed" label="限速(公里/小时)"></el-table-column>
-            <el-table-column  label="起始里程">
+            <el-table-column prop="line" label="线别"></el-table-column>
+            <el-table-column prop="speed" label="限速(公里/小时)">
+              <template scope="scope">
+                <span>{{parseFloat(scope.row.speed)}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="起始里程">
               <template slot-scope="scope">
                 <b>DK</b>
                 {{scope.row.start_flag}} + {{scope.row.start_length}}
@@ -87,7 +93,7 @@
         >
           <el-form class="el-form-custom" :model="formData" :rules="formRules" ref="formRules">
             <el-form-item label="名称：" prop="name">
-              <el-input v-model="formData.name" autocomplete="off"></el-input>
+              <el-input v-model="formData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
             </el-form-item>
             <el-form-item label="线别：" prop="line_type">
               <el-select
@@ -144,11 +150,11 @@
                 ></el-input>
               </el-form-item>
             </el-form-item>
-   <el-form-item label="限速：" prop="speed" class="el-form-item-inline">
+            <el-form-item label="限速：" prop="speed" class="el-form-item-inline">
               <el-input v-model="formData.speed" autocomplete="off"></el-input>
               <span>公里/小时</span>
             </el-form-item>
-            
+
             <div class="blank"></div>
           </el-form>
           <div slot="footer" class="dialog-footer">
@@ -166,15 +172,15 @@ export default {
     return {
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
-      formData: { },
+      formData: {},
       formRules: {
         name: [
           {
             required: true,
-            message: "请输入名称2~30个字符",
+            message: "请输入名称2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
         ],
         line_type: [
           { required: true, message: "请选择线别", trigger: "change" }
@@ -234,8 +240,8 @@ export default {
             trigger: "blur"
           },
           {
-            pattern: /^\d{1,3}$/,
-            message: "请输入1-3位正整数",
+            pattern: /^\d{0,3}.\d{0,2}$/,
+            message: "请输入1-3位带小数点的数字",
             trigger: "blur"
           }
         ]
@@ -252,8 +258,10 @@ export default {
       lineTypeList: []
     };
   },
-   mounted() {
-    document.querySelector("#app-menu-items #menu_set") .classList.add("is-active");
+  mounted() {
+    document
+      .querySelector("#app-menu-items #menu_set")
+      .classList.add("is-active");
   },
   created() {
     this.getLineTypeLists();
@@ -322,7 +330,7 @@ export default {
       console.log(this.lineTypeDes);
     },
     goAdd() {
-      this.formData = { };
+      this.formData = {};
       this.diaLogTitle = "添加信息";
       this.diaLogFormVisible = true;
       this.lineTypeDes = "";
@@ -332,10 +340,12 @@ export default {
       this.$refs["formRules"].validate(valid => {
         if (valid) {
           let data = that.formData;
-          this.formData.road_type=5;
+          this.formData.road_type = 5;
           // //里程判断
-          let startTotal = parseInt(data.start_flag * 1000) +  parseInt(data.start_length);
-          let endTotal = parseInt(data.end_flag * 1000) +  parseInt(data.end_length);
+          let startTotal =
+            parseInt(data.start_flag * 1000) + parseInt(data.start_length);
+          let endTotal =
+            parseInt(data.end_flag * 1000) + parseInt(data.end_length);
           let lineStartTotal = that.lineTypeStart * 1000;
           let lineEndTotal = that.lineTypeEnd * 1000;
           if (parseInt(startTotal) < parseInt(lineStartTotal)) {
@@ -346,7 +356,7 @@ export default {
             this.$message.error("输入的结束里程不在里程范围内");
             return false;
           }
-             if (parseInt(endTotal) < parseInt(startTotal)) {
+          if (parseInt(endTotal) < parseInt(startTotal)) {
             this.$message.error("输入的结束里程不能小于结束里程");
             return false;
           }
@@ -373,7 +383,7 @@ export default {
       });
     },
     goEdit(id) {
-      this.title = "修改信息";
+      this.diaLogTitle = "修改信息";
       this.diaLogFormVisible = true;
 
       this.request({
@@ -389,6 +399,7 @@ export default {
               this.lineTypeDes = "里程范围：" + item.tip;
               this.lineTypeStart = item.start;
               this.lineTypeEnd = item.end;
+              this.formData.speed = parseFloat(data.data.speed);
             }
           });
         }
@@ -398,23 +409,28 @@ export default {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
-      }).then(() => {
-        this.request({
-          url: "/search/deleteRoadDevice",
-          method: "post",
-          data: { id: id }
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.$message({
-              type: "success",
-              message: "删除成功！"
-            });
-            this.getDataList();
-          }
-        });
-      }).catch(()=>{});
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/search/deleteRoadDevice",
+            method: "post",
+            data: { id: id }
+          })
+            .then(res => {
+              let data = res.data;
+              if (data.status == 1) {
+                this.$message({
+                  type: "success",
+                  message: "删除成功！"
+                });
+                this.getDataList();
+              }
+            })
+            .catch(() => {});
+        })
+        .catch(() => {});
     }
     //
   }

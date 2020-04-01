@@ -22,7 +22,14 @@
               <el-button type="primary" icon="el-icon-plus" @click="goAdd">添加坡度</el-button>
             </el-form-item>
             <div class="el-serach">
-              <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable></el-input>
+              <el-select v-model="search_line_type" placeholder="请选择线别" clearable>
+                <el-option
+                  v-for="item in lineTypeList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
               <el-button @click="searchEvent">查询</el-button>
             </div>
           </el-form>
@@ -43,22 +50,28 @@
                 <span v-if="scope.row.type==3">下坡</span>
               </template>
             </el-table-column>
-            <el-table-column label="起始里程">
+            <el-table-column label="起始里程(米)">
               <template slot-scope="scope">
                 <b>DK</b>
                 {{scope.row.start_flag}} + {{scope.row.start_length}}
               </template>
             </el-table-column>
-            <el-table-column label="结束里程">
+            <el-table-column label="结束里程(米)">
               <template slot-scope="scope">
                 <b>DK</b>
                 {{scope.row.end_flag}} + {{scope.row.end_length}}
               </template>
             </el-table-column>
-            <el-table-column prop="height" label="高度"></el-table-column>
-            <el-table-column prop="length" label="长度"></el-table-column>
+            <el-table-column prop="height" label="高度(米)">
+              <template slot-scope="scope">{{parseFloat(scope.row.height)}}</template>
+            </el-table-column>
+            <el-table-column prop="length" label="长度(米)">
+              <template slot-scope="scope">{{parseFloat(scope.row.length)}}</template>
+            </el-table-column>
             <el-table-column prop="create_time" label="创建时间"></el-table-column>
-            <el-table-column prop="update_time" label="修改时间"></el-table-column>
+            <el-table-column prop="update_time" label="修改时间" :formatter="timestampToTime">
+              <!-- <template slot-scope="scope">{{timestampToTime(update_time)}}</template> -->
+            </el-table-column>
             <el-table-column label="操作" width="120">
               <template slot-scope="scope">
                 <div class="app-operation">
@@ -120,11 +133,11 @@
               </el-select>
             </el-form-item>
             <el-form-item label="高度：" prop="height">
-              <el-input v-model="formData.height" autocomplete="off"></el-input>
+              <el-input v-model="formData.height" autocomplete="off" placeholder="请输入高度米"></el-input>
             </el-form-item>
-            <el-form-item label="长度：" prop="length">
+            <!-- <el-form-item label="长度：" prop="length">
               <el-input v-model="formData.length" autocomplete="off"></el-input>
-            </el-form-item>
+            </el-form-item>-->
             <el-form-item label="开始里程：" class="el-form-item-inlines is-required">
               <el-form-item prop="start_flag">
                 <b>DK</b>
@@ -182,6 +195,7 @@ export default {
     return {
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
+
       formData: { type: 1 },
       formRules: {
         line_type: [
@@ -242,20 +256,8 @@ export default {
             trigger: "blur"
           },
           {
-            pattern: /^\d{1,3}$/,
-            message: "请输入1-3位正整数",
-            trigger: "blur"
-          }
-        ],
-        length: [
-          {
-            required: true,
-            message: "请输入长度",
-            trigger: "blur"
-          },
-          {
-            pattern: /^\d{1,3}$/,
-            message: "请输入1-3位正整数",
+            pattern: /^\d{1,3}.\d{0,2}$/,
+            message: "请输入1-3位可带两位小数点的数字",
             trigger: "blur"
           }
         ]
@@ -265,15 +267,17 @@ export default {
       page_size: 20,
       page_total: 0,
       dataList: [],
-      searchName: "",
+      search_line_type: "",
       lineTypeStart: "",
       lineTypeEnd: "",
       lineTypeDes: "",
       lineTypeList: []
     };
   },
-   mounted() {
-    document.querySelector("#app-menu-items #menu_set") .classList.add("is-active");
+  mounted() {
+    document
+      .querySelector("#app-menu-items #menu_set")
+      .classList.add("is-active");
   },
   created() {
     this.getLineTypeLists();
@@ -282,14 +286,14 @@ export default {
   methods: {
     getDataList() {
       let page = this.page_cur;
-      let name = this.searchName;
+      let line_type = this.search_line_type;
       let road_type = 3; //1桥，2隧道，3坡度，4防区，5限速
       this.request({
         url: "/search/getRoadDevicePages",
         method: "get",
         params: {
           page,
-          name,
+          line_type,
           road_type
         }
       }).then(res => {
@@ -353,7 +357,7 @@ export default {
         if (valid) {
           let data = that.formData;
           this.formData.road_type = 3; //1桥，2隧道，3坡度，4防区，5限速
-          this.formData.name="坡度";
+          this.formData.name = "坡度";
           // //里程判断
           let startTotal =
             parseInt(data.start_flag * 1000) + parseInt(data.start_length);
@@ -373,6 +377,7 @@ export default {
             this.$message.error("输入的结束里程不能小于结束里程");
             return false;
           }
+          this.formData.length = endTotal - startTotal;
           this.request({
             url: "/search/addOrEditRoadDevice",
             method: "post",
@@ -396,7 +401,7 @@ export default {
       });
     },
     goEdit(id) {
-      this.title = "修改信息";
+      this.diaLogTitle = "修改信息";
       this.diaLogFormVisible = true;
       this.request({
         url: "/search/getRoadDeviceDetail",
@@ -411,6 +416,7 @@ export default {
               this.lineTypeDes = "里程范围：" + item.tip;
               this.lineTypeStart = item.start;
               this.lineTypeEnd = item.end;
+              this.formData.height = parseFloat(data.data.height);
             }
           });
         }
@@ -420,41 +426,35 @@ export default {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
-        ,customClass:"el-message-box-new"
-      }).then(() => {
-        this.request({
-          url: "/search/deleteRoadDevice",
-          method: "post",
-          data: { id: id }
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.$message({
-              type: "success",
-              message: "删除成功！"
-            });
-            this.getDataList();
-          }
-        });
-      }).catch(()=>{});
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/search/deleteRoadDevice",
+            method: "post",
+            data: { id: id }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "删除成功！"
+              });
+              this.getDataList();
+            }
+          });
+        })
+        .catch(() => {});
     },
-    changeStarttime() {
-      if (this.workData.start_time >= this.workData.end_time) {
-        this.$message.error("开始日期不能大于结束日期");
-        this.workData.start_time = "";
+      timestampToTime(row, column){
+           let data = row[column.property]
+                if(data == null) {
+                    return null
+                }
+           let dt = new Date(data*1000)
+           return dt.getFullYear() + '-' + (dt.getMonth() + 1) + '-' + dt.getDate() + ' ' + dt.getHours() + ':' + dt.getMinutes() + ':' + dt.getSeconds()
       }
-    },
-    changeEndtime() {
-      var start_time = new Date(this.workData.start_time);
-      var end_time = new Date(this.workData.end_time);
-      //alert(start_time);
-      //alert(end_time);
-      if (end_time <= start_time) {
-        this.$message.error("结束日期不能小于开始日期");
-        this.workData.end_time = "";
-      }
-    }
     //
   }
 };

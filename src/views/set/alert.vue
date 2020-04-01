@@ -28,25 +28,27 @@
         </div>
         <div class="app-table">
           <el-table :data="dataList">
-           <el-table-column label="序号">
-              <template scope="scope"><span>{{scope.$index+(page_cur - 1) * page_size + 1}} </span></template>
-           </el-table-column>
+            <el-table-column label="序号">
+              <template scope="scope">
+                <span>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
+              </template>
+            </el-table-column>
             <el-table-column prop="name" label="名称"></el-table-column>
-             <el-table-column prop="line" label="线别"></el-table-column>
-            <el-table-column label="起始里程">
+            <el-table-column prop="line" label="线别"></el-table-column>
+            <el-table-column label="起始里程(米)">
               <template slot-scope="scope">
                 <b>DK</b>
                 {{scope.row.start_flag}} + {{scope.row.start_length}}
               </template>
             </el-table-column>
-            <el-table-column label="结束里程">
+            <el-table-column label="结束里程(米)">
               <template slot-scope="scope">
                 <b>DK</b>
                 {{scope.row.end_flag}} + {{scope.row.end_length}}
               </template>
             </el-table-column>
-            <el-table-column prop="create_time" label="开始时间"></el-table-column>
-            <el-table-column prop="create_time" label="结束时间"></el-table-column>
+            <el-table-column prop="start_time" label="开始时间"></el-table-column>
+            <el-table-column prop="end_time" label="结束时间"></el-table-column>
             <el-table-column label="操作" width="120">
               <template slot-scope="scope">
                 <div class="app-operation">
@@ -86,7 +88,7 @@
         >
           <el-form class="el-form-custom" :model="formData" :rules="formRules" ref="formRules">
             <el-form-item label="名称：" prop="name">
-              <el-input v-model="formData.name" autocomplete="off"></el-input>
+              <el-input v-model="formData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
             </el-form-item>
             <el-form-item label="线别：" prop="line_type">
               <el-select
@@ -143,19 +145,19 @@
                 ></el-input>
               </el-form-item>
             </el-form-item>
-            <el-form-item label="计划开始时间" prop="start_time">
+            <el-form-item label="开始时间" prop="start_time">
               <el-date-picker
                 @change="changeStarttime"
                 v-model="formData.start_time"
-                type="date"
+                type="datetime"
                 placeholder="选择时间"
               ></el-date-picker>
             </el-form-item>
-            <el-form-item label="计划结束时间" prop="end_time">
+            <el-form-item label="结束时间" prop="end_time">
               <el-date-picker
                 @change="changeEndtime"
                 v-model="formData.end_time"
-                type="date"
+                type="datetime"
                 placeholder="选择时间"
               ></el-date-picker>
             </el-form-item>
@@ -181,10 +183,10 @@ export default {
         name: [
           {
             required: true,
-            message: "请输入名称2~30个字符",
+            message: "请输入名称2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
         ],
         line_type: [
           { required: true, message: "请选择线别", trigger: "change" }
@@ -238,9 +240,11 @@ export default {
           }
         ],
         start_time: [
-          { required: true, message: "请选择日期", trigger: "change" }
+          { required: true, message: "请选择开始时间", trigger: "change" }
         ],
-        end_time: [{ required: true, message: "请选择日期", trigger: "change" }]
+        end_time: [
+          { required: true, message: "请选择结束时间", trigger: "change" }
+        ]
       },
       page_cur: 1,
       page_data_total: 0,
@@ -254,8 +258,10 @@ export default {
       lineTypeList: []
     };
   },
- mounted() {
-    document.querySelector("#app-menu-items #menu_set") .classList.add("is-active");
+  mounted() {
+    document
+      .querySelector("#app-menu-items #menu_set")
+      .classList.add("is-active");
   },
   created() {
     this.getLineTypeLists();
@@ -377,7 +383,7 @@ export default {
       });
     },
     goEdit(id) {
-      this.title = "修改信息";
+      this.diaLogTitle = "修改信息";
       this.diaLogFormVisible = true;
       this.request({
         url: "/search/getRoadDeviceDetail",
@@ -392,6 +398,9 @@ export default {
               this.lineTypeDes = "里程范围：" + item.tip;
               this.lineTypeStart = item.start;
               this.lineTypeEnd = item.end;
+              var timestamp = new Date(data.data.end_time);
+              console.log("timestamp:" + timestamp);
+              this.formData.end_time = timestamp;
             }
           });
         }
@@ -401,39 +410,46 @@ export default {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
-        ,customClass:"el-message-box-new"
-      }).then(() => {
-        this.request({
-          url: "/search/deleteRoadDevice",
-          method: "post",
-          data: { id: id }
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.$message({
-              type: "success",
-              message: "删除成功！"
-            });
-            this.getDataList();
-          }
-        });
-      }).catch(()=>{});
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/search/deleteRoadDevice",
+            method: "post",
+            data: { id: id }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "删除成功！"
+              });
+              this.getDataList();
+            }
+          });
+        })
+        .catch(() => {});
     },
     changeStarttime() {
-      if (this.workData.start_time >= this.workData.end_time) {
-        this.$message.error("开始日期不能大于结束日期");
+      var start_time = new Date(this.formData.start_time).getTime();
+      var end_time = new Date(this.formData.end_time).getTime();
+      if (start_time >= end_time) {
+        this.$message.error("开始时间不能大于结束时间");
         this.workData.start_time = "";
       }
     },
     changeEndtime() {
-      var start_time = new Date(this.workData.start_time);
-      var end_time = new Date(this.workData.end_time);
-      //alert(start_time);
-      //alert(end_time);
+      var start_time = new Date(this.formData.start_time).getTime();
+      var end_time = new Date(this.formData.end_time).getTime();
+      var date_time_corp = new Date().getTime();
       if (end_time <= start_time) {
-        this.$message.error("结束日期不能小于开始日期");
-        this.workData.end_time = "";
+        this.$message.error("结束时间不能小于开始时间");
+        this.formData.end_time = "";
+      }
+      if (end_time <= date_time_corp) {
+        this.$message.error("结束时间不能小于当前时间");
+        this.formData.end_time = "";
       }
     }
     //

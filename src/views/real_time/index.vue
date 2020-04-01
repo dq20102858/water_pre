@@ -10,36 +10,7 @@
     <div class="app-page">
       <div class="app-page-container">
         <div class="app-page-select">
-          <el-form :model="searchForm" :inline="true">
-            <el-form-item label="列车">
-              <el-select v-model="searchForm.loco_id" placeholder="请选择列车" clearable>
-                <el-option
-                  v-for="item in getLocomotiveList"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                ></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="类型">
-              <el-select v-model="searchForm.alert_type" placeholder="请选择类型" clearable>
-                <el-option label="超速报警" value="1"></el-option>
-                <el-option label="临近报警" value="2"></el-option>
-                <el-option label="防区报警" value="3"></el-option>
-                <el-option label="防护牌报警" value="4"></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="开始时间">
-              <el-date-picker v-model="searchForm.start_time" type="date"></el-date-picker>
-            </el-form-item>
-            <el-form-item label="结束时间">
-              <el-date-picker v-model="searchForm.end_time" type="date"></el-date-picker>
-            </el-form-item>
-            <el-form-item class="form-so">
-              <label class="el-form-item__label"></label>
-              <el-button size="small" icon="el-icon-search" type="primary" @click="pageSearch">查询</el-button>
-            </el-form-item>
-          </el-form>
+     
         </div>
         <div class="app-table">
           <el-table :data="dataList">
@@ -48,18 +19,18 @@
                 <span>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
               </template>
             </el-table-column>
-            <el-table-column prop="loco_id" label="姓名"></el-table-column>
-            <el-table-column label="位置">
-              <template slot-scope="scope">
+            <el-table-column prop="name" label="姓名"></el-table-column>
+            <el-table-column prop="location" label="位置">
+              <!-- <template slot-scope="scope">
                 <b>DK</b>
                 {{scope.row.start_flag}} + {{scope.row.start_length}}
-              </template>
+              </template> -->
             </el-table-column>
-            <el-table-column prop="speed" label="线别"></el-table-column>
-            <el-table-column prop="speed" label="定位设备编号"></el-table-column>
-            <el-table-column prop="speed" label="公司"></el-table-column>
+            <el-table-column prop="line" label="线别"></el-table-column>
+            <el-table-column prop="number" label="定位设备编号"></el-table-column>
+            <el-table-column prop="company" label="公司"></el-table-column>
             <el-table-column prop="create_time" label="入场时间"></el-table-column>
-            <el-table-column prop="create_time" label="出场时间" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="leave_time" label="出场时间" show-overflow-tooltip></el-table-column>
           </el-table>
           <div class="app-pagination">
             <el-pagination
@@ -90,6 +61,24 @@
 export default {
   data() {
     return {
+      pickerOptionsStart: {
+        disabledDate: time => {
+          if (this.searchForm.end_time) {
+            return (
+              time.getTime() > new Date(this.searchForm.end_time).getTime()
+            );
+          }
+        }
+      },
+      pickerOptionsEnd: {
+        disabledDate: time => {
+          if (this.searchForm.start_time) {
+            return (
+              time.getTime() < new Date(this.searchForm.start_time).getTime()
+            );
+          }
+        }
+      },
       searchForm: {},
       page_cur: 1,
       page_items: 0,
@@ -118,19 +107,11 @@ export default {
     },
     getDataList() {
       let page = this.page_cur;
-      let loco_id = this.searchForm.loco_id;
-      let alert_type = this.searchForm.alert_type;
-      let start_time = this.searchForm.start_time;
-      let end_time = this.searchForm.end_time;
       this.request({
-        url: "/search/getAlertPages",
+        url: "/location/getRealtimeLists",
         method: "get",
         params: {
-          page,
-          loco_id,
-          alert_type,
-          start_time,
-          end_time
+          page
         }
       }).then(res => {
         let data = res.data;
@@ -159,28 +140,39 @@ export default {
       this.page_cur = 1;
       this.getDataList();
     },
+    resetSerach() {
+      this.searchForm = {
+        loco_id: "",
+        alert_type: "",
+        start_time: "",
+        end_time: ""
+      };
+      this.getDataList();
+    },
     goDel(id) {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
-        ,customClass:"el-message-box-new"
-      }).then(() => {
-        this.request({
-          url: "/search/deleteAlert",
-          method: "post",
-          data: { id: id }
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.$message({
-              type: "success",
-              message: "删除成功！"
-            });
-            this.getDataList();
-          }
-        });
-      }).catch(()=>{});
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/search/deleteAlert",
+            method: "post",
+            data: { id: id }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "删除成功！"
+              });
+              this.getDataList();
+            }
+          });
+        })
+        .catch(() => {});
     }
     //
   }

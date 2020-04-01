@@ -62,7 +62,7 @@
             <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
               <el-button size="small" icon="el-icon-search" type="primary" @click="getUserLists">查询</el-button>
-              <el-button size="small"   plain  @click="resetSerach">重置</el-button>
+              <el-button size="small" plain @click="resetSerach">重置</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -81,7 +81,7 @@
               <template slot-scope="scope">
                 <div class="app-operation">
                   <el-button class="btn-blue" size="mini" @click="detailUser(scope.row.id)">修改</el-button>
-                  <el-button class="btn-red" size="mini"  @click="delUser(scope.row.id)">删除</el-button>
+                  <el-button class="btn-red" size="mini" @click="delUser(scope.row.id)">删除</el-button>
                 </div>
               </template>
             </el-table-column>
@@ -121,16 +121,26 @@
             ref="userRulesForm"
           >
             <el-form-item label="用户名：" prop="user_name" v-if="this.userDialogTitle=='添加人员信息'">
-              <el-input v-model="userData.user_name" autocomplete="off"></el-input>
+              <el-input
+                v-model="userData.user_name"
+                autocomplete="off"
+                maxlength="20"
+                show-word-limit
+              ></el-input>
             </el-form-item>
             <el-form-item label="密码：" prop="password" v-if="this.userDialogTitle=='添加人员信息'">
-              <el-input v-model="userData.password" autocomplete="off"></el-input>
+              <el-input
+                v-model="userData.password"
+                autocomplete="off"
+                maxlength="20"
+                show-word-limit
+              ></el-input>
             </el-form-item>
             <el-form-item label="密码：" prop="passwordEdit" v-if="this.userDialogTitle=='修改人员信息'">
               <el-input v-model="userData.passwordEdit" autocomplete="off" placeholder="不修改密码请留空"></el-input>
             </el-form-item>
             <el-form-item label="姓名：" prop="name">
-              <el-input v-model="userData.name" autocomplete="off"></el-input>
+              <el-input v-model="userData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
             </el-form-item>
             <el-form-item label="公司名称：" prop="company_id">
               <el-select v-model="userData.company_id" @change="getDepartLists($event)">
@@ -162,7 +172,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="邮箱：">
+            <el-form-item label="邮箱：" prop="email">
               <el-input v-model="userData.email" autocomplete="off"></el-input>
             </el-form-item>
 
@@ -176,7 +186,7 @@
                 <el-option label="施工队长" :value="6"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="手机号码：">
+            <el-form-item label="手机号码：" prop="phone">
               <el-input v-model="userData.phone" autocomplete="off"></el-input>
             </el-form-item>
           </el-form>
@@ -211,18 +221,18 @@ export default {
         name: [
           {
             required: true,
-            message: "请输入姓名2~30个字符",
+            message: "请输入姓名2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
         ],
         user_name: [
           {
             required: true,
-            message: "请输入用户名2~30个字符",
+            message: "请输入用户名2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
         ],
         company_id: [
           {
@@ -234,16 +244,16 @@ export default {
         password: [
           {
             required: true,
-            message: "请输入密码2~30个字符",
+            message: "请输入密码2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
         ],
         passwordEdit: [
           {
             min: 2,
-            max: 30,
-            message: "请输入密码在2到30个字符",
+            max: 20,
+            message: "请输入密码在2到20个字符",
             trigger: "blur"
           }
         ],
@@ -266,6 +276,20 @@ export default {
             required: true,
             message: "请选择调度信息",
             trigger: "change"
+          }
+        ],
+        email: [
+          {
+            type: "email",
+            message: "请输入正确的邮箱地址",
+            trigger: ["blur", "change"]
+          }
+        ],
+        phone: [
+          {
+            pattern:  /^1[34578]\d{9}$/,
+            message: "请输入正确的手机号码",
+            trigger: "blur"
           }
         ]
       },
@@ -318,7 +342,10 @@ export default {
       this.getUserLists();
     },
     resetSerach() {
-      this.userSearch = {};
+      this.userSearch.user_name = "";
+      this.userSearch.company_id = "";
+      this.userSearch.depart_id = "";
+      this.userSearch.post_id = "";
       this.getUserLists();
     },
     openAddUser() {
@@ -333,7 +360,6 @@ export default {
           let url = "/user/addUser";
           let baseid = this.userData.id;
           console.log("this.userData.id：" + this.userData.id);
-          debugger;
           if (typeof baseid != "undefined") {
             url = "/user/editUser";
             let pwdEdit = this.userData.passwordEdit;
