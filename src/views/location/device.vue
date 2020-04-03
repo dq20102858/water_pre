@@ -97,7 +97,6 @@
 export default {
   data() {
     return {
-      activeIndex: 1,
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
       companyList: [],
@@ -115,7 +114,6 @@ export default {
           { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
         ],
         description: [
-          ,
           { min: 0, max: 50, message: "长度在0到50个字符", trigger: "blur" }
         ]
       },
@@ -183,7 +181,7 @@ export default {
         name: "",
         description: ""
       };
-      this.diaLogTitle = "添加机具";
+      this.diaLogTitle = "添加信息";
       this.diaLogFormVisible = true;
     },
     addOrEditDialog() {
@@ -193,32 +191,29 @@ export default {
             this.deviceData.description = "暂无";
           }
           let data = this.deviceData;
-
           this.request({
             url: "/location/addOrEditDevice",
             method: "post",
-            data: data
+            data
           }).then(response => {
             var data = response.data;
             if (data.status == 1) {
               this.diaLogFormVisible = false;
-              this.deviceData.name = "";
-              this.deviceData.description = "";
-              this.getDataList();
               this.$message({
                 type: "success",
                 message: "保存成功！"
               });
+              this.getDataList();
             }
           });
         } else {
-          console.log("操作失败！");
+          this.$message.error("操作失败！");
           return false;
         }
       });
     },
     goEdit(id) {
-      this.title = "修改机具信息";
+      this.diaLogTitle = "修改信息";
       this.diaLogFormVisible = true;
       this.request({
         url: "/location/getDevice",
@@ -228,6 +223,9 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.deviceData = data.data;
+          if (data.data.description == "暂无") {
+            this.deviceData.description = "";
+          }
         }
       });
     },

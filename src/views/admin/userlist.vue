@@ -287,7 +287,7 @@ export default {
         ],
         phone: [
           {
-            pattern:  /^1[34578]\d{9}$/,
+            pattern: /^1[34578]\d{9}$/,
             message: "请输入正确的手机号码",
             trigger: "blur"
           }
@@ -342,10 +342,12 @@ export default {
       this.getUserLists();
     },
     resetSerach() {
-      this.userSearch.user_name = "";
-      this.userSearch.company_id = "";
-      this.userSearch.depart_id = "";
-      this.userSearch.post_id = "";
+      this.userSearch = {
+        user_name: "",
+        company_id: "",
+        depart_id: "",
+        post_id: ""
+      };
       this.getUserLists();
     },
     openAddUser() {
@@ -399,7 +401,6 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.userData = data.data;
-
           this.passwordOrg = data.data.password;
           this.getDepartListEdit(data.data.company_id); //部门
           this.getPostListEdit(data.data.depart_id); //职位

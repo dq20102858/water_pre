@@ -120,7 +120,7 @@
           <el-input v-model="detectorData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
         </el-form-item>
         <el-form-item label="设备编号：" prop="number">
-          <el-input v-model="detectorData.number" autocomplete="off"  maxlength="20" show-word-limit></el-input>
+          <el-input v-model="detectorData.number" autocomplete="off" maxlength="20" show-word-limit></el-input>
         </el-form-item>
         <el-form-item label="设定线路" prop="line_type">
           <el-select v-model="detectorData.line_type" placeholder="请选择" clearable>
@@ -135,29 +135,29 @@
         <el-form-item label="IP地址：" prop="ip">
           <el-input v-model="detectorData.ip" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="所在位置："  class="el-form-item-inlines is-required">
-            <el-form-item prop="start_flag">
-                <b>DK</b>
-                <el-input
-                  v-model="detectorData.start_flag"
-                  autocomplete="off"
-                  placeholder="公里"
-                  maxlength="3"
-                ></el-input>
-              </el-form-item>
-              <el-form-item prop="start_length">
-                <b>+</b>
-                <el-input
-                  v-model="detectorData.start_length"
-                  autocomplete="off"
-                  placeholder="米"
-                  maxlength="3"
-                ></el-input>
-              </el-form-item>
+        <el-form-item label="所在位置：" class="el-form-item-inlines is-required">
+          <el-form-item prop="start_flag">
+            <b>DK</b>
+            <el-input
+              v-model="detectorData.start_flag"
+              autocomplete="off"
+              placeholder="公里"
+              maxlength="4"
+            ></el-input>
+          </el-form-item>
+          <el-form-item prop="start_length">
+            <b>+</b>
+            <el-input
+              v-model="detectorData.start_length"
+              autocomplete="off"
+              placeholder="米"
+              maxlength="3"
+            ></el-input>
+          </el-form-item>
           <!-- <b>DK</b>
           <el-input v-model="detectorData.start_flag" autocomplete="off"></el-input>
           <b>+</b>
-          <el-input v-model="detectorData.start_length" autocomplete="off"></el-input> -->
+          <el-input v-model="detectorData.start_length" autocomplete="off"></el-input>-->
         </el-form-item>
         <el-form-item label="设备是否装在出入口：" prop="is_enter">
           <el-radio v-model="detectorData.is_enter" :label="1">是</el-radio>
@@ -216,15 +216,15 @@ export default {
             trigger: "blur"
           }
         ],
-         start_flag: [
+        start_flag: [
           {
             required: true,
             message: "请输入位置公里",
             trigger: "blur"
           },
           {
-            pattern: /^\d{1,3}$/,
-            message: "请输入1-3位正整数",
+            pattern: /^\d{1,4}$/,
+            message: "请输入1-4位正整数",
             trigger: "blur"
           }
         ],
@@ -259,7 +259,9 @@ export default {
     };
   },
   mounted() {
-     document.querySelector("#app-menu-items #menu_location").classList.add("is-active");
+    document
+      .querySelector("#app-menu-items #menu_location")
+      .classList.add("is-active");
   },
   created() {
     this.getCompanyList();
@@ -328,6 +330,16 @@ export default {
     },
     //
     addDialogInfo() {
+      this.detectorData = {
+        depart_id: "",
+        name: "",
+        number: "",
+        line_type: "",
+        ip: "",
+        start_flag: "",
+        start_length: "",
+        is_enter: ""
+      };
       this.diaLogTitle = "添加墙壁探测器信息";
       this.diaLogFormVisible = true;
     },
@@ -369,8 +381,8 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.detectorData = data.data;
-          this.detectorData.start_flag=parseInt(data.data.start_flag);
-            this.detectorData.start_length=parseInt(data.data.start_length);
+          this.detectorData.start_flag = parseInt(data.data.start_flag);
+          this.detectorData.start_length = parseInt(data.data.start_length);
         }
       });
     },
@@ -379,24 +391,26 @@ export default {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
-        ,customClass:"el-message-box-new"
-      }).then(() => {
-        this.request({
-          url: "/location/deleteWallDetector",
-          method: "post",
-          data: { id: id }
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.$message({
-              type: "success",
-              message: "删除成功！"
-            });
-            this.getDataList();
-          }
-        });
-      }).catch(()=>{});
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/location/deleteWallDetector",
+            method: "post",
+            data: { id: id }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "删除成功！"
+              });
+              this.getDataList();
+            }
+          });
+        })
+        .catch(() => {});
     },
     changeTime(time) {
       if (time !== null && time !== undefined && time !== "") {

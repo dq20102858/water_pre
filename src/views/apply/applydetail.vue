@@ -382,6 +382,11 @@ export default {
       default: ""
     }
   },
+   mounted() {
+    document
+      .querySelector("#app-menu-items #menu_apply")
+      .classList.add("is-active");
+  },
   created() {
     this.getDetail();
   },
