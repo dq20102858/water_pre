@@ -66,7 +66,7 @@
             </el-pagination>
           </div>
         </div>
-        <el-dialog
+        <el-dialog  width="700px"
           :close-on-click-modal="false"
           class="dialog-work"
           :title="this.title"

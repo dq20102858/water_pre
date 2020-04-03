@@ -185,8 +185,7 @@ export default {
       dialogAddVisible: false,
       dialogDetailVisible: false,
       calendarLists: {},
-      dateCellValue: "",
-      messageError: ""
+      dateCellValue: ""
     };
   },
   created() {
@@ -208,22 +207,7 @@ export default {
         }
       });
     },
-    getCurrData() {
-      const that = this;
-      let workSelectId = this.workSelectId;
-      let one = {};
-      this.lineTypeList.forEach(function(item, key) {
-        if (workSelectId == item["id"]) {
-          one = item;
-          that.planOneDataType = item.type;
-          console.log("planOneDataType：" + that.planOneDataType);
-        }
-      });
-      if (JSON.stringify(one) !== "{}") {
-        this.planOneData = one["des"];
-        this.planWorkName = one["name"];
-      }
-    },
+
     //获取已添加的记录
     getPlanByDate() {
       let proId = this.workSelectId;
@@ -290,6 +274,22 @@ export default {
       });
       this.getCurrData();
     },
+    getCurrData() {
+      const that = this;
+      let workSelectId = this.workSelectId;
+      let one = {};
+      this.lineTypeList.forEach(function(item, key) {
+        if (workSelectId == item["id"]) {
+          one = item;
+          that.planOneDataType = item.type;
+          console.log("planOneDataType：" + that.planOneDataType);
+        }
+      });
+      if (JSON.stringify(one) !== "{}") {
+        this.planOneData = one["des"];
+        this.planWorkName = one["name"];
+      }
+    },
     //添加
     addOnePlan() {
       const that = this;
@@ -331,8 +331,8 @@ export default {
           let end = json[i].end_flag * 1000 + parseInt(json[i].end_length);
           let total_end =
             json[i].total_end_flag * 1000 + parseInt(json[i].total_end_length);
-          //console.log("start："+start+" total_start："+total_start);
-          //console.log("end"+end+" total_end"+total_end);
+          console.log("start：" + start + " total_start：" + total_start);
+          console.log("end：" + end + " total_end：" + total_end);
           if (start < total_start || end > total_end) {
             that.$message.error("请输入" + json[i].tip);
             return;
@@ -343,24 +343,12 @@ export default {
           }
         }
       }
-
-      // let jsons = [
-      //   {
-      //     tip: "里程范围 DK 14+130 ~ DK 42+410",
-      //     line_type: "1",
-      //     pro_id: 52,
-      //     checked: true,
-      //     start_flag: "15",
-      //     start_length: "100",
-      //     end_flag: "15",
-      //     end_length: "800",
-      //     total_start_flag: "14",
-      //     total_start_length: "130",
-      //     total_end_flag: "42",
-      //     total_end_length: "410"
-      //   }
-      // ];
-
+      if (this.planOneDataType == 2) {
+        if (this.planWorkNum == "") {
+          that.$message.error("请输入计划数量");
+          return;
+        }
+      }
       let data = {
         addDate: this.addDate,
         checkedList: this.planOneData,
@@ -380,6 +368,7 @@ export default {
             message: "添加成功",
             type: "success"
           });
+          this.getPlanByDate(this.workSelectId);
           this.dialogAddVisible = false;
         } else {
           this.$message({
