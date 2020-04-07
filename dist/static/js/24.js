@@ -1,6 +1,6 @@
 webpackJsonp([24],{
 
-/***/ "M+oE":
+/***/ "0VeL":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("FZ+f")(false);
@@ -8,20 +8,87 @@ exports = module.exports = __webpack_require__("FZ+f")(false);
 
 
 // module
-exports.push([module.i, "\n.dialog-station .el-textarea__inner {\r\n  border: 1px #9db9fa solid;\r\n  color: #4b6eca;\r\n  height: 100px;\n}\n.dialog-station .el-textarea {\r\n  width: 100% !important;\n}\n.dialog-station .el-form-item__label {\r\n  width: 110px;\n}\n.dialog-station .el-form-item__content {\r\n  margin-left: 110px;\n}\n.dialog-station .el-form-item-inline .el-input--medium {\r\n  display: inline-block;\r\n  width: 80px;\r\n  text-align: center;\n}\n.dialog-station .el-form-item-inline input {\r\n  display: inline-block;\r\n  width: 80px;\r\n  text-align: center;\n}\n.dialog-station .el-select {\r\n  width: 100%;\n}\n.el-form-item-inline input {\r\n  display: inline-block;\r\n  width: 80px;\r\n  text-align: center;\n}\n.el-form-item-inlines {\r\n  display: inline-block;\n}\n.el-form-item-inlines .el-form-item {\r\n  display: inline-block;\n}\n.el-form-item-inlines .el-form-item .el-form-item__content {\r\n  margin-left: 0;\n}\n.el-form-item-inlines .el-input {\r\n  width: 100px;\n}\n.el-form-item-inlines input {\r\n  display: inline-block;\r\n  width: 100px;\r\n  text-align: center;\n}\n.el-form-item-inlines .el-form-item {\r\n  margin-bottom: 1px !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.ptxtbox {\r\n  margin-bottom: 25px;\n}\n.dialog-plan-detail .el-form-item__label {\r\n  width: 110px;\n}\n.dialog-plan-detail .el-form-item__content {\r\n  margin-left: 110px;\n}\n.dialog-plan-detail .el-form-item {\r\n  margin-bottom: 25px;\n}\n.dialog-plan-detail .el-form-item em {\r\n  padding: 0 10px;\n}\n.dialog-plan-detail .el-form-item:last-child {\r\n  margin-bottom: 0;\n}\n.dialog-plan-detail .el-input__inner {\r\n  border: 1px #9db9fa solid;\r\n  color: #4b6eca;\r\n  width: 100%;\n}\n.dialog-plan-detail .el-form-item__error {\r\n  padding-top: 5px;\n}\n.dialog-plan-detail .el-select {\r\n  width: 100%;\n}\n.dialog-plan-detail .el-input {\r\n  width: auto;\n}\n.dialog-plan-detail .widhtss .el-input {\r\n  width: 100%;\n}\n.dialog-plan-detail .pinput input {\r\n  width: 55px;\r\n  margin: 0 3px;\r\n  padding: 0 5px;\r\n  height: 31px !important;\r\n  text-align: center;\n}\n.dialog-plan-detail .el-textarea {\r\n  width: 100%;\n}\n.dialog-plan-detail .el-textarea__inner {\r\n  width: 100%;\r\n  height: 60px;\r\n  -webkit-box-sizing: border-box;\r\n          box-sizing: border-box;\n}\r\n\r\n/* end detail */\n.app-page-container {\r\n  border-radius: 6px;\r\n  padding: 20px;\r\n  background: #fff;\n}\r\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ "Yz66":
+/***/ "AJau":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/set/tunnel.vue
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/project/detaillist.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -190,271 +257,290 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ var tunnel = ({
+/* harmony default export */ var detaillist = ({
   data: function data() {
     return {
-      diaLogFormVisible: false,
-      diaLogTitle: "添加信息",
-      formData: { type: 1 },
-      formRules: {
-        name: [{
-          required: true,
-          message: "请输入名称2~20个字符",
-          trigger: "blur"
-        }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }],
-        line_type: [{ required: true, message: "请选择线别", trigger: "change" }],
-        start_flag: [{
-          required: true,
-          message: "请输入开始公里",
-          trigger: "blur"
-        }, {
-          pattern: /^\d{1,3}$/,
-          message: "请输入1-3位正整数",
-          trigger: "blur"
-        }],
-        start_length: [{
-          required: true,
-          message: "请请输入开始米",
-          trigger: "blur"
-        }, {
-          pattern: /^\d{1,3}$/,
-          message: "请输入1-3位正整数",
-          trigger: "blur"
-        }],
-        end_flag: [{
-          required: true,
-          message: "请输入结束公里",
-          trigger: "blur"
-        }, {
-          pattern: /^\d{1,3}$/,
-          message: "请输入1-3位正整数",
-          trigger: "blur"
-        }],
-        end_length: [{
-          required: true,
-          message: "请输入结束米",
-          trigger: "blur"
-        }, {
-          pattern: /^\d{1,3}$/,
-          message: "请输入1-3位正整数",
-          trigger: "blur"
-        }]
+      detailListPages: [],
+      detailPage: 1,
+      detailTotal: 0,
+      detailPageSize: 20,
+      detailPage_total: 0,
+      searchForm: {
+        is_finish: "全部"
       },
-      page_cur: 1,
-      page_data_total: 0,
-      page_size: 20,
-      page_total: 0,
-      dataList: [],
-      searchName: "",
-      lineTypeStart: "",
-      lineTypeEnd: "",
+      dialogAddHistoryVisible: false,
+      historyData: {},
+      historyDataType: 1,
+      historyTitle: "",
+      historyRules: {
+        pro_id: [{ required: true, message: "请选择作业", trigger: "change" }],
+        line_type: [{ required: true, message: "请选择线别", trigger: "change" }],
+        start_flag: [{ required: true, message: "请输入计划里程", trigger: "blur" }],
+        t_start_flag: [{ required: true, message: "请输入实际里程", trigger: "blur" }],
+        plan_time: [{ required: true, message: "请选择日期", trigger: "change" }],
+        plan_num: [{ required: true, message: "请输入计划数量", trigger: "blur" }, {
+          pattern: /^\d{1,5}$/,
+          message: "请输入1-5位正整数",
+          trigger: "blur"
+        }],
+        true_num: [{
+          pattern: /^\d{1,5}$/,
+          message: "请输入1-5位正整数",
+          trigger: "blur"
+        }],
+        is_finish: [{ required: true, message: "请选择是否完成", trigger: "change" }],
+        remark: [{ min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }]
+      },
+      workLists: [],
+      workLineTypeList: [],
+      lineTypeListDes: [],
       lineTypeDes: "",
-      lineTypeList: []
+      lineTypeStartTotal: 0,
+      lineTypeEndTotal: 0,
+      addShow: true
     };
   },
-  mounted: function mounted() {
-    document.querySelector("#app-menu-items #menu_set").classList.add("is-active");
-  },
   created: function created() {
-    this.getLineTypeLists();
-    this.getDataList();
+    this.getWorkList();
+    this.getDetailLists();
   },
 
   methods: {
-    getDataList: function getDataList() {
+    //获取分页列表数据
+    getDetailLists: function getDetailLists() {
       var _this = this;
 
-      var page = this.page_cur;
-      var name = this.searchName;
-      var road_type = 2; //1桥，2隧道，3坡度，4防区，5限速
+      var page = this.detailPage;
+      var pro_id = this.searchForm.work;
+      var time_range = this.searchForm.time_range;
+      var is_finish = this.searchForm.is_finish;
+      if (this.searchForm.is_finish == -1) {
+        is_finish = null;
+      }
+      console.log(this.searchForm);
       this.request({
-        url: "/search/getRoadDevicePages",
+        url: "/project/getPlanPages",
         method: "get",
-        params: {
-          page: page,
-          name: name,
-          road_type: road_type
-        }
-      }).then(function (res) {
-        var data = res.data;
+        params: { page: page, pro_id: pro_id, time_range: time_range, is_finish: is_finish }
+      }).then(function (response) {
+        var data = response.data;
         if (data.status == 1) {
-          _this.dataList = data.data.data;
-          _this.page_cur = parseInt(data.data.current_page);
-          _this.page_total = data.data.last_page;
-          _this.page_data_total = data.data.total;
-          _this.page_size = data.data.per_page;
+          _this.detailListPages = data.data.data;
+          _this.detailPage = parseInt(data.data.current_page);
+          _this.detailTotal = parseInt(data.data.total);
+          _this.detailPageSize = data.data.per_page;
+          _this.detailPage_total = parseInt(data.data.last_page);
         }
       });
     },
-    pageChange: function pageChange(value) {
-      this.page_cur = value;
-      this.getDataList();
+    detailPageChange: function detailPageChange(value) {
+      this.detailPage = value;
+      this.getDetailLists();
     },
-    pageToFirst: function pageToFirst() {
-      this.page_cur = 1;
-      this.getDataList();
+    detailPageFirst: function detailPageFirst() {
+      this.detailPageChange(1);
     },
-    pageToLast: function pageToLast() {
-      this.page_cur = this.page_total;
-      this.getDataList();
+    detailPageLast: function detailPageLast() {
+      this.detailPage = this.detailPage_total;
+      this.detailPageChange(this.detailPage_total);
     },
-    searchEvent: function searchEvent() {
-      this.page_cur = 1;
-      this.getDataList();
+    detailSearchPage: function detailSearchPage() {
+      this.detailPage = 1;
+      this.getDetailLists();
     },
-    getLineTypeLists: function getLineTypeLists() {
+
+
+    //获取二级分类
+    getWorkList: function getWorkList() {
       var _this2 = this;
 
       this.request({
-        url: "/common/getLineType",
+        url: "/project/getWorkTypeList",
         method: "get"
       }).then(function (response) {
         var data = response.data;
         if (data.status == 1) {
-          _this2.lineTypeList = data.data;
+          _this2.workLists = data.data;
         }
       });
     },
-    selectLineType: function selectLineType(value) {
+    changeWorkListItem: function changeWorkListItem(value) {
       var that = this;
-      this.lineTypeList.map(function (item, index) {
+      this.$set(this.historyData, "line_type", "");
+      this.lineTypeDes = "";
+      var selectedLineTypeLists = [];
+      var selectedLineTypeDes = [];
+
+      this.workLists.forEach(function (item) {
         if (item.id == value) {
-          that.lineTypeDes = "里程范围：" + item.tip;
-          that.lineTypeStart = item.start;
-          that.lineTypeEnd = item.end;
+          selectedLineTypeLists = item.line_type_lists;
+          selectedLineTypeDes = item.des;
+          that.historyDataType = item.type;
         }
       });
-      console.log(this.lineTypeDes);
+      this.workLineTypeList = selectedLineTypeLists;
+      this.lineTypeListDes = selectedLineTypeDes;
     },
-    goAdd: function goAdd() {
-      this.formData = { type: 1 };
-      this.diaLogTitle = "添加信息";
-      this.diaLogFormVisible = true;
-      this.lineTypeDes = "";
-    },
-    addOrEditDialog: function addOrEditDialog() {
+    changeWorkLineTypeList: function changeWorkLineTypeList(value) {
       var _this3 = this;
 
-      var that = this;
-      this.$refs["formRules"].validate(function (valid) {
+      this.lineTypeListDes.map(function (item, i) {
+        if (item.line_type == value) {
+          _this3.lineTypeDes = item.tip;
+          _this3.lineTypeStartTotal = item.total_start_flag * 1000 + parseInt(item.total_start_length);
+          _this3.lineTypeEndTotal = item.total_end_flag * 1000 + parseInt(item.total_end_length);
+          console.log("lineTypeStartTotal：" + _this3.lineTypeStartTotal + " lineTypeEndTotal：" + _this3.lineTypeEndTotal);
+          //console.log(item.tip);
+        }
+      });
+    },
+
+    //打开添加弹窗
+    addHistory: function addHistory() {
+      this.dialogAddHistoryVisible = true;
+      this.historyTitle = "添加历史记录";
+      this.addShow = true;
+      this.lineTypeDes = "";
+      this.historyData = {
+        pro_id: "",
+        line_type: "",
+        plan_num: "",
+        true_num: "",
+        start_flag: "",
+        start_length: ""
+      };
+    },
+    addOrEditPlanDo: function addOrEditPlanDo() {
+      var _this4 = this;
+
+      this.$refs["detailForm"].validate(function (valid) {
         if (valid) {
-          var data = that.formData;
-          _this3.formData.road_type = 2; //1桥，2隧道，3坡度，4防区，5限速
-          // //里程判断
-          var startTotal = parseInt(data.start_flag * 1000) + parseInt(data.start_length);
-          var endTotal = parseInt(data.end_flag * 1000) + parseInt(data.end_length);
-          var lineStartTotal = that.lineTypeStart * 1000;
-          var lineEndTotal = that.lineTypeEnd * 1000;
-          if (parseInt(startTotal) < parseInt(lineStartTotal)) {
-            _this3.$message.error("输入的开始里程不在里程范围内");
-            return false;
+          var data = _this4.historyData;
+
+          var start = _this4.historyData.start_flag * 1000 + parseInt(_this4.historyData.start_length);
+          var end = _this4.historyData.end_flag * 1000 + parseInt(_this4.historyData.end_length);
+          var t_start = _this4.historyData.t_start_flag * 1000 + parseInt(_this4.historyData.t_start_length);
+          var t_end = _this4.historyData.t_end_flag * 1000 + parseInt(_this4.historyData.t_end_length);
+          if (_this4.addShow == true) {
+            if (start < _this4.lineTypeStartTotal || end > _this4.lineTypeEndTotal) {
+              _this4.$message.error("请输入" + _this4.lineTypeDes);
+              return;
+            }
           }
-          if (parseInt(endTotal) > parseInt(lineEndTotal)) {
-            _this3.$message.error("输入的结束里程不在里程范围内");
-            return false;
+          if (end < start) {
+            _this4.$message.error("输入的计划结束里程不能小于开始里程");
+            return;
           }
-          if (parseInt(endTotal) < parseInt(startTotal)) {
-            _this3.$message.error("输入的结束里程不能小于结束里程");
-            return false;
+          if (t_start < start) {
+            _this4.$message.error("输入的实际开始里程不能小于计划开始里程");
+            return;
           }
-          _this3.request({
-            url: "/search/addOrEditRoadDevice",
+          if (t_end > end) {
+            _this4.$message.error("输入的实际结束里程不能大于实话开始里程");
+            return;
+          }
+          if (t_end < t_start) {
+            _this4.$message.error("输入的实际结束里程不能小于开始里程");
+            return;
+          }
+          _this4.request({
+            url: "/project/addOrEditPlan",
             method: "post",
             data: data
           }).then(function (response) {
             var data = response.data;
+            var msg = "";
             if (data.status == 1) {
-              _this3.diaLogFormVisible = false;
-              _this3.formData.name = "";
-              _this3.getDataList();
-              _this3.$message({
-                type: "success",
-                message: "保存成功！"
+              _this4.$message({
+                showClose: true,
+                message: "保存成功",
+                type: "success"
+              });
+              _this4.getDetailLists();
+              _this4.dialogAddHistoryVisible = false;
+            } else {
+              _this4.$message({
+                showClose: true,
+                message: "保存失败",
+                type: "error"
               });
             }
           });
-        } else {
-          console.log("操作失败！");
-          return false;
         }
       });
     },
-    goEdit: function goEdit(id) {
-      var _this4 = this;
+    getPlanDetail: function getPlanDetail(id) {
+      var _this5 = this;
 
-      this.diaLogTitle = "修改信息";
-      this.diaLogFormVisible = true;
+      this.historyTitle = "修改历史记录 ";
+      this.addShow = false;
       this.request({
-        url: "/search/getRoadDeviceDetail",
+        url: "/project/getPlanDetail",
         method: "get",
         params: { id: id }
       }).then(function (response) {
         var data = response.data;
         if (data.status == 1) {
-          _this4.formData = data.data;
-          _this4.lineTypeList.map(function (item, index) {
-            if (item.id == data.data.line_type) {
-              _this4.lineTypeDes = "里程范围：" + item.tip;
-              _this4.lineTypeStart = item.start;
-              _this4.lineTypeEnd = item.end;
-            }
-          });
+          _this5.historyData = data.data;
+          _this5.historyData.is_finish = _this5.historyData.is_finish.toString();
+          if (data.data.plan_num > 0) {
+            _this5.dialogAddHistoryVisible = true;
+            _this5.historyDataType = 2;
+          } else {
+            _this5.dialogAddHistoryVisible = true;
+            _this5.historyDataType = 1;
+          }
         }
       });
     },
-    goDel: function goDel(id) {
-      var _this5 = this;
+    deletePlan: function deletePlan(id) {
+      var _this6 = this;
 
-      this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
+      this.$confirm("您确定删除作业?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning",
         customClass: "el-message-box-new"
       }).then(function () {
-        _this5.request({
-          url: "/search/deleteRoadDevice",
+        var data = {
+          id: id
+        };
+        _this6.request({
+          url: "/project/deletePlan",
           method: "post",
-          data: { id: id }
-        }).then(function (res) {
-          var data = res.data;
+          data: data
+        }).then(function (response) {
+          var data = response.data;
           if (data.status == 1) {
-            _this5.$message({
-              type: "success",
-              message: "删除成功！"
+            _this6.$message({
+              showClose: true,
+              message: "删除成功",
+              type: "success"
             });
-            _this5.getDataList();
+            _this6.getDetailLists();
+          } else {
+            _this6.$message({
+              showClose: true,
+              message: "删除失败",
+              type: "error"
+            });
           }
         });
       }).catch(function () {});
-    },
-    changeStarttime: function changeStarttime() {
-      if (this.workData.start_time >= this.workData.end_time) {
-        this.$message.error("开始日期不能大于结束日期");
-        this.workData.start_time = "";
-      }
-    },
-    changeEndtime: function changeEndtime() {
-      var start_time = new Date(this.workData.start_time);
-      var end_time = new Date(this.workData.end_time);
-      //alert(start_time);
-      //alert(end_time);
-      if (end_time <= start_time) {
-        this.$message.error("结束日期不能小于开始日期");
-        this.workData.end_time = "";
-      }
     }
+
     //
 
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-72b3268b","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/set/tunnel.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"monitor"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"router":"","default-active":"tunnel","mode":"horizontal"}},[_c('li',{staticClass:"ptitle"},[_c('img',{attrs:{"src":__webpack_require__("qyEk")}}),_vm._v("设置\n      ")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"set"}},[_vm._v("站点设置")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"speed"}},[_vm._v("限速设置")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"alert"}},[_vm._v("防区设置")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"bridge"}},[_vm._v("桥设置")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"tunnel"}},[_vm._v("隧道设置")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"slope"}},[_vm._v("坡度设置")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{attrs:{"inline":true}},[_c('el-form-item',[_c('el-button',{attrs:{"type":"primary","icon":"el-icon-plus"},on:{"click":_vm.goAdd}},[_vm._v("添加隧道")])],1),_vm._v(" "),_c('div',{staticClass:"el-serach"},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"请输入名称查询","clearable":""},model:{value:(_vm.searchName),callback:function ($$v) {_vm.searchName=$$v},expression:"searchName"}}),_vm._v(" "),_c('el-button',{on:{"click":_vm.searchEvent}},[_vm._v("查询")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{attrs:{"data":_vm.dataList}},[_c('el-table-column',{attrs:{"label":"序号"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('span',[_vm._v(_vm._s(scope.$index+(_vm.page_cur - 1) * _vm.page_size + 1))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"name","label":"名称"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"line","label":"线别"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"type","label":"类型"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_vm._v(_vm._s(scope.row.type==1?"无道砟":"有道砟"))]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"起始里程"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('b',[_vm._v("DK")]),_vm._v("\n              "+_vm._s(scope.row.start_flag)+" + "+_vm._s(scope.row.start_length)+"\n            ")]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"结束里程"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('b',[_vm._v("DK")]),_vm._v("\n              "+_vm._s(scope.row.end_flag)+" + "+_vm._s(scope.row.end_length)+"\n            ")]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"create_time","label":"创建时间"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"120"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.goEdit(scope.row.id)}}},[_vm._v("修改")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.goDel(scope.row.id)}}},[_vm._v("删除")])],1)]}}])})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.dataList.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","page-size":this.page_size,"current-page":this.page_cur,"total":this.page_data_total,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.pageChange}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.pageToFirst}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.pageToLast}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1)],1),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-station",attrs:{"width":"700px","close-on-click-modal":false,"title":this.diaLogTitle,"visible":_vm.diaLogFormVisible},on:{"update:visible":function($event){_vm.diaLogFormVisible=$event}}},[_c('el-form',{ref:"formRules",staticClass:"el-form-custom",attrs:{"model":_vm.formData,"rules":_vm.formRules}},[_c('el-form-item',{attrs:{"label":"名称：","prop":"name"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.formData.name),callback:function ($$v) {_vm.$set(_vm.formData, "name", $$v)},expression:"formData.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"线别：","prop":"line_type"}},[_c('el-select',{attrs:{"placeholder":"请选择"},on:{"change":function($event){_vm.selectLineType($event)}},model:{value:(_vm.formData.line_type),callback:function ($$v) {_vm.$set(_vm.formData, "line_type", $$v)},expression:"formData.line_type"}},_vm._l((_vm.lineTypeList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})})),_vm._v(" "),_c('div',{staticClass:"el-form-item__error"},[_vm._v(_vm._s(_vm.lineTypeDes))])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"类型："}},[_c('el-select',{model:{value:(_vm.formData.type),callback:function ($$v) {_vm.$set(_vm.formData, "type", $$v)},expression:"formData.type"}},[_c('el-option',{attrs:{"label":"无道砟","value":1}}),_vm._v(" "),_c('el-option',{attrs:{"label":"有道砟","value":2}})],1)],1),_vm._v(" "),_c('el-form-item',{staticClass:"el-form-item-inlines is-required",attrs:{"label":"开始里程："}},[_c('el-form-item',{attrs:{"prop":"start_flag"}},[_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"公里","maxlength":"3"},model:{value:(_vm.formData.start_flag),callback:function ($$v) {_vm.$set(_vm.formData, "start_flag", $$v)},expression:"formData.start_flag"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"prop":"start_length"}},[_c('b',[_vm._v("+")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"米","maxlength":"3"},model:{value:(_vm.formData.start_length),callback:function ($$v) {_vm.$set(_vm.formData, "start_length", $$v)},expression:"formData.start_length"}})],1)],1),_vm._v(" "),_c('el-form-item',{staticClass:"el-form-item-inlines is-required",attrs:{"label":"结束里程："}},[_c('el-form-item',{attrs:{"prop":"end_flag"}},[_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"公里","maxlength":"3"},model:{value:(_vm.formData.end_flag),callback:function ($$v) {_vm.$set(_vm.formData, "end_flag", $$v)},expression:"formData.end_flag"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"prop":"end_length"}},[_c('b',[_vm._v("+")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"米","maxlength":"3"},model:{value:(_vm.formData.end_length),callback:function ($$v) {_vm.$set(_vm.formData, "end_length", $$v)},expression:"formData.end_length"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"blank"})],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.diaLogFormVisible = false}}},[_vm._v("关闭")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.addOrEditDialog()}}},[_vm._v("确定")])],1)],1)],1)])])}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-6b971480","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/project/detaillist.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"project"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"router":"","default-active":"detaillist","mode":"horizontal"}},[_c('li',{staticClass:"ptitle"},[_c('img',{attrs:{"src":__webpack_require__("MV+A")}}),_vm._v("工程进度\n      ")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"project"}},[_vm._v("添加作业")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"schedule"}},[_vm._v("计划日程")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"detaillist"}},[_vm._v("详情列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"chartdata"}},[_vm._v("图表数据")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{attrs:{"id":"detail"}},[_c('div',{staticClass:"app-page-container"},[_c('el-form',{attrs:{"model":_vm.searchForm,"inline":true}},[_c('el-form-item',[_c('el-button',{attrs:{"size":"small","icon":"el-icon-plus","type":"primary"},on:{"click":_vm.addHistory}},[_vm._v("添加历史记录")])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"作业"}},[_c('el-select',{staticClass:"search-input search-select",attrs:{"clearable":"","placeholder":"请选择作业"},model:{value:(_vm.searchForm.work),callback:function ($$v) {_vm.$set(_vm.searchForm, "work", $$v)},expression:"searchForm.work"}},_vm._l((_vm.workLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}},[_vm._v(_vm._s(item.name))])}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"选择时间"}},[_c('el-date-picker',{attrs:{"type":"daterange","align":"right","unlink-panels":"","range-separator":"至","start-placeholder":"开始日期","end-placeholder":"结束日期","value-format":"yyyy-MM-dd"},model:{value:(_vm.searchForm.time_range),callback:function ($$v) {_vm.$set(_vm.searchForm, "time_range", $$v)},expression:"searchForm.time_range"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"完成状态"}},[_c('el-select',{staticClass:"search-input search-select",staticStyle:{"width":"140px"},attrs:{"placeholder":"请选择状态"},model:{value:(_vm.searchForm.is_finish),callback:function ($$v) {_vm.$set(_vm.searchForm, "is_finish", $$v)},expression:"searchForm.is_finish"}},[_c('el-option',{attrs:{"label":"全部","value":"-1","selected":""}},[_vm._v("全部")]),_vm._v(" "),_c('el-option',{attrs:{"label":"已完成","value":"1"}},[_vm._v("已完成")]),_vm._v(" "),_c('el-option',{attrs:{"label":"未完成","value":"0"}},[_vm._v("未完成")])],1)],1),_vm._v(" "),_c('el-form-item',[_c('el-button',{attrs:{"size":"small","icon":"el-icon-search","type":"primary"},on:{"click":_vm.detailSearchPage}},[_vm._v("查询")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{ref:"multipleTable",attrs:{"data":_vm.detailListPages}},[_c('el-table-column',{attrs:{"type":"index","label":"序号","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"pro_name","label":"作业名称","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"计划完成","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.plan_num>0)?_c('span',[_vm._v(_vm._s(scope.row.plan_num))]):_c('span',[_vm._v(_vm._s(scope.row.plan_tip))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"实际完成","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.plan_num>0)?_c('span',[_vm._v(_vm._s(scope.row.true_num))]):_c('span',[_vm._v(_vm._s(scope.row.true_tip))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"状态","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.is_finish == 1)?_c('span',[_vm._v("已完成")]):_c('span',[_vm._v("未完成")])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"remark","label":"备注","align":"center","show-overflow-tooltip":""}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"plan_date","label":"日期","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"120"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.getPlanDetail(scope.row.id)}}},[_vm._v("修改")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.deletePlan(scope.row.id)}}},[_vm._v("删除")])],1)]}}])})],1)],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.detailListPages.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","current-page":this.detailPage,"total":this.detailTotal,"page-size":this.detailPageSize,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.detailPageChange}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.detailPageFirst}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.detailPageLast}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-plan-detail",attrs:{"width":"700px","close-on-click-modal":false,"title":this.historyTitle,"visible":_vm.dialogAddHistoryVisible},on:{"update:visible":function($event){_vm.dialogAddHistoryVisible=$event}}},[_c('el-form',{ref:"detailForm",staticClass:"el-form-custom",attrs:{"model":_vm.historyData,"rules":_vm.historyRules}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.addShow),expression:"!addShow"}],staticClass:"ptxtbox"},[_c('el-form-item',{staticClass:"widhtss",attrs:{"label":"作业名称："}},[_c('el-input',{attrs:{"disabled":""},model:{value:(_vm.historyData.pro_name),callback:function ($$v) {_vm.$set(_vm.historyData, "pro_name", $$v)},expression:"historyData.pro_name"}})],1),_vm._v(" "),(_vm.historyDataType==1)?_c('el-form-item',{staticClass:"widhtss",attrs:{"label":"线别："}},[_c('el-input',{attrs:{"disabled":""},model:{value:(_vm.historyData.line_type_desc),callback:function ($$v) {_vm.$set(_vm.historyData, "line_type_desc", $$v)},expression:"historyData.line_type_desc"}})],1):_vm._e(),_vm._v(" "),_c('el-form-item',{staticClass:"widhtss",attrs:{"label":"完成日期：","prop":"plan_time"}},[_c('el-date-picker',{attrs:{"type":"date","placeholder":"选择日期"},model:{value:(_vm.historyData.plan_time),callback:function ($$v) {_vm.$set(_vm.historyData, "plan_time", $$v)},expression:"historyData.plan_time"}})],1)],1),_vm._v(" "),_c('el-form-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.addShow),expression:"addShow"}],attrs:{"label":"作业名称：","prop":"pro_id"}},[_c('el-select',{attrs:{"clearable":"","placeholder":"请选择作业"},on:{"change":_vm.changeWorkListItem},model:{value:(_vm.historyData.pro_id),callback:function ($$v) {_vm.$set(_vm.historyData, "pro_id", $$v)},expression:"historyData.pro_id"}},_vm._l((_vm.workLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),(_vm.historyDataType==2)?_c('el-form-item',{attrs:{"label":"计划数量：","prop":"plan_num"}},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"请输入数字"},model:{value:(_vm.historyData.plan_num),callback:function ($$v) {_vm.$set(_vm.historyData, "plan_num", $$v)},expression:"historyData.plan_num"}})],1):_vm._e(),_vm._v(" "),(_vm.historyDataType==2)?_c('el-form-item',{attrs:{"label":"实际数量：","prop":"true_num"}},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"请输入个，股，孔等"},model:{value:(_vm.historyData.true_num),callback:function ($$v) {_vm.$set(_vm.historyData, "true_num", $$v)},expression:"historyData.true_num"}})],1):_vm._e(),_vm._v(" "),(_vm.historyDataType==1)?_c('div',{staticStyle:{"padding-bottom":"25px"}},[_c('el-form-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.addShow),expression:"addShow"}],attrs:{"label":"线别：","prop":"line_type"}},[_c('el-select',{attrs:{"clearable":"","placeholder":"请选择线别"},on:{"change":_vm.changeWorkLineTypeList},model:{value:(_vm.historyData.line_type),callback:function ($$v) {_vm.$set(_vm.historyData, "line_type", $$v)},expression:"historyData.line_type"}},_vm._l((_vm.workLineTypeList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})})),_vm._v(" "),_c('div',{staticClass:"el-form-item__error"},[_vm._v(_vm._s(_vm.lineTypeDes))])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"计划里程：","prop":"start_flag"}},[_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"公里"},model:{value:(_vm.historyData.start_flag),callback:function ($$v) {_vm.$set(_vm.historyData, "start_flag", $$v)},expression:"historyData.start_flag"}}),_vm._v("+\n                "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"米"},model:{value:(_vm.historyData.start_length),callback:function ($$v) {_vm.$set(_vm.historyData, "start_length", $$v)},expression:"historyData.start_length"}}),_vm._v(" "),_c('em',[_vm._v("~")]),_vm._v(" "),_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"公里"},model:{value:(_vm.historyData.end_flag),callback:function ($$v) {_vm.$set(_vm.historyData, "end_flag", $$v)},expression:"historyData.end_flag"}}),_vm._v("+\n                "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"米"},model:{value:(_vm.historyData.end_length),callback:function ($$v) {_vm.$set(_vm.historyData, "end_length", $$v)},expression:"historyData.end_length"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"实际里程：","prop":"t_start_flag"}},[_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"公里"},model:{value:(_vm.historyData.t_start_flag),callback:function ($$v) {_vm.$set(_vm.historyData, "t_start_flag", $$v)},expression:"historyData.t_start_flag"}}),_vm._v("+\n                "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"米"},model:{value:(_vm.historyData.t_start_length),callback:function ($$v) {_vm.$set(_vm.historyData, "t_start_length", $$v)},expression:"historyData.t_start_length"}}),_vm._v(" "),_c('em',[_vm._v("~")]),_vm._v(" "),_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"公里"},model:{value:(_vm.historyData.t_end_flag),callback:function ($$v) {_vm.$set(_vm.historyData, "t_end_flag", $$v)},expression:"historyData.t_end_flag"}}),_vm._v("+\n                "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"米"},model:{value:(_vm.historyData.t_end_length),callback:function ($$v) {_vm.$set(_vm.historyData, "t_end_length", $$v)},expression:"historyData.t_end_length"}})],1)],1):_vm._e(),_vm._v(" "),_c('el-form-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.addShow),expression:"addShow"}],attrs:{"label":"完成日期：","prop":"plan_time"}},[_c('el-date-picker',{attrs:{"type":"date","placeholder":"选择日期"},model:{value:(_vm.historyData.plan_time),callback:function ($$v) {_vm.$set(_vm.historyData, "plan_time", $$v)},expression:"historyData.plan_time"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"是否完成：","prop":"is_finish"}},[_c('el-radio',{attrs:{"label":"1","value":"1"},model:{value:(_vm.historyData.is_finish),callback:function ($$v) {_vm.$set(_vm.historyData, "is_finish", $$v)},expression:"historyData.is_finish"}},[_vm._v("是")]),_vm._v(" "),_c('el-radio',{attrs:{"label":"0","value":"0"},model:{value:(_vm.historyData.is_finish),callback:function ($$v) {_vm.$set(_vm.historyData, "is_finish", $$v)},expression:"historyData.is_finish"}},[_vm._v("否")])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"备注：","prop":"remark"}},[_c('el-input',{attrs:{"placeholder":"填写备注","type":"textarea","maxlength":"30","show-word-limit":""},model:{value:(_vm.historyData.remark),callback:function ($$v) {_vm.$set(_vm.historyData, "remark", $$v)},expression:"historyData.remark"}})],1)],1),_vm._v(" "),_c('div',{attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.dialogAddHistoryVisible = false}}},[_vm._v("关闭")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.addOrEditPlanDo()}}},[_vm._v("确定")])],1)],1)],1)])])])}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var set_tunnel = (esExports);
-// CONCATENATED MODULE: ./src/views/set/tunnel.vue
+/* harmony default export */ var project_detaillist = (esExports);
+// CONCATENATED MODULE: ./src/views/project/detaillist.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("mB7k")
+  __webpack_require__("ESpO")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -470,30 +556,30 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  tunnel,
-  set_tunnel,
+  detaillist,
+  project_detaillist,
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 
-/* harmony default export */ var views_set_tunnel = __webpack_exports__["default"] = (Component.exports);
+/* harmony default export */ var views_project_detaillist = __webpack_exports__["default"] = (Component.exports);
 
 
 /***/ }),
 
-/***/ "mB7k":
+/***/ "ESpO":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("M+oE");
+var content = __webpack_require__("0VeL");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("rjj0")("75e8e38e", content, true);
+var update = __webpack_require__("rjj0")("62c62627", content, true);
 
 /***/ })
 
