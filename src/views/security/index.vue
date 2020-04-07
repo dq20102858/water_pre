@@ -159,7 +159,8 @@
               <el-form-item class="form-so">
                 <label class="el-form-item__label"></label>
                 <el-button size="small" icon="el-icon-search" @click="pageSearch" type="primary">查询</el-button>
-           <el-button size="small" plain @click="resetSerach">重置</el-button>   </el-form-item>
+                <el-button size="small" plain @click="resetSerach">重置</el-button>
+              </el-form-item>
             </el-form>
           </div>
           <div class="app-table">
@@ -496,7 +497,19 @@ export default {
       this.page_cur = 1;
       this.getDataList();
     },
-
+    resetSerach() {
+       this.searchForm= {
+        type: 1,
+        danger_type:"",
+        danger_determine:"",
+        loco_id:"",
+        start_location:"",
+        end_location:"",
+        time_range: []
+      },
+      this.page_cur = 1;
+      this.getDataList();
+    },
     //================事件表单操作
     //获取公司
     getCompanyLists() {

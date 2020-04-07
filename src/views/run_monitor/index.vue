@@ -63,7 +63,7 @@
     <el-dialog
       width="700px"
       :close-on-click-modal="false"
-      class="dialog-station"
+      class="dialog-monitor"
       :title="this.diaLogTitle"
       :visible.sync="diaLogFormVisible"
     >
@@ -71,7 +71,7 @@
         <el-form-item label="名称：" prop="name">
           <el-input v-model="formData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
         </el-form-item>
-        <el-form-item label="线别：" prop="line_type">
+        <!-- <el-form-item label="线别：" prop="line_type">
           <el-select
             v-model="formData.line_type"
             placeholder="请选择"
@@ -85,8 +85,8 @@
             ></el-option>
           </el-select>
           <div class="el-form-item__error">{{lineTypeDes}}</div>
-        </el-form-item>
-        <el-form-item label="开始里程：" class="el-form-item-inlines is-required">
+        </el-form-item>-->
+        <!-- <el-form-item label="开始里程：" class="el-form-item-inlines is-required">
           <el-form-item prop="start_flag">
             <b>DK</b>
             <el-input
@@ -137,7 +137,7 @@
             placeholder="选择时间"
           ></el-date-picker>
         </el-form-item>
-        <div class="blank"></div>
+        <div class="blank"></div>-->
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="diaLogFormVisible = false">关闭</el-button>
@@ -158,7 +158,18 @@ export default {
       kcolor: ["red", "green", "yellow", "#467aff", "#44ddb5", "#c245d3"],
       todayValue: new Date(),
       diaLogFormVisible: false,
-      diaLogTitle: "添加信息"
+      diaLogTitle: "添加信息",
+      formData: {},
+      formRules: {
+        name: [
+          {
+            required: true,
+            message: "请输入名称2~20个字符",
+            trigger: "blur"
+          },
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
+        ]
+      }
     };
   },
   mounted() {
@@ -398,6 +409,11 @@ export default {
       this.formData = {};
       this.diaLogTitle = "添加信息";
       this.diaLogFormVisible = true;
+    },
+    planEdit() {
+      this.formData = {};
+      this.diaLogTitle = "添加信息";
+      this.diaLogFormVisible = true;
     }
     //
   }
@@ -488,5 +504,57 @@ export default {
     width: 100%;
     margin-top: 20px;
   }
+}
+.dialog-monitor .el-textarea__inner {
+  border: 1px #9db9fa solid;
+  color: #4b6eca;
+  height: 100px;
+}
+.dialog-monitor .el-textarea {
+  width: 100% !important;
+}
+.dialog-monitor .el-form-item__label {
+  width: 110px;
+}
+.dialog-monitor .el-form-item__content {
+  margin-left: 110px;
+}
+.dialog-monitor .el-form-item-inline .el-input--medium {
+  display: inline-block;
+  width: 80px;
+  text-align: center;
+}
+.dialog-monitor .el-form-item-inline input {
+  display: inline-block;
+  width: 80px;
+  text-align: center;
+}
+.dialog-monitor .el-select {
+  width: 100%;
+}
+.el-form-item-inline input {
+  display: inline-block;
+  width: 80px;
+  text-align: center;
+}
+.el-form-item-inlines {
+  display: inline-block;
+}
+.el-form-item-inlines .el-form-item {
+  display: inline-block;
+}
+.el-form-item-inlines .el-form-item .el-form-item__content {
+  margin-left: 0;
+}
+.el-form-item-inlines .el-input {
+  width: 100px;
+}
+.el-form-item-inlines input {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+}
+.el-form-item-inlines .el-form-item {
+  margin-bottom: 1px !important;
 }
 </style>
