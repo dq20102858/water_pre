@@ -107,10 +107,10 @@
               </el-form-item>
               <div class="el-form-item-inline" v-if="workData.type==2">
                 <el-form-item label="设计总量：" prop="total">
-                  <el-input v-model="workData.total" autocomplete="off" placeholder="请输入数字"></el-input>
+                  <el-input v-model="workData.total" autocomplete="off" placeholder="请输入数字" maxlength="5"></el-input>
                 </el-form-item>
                 <el-form-item label="单位：" prop="unit" v-if="workData.type==2">
-                  <el-input v-model="workData.unit" autocomplete="off" placeholder="请输入个，股，孔等"></el-input>
+                  <el-input v-model="workData.unit" autocomplete="off" placeholder="请输入个，股，孔等" maxlength="4"></el-input>
                 </el-form-item>
               </div>
             </div>

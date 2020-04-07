@@ -88,6 +88,7 @@
                     class="pinput"
                     type="number"
                     placeholder="公里"
+                    oninput="if(value.length>2)value=value.slice(0,2)"
                   />
                   <span>+</span>
                   <input
@@ -96,6 +97,7 @@
                     class="pinput"
                     type="number"
                     placeholder="米"
+                    oninput="if(value.length>3)value=value.slice(0,3)"
                   />
                 </div>
                 <div class="plan-content">
@@ -108,6 +110,7 @@
                     class="pinput"
                     type="number"
                     placeholder="公里"
+                    oninput="if(value.length>2)value=value.slice(0,2)"
                   />
                   <span>+</span>
                   <input
@@ -116,6 +119,7 @@
                     class="pinput"
                     type="number"
                     placeholder="米"
+                    oninput="if(value.length>3)value=value.slice(0,3)"
                   />
                 </div>
                 <div class="plan-tip">{{item.tip}}</div>
@@ -128,6 +132,8 @@
               placeholder="请输入计划数量"
               v-model="planWorkNum"
               onkeyup="this.value = this.value.replace(/[^\d.]/g,'');"
+              max="10000000"
+              maxlength="8"
             >
               <template slot="prepend">计划数量</template>
             </el-input>

@@ -94,10 +94,11 @@
           <el-table :data="weekdailyList.lists">
             <el-table-column prop="work_time" label="日期" :formatter="dateFormat"></el-table-column>
             <el-table-column prop="type" label="作业类别"></el-table-column>
-            <el-table-column prop="work_time" min-width="60" label="作业时间"></el-table-column>
+            <el-table-column prop="detail_time" min-width="60" label="作业时间"></el-table-column>
             <el-table-column prop="description" label="作业内容"></el-table-column>
             <el-table-column prop="area" label="作业区域"></el-table-column>
             <el-table-column prop="up_part" label="编组上行端"></el-table-column>
+            <el-table-column prop="location" label="装车地"></el-table-column>
             <el-table-column prop="attention" label="防护措施及要求"></el-table-column>
             <el-table-column prop="remark" label="备注"></el-table-column>
             <el-table-column label="操作" width="140">
@@ -117,7 +118,7 @@
         <span class="fr">总监：暂无</span>
       </div>
     </div>
-  </div> 
+  </div>
   </div>
 </template>
 
@@ -328,5 +329,3 @@ export default {
   float: right;
 }
 </style>
-
-
