@@ -1,22 +1,28 @@
 webpackJsonp([37],{
 
-/***/ "+abo":
+/***/ "v86N":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/login/authredirect.vue
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/redirect/index.vue
 
-/* harmony default export */ var authredirect = ({
-  name: "authredirect",
-  created: function created() {
-    var hash = window.location.search.slice(1);
-    window.opener.location.href = window.location.origin + "/login#" + hash;
-    window.close();
+/* harmony default export */ var redirect = ({
+  beforeCreate: function beforeCreate() {
+    var _$route = this.$route,
+        params = _$route.params,
+        query = _$route.query;
+    var path = params.path;
+
+    this.$router.replace({ path: '/' + path, query: query });
+  },
+
+  render: function render(h) {
+    return h(); // avoid warning message
   }
 });
-// CONCATENATED MODULE: ./src/views/login/authredirect.vue
+// CONCATENATED MODULE: ./src/views/redirect/index.vue
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
 
@@ -31,7 +37,7 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  authredirect,
+  redirect,
   __vue_template__,
   __vue_template_functional__,
   __vue_styles__,
@@ -39,7 +45,7 @@ var Component = normalizeComponent(
   __vue_module_identifier__
 )
 
-/* harmony default export */ var login_authredirect = __webpack_exports__["default"] = (Component.exports);
+/* harmony default export */ var views_redirect = __webpack_exports__["default"] = (Component.exports);
 
 
 /***/ })
