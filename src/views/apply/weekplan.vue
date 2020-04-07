@@ -143,6 +143,11 @@ export default {
       }
     };
   },
+   mounted() {
+    document
+      .querySelector("#app-menu-items #menu_apply")
+      .classList.add("is-active");
+  },
   created() {
     this.projectName = localStorage.getItem("projectName");
     this.getCompanyList();
@@ -252,6 +257,7 @@ export default {
   min-height: 36px;
   text-align: center;
   background: #fff;
+  margin-bottom: 20px;
 }
 .grid-content .grid-title {
   color: #fff;

@@ -82,8 +82,31 @@ const constantRouterMap = [
         component: () => import('@/views/search/overspeed')
       }
     ]
-  }
-  ,
+  },
+
+  {
+    path: '/project',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/project',
+        component: () => import('@/views/project/index')
+      },
+      {
+        path: '/schedule',
+        component: () => import('@/views/project/schedule')
+      },
+      {
+        path: '/chartdata',
+        component: () => import('@/views/project/chartdata')
+      },
+      {
+        path: '/detaillist',
+        component: () => import('@/views/project/detaillist')
+      }
+    ]
+  }  ,
   {
     path: '/admin',
     component: Layout,

@@ -67,6 +67,11 @@ export default {
       checkList: []
     };
   },
+   mounted() {
+    document
+      .querySelector("#app-menu-items #menu_apply")
+      .classList.add("is-active");
+  },
   created() {
     this.projectName = localStorage.getItem("projectName");
     this.getconflictCheck();

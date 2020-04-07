@@ -26,17 +26,20 @@ export default {
   name: "daychart",
   data() {
     return {
-       projectName:'',
+      projectName: "",
       mark_line: [],
       project_kind_name: [],
       kcolor: ["red", "green", "yellow", "#467aff", "#44ddb5", "#c245d3"]
     };
   },
   mounted() {
+    document
+      .querySelector("#app-menu-items #menu_apply")
+      .classList.add("is-active");
     this.getChart();
   },
   created() {
-    this.projectName= localStorage.getItem('projectName');
+    this.projectName = localStorage.getItem("projectName");
   },
   methods: {
     getChart() {
@@ -48,8 +51,9 @@ export default {
         if (resdata.status == 1) {
           //myChart
           var myChart = this.$echarts.init(document.getElementById("main"));
-           myChart.getDom().style.height =document.body.clientHeight-280+'px';
-          //根据项目具体类别配置创建出对应格式
+          myChart.getDom().style.height =
+            document.body.clientHeight - 280 + "px";
+          //站点
           this.mark_line = JSON.parse(
             JSON.stringify(resdata.data.y).replace(/value/g, "yAxis")
           );
@@ -65,45 +69,87 @@ export default {
               return parseInt(item.yAxis + 2);
             })
           );
-          //
-          let t = resdata.data.data;
-          for (var k in t) {
-            this.project_kind_name.push({
-              value: t[k].type,
-              label: t[k].type,
-              color: this.kcolor[k]
+          //A1 A2 A3 A4
+          let typeData = [];
+          let dataTypeArr = resdata.data.data;
+          let dataTypeArr2 = [
+            {
+              type: "A1",
+              lists: [
+                { name: "2020-03-30 05:00:00", value: 21.003 },
+                { name: "2020-03-30 10:00:00", value: 32.9 }
+              ]
+            },
+            {
+              type: "A2",
+              lists: [
+                { name: "2020-03-30 12:00:00", value: 21.003 },
+                { name: "2020-03-30 16:00:00", value: 32.9 }
+              ]
+            }
+          ];
+          dataTypeArr.forEach(item => {
+            let jlist = [];
+            item.lists.forEach(item => {
+              jlist.push([item.name, item.value]);
+            });
+            typeData.push({ name: item.type, lists: jlist });
+          });
+          console.log("typeData：" + JSON.stringify(typeData));
+          let seriesData = [];
+          seriesData.push({
+            name: "车站",
+            type: "line",
+            markLine: {
+              silent: true,
+              data: this.mark_line,
+              label: {
+                normal: {
+                  position: "left",
+                  formatter: "{b}"
+                }
+              },
+              lineStyle: {
+                color: "#7a7a7a"
+              },
+              animation: false
+            }
+          });
+          let projectData = [];
+          for (let k in typeData) {
+            seriesData.push({
+              name: typeData[k].name,
+              type: "scatter",
+              symbolSize: 10,
+              itemStyle: { normal: { color: this.kcolor[k] } },
+              data: typeData[k].lists
             });
           }
-
+          // console.log("projectData：" + JSON.stringify(seriesData));
           //时间
           let dayArr = [];
           let tday = resdata.data.x;
           for (var i in tday) {
             dayArr.push(i);
           }
-          console.log("dayAry:" + dayArr);
-          let dataMin = dayArr.shift(); //new Date(Math.min.apply(null, dayArr)).toLocaleDateString();
-          let dataMax = dayArr.pop(); //new Date(Math.max.apply(null, dayArr)).toLocaleDateString();
-
-          // let dataMin = Math.min.apply(
-          //   Math,
-          //   dayAry.map(function(item,i) {
-          //     return i;
-          //   })
-          // );
-          // let dataMax = Math.max.apply(
-          //   Math,
-          //   dayAry.map(function(item) {
-          //     return item;
-          //   })
-          // );
-          console.log("day:" + dataMin + "_" + dataMax);
+          let dataMin = dayArr.shift();
+          let dataMax = dayArr.pop();
           //option
           var option = {
             textStyle: {
               color: "#fff"
             },
-            tooltip: {},
+            tooltip: { formatter: "{a}: ({c})" },
+            legend: {
+              icon: "roundRect",
+              itemGap: 20,
+              bottom: 0,
+              data: ["A1", "A2", "A3", "A4"],
+              textStyle: {
+                color: "#fff",
+                fontSize: 16
+              }
+            },
             grid: {
               left: "15%",
               right: "5%"
@@ -192,106 +238,39 @@ export default {
               {
                 type: "inside",
                 yAxisIndex: [0],
-                zoomOnMouseWheel:false,
+                zoomOnMouseWheel: false,
                 start: 0,
                 end: 100
               }
             ],
-            series: [
-              {
-                name: "车站",
-                type: "line",
-                markLine: {
-                  silent: true,
-                  data: this.mark_line,
-                  label: {
-                    normal: {
-                      position: "left",
-                      formatter: "{b}"
-                    }
-                  },
-                  lineStyle: {
-                    color: "#7a7a7a"
-                  },
-                  animation: false
-                }
-              }
-            ],
-            visualMap: {
-              pieces: this.project_kind_name,
-              dimension: 7,
-              left: "center",
-              bottom: -5,
-              orient: "horizontal",
-              textStyle: {
-                color: "#fff"
-              },
-              outOfRange: {
-                symbolSize: [0, 0, 0, 0]
-              },
-              controller: {
-                outOfRange: {
-                  color: "#7A7A7A"
-                }
-              }
-            },
+            series: seriesData,
+            // visualMap: {
+            //   pieces: this.project_kind_name,
+            //   dimension: 7,
+            //   left: "center",
+            //   bottom: -5,
+            //   orient: "horizontal",
+            //   textStyle: {
+            //     color: "#fff"
+            //   },
+            //   outOfRange: {
+            //     symbolSize: [0, 0, 0, 0]
+            //   },
+            //   controller: {
+            //     outOfRange: {
+            //       color: "#7A7A7A"
+            //     }
+            //   }
+            // },
             color: ["#fff"],
             animation: false
           };
           // 使用刚指定的配置项和数据显示图表。
           myChart.setOption(option);
-          //视觉映射开关事件
-          var global_v_selected = "";
-          myChart.on("datarangeselected", function(params) { 
-          
-            // var filter_data = [];
-            // for (var k in project_line_name) {
-            //   filter_data[project_line_name[k].name] = [];
-            // }
-            // //循环遍历视觉开关，根据状态过滤相应数据
-            // for (var k in params.selected) {
-            //   //如果开关状态为开启（true）则将此类数据全部添加到对应下别下
-            //   if (params.selected[k]) {
-            //     for (var j in data) {
-            //       if (data[j].length) {
-            //         for (var i in data[j]) {
-            //           if (data[j][i][7] == project_kind_name[k].name) {
-            //             filter_data[j].push(data[j][i]);
-            //           }
-            //         }
-            //       }
-            //     }
-            //   }
-            // }
-            // // console.log(data)
-            // // console.log(filter_data)
-            // var change_series = [];
-            // for (var k in project_line_name) {
-            //   var obj = { data: "" };
-            //   obj.data = filter_data[project_line_name[k].name];
-            //   change_series[k] = obj;
-            // }
-            // //根据对应的开关重新加载对应的数据
-            // myChart.setOption({
-            //   series: change_series
-            // });
-            // myChart.setOption({
-            //   visualMap: {
-            //     selected: params.selected
-            //   }
-            // });
-            // global_v_selected = params.selected;
-            // var myLegend = myChart.getOption().legend[0].selected;
-            // // var myVisualMap = myChart.getOption().visualMap[0].selected;
-            // localStorage.myL = JSON.stringify(myLegend);
-            // // localStorage.myV = JSON.stringify(myVisualMap);
-          });
           myChart.resize();
           window.addEventListener("resize", function() {
             myChart.resize();
           });
-
-          //==========
         }
       });
     }
@@ -299,8 +278,15 @@ export default {
 };
 </script>
 <style>
-#app-apply-chart{ background-color: #030a2e;height: 100vh;}
-.maintitle{text-align: center;font-size: 24px;color:#fff;}
+#app-apply-chart {
+  background-color: #030a2e;
+  height: 100vh;
+}
+.maintitle {
+  text-align: center;
+  font-size: 24px;
+  color: #fff;
+}
 .el-menu--collapse .el-menu .el-submenu,
 .el-menu--popup {
   min-width: 124px;
@@ -319,6 +305,4 @@ export default {
 .canvas_main {
   /*width: 100%;*/
 }
-
-
 </style>
