@@ -1,61 +1,12 @@
 webpackJsonp([33],{
 
-/***/ "YfCi":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("FZ+f")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.dialog-user .el-textarea {\r\n  width: 100% !important;\n}\n.dialog-user .el-textarea__inner {\r\n  height: 80px;\n}\n.dialog-user .el-form-item__label {\r\n  width: 110px;\n}\n.dialog-user .el-form-item__content {\r\n  margin-left: 110px;\n}\n.dialog-user .el-input--medium {\r\n  width: 100%;\n}\n.dialog-user .el-select {\r\n  width: 100%;\n}\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "lfKa":
+/***/ "MiGd":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/defineProperty.js
-var defineProperty = __webpack_require__("bOdI");
-var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
-
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/admin/userlist.vue
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/set/alert.vue
 //
 //
 //
@@ -231,186 +182,225 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 //
 //
 
-/* harmony default export */ var userlist = ({
+/* harmony default export */ var set_alert = ({
   data: function data() {
-    var _ref;
-
-    return _ref = {
-      userList: [],
-      userPage_size: 20,
-      userPage_cur: 1,
-      userPage_items: 0
-    }, defineProperty_default()(_ref, "userPage_size", 20), defineProperty_default()(_ref, "userPage_cur", 1), defineProperty_default()(_ref, "userPage_items", 0), defineProperty_default()(_ref, "userPage_total", 0), defineProperty_default()(_ref, "userDialogVisible", false), defineProperty_default()(_ref, "userDialogTitle", ""), defineProperty_default()(_ref, "userData", {}), defineProperty_default()(_ref, "userSearch", {}), defineProperty_default()(_ref, "userAddRules", {
-      name: [{
-        required: true,
-        message: "请输入姓名2~20个字符",
-        trigger: "blur"
-      }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }],
-      user_name: [{
-        required: true,
-        message: "请输入用户名2~20个字符",
-        trigger: "blur"
-      }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }],
-      company_id: [{
-        required: true,
-        message: "请选择公司",
-        trigger: "change"
-      }],
-      password: [{
-        required: true,
-        message: "请输入密码2~20个字符",
-        trigger: "blur"
-      }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }],
-      passwordEdit: [{
-        min: 2,
-        max: 20,
-        message: "请输入密码在2到20个字符",
-        trigger: "blur"
-      }],
-      depart_id: [{
-        required: true,
-        message: "请选择部门",
-        trigger: "change"
-      }],
-      post_id: [{
-        required: true,
-        message: "请选择职位",
-        trigger: "change"
-      }],
-      dispatch: [{
-        required: true,
-        message: "请选择调度信息",
-        trigger: "change"
-      }],
-      email: [{
-        type: "email",
-        message: "请输入正确的邮箱地址",
-        trigger: ["blur", "change"]
-      }],
-      phone: [{
-        pattern: /^1[34578]\d{9}$/,
-        message: "请输入正确的手机号码",
-        trigger: "blur"
-      }]
-    }), defineProperty_default()(_ref, "passwordOrg", ""), defineProperty_default()(_ref, "companySelectList", []), defineProperty_default()(_ref, "departSelectList", []), defineProperty_default()(_ref, "postSelectList", []), _ref;
+    return {
+      diaLogFormVisible: false,
+      diaLogTitle: "添加信息",
+      formData: {},
+      formRules: {
+        name: [{
+          required: true,
+          message: "请输入名称2~20个字符",
+          trigger: "blur"
+        }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }],
+        line_type: [{ required: true, message: "请选择线别", trigger: "change" }],
+        start_flag: [{
+          required: true,
+          message: "请输入开始公里",
+          trigger: "blur"
+        }, {
+          pattern: /^\d{1,3}$/,
+          message: "请输入1-3位正整数",
+          trigger: "blur"
+        }],
+        start_length: [{
+          required: true,
+          message: "请请输入开始米",
+          trigger: "blur"
+        }, {
+          pattern: /^\d{1,3}$/,
+          message: "请输入1-3位正整数",
+          trigger: "blur"
+        }],
+        end_flag: [{
+          required: true,
+          message: "请输入结束公里",
+          trigger: "blur"
+        }, {
+          pattern: /^\d{1,3}$/,
+          message: "请输入1-3位正整数",
+          trigger: "blur"
+        }],
+        end_length: [{
+          required: true,
+          message: "请输入结束米",
+          trigger: "blur"
+        }, {
+          pattern: /^\d{1,3}$/,
+          message: "请输入1-3位正整数",
+          trigger: "blur"
+        }],
+        start_time: [{ required: true, message: "请选择开始时间", trigger: "change" }],
+        end_time: [{ required: true, message: "请选择结束时间", trigger: "change" }]
+      },
+      page_cur: 1,
+      page_data_total: 0,
+      page_size: 20,
+      page_total: 0,
+      dataList: [],
+      searchName: "",
+      lineTypeStart: "",
+      lineTypeEnd: "",
+      lineTypeDes: "",
+      lineTypeList: []
+    };
+  },
+  mounted: function mounted() {
+    document.querySelector("#app-menu-items #menu_set").classList.add("is-active");
   },
   created: function created() {
-    this.getCompanyLists();
-    this.getUserLists();
+    this.getLineTypeLists();
+    this.getDataList();
   },
 
   methods: {
-    getUserLists: function getUserLists() {
+    getDataList: function getDataList() {
       var _this = this;
 
-      var page = this.userPage_cur;
-      var user_name = this.userSearch.user_name;
-      var company_id = this.userSearch.company_id;
-      var depart_id = this.userSearch.depart_id;
-      var post_id = this.userSearch.post_id;
+      var page = this.page_cur;
+      var name = this.searchName;
+      var road_type = 4; //1桥，2隧道，3坡度，4防区，5限速
       this.request({
-        url: "/user/getUserPage",
+        url: "/search/getRoadDevicePages",
         method: "get",
-        params: { page: page, user_name: user_name, company_id: company_id, depart_id: depart_id, post_id: post_id }
-      }).then(function (response) {
-        var data = response.data;
+        params: {
+          page: page,
+          name: name,
+          road_type: road_type
+        }
+      }).then(function (res) {
+        var data = res.data;
         if (data.status == 1) {
-          _this.userList = data.data.data;
-          _this.userPage_cur = parseInt(data.data.current_page);
-          _this.userPage_items = data.data.total;
-          _this.userPage_size = data.data.per_page;
-          _this.puserPage_total = data.data.last_page;
+          _this.dataList = data.data.data;
+          _this.page_cur = parseInt(data.data.current_page);
+          _this.page_total = data.data.last_page;
+          _this.page_data_total = data.data.total;
+          _this.page_size = data.data.per_page;
         }
       });
     },
-    userChangePage: function userChangePage(value) {
-      this.userPage_cur = value;
-      this.getUserLists();
+    pageChange: function pageChange(value) {
+      this.page_cur = value;
+      this.getDataList();
     },
-    userFirstPage: function userFirstPage() {
-      this.userPage_cur = 1;
-      this.getUserLists();
+    pageToFirst: function pageToFirst() {
+      this.page_cur = 1;
+      this.getDataList();
     },
-    userLastPage: function userLastPage() {
-      this.userPage_cur = this.userPage_total;
-      this.getUserLists();
+    pageToLast: function pageToLast() {
+      this.page_cur = this.page_total;
+      this.getDataList();
     },
-    userSearchPage: function userSearchPage() {
-      this.userPage_cur = 1;
-      this.getUserLists();
+    searchEvent: function searchEvent() {
+      this.page_cur = 1;
+      this.getDataList();
     },
-    resetSerach: function resetSerach() {
-      this.userSearch = {
-        user_name: "",
-        company_id: "",
-        depart_id: "",
-        post_id: ""
-      };
-      this.getUserLists();
-    },
-    openAddUser: function openAddUser() {
-      this.userData = {};
-      this.userDialogVisible = true;
-      this.userDialogTitle = "添加人员信息";
-    },
-    addUser: function addUser() {
+    getLineTypeLists: function getLineTypeLists() {
       var _this2 = this;
 
-      this.$refs["userRulesForm"].validate(function (valid) {
+      this.request({
+        url: "/common/getLineType",
+        method: "get"
+      }).then(function (response) {
+        var data = response.data;
+        if (data.status == 1) {
+          _this2.lineTypeList = data.data;
+        }
+      });
+    },
+    selectLineType: function selectLineType(value) {
+      var that = this;
+      this.lineTypeList.map(function (item, index) {
+        if (item.id == value) {
+          that.lineTypeDes = "里程范围：" + item.tip;
+          that.lineTypeStart = item.start;
+          that.lineTypeEnd = item.end;
+        }
+      });
+      console.log(this.lineTypeDes);
+    },
+    goAdd: function goAdd() {
+      this.formData = {};
+      this.diaLogTitle = "添加信息";
+      this.diaLogFormVisible = true;
+      this.lineTypeDes = "";
+    },
+    addOrEditDialog: function addOrEditDialog() {
+      var _this3 = this;
+
+      var that = this;
+      this.$refs["formRules"].validate(function (valid) {
         if (valid) {
-          var data = _this2.userData;
-          var url = "/user/addUser";
-          var baseid = _this2.userData.id;
-          console.log("this.userData.id：" + _this2.userData.id);
-          if (typeof baseid != "undefined") {
-            url = "/user/editUser";
-            var pwdEdit = _this2.userData.passwordEdit;
-            if (pwdEdit != "" && typeof pwdEdit != "undefined") {
-              _this2.userData.password = pwdEdit;
-            } else {
-              _this2.userData.password = _this2.passwordOrg;
-            }
+          var data = that.formData;
+          _this3.formData.road_type = 4; //1桥，2隧道，3坡度，4防区，5限速
+          // //里程判断
+          var startTotal = parseInt(data.start_flag * 1000) + parseInt(data.start_length);
+          var endTotal = parseInt(data.end_flag * 1000) + parseInt(data.end_length);
+          var lineStartTotal = that.lineTypeStart * 1000;
+          var lineEndTotal = that.lineTypeEnd * 1000;
+          if (parseInt(startTotal) < parseInt(lineStartTotal)) {
+            _this3.$message.error("输入的开始里程不在里程范围内");
+            return false;
           }
-          _this2.request({
-            url: url,
+          if (parseInt(endTotal) > parseInt(lineEndTotal)) {
+            _this3.$message.error("输入的结束里程不在里程范围内");
+            return false;
+          }
+          if (parseInt(endTotal) < parseInt(startTotal)) {
+            _this3.$message.error("输入的结束里程不能小于结束里程");
+            return false;
+          }
+          _this3.request({
+            url: "/search/addOrEditRoadDevice",
             method: "post",
             data: data
           }).then(function (response) {
             var data = response.data;
             if (data.status == 1) {
-              _this2.userDialogVisible = false;
-              _this2.userData.passwordEdit = "";
-              _this2.$message({
+              _this3.diaLogFormVisible = false;
+              _this3.formData.name = "";
+              _this3.getDataList();
+              _this3.$message({
                 type: "success",
                 message: "保存成功！"
               });
-              _this2.getUserLists();
             }
           });
+        } else {
+          console.log("操作失败！");
+          return false;
         }
       });
     },
-    detailUser: function detailUser(id) {
-      var _this3 = this;
+    goEdit: function goEdit(id) {
+      var _this4 = this;
 
-      this.userDialogTitle = "修改人员信息";
-      this.userDialogVisible = true;
+      this.diaLogTitle = "修改信息";
+      this.diaLogFormVisible = true;
       this.request({
-        url: "/user/getUserDetial",
+        url: "/search/getRoadDeviceDetail",
         method: "get",
         params: { id: id }
       }).then(function (response) {
         var data = response.data;
         if (data.status == 1) {
-          _this3.userData = data.data;
-          _this3.passwordOrg = data.data.password;
-          _this3.getDepartListEdit(data.data.company_id); //部门
-          _this3.getPostListEdit(data.data.depart_id); //职位
+          _this4.formData = data.data;
+          _this4.lineTypeList.map(function (item, index) {
+            if (item.id == data.data.line_type) {
+              _this4.lineTypeDes = "里程范围：" + item.tip;
+              _this4.lineTypeStart = item.start;
+              _this4.lineTypeEnd = item.end;
+              var timestamp = new Date(data.data.end_time);
+              console.log("timestamp:" + timestamp);
+              _this4.formData.end_time = timestamp;
+            }
+          });
         }
       });
     },
-    delUser: function delUser(id) {
-      var _this4 = this;
+    goDel: function goDel(id) {
+      var _this5 = this;
 
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
@@ -418,111 +408,55 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
         type: "warning",
         customClass: "el-message-box-new"
       }).then(function () {
-        _this4.request({
-          url: "/user/deleteUser",
+        _this5.request({
+          url: "/search/deleteRoadDevice",
           method: "post",
           data: { id: id }
         }).then(function (res) {
           var data = res.data;
           if (data.status == 1) {
-            _this4.$message({
+            _this5.$message({
               type: "success",
               message: "删除成功！"
             });
-            _this4.getUserLists();
+            _this5.getDataList();
           }
         });
       }).catch(function () {});
     },
-
-    //公司 部门 职位
-    getCompanyLists: function getCompanyLists() {
-      var _this5 = this;
-
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: 0, type: 1 }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this5.companySelectList = data.data;
-        }
-      });
+    changeStarttime: function changeStarttime() {
+      var start_time = new Date(this.formData.start_time).getTime();
+      var end_time = new Date(this.formData.end_time).getTime();
+      if (start_time >= end_time) {
+        this.$message.error("开始时间不能大于结束时间");
+        this.workData.start_time = "";
+      }
     },
-    getDepartLists: function getDepartLists(val) {
-      var _this6 = this;
-
-      this.$set(this.userData, "depart_id", "");
-      this.$set(this.userData, "post_id", "");
-      this.$set(this.userSearch, "depart_id", "");
-      this.$set(this.userSearch, "post_id", "");
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: val, type: 2 }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this6.departSelectList = data.data;
-        }
-      });
-    },
-    getPostLists: function getPostLists(val) {
-      var _this7 = this;
-
-      this.$set(this.userData, "post_id", "");
-      this.$set(this.userSearch, "post_id", "");
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: val, type: 3 }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this7.postSelectList = data.data;
-        }
-      });
-    },
-    getDepartListEdit: function getDepartListEdit(val) {
-      var _this8 = this;
-
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: val, type: 2 }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this8.departSelectList = data.data;
-        }
-      });
-    },
-    getPostListEdit: function getPostListEdit(val) {
-      var _this9 = this;
-
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: val, type: 3 }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this9.postSelectList = data.data;
-        }
-      });
+    changeEndtime: function changeEndtime() {
+      var start_time = new Date(this.formData.start_time).getTime();
+      var end_time = new Date(this.formData.end_time).getTime();
+      var date_time_corp = new Date().getTime();
+      if (end_time <= start_time) {
+        this.$message.error("结束时间不能小于开始时间");
+        this.formData.end_time = "";
+      }
+      if (end_time <= date_time_corp) {
+        this.$message.error("结束时间不能小于当前时间");
+        this.formData.end_time = "";
+      }
     }
+    //
+
   }
-  //
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-15487025","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/admin/userlist.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"admins"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"router":"","default-active":"userlist","mode":"horizontal"}},[_c('li',{staticClass:"ptitle"},[_c('img',{attrs:{"src":__webpack_require__("xX+s")}}),_vm._v("人员管理\n      ")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"admin"}},[_vm._v("公司列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"departlist"}},[_vm._v("部门列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"postlist"}},[_vm._v("职位列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"userlist"}},[_vm._v("人员列表")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{attrs:{"inline":true}},[_c('el-form-item',[_c('el-button',{attrs:{"type":"primary","icon":"el-icon-plus"},on:{"click":_vm.openAddUser}},[_vm._v("添加人员")])],1),_vm._v(" "),_c('el-form-item',[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"请输入姓名"},model:{value:(_vm.userSearch.user_name),callback:function ($$v) {_vm.$set(_vm.userSearch, "user_name", $$v)},expression:"userSearch.user_name"}})],1),_vm._v(" "),_c('el-form-item',[_c('el-select',{attrs:{"placeholder":"请选择公司"},on:{"change":function($event){_vm.getDepartLists($event)}},model:{value:(_vm.userSearch.company_id),callback:function ($$v) {_vm.$set(_vm.userSearch, "company_id", $$v)},expression:"userSearch.company_id"}},_vm._l((this.companySelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',[_c('el-select',{attrs:{"placeholder":"请选择部门"},on:{"change":function($event){_vm.getPostLists($event)}},model:{value:(_vm.userSearch.depart_id),callback:function ($$v) {_vm.$set(_vm.userSearch, "depart_id", $$v)},expression:"userSearch.depart_id"}},_vm._l((this.departSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',[_c('el-select',{attrs:{"placeholder":"请选择职位"},model:{value:(_vm.userSearch.post_id),callback:function ($$v) {_vm.$set(_vm.userSearch, "post_id", $$v)},expression:"userSearch.post_id"}},_vm._l((this.postSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{staticClass:"form-so"},[_c('label',{staticClass:"el-form-item__label"}),_vm._v(" "),_c('el-button',{attrs:{"size":"small","icon":"el-icon-search","type":"primary"},on:{"click":_vm.getUserLists}},[_vm._v("查询")]),_vm._v(" "),_c('el-button',{attrs:{"size":"small","plain":""},on:{"click":_vm.resetSerach}},[_vm._v("重置")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{attrs:{"data":_vm.userList}},[_c('el-table-column',{attrs:{"type":"index","label":"序号","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"user_name","label":"用户名","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"name","label":"姓名","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"company","label":"公司","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"depart","label":"部门","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"post","label":"职位","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"create_time","label":"邮箱","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"update_time","label":"电话","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"dispatch_desc","label":"调度信息","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"120"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.detailUser(scope.row.id)}}},[_vm._v("修改")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.delUser(scope.row.id)}}},[_vm._v("删除")])],1)]}}])})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.userList.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","page-size":_vm.userPage_size,"current-page":this.userPage_cur,"total":this.userPage_items,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.userChangePage}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.userFirstPage}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.userLastPage}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1)],1),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-user",attrs:{"width":"700px","title":this.userDialogTitle,"close-on-click-modal":false,"visible":_vm.userDialogVisible},on:{"update:visible":function($event){_vm.userDialogVisible=$event}}},[_c('el-form',{ref:"userRulesForm",staticClass:"el-form-custom",attrs:{"model":_vm.userData,"rules":_vm.userAddRules}},[(this.userDialogTitle=='添加人员信息')?_c('el-form-item',{attrs:{"label":"用户名：","prop":"user_name"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.userData.user_name),callback:function ($$v) {_vm.$set(_vm.userData, "user_name", $$v)},expression:"userData.user_name"}})],1):_vm._e(),_vm._v(" "),(this.userDialogTitle=='添加人员信息')?_c('el-form-item',{attrs:{"label":"密码：","prop":"password"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.userData.password),callback:function ($$v) {_vm.$set(_vm.userData, "password", $$v)},expression:"userData.password"}})],1):_vm._e(),_vm._v(" "),(this.userDialogTitle=='修改人员信息')?_c('el-form-item',{attrs:{"label":"密码：","prop":"passwordEdit"}},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"不修改密码请留空"},model:{value:(_vm.userData.passwordEdit),callback:function ($$v) {_vm.$set(_vm.userData, "passwordEdit", $$v)},expression:"userData.passwordEdit"}})],1):_vm._e(),_vm._v(" "),_c('el-form-item',{attrs:{"label":"姓名：","prop":"name"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.userData.name),callback:function ($$v) {_vm.$set(_vm.userData, "name", $$v)},expression:"userData.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"公司名称：","prop":"company_id"}},[_c('el-select',{on:{"change":function($event){_vm.getDepartLists($event)}},model:{value:(_vm.userData.company_id),callback:function ($$v) {_vm.$set(_vm.userData, "company_id", $$v)},expression:"userData.company_id"}},_vm._l((this.companySelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"部门名称：","prop":"depart_id"}},[_c('el-select',{on:{"change":function($event){_vm.getPostLists($event)}},model:{value:(_vm.userData.depart_id),callback:function ($$v) {_vm.$set(_vm.userData, "depart_id", $$v)},expression:"userData.depart_id"}},_vm._l((this.departSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"职位名称：","prop":"post_id"}},[_c('el-select',{model:{value:(_vm.userData.post_id),callback:function ($$v) {_vm.$set(_vm.userData, "post_id", $$v)},expression:"userData.post_id"}},_vm._l((this.postSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"邮箱：","prop":"email"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.userData.email),callback:function ($$v) {_vm.$set(_vm.userData, "email", $$v)},expression:"userData.email"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"调度信息：","prop":"dispatch"}},[_c('el-select',{model:{value:(_vm.userData.dispatch),callback:function ($$v) {_vm.$set(_vm.userData, "dispatch", $$v)},expression:"userData.dispatch"}},[_c('el-option',{attrs:{"label":"普通","value":1}}),_vm._v(" "),_c('el-option',{attrs:{"label":"司机","value":2}}),_vm._v(" "),_c('el-option',{attrs:{"label":"车长","value":3}}),_vm._v(" "),_c('el-option',{attrs:{"label":"值班调度","value":4}}),_vm._v(" "),_c('el-option',{attrs:{"label":"车站值班员","value":5}}),_vm._v(" "),_c('el-option',{attrs:{"label":"施工队长","value":6}})],1)],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"手机号码：","prop":"phone"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.userData.phone),callback:function ($$v) {_vm.$set(_vm.userData, "phone", $$v)},expression:"userData.phone"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.userDialogVisible = false}}},[_vm._v("取 消")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":_vm.addUser}},[_vm._v("确 定")])],1)],1)],1)])])}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-13ba095a","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/set/alert.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"monitor"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"router":"","default-active":"alert","mode":"horizontal"}},[_c('li',{staticClass:"ptitle"},[_c('img',{attrs:{"src":__webpack_require__("qyEk")}}),_vm._v("设置\n      ")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"set"}},[_vm._v("站点设置")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"speed"}},[_vm._v("限速设置")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"alert"}},[_vm._v("防区设置")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"bridge"}},[_vm._v("桥设置")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"tunnel"}},[_vm._v("隧道设置")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"slope"}},[_vm._v("坡度设置")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{attrs:{"inline":true}},[_c('el-form-item',[_c('el-button',{attrs:{"type":"primary","icon":"el-icon-plus"},on:{"click":_vm.goAdd}},[_vm._v("添加防区")])],1),_vm._v(" "),_c('div',{staticClass:"el-serach"},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"请输入名称查询","clearable":""},model:{value:(_vm.searchName),callback:function ($$v) {_vm.searchName=$$v},expression:"searchName"}}),_vm._v(" "),_c('el-button',{on:{"click":_vm.searchEvent}},[_vm._v("查询")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{attrs:{"data":_vm.dataList}},[_c('el-table-column',{attrs:{"label":"序号"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('span',[_vm._v(_vm._s(scope.$index+(_vm.page_cur - 1) * _vm.page_size + 1))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"name","label":"名称"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"line","label":"线别"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"起始里程(米)"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('b',[_vm._v("DK")]),_vm._v("\n              "+_vm._s(scope.row.start_flag)+" + "+_vm._s(scope.row.start_length)+"\n            ")]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"结束里程(米)"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('b',[_vm._v("DK")]),_vm._v("\n              "+_vm._s(scope.row.end_flag)+" + "+_vm._s(scope.row.end_length)+"\n            ")]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"start_time","label":"开始时间"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"end_time","label":"结束时间"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"120"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.goEdit(scope.row.id)}}},[_vm._v("修改")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.goDel(scope.row.id)}}},[_vm._v("删除")])],1)]}}])})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.dataList.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","page-size":this.page_size,"current-page":this.page_cur,"total":this.page_data_total,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.pageChange}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.pageToFirst}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.pageToLast}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1)],1),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-station",attrs:{"width":"700px","close-on-click-modal":false,"title":this.diaLogTitle,"visible":_vm.diaLogFormVisible},on:{"update:visible":function($event){_vm.diaLogFormVisible=$event}}},[_c('el-form',{ref:"formRules",staticClass:"el-form-custom",attrs:{"model":_vm.formData,"rules":_vm.formRules}},[_c('el-form-item',{attrs:{"label":"名称：","prop":"name"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.formData.name),callback:function ($$v) {_vm.$set(_vm.formData, "name", $$v)},expression:"formData.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"线别：","prop":"line_type"}},[_c('el-select',{attrs:{"placeholder":"请选择"},on:{"change":function($event){_vm.selectLineType($event)}},model:{value:(_vm.formData.line_type),callback:function ($$v) {_vm.$set(_vm.formData, "line_type", $$v)},expression:"formData.line_type"}},_vm._l((_vm.lineTypeList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})})),_vm._v(" "),_c('div',{staticClass:"el-form-item__error"},[_vm._v(_vm._s(_vm.lineTypeDes))])],1),_vm._v(" "),_c('el-form-item',{staticClass:"el-form-item-inlines is-required",attrs:{"label":"开始里程："}},[_c('el-form-item',{attrs:{"prop":"start_flag"}},[_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"公里","maxlength":"3"},model:{value:(_vm.formData.start_flag),callback:function ($$v) {_vm.$set(_vm.formData, "start_flag", $$v)},expression:"formData.start_flag"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"prop":"start_length"}},[_c('b',[_vm._v("+")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"米","maxlength":"3"},model:{value:(_vm.formData.start_length),callback:function ($$v) {_vm.$set(_vm.formData, "start_length", $$v)},expression:"formData.start_length"}})],1)],1),_vm._v(" "),_c('el-form-item',{staticClass:"el-form-item-inlines is-required",attrs:{"label":"结束里程："}},[_c('el-form-item',{attrs:{"prop":"end_flag"}},[_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"公里","maxlength":"3"},model:{value:(_vm.formData.end_flag),callback:function ($$v) {_vm.$set(_vm.formData, "end_flag", $$v)},expression:"formData.end_flag"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"prop":"end_length"}},[_c('b',[_vm._v("+")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"米","maxlength":"3"},model:{value:(_vm.formData.end_length),callback:function ($$v) {_vm.$set(_vm.formData, "end_length", $$v)},expression:"formData.end_length"}})],1)],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"开始时间","prop":"start_time"}},[_c('el-date-picker',{attrs:{"type":"datetime","placeholder":"选择时间"},on:{"change":_vm.changeStarttime},model:{value:(_vm.formData.start_time),callback:function ($$v) {_vm.$set(_vm.formData, "start_time", $$v)},expression:"formData.start_time"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"结束时间","prop":"end_time"}},[_c('el-date-picker',{attrs:{"type":"datetime","placeholder":"选择时间"},on:{"change":_vm.changeEndtime},model:{value:(_vm.formData.end_time),callback:function ($$v) {_vm.$set(_vm.formData, "end_time", $$v)},expression:"formData.end_time"}})],1),_vm._v(" "),_c('div',{staticClass:"blank"})],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.diaLogFormVisible = false}}},[_vm._v("关闭")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.addOrEditDialog()}}},[_vm._v("确定")])],1)],1)],1)])])}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var admin_userlist = (esExports);
-// CONCATENATED MODULE: ./src/views/admin/userlist.vue
+/* harmony default export */ var views_set_alert = (esExports);
+// CONCATENATED MODULE: ./src/views/set/alert.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("uo/T")
+  __webpack_require__("fOQ+")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -538,30 +472,45 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  userlist,
-  admin_userlist,
+  set_alert,
+  views_set_alert,
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 
-/* harmony default export */ var views_admin_userlist = __webpack_exports__["default"] = (Component.exports);
+/* harmony default export */ var src_views_set_alert = __webpack_exports__["default"] = (Component.exports);
 
 
 /***/ }),
 
-/***/ "uo/T":
+/***/ "fOQ+":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("YfCi");
+var content = __webpack_require__("vhSY");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("rjj0")("427c226e", content, true);
+var update = __webpack_require__("rjj0")("2f265e13", content, true);
+
+/***/ }),
+
+/***/ "vhSY":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.dialog-station .el-textarea__inner {\r\n  border: 1px #9db9fa solid;\r\n  color: #4b6eca;\r\n  height: 100px;\n}\n.dialog-station .el-textarea {\r\n  width: 100% !important;\n}\n.dialog-station .el-form-item__label {\r\n  width: 110px;\n}\n.dialog-station .el-form-item__content {\r\n  margin-left: 110px;\n}\n.dialog-station .el-form-item-inline .el-input--medium {\r\n  display: inline-block;\r\n  width: 80px;\r\n  text-align: center;\n}\n.dialog-station .el-form-item-inline input {\r\n  display: inline-block;\r\n  width: 80px;\r\n  text-align: center;\n}\n.dialog-station .el-select {\r\n  width: 100%;\n}\n.el-form-item-inline input {\r\n  display: inline-block;\r\n  width: 80px;\r\n  text-align: center;\n}\n.el-form-item-inlines {\r\n  display: inline-block;\n}\n.el-form-item-inlines .el-form-item {\r\n  display: inline-block;\n}\n.el-form-item-inlines .el-form-item .el-form-item__content {\r\n  margin-left: 0;\n}\n.el-form-item-inlines .el-input {\r\n  width: 100px;\n}\n.el-form-item-inlines input {\r\n  display: inline-block;\r\n  width: 100px;\r\n  text-align: center;\n}\n.el-form-item-inlines .el-form-item {\r\n  margin-bottom: 1px !important;\n}\r\n", ""]);
+
+// exports
+
 
 /***/ })
 

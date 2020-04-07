@@ -43,7 +43,7 @@
               </el-form-item>
             </el-form>
           </div>
-          <el-row :gutter="20">
+          <el-row :gutter="20" v-if="weekList.length>0">
             <el-col :span="6" v-for="item in weekList" :key="item.id">
               <div class="grid-content" @click="goDetail(item.id)">
                 <div class="grid-title">{{item.description}}</div>
@@ -55,6 +55,7 @@
               </div>
             </el-col>
           </el-row>
+          <div v-else style="font-size:14px;text-align:center;line-height:50px;color:#909399;">暂无数据</div>
           <div class="app-pagination">
             <el-pagination
               class="pagination"
