@@ -16,10 +16,10 @@
           </div>
 
           <div class="btnitem">
-            <el-button @click="planAdd" type="primary" plain>编制日班计划图</el-button>
+            <el-button type="primary" plain>编制日班计划图</el-button>
           </div>
           <div class="btnitem">
-            <el-button @click="planEdit" type="primary" plain>编制日班实际图</el-button>
+            <el-button type="primary" plain>编制日班实际图</el-button>
           </div>
           <div class="btnitem">
             <el-button type="primary" plain>区间封锁</el-button>
@@ -59,91 +59,6 @@
         </div>
       </div>
     </div>
-
-    <el-dialog
-      width="700px"
-      :close-on-click-modal="false"
-      class="dialog-station"
-      :title="this.diaLogTitle"
-      :visible.sync="diaLogFormVisible"
-    >
-      <el-form class="el-form-custom" :model="formData" :rules="formRules" ref="formRules">
-        <el-form-item label="名称：" prop="name">
-          <el-input v-model="formData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
-        </el-form-item>
-        <el-form-item label="线别：" prop="line_type">
-          <el-select
-            v-model="formData.line_type"
-            placeholder="请选择"
-            @change="selectLineType($event)"
-          >
-            <el-option
-              v-for="item in lineTypeList"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
-            ></el-option>
-          </el-select>
-          <div class="el-form-item__error">{{lineTypeDes}}</div>
-        </el-form-item>
-        <el-form-item label="开始里程：" class="el-form-item-inlines is-required">
-          <el-form-item prop="start_flag">
-            <b>DK</b>
-            <el-input
-              v-model="formData.start_flag"
-              autocomplete="off"
-              placeholder="公里"
-              maxlength="3"
-            ></el-input>
-          </el-form-item>
-          <el-form-item prop="start_length">
-            <b>+</b>
-            <el-input
-              v-model="formData.start_length"
-              autocomplete="off"
-              placeholder="米"
-              maxlength="3"
-            ></el-input>
-          </el-form-item>
-        </el-form-item>
-        <el-form-item label="结束里程：" class="el-form-item-inlines is-required">
-          <el-form-item prop="end_flag">
-            <b>DK</b>
-            <el-input v-model="formData.end_flag" autocomplete="off" placeholder="公里" maxlength="3"></el-input>
-          </el-form-item>
-          <el-form-item prop="end_length">
-            <b>+</b>
-            <el-input
-              v-model="formData.end_length"
-              autocomplete="off"
-              placeholder="米"
-              maxlength="3"
-            ></el-input>
-          </el-form-item>
-        </el-form-item>
-        <el-form-item label="开始时间" prop="start_time">
-          <el-date-picker
-            @change="changeStarttime"
-            v-model="formData.start_time"
-            type="datetime"
-            placeholder="选择时间"
-          ></el-date-picker>
-        </el-form-item>
-        <el-form-item label="结束时间" prop="end_time">
-          <el-date-picker
-            @change="changeEndtime"
-            v-model="formData.end_time"
-            type="datetime"
-            placeholder="选择时间"
-          ></el-date-picker>
-        </el-form-item>
-        <div class="blank"></div>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="diaLogFormVisible = false">关闭</el-button>
-        <el-button type="primary" @click="addOrEditDialog()">确定</el-button>
-      </div>
-    </el-dialog>
   </div>
 </template>
 
@@ -156,9 +71,7 @@ export default {
       mark_line: [],
       project_kind_name: [],
       kcolor: ["red", "green", "yellow", "#467aff", "#44ddb5", "#c245d3"],
-      todayValue: new Date(),
-      diaLogFormVisible: false,
-      diaLogTitle: "添加信息"
+      todayValue: new Date()
     };
   },
   mounted() {
@@ -297,7 +210,7 @@ export default {
               maxInterval: 3600 * 0.1 * 1000,
               axisLabel: {
                 formatter: function(val, index) {
-                  let date = new Date(val);
+                  let  date = new Date(val);
                   let months = date.getMonth() + 1 + "/" + date.getDate();
                   let hours = date.getHours() + ":00";
                   if (index % 6 == 0) {
@@ -331,14 +244,14 @@ export default {
                 bottom: 10,
                 start: 0,
                 end: 25,
-                minValueSpan: 3600 * 12 * 1000,
+                minValueSpan:  3600 *12 *1000,
                 textStyle: {
                   color: "#fff"
                 },
                 borderColor: "#2B2B2B",
                 handleSize: "75%",
                 fillerColor: "#202f40"
-              },
+               },
               {
                 type: "slider",
                 filterMode: "weakFilter",
@@ -393,11 +306,6 @@ export default {
         this.todayValue.getTime() + 24 * 60 * 60 * 1000
       );
       this.getChart();
-    },
-    planAdd() {
-      this.formData = {};
-      this.diaLogTitle = "添加信息";
-      this.diaLogFormVisible = true;
     }
     //
   }

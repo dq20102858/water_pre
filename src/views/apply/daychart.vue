@@ -106,7 +106,11 @@ export default {
               label: {
                 normal: {
                   position: "left",
-                  formatter: "{b}"
+                     formatter: function(value, index) {
+                    return (
+                      value.name.replace(/.00/, "").replace(/.00/, "") + "   "
+                    );
+                  }
                 }
               },
               lineStyle: {
