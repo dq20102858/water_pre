@@ -2406,9 +2406,8 @@ var typeof_default = /*#__PURE__*/__webpack_require__.n(helpers_typeof);
 
 
 /**
- * Created by jiachenpan on 16/11/18.
+ * Created by 
  */
-
 function parseTime(time, cFormat) {
   if (arguments.length === 0) {
     return null;
@@ -3337,17 +3336,17 @@ var constantRouterMap = [{
   }, {
     path: '/speed',
     component: function component() {
-      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(32)]).then(__webpack_require__.bind(null, "1rgo"));
+      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(25)]).then(__webpack_require__.bind(null, "1rgo"));
     }
   }, {
     path: '/alert',
     component: function component() {
-      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(17)]).then(__webpack_require__.bind(null, "MiGd"));
+      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(30)]).then(__webpack_require__.bind(null, "MiGd"));
     }
   }, {
     path: '/bridge',
     component: function component() {
-      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(27)]).then(__webpack_require__.bind(null, "1dUF"));
+      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(19)]).then(__webpack_require__.bind(null, "1dUF"));
     }
   }, {
     path: '/tunnel',
@@ -3357,7 +3356,7 @@ var constantRouterMap = [{
   }, {
     path: '/slope',
     component: function component() {
-      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(30)]).then(__webpack_require__.bind(null, "Dt0U"));
+      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(29)]).then(__webpack_require__.bind(null, "Dt0U"));
     }
   }]
 }, {
@@ -3387,12 +3386,12 @@ var constantRouterMap = [{
   }, {
     path: '/departlist',
     component: function component() {
-      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(22)]).then(__webpack_require__.bind(null, "BQKP"));
+      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(18)]).then(__webpack_require__.bind(null, "BQKP"));
     }
   }, {
     path: '/postlist',
     component: function component() {
-      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(25)]).then(__webpack_require__.bind(null, "0qre"));
+      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(28)]).then(__webpack_require__.bind(null, "0qre"));
     }
   }, {
     path: '/userlist',
@@ -3402,7 +3401,7 @@ var constantRouterMap = [{
   }, {
     path: '/demo',
     component: function component() {
-      return __webpack_require__.e/* import() */(24).then(__webpack_require__.bind(null, "7xwm"));
+      return __webpack_require__.e/* import() */(23).then(__webpack_require__.bind(null, "7xwm"));
     }
   }]
 }];
@@ -3422,7 +3421,7 @@ var asyncRouterMap = {
     return new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, "AkUR"));
   },
   '/views/dashboard/index': function viewsDashboardIndex() {
-    return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, "ARoL"));
+    return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, "ARoL"));
   }, //视频监控
   '/views/admin/index': function viewsAdminIndex() {
     return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, "x0vE"));
@@ -3434,10 +3433,10 @@ var asyncRouterMap = {
     return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, "lZYz"));
   }, //行车监控
   '/views/run_monitor/index': function viewsRun_monitorIndex() {
-    return __webpack_require__.e/* import() */(23).then(__webpack_require__.bind(null, "WfHw"));
+    return __webpack_require__.e/* import() */(22).then(__webpack_require__.bind(null, "WfHw"));
   }, //列车运行监控
   '/views/location/index': function viewsLocationIndex() {
-    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(28)]).then(__webpack_require__.bind(null, "Sp6l"));
+    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(20)]).then(__webpack_require__.bind(null, "Sp6l"));
   }, //定位管理
   '/views/real_time/index': function viewsReal_timeIndex() {
     return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(35)]).then(__webpack_require__.bind(null, "2jNM"));
@@ -3452,7 +3451,7 @@ var asyncRouterMap = {
     return Promise.all/* import() */([__webpack_require__.e(4), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, "FvKM"));
   }, //调度命令
   '/views/apply/index': function viewsApplyIndex() {
-    return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, "43N1"));
+    return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, "43N1"));
   }, //施工请点
   '/views/plan/index': function viewsPlanIndex() {
     return __webpack_require__.e/* import() */(36).then(__webpack_require__.bind(null, "aJNJ"));
@@ -3471,26 +3470,26 @@ var asyncRouterMap = {
   }, //返回
 
   '/views/apply/daychart': function viewsApplyDaychart() {
-    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(20)]).then(__webpack_require__.bind(null, "wpBv"));
+    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(17)]).then(__webpack_require__.bind(null, "wpBv"));
   }, //日班图表
   '/views/apply/conflictcheck': function viewsApplyConflictcheck() {
-    return __webpack_require__.e/* import() */(26).then(__webpack_require__.bind(null, "JXxd"));
+    return __webpack_require__.e/* import() */(24).then(__webpack_require__.bind(null, "JXxd"));
   }, //冲突检测
   '/views/apply/weekplan': function viewsApplyWeekplan() {
     return __webpack_require__.e/* import() */(11).then(__webpack_require__.bind(null, "mz+a"));
   }, //周计划
 
   '/views/location/walldetector': function viewsLocationWalldetector() {
-    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(29)]).then(__webpack_require__.bind(null, "RwO4"));
+    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(32)]).then(__webpack_require__.bind(null, "RwO4"));
   }, //墙壁探测器
   '/views/location/cardetector': function viewsLocationCardetector() {
-    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(18)]).then(__webpack_require__.bind(null, "4nWN"));
+    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(31)]).then(__webpack_require__.bind(null, "4nWN"));
   }, //车载探测器
   '/views/location/locationbind': function viewsLocationLocationbind() {
-    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(31)]).then(__webpack_require__.bind(null, "6QbA"));
+    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(26)]).then(__webpack_require__.bind(null, "6QbA"));
   }, //定位从设备
   '/views/location/device': function viewsLocationDevice() {
-    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(19)]).then(__webpack_require__.bind(null, "ZFGK"));
+    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(27)]).then(__webpack_require__.bind(null, "ZFGK"));
   } //机具
 
 
@@ -3690,8 +3689,8 @@ var store = __webpack_require__("IcnI");
 
 var host = window.location.host;
 // host = 'http://' + host
-// host = process.env.NODE_ENV == 'production' ? 'http://' + host : 'http://129.211.168.161/'
-host =  true ? 'http://' + host : 'http://subway.nething.com/';
+host =  true ? 'http://' + host : 'http://129.211.168.161/';
+// host = process.env.NODE_ENV == 'production' ? 'http://' + host : 'http://subway.nething.com/'
 var service = axios_default.a.create({
   baseURL: host, // api的base_url
   withCredentials: true,
@@ -3733,6 +3732,11 @@ service.interceptors.response.use(function (response) {
   return promise_default.a.reject(error);
 });
 define_properties_default()(vue_esm["default"].prototype, {
+  hostURL: {
+    get: function get() {
+      return host;
+    }
+  },
   request: {
     get: function get() {
       return service;

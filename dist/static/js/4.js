@@ -1,4 +1,11 @@
-webpackJsonp([4,8],{
+webpackJsonp([4,7],{
+
+/***/ "+KSh":
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAiCAYAAABMfblJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF8WlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDggNzkuMTY0MDM2LCAyMDE5LzA4LzEzLTAxOjA2OjU3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMCAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIwLTAzLTA5VDEwOjQ0OjMyKzA4OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMC0wMy0zMVQxNDoxMToyNyswODowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMC0wMy0zMVQxNDoxMToyNyswODowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo5YWY0NTJjMC1jMjM3LWMxNGEtYWI2NS0xMmFhNmE3NmIyMzQiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo3OGE1N2ZlYS02NDRmLWU5NGEtOWQ5ZC04MTgwNmI0ZTIwMzMiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDplMjhkNTQyOS00Yzg2LWUxNDItODNhYi1lYTdjYzU5ZjBiNDQiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOmUyOGQ1NDI5LTRjODYtZTE0Mi04M2FiLWVhN2NjNTlmMGI0NCIgc3RFdnQ6d2hlbj0iMjAyMC0wMy0wOVQxMDo0NDozMiswODowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIxLjAgKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo5YWY0NTJjMC1jMjM3LWMxNGEtYWI2NS0xMmFhNmE3NmIyMzQiIHN0RXZ0OndoZW49IjIwMjAtMDMtMzFUMTQ6MTE6MjcrMDg6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMS4wIChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7bl0kxAAACa0lEQVRIic2WPY7bMBBGn4X0Vp8i8glWvoH6FKsbrIrUSXyCtU8QpQ+w3hN49wQrt2li9wFCF+nlG6SY4ZqWSUpyECAfINDm3xsOh0NO3n/8zgDlwJ2WqZYAO6DV8lHLqN70tFfAPZBFDAEogM+AAZYK9yqJTPQDeIjAfMqANfDiGNMLLGIDBmgPzHWOog9oYemVsK+IobnOcQF1gTmwuRJkZbRsnboNjrdc4Jr4yg7AAnHXRL+51h20zz3wBVmZVYrEwhmwAm4isAUSELX+v9MPrcu0T4pEa94ZnyuDiZ5DA7wLwObI+SrV+qzTbhT2xCkGfDLALFF6CLZQ2BrZiy4Mrdsgbmt0jE8ZkCfoUj06IO6qOLkvpgrxQs1pTy/62BX6VHfKIbLBERqTJ4QzyQ7Zk+kIYKpjdoH2aUJ4/yxwrGLAPJRL4fpsEx2bILnPp4wB141HDeFt2iacpyFXpQ4+joAddUwZ6pAgB9YnN5MMVY24M3SMnmLAFMksSyIXqqNH7WuhQaABtoEOFfBJyxV+9x61rVJgaHVbwNgnxpJwDqyRUF/o75JTUBjEQymS3srAHJbxels0wHOkcwn8QjLJVI170d8P2haDPSvj9bZArWyIX1PXaI94qIXzC7hFrBxzDPp01DlbW9HNNAbZn1AyGKO9zmXcSl9qaxEXrP4CtsJxYx/QQpfADDlfQ9x81L4zHXsBg/6Xt+F0QRf6fQDeat1v4BsSbM0Ao3qBruykhQP8iZ6voYpdT/9EoRWm+F9ocH5Ob/BnqAZ5hbdDgWvgNtDWNazw1BdIENXdhv/GpRXygr5WLYF79A9u8o4B4E7mlwAAAABJRU5ErkJggg=="
+
+/***/ }),
 
 /***/ "/s9V":
 /***/ (function(module, exports, __webpack_require__) {
@@ -11,20 +18,6 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var update = __webpack_require__("rjj0")("79380950", content, true);
-
-/***/ }),
-
-/***/ "9W8B":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("VtC1");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("9ec847ec", content, true);
 
 /***/ }),
 
@@ -1496,7 +1489,6 @@ videojs_flash_es_Flash.VERSION = version$1;
 //
 //
 //
-//
 
 
 /* harmony default export */ var dashboard = ({
@@ -1561,14 +1553,14 @@ videojs_flash_es_Flash.VERSION = version$1;
     //this.myPlayer.dispose(); //销毁video实例
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-5a1dd1a8","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dashboard/index.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-video"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('el-row',{attrs:{"gutter":20}},_vm._l((_vm.videoList),function(item,i){return _c('el-col',{key:i,attrs:{"span":6}},[_c('div',{staticClass:"grid-content"},[_c('video',{ref:"myVideo",refInFor:true,staticClass:"video-js",attrs:{"id":'myVideo'+item.id}},[_c('source',{attrs:{"src":item.url,"type":"rtmp/flv"}})])]),_vm._v(" "),_c('div',{staticClass:"grid-title"},[_vm._v(_vm._s(item.name))])])}))],1)])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-topbar"},[_c('ul',[_c('li',{staticClass:"active"},[_vm._v("视图")])])])}]
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-2a46f9bd","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dashboard/index.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-video"},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"mode":"horizontal"}},[_c('li',{staticClass:"ptitle"},[_c('img',{attrs:{"src":__webpack_require__("+KSh")}}),_vm._v("视频监控\n       ")])])],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('el-row',{attrs:{"gutter":20}},_vm._l((_vm.videoList),function(item,i){return _c('el-col',{key:i,attrs:{"span":6}},[_c('div',{staticClass:"grid-content"},[_c('video',{ref:"myVideo",refInFor:true,staticClass:"video-js",attrs:{"id":'myVideo'+item.id}},[_c('source',{attrs:{"src":item.url,"type":"rtmp/flv"}})])]),_vm._v(" "),_c('div',{staticClass:"grid-title"},[_vm._v(_vm._s(item.name))])])}))],1)])}
+var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ var views_dashboard = (esExports);
 // CONCATENATED MODULE: ./src/views/dashboard/index.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("9W8B")
+  __webpack_require__("VUzc")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -2843,7 +2835,21 @@ var update = __webpack_require__("rjj0")("7503d14c", content, true);
 
 /***/ }),
 
-/***/ "VtC1":
+/***/ "VUzc":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("ZBx1");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("509a7d2d", content, true);
+
+/***/ }),
+
+/***/ "ZBx1":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("FZ+f")(false);
@@ -2851,7 +2857,7 @@ exports = module.exports = __webpack_require__("FZ+f")(false);
 
 
 // module
-exports.push([module.i, "\n.app-video .video-js {\r\n  background: none;\r\n  width: 100%;\r\n  height: 180px;\n}\n.videolist {\r\n  overflow: hidden;\n}\n.videolist .grid-content {\r\n  background: #000;\r\n  border-radius: 6px;\r\n  padding: 2px;\n}\n.videolist .el-row {\r\n  margin-bottom: 20px;\n}\n.videolist .el-row :last-child {\r\n  margin-bottom: 0;\n}\n.videolist .el-col {\r\n  border-radius: 4px;\r\n  margin-bottom: 20px;\n}\n.app-topbar {\r\n  height: 50px;\r\n  background: #fff;\r\n  text-align: center;\n}\n.grid-title {\r\n  color: #1d397a;\r\n  text-align: right;\r\n  line-height: 28px;\n}\n.app-topbar ul {\r\n  margin: 0 auto;\n}\n.app-topbar li {\r\n  color: #1d397a;\r\n  display: inline-block;\r\n  font-size: 16px;\r\n  line-height: 50px;\r\n  padding: 0 30px;\r\n  cursor: 0;\n}\n.app-topbar li.active {\r\n  background: #4b6eca;\r\n  color: #fff;\n}\r\n", ""]);
+exports.push([module.i, "\n.app-video .video-js {\r\n  background: none;\r\n  width: 100%;\r\n  height: 180px;\n}\n.videolist {\r\n  overflow: hidden;\n}\n.videolist .grid-content {\r\n  background: #000;\r\n  border-radius: 6px;\r\n  padding: 2px;\n}\n.videolist .el-row {\r\n  margin-bottom: 20px;\n}\n.videolist .el-row :last-child {\r\n  margin-bottom: 0;\n}\n.videolist .el-col {\r\n  border-radius: 4px;\r\n  margin-bottom: 20px;\n}\r\n\r\n", ""]);
 
 // exports
 

@@ -102,7 +102,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ var overspeed = ({
   data: function data() {
+    var _this = this;
+
     return {
+      pickerOptionsStart: {
+        disabledDate: function disabledDate(time) {
+          if (_this.searchForm.end_time) {
+            return time.getTime() > new Date(_this.searchForm.end_time).getTime();
+          }
+        }
+      },
+      pickerOptionsEnd: {
+        disabledDate: function disabledDate(time) {
+          if (_this.searchForm.start_time) {
+            return time.getTime() < new Date(_this.searchForm.start_time).getTime();
+          }
+        }
+      },
       searchForm: {},
       page_cur: 1,
       page_items: 0,
@@ -119,7 +135,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     getDataList: function getDataList() {
-      var _this = this;
+      var _this2 = this;
 
       var page = this.page_cur;
       var loco_id = this.searchForm.loco_id;
@@ -139,11 +155,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).then(function (res) {
         var data = res.data;
         if (data.status == 1) {
-          _this.dataList = data.data.data;
-          _this.page_cur = parseInt(data.data.current_page);
-          _this.page_items = data.data.total;
-          _this.page_size = data.data.per_page;
-          _this.page_total = data.data.last_page;
+          _this2.dataList = data.data.data;
+          _this2.page_cur = parseInt(data.data.current_page);
+          _this2.page_items = data.data.total;
+          _this2.page_size = data.data.per_page;
+          _this2.page_total = data.data.last_page;
         }
       });
     },
@@ -166,7 +182,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     //选择机车
     getLocomotiveLists: function getLocomotiveLists() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.request({
         url: "dispatch/getLocomotiveLists",
@@ -174,7 +190,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).then(function (response) {
         var data = response.data;
         if (data.status == 1) {
-          _this2.getLocomotiveList = data.data;
+          _this3.getLocomotiveList = data.data;
         }
       });
     }
@@ -182,8 +198,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-15e9358f","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/search/overspeed.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"overspeed"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"router":"","default-active":"overspeed","mode":"horizontal"}},[_c('li',{staticClass:"ptitle"},[_c('img',{attrs:{"src":__webpack_require__("ZsIH")}}),_vm._v("查询统计\n      ")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"search"}},[_vm._v("报警查询")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"overspeed"}},[_vm._v("车辆超速处理")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{attrs:{"model":_vm.searchForm,"inline":true}},[_c('el-form-item',{attrs:{"label":"列车"}},[_c('el-select',{attrs:{"placeholder":"请选择列车","clearable":""},model:{value:(_vm.searchForm.loco_id),callback:function ($$v) {_vm.$set(_vm.searchForm, "loco_id", $$v)},expression:"searchForm.loco_id"}},_vm._l((_vm.getLocomotiveList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":" 最大速度"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.searchForm.speed),callback:function ($$v) {_vm.$set(_vm.searchForm, "speed", $$v)},expression:"searchForm.speed"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"开始时间"}},[_c('el-date-picker',{attrs:{"type":"date"},model:{value:(_vm.searchForm.start_time),callback:function ($$v) {_vm.$set(_vm.searchForm, "start_time", $$v)},expression:"searchForm.start_time"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"结束时间"}},[_c('el-date-picker',{attrs:{"type":"date"},model:{value:(_vm.searchForm.end_time),callback:function ($$v) {_vm.$set(_vm.searchForm, "end_time", $$v)},expression:"searchForm.end_time"}})],1),_vm._v(" "),_c('el-form-item',{staticClass:"form-so"},[_c('label',{staticClass:"el-form-item__label"}),_vm._v(" "),_c('el-button',{attrs:{"size":"small","icon":"el-icon-search","type":"primary"},on:{"click":_vm.pageSearch}},[_vm._v("查询")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{attrs:{"data":_vm.dataList}},[_c('el-table-column',{attrs:{"label":"编号"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('span',[_vm._v(_vm._s(scope.$index+(_vm.page_cur - 1) * _vm.page_size + 1))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"loco_id","label":"机车名称"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"违规类型"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.alert_type==1)?_c('span',[_vm._v("超速报警")]):_vm._e(),_vm._v(" "),(scope.row.alert_type==2)?_c('span',[_vm._v("临近报警")]):_vm._e(),_vm._v(" "),(scope.row.alert_type==3)?_c('span',[_vm._v("防区报警")]):_vm._e(),_vm._v(" "),(scope.row.alert_type==4)?_c('span',[_vm._v("防护牌报警")]):_vm._e()]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"位置"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('b',[_vm._v("DK")]),_vm._v("\n              "+_vm._s(scope.row.start_flag)+" + "+_vm._s(scope.row.start_length)+"\n            ")]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"speed","label":"速度"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"speed","label":"限速值"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"create_time","label":"记录时间"}})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.dataList.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","page-size":this.page_size,"current-page":this.page_cur,"total":this.page_items,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.pageChange}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.pageToFirst}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.pageToLast}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1)],1)])])])}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-1741f907","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/search/overspeed.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"overspeed"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"router":"","default-active":"overspeed","mode":"horizontal"}},[_c('li',{staticClass:"ptitle"},[_c('img',{attrs:{"src":__webpack_require__("ZsIH")}}),_vm._v("查询统计\n      ")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"search"}},[_vm._v("报警查询")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"overspeed"}},[_vm._v("车辆超速处理")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{attrs:{"model":_vm.searchForm,"inline":true}},[_c('el-form-item',{attrs:{"label":"列车"}},[_c('el-select',{attrs:{"placeholder":"请选择列车","clearable":""},model:{value:(_vm.searchForm.loco_id),callback:function ($$v) {_vm.$set(_vm.searchForm, "loco_id", $$v)},expression:"searchForm.loco_id"}},_vm._l((_vm.getLocomotiveList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":" 最大速度"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.searchForm.speed),callback:function ($$v) {_vm.$set(_vm.searchForm, "speed", $$v)},expression:"searchForm.speed"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"开始时间"}},[_c('el-date-picker',{attrs:{"picker-options":_vm.pickerOptionsStart,"type":"date"},model:{value:(_vm.searchForm.start_time),callback:function ($$v) {_vm.$set(_vm.searchForm, "start_time", $$v)},expression:"searchForm.start_time"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"结束时间"}},[_c('el-date-picker',{attrs:{"picker-options":_vm.pickerOptionsEnd,"type":"date"},model:{value:(_vm.searchForm.end_time),callback:function ($$v) {_vm.$set(_vm.searchForm, "end_time", $$v)},expression:"searchForm.end_time"}})],1),_vm._v(" "),_c('el-form-item',{staticClass:"form-so"},[_c('label',{staticClass:"el-form-item__label"}),_vm._v(" "),_c('el-button',{attrs:{"size":"small","icon":"el-icon-search","type":"primary"},on:{"click":_vm.pageSearch}},[_vm._v("查询")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{attrs:{"data":_vm.dataList}},[_c('el-table-column',{attrs:{"label":"编号"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('span',[_vm._v(_vm._s(scope.$index+(_vm.page_cur - 1) * _vm.page_size + 1))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"loco_id","label":"机车名称"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"违规类型"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.alert_type==1)?_c('span',[_vm._v("超速报警")]):_vm._e(),_vm._v(" "),(scope.row.alert_type==2)?_c('span',[_vm._v("临近报警")]):_vm._e(),_vm._v(" "),(scope.row.alert_type==3)?_c('span',[_vm._v("防区报警")]):_vm._e(),_vm._v(" "),(scope.row.alert_type==4)?_c('span',[_vm._v("防护牌报警")]):_vm._e()]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"位置"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('b',[_vm._v("DK")]),_vm._v("\n              "+_vm._s(scope.row.start_flag)+" + "+_vm._s(scope.row.start_length)+"\n            ")]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"speed","label":"速度"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"speed","label":"限速值"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"create_time","label":"记录时间"}})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.dataList.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","page-size":this.page_size,"current-page":this.page_cur,"total":this.page_items,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.pageChange}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.pageToFirst}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.pageToLast}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1)],1)])])])}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ var search_overspeed = (esExports);

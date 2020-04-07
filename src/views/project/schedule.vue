@@ -151,12 +151,21 @@
             <span class="ptxt">作业：</span>
             <span class="ptxt">{{planWorkName}}</span>
           </div>
-          <el-table :data="planDetailList" class="plan-show" border>
-            <el-table-column property="line_type_desc" label="线别"></el-table-column>
-            <el-table-column property="plan_tip" label="计划里程" width="200px"></el-table-column>
-            <el-table-column property="true_tip" label="实际里程" width="200px"></el-table-column>
-            <el-table-column property="remark" label="备注"></el-table-column>
-          </el-table>
+		  <div v-if="proType==1">
+			  <el-table :data="planDetailList" class="plan-show" border>
+				<el-table-column property="line_type_desc" label="线别"></el-table-column>
+				<el-table-column property="plan_tip" label="计划里程" width="200px"></el-table-column>
+				<el-table-column property="true_tip" label="实际里程" width="200px"></el-table-column>
+				<el-table-column property="remark" label="备注"></el-table-column>
+			  </el-table>
+		  </div>
+		  <div v-else>
+			  <el-table :data="planDetailList" class="plan-show" border>
+				<el-table-column property="plan_num" label="计划完成" width="200px"></el-table-column>
+				<el-table-column property="true_num" label="实际完成" width="200px"></el-table-column>
+				<el-table-column property="remark" label="备注"></el-table-column>
+			  </el-table>
+		  </div>
           <div class="plan-btn">
             <el-button @click="dialogDetailVisible=false">关闭</el-button>
           </div>
@@ -185,7 +194,8 @@ export default {
       dialogAddVisible: false,
       dialogDetailVisible: false,
       calendarLists: {},
-      dateCellValue: ""
+      dateCellValue: "",
+      proType:1
     };
   },
   created() {
@@ -243,6 +253,10 @@ export default {
         let data = response.data;
         if (data.status == 1 && data.data.length > 0) {
           this.planDetailList = data.data;
+          if(this.planDetailList.length>0){
+            this.proType = this.planDetailList[0]['pro_type'];
+          }
+
         }
       });
     },

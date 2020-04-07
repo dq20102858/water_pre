@@ -19,21 +19,21 @@ module.exports = { "default": __webpack_require__("9bBU"), __esModule: true };
 
 /***/ }),
 
-/***/ "DCd+":
+/***/ "VRX9":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("WhSm");
+var content = __webpack_require__("YRS6");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("rjj0")("7fe8885a", content, true);
+var update = __webpack_require__("rjj0")("241dd308", content, true);
 
 /***/ }),
 
-/***/ "WhSm":
+/***/ "YRS6":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("FZ+f")(false);
@@ -41,7 +41,7 @@ exports = module.exports = __webpack_require__("FZ+f")(false);
 
 
 // module
-exports.push([module.i, "\n#progress {\r\n  background: #081c33;\r\n  height: 100vh;\n}\n.main-canvas{  background: #081c33;\n}\n.group-canvas {\r\n  overflow-x: scroll;\r\n  overflow-y: hidden;\r\n  height:680px;\r\n  padding-right: 100px;\n}\n.station-top {\r\n  margin: 0 40px;\n}\n.startend {\r\n  padding-top: 40px;\r\n  overflow: hidden;\n}\n.startend .sleft  ,.startend .sright {\r\n  background: #4b6eca;\r\n  color: #fff;\r\n  padding: 15px 15px;\r\n  display: block;\r\n  font-size: 18px;font-weight: 700;\n}\n.startend .sleft {\r\n  float: left;\n}\n.startend .sright {\r\n  float: right;\n}\n.startend .line-a {\r\n  position: relative;\r\n  background: #fff;\r\n  height: 1px;\r\n  display: block;\r\n  margin-top: 10px;\n}\n.startend .line-a::before {\r\n  content: \"\";\r\n  position: absolute;\r\n  left: 0;\r\n  top: 2px;\r\n  width: 10px;\r\n  height: 3px;\r\n  border-bottom: 1px solid #fff;\r\n  -webkit-transform: rotateZ(45deg);\r\n          transform: rotateZ(45deg);\n}\n.startend .line-b {\r\n  position: relative;\r\n  background: #fff;\r\n  height: 1px;\r\n  display: block;\r\n  margin-top: 10px;\n}\n.startend .line-b::before {\r\n  content: \"\";\r\n  position: absolute;\r\n  right: -1px;\r\n  top: 4px;\r\n  width: 10px;\r\n  height: 3px;\r\n  border-bottom: 1px solid #fff;\r\n  -webkit-transform: rotateZ(135deg);\r\n          transform: rotateZ(135deg);\n}\n.stations {\r\n  float: left; margin-left: 25px;margin-top: 15px;\n}\n.stations .item {\r\n  width: 500px;\r\n  overflow: hidden;\r\n  display: inline-block;\r\n  white-space: nowrap;\n}\n.stations ul li {\r\n  display: inline-block;\r\n  background: #4b6eca;\r\n  color: #fff;\r\n  padding: 10px 15px;\r\n  margin-left: 10px;\r\n  cursor: pointer;\n}\n.stations ul li:hover {\r\n  background: #2359e2;\n}\n.stations i {\r\n  display: inline-block;\r\n  background: #3062e2;\r\n  color: #fff;\r\n  padding: 8px 15px;\r\n  font-size: 20px;\r\n  vertical-align: top;\r\n  cursor: pointer;\n}\n.stations i:hover {\r\n  background: #2359e2;\n}\n.stations-select {\r\n  margin-top: 30px;\r\n  padding-bottom: 30px;;\r\n  text-align: center;\n}\r\n/* .stations-select .el-checkbox {\r\n  margin-right: 0;\r\n}\r\n\r\n.stations-select .el-checkbox.is-bordered.is-checked {\r\n  border-color: #27db07;\r\n}\r\n.stations-select .el-checkbox__input.is-checked + .el-checkbox__label {\r\n  color: #27db07;\r\n}\r\n.stations-select .el-checkbox__input.is-checked .el-checkbox__inner {\r\n  background-color: #27db07;\r\n  border-color: #27db07;\r\n} */\n.stations-select .el-checkbox__label {\r\n  color: #fff;\n}\n.bridgechk.is-checked {\r\n  border-color: #ffa918 !important;\n}\n.bridgechk .el-checkbox__input.is-checked .el-checkbox__inner {\r\n  background-color: #ffa918;\r\n  border-color: #ffa918;\n}\n.bridgechk.is-checked .el-checkbox__label {\r\n  color: #ffa918;\n}\n.tunnelchk.is-checked {\r\n  border-color: #18dbff !important;\n}\n.tunnelchk .el-checkbox__input.is-checked .el-checkbox__inner {\r\n  background-color: #18dbff;\r\n  border-color: #18dbff;\n}\n.tunnelchk.is-checked .el-checkbox__label {\r\n  color: #18dbff;\n}\n.speedchk.is-checked {\r\n  border-color: #ff18d3 !important;\n}\n.speedchk .el-checkbox__input.is-checked .el-checkbox__inner {\r\n  background-color: #ff18d3;\r\n  border-color: #ff18d3;\n}\n.speedchk.is-checked .el-checkbox__label {\r\n  color: #ff18d3;\n}\n.slopechk.is-checked {\r\n  border-color: #ff5f18 !important;\n}\n.slopechk .el-checkbox__input.is-checked .el-checkbox__inner {\r\n  background-color: #ff5f18;\r\n  border-color: #ff5f18;\n}\n.slopechk.is-checked .el-checkbox__label {\r\n  color: #ff5f18;\n}\r\n", ""]);
+exports.push([module.i, "\n#progress {\r\n  background: #081c33;\r\n  height: 100vh;\n}\n.main-canvas {\r\n  background: #081c33;\n}\n.group-canvas {\r\n  overflow-x: scroll;\r\n  overflow-y: hidden;\r\n  height: 680px;\r\n  padding-right: 100px;\n}\n.station-top {\r\n  margin: 0 30px;\n}\n.startend {\r\n  padding-top: 30px;\r\n  overflow: hidden;\n}\n.startend .sleft,\r\n.startend .sright {\r\n  background: #4b6eca;\r\n  color: #fff;\r\n  padding: 10px 15px 15px 15px;\r\n  display: block;\r\n  font-size: 16px;\r\n  font-weight: 700;\n}\n.startend .sleft {\r\n  float: left;\n}\n.startend .sright {\r\n  float: right;\n}\n.startend .line-a {\r\n  position: relative;\r\n  background: #fff;\r\n  height: 1px;\r\n  display: block;\r\n  margin-top: 6px;\n}\n.startend .line-a::before {\r\n  content: \"\";\r\n  position: absolute;\r\n  left: 0;\r\n  top: 2px;\r\n  width: 10px;\r\n  height: 3px;\r\n  border-bottom: 1px solid #fff;\r\n  -webkit-transform: rotateZ(45deg);\r\n          transform: rotateZ(45deg);\n}\n.startend .line-b {\r\n  position: relative;\r\n  background: #fff;\r\n  height: 1px;\r\n  display: block;\r\n  margin-top: 6px;\n}\n.startend .line-b::before {\r\n  content: \"\";\r\n  position: absolute;\r\n  right: -1px;\r\n  top: 4px;\r\n  width: 10px;\r\n  height: 3px;\r\n  border-bottom: 1px solid #fff;\r\n  -webkit-transform: rotateZ(135deg);\r\n          transform: rotateZ(135deg);\n}\n.stations {\r\n  float: left;\r\n  margin-top: 15px;\n}\n.stations .item {\r\n  width: 500px;\r\n  overflow: hidden;\r\n  display: inline-block;\r\n  white-space: nowrap;\n}\n.stations ul li {\r\n  display: inline-block;\r\n  background: #4b6eca;\r\n  color: #fff;\r\n  padding: 10px 15px;\r\n  margin-left: 10px;\r\n  cursor: pointer;\n}\n.stations ul li:hover {\r\n  background: #2359e2;\n}\n.stations i {\r\n  display: inline-block;\r\n  background: #3062e2;\r\n  color: #fff;\r\n  padding: 8px 15px;\r\n  font-size: 20px;\r\n  vertical-align: top;\r\n  cursor: pointer;\n}\n.stations i:hover {\r\n  background: #2359e2;\n}\n.stations-select {\r\n  margin-top: 30px;\r\n  padding-bottom: 30px;\r\n  text-align: center;\n}\r\n/* .stations-select .el-checkbox {\r\n  margin-right: 0;\r\n}\r\n\r\n.stations-select .el-checkbox.is-bordered.is-checked {\r\n  border-color: #27db07;\r\n}\r\n.stations-select .el-checkbox__input.is-checked + .el-checkbox__label {\r\n  color: #27db07;\r\n}\r\n.stations-select .el-checkbox__input.is-checked .el-checkbox__inner {\r\n  background-color: #27db07;\r\n  border-color: #27db07;\r\n} */\n.stations-select .el-checkbox__label {\r\n  color: #fff;\n}\n.bridgechk.is-checked {\r\n  border-color: #ffa918 !important;\n}\n.bridgechk .el-checkbox__input.is-checked .el-checkbox__inner {\r\n  background-color: #ffa918;\r\n  border-color: #ffa918;\n}\n.bridgechk.is-checked .el-checkbox__label {\r\n  color: #ffa918;\n}\n.tunnelchk.is-checked {\r\n  border-color: #18dbff !important;\n}\n.tunnelchk .el-checkbox__input.is-checked .el-checkbox__inner {\r\n  background-color: #18dbff;\r\n  border-color: #18dbff;\n}\n.tunnelchk.is-checked .el-checkbox__label {\r\n  color: #18dbff;\n}\n.speedchk.is-checked {\r\n  border-color: #ff18d3 !important;\n}\n.speedchk .el-checkbox__input.is-checked .el-checkbox__inner {\r\n  background-color: #ff18d3;\r\n  border-color: #ff18d3;\n}\n.speedchk.is-checked .el-checkbox__label {\r\n  color: #ff18d3;\n}\n.slopechk.is-checked {\r\n  border-color: #ff5f18 !important;\n}\n.slopechk .el-checkbox__input.is-checked .el-checkbox__inner {\r\n  background-color: #ff5f18;\r\n  border-color: #ff5f18;\n}\n.slopechk.is-checked .el-checkbox__label {\r\n  color: #ff5f18;\n}\n.alertchk.is-checked {\r\n  border-color: #ff1833 !important;\n}\n.alertchk .el-checkbox__input.is-checked .el-checkbox__inner {\r\n  background-color: #ff1833;\r\n  border-color: #ff1833;\n}\n.alertchk.is-checked .el-checkbox__label {\r\n  color: #ff1833;\n}\r\n", ""]);
 
 // exports
 
@@ -161,6 +161,12 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ var monitor = (defineProperty_default()({
   data: function data() {
@@ -185,9 +191,10 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
       bridgeList: [],
       tunnelCheckValue: false,
       tunnelList: [],
-      speedCheckValue: true,
+      speedCheckValue: false,
       speedList: [],
-      alertCheckValue: true,
+      alertCheckValue: false,
+      alertList: [],
       checked5: true,
       slopeCheckValue: true,
       slopeList: []
@@ -219,7 +226,7 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
             if (first.start_flag > tmp.start_flag) first = tmp;
             if (end.start_flag < tmp.start_flag) end = tmp;
           }
-          _this.scrollwidth = document.documentElement.clientWidth - 510;
+          _this.scrollwidth = document.documentElement.clientWidth - 350;
           console.log(_this.scrollwidth);
           _this.firstStation = json[0].name; // 第一个站
           _this.lastStation = json[json.length - 1].name; // 最后一个站
@@ -230,7 +237,9 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
           console.log("总里程mileage：" + _this.totalMileage + " 最小里程minMileage：" + _this.minMileage + " minKM：" + _this.minKM);
           //桥 隧道等
           _this.bridgeList = data.data.bridge_lists; //桥
+          _this.tunnelList = data.data.tunnel_lists; //隧道
           _this.speedList = data.data.speed_lists; //限速区
+          _this.alertList = data.data.alert_lists; //防区
           _this.slopeList = data.data.slope_lists; //坡度
           _this.initCanvas();
           //  this.getLineType();
@@ -305,6 +314,7 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
         context.fillStyle = "white";
         context.textAlign = "center";
         context.textBaseline = "top";
+        //  context.font = "bold 12px Microsoft Yahei";
         var s = parseInt(minkm) - 1;
         var num = 0;
         for (var i = 0; i <= num_Horizontal_Ticks; i++) {
@@ -349,25 +359,7 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
       }
       //绘制桥
       function drawBridgeAxis(bridgeListJson) {
-        var json1 = bridgeListJson;
-        var json = [{
-          id: 7,
-          name: "桥的名称桥的名称",
-          line_type: 1,
-          start_flag: 14,
-          start_length: 200,
-          end_flag: 14,
-          end_length: 800
-        }, {
-          id: 7,
-          name: "桥的名称",
-          line_type: 2,
-          start_flag: 14,
-          start_length: 200,
-          end_flag: 15,
-          end_length: 100
-        }];
-
+        var json = bridgeListJson;
         for (var i = 0; i < json.length; i++) {
           var start = parseInt(json[i].start_flag) * 1000 + parseInt(json[i].start_length);
           var end = parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
@@ -430,8 +422,8 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
       }
       //绘隧道
       function drawTunnelAxis(tunnelListJson) {
-        var json1 = tunnelListJson;
-        var json = [{
+        var json = tunnelListJson;
+        var json1 = [{
           id: 7,
           name: "隧道名称一",
           line_type: 1,
@@ -456,8 +448,6 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
           var startX = (start - parseInt(minkm * 1000)) * everys; //开始值
           var endX = (end - parseInt(minkm * 1000)) * everys; //结束值
           var centerX = (endX + startX) / 2; //开始结束平均值
-
-          console.log("startX：" + startX + " endX：" + endX + " centerX：" + centerX + " betweenMeters：" + betweenMeters);
 
           context.lineWidth = 2;
           context.strokeStyle = "#18DBFF";
@@ -498,36 +488,7 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
       }
       //绘制限速区
       function drawSpeedAxis(speedListJson) {
-        var json1 = speedListJson;
-        var json = [{
-          id: 7,
-          name: "\u9650\u901F",
-          line_type: 1,
-          start_flag: 14,
-          start_length: 200,
-          end_flag: 15,
-          end_length: 400,
-          speed: "5.00"
-        }, {
-          id: 7,
-          name: "\u9650\u901F",
-          line_type: 2,
-          start_flag: 16,
-          start_length: 200,
-          end_flag: 16,
-          end_length: 600,
-          speed: "5.00"
-        }, {
-          id: 7,
-          name: "\u9650\u901F",
-          line_type: 1,
-          start_flag: 30,
-          start_length: 200,
-          end_flag: 32,
-          end_length: 200,
-          speed: "5.00"
-        }];
-
+        var json = speedListJson;
         for (var i = 0; i < json.length; i++) {
           var start = parseInt(json[i].start_flag) * 1000 + parseInt(json[i].start_length);
           var end = parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
@@ -539,19 +500,51 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
           context.strokeStyle = "#FF18D3";
           context.lineWidth = 10;
           context.fillStyle = "#FF18D3";
-          context.font = "14px Microsoft Yahei";
-          var desc = json[i].name + json[i].speed + "公里/小时";
+          context.font = "12px Microsoft Yahei";
+          var desc = "限速" + json[i].speed + "公里/小时";
           context.beginPath();
           if (json[i].line_type == 1) {
             //画水平直线
             context.moveTo(startX + offsetX, axis_Origin.y);
             context.lineTo(endX + offsetX, axis_Origin.y);
             //文字
-            context.fillText(desc, startX + 160, axis_Origin.y + 35);
+            context.fillText(desc, startX + 152, axis_Origin.y + 35);
           } else {
             context.moveTo(startX + offsetX, axis_Origin_Two.y);
             context.lineTo(endX + offsetX, axis_Origin_Two.y);
-            context.fillText(desc, startX + 160, axis_Origin_Two.y + 35);
+            context.fillText(desc, startX + 152, axis_Origin_Two.y + 35);
+          }
+          context.stroke();
+          //
+        }
+      }
+      //绘制防区
+      function drawAlertAxis(alertListJson) {
+        var json = alertListJson;
+        for (var i = 0; i < json.length; i++) {
+          var start = parseInt(json[i].start_flag) * 1000 + parseInt(json[i].start_length);
+          var end = parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
+          console.log("start：" + start + " end：" + end);
+          // 计算当前站点的x轴坐标
+          var startX = (start - parseInt(minkm * 1000)) * everys;
+          var endX = (end - parseInt(minkm * 1000)) * everys;
+          //console.log("startX：" + startX + " endX：" + endX);
+          context.strokeStyle = "#ff1833";
+          context.lineWidth = 10;
+          context.fillStyle = "#ff1833";
+          context.font = "12px Microsoft Yahei";
+          var desc = "防区 DK" + json[i].start_flag + "+" + json[i].start_length + "- DK" + json[i].end_flag + "+" + json[i].end_length;
+          context.beginPath();
+          if (json[i].line_type == 1) {
+            //画水平直线
+            context.moveTo(startX + offsetX, axis_Origin.y);
+            context.lineTo(endX + offsetX, axis_Origin.y);
+            //文字
+            context.fillText(desc, startX + 178, axis_Origin.y + 35);
+          } else {
+            context.moveTo(startX + offsetX, axis_Origin_Two.y);
+            context.lineTo(endX + offsetX, axis_Origin_Two.y);
+            context.fillText(desc, startX + 178, axis_Origin_Two.y + 35);
           }
           context.stroke();
           //
@@ -559,8 +552,8 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
       }
       //绘制坡度
       function drawSlopeAxis(slopeListJson) {
-        var json1 = slopeListJson;
-        var json = [{
+        var json = slopeListJson;
+        var json1 = [{
           id: 7,
           name: "\u9650\u901F",
           line_type: 1,
@@ -568,8 +561,9 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
           start_length: 200,
           end_flag: 14,
           end_length: 400,
-          height: "3.00",
-          length: "300"
+          height: "2",
+          length: "200",
+          type: 1
         }, {
           id: 7,
           name: "\u9650\u901F",
@@ -578,18 +572,75 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
           start_length: 400,
           end_flag: 14,
           end_length: 600,
-          height: "3.00",
-          length: "200"
+          height: "3",
+          length: "300",
+          type: 1
         }, {
           id: 7,
           name: "\u9650\u901F",
-          line_type: 3,
-          start_flag: 15,
-          start_length: 200,
+          line_type: 1,
+          start_flag: 14,
+          start_length: 600,
           end_flag: 15,
-          end_length: 800,
+          end_length: 0,
+          height: "4",
+          length: "600",
+          type: 3
+        }, {
+          id: 7,
+          name: "\u9650\u901F",
+          line_type: 1,
+          start_flag: 15,
+          start_length: 0,
+          end_flag: 15,
+          end_length: 400,
+          height: "4",
+          length: "400",
+          type: 3
+        }, {
+          id: 7,
+          name: "右线",
+          line_type: 2,
+          start_flag: 14,
+          start_length: 200,
+          end_flag: 14,
+          end_length: 400,
+          height: "3",
+          length: "300",
+          type: 1
+        }, {
+          id: 7,
+          name: "\u9650\u901F",
+          line_type: 2,
+          start_flag: 14,
+          start_length: 400,
+          end_flag: 14,
+          end_length: 600,
           height: "3.00",
-          length: "600"
+          length: "200",
+          type: 1
+        }, {
+          id: 7,
+          name: "\u9650\u901F",
+          line_type: 2,
+          start_flag: 14,
+          start_length: 600,
+          end_flag: 15,
+          end_length: 0,
+          height: "3.00",
+          length: "600",
+          type: 3
+        }, {
+          id: 7,
+          name: "\u9650\u901F",
+          line_type: 2,
+          start_flag: 15,
+          start_length: 0,
+          end_flag: 15,
+          end_length: 400,
+          height: "3.00",
+          length: "600",
+          type: 3
         }];
 
         for (var i = 0; i < json.length; i++) {
@@ -600,46 +651,65 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
           var endX = (end - parseInt(minkm * 1000)) * everys; //结束值
           var centerX = (endX + startX) / 2; //开始结束平均值
 
-          console.log("startX：" + startX + " endX：" + endX + " centerX：" + centerX + " betweenMeters：" + betweenMeters);
-
-          context.lineWidth = 2;
+          context.lineWidth = 1;
           context.strokeStyle = "#FF5F18";
-          var desc = json[i].name + " 共" + betweenMeters + "米";
-          var codes = "DK" + json[i].start_flag + " +" + json[i].start_length + " ~ " + "DK" + json[i].end_flag + " +" + json[i].end_length;
+          context.fillStyle = "#FF5F18";
+
+          var slope_height = parseFloat(json[i].height);
+          var slope_length = parseFloat(json[i].length);
+          var slope_center = betweenMeters * everys / 2;
+          //type  1 2 3 代表上坡 平坡 下坡
           if (json[i].line_type == 1) {
-            //画垂直线
-            context.fillStyle = "#FF5F18";
-
-            context.moveTo(startX + offsetX + 30, axis_Origin.y + 55); //起点
-            context.lineTo(startX + offsetX, axis_Origin.y + 105); //终点
-            context.stroke();
-            // context.fillRect(startX + offsetX - 1, axis_Origin.y - 45, 2, 40);
-            // context.fillRect(endX + offsetX - 1, axis_Origin.y - 45, 2, 40);
+            //对角线
+            if (json[i].type == 1) {
+              context.moveTo(startX + offsetX, axis_Origin.y + 100); //起点
+              context.lineTo(startX + offsetX + betweenMeters * everys, axis_Origin.y + 50); //终点
+              context.stroke();
+              context.fillText(slope_height, startX + offsetX + slope_center - 20, axis_Origin.y + 60);
+              context.fillText(slope_length, startX + offsetX + slope_center + 20, axis_Origin.y + 80);
+            }
+            if (json[i].type == 2) {
+              context.moveTo(startX + offsetX, axis_Origin.y + 50 + 25); //起点
+              context.lineTo(startX + offsetX + betweenMeters * everys, axis_Origin.y + 50 + 25); //终点
+              context.stroke();
+              context.fillText(slope_height, startX + offsetX + slope_center, axis_Origin.y + 60);
+              context.fillText(slope_length, startX + offsetX + slope_center, axis_Origin.y + 80);
+            }
+            if (json[i].type == 3) {
+              context.moveTo(startX + offsetX, axis_Origin.y + 50); //起点
+              context.lineTo(startX + offsetX + betweenMeters * everys, axis_Origin.y + 100); //终点
+              context.stroke();
+              context.fillText(slope_height, startX + offsetX + slope_center + 20, axis_Origin.y + 60);
+              context.fillText(slope_length, startX + offsetX + slope_center - 20, axis_Origin.y + 80);
+            }
             //画矩形
-            context.strokeRect(startX + offsetX, axis_Origin.y + 90, betweenMeters * everys, 45);
-            //文字
-            context.fillStyle = "#FF5F18";
-            context.font = "13px Microsoft Yahei";
-            context.fillText(desc, centerX + offsetX, axis_Origin.y - 80);
-            context.font = "11px Microsoft Yahei";
-            context.fillStyle = "#fff";
-            context.fillText(codes, centerX + offsetX, axis_Origin.y - 62);
-          } else {
-            //画垂直线
-            context.fillStyle = "#FF5F18";
-            context.fillRect(startX + offsetX - 1, axis_Origin_Two.y - 45, 2, 40);
-            context.fillRect(endX + offsetX - 1, axis_Origin_Two.y - 45, 2, 40);
-
+            context.strokeRect(startX + offsetX, axis_Origin.y + 50, betweenMeters * everys, 50);
+          } else if (json[i].line_type == 2) {
+            //对角线
+            if (json[i].type == 1) {
+              context.moveTo(startX + offsetX, axis_Origin_Two.y + 100); //起点
+              context.lineTo(startX + offsetX + betweenMeters * everys, axis_Origin_Two.y + 50); //终点
+              context.stroke();
+              context.fillText(slope_height, startX + offsetX + slope_center - 20, axis_Origin_Two.y + 60);
+              context.fillText(slope_length, startX + offsetX + slope_center + 20, axis_Origin_Two.y + 80);
+            }
+            if (json[i].type == 2) {
+              context.moveTo(startX + offsetX, axis_Origin_Two.y + 50 + 25); //起点
+              context.lineTo(startX + offsetX + betweenMeters * everys, axis_Origin_Two.y + 50 + 25); //终点
+              context.stroke();
+              context.fillText(slope_height, startX + offsetX + slope_center, axis_Origin_Two.y + 60);
+              context.fillText(slope_length, startX + offsetX + slope_center, axis_Origin_Two.y + 80);
+            }
+            if (json[i].type == 3) {
+              context.moveTo(startX + offsetX, axis_Origin_Two.y + 50); //起点
+              context.lineTo(startX + offsetX + betweenMeters * everys, axis_Origin_Two.y + 100); //终点
+              context.stroke();
+              context.fillText(slope_height, startX + offsetX + slope_center + 20, axis_Origin_Two.y + 60);
+              context.fillText(slope_length, startX + offsetX + slope_center - 20, axis_Origin_Two.y + 80);
+            }
             //画矩形
-            context.strokeRect(startX + offsetX, axis_Origin_Two.y - 90, betweenMeters * everys, 45);
-            //文字
-            context.font = "13px Microsoft Yahei";
-            context.fillText(desc, centerX + offsetX, axis_Origin_Two.y - 80);
-            context.font = "11px Microsoft Yahei";
-            context.fillStyle = "#fff";
-            context.fillText(codes, centerX + offsetX, axis_Origin_Two.y - 62);
+            context.strokeRect(startX + offsetX, axis_Origin_Two.y + 50, betweenMeters * everys, 50);
           }
-
           //
         }
       }
@@ -661,13 +731,18 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
       if (this.speedCheckValue) {
         drawSpeedAxis(this.speedList);
       }
+      //防区
+      if (this.alertCheckValue) {
+        drawAlertAxis(this.alertList);
+      }
       //坡度
-      // if (this.slopeCheckValue) {
-      //   drawSlopeAxis(this.slopeList);
-      // }
+      if (this.slopeCheckValue) {
+        drawSlopeAxis(this.slopeList);
+      }
     },
 
     // =============桥 隧道 限速区 防区 道岔 坡度
+    //桥
     bridgeCheckSelect: function bridgeCheckSelect() {
       this.getProjectProcessMap();
     },
@@ -683,12 +758,16 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
     },
 
     //防区
-    alertCheckSelect: function alertCheckSelect() {},
+    alertCheckSelect: function alertCheckSelect() {
+      this.getProjectProcessMap();
+    },
+
+    //坡度
     slopeCheckSelect: function slopeCheckSelect() {
       this.getProjectProcessMap();
     },
 
-    //=====================end 桥
+    // =============桥 隧道 限速区 防区 道岔 坡度 end
     //top
     stationLeftMove: function stationLeftMove() {
       if (this.wdpx < 0) {
@@ -713,17 +792,17 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
   var _this2 = this;
 
   window.addEventListener("resize", function () {
-    _this2.scrollwidth = document.documentElement.clientWidth - 510;
+    _this2.scrollwidth = document.documentElement.clientWidth - 350;
   });
 }));
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-2d3d127f","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/monitor/index.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"progress"}},[_c('div',{staticClass:"station-top"},[_c('div',{staticClass:"startend"},[_c('div',{staticClass:"sleft"},[_vm._v("\n        "+_vm._s(_vm.firstStation)+"方向\n        "),_c('i',{staticClass:"line-a"})]),_vm._v(" "),_c('div',{staticClass:"stations"},[_c('i',{staticClass:"el-icon-arrow-left",on:{"click":_vm.stationLeftMove}}),_vm._v(" "),_c('div',{staticClass:"item",style:({width:_vm.scrollwidth  + 'px'})},[_c('ul',{style:({width: _vm.stationList.length * 100 + 'px','margin-left': _vm.wdpx * 100 + 'px'})},_vm._l((_vm.stationList),function(item){return _c('li',{key:item.id,on:{"click":function($event){_vm.scrollPosition(item.start_flag,item.start_length)}}},[_vm._v(_vm._s(item.name))])}))]),_vm._v(" "),_c('i',{staticClass:"el-icon-arrow-right",on:{"click":_vm.stationRightMove}})]),_vm._v(" "),_c('div',{staticClass:"sright"},[_vm._v("\n        "+_vm._s(_vm.lastStation)+"方向\n        "),_c('i',{staticClass:"line-b"})])])]),_vm._v(" "),_c('div',{staticClass:"main-canvas"},[_c('div',{staticClass:"group-canvas scrollbar"},[_c('canvas',{ref:"mycanvas",attrs:{"id":"mycanvas","height":"680"}},[_c('p',[_vm._v("您的系统不支持此程序!")])])]),_vm._v(" "),_c('div',{staticClass:"stations-select"},[_c('el-checkbox',{staticClass:"bridgechk",attrs:{"label":"桥","border":""},on:{"change":_vm.bridgeCheckSelect},model:{value:(_vm.bridgeCheckValue),callback:function ($$v) {_vm.bridgeCheckValue=$$v},expression:"bridgeCheckValue"}}),_vm._v(" "),_c('el-checkbox',{staticClass:"tunnelchk",attrs:{"label":"隧道","border":""},on:{"change":_vm.tunnelCheckSelect},model:{value:(_vm.tunnelCheckValue),callback:function ($$v) {_vm.tunnelCheckValue=$$v},expression:"tunnelCheckValue"}}),_vm._v(" "),_c('el-checkbox',{staticClass:"speedchk",attrs:{"label":"限速区","border":""},on:{"change":_vm.speedCheckSelect},model:{value:(_vm.speedCheckValue),callback:function ($$v) {_vm.speedCheckValue=$$v},expression:"speedCheckValue"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"防区","border":""},on:{"change":_vm.alertCheckSelect},model:{value:(_vm.alertCheckValue),callback:function ($$v) {_vm.alertCheckValue=$$v},expression:"alertCheckValue"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"道岔","border":""},model:{value:(_vm.checked5),callback:function ($$v) {_vm.checked5=$$v},expression:"checked5"}}),_vm._v(" "),_c('el-checkbox',{staticClass:"slopechk",attrs:{"label":"坡度","border":""},on:{"change":_vm.slopeCheckSelect},model:{value:(_vm.slopeCheckValue),callback:function ($$v) {_vm.slopeCheckValue=$$v},expression:"slopeCheckValue"}})],1)])])}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-299be95f","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/monitor/index.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"progress"}},[_c('div',{staticClass:"station-top"},[_c('div',{staticClass:"startend"},[_c('div',{staticClass:"sleft"},[_vm._v("\n        "+_vm._s(_vm.firstStation)+"方向\n        "),_c('i',{staticClass:"line-a"})]),_vm._v(" "),_c('div',{staticClass:"sright"},[_vm._v("\n        "+_vm._s(_vm.lastStation)+"方向\n        "),_c('i',{staticClass:"line-b"})]),_vm._v(" "),_c('div',{staticClass:"stations"},[_c('i',{staticClass:"el-icon-arrow-left",on:{"click":_vm.stationLeftMove}}),_vm._v(" "),_c('div',{staticClass:"item",style:({width:_vm.scrollwidth  + 'px'})},[_c('ul',{style:({width: _vm.stationList.length * 100 + 'px','margin-left': _vm.wdpx * 100 + 'px'})},_vm._l((_vm.stationList),function(item){return _c('li',{key:item.id,on:{"click":function($event){_vm.scrollPosition(item.start_flag,item.start_length)}}},[_vm._v(_vm._s(item.name))])}))]),_vm._v(" "),_c('i',{staticClass:"el-icon-arrow-right",on:{"click":_vm.stationRightMove}})])])]),_vm._v(" "),_c('div',{staticClass:"stations-select"},[_c('el-checkbox',{staticClass:"bridgechk",attrs:{"label":"桥","border":""},on:{"change":_vm.bridgeCheckSelect},model:{value:(_vm.bridgeCheckValue),callback:function ($$v) {_vm.bridgeCheckValue=$$v},expression:"bridgeCheckValue"}}),_vm._v(" "),_c('el-checkbox',{staticClass:"tunnelchk",attrs:{"label":"隧道","border":""},on:{"change":_vm.tunnelCheckSelect},model:{value:(_vm.tunnelCheckValue),callback:function ($$v) {_vm.tunnelCheckValue=$$v},expression:"tunnelCheckValue"}}),_vm._v(" "),_c('el-checkbox',{staticClass:"speedchk",attrs:{"label":"限速区","border":""},on:{"change":_vm.speedCheckSelect},model:{value:(_vm.speedCheckValue),callback:function ($$v) {_vm.speedCheckValue=$$v},expression:"speedCheckValue"}}),_vm._v(" "),_c('el-checkbox',{staticClass:"alertchk",attrs:{"label":"防区","border":""},on:{"change":_vm.alertCheckSelect},model:{value:(_vm.alertCheckValue),callback:function ($$v) {_vm.alertCheckValue=$$v},expression:"alertCheckValue"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"道岔","border":""},model:{value:(_vm.checked5),callback:function ($$v) {_vm.checked5=$$v},expression:"checked5"}}),_vm._v(" "),_c('el-checkbox',{staticClass:"slopechk",attrs:{"label":"坡度","border":""},on:{"change":_vm.slopeCheckSelect},model:{value:(_vm.slopeCheckValue),callback:function ($$v) {_vm.slopeCheckValue=$$v},expression:"slopeCheckValue"}})],1),_vm._v(" "),_c('div',{staticClass:"main-canvas"},[_c('div',{staticClass:"group-canvas scrollbar"},[_c('canvas',{ref:"mycanvas",attrs:{"id":"mycanvas","height":"680"}},[_c('p',[_vm._v("您的系统不支持此程序!")])])])])])}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ var views_monitor = (esExports);
 // CONCATENATED MODULE: ./src/views/monitor/index.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("DCd+")
+  __webpack_require__("VRX9")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */

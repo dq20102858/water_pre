@@ -106,7 +106,7 @@
                 <span class="statuse1" v-if="scope.row.status=='未批复'">未批复</span>
                 <span class="statuse2" v-if="scope.row.status=='同意'">同意</span>
                 <span class="statuse3" v-if="scope.row.status=='拒绝'">拒绝</span>
-                <span class="statuse4" v-if="scope.row.status=='完成'">完成</span>
+                <span class="statuse4" v-if="scope.row.status=='已完成'">完成</span>
                 <span class="statuse6" v-if="scope.row.status=='已销点'">已销点</span>
                 <span class="statuse1" v-if="scope.row.status=='注销'">注销</span>
               </template>
