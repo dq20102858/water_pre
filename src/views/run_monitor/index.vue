@@ -1,14 +1,14 @@
 <template>
   <div id="app-monitor-chart">
     <div class="app-page-chart">
+      <div class="maintitle">{{todayPreValue}} 18时 -— {{todayNextValue}} 18时轨行区作业分布图</div>
       <div class="chartleft">
-        <div class="maintitle">2020年04月02日 16时 -— 2020年04月04日 16时轨行区作业分布图</div>
         <div id="main" style="height:500px;width:100%;"></div>
       </div>
       <div class="chartright">
         <div class="sidebox">
           <div class="btnitem">
-            <el-date-picker v-model="todayValue" type="date" placeholder="选择日期"></el-date-picker>
+            <el-date-picker v-model="formData.date" type="date" placeholder="选择日期"></el-date-picker>
           </div>
           <div class="btnitems">
             <el-button @click="preDate" type="primary" plain>前一天</el-button>
@@ -61,83 +61,276 @@
     </div>
 
     <el-dialog
-      width="700px"
+      width="960px"
       :close-on-click-modal="false"
       class="dialog-monitor"
       :title="this.diaLogTitle"
       :visible.sync="diaLogFormVisible"
     >
-      <el-form class="el-form-custom" :model="formData" :rules="formRules" ref="formRules">
-        <el-form-item label="名称：" prop="name">
-          <el-input v-model="formData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
+      <el-form
+        :inline="true"
+        class="el-form-custom"
+        :model="formData"
+        :rules="formRules"
+        ref="formRules"
+      >
+        <el-form-item label="日班计划编号：" prop="number">
+          <el-input v-model="formData.number" autocomplete="off" maxlength="20" show-word-limit></el-input>
         </el-form-item>
-        <!-- <el-form-item label="线别：" prop="line_type">
-          <el-select
-            v-model="formData.line_type"
-            placeholder="请选择"
-            @change="selectLineType($event)"
-          >
-            <el-option
-              v-for="item in lineTypeList"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
-            ></el-option>
+        <el-form-item>
+          <el-select v-model="formData.plan_type">
+            <el-option label="行车和施工计划" :value="1"></el-option>
+            <el-option label="行车计划" :value="2"></el-option>
+            <el-option label="施工计划" :value="3"></el-option>
           </el-select>
-          <div class="el-form-item__error">{{lineTypeDes}}</div>
-        </el-form-item>-->
-        <!-- <el-form-item label="开始里程：" class="el-form-item-inlines is-required">
-          <el-form-item prop="start_flag">
-            <b>DK</b>
-            <el-input
-              v-model="formData.start_flag"
-              autocomplete="off"
-              placeholder="公里"
-              maxlength="3"
-            ></el-input>
-          </el-form-item>
-          <el-form-item prop="start_length">
-            <b>+</b>
-            <el-input
-              v-model="formData.start_length"
-              autocomplete="off"
-              placeholder="米"
-              maxlength="3"
-            ></el-input>
-          </el-form-item>
         </el-form-item>
-        <el-form-item label="结束里程：" class="el-form-item-inlines is-required">
-          <el-form-item prop="end_flag">
-            <b>DK</b>
-            <el-input v-model="formData.end_flag" autocomplete="off" placeholder="公里" maxlength="3"></el-input>
+        <fieldset>
+          <legend>列车信息</legend>
+          <el-form-item label="列车类型：" label-width="100px">
+            <el-select v-model="formData.car_type" placeholder="请选择"></el-select>
           </el-form-item>
-          <el-form-item prop="end_length">
-            <b>+</b>
-            <el-input
-              v-model="formData.end_length"
-              autocomplete="off"
-              placeholder="米"
-              maxlength="3"
-            ></el-input>
-          </el-form-item>
+          <div class="el-form-item-block">
+            <el-form-item label="出行车次：" label-width="100px">
+              <el-input v-model="formData.out_car" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="本务：">
+              <el-select v-model="formData.out_business_loco">
+                <el-option
+                  v-for="item in locoList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="重联：">
+              <el-select v-model="formData.out_reco" placeholder="请选择">
+                <el-option
+                  v-for="item in locoList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="补机：">
+              <el-select v-model="formData.out_supple" placeholder="请选择">
+                <el-option
+                  v-for="item in locoList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </div>
+          <div class="el-form-item-block">
+            <el-form-item label="出线级别：" label-width="100px">
+              <el-select v-model="formData.out_line_type" placeholder="请选择">
+                <el-option
+                  v-for="item in linTypeList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="车长：">
+              <el-select v-model="formData.out_master_id" placeholder="请选择">
+                <el-option label="行车和施工计划" :value="1"></el-option>
+                <el-option label="行车计划" :value="2"></el-option>
+                <el-option label="施工计划" :value="3"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="司机：">
+              <el-select v-model="formData.out_driver_id" placeholder="请选择">
+                <el-option label="行车和施工计划" :value="1"></el-option>
+                <el-option label="行车计划" :value="2"></el-option>
+                <el-option label="施工计划" :value="3"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="编组：">
+              <el-input
+                v-model="formData.out_marshalling"
+                autocomplete="off"
+              ></el-input>
+            </el-form-item>
+          </div>
+          <div class="el-form-item-block">
+            <el-form-item label="返回车次：" label-width="100px">
+              <el-input
+                v-model="formData.back_car"
+                autocomplete="off"
+                maxlength="20"
+                show-word-limit
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="本务：">
+              <el-select v-model="formData.back_business_loco" placeholder="请选择">
+                <el-option label="行车和施工计划" :value="1"></el-option>
+                <el-option label="行车计划" :value="2"></el-option>
+                <el-option label="施工计划" :value="3"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="重联：">
+              <el-select v-model="formData.back_reco" placeholder="请选择">
+                <el-option label="行车和施工计划" :value="1"></el-option>
+                <el-option label="行车计划" :value="2"></el-option>
+                <el-option label="施工计划" :value="3"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="补机：">
+              <el-select v-model="formData.back_supple" placeholder="请选择">
+                <el-option label="行车和施工计划" :value="1"></el-option>
+                <el-option label="行车计划" :value="2"></el-option>
+                <el-option label="施工计划" :value="3"></el-option>
+              </el-select>
+            </el-form-item>
+          </div>
+          <div class="el-form-item-block">
+            <el-form-item label="返回级别：" label-width="100px">
+              <el-select v-model="formData.back_line_type" placeholder="请选择">
+                <el-option
+                  v-for="item in linTypeList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="车长：">
+              <el-select v-model="formData.back_master_id" placeholder="请选择">
+                <el-option label="行车和施工计划" :value="1"></el-option>
+                <el-option label="行车计划" :value="2"></el-option>
+                <el-option label="施工计划" :value="3"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="司机：">
+              <el-select v-model="formData.back_driver_id" placeholder="请选择">
+                <el-option label="行车和施工计划" :value="1"></el-option>
+                <el-option label="行车计划" :value="2"></el-option>
+                <el-option label="施工计划" :value="3"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="编组：">
+              <el-input
+                v-model="formData.back_marshalling"
+                autocomplete="off"
+              ></el-input>
+            </el-form-item>
+          </div>
+        </fieldset>
+        <!---2 -->
+        <fieldset>
+          <legend>施工信息</legend>
+          <div class="el-form-item-block">
+            <el-form-item label="开始时间：" label-width="100px">
+              <el-date-picker v-model="formData.start_time" type="datetime" placeholder="选择时间"></el-date-picker>
+            </el-form-item>
+            <el-form-item label="结束时间：">
+              <el-date-picker v-model="formData.end_time" type="datetime" placeholder="选择时间"></el-date-picker>
+            </el-form-item>
+          </div>
+          <div class="el-form-item-block">
+            <el-form-item class="dateinput" label="工点：" label-width="100px">
+              <el-select v-model="formData.start_station" placeholder="请选择">
+                <el-option label="行车和施工计划" :value="1"></el-option>
+                <el-option label="行车计划" :value="2"></el-option>
+                <el-option label="施工计划" :value="3"></el-option>
+              </el-select>
+            </el-form-item>
+            <b style="line-height: 31px;">—</b>
+            <el-form-item class="dateinput">
+              <el-select v-model="formData.end_station" placeholder="请选择">
+                <el-option label="行车和施工计划" :value="1"></el-option>
+                <el-option label="行车计划" :value="2"></el-option>
+                <el-option label="施工计划" :value="3"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="里程(DK)：" label-width="100px" class="el-form-item-inlines">
+              <el-form-item>
+                <el-input
+                  v-model="formData.start_flag"
+                  autocomplete="off"
+                  placeholder="公里"
+                  maxlength="3"
+                ></el-input>
+              </el-form-item>
+              <el-form-item>
+                <b>+</b>
+                <el-input
+                  v-model="formData.start_length"
+                  autocomplete="off"
+                  placeholder="米"
+                  maxlength="3"
+                ></el-input>
+              </el-form-item>
+              <el-form-item>
+                <b style="width:100px">至</b>
+                <el-input
+                  v-model="formData.start_flag"
+                  autocomplete="off"
+                  placeholder="公里"
+                  maxlength="3"
+                ></el-input>
+              </el-form-item>
+              <el-form-item>
+                <b>+</b>
+                <el-input
+                  v-model="formData.start_length"
+                  autocomplete="off"
+                  placeholder="米"
+                  maxlength="3"
+                ></el-input>
+              </el-form-item>
+            </el-form-item>
+          </div>
+          <div class="el-form-item-block">
+            <el-form-item label="施工作业队：" label-width="100px">
+              <el-select v-model="formData.work_plan_id" placeholder="请选择">
+                <el-option label="行车和施工计划" :value="1"></el-option>
+                <el-option label="行车计划" :value="2"></el-option>
+                <el-option label="施工计划" :value="3"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="作业类型：">
+              <el-select v-model="formData.work_type" placeholder="请选择">
+                <el-option label="行车和施工计划" :value="1"></el-option>
+                <el-option label="行车计划" :value="2"></el-option>
+                <el-option label="施工计划" :value="3"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item class="danwei" label="线别：">
+              <el-select v-model="formData.line_type" placeholder="请选择">
+                <el-option
+                  v-for="item in linTypeList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </div>
+
+          <div class="el-form-item-block">
+            <el-form-item label="施工项目：" label-width="100px">
+              <el-select v-model="formData.item_id" placeholder="请选择"></el-select>
+            </el-form-item>
+            <el-form-item label="工序：" label-width="70px">
+              <el-select v-model="formData.work_id" placeholder="请选择"></el-select>
+            </el-form-item>
+          </div>
+        </fieldset>
+        <el-form-item label="内容：" prop="description">
+          <el-input
+            v-model="formData.description"
+            autocomplete="off"
+            type="textarea"
+            maxlength="30"
+            show-word-limit
+          ></el-input>
         </el-form-item>
-        <el-form-item label="开始时间" prop="start_time">
-          <el-date-picker
-            @change="changeStarttime"
-            v-model="formData.start_time"
-            type="datetime"
-            placeholder="选择时间"
-          ></el-date-picker>
-        </el-form-item>
-        <el-form-item label="结束时间" prop="end_time">
-          <el-date-picker
-            @change="changeEndtime"
-            v-model="formData.end_time"
-            type="datetime"
-            placeholder="选择时间"
-          ></el-date-picker>
-        </el-form-item>
-        <div class="blank"></div>-->
+        <div class="blank"></div>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="diaLogFormVisible = false">关闭</el-button>
@@ -152,19 +345,25 @@ export default {
   name: "daychart",
   data() {
     return {
-      projectName: "",
       mark_line: [],
       project_kind_name: [],
       kcolor: ["red", "green", "yellow", "#467aff", "#44ddb5", "#c245d3"],
       todayValue: new Date(),
+      todayPreValue: "",
+      todayNextValue: "",
       diaLogFormVisible: false,
-      diaLogTitle: "添加信息",
-      formData: {},
+      diaLogTitle: "计划图",
+      formData: {
+        plan_type: 1,
+        car_type: ""
+      },
+      locoList: [],
+      linTypeList: [],
       formRules: {
-        name: [
+        number: [
           {
             required: true,
-            message: "请输入名称2~20个字符",
+            message: "请输入编号2~20个字符",
             trigger: "blur"
           },
           { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
@@ -176,7 +375,9 @@ export default {
     this.getChart();
   },
   created() {
-    this.projectName = localStorage.getItem("projectName");
+    this.getLocomotiveLists(); //机车
+    this.getLineTypeList(); //线别
+    //this.projectName = localStorage.getItem("projectName");
   },
   methods: {
     getChart() {
@@ -278,6 +479,16 @@ export default {
               0
             )
           );
+          let todayPreValues = dataMin.toLocaleDateString();
+          let todayNextValues = dataMax.toLocaleDateString();
+          this.todayPreValue = todayPreValues.replace(
+            /(.+?)\/(.+?)\/(.+)/,
+            "$1年$2月$3日"
+          );
+          this.todayNextValue = todayNextValues.replace(
+            /(.+?)\/(.+?)\/(.+)/,
+            "$1年$2月$3日"
+          );
           //option
           var option = {
             textStyle: {
@@ -298,7 +509,7 @@ export default {
             },
             grid: {
               left: "15%",
-              right: "5%"
+              right: "1%"
             },
             xAxis: {
               type: "time",
@@ -351,31 +562,8 @@ export default {
                 fillerColor: "#202f40"
               },
               {
-                type: "slider",
-                filterMode: "weakFilter",
-                show: true,
-                yAxisIndex: [0],
-                left: "96%",
-                start: 0,
-                end: 100,
-                minValueSpan: 5,
-                textStyle: {
-                  color: "#fff"
-                },
-                borderColor: "#2B2B2B",
-                handleSize: "75%",
-                fillerColor: "#202f40"
-              },
-              {
                 type: "inside",
                 xAxisIndex: [0],
-                start: 0,
-                end: 100
-              },
-              {
-                type: "inside",
-                yAxisIndex: [0],
-                zoomOnMouseWheel: false,
                 start: 0,
                 end: 100
               }
@@ -405,14 +593,75 @@ export default {
       );
       this.getChart();
     },
+    //from
+    getLocomotiveLists() {
+      this.request({
+        url: "/dispatch/getLocomotiveLists",
+        method: "get"
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.locoList = data.data;
+          //this.formData.out_business_loco = this.locoList[0]["id"];
+          this.$set(this.formData, "out_business_loco", this.locoList[0]["id"]);
+          console.log(this.formData.out_business_loco);
+        }
+      });
+    },
+    getLineTypeList() {
+      this.request({
+        url: "/common/getLineType",
+        method: "get"
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.linTypeList = data.data;
+          this.$set(this.formData, "out_line_type", this.linTypeList[0]["id"]);
+          this.$set(this.formData, "back_line_type", this.linTypeList[0]["id"]);
+          this.$set(this.formData, "line_type", this.linTypeList[0]["id"]);
+        }
+      });
+    },
     planAdd() {
-      this.formData = {};
-      this.diaLogTitle = "添加信息";
+      this.diaLogTitle = "计划图";
       this.diaLogFormVisible = true;
+    },
+
+    addOrEditDialog() {
+      this.$refs["formRules"].validate(valid => {
+        if (valid) {
+          let data = this.formData;
+          alert(JSON.stringify(data));
+          // this.companyData.type = 1;
+          // if (this.companyData.color == "默认") {
+          //   this.companyData.color = 0;
+          // }
+          // let url = "/company/addCompanyDo";
+          // let baseid = this.companyData.id;
+          // if (typeof baseid != "undefined") {
+          //   url = "/company/editCompany";
+          // }
+          // this.request({
+          //   url: url,
+          //   method: "post",
+          //   data
+          // }).then(response => {
+          //   var data = response.data;
+          //   if (data.status == 1) {
+          //     this.companyDialogVisible = false;
+          //     this.$message({
+          //       type: "success",
+          //       message: "保存成功！"
+          //     });
+          //     this.getPageLists();
+          //   }
+          // });
+        }
+      });
     },
     planEdit() {
       this.formData = {};
-      this.diaLogTitle = "添加信息";
+      this.diaLogTitle = "修改计划图";
       this.diaLogFormVisible = true;
     }
     //
@@ -422,11 +671,13 @@ export default {
 <style>
 .app-page-chart {
   min-width: 1170px;
+  padding: 20px;
 }
 .maintitle {
   text-align: center;
   font-size: 20px;
-  color: #fff;
+  color: #4b6eca;
+  padding-bottom: 20px;
 }
 .el-menu--collapse .el-menu .el-submenu,
 .el-menu--popup {
@@ -456,8 +707,11 @@ export default {
   padding: 20px;
   margin-bottom: 20px;
 }
+.chartright .sidebox .btnitem {
+  margin-bottom: 15px;
+}
 .chartright .sidebox .btnitems {
-  margin-top: 15px;
+  margin-bottom: 15px;
   display: flex;
   justify-content: space-between;
 }
@@ -465,9 +719,6 @@ export default {
   width: 100% !important;
   display: inline-block;
   background: #fff;
-}
-.chartright .sidebox .btnitem {
-  margin-top: 15px;
 }
 .chartright .el-date-editor.el-input,
 .chartright .el-date-editor.el-input__inner {
@@ -505,19 +756,18 @@ export default {
     margin-top: 20px;
   }
 }
+/*dialog  */
+.dialog-monitor b {
+  font-weight: 500;
+}
 .dialog-monitor .el-textarea__inner {
   border: 1px #9db9fa solid;
   color: #4b6eca;
-  height: 100px;
+  height: 85px;
+  width: 835px;
 }
 .dialog-monitor .el-textarea {
-  width: 100% !important;
-}
-.dialog-monitor .el-form-item__label {
-  width: 110px;
-}
-.dialog-monitor .el-form-item__content {
-  margin-left: 110px;
+  width: 100%;
 }
 .dialog-monitor .el-form-item-inline .el-input--medium {
   display: inline-block;
@@ -529,13 +779,34 @@ export default {
   width: 80px;
   text-align: center;
 }
-.dialog-monitor .el-select {
-  width: 100%;
+.dialog-monitor .el-form-item__label {
+  padding-right: 0;
 }
-.el-form-item-inline input {
-  display: inline-block;
-  width: 80px;
-  text-align: center;
+.dialog-monitor .el-select {
+  width: 150px;
+}
+.dialog-monitor input {
+  width: 150px;
+}
+.dialog-monitor .el-date-editor input {
+  width: 180px;
+}
+.dialog-monitor .el-date-editor.el-input {
+  width: 180px;
+}
+.dialog-monitor b {
+  padding-right: 10px;
+}
+.dialog-monitor fieldset {
+  border: 1px #ddd solid;
+  margin-bottom: 15px;
+}
+.dialog-monitor fieldset legend {
+  font-weight: 700;
+  color: #333;
+}
+.el-form-item-block {
+  display: block;
 }
 .el-form-item-inlines {
   display: inline-block;
@@ -547,14 +818,23 @@ export default {
   margin-left: 0;
 }
 .el-form-item-inlines .el-input {
-  width: 100px;
+  width: 72px;
 }
 .el-form-item-inlines input {
   display: inline-block;
-  width: 100px;
+  width: 72px;
   text-align: center;
 }
 .el-form-item-inlines .el-form-item {
   margin-bottom: 1px !important;
+}
+.dateinput input {
+  width: 180px;
+}
+.dateinput .el-select {
+  width: 180px;
+}
+.dateinput .el-form-item__content {
+  width: 180px;
 }
 </style>

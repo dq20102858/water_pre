@@ -189,6 +189,15 @@
             <el-form-item label="手机号码：" prop="phone">
               <el-input v-model="userData.phone" autocomplete="off"></el-input>
             </el-form-item>
+            <el-form-item label="权限：">
+              <el-checkbox-group v-model="userData.menus">
+                <el-checkbox
+                  v-for="item in userMenuList"
+                  :key="item.id"
+                  :label="item.id+''"
+                >{{item.name}}</el-checkbox>
+              </el-checkbox-group>
+            </el-form-item>
           </el-form>
           <div slot="footer" class="dialog-footer">
             <el-button @click="userDialogVisible = false">取 消</el-button>
@@ -215,7 +224,9 @@ export default {
       userPage_total: 0,
       userDialogVisible: false,
       userDialogTitle: "",
-      userData: {},
+      userData: {
+        menus: []
+      },
       userSearch: {},
       userAddRules: {
         name: [
@@ -296,11 +307,14 @@ export default {
       passwordOrg: "",
       companySelectList: [],
       departSelectList: [],
-      postSelectList: []
+      postSelectList: [],
+      userMenuList: []
     };
   },
   created() {
     this.getCompanyLists();
+    this.getLineTypes();
+    this.getMenuLists();
     this.getUserLists();
   },
   methods: {
@@ -351,7 +365,9 @@ export default {
       this.getUserLists();
     },
     openAddUser() {
-      this.userData = {};
+      this.userData = {
+        menus: []
+      };
       this.userDialogVisible = true;
       this.userDialogTitle = "添加人员信息";
     },
@@ -359,6 +375,7 @@ export default {
       this.$refs["userRulesForm"].validate(valid => {
         if (valid) {
           let data = this.userData;
+         // this.userData.menus = this.userData.menus.slice(1);
           let url = "/user/addUser";
           let baseid = this.userData.id;
           console.log("this.userData.id：" + this.userData.id);
@@ -401,6 +418,14 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.userData = data.data;
+          if (data.data.menus != "") {
+            this.userData.menus = data.data.menus.split(",");
+          }
+          else{
+             this.userData.menus =[];
+          }
+
+          console.log(this.userData.menus);
           this.passwordOrg = data.data.password;
           this.getDepartListEdit(data.data.company_id); //部门
           this.getPostListEdit(data.data.depart_id); //职位
@@ -496,6 +521,28 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.postSelectList = data.data;
+        }
+      });
+    },
+    getLineTypes() {
+      this.request({
+        url: "/common/getLineType",
+        method: "get"
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.userMenuList1 = data.data;
+        }
+      });
+    },
+    getMenuLists() {
+      this.request({
+        url: "/user/getMenuLists",
+        method: "get"
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.userMenuList = data.data;
         }
       });
     }
