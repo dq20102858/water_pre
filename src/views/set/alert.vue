@@ -87,8 +87,8 @@
           :visible.sync="diaLogFormVisible"
         >
           <el-form class="el-form-custom" :model="formData" :rules="formRules" ref="formRules">
-            <el-form-item label="名称：">
-              <el-select v-model="formData.name" placeholder="请选择">
+            <el-form-item label="名称：" prop="name">
+             <el-select v-model="formData.name" placeholder="请选择">
                 <el-option label="防区" value="防区"></el-option>
                 <el-option label="施工地段" value="施工地段"></el-option>
               </el-select>
@@ -182,10 +182,11 @@ export default {
     return {
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
-      formData: {
-        name:"防区"
-      },
+      formData: {},
       formRules: {
+        name: [
+           { required: true, message: "请选择名称", trigger: "change" }
+        ],
         line_type: [
           { required: true, message: "请选择线别", trigger: "change" }
         ],
