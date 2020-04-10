@@ -11,8 +11,9 @@
             <el-date-picker
               v-model="formData.date"
               type="date"
-              placeholder="选择日期"
+              placeholder="选择日期" 
               :clearable="false"
+              @input="selectDatePicker($event)"
             ></el-date-picker>
           </div>
           <div class="btnitems">
@@ -27,39 +28,42 @@
             <el-button @click="planEdit" type="primary" plain>编制日班实际图</el-button>
           </div>
           <div class="btnitem">
+            <el-button @click="refreshPage" type="primary" plain>刷新</el-button>
+          </div>
+          <!-- <div class="btnitem">
             <el-button type="primary" plain>区间封锁</el-button>
           </div>
           <div class="btnitem">
             <el-button type="primary" plain>批注</el-button>
           </div>
-          <div class="btnitem">
-            <el-button type="primary" plain>刷新</el-button>
-          </div>
+     
           <div class="btnitem">
             <el-button type="primary" plain>提交</el-button>
-          </div>
+          </div>-->
         </div>
         <div class="sidebox">
           <h3>显示控制</h3>
           <div class="chklist">
-            <el-checkbox label="左线"></el-checkbox>
-            <el-checkbox label="右线"></el-checkbox>
-            <el-checkbox label="入场线"></el-checkbox>
-            <el-checkbox label="出场线"></el-checkbox>
+            <el-checkbox-group v-model="select_line_type" @change="selectLineTypeChart">
+              <el-checkbox
+                v-for="item in lineTypeList"
+                :key="item.id"
+                :label="item.id"
+              >{{item.name}}</el-checkbox>
+            </el-checkbox-group>
           </div>
           <div class="chklist">
-            <el-checkbox label="计划图"></el-checkbox>
-            <el-checkbox label="实际图"></el-checkbox>
-            <el-checkbox label="轨迹图"></el-checkbox>
+            <el-checkbox label="计划图" @change="selectTypePlanChart" checked></el-checkbox>
+            <el-checkbox label="实际图" @change="selectTypeNowChart" checked></el-checkbox>
+            <!--    <el-checkbox label="轨迹图"></el-checkbox>
             <el-checkbox label="批注"></el-checkbox>
             <el-checkbox label="区间封锁"></el-checkbox>
-            <el-checkbox label="清点"></el-checkbox>
+            <el-checkbox label="清点"></el-checkbox>-->
           </div>
           <div class="chklist">
-            <el-checkbox label="ZY01"></el-checkbox>
-            <el-checkbox label="ZY02"></el-checkbox>
-            <el-checkbox label="ZY03"></el-checkbox>
-            <el-checkbox label="ZY04"></el-checkbox>
+            <el-checkbox-group v-model="select_loco_type" @change="selectLocoTypeChart">
+              <el-checkbox v-for="item in locoList" :key="item.id" :label="item.id">{{item.name}}</el-checkbox>
+            </el-checkbox-group>
           </div>
         </div>
       </div>
@@ -133,7 +137,7 @@
             <el-form-item label="出线级别：" label-width="100px">
               <el-select v-model="formData.out_line_type" placeholder="请选择">
                 <el-option
-                  v-for="item in linTypeList"
+                  v-for="item in lineTypeList"
                   :key="item.id"
                   :label="item.name"
                   :value="item.id"
@@ -203,7 +207,7 @@
             <el-form-item label="返回级别：" label-width="100px">
               <el-select v-model="formData.back_line_type" placeholder="请选择">
                 <el-option
-                  v-for="item in linTypeList"
+                  v-for="item in lineTypeList"
                   :key="item.id"
                   :label="item.name"
                   :value="item.id"
@@ -531,7 +535,7 @@ export default {
         car_type: ""
       },
       locoList: [],
-      linTypeList: [],
+      lineTypeList: [],
       masterList: [],
       driverList: [],
       stationList: [],
@@ -595,30 +599,32 @@ export default {
       formEditData: {},
       numberId: 0,
       planNumbersList: [],
-      formEditRules: {}
+      formEditRules: {},
+      select_line_type: [],
+      select_type_plan: true,
+      select_type_now: true,
+      select_loco_type: []
     };
   },
-  mounted() {
-    this.getChart();
-  },
+  mounted() {},
+  updated() {},
   created() {
-    this.getLocomotiveLists(); //机车
-    this.getLineTypeList(); //线别
-    this.getMasterList(); //车长
-    this.getdriverList(); //司机
-    this.getStationList(); //车站
-    this.getWorkTypeList(); //作业类型
+    this.getPageLoad();
   },
   methods: {
+    getPageLoad() {
+      this.getLocomotiveLists(); //机车
+      this.getLineTypeList(); //线别
+    },
     getChart() {
       this.formData.date = this.todayValue;
       this.todayPreValue = this.getNextDate(this.todayValue, -1);
       this.todayNextValue = this.getNextDate(this.todayValue, 1);
       let start_time = this.getNextDate(this.todayValue, -1, "-");
       let end_time = this.getNextDate(this.todayValue, 1, "-");
-      let line_type = "1,2,3,4";
+      let line_type = this.select_line_type.toString();
       let type = 1;
-      let loco_type = "1,2,3,4";
+      let loco_type = this.select_loco_type.toString();
       this.request({
         url: "/dayplan/getLineDatas",
         method: "get",
@@ -682,10 +688,11 @@ export default {
               }
             }
           });
-
           //划线===============
-          console.log("plan" + JSON.stringify(resdata.data.plan));
+          //debugger
           let dataTypeArr = resdata.data.plan;
+          // alert(dataTypeArr.length);
+
           let dataTypeArr3 = [
             {
               lists: [
@@ -714,43 +721,52 @@ export default {
           ];
           //计划线 实际线
           let typeData = [];
-          let typeSJData = [];
           dataTypeArr.forEach((item, index) => {
-            let startlist = [];
             let start_flag_list = [];
-            let start_length_list = [];
-            start_flag_list.push(item.start_time,  parseFloat(item.start_flag) + parseFloat(item.start_length / 1000));
-            start_length_list.push(item.end_time, parseFloat(item.end_flag) + parseFloat(item.end_length / 1000));
-            startlist.push(start_flag_list, start_length_list);
-           typeData.push({ lists: startlist });
-            //
-           let endlist = [];
+            let end_flag_list = [];
             let true_start_flag_list = [];
-            let  true_start_length_list = [];
-            true_start_flag_list.push(item.start_time, parseFloat(item.true_start_flag) + parseFloat(item.true_start_length / 1000));
-            true_start_length_list.push(item.end_time, parseFloat(item.true_end_flag) + parseFloat(item.true_end_length / 1000));
-            endlist.push(true_start_flag_list, true_start_flag_list);
-            typeSJData.push({ lists: endlist});
+            let true_end_flag_list = [];
+            start_flag_list.push(
+              item.start_time,
+              parseFloat(item.start_flag) + parseFloat(item.start_length / 1000)
+            );
+            end_flag_list.push(
+              item.end_time,
+              parseFloat(item.end_flag) + parseFloat(item.end_length / 1000)
+            );
+            true_start_flag_list.push(
+              item.start_time,
+              parseFloat(item.true_start_flag) +
+                parseFloat(item.true_start_length / 1000)
+            );
+            true_end_flag_list.push(
+              item.end_time,
+              parseFloat(item.true_end_flag) +
+                parseFloat(item.true_end_length / 1000)
+            );
+            if (this.select_type_plan) {
+              typeData.push({
+                color: "blue",
+                lists: [start_flag_list, end_flag_list]
+              });
+            }
+            if (this.select_type_now) {
+              typeData.push({
+                color: "green",
+                lists: [true_start_flag_list, true_end_flag_list]
+              });
+            }
           });
-          console.log("typeData：" + JSON.stringify(typeData));
+
           for (let k in typeData) {
             seriesData.push({
               type: "line",
-              itemStyle: { normal: { color: "blue" } },
+              itemStyle: { normal: { color: typeData[k].color } },
               data: typeData[k].lists
             });
           }
-          //
-          console.log("typeSJData" + JSON.stringify(typeSJData));
-          for (let k in typeSJData) {
-            seriesData.push({
-              type: "line",
-              itemStyle: { normal: { color: "green" } },
-              data: typeSJData[k].lists
-            });
-          }
-
-              console.log("projectData：" + JSON.stringify(seriesData));
+          console.log("typeData：" + JSON.stringify(typeData));
+          //console.log("projectData：" + JSON.stringify(seriesData));
           //时间
           let dataMin = new Date(
             this.todayValue.getTime() - 24 * 60 * 60 * 1000
@@ -854,6 +870,7 @@ export default {
             series: seriesData
           };
           // 使用刚指定的配置项和数据显示图表。
+          myChart.clear();
           myChart.setOption(option);
           myChart.resize();
           window.addEventListener("resize", function() {
@@ -899,6 +916,11 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.locoList = data.data;
+          this.locoList.map(item => {
+            this.select_loco_type.push(item.id);
+          });
+          this.getChart();
+
           this.$set(this.formData, "out_business_loco", this.locoList[0]["id"]);
           this.$set(
             this.formData,
@@ -915,10 +937,18 @@ export default {
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
-          this.linTypeList = data.data;
-          this.$set(this.formData, "out_line_type", this.linTypeList[0]["id"]);
-          this.$set(this.formData, "back_line_type", this.linTypeList[0]["id"]);
-          this.$set(this.formData, "line_type", this.linTypeList[0]["id"]);
+          this.lineTypeList = data.data;
+          this.lineTypeList.map(item => {
+            this.select_line_type.push(item.id);
+          });
+          this.getChart();
+          this.$set(this.formData, "out_line_type", this.lineTypeList[0]["id"]);
+          this.$set(
+            this.formData,
+            "back_line_type",
+            this.lineTypeList[0]["id"]
+          );
+          this.$set(this.formData, "line_type", this.lineTypeList[0]["id"]);
         }
       });
     },
@@ -1009,6 +1039,11 @@ export default {
     planAdd() {
       this.diaLogTitle = "计划图";
       this.diaLogFormVisible = true;
+
+      this.getMasterList(); //车长
+      this.getdriverList(); //司机
+      this.getStationList(); //车站
+      this.getWorkTypeList(); //作业类型
     },
     addDayPlanDialog() {
       this.$refs["formRules"].validate(valid => {
@@ -1062,13 +1097,16 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.planNumbersList = data.data;
-          this.numberId = this.planNumbersList[0]["id"];
-          this.getPlanDetail(this.planNumbersList[0]["id"]);
+          if (this.numberId == 0) {
+            this.numberId = this.planNumbersList[0]["id"];
+          }
+          this.getPlanDetail(this.numberId);
         }
       });
     },
     selectPlanNumbers(value) {
       this.getPlanDetail(value);
+      this.numberId = value;
     },
     getPlanDetail(id) {
       this.request({
@@ -1148,26 +1186,37 @@ export default {
           return false;
         }
       });
+    },
+    //多选操作
+    selectDatePicker(value)
+    {
+      alert(value);
+      this.todayValue=value;
+   //this.$set(this.todayValue, value);
+       this.getChart();
+    },
+    refreshPage() {
+      this.getPageLoad();
+      this.select_type_plan = true;
+      this.select_type_now = true;
+    },
+    selectLineTypeChart(value) {
+      //alert(this.select_line_type);
+      this.getChart();
+    },
+    selectTypePlanChart(value) {
+      //alert(this.select_line_type);
+      this.select_type_plan = value;
+      this.getChart();
+    },
+    selectTypeNowChart(value) {
+      this.select_type_now = value;
+      this.getChart();
+    },
+    selectLocoTypeChart(value) {
+      //alert(this.select_line_type);
+      this.getChart();
     }
-    // this.request({
-    //   url: "/dayplan/updateDayTrueplan",
-    //   method: "get",
-    //   params: { id: this.numberId }
-    // }).then(response => {
-    //   let data = response.data;
-    //   if (data.status == 1) {
-    //     // this.formData = data.data;
-    //     // this.lineTypeList.map((item, index) => {
-    //     //   if (item.id == data.data.line_type) {
-    //     //     // this.lineTypeDes = "里程范围：" + item.tip;
-    //     //     // this.lineTypeStart = item.start;
-    //     //     // this.lineTypeEnd = item.end;
-    //     //     // var timestamp = new Date(data.data.end_time);
-    //     //     // console.log("timestamp:" + timestamp);
-    //     //     // this.formData.end_time = timestamp;
-    //   }
-    // });
-
     //
   }
 };
