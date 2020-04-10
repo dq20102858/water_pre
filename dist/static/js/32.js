@@ -1,416 +1,487 @@
 webpackJsonp([32],{
 
-/***/ "YfCi":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("FZ+f")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.dialog-user .el-textarea {\r\n  width: 100% !important;\n}\n.dialog-user .el-textarea__inner {\r\n  height: 80px;\n}\n.dialog-user .el-form-item__label {\r\n  width: 110px;\n}\n.dialog-user .el-form-item__content {\r\n  margin-left: 110px;\n}\n.dialog-user .el-input--medium {\r\n  width: 100%;\n}\n.dialog-user .el-select {\r\n  width: 100%;\n}\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "lfKa":
+/***/ "aJNJ":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/defineProperty.js
-var defineProperty = __webpack_require__("bOdI");
-var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/plan/index.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/admin/userlist.vue
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ var userlist = ({
+/* harmony default export */ var plan = ({
   data: function data() {
-    var _ref;
+    var _this = this;
 
-    return _ref = {
-      userList: [],
-      userPage_size: 20,
-      userPage_cur: 1,
-      userPage_items: 0
-    }, defineProperty_default()(_ref, "userPage_size", 20), defineProperty_default()(_ref, "userPage_cur", 1), defineProperty_default()(_ref, "userPage_items", 0), defineProperty_default()(_ref, "userPage_total", 0), defineProperty_default()(_ref, "userDialogVisible", false), defineProperty_default()(_ref, "userDialogTitle", ""), defineProperty_default()(_ref, "userData", {}), defineProperty_default()(_ref, "userSearch", {}), defineProperty_default()(_ref, "userAddRules", {
-      name: [{
-        required: true,
-        message: "请输入姓名2~20个字符",
-        trigger: "blur"
-      }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }],
-      user_name: [{
-        required: true,
-        message: "请输入用户名2~20个字符",
-        trigger: "blur"
-      }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }],
-      company_id: [{
-        required: true,
-        message: "请选择公司",
-        trigger: "change"
-      }],
-      password: [{
-        required: true,
-        message: "请输入密码2~20个字符",
-        trigger: "blur"
-      }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }],
-      passwordEdit: [{
-        min: 2,
-        max: 20,
-        message: "请输入密码在2到20个字符",
-        trigger: "blur"
-      }],
-      depart_id: [{
-        required: true,
-        message: "请选择部门",
-        trigger: "change"
-      }],
-      post_id: [{
-        required: true,
-        message: "请选择职位",
-        trigger: "change"
-      }],
-      dispatch: [{
-        required: true,
-        message: "请选择调度信息",
-        trigger: "change"
-      }],
-      email: [{
-        type: "email",
-        message: "请输入正确的邮箱地址",
-        trigger: ["blur", "change"]
-      }],
-      phone: [{
-        pattern: /^1[34578]\d{9}$/,
-        message: "请输入正确的手机号码",
-        trigger: "blur"
-      }]
-    }), defineProperty_default()(_ref, "passwordOrg", ""), defineProperty_default()(_ref, "companySelectList", []), defineProperty_default()(_ref, "departSelectList", []), defineProperty_default()(_ref, "postSelectList", []), _ref;
+    return {
+      searchForm: {},
+      pickerOptionsStart: {
+        disabledDate: function disabledDate(time) {
+          if (_this.searchForm.end_time) {
+            return time.getTime() > new Date(_this.searchForm.end_time).getTime();
+          }
+        }
+      },
+      pickerOptionsEnd: {
+        disabledDate: function disabledDate(time) {
+          if (_this.searchForm.start_time) {
+            return time.getTime() < new Date(_this.searchForm.start_time).getTime();
+          }
+        }
+      },
+      stationList: [],
+      end_station: [],
+      dataList: [],
+      dataListItem: [],
+      page_cur: 1,
+      pageTotal: 0,
+      page_size: 20,
+      page_total: 0,
+      dialogFormVisible: false,
+      dialogTitle: ""
+    };
   },
   created: function created() {
-    this.getCompanyLists();
-    this.getUserLists();
+    this.getStationList();
+    this.getDataList();
   },
 
   methods: {
-    getUserLists: function getUserLists() {
-      var _this = this;
-
-      var page = this.userPage_cur;
-      var user_name = this.userSearch.user_name;
-      var company_id = this.userSearch.company_id;
-      var depart_id = this.userSearch.depart_id;
-      var post_id = this.userSearch.post_id;
-      this.request({
-        url: "/user/getUserPage",
-        method: "get",
-        params: { page: page, user_name: user_name, company_id: company_id, depart_id: depart_id, post_id: post_id }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this.userList = data.data.data;
-          _this.userPage_cur = parseInt(data.data.current_page);
-          _this.userPage_items = data.data.total;
-          _this.userPage_size = data.data.per_page;
-          _this.puserPage_total = data.data.last_page;
-        }
-      });
-    },
-    userChangePage: function userChangePage(value) {
-      this.userPage_cur = value;
-      this.getUserLists();
-    },
-    userFirstPage: function userFirstPage() {
-      this.userPage_cur = 1;
-      this.getUserLists();
-    },
-    userLastPage: function userLastPage() {
-      this.userPage_cur = this.userPage_total;
-      this.getUserLists();
-    },
-    userSearchPage: function userSearchPage() {
-      this.userPage_cur = 1;
-      this.getUserLists();
-    },
-    resetSerach: function resetSerach() {
-      this.userSearch = {
-        user_name: "",
-        company_id: "",
-        depart_id: "",
-        post_id: ""
-      };
-      this.getUserLists();
-    },
-    openAddUser: function openAddUser() {
-      this.userData = {};
-      this.userDialogVisible = true;
-      this.userDialogTitle = "添加人员信息";
-    },
-    addUser: function addUser() {
+    getStationList: function getStationList() {
       var _this2 = this;
 
-      this.$refs["userRulesForm"].validate(function (valid) {
-        if (valid) {
-          var data = _this2.userData;
-          var url = "/user/addUser";
-          var baseid = _this2.userData.id;
-          console.log("this.userData.id：" + _this2.userData.id);
-          if (typeof baseid != "undefined") {
-            url = "/user/editUser";
-            var pwdEdit = _this2.userData.passwordEdit;
-            if (pwdEdit != "" && typeof pwdEdit != "undefined") {
-              _this2.userData.password = pwdEdit;
-            } else {
-              _this2.userData.password = _this2.passwordOrg;
-            }
-          }
-          _this2.request({
-            url: url,
-            method: "post",
-            data: data
-          }).then(function (response) {
-            var data = response.data;
-            if (data.status == 1) {
-              _this2.userDialogVisible = false;
-              _this2.userData.passwordEdit = "";
-              _this2.$message({
-                type: "success",
-                message: "保存成功！"
-              });
-              _this2.getUserLists();
-            }
-          });
+      this.request({
+        url: "/apply/getStationLists",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this2.stationList = data.data;
         }
       });
     },
-    detailUser: function detailUser(id) {
+    getDataList: function getDataList() {
       var _this3 = this;
 
-      this.userDialogTitle = "修改人员信息";
-      this.userDialogVisible = true;
+      var page = this.page_cur;
+      var start_station = this.searchForm.start_station;
+      var end_station = this.searchForm.end_station;
+      var type = this.searchForm.type;
+      var start_time = this.searchForm.start_time;
+      var end_time = this.searchForm.end_time;
       this.request({
-        url: "/user/getUserDetial",
+        url: "/dayplan/getDayplanLists",
+        method: "get",
+        params: {
+          page: page,
+          start_station: start_station,
+          end_station: end_station,
+          type: type,
+          start_time: start_time,
+          end_time: end_time
+        }
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this3.dataList = data.data.data;
+          _this3.page_cur = parseInt(data.data.current_page);
+          _this3.pageTotal = data.data.total;
+          _this3.page_size = data.data.per_page;
+          _this3.page_total = data.data.last_page;
+        }
+      });
+    },
+    pageChange: function pageChange(value) {
+      this.page_cur = value;
+      this.getDataList();
+    },
+    pageToFirst: function pageToFirst() {
+      this.pageChange(1);
+    },
+    pageToLast: function pageToLast() {
+      this.page_cur = this.page_total;
+      this.pageChange(this.page_total);
+    },
+    pageSearchEvent: function pageSearchEvent() {
+      this.page_cur = 1;
+      this.getDataList();
+    },
+    resetSerach: function resetSerach() {
+      this.searchForm = {
+        start_station: "",
+        end_station: "",
+        type: "",
+        start_time: "",
+        end_time: ""
+      };
+    },
+    goDetail: function goDetail(id) {
+      var _this4 = this;
+
+      this.dialogTitle = "施工管理详情";
+      this.dialogFormVisible = true;
+      this.request({
+        url: "/dayplan/getDayPlanDetail",
         method: "get",
         params: { id: id }
       }).then(function (response) {
         var data = response.data;
         if (data.status == 1) {
-          _this3.userData = data.data;
-          _this3.passwordOrg = data.data.password;
-          _this3.getDepartListEdit(data.data.company_id); //部门
-          _this3.getPostListEdit(data.data.depart_id); //职位
+          _this4.dataListItem = data.data;
+          //   this.detectorData.start_flag = parseInt(data.data.start_flag);
+          //   this.detectorData.start_length = parseInt(data.data.start_length);
         }
       });
     },
-    delUser: function delUser(id) {
-      var _this4 = this;
+    goDetele: function goDetele(id) {
+      var _this5 = this;
 
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
@@ -418,111 +489,34 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
         type: "warning",
         customClass: "el-message-box-new"
       }).then(function () {
-        _this4.request({
-          url: "/user/deleteUser",
+        _this5.request({
+          url: "dayplan/deleteDayPlan",
           method: "post",
           data: { id: id }
         }).then(function (res) {
           var data = res.data;
           if (data.status == 1) {
-            _this4.$message({
+            _this5.$message({
               type: "success",
               message: "删除成功！"
             });
-            _this4.getUserLists();
+            _this5.getDataList();
           }
         });
       }).catch(function () {});
-    },
-
-    //公司 部门 职位
-    getCompanyLists: function getCompanyLists() {
-      var _this5 = this;
-
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: 0, type: 1 }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this5.companySelectList = data.data;
-        }
-      });
-    },
-    getDepartLists: function getDepartLists(val) {
-      var _this6 = this;
-
-      this.$set(this.userData, "depart_id", "");
-      this.$set(this.userData, "post_id", "");
-      this.$set(this.userSearch, "depart_id", "");
-      this.$set(this.userSearch, "post_id", "");
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: val, type: 2 }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this6.departSelectList = data.data;
-        }
-      });
-    },
-    getPostLists: function getPostLists(val) {
-      var _this7 = this;
-
-      this.$set(this.userData, "post_id", "");
-      this.$set(this.userSearch, "post_id", "");
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: val, type: 3 }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this7.postSelectList = data.data;
-        }
-      });
-    },
-    getDepartListEdit: function getDepartListEdit(val) {
-      var _this8 = this;
-
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: val, type: 2 }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this8.departSelectList = data.data;
-        }
-      });
-    },
-    getPostListEdit: function getPostListEdit(val) {
-      var _this9 = this;
-
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: val, type: 3 }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this9.postSelectList = data.data;
-        }
-      });
     }
+    //
+
   }
-  //
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-15487025","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/admin/userlist.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"admins"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"router":"","default-active":"userlist","mode":"horizontal"}},[_c('li',{staticClass:"ptitle"},[_c('img',{attrs:{"src":__webpack_require__("xX+s")}}),_vm._v("人员管理\n      ")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"admin"}},[_vm._v("公司列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"departlist"}},[_vm._v("部门列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"postlist"}},[_vm._v("职位列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"userlist"}},[_vm._v("人员列表")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{attrs:{"inline":true}},[_c('el-form-item',[_c('el-button',{attrs:{"type":"primary","icon":"el-icon-plus"},on:{"click":_vm.openAddUser}},[_vm._v("添加人员")])],1),_vm._v(" "),_c('el-form-item',[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"请输入姓名"},model:{value:(_vm.userSearch.user_name),callback:function ($$v) {_vm.$set(_vm.userSearch, "user_name", $$v)},expression:"userSearch.user_name"}})],1),_vm._v(" "),_c('el-form-item',[_c('el-select',{attrs:{"placeholder":"请选择公司"},on:{"change":function($event){_vm.getDepartLists($event)}},model:{value:(_vm.userSearch.company_id),callback:function ($$v) {_vm.$set(_vm.userSearch, "company_id", $$v)},expression:"userSearch.company_id"}},_vm._l((this.companySelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',[_c('el-select',{attrs:{"placeholder":"请选择部门"},on:{"change":function($event){_vm.getPostLists($event)}},model:{value:(_vm.userSearch.depart_id),callback:function ($$v) {_vm.$set(_vm.userSearch, "depart_id", $$v)},expression:"userSearch.depart_id"}},_vm._l((this.departSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',[_c('el-select',{attrs:{"placeholder":"请选择职位"},model:{value:(_vm.userSearch.post_id),callback:function ($$v) {_vm.$set(_vm.userSearch, "post_id", $$v)},expression:"userSearch.post_id"}},_vm._l((this.postSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{staticClass:"form-so"},[_c('label',{staticClass:"el-form-item__label"}),_vm._v(" "),_c('el-button',{attrs:{"size":"small","icon":"el-icon-search","type":"primary"},on:{"click":_vm.getUserLists}},[_vm._v("查询")]),_vm._v(" "),_c('el-button',{attrs:{"size":"small","plain":""},on:{"click":_vm.resetSerach}},[_vm._v("重置")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{attrs:{"data":_vm.userList}},[_c('el-table-column',{attrs:{"type":"index","label":"序号","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"user_name","label":"用户名","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"name","label":"姓名","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"company","label":"公司","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"depart","label":"部门","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"post","label":"职位","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"create_time","label":"邮箱","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"update_time","label":"电话","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"dispatch_desc","label":"调度信息","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"120"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.detailUser(scope.row.id)}}},[_vm._v("修改")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.delUser(scope.row.id)}}},[_vm._v("删除")])],1)]}}])})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.userList.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","page-size":_vm.userPage_size,"current-page":this.userPage_cur,"total":this.userPage_items,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.userChangePage}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.userFirstPage}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.userLastPage}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1)],1),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-user",attrs:{"width":"700px","title":this.userDialogTitle,"close-on-click-modal":false,"visible":_vm.userDialogVisible},on:{"update:visible":function($event){_vm.userDialogVisible=$event}}},[_c('el-form',{ref:"userRulesForm",staticClass:"el-form-custom",attrs:{"model":_vm.userData,"rules":_vm.userAddRules}},[(this.userDialogTitle=='添加人员信息')?_c('el-form-item',{attrs:{"label":"用户名：","prop":"user_name"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.userData.user_name),callback:function ($$v) {_vm.$set(_vm.userData, "user_name", $$v)},expression:"userData.user_name"}})],1):_vm._e(),_vm._v(" "),(this.userDialogTitle=='添加人员信息')?_c('el-form-item',{attrs:{"label":"密码：","prop":"password"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.userData.password),callback:function ($$v) {_vm.$set(_vm.userData, "password", $$v)},expression:"userData.password"}})],1):_vm._e(),_vm._v(" "),(this.userDialogTitle=='修改人员信息')?_c('el-form-item',{attrs:{"label":"密码：","prop":"passwordEdit"}},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"不修改密码请留空"},model:{value:(_vm.userData.passwordEdit),callback:function ($$v) {_vm.$set(_vm.userData, "passwordEdit", $$v)},expression:"userData.passwordEdit"}})],1):_vm._e(),_vm._v(" "),_c('el-form-item',{attrs:{"label":"姓名：","prop":"name"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.userData.name),callback:function ($$v) {_vm.$set(_vm.userData, "name", $$v)},expression:"userData.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"公司名称：","prop":"company_id"}},[_c('el-select',{on:{"change":function($event){_vm.getDepartLists($event)}},model:{value:(_vm.userData.company_id),callback:function ($$v) {_vm.$set(_vm.userData, "company_id", $$v)},expression:"userData.company_id"}},_vm._l((this.companySelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"部门名称：","prop":"depart_id"}},[_c('el-select',{on:{"change":function($event){_vm.getPostLists($event)}},model:{value:(_vm.userData.depart_id),callback:function ($$v) {_vm.$set(_vm.userData, "depart_id", $$v)},expression:"userData.depart_id"}},_vm._l((this.departSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"职位名称：","prop":"post_id"}},[_c('el-select',{model:{value:(_vm.userData.post_id),callback:function ($$v) {_vm.$set(_vm.userData, "post_id", $$v)},expression:"userData.post_id"}},_vm._l((this.postSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"邮箱：","prop":"email"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.userData.email),callback:function ($$v) {_vm.$set(_vm.userData, "email", $$v)},expression:"userData.email"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"调度信息：","prop":"dispatch"}},[_c('el-select',{model:{value:(_vm.userData.dispatch),callback:function ($$v) {_vm.$set(_vm.userData, "dispatch", $$v)},expression:"userData.dispatch"}},[_c('el-option',{attrs:{"label":"普通","value":1}}),_vm._v(" "),_c('el-option',{attrs:{"label":"司机","value":2}}),_vm._v(" "),_c('el-option',{attrs:{"label":"车长","value":3}}),_vm._v(" "),_c('el-option',{attrs:{"label":"值班调度","value":4}}),_vm._v(" "),_c('el-option',{attrs:{"label":"车站值班员","value":5}}),_vm._v(" "),_c('el-option',{attrs:{"label":"施工队长","value":6}})],1)],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"手机号码：","prop":"phone"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.userData.phone),callback:function ($$v) {_vm.$set(_vm.userData, "phone", $$v)},expression:"userData.phone"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.userDialogVisible = false}}},[_vm._v("取 消")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":_vm.addUser}},[_vm._v("确 定")])],1)],1)],1)])])}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-2a9c164c","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/plan/index.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"planlist"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"router":"","mode":"horizontal"}},[_c('li',{staticClass:"ptitle"},[_vm._v("施工生产调度指挥管理系统")])])],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{attrs:{"model":_vm.searchForm,"inline":true}},[_c('el-form-item',{attrs:{"label":"工点"}},[_c('el-select',{attrs:{"placeholder":"请选择起始车站","clearable":""},model:{value:(_vm.searchForm.start_station),callback:function ($$v) {_vm.$set(_vm.searchForm, "start_station", $$v)},expression:"searchForm.start_station"}},_vm._l((_vm.stationList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',[_c('el-select',{attrs:{"placeholder":"请选择结束车站","clearable":""},model:{value:(_vm.searchForm.end_station),callback:function ($$v) {_vm.$set(_vm.searchForm, "end_station", $$v)},expression:"searchForm.end_station"}},_vm._l((_vm.stationList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"日班计划类型"}},[_c('el-select',{attrs:{"placeholder":"请选择日班计划类型","clearable":""},model:{value:(_vm.searchForm.type),callback:function ($$v) {_vm.$set(_vm.searchForm, "type", $$v)},expression:"searchForm.type"}},[_c('el-option',{attrs:{"label":"有车施工计划","value":1}}),_vm._v(" "),_c('el-option',{attrs:{"label":"无车施工计划","value":2}})],1)],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"开始时间"}},[_c('el-date-picker',{attrs:{"picker-options":_vm.pickerOptionsStart,"type":"date","clearable":""},model:{value:(_vm.searchForm.start_time),callback:function ($$v) {_vm.$set(_vm.searchForm, "start_time", $$v)},expression:"searchForm.start_time"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"结束时间"}},[_c('el-date-picker',{attrs:{"picker-options":_vm.pickerOptionsEnd,"type":"date","clearable":""},model:{value:(_vm.searchForm.end_time),callback:function ($$v) {_vm.$set(_vm.searchForm, "end_time", $$v)},expression:"searchForm.end_time"}})],1),_vm._v(" "),_c('el-form-item',{staticClass:"form-so"},[_c('label',{staticClass:"el-form-item__label"}),_vm._v(" "),_c('el-button',{attrs:{"size":"small","icon":"el-icon-search","type":"primary"},on:{"click":_vm.pageSearchEvent}},[_vm._v("查询")]),_vm._v(" "),_c('el-button',{attrs:{"size":"small","plain":""},on:{"click":_vm.resetSerach}},[_vm._v("重置")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{attrs:{"data":_vm.dataList}},[_c('el-table-column',{attrs:{"label":"序号"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('span',[_vm._v(_vm._s(scope.$index+(_vm.page_cur - 1) * _vm.page_size + 1))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"number","label":"计划编号"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"line_type","label":"施工线别"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"施工站点","width":"240"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('p',[_vm._v("站点："+_vm._s(scope.row.start_station)+"-"+_vm._s(scope.row.end_station))]),_vm._v(" "),_c('p',[_vm._v("里程：DK"+_vm._s(parseFloat(scope.row.start_flag))+" + "+_vm._s(parseFloat(scope.row.start_length))+" ~ DK "+_vm._s(parseFloat(scope.row.end_flag))+" + "+_vm._s(parseFloat(scope.row.end_length)))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"作业时间","width":"200"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('p',[_vm._v("开始："+_vm._s(scope.row.start_time))]),_vm._v(" "),_c('p',[_vm._v("结束："+_vm._s(scope.row.end_time))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"施工内容"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('p',[_vm._v("项目："+_vm._s(scope.row.work))]),_vm._v(" "),_c('p',[_vm._v("工序："+_vm._s(scope.row.item))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"行车信息","width":"280"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('p',[_vm._v("始发："+_vm._s(scope.row.start_time)+" - "+_vm._s(scope.row.start_station))]),_vm._v(" "),_c('p',[_vm._v("终止："+_vm._s(scope.row.end_time)+" - "+_vm._s(scope.row.end_station))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"status","label":"完成情况"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.status==1)?_c('span',{staticClass:"statuse1"},[_vm._v("未完成")]):_vm._e(),_vm._v(" "),(scope.row.status==2)?_c('span',{staticClass:"statuse2"},[_vm._v("已完成")]):_vm._e()]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"120"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.goDetail(scope.row.id)}}},[_vm._v("详情")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.goDetele(scope.row.id)}}},[_vm._v("删除")])],1)]}}])})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.dataList.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","page-size":this.page_size,"current-page":this.page_cur,"total":this.pageTotal,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.pageChange}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.pageToFirst}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.pageToLast}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1)],1)])]),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-planinfo",attrs:{"width":"980px","close-on-click-modal":false,"title":this.dialogTitle,"visible":_vm.dialogFormVisible},on:{"update:visible":function($event){_vm.dialogFormVisible=$event}}},[_c('div',{staticClass:"ptielss"},[_vm._v("\n      日班计划编号：\n      "),_c('span',[_vm._v(_vm._s(_vm.dataListItem.number))]),_vm._v(" "),(_vm.dataListItem.plan_type==1)?_c('em',[_vm._v("( 行车和施工计划 )")]):_vm._e(),_vm._v(" "),(_vm.dataListItem.plan_type==2)?_c('em',[_vm._v("( 行车计划 )")]):_vm._e(),_vm._v(" "),(_vm.dataListItem.plan_type==3)?_c('em',[_vm._v("( 施工计划 )")]):_vm._e()]),_vm._v(" "),_c('fieldset',[_c('legend',[_vm._v("计划列车信息")]),_vm._v(" "),_c('div',[_c('table',{staticStyle:{"width":"100%"}},[_c('tr',[_c('td',{attrs:{"colspan":"3"}},[_c('b',[_vm._v("列车类型：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.car_type)+"\n            ")])]),_vm._v(" "),_c('tr',[_c('td',[_c('b',[_vm._v("出发车次：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.out_car)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("本务：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.out_business_loco)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("重连：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.out_reco)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("补机：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.out_supple)+"\n            ")])]),_vm._v(" "),_c('tr',[_c('td',[_c('b',[_vm._v("出发线别：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.out_line)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("车长：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.out_master)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("司机：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.out_driver)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("出发编组：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.out_marshalling)+"\n            ")])]),_vm._v(" "),_c('tr',[_c('td',[_c('b',[_vm._v("返回车次：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.back_car)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("本务：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.back_business_loco)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("重连：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.back_reco)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("补机：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.back_supple)+"\n            ")])]),_vm._v(" "),_c('tr',[_c('td',[_c('b',[_vm._v("返回线别：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.back_line)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("车长：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.back_master)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("司机：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.back_driver)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("返回编组：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.back_marshalling)+"\n            ")])])])])]),_vm._v(" "),_c('fieldset',[_c('legend',[_vm._v("计划施工信息")]),_vm._v(" "),_c('div',[_c('table',{staticStyle:{"width":"100%"}},[_c('tr',[_c('td',[_c('b',[_vm._v("开始时间：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.start_time)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("结束时间：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.end_time)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("作业类型：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.work_type)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("线别：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.line)+"\n            ")])]),_vm._v(" "),_c('tr',[_c('td',{attrs:{"colspan":"2"}},[_c('b',[_vm._v("涉及站点：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.start_station)+" - "+_vm._s(_vm.dataListItem.end_station)+"\n            ")]),_vm._v(" "),_c('td',{attrs:{"colspan":"2"}},[_c('b',{staticClass:"blue"},[_vm._v("里程：")]),_vm._v("\n              DK"+_vm._s(parseFloat(_vm.dataListItem.start_flag))+"+"+_vm._s(parseFloat(_vm.dataListItem.start_length))+" ~ DK"+_vm._s(parseFloat(_vm.dataListItem.end_flag))+"+"+_vm._s(parseFloat(_vm.dataListItem.end_length))+"\n            ")])]),_vm._v(" "),_c('tr',[_c('td',[_c('b',[_vm._v("施工作业队：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.work_plan_id)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("项目：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.item)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("工序：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.work)+"\n            ")])]),_vm._v(" "),_c('tr',[_c('td',{attrs:{"colspan":"4"}},[_c('b',[_vm._v("备注：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.description)+"\n            ")])])])])]),_vm._v(" "),_c('fieldset',[_c('legend',[_vm._v("实际完成信息")]),_vm._v(" "),_c('div',[_c('table',{staticStyle:{"width":"100%"}},[_c('tr',[_c('td',[_c('b',[_vm._v("开始时间：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.true_start_time)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("结束时间：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.true_end_time)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("记录人：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.record)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("记录时间：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.back_line)+"\n            ")])]),_vm._v(" "),_c('tr',[_c('td',[_c('b',[_vm._v("开始里程：")]),_vm._v("\n              DK"+_vm._s(parseFloat(_vm.dataListItem.true_start_flag))+"+"+_vm._s(parseFloat(_vm.dataListItem.true_start_length))+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("结束里程：")]),_vm._v("\n              DK"+_vm._s(parseFloat(_vm.dataListItem.true_end_flag))+"+"+_vm._s(parseFloat(_vm.dataListItem.true_end_length))+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("完成长度：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.nums)+" 公里\n            ")])]),_vm._v(" "),_c('tr',[_c('td',{attrs:{"colspan":"4"}},[_c('b',[_vm._v("备注：")])])])])])]),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.dialogFormVisible = false}}},[_vm._v("关闭")])],1)])],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var admin_userlist = (esExports);
-// CONCATENATED MODULE: ./src/views/admin/userlist.vue
+/* harmony default export */ var views_plan = (esExports);
+// CONCATENATED MODULE: ./src/views/plan/index.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("uo/T")
+  __webpack_require__("b3tf")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -538,30 +532,45 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  userlist,
-  admin_userlist,
+  plan,
+  views_plan,
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 
-/* harmony default export */ var views_admin_userlist = __webpack_exports__["default"] = (Component.exports);
+/* harmony default export */ var src_views_plan = __webpack_exports__["default"] = (Component.exports);
 
 
 /***/ }),
 
-/***/ "uo/T":
+/***/ "b3tf":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("YfCi");
+var content = __webpack_require__("bL8k");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("rjj0")("427c226e", content, true);
+var update = __webpack_require__("rjj0")("a38d7d18", content, true);
+
+/***/ }),
+
+/***/ "bL8k":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.nowrap {\r\n  white-space: nowrap;\r\n  width: 200px;\n}\n.nowrap .cell {\r\n  white-space: nowrap;\r\n  width: 200px;\n}\n.nowrap p {\r\n  white-space: nowrap;\r\n  width: 200px;\n}\n.dialog-planinfo .ptielss {\r\n  font-size: 18px;\r\n  margin-bottom: 15px;\r\n  text-align: right;\r\n  color: #333;\n}\n.dialog-planinfo .ptielss span {\r\n  color: #cb9f00;\n}\n.dialog-planinfo .ptielss em {\r\n  color: #25ade2;\r\n  font-style: normal;\n}\n.dialog-planinfo fieldset {\r\n  border: 1px #9db9fa solid;\r\n  margin-bottom: 15px;\r\n  border-radius: 3px;\r\n  padding: 5px 15px;\n}\n.dialog-planinfo fieldset legend {\r\n  font-size: 16px;\r\n  color: #4b6eca;\r\n  padding: 0 10px;\n}\n.dialog-planinfo .blue {\r\n  color: #4b6eca;\n}\n.dialog-planinfo td {\r\n  color: #79899c;\r\n  padding: 8px 0;\r\n  width: 26%;\n}\n.dialog-planinfo td b {\r\n  color: #636b6f;\r\n  font-size: 15px;\r\n  display: inline-block;\r\n  width: 90px;\r\n  text-align: right;\n}\r\n", ""]);
+
+// exports
+
 
 /***/ })
 
