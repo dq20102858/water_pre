@@ -11,7 +11,7 @@
             <el-date-picker
               v-model="formData.date"
               type="date"
-              placeholder="选择日期" 
+              placeholder="选择日期"
               :clearable="false"
               @input="selectDatePicker($event)"
             ></el-date-picker>
@@ -1188,12 +1188,10 @@ export default {
       });
     },
     //多选操作
-    selectDatePicker(value)
-    {
-      alert(value);
-      this.todayValue=value;
-   //this.$set(this.todayValue, value);
-       this.getChart();
+    selectDatePicker(value) {
+      this.todayValue = value;
+      //this.$set(this.todayValue, value);
+      this.getChart();
     },
     refreshPage() {
       this.getPageLoad();
