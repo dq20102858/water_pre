@@ -1,6 +1,6 @@
 webpackJsonp([18],{
 
-/***/ "+S7K":
+/***/ "Nj5r":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("FZ+f")(false);
@@ -8,24 +8,10 @@ exports = module.exports = __webpack_require__("FZ+f")(false);
 
 
 // module
-exports.push([module.i, "\n.app-page-chart {\r\n  min-width: 1170px;\n}\n.maintitle {\r\n  text-align: center;\r\n  font-size: 20px;\r\n  color: #fff;\n}\n.el-menu--collapse .el-menu .el-submenu,\r\n.el-menu--popup {\r\n  min-width: 124px;\r\n  text-align: center;\r\n  padding: 0;\n}\n.el-menu--horizontal .el-menu .el-menu-item.is-active,\r\n.el-menu--horizontal .el-menu .el-submenu.is-active > .el-submenu__title {\r\n  background: #4b6eca;\r\n  color: #fff;\n}\n.chartleft {\r\n  float: left;\r\n  width: 80%;\r\n  background: #fff;\r\n  padding: 30px;\r\n  border-radius: 6px;\n}\n.chartright {\r\n  float: left;\r\n  width: 19%;\r\n  margin-left: 1%;\n}\n.chartright .sidebox {\r\n  background: #fff;\r\n  padding: 20px;\r\n  margin-bottom: 20px;\n}\n.chartright .sidebox .btnitems {\r\n  margin-top: 15px;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-pack: justify;\r\n      -ms-flex-pack: justify;\r\n          justify-content: space-between;\n}\n.chartright .sidebox .btnitems .is-plain {\r\n  width: 100% !important;\r\n  display: inline-block;\r\n  background: #fff;\n}\n.chartright .sidebox .btnitem {\r\n  margin-top: 15px;\n}\n.chartright .el-date-editor.el-input,\r\n.chartright .el-date-editor.el-input__inner {\r\n  width: 100%;\n}\n.chartright .sidebox .btnitem .is-plain {\r\n  width: 100% !important;\r\n  background: #fff;\n}\n.chartright .sidebox .is-plain:hover {\r\n  background: #4b6eca;\r\n  border-color: #4b6eca;\r\n  color: #fff;\n}\n.chartright .sidebox .is-plain:focus {\r\n  background: #4b6eca;\r\n  border-color: #4b6eca;\r\n  color: #fff;\n}\n.chartright .sidebox h3 {\r\n  font-size: 14px;\n}\n.chartright .chklist {\r\n  margin-top: 15px;\n}\n.chartright .chklist .el-checkbox {\r\n  margin-bottom: 10px;\n}\n@media (max-width: 960px) {\n.chartleft {\r\n    width: 100%;\n}\n.chartright {\r\n    width: 100%;\r\n    margin-top: 20px;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.app-page-chart {\r\n  min-width: 1170px;\n}\n.maintitle {\r\n  text-align: center;\r\n  font-size: 20px;\r\n  color: #fff;\n}\n.el-menu--collapse .el-menu .el-submenu,\r\n.el-menu--popup {\r\n  min-width: 124px;\r\n  text-align: center;\r\n  padding: 0;\n}\n.el-menu--horizontal .el-menu .el-menu-item.is-active,\r\n.el-menu--horizontal .el-menu .el-submenu.is-active > .el-submenu__title {\r\n  background: #4b6eca;\r\n  color: #fff;\n}\n.chartleft {\r\n  float: left;\r\n  width: 80%;\r\n  background: #fff;\r\n  padding: 30px;\r\n  border-radius: 6px;\n}\n.chartright {\r\n  float: left;\r\n  width: 19%;\r\n  margin-left: 1%;\n}\n.chartright .sidebox {\r\n  background: #fff;\r\n  padding: 20px;\r\n  margin-bottom: 20px;\n}\n.chartright .sidebox .btnitems {\r\n  margin-top: 15px;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-pack: justify;\r\n      -ms-flex-pack: justify;\r\n          justify-content: space-between;\n}\n.chartright .sidebox .btnitems .is-plain {\r\n  width: 100% !important;\r\n  display: inline-block;\r\n  background: #fff;\n}\n.chartright .sidebox .btnitem {\r\n  margin-top: 15px;\n}\n.chartright .el-date-editor.el-input,\r\n.chartright .el-date-editor.el-input__inner {\r\n  width: 100%;\n}\n.chartright .sidebox .btnitem .is-plain {\r\n  width: 100% !important;\r\n  background: #fff;\n}\n.chartright .sidebox .is-plain:hover {\r\n  background: #4b6eca;\r\n  border-color: #4b6eca;\r\n  color: #fff;\n}\n.chartright .sidebox .is-plain:focus {\r\n  background: #4b6eca;\r\n  border-color: #4b6eca;\r\n  color: #fff;\n}\n.chartright .sidebox h3 {\r\n  font-size: 14px;\n}\n.chartright .chklist {\r\n  margin-top: 15px;\n}\n.chartright .chklist .el-checkbox {\r\n  margin-bottom: 10px;\n}\n@media (max-width: 960px) {\n.chartleft {\r\n    width: 100%;\n}\n.chartright {\r\n    width: 100%;\r\n    margin-top: 20px;\n}\n}\n.dialog-monitor .el-textarea__inner {\r\n  border: 1px #9db9fa solid;\r\n  color: #4b6eca;\r\n  height: 100px;\n}\n.dialog-monitor .el-textarea {\r\n  width: 100% !important;\n}\n.dialog-monitor .el-form-item__label {\r\n  width: 110px;\n}\n.dialog-monitor .el-form-item__content {\r\n  margin-left: 110px;\n}\n.dialog-monitor .el-form-item-inline .el-input--medium {\r\n  display: inline-block;\r\n  width: 80px;\r\n  text-align: center;\n}\n.dialog-monitor .el-form-item-inline input {\r\n  display: inline-block;\r\n  width: 80px;\r\n  text-align: center;\n}\n.dialog-monitor .el-select {\r\n  width: 100%;\n}\n.el-form-item-inline input {\r\n  display: inline-block;\r\n  width: 80px;\r\n  text-align: center;\n}\n.el-form-item-inlines {\r\n  display: inline-block;\n}\n.el-form-item-inlines .el-form-item {\r\n  display: inline-block;\n}\n.el-form-item-inlines .el-form-item .el-form-item__content {\r\n  margin-left: 0;\n}\n.el-form-item-inlines .el-input {\r\n  width: 100px;\n}\n.el-form-item-inlines input {\r\n  display: inline-block;\r\n  width: 100px;\r\n  text-align: center;\n}\n.el-form-item-inlines .el-form-item {\r\n  margin-bottom: 1px !important;\n}\r\n", ""]);
 
 // exports
 
-
-/***/ }),
-
-/***/ "Ptfd":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("+S7K");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("2e4e8274", content, true);
 
 /***/ }),
 
@@ -201,7 +187,15 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
       kcolor: ["red", "green", "yellow", "#467aff", "#44ddb5", "#c245d3"],
       todayValue: new Date(),
       diaLogFormVisible: false,
-      diaLogTitle: "添加信息"
+      diaLogTitle: "添加信息",
+      formData: {},
+      formRules: {
+        name: [{
+          required: true,
+          message: "请输入名称2~20个字符",
+          trigger: "blur"
+        }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }]
+      }
     };
   },
   mounted: function mounted() {
@@ -410,19 +404,24 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
       this.formData = {};
       this.diaLogTitle = "添加信息";
       this.diaLogFormVisible = true;
+    },
+    planEdit: function planEdit() {
+      this.formData = {};
+      this.diaLogTitle = "添加信息";
+      this.diaLogFormVisible = true;
     }
     //
 
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-b51de9a4","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/run_monitor/index.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app-monitor-chart"}},[_c('div',{staticClass:"app-page-chart"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"chartright"},[_c('div',{staticClass:"sidebox"},[_c('div',{staticClass:"btnitem"},[_c('el-date-picker',{attrs:{"type":"date","placeholder":"选择日期"},model:{value:(_vm.todayValue),callback:function ($$v) {_vm.todayValue=$$v},expression:"todayValue"}})],1),_vm._v(" "),_c('div',{staticClass:"btnitems"},[_c('el-button',{attrs:{"type":"primary","plain":""},on:{"click":_vm.preDate}},[_vm._v("前一天")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary","plain":""},on:{"click":_vm.nextDate}},[_vm._v("后一天")])],1),_vm._v(" "),_c('div',{staticClass:"btnitem"},[_c('el-button',{attrs:{"type":"primary","plain":""},on:{"click":_vm.planAdd}},[_vm._v("编制日班计划图")])],1),_vm._v(" "),_c('div',{staticClass:"btnitem"},[_c('el-button',{attrs:{"type":"primary","plain":""},on:{"click":_vm.planEdit}},[_vm._v("编制日班实际图")])],1),_vm._v(" "),_c('div',{staticClass:"btnitem"},[_c('el-button',{attrs:{"type":"primary","plain":""}},[_vm._v("区间封锁")])],1),_vm._v(" "),_c('div',{staticClass:"btnitem"},[_c('el-button',{attrs:{"type":"primary","plain":""}},[_vm._v("批注")])],1),_vm._v(" "),_c('div',{staticClass:"btnitem"},[_c('el-button',{attrs:{"type":"primary","plain":""}},[_vm._v("刷新")])],1),_vm._v(" "),_c('div',{staticClass:"btnitem"},[_c('el-button',{attrs:{"type":"primary","plain":""}},[_vm._v("提交")])],1)]),_vm._v(" "),_c('div',{staticClass:"sidebox"},[_c('h3',[_vm._v("显示控制")]),_vm._v(" "),_c('div',{staticClass:"chklist"},[_c('el-checkbox',{attrs:{"label":"左线"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"右线"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"入场线"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"出场线"}})],1),_vm._v(" "),_c('div',{staticClass:"chklist"},[_c('el-checkbox',{attrs:{"label":"计划图"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"实际图"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"轨迹图"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"批注"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"区间封锁"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"清点"}})],1),_vm._v(" "),_c('div',{staticClass:"chklist"},[_c('el-checkbox',{attrs:{"label":"ZY01"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"ZY02"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"ZY03"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"ZY04"}})],1)])])]),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-station",attrs:{"width":"700px","close-on-click-modal":false,"title":this.diaLogTitle,"visible":_vm.diaLogFormVisible},on:{"update:visible":function($event){_vm.diaLogFormVisible=$event}}},[_c('el-form',{ref:"formRules",staticClass:"el-form-custom",attrs:{"model":_vm.formData,"rules":_vm.formRules}},[_c('el-form-item',{attrs:{"label":"名称：","prop":"name"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.formData.name),callback:function ($$v) {_vm.$set(_vm.formData, "name", $$v)},expression:"formData.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"线别：","prop":"line_type"}},[_c('el-select',{attrs:{"placeholder":"请选择"},on:{"change":function($event){_vm.selectLineType($event)}},model:{value:(_vm.formData.line_type),callback:function ($$v) {_vm.$set(_vm.formData, "line_type", $$v)},expression:"formData.line_type"}},_vm._l((_vm.lineTypeList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})})),_vm._v(" "),_c('div',{staticClass:"el-form-item__error"},[_vm._v(_vm._s(_vm.lineTypeDes))])],1),_vm._v(" "),_c('el-form-item',{staticClass:"el-form-item-inlines is-required",attrs:{"label":"开始里程："}},[_c('el-form-item',{attrs:{"prop":"start_flag"}},[_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"公里","maxlength":"3"},model:{value:(_vm.formData.start_flag),callback:function ($$v) {_vm.$set(_vm.formData, "start_flag", $$v)},expression:"formData.start_flag"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"prop":"start_length"}},[_c('b',[_vm._v("+")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"米","maxlength":"3"},model:{value:(_vm.formData.start_length),callback:function ($$v) {_vm.$set(_vm.formData, "start_length", $$v)},expression:"formData.start_length"}})],1)],1),_vm._v(" "),_c('el-form-item',{staticClass:"el-form-item-inlines is-required",attrs:{"label":"结束里程："}},[_c('el-form-item',{attrs:{"prop":"end_flag"}},[_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"公里","maxlength":"3"},model:{value:(_vm.formData.end_flag),callback:function ($$v) {_vm.$set(_vm.formData, "end_flag", $$v)},expression:"formData.end_flag"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"prop":"end_length"}},[_c('b',[_vm._v("+")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"米","maxlength":"3"},model:{value:(_vm.formData.end_length),callback:function ($$v) {_vm.$set(_vm.formData, "end_length", $$v)},expression:"formData.end_length"}})],1)],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"开始时间","prop":"start_time"}},[_c('el-date-picker',{attrs:{"type":"datetime","placeholder":"选择时间"},on:{"change":_vm.changeStarttime},model:{value:(_vm.formData.start_time),callback:function ($$v) {_vm.$set(_vm.formData, "start_time", $$v)},expression:"formData.start_time"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"结束时间","prop":"end_time"}},[_c('el-date-picker',{attrs:{"type":"datetime","placeholder":"选择时间"},on:{"change":_vm.changeEndtime},model:{value:(_vm.formData.end_time),callback:function ($$v) {_vm.$set(_vm.formData, "end_time", $$v)},expression:"formData.end_time"}})],1),_vm._v(" "),_c('div',{staticClass:"blank"})],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.diaLogFormVisible = false}}},[_vm._v("关闭")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.addOrEditDialog()}}},[_vm._v("确定")])],1)],1)],1)}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-aa11b0ae","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/run_monitor/index.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app-monitor-chart"}},[_c('div',{staticClass:"app-page-chart"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"chartright"},[_c('div',{staticClass:"sidebox"},[_c('div',{staticClass:"btnitem"},[_c('el-date-picker',{attrs:{"type":"date","placeholder":"选择日期"},model:{value:(_vm.todayValue),callback:function ($$v) {_vm.todayValue=$$v},expression:"todayValue"}})],1),_vm._v(" "),_c('div',{staticClass:"btnitems"},[_c('el-button',{attrs:{"type":"primary","plain":""},on:{"click":_vm.preDate}},[_vm._v("前一天")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary","plain":""},on:{"click":_vm.nextDate}},[_vm._v("后一天")])],1),_vm._v(" "),_c('div',{staticClass:"btnitem"},[_c('el-button',{attrs:{"type":"primary","plain":""},on:{"click":_vm.planAdd}},[_vm._v("编制日班计划图")])],1),_vm._v(" "),_c('div',{staticClass:"btnitem"},[_c('el-button',{attrs:{"type":"primary","plain":""},on:{"click":_vm.planEdit}},[_vm._v("编制日班实际图")])],1),_vm._v(" "),_c('div',{staticClass:"btnitem"},[_c('el-button',{attrs:{"type":"primary","plain":""}},[_vm._v("区间封锁")])],1),_vm._v(" "),_c('div',{staticClass:"btnitem"},[_c('el-button',{attrs:{"type":"primary","plain":""}},[_vm._v("批注")])],1),_vm._v(" "),_c('div',{staticClass:"btnitem"},[_c('el-button',{attrs:{"type":"primary","plain":""}},[_vm._v("刷新")])],1),_vm._v(" "),_c('div',{staticClass:"btnitem"},[_c('el-button',{attrs:{"type":"primary","plain":""}},[_vm._v("提交")])],1)]),_vm._v(" "),_c('div',{staticClass:"sidebox"},[_c('h3',[_vm._v("显示控制")]),_vm._v(" "),_c('div',{staticClass:"chklist"},[_c('el-checkbox',{attrs:{"label":"左线"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"右线"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"入场线"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"出场线"}})],1),_vm._v(" "),_c('div',{staticClass:"chklist"},[_c('el-checkbox',{attrs:{"label":"计划图"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"实际图"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"轨迹图"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"批注"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"区间封锁"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"清点"}})],1),_vm._v(" "),_c('div',{staticClass:"chklist"},[_c('el-checkbox',{attrs:{"label":"ZY01"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"ZY02"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"ZY03"}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"ZY04"}})],1)])])]),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-monitor",attrs:{"width":"700px","close-on-click-modal":false,"title":this.diaLogTitle,"visible":_vm.diaLogFormVisible},on:{"update:visible":function($event){_vm.diaLogFormVisible=$event}}},[_c('el-form',{ref:"formRules",staticClass:"el-form-custom",attrs:{"model":_vm.formData,"rules":_vm.formRules}},[_c('el-form-item',{attrs:{"label":"名称：","prop":"name"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.formData.name),callback:function ($$v) {_vm.$set(_vm.formData, "name", $$v)},expression:"formData.name"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.diaLogFormVisible = false}}},[_vm._v("关闭")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.addOrEditDialog()}}},[_vm._v("确定")])],1)],1)],1)}
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"chartleft"},[_c('div',{staticClass:"maintitle"},[_vm._v("2020年04月02日 16时 -— 2020年04月04日 16时轨行区作业分布图")]),_vm._v(" "),_c('div',{staticStyle:{"height":"500px","width":"100%"},attrs:{"id":"main"}})])}]
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ var views_run_monitor = (esExports);
 // CONCATENATED MODULE: ./src/views/run_monitor/index.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("Ptfd")
+  __webpack_require__("pBDw")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -448,6 +447,20 @@ var Component = normalizeComponent(
 
 /* harmony default export */ var src_views_run_monitor = __webpack_exports__["default"] = (Component.exports);
 
+
+/***/ }),
+
+/***/ "pBDw":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("Nj5r");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("9887f14e", content, true);
 
 /***/ })
 

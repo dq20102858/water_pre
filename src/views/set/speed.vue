@@ -44,13 +44,13 @@
             <el-table-column label="起始里程">
               <template slot-scope="scope">
                 <b>DK</b>
-                {{scope.row.start_flag}} + {{scope.row.start_length}}
+                {{scope.row.start_flag}}公里 + {{scope.row.start_length}}米
               </template>
             </el-table-column>
             <el-table-column label="结束里程">
               <template slot-scope="scope">
                 <b>DK</b>
-                {{scope.row.end_flag}} + {{scope.row.end_length}}
+                {{scope.row.end_flag}}公里 + {{scope.row.end_length}}米
               </template>
             </el-table-column>
             <el-table-column prop="create_time" label="创建时间"></el-table-column>
