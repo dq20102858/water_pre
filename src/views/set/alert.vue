@@ -87,8 +87,12 @@
           :visible.sync="diaLogFormVisible"
         >
           <el-form class="el-form-custom" :model="formData" :rules="formRules" ref="formRules">
-            <el-form-item label="名称：" prop="name">
-              <el-input v-model="formData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
+            <el-form-item label="名称：">
+              <el-select v-model="formData.name" placeholder="请选择">
+                <el-option label="防区" value="防区"></el-option>
+                <el-option label="施工地段" value="施工地段"></el-option>
+              </el-select>
+              <!-- <el-input v-model="formData.name" autocomplete="off" maxlength="20" show-word-limit></el-input> -->
             </el-form-item>
             <el-form-item label="线别：" prop="line_type">
               <el-select
@@ -178,16 +182,10 @@ export default {
     return {
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
-      formData: {},
+      formData: {
+        name:"防区"
+      },
       formRules: {
-        name: [
-          {
-            required: true,
-            message: "请输入名称2~20个字符",
-            trigger: "blur"
-          },
-          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
-        ],
         line_type: [
           { required: true, message: "请选择线别", trigger: "change" }
         ],

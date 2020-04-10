@@ -8,7 +8,12 @@
       <div class="chartright">
         <div class="sidebox">
           <div class="btnitem">
-            <el-date-picker v-model="formData.date" type="date" placeholder="选择日期"></el-date-picker>
+            <el-date-picker
+              v-model="formData.date"
+              type="date"
+              placeholder="选择日期"
+              :clearable="false"
+            ></el-date-picker>
           </div>
           <div class="btnitems">
             <el-button @click="preDate" type="primary" plain>前一天</el-button>
@@ -61,7 +66,7 @@
     </div>
 
     <el-dialog
-      width="960px"
+      width="990px"
       :close-on-click-modal="false"
       class="dialog-monitor"
       :title="this.diaLogTitle"
@@ -250,9 +255,12 @@
                 placeholder="选择时间"
               ></el-date-picker>
             </el-form-item>
+            <el-form-item label="施工作业队：" label-width="100px">
+              <el-select v-model="formData.work_plan_id" placeholder="请选择"></el-select>
+            </el-form-item>
           </div>
           <div class="el-form-item-block">
-            <el-form-item class="dateinput" label="工点：" label-width="100px">
+            <el-form-item label="工点：" label-width="100px">
               <el-select
                 v-model="formData.start_station"
                 placeholder="请选择"
@@ -267,7 +275,7 @@
               </el-select>
             </el-form-item>
             <b style="line-height: 31px;">—</b>
-            <el-form-item class="dateinput">
+            <el-form-item>
               <el-select
                 v-model="formData.end_station"
                 placeholder="请选择"
@@ -281,7 +289,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="里程(DK)：" label-width="100px" class="el-form-item-inlines">
+            <el-form-item label="里程：" class="el-form-item-inlines">
               <el-form-item prop="start_flag">
                 <el-input
                   v-model="formData.start_flag"
@@ -320,10 +328,7 @@
             </el-form-item>
           </div>
           <div class="el-form-item-block">
-            <el-form-item label="施工作业队：" label-width="100px">
-              <el-select v-model="formData.work_plan_id" placeholder="请选择"></el-select>
-            </el-form-item>
-            <el-form-item label="作业类型：">
+            <el-form-item label="作业类型：" label-width="100px">
               <el-select
                 v-model="formData.work_type"
                 placeholder="请选择"
@@ -347,23 +352,20 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-          </div>
-
-          <div class="el-form-item-block">
-            <el-form-item label="施工项目：" label-width="100px">
+            <el-form-item label="施工项目：">
               <el-select v-model="formData.item_id" placeholder="请选择"></el-select>
             </el-form-item>
-            <el-form-item label="工序：" label-width="70px">
+            <el-form-item label="工序：">
               <el-select v-model="formData.work_id" placeholder="请选择"></el-select>
             </el-form-item>
           </div>
         </fieldset>
-        <el-form-item label="内容：" prop="description">
+        <el-form-item label="内容：" label-width="110px" prop="description">
           <el-input
             v-model="formData.description"
             autocomplete="off"
             type="textarea"
-            maxlength="30"
+            maxlength="50"
             show-word-limit
           ></el-input>
         </el-form-item>
@@ -371,7 +373,141 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="diaLogFormVisible = false">关闭</el-button>
-        <el-button type="primary" @click="addOrEditDialog()">确定</el-button>
+        <el-button type="primary" @click="addDayPlanDialog()">确定</el-button>
+      </div>
+    </el-dialog>
+
+    <el-dialog
+      width="780px"
+      :close-on-click-modal="false"
+      class="dialog-monitor"
+      :title="this.diaLogTitleEdit"
+      :visible.sync="diaLogFormEditVisible"
+    >
+      <el-form
+        :inline="true"
+        class="el-form-custom"
+        :model="formEditData"
+        :rules="formEditRules"
+        ref="refFormEditRules"
+      >
+        <el-form-item label="日班计划：" label-width="130px">
+          <el-select v-model="formEditData.number" @change="selectPlanNumbers">
+            <el-option
+              v-for="item in planNumbersList"
+              :key="item.id"
+              :label="item.number"
+              :value="item.id"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="记录人：" label-width="130px">
+          <el-select v-model="formEditData.record_id">
+            <el-option v-for="item in userList" :key="item.id" :label="item.name" :value="item.id"></el-option>
+          </el-select>
+        </el-form-item>
+        <fieldset>
+          <legend>实际施工信息</legend>
+          <div class="el-form-item-block">
+            <el-form-item label="实际开始时间：" label-width="120px" prop="start_time">
+              <el-date-picker
+                v-model="formEditData.true_start_time"
+                type="datetime"
+                format="yyyy-MM-dd HH:mm"
+                placeholder="选择时间"
+              ></el-date-picker>
+            </el-form-item>
+            <el-form-item label="实际结束时间：" prop="end_time">
+              <el-date-picker
+                v-model="formEditData.true_end_time"
+                type="datetime"
+                format="yyyy-MM-dd HH:mm"
+                placeholder="选择时间"
+              ></el-date-picker>
+            </el-form-item>
+          </div>
+          <div class="el-form-item-block">
+            <el-form-item label="开始里程(DK)：" label-width="120px" class="el-form-item-inlines">
+              <el-form-item prop="start_flag">
+                <el-input
+                  v-model="formEditData.true_start_flag"
+                  autocomplete="off"
+                  placeholder="公里"
+                  maxlength="3"
+                ></el-input>
+              </el-form-item>
+              <el-form-item prop="start_length">
+                <b>+</b>
+                <el-input
+                  v-model="formEditData.true_start_length"
+                  autocomplete="off"
+                  placeholder="米"
+                  maxlength="3"
+                ></el-input>
+              </el-form-item>
+            </el-form-item>
+            <el-form-item label="开始里程(DK)：" class="el-form-item-inlines">
+              <el-form-item prop="start_flag">
+                <el-input
+                  v-model="formEditData.true_end_flag"
+                  autocomplete="off"
+                  placeholder="公里"
+                  maxlength="3"
+                ></el-input>
+              </el-form-item>
+              <el-form-item prop="end_length">
+                <b>+</b>
+                <el-input
+                  v-model="formEditData.true_end_length"
+                  autocomplete="off"
+                  placeholder="米"
+                  maxlength="3"
+                ></el-input>
+              </el-form-item>
+            </el-form-item>
+          </div>
+          <div class="el-form-item-block">
+            <el-form-item label="完成数量：" label-width="120px">
+              <el-input
+                v-model="formEditData.finish_num"
+                autocomplete="off"
+                placeholder="公里"
+                maxlength="3"
+              ></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-checkbox v-model="formEditData.status">完成</el-checkbox>
+            </el-form-item>
+          </div>
+          <div class="el-form-item-block">
+            <el-form-item label="备注：" label-width="120px">
+              <el-input
+                v-model="formEditData.remark"
+                autocomplete="off"
+                type="textarea"
+                maxlength="50"
+                show-word-limit
+              ></el-input>
+            </el-form-item>
+          </div>
+          <div class="el-form-item-block">
+            <el-form-item label="未完成原因：" label-width="120px">
+              <el-input
+                v-model="formEditData.reason"
+                autocomplete="off"
+                type="textarea"
+                maxlength="50"
+                show-word-limit
+              ></el-input>
+            </el-form-item>
+          </div>
+        </fieldset>
+
+        <div class="blank"></div>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="diaLogFormEditVisible = false">关闭</el-button>
+        <el-button type="primary" @click="updateDayTrueplan()">确定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -401,6 +537,7 @@ export default {
       stationList: [],
       workTypeList: [],
       workLineTypeList: [],
+      userList: [],
       formRules: {
         number: [
           {
@@ -452,7 +589,13 @@ export default {
             trigger: "blur"
           }
         ]
-      }
+      },
+      diaLogFormEditVisible: false,
+      diaLogTitleEdit: "",
+      formEditData: {},
+      numberId: 0,
+      planNumbersList: [],
+      formEditRules: {}
     };
   },
   mounted() {
@@ -464,16 +607,22 @@ export default {
     this.getMasterList(); //车长
     this.getdriverList(); //司机
     this.getStationList(); //车站
-    this.getWorkTypeList(); //作业类型：
+    this.getWorkTypeList(); //作业类型
   },
   methods: {
     getChart() {
-      // this.formData.start_time = new Date();
-      // let dates=new Date().setHours(new Date().getHours() + 1)
-      // this.formData.end_time =new Date();
+      this.formData.date = this.todayValue;
+      this.todayPreValue = this.getNextDate(this.todayValue, -1);
+      this.todayNextValue = this.getNextDate(this.todayValue, 1);
+      let start_time = this.getNextDate(this.todayValue, -1, "-");
+      let end_time = this.getNextDate(this.todayValue, 1, "-");
+      let line_type = "1,2,3,4";
+      let type = 1;
+      let loco_type = "1,2,3,4";
       this.request({
-        url: "/apply/getDailyChart",
-        method: "get"
+        url: "/dayplan/getLineDatas",
+        method: "get",
+        params: { start_time, end_time, line_type, type, loco_type }
       }).then(res => {
         let resdata = res.data;
         if (resdata.status == 1) {
@@ -481,10 +630,18 @@ export default {
           var myChart = this.$echarts.init(document.getElementById("main"));
           myChart.getDom().style.height =
             document.body.clientHeight - 280 + "px";
-          //站点
-          this.mark_line = JSON.parse(
-            JSON.stringify(resdata.data.y).replace(/value/g, "yAxis")
-          );
+          //站点=============
+          resdata.data.stations.map(item => {
+            this.mark_line.push({
+              name:
+                item.name +
+                " DK " +
+                item.start_flag +
+                " + " +
+                item.start_length,
+              yAxis: item.start_flag + item.start_length / 1000
+            });
+          });
           let minLineNum = Math.min.apply(
             Math,
             this.mark_line.map(function(item) {
@@ -497,17 +654,7 @@ export default {
               return parseInt(item.yAxis + 2);
             })
           );
-          //A1 A2 A3 A4
-          let typeData = [];
-          let dataTypeArr = resdata.data.data;
-          dataTypeArr.forEach(item => {
-            let jlist = [];
-            item.lists.forEach(item => {
-              jlist.push([item.name, item.value]);
-            });
-            typeData.push({ name: item.type, lists: jlist });
-          });
-          console.log("typeData：" + JSON.stringify(typeData));
+          // 数据
           let seriesData = [];
           seriesData.push({
             name: "车站",
@@ -532,60 +679,92 @@ export default {
                   type: "solid",
                   color: "#1D397A"
                 }
-              },
-              animation: false
+              }
             }
           });
-          // let projectData = [];
-          // for (let k in typeData) {
-          //   seriesData.push({
-          //     name: typeData[k].name,
-          //     type: "scatter",
-          //     symbolSize: 10,
-          //     itemStyle: { normal: { color: this.kcolor[k] } },
-          //     data: typeData[k].lists
-          //   });
-          // }
-          // console.log("projectData：" + JSON.stringify(seriesData));
-          //时间
-          let dayArr = [];
-          let tday = resdata.data.x;
-          for (var i in tday) {
-            dayArr.push(i);
+
+          //划线===============
+          console.log("plan" + JSON.stringify(resdata.data.plan));
+          let dataTypeArr = resdata.data.plan;
+          let dataTypeArr3 = [
+            {
+              lists: [
+                { name: "2020-04-09 20:00:00", value: 21.003 },
+                { name: "2020-04-09 23:00:00", value: 32.9 }
+              ]
+            },
+            {
+              lists: [
+                { name: "2020-04-09 19:00:00", value: 14.003 },
+                { name: "2020-04-09 20:00:00", value: 16.9 }
+              ]
+            },
+            {
+              lists: [
+                { name: "2020-04-09 22:00:00", value: 24.003 },
+                { name: "2020-04-09 23:00:00", value: 32.9 }
+              ]
+            },
+            {
+              lists: [
+                { name: "2020-04-08 20:00:00", value: 18.003 },
+                { name: "2020-04-09 0:00:00", value: 22.9 }
+              ]
+            }
+          ];
+          //计划线 实际线
+          let typeData = [];
+          let typeSJData = [];
+          dataTypeArr.forEach((item, index) => {
+            let startlist = [];
+            let start_flag_list = [];
+            let start_length_list = [];
+            start_flag_list.push(item.start_time,  parseFloat(item.start_flag) + parseFloat(item.start_length / 1000));
+            start_length_list.push(item.end_time, parseFloat(item.end_flag) + parseFloat(item.end_length / 1000));
+            startlist.push(start_flag_list, start_length_list);
+           typeData.push({ lists: startlist });
+            //
+           let endlist = [];
+            let true_start_flag_list = [];
+            let  true_start_length_list = [];
+            true_start_flag_list.push(item.start_time, parseFloat(item.true_start_flag) + parseFloat(item.true_start_length / 1000));
+            true_start_length_list.push(item.end_time, parseFloat(item.true_end_flag) + parseFloat(item.true_end_length / 1000));
+            endlist.push(true_start_flag_list, true_start_flag_list);
+            typeSJData.push({ lists: endlist});
+          });
+          console.log("typeData：" + JSON.stringify(typeData));
+          for (let k in typeData) {
+            seriesData.push({
+              type: "line",
+              itemStyle: { normal: { color: "blue" } },
+              data: typeData[k].lists
+            });
           }
+          //
+          console.log("typeSJData" + JSON.stringify(typeSJData));
+          for (let k in typeSJData) {
+            seriesData.push({
+              type: "line",
+              itemStyle: { normal: { color: "green" } },
+              data: typeSJData[k].lists
+            });
+          }
+
+              console.log("projectData：" + JSON.stringify(seriesData));
+          //时间
           let dataMin = new Date(
-            new Date(this.todayValue.getTime() - 24 * 60 * 60 * 1000).setHours(
-              17,
-              0,
-              0,
-              0
-            )
-          );
+            this.todayValue.getTime() - 24 * 60 * 60 * 1000
+          ).setHours(17);
           let dataMax = new Date(
-            new Date(this.todayValue.getTime() + 24 * 60 * 60 * 1000).setHours(
-              19,
-              0,
-              0,
-              0
-            )
-          );
-          let todayPreValues = dataMin.toLocaleDateString();
-          let todayNextValues = dataMax.toLocaleDateString();
-          this.todayPreValue = todayPreValues.replace(
-            /(.+?)\/(.+?)\/(.+)/,
-            "$1年$2月$3日"
-          );
-          this.todayNextValue = todayNextValues.replace(
-            /(.+?)\/(.+?)\/(.+)/,
-            "$1年$2月$3日"
-          );
+            this.todayValue.getTime() + 24 * 60 * 60 * 1000
+          ).setHours(19);
           //option
           var option = {
             textStyle: {
               color: "#1D397A"
             },
             tooltip: {
-              trigger: "axis",
+              trigger: "none",
               axisPointer: {
                 type: "cross",
                 label: {
@@ -629,35 +808,49 @@ export default {
             yAxis: {
               show: false,
               type: "value",
-              min: minLineNum,
+              min: minLineNum - 3,
               max: maxLineNum,
               animation: false
             },
             dataZoom: [
               {
-                type: "slider",
-                filterMode: "weakFilter", //weakFilter参数配合echarts.graphic.clipRectByRect效果最佳
-                show: false,
+                show: true,
+                realtime: true,
                 zoomLock: true,
-                xAxisIndex: [0],
-                bottom: 10,
                 start: 0,
-                end: 25,
-                minValueSpan: 3600 * 12 * 1000,
-                textStyle: {
-                  color: "#fff"
-                },
-                borderColor: "#2B2B2B",
-                handleSize: "75%",
-                fillerColor: "#202f40"
+                end: 50
               },
               {
                 type: "inside",
-                xAxisIndex: [0],
+                realtime: true,
+                zoomOnMouseWheel: false,
                 start: 0,
-                end: 100
+                end: 50
               }
             ],
+            // dataZoom: [
+            //   {
+            //     type: "slider",
+            //     filterMode: "weakFilter",
+            //     show: false,
+            //     zoomLock: true,
+            //     top: 24,
+            //     start: 0,
+            //     end: 50,
+            //     minValueSpan: 4 * 3600 * 1000
+            //   },
+            //   {
+            //     type: "inside",
+            //     start: 0,
+            //     end: 100
+            //   },
+            //   {
+            //     type: "inside",
+            //     zoomOnMouseWheel: false,
+            //     start: 0,
+            //     end: 100
+            //   }
+            // ],
             series: seriesData
           };
           // 使用刚指定的配置项和数据显示图表。
@@ -668,6 +861,20 @@ export default {
           });
         }
       });
+    },
+    //date 代表指定的日期，格式：2018-09-27 day 传-1表始前一天，传1表始后一天
+    getNextDate(date, day, flag) {
+      var dd = new Date(date);
+      dd.setDate(dd.getDate() + day);
+      var y = dd.getFullYear();
+      var m =
+        dd.getMonth() + 1 < 10 ? "0" + (dd.getMonth() + 1) : dd.getMonth() + 1;
+      var d = dd.getDate() < 10 ? "0" + dd.getDate() : dd.getDate();
+      if (flag == "-") {
+        return y + "-" + m + "-" + d;
+      } else {
+        return y + "年" + m + "月" + d + "日";
+      }
     },
     preDate() {
       //前一天
@@ -803,21 +1010,10 @@ export default {
       this.diaLogTitle = "计划图";
       this.diaLogFormVisible = true;
     },
-
-    addOrEditDialog() {
+    addDayPlanDialog() {
       this.$refs["formRules"].validate(valid => {
         if (valid) {
           let data = this.formData;
-          // alert(JSON.stringify(data));
-          // this.companyData.type = 1;
-          // if (this.companyData.color == "默认") {
-          //   this.companyData.color = 0;
-          // }
-          // let url = "/company/addCompanyDo";
-          // let baseid = this.companyData.id;
-          // if (typeof baseid != "undefined") {
-          //   url = "/company/editCompany";
-          // }
           this.request({
             url: "/dayplan/addDayPlan",
             method: "post",
@@ -836,11 +1032,142 @@ export default {
         }
       });
     },
+    //編輯
+    getUserLists() {
+      this.request({
+        url: "/dayplan/getUserLists",
+        method: "get"
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.userList = data.data;
+          let record_id = this.userList[0]["id"];
+          this.formEditData.record_id = record_id;
+          // this.$set(this.formEditData, "record_id", record_id);
+        }
+      });
+    },
+    getPlanNumbers() {
+      let todayNum = this.todayValue;
+      let start_time = this.getNextDate(todayNum, -1, "-"); //前一天
+      let end_time = this.getNextDate(todayNum, 1, "-"); //后一天
+      this.request({
+        url: "/dayplan/getPlanNumbers",
+        method: "get",
+        params: {
+          start_time: start_time,
+          end_time: end_time
+        }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.planNumbersList = data.data;
+          this.numberId = this.planNumbersList[0]["id"];
+          this.getPlanDetail(this.planNumbersList[0]["id"]);
+        }
+      });
+    },
+    selectPlanNumbers(value) {
+      this.getPlanDetail(value);
+    },
+    getPlanDetail(id) {
+      this.request({
+        url: "/dayplan/getDayPlanDetail",
+        method: "get",
+        params: { id: id }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.formEditData = {
+            id: this.numberId,
+            number: data.data.number,
+            record_id:
+              data.data.record_id == null
+                ? this.formEditData.record_id
+                : data.data.record_id,
+            true_start_time:
+              data.data.true_start_time == ""
+                ? data.data.start_time
+                : data.data.true_start_time,
+            true_end_time:
+              data.data.true_end_time == ""
+                ? data.data.end_time
+                : data.data.true_end_time,
+            true_start_flag:
+              data.data.true_start_flag == null
+                ? parseFloat(data.data.start_flag)
+                : parseFloat(data.data.true_start_flag),
+            true_start_length:
+              data.data.true_start_length == null
+                ? parseFloat(data.data.start_length)
+                : parseFloat(data.data.true_start_length),
+            true_end_flag:
+              data.data.true_end_flag == null
+                ? parseFloat(data.data.end_flag)
+                : parseFloat(data.data.true_end_flag),
+            true_end_length:
+              data.data.true_end_length == null
+                ? parseFloat(data.data.end_length)
+                : parseFloat(data.data.true_end_length),
+            finish_num: data.data.finish_num,
+            remark: data.data.remark,
+            reason: data.data.reason,
+            status: data.data.status
+          };
+          console.log(this.formEditData);
+        }
+      });
+    },
     planEdit() {
-      this.formData = {};
-      this.diaLogTitle = "修改计划图";
-      this.diaLogFormVisible = true;
+      this.diaLogTitleEdit = "修改计划图";
+      this.diaLogFormEditVisible = true;
+      this.getPlanNumbers(); //日班计划列表
+      this.getUserLists(); //记录人
+    },
+    updateDayTrueplan() {
+      this.$refs["refFormEditRules"].validate(valid => {
+        if (valid) {
+          let data = this.formEditData;
+          this.request({
+            url: "/dayplan/updateDayTrueplan",
+            method: "post",
+            data
+          }).then(response => {
+            var data = response.data;
+            if (data.status == 1) {
+              this.diaLogFormEditVisible = false;
+              this.getChart();
+              this.$message({
+                type: "success",
+                message: "保存成功！"
+              });
+            }
+          });
+        } else {
+          console.log("操作失败！");
+          return false;
+        }
+      });
     }
+    // this.request({
+    //   url: "/dayplan/updateDayTrueplan",
+    //   method: "get",
+    //   params: { id: this.numberId }
+    // }).then(response => {
+    //   let data = response.data;
+    //   if (data.status == 1) {
+    //     // this.formData = data.data;
+    //     // this.lineTypeList.map((item, index) => {
+    //     //   if (item.id == data.data.line_type) {
+    //     //     // this.lineTypeDes = "里程范围：" + item.tip;
+    //     //     // this.lineTypeStart = item.start;
+    //     //     // this.lineTypeEnd = item.end;
+    //     //     // var timestamp = new Date(data.data.end_time);
+    //     //     // console.log("timestamp:" + timestamp);
+    //     //     // this.formData.end_time = timestamp;
+    //   }
+    // });
+
     //
   }
 };
@@ -934,14 +1261,17 @@ export default {
   }
 }
 /*dialog  */
+.dialog-monitor .el-dialog__body {
+  padding: 30px 30px 0 30px;
+}
 .dialog-monitor b {
   font-weight: 500;
 }
 .dialog-monitor .el-textarea__inner {
   border: 1px #9db9fa solid;
   color: #4b6eca;
-  height: 85px;
-  width: 835px;
+  height: 55px;
+  width: 550px;
 }
 .dialog-monitor .el-textarea {
   width: 100%;
@@ -972,15 +1302,18 @@ export default {
   width: 180px;
 }
 .dialog-monitor b {
-  padding-right: 10px;
+  padding-right: 8px;
 }
 .dialog-monitor fieldset {
-  border: 1px #ddd solid;
+  border: 1px #9db9fa solid;
   margin-bottom: 15px;
+  border-radius: 3px;
+  padding: 5px 5px 0 5px;
 }
 .dialog-monitor fieldset legend {
-  font-weight: 700;
-  color: #333;
+  font-size: 16px;
+  color: #4b6eca;
+  padding: 0 10px;
 }
 .el-form-item-block {
   display: block;

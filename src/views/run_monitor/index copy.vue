@@ -93,9 +93,17 @@ export default {
           myChart.getDom().style.height =
             document.body.clientHeight - 280 + "px";
           //站点
-          this.mark_line = JSON.parse(
-            JSON.stringify(resdata.data.y).replace(/value/g, "yAxis")
-          );
+          let jsonStations = [];
+          resdata.data.stations.map(item => {
+             this.mark_line.push({
+              name: item.name + " DK " + item.start_flag + +item.start_length,
+              yAxis: item.start_flag +item.start_length
+            });
+          });
+          console.log( this.mark_line)
+          // this.mark_line = JSON.parse(
+          //   JSON.stringify(resdata.data.stations).replace(/value/g, "yAxis")
+          // );
           let minLineNum = Math.min.apply(
             Math,
             this.mark_line.map(function(item) {
@@ -210,7 +218,7 @@ export default {
               maxInterval: 3600 * 0.1 * 1000,
               axisLabel: {
                 formatter: function(val, index) {
-                  let  date = new Date(val);
+                  let date = new Date(val);
                   let months = date.getMonth() + 1 + "/" + date.getDate();
                   let hours = date.getHours() + ":00";
                   if (index % 6 == 0) {
@@ -244,14 +252,14 @@ export default {
                 bottom: 10,
                 start: 0,
                 end: 25,
-                minValueSpan:  3600 *12 *1000,
+                minValueSpan: 3600 * 12 * 1000,
                 textStyle: {
                   color: "#fff"
                 },
                 borderColor: "#2B2B2B",
                 handleSize: "75%",
                 fillerColor: "#202f40"
-               },
+              },
               {
                 type: "slider",
                 filterMode: "weakFilter",
