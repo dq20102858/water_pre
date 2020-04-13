@@ -12,114 +12,128 @@
         <el-menu-item class="is-active" @click="refpage">周计划</el-menu-item>
       </el-menu>
     </div>
-    <div v-if="isParent">
-      <div class="app-page">
-        <div class="app-page-container-other">
-          <div class="app-page-select" style="margin:10px 0">
-            <el-form :model="searchForm" :inline="true">
-              <el-form-item label="选择时间">
-                <el-date-picker
-                  v-model="searchForm.time_range"
-                  type="daterange"
-                  range-separator="至"
-                  start-placeholder="开始日期"
-                  end-placeholder="结束日期"
-                  :default-time="['00:00:00', '23:59:59']"
-                ></el-date-picker>
-              </el-form-item>
-              <el-form-item label="选择公司">
-                <el-select v-model="searchForm.depart_id" placeholder="请选择公司" clearable>
-                  <el-option
-                    v-for="item in companyList"
-                    :key="item.id"
-                    :label="item.name"
-                    :value="item.id"
-                  ></el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item class="form-so">
-                <label class="el-form-item__label"></label>
-                <el-button size="small" icon="el-icon-search" @click="getWeekList" type="primary">查询</el-button>
-              </el-form-item>
-            </el-form>
-          </div>
-          <el-row :gutter="20" v-if="weekList.length>0">
-            <el-col :span="6" v-for="item in weekList" :key="item.id">
-              <div class="grid-content" @click="goDetail(item.id)">
-                <div class="grid-title">{{item.description}}</div>
-                <div class="grid-box">
-                  <p>{{item.start_time}}-{{item.end_time}}</p>
-                  <p>查看周计划</p>
-                  <img :src="require('@/assets/image/icon-drop.png')" />
-                </div>
-              </div>
-            </el-col>
-          </el-row>
-          <div v-else style="font-size:14px;text-align:center;line-height:50px;color:#909399;">暂无数据</div>
-          <div class="app-pagination">
-            <el-pagination
-              class="pagination"
-              v-if="weekList.length !== 0"
-              layout="slot,prev, pager, next,slot,total"
-              :page-size="this.page_size"
-              :current-page="this.page_cur"
-              :total="this.pageTotal"
-              @current-change="pageChange"
-              prev-text="上一页"
-              next-text="下一页"
-            >
-              <button @click="toFirstPage" type="button" class="btn-first">
-                <span>首页</span>
-              </button>
-              <button @click="toLastPage" type="button" class="btn-last">
-                <span>尾页</span>
-              </button>
-            </el-pagination>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div v-if="!isParent" class="wdetail">
+    <div class="app-page">
       <div class="app-page-container">
-      <div class="wtop">
-        <span class="item">作业单位： {{weekdailyList.company}}</span>
-        <span class="item">申报时间： {{weekdailyList.create_time}}</span>
-        <span class="item">申报人： {{weekdailyList.apply}}</span>
-        <span class="item">电话：{{weekdailyList.phone}}</span>
-        <span class="itembtn">
-          <el-button size="small" @click="goBack" type="primary">返回</el-button>
-        </span>
-      </div>
-      <div class="wmain">
-        <div class="app-table">
-          <el-table :data="weekdailyList.lists">
-            <el-table-column prop="work_time" label="日期" :formatter="dateFormat"></el-table-column>
-            <el-table-column prop="type" label="作业类别"></el-table-column>
-            <el-table-column prop="detail_time" min-width="60" label="作业时间"></el-table-column>
-            <el-table-column prop="description" label="作业内容"></el-table-column>
-            <el-table-column prop="area" label="作业区域"></el-table-column>
-            <el-table-column prop="up_part" label="编组上行端"></el-table-column>
-            <el-table-column prop="location" label="装车地"></el-table-column>
-            <el-table-column prop="attention" label="防护措施及要求"></el-table-column>
-            <el-table-column prop="remark" label="备注"></el-table-column>
-            <el-table-column label="操作" width="140">
-              <template slot-scope="scope">
-                <div class="app-operation">
-                  <el-button class="btn-blue" size="mini">已转换</el-button>
-                  <el-button class="btn-blue" size="mini">报表</el-button>
+        <div v-if="isParent">
+          <div class="app-page-container-other">
+            <div class="app-page-select" style="margin:10px 0">
+              <el-form :model="searchForm" :inline="true">
+                <el-form-item label="选择时间">
+                  <el-date-picker
+                    v-model="searchForm.time_range"
+                    type="daterange"
+                    range-separator="至"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期"
+                    :default-time="['00:00:00', '23:59:59']"
+                  ></el-date-picker>
+                </el-form-item>
+                <el-form-item label="选择公司">
+                  <el-select v-model="searchForm.depart_id" placeholder="请选择公司" clearable>
+                    <el-option
+                      v-for="item in companyList"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item class="form-so">
+                  <label class="el-form-item__label"></label>
+                  <el-button
+                    size="small"
+                    icon="el-icon-search"
+                    @click="getWeekList"
+                    type="primary"
+                  >查询</el-button>
+                </el-form-item>
+              </el-form>
+            </div>
+            <el-row :gutter="20" v-if="weekList.length>0">
+              <el-col :span="6" v-for="item in weekList" :key="item.id">
+                <div class="grid-content" @click="goDetail(item.id)">
+                  <div class="grid-title">{{item.description}}</div>
+                  <div class="grid-box">
+                    <p>申报人：{{item.apply}}</p>
+                    <p>申报单位：{{item.company}}</p>
+                    <p>{{item.start_time}}-{{item.end_time}}</p>
+                    <p>查看周计划</p>
+                    <img :src="require('@/assets/image/icon-drop.png')" />
+                  </div>
                 </div>
-              </template>
-            </el-table-column>
-          </el-table>
+              </el-col>
+            </el-row>
+            <div
+              v-else
+              style="font-size:14px;text-align:center;line-height:50px;color:#909399;"
+            >暂无数据</div>
+            <div class="app-pagination">
+              <el-pagination
+                class="pagination"
+                v-if="weekList.length !== 0"
+                layout="slot,prev, pager, next,slot,total"
+                :page-size="this.page_size"
+                :current-page="this.page_cur"
+                :total="this.pageTotal"
+                @current-change="pageChange"
+                prev-text="上一页"
+                next-text="下一页"
+              >
+                <button @click="toFirstPage" type="button" class="btn-first">
+                  <span>首页</span>
+                </button>
+                <button @click="toLastPage" type="button" class="btn-last">
+                  <span>尾页</span>
+                </button>
+              </el-pagination>
+            </div>
+          </div>
+        </div>
+        <div v-if="!isParent" class="wdetail">
+          <div class="wtop">
+            <span
+              class="item"
+              :title="weekdailyList.company"
+              style="width:400px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;"
+            >作业单位： {{weekdailyList.company}}</span>
+            <span class="item">申报时间： {{weekdailyList.create_time}}</span>
+            <span class="item">申报人： {{weekdailyList.apply}}</span>
+            <span class="item">电话：{{weekdailyList.phone}}</span>
+            <span class="itembtn">
+              <el-button size="small" @click="goBack" type="primary">返回</el-button>
+            </span>
+          </div>
+          <div class="wmain">
+            <div class="app-table">
+              <el-table :data="weekdailyList.lists">
+                <el-table-column prop="work_time" label="日期" :formatter="dateFormat"></el-table-column>
+                <el-table-column prop="type" label="作业类别"></el-table-column>
+                <el-table-column prop="detail_time" min-width="60" label="作业时间"></el-table-column>
+                <el-table-column prop="description" label="作业内容"></el-table-column>
+                <el-table-column prop="area" label="作业区域"></el-table-column>
+                <el-table-column prop="up_part" label="编组上行端"></el-table-column>
+                <el-table-column prop="location" label="装车地"></el-table-column>
+                <el-table-column prop="attention" label="防护措施及要求"></el-table-column>
+                <el-table-column prop="remark" label="备注"></el-table-column>
+                <el-table-column label="操作" width="140">
+                  <template slot-scope="scope">
+                    <div class="app-operation">
+                      <el-button class="btn-blue" size="mini">已转换</el-button>
+                      <el-button class="btn-blue" size="mini">报表</el-button>
+                    </div>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+          </div>
+          <div class="wfoot">
+            <span>注：监理需对此项施工或运输的相关条件（如材料设备已到位，边界条件已满足等），进行确认。</span>
+            <span class="fr">主管领导：暂无</span>
+            <span class="fr">总监：暂无</span>
+          </div>
         </div>
       </div>
-      <div class="wfoot">
-        <span>注：监理需对此项施工或运输的相关条件（如材料设备已到位，边界条件已满足等），进行确认。</span>
-        <span class="fr">主管领导：暂无</span>
-        <span class="fr">总监：暂无</span>
-      </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -145,7 +159,7 @@ export default {
       }
     };
   },
-   mounted() {
+  mounted() {
     document
       .querySelector("#app-menu-items #menu_apply")
       .classList.add("is-active");
@@ -244,9 +258,6 @@ export default {
   background: #4b6eca;
   color: #fff;
 }
-
-.app-page-container-other {
-}
 .el-row {
   margin-bottom: 20px;
 }
@@ -271,6 +282,8 @@ export default {
 }
 .grid-content .grid-box {
   padding: 30px 0;
+  border: 1px #3655a5 solid;
+  border-radius: 0 0 6px 6px;
 }
 .grid-content .grid-box p {
   color: #4b6eca;
@@ -288,12 +301,6 @@ export default {
   box-shadow: 1px 2px 10px 0 rgba(54, 85, 222, 0.3);
   cursor: pointer;
 }
-.grid-content .grid-box:hover p {
-  font-weight: 700;
-}
-.wdetail {
-  padding: 20px;
-}
 .wmain .el-table {
   background: #fff;
 }
@@ -307,7 +314,7 @@ export default {
   color: #4b6eca;
   display: inline-block;
   margin-right: 24px;
-  font-size: 18px;
+  font-size: 16px;
   padding-top: 5px;
 }
 .wfoot .itembtn {
@@ -317,14 +324,15 @@ export default {
   margin-top: 20px;
   overflow: hidden;
   display: flex;
-  justify-content:flex-start;
+  justify-content: flex-start;
 }
 .wfoot span {
   color: #4b6eca;
   float: left;
   margin-right: 24px;
-  font-size: 18px;
-  display: block;min-width: 160px;
+  font-size: 16px;
+  display: block;
+  min-width: 160px;
 }
 .wfoot .fr {
   float: right;

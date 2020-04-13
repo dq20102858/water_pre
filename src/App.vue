@@ -49,6 +49,7 @@ ul,li{list-style-type: none}
 .app-page{padding: 20px;}
 .app-page-container{border-radius: 6px;padding: 20px; background: #fff;}
 .app-page-select{display: block;}
+.app-page-select .form-add-item{margin-right: 40px;}
 .app-page-select .select-from-inline{display: inline-block;white-space: nowrap;width: 100%;}
 .btn-red-addedit {background: #ff5c75;border-color: #ff5c75;margin-right: 20px;}
 .btn-red-addedit:hover, .btn-red-addedit:focus{background: #fe3a58;border-color: #fe3a58;}
@@ -83,7 +84,6 @@ ul,li{list-style-type: none}
 .app-dialog-form .el-form-item__label {color: #1d397a;}
 .app-dialog-form .el-input input {border: 1px #9db9fa solid;color: #4b6eca}
 .app-dialog-form .el-textarea__inner {border: 1px #9db9fa solid;color: #4b6eca;}
-
 /*pagination */
 .app-pagination{text-align: right;margin-top: 20px;}
 .app-pagination .el-pagination {border-radius: 4px;overflow: hidden; display: inline-block;padding: 0; margin: 20px 0;border: 1px solid #3655A5;}

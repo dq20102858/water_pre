@@ -16,10 +16,10 @@
       <div class="app-page-container">
         <div class="app-page-select">
           <el-form :inline="true">
-            <el-form-item>
+            <el-form-item  class="form-add-item">
               <el-button type="primary" icon="el-icon-plus" @click="openAddPost">添加职位</el-button>
             </el-form-item>
-            <el-form-item>
+            <el-form-item  label="公司">
               <el-select v-model="search_pid" @change="getDepartLists($event)" placeholder="请选择公司">
                 <el-option
                   v-for="item in this.companySelectList"
@@ -29,7 +29,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item>
+            <el-form-item  label="部门">
               <el-select v-model="search_departid" ref="departselectClear"  placeholder="请选择部门"  clearable>
                 <el-option
                   v-for="item in this.departSelectList"
@@ -193,6 +193,11 @@ export default {
       postSelectList: []
     };
   },
+    mounted() {
+    document
+      .querySelector("#app-menu-items #menu_admin")
+      .classList.add("is-active");
+  },
   created() {
     this.getCompanyLists();
     this.getPageLists();
@@ -246,6 +251,7 @@ export default {
     resetSerach() {
       this.search_pid = "";
       this.search_departid = "";
+      this.departSelectList=[];
       this.getPageLists();
     },
     openAddPost() {

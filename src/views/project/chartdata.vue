@@ -97,6 +97,11 @@ export default {
       echartDataNames: ""
     };
   },
+   mounted() {
+    document
+      .querySelector("#app-menu-items #menu_project")
+      .classList.add("is-active");
+  },
   created() {
     this.getWorkTypeList();
     let nowDate = new Date();

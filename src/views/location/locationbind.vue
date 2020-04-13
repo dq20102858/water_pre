@@ -115,7 +115,7 @@
         ref="detectorRulesForm"
       >
         <el-form-item label="设备编号：" prop="number">
-          <el-input v-model="locationData.number" autocomplete="off"  maxlength="20" show-word-limit></el-input>
+          <el-input v-model.trim="locationData.number" autocomplete="off"  maxlength="20" show-word-limit></el-input>
         </el-form-item>
         <div v-if="locationData.id>0">
           <el-form-item label="设备类型：" prop="type">

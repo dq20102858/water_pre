@@ -30,7 +30,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="日班计划类型">
+            <el-form-item label="计划类型">
               <el-select v-model="searchForm.type" placeholder="请选择日班计划类型" clearable>
                 <el-option label="有车施工计划" :value="1"></el-option>
                 <el-option label="无车施工计划" :value="2"></el-option>
@@ -449,6 +449,8 @@ export default {
         start_time: "",
         end_time: ""
       };
+      this.page_cur = 1;
+      this.getDataList();
     },
     goDetail(id) {
       this.dialogTitle = "施工管理详情";

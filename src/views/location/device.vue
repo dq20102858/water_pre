@@ -79,7 +79,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="机具名称：" prop="name">
-          <el-input v-model="deviceData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
+          <el-input v-model.trim="deviceData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
         </el-form-item>
         <el-form-item label="详情：" prop="description">
           <el-input type="textarea" v-model="deviceData.description" maxlength="50" show-word-limit></el-input>

@@ -16,7 +16,7 @@
       <div class="app-page-container">
         <div class="app-page-select">
           <el-form :model="searchForm" :inline="true">
-            <el-form-item label="公司名称">
+            <el-form-item label="公司">
               <el-select v-model="searchForm.depart_id" placeholder="请选择公司"  @change="selectCompanyList($event)">
                 <el-option
                   v-for="item in companyList"
@@ -26,7 +26,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="人员姓名">
+            <el-form-item label="人员">
               <el-select v-model="searchForm.name" placeholder="请选择人员姓名" clearable>
                 <el-option
                   v-for="item in objSelectLists"
@@ -255,6 +255,7 @@ export default {
         start_time: "",
         end_time: ""
       };
+      this.objSelectLists=[];
       this.getDataList();
     }
     //

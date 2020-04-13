@@ -15,11 +15,11 @@
       <div class="app-page-container">
         <div class="app-page-select">
           <el-form :inline="true">
-            <el-form-item>
+            <el-form-item   class="form-add-item">
               <el-button type="primary" icon="el-icon-plus" @click="openAddDepart">添加部门</el-button>
             </el-form-item>
-            <el-form-item>
-              <el-select v-model="search_pid" placeholder="请选择公司" clearable>
+            <el-form-item label="公司">
+              <el-select v-model="search_pid" placeholder="请选择公司">
                 <el-option
                   v-for="item in this.companySelectList"
                   :key="item.id"
@@ -175,6 +175,11 @@ export default {
       departSelectLists: [],
       postSelectLists: []
     };
+  },
+      mounted() {
+    document
+      .querySelector("#app-menu-items #menu_admin")
+      .classList.add("is-active");
   },
   created() {
     this.getCompanyLists();

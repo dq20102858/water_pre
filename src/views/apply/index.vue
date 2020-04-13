@@ -17,7 +17,7 @@
       <div class="app-page-container">
         <div class="app-page-select">
           <el-form :model="searchForm" :inline="true">
-            <el-form-item>
+            <el-form-item label="公司">
               <el-select v-model="searchForm.depart_id" placeholder="请选择公司" clearable>
                 <el-option
                   v-for="item in companyList"
@@ -27,7 +27,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item>
+            <el-form-item label="线别">
               <el-select v-model="searchForm.line_type" placeholder="请选择线别" clearable>
                 <el-option
                   v-for="item in lineList"
@@ -37,7 +37,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item>
+            <el-form-item label="类型">
               <el-select v-model="searchForm.type" placeholder="请选择类型" clearable>
                 <el-option
                   v-for="item in typeList"
@@ -47,7 +47,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item>
+            <el-form-item label="起始车站">
               <el-select v-model="searchForm.start_station" placeholder="请选择起始车站" clearable>
                 <el-option
                   v-for="item in stationList"
@@ -57,7 +57,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item>
+            <el-form-item label="结束车站">
               <el-select v-model="searchForm.end_station" placeholder="请选择结束车站" clearable>
                 <el-option
                   v-for="item in stationList"
@@ -67,17 +67,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item>
-              <el-date-picker
-                v-model="searchForm.time_range"
-                type="daterange"
-                range-separator="至"
-                start-placeholder="选择开始日期"
-                end-placeholder="选择结束日期"
-                :default-time="['00:00:00', '23:59:59']"
-              ></el-date-picker>
-            </el-form-item>
-            <el-form-item>
+             <el-form-item label="状态">
               <el-select v-model="searchForm.status" placeholder="请选择状态" clearable>
                 <el-option
                   v-for="item in statusList"
@@ -87,9 +77,26 @@
                 ></el-option>
               </el-select>
             </el-form-item>
+            <el-form-item label="时间">
+              <el-date-picker
+                v-model="searchForm.time_range"
+                type="daterange"
+                range-separator="至"
+                start-placeholder="选择开始日期"
+                end-placeholder="选择结束日期"
+                :default-time="['00:00:00', '23:59:59']"
+              ></el-date-picker>
+            </el-form-item>
+           
             <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
-              <el-button size="small" icon="el-icon-search" @click="pageSearchEvent" type="primary">查询</el-button>
+              <el-button
+                size="small"
+                icon="el-icon-search"
+                @click="pageSearchEvent"
+                type="primary"
+              >查询</el-button>
+              <el-button size="small" plain @click="resetSerach">重置</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -97,7 +104,6 @@
         <!-- end search -->
         <div class="app-table">
           <el-table :data="dataList">
-            
             <el-table-column prop="number" label="作业编号"></el-table-column>
             <el-table-column prop="command_num" label="作业令号"></el-table-column>
             <el-table-column prop="description" label="作业内容" show-overflow-tooltip></el-table-column>
@@ -112,12 +118,11 @@
               </template>
             </el-table-column>
             <el-table-column prop="next_status" label="下一步状态"></el-table-column>
-            <el-table-column prop="company" label="公司简称"  show-overflow-tooltip></el-table-column>
+            <el-table-column prop="company" label="公司简称" show-overflow-tooltip></el-table-column>
             <el-table-column label="操作" width="120">
               <template slot-scope="scope">
                 <div class="app-operation">
-             
-                        <el-button
+                  <el-button
                     v-if="scope.row.status=='未批复'"
                     class="btn-red"
                     size="mini"
@@ -136,7 +141,7 @@
                     size="mini"
                     @click="goApplyNo(scope.row.id,scope.row.company)"
                   >注销</el-button>
-                 <el-button
+                  <el-button
                     class="btn-blue"
                     size="mini"
                     @click="goDetail(scope.row.id,scope.row.type)"
@@ -314,6 +319,11 @@ export default {
       this.pageChange(this.page_total);
     },
     pageSearchEvent() {
+      this.page_cur = 1;
+      this.getDataList();
+    },
+    resetSerach() {
+      this.searchForm = {};
       this.page_cur = 1;
       this.getDataList();
     },

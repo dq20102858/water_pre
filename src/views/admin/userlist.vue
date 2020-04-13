@@ -14,14 +14,14 @@
     <div class="app-page">
       <div class="app-page-container">
         <div class="app-page-select">
-          <el-form :inline="true">
-            <el-form-item>
+          <el-form :inline="true" ref="userSearch">
+            <el-form-item   class="form-add-item">
               <el-button type="primary" icon="el-icon-plus" @click="openAddUser">添加人员</el-button>
             </el-form-item>
-            <el-form-item>
+            <el-form-item label="姓名">
               <el-input v-model="userSearch.user_name" autocomplete="off" placeholder="请输入姓名"></el-input>
             </el-form-item>
-            <el-form-item>
+            <el-form-item  label="公司">
               <el-select
                 v-model="userSearch.company_id"
                 @change="getDepartLists($event)"
@@ -35,7 +35,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item>
+            <el-form-item  label="部门">
               <el-select
                 v-model="userSearch.depart_id"
                 @change="getPostLists($event)"
@@ -49,7 +49,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item>
+            <el-form-item  label="职位">
               <el-select v-model="userSearch.post_id" placeholder="请选择职位">
                 <el-option
                   v-for="item in this.postSelectList"
@@ -315,6 +315,11 @@ export default {
       userMenuList: []
     };
   },
+      mounted() {
+    document
+      .querySelector("#app-menu-items #menu_admin")
+      .classList.add("is-active");
+  },
   created() {
     this.getCompanyLists();
     this.getLineTypes();
@@ -366,6 +371,9 @@ export default {
         depart_id: "",
         post_id: ""
       };
+      this.departSelectList=[];
+      this.postSelectList=[];
+      this.userPage_cur = 1;
       this.getUserLists();
     },
     openAddUser() {
@@ -566,7 +574,7 @@ export default {
   width: 100%;
 }
 .dialog-user .el-select {
-  width: 185px;
+  width: 185px; 
 }
 
 .dialog-user .el-form-item-block {

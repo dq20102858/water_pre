@@ -204,6 +204,11 @@ export default {
       proType:1
     };
   },
+   mounted() {
+    document
+      .querySelector("#app-menu-items #menu_project")
+      .classList.add("is-active");
+  },
   created() {
     this.getLineType();
     this.getWorkTypeList();

@@ -14,59 +14,65 @@
     <div class="app-page">
       <div id="detail">
         <div class="app-page-container">
-          <el-form :model="searchForm" :inline="true">
-            <el-form-item>
-              <el-button size="small" icon="el-icon-plus" type="primary" @click="addHistory">添加历史记录</el-button>
-            </el-form-item>
-            <el-form-item label="作业">
-              <el-select
-                v-model="searchForm.work"
-                clearable
-                placeholder="请选择作业"
-                class="search-input search-select"
-              >
-                <el-option
-                  v-for="item in workLists"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                >{{item.name}}</el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="选择时间">
-              <el-date-picker
-                v-model="searchForm.time_range"
-                type="daterange"
-                align="right"
-                unlink-panels
-                range-separator="至"
-                start-placeholder="开始日期"
-                end-placeholder="结束日期"
-                value-format="yyyy-MM-dd"
-              ></el-date-picker>
-            </el-form-item>
-            <el-form-item label="完成状态">
-              <el-select
-                v-model="searchForm.is_finish"
-                placeholder="请选择状态"
-                class="search-input search-select"
-                style="width:140px;"
-              >
-                <el-option label="全部" value="-1" selected>全部</el-option>
-                <el-option label="已完成" value="1">已完成</el-option>
-                <el-option label="未完成" value="0">未完成</el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item>
-              <el-button
-                size="small"
-                icon="el-icon-search"
-                type="primary"
-                @click="detailSearchPage"
-              >查询</el-button>
-            </el-form-item>
-          </el-form>
-
+          <div class="app-page-select">
+            <el-form :model="searchForm" :inline="true">
+              <el-form-item class="form-add-item">
+                <el-button
+                  size="small"
+                  icon="el-icon-plus"
+                  type="primary"
+                  @click="addHistory"
+                >添加历史记录</el-button>
+              </el-form-item>
+              <el-form-item label="作业">
+                <el-select
+                  v-model="searchForm.work"
+                  clearable
+                  placeholder="请选择作业"
+                  class="search-input search-select"
+                >
+                  <el-option
+                    v-for="item in workLists"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id"
+                  >{{item.name}}</el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="时间">
+                <el-date-picker
+                  v-model="searchForm.time_range"
+                  type="daterange"
+                  align="right"
+                  unlink-panels
+                  range-separator="至"
+                  start-placeholder="开始日期"
+                  end-placeholder="结束日期"
+                  value-format="yyyy-MM-dd"
+                ></el-date-picker>
+              </el-form-item>
+              <el-form-item label="状态">
+                <el-select
+                  v-model="searchForm.is_finish"
+                  placeholder="请选择状态"
+                  class="search-input search-select"
+                  style="width:140px;"
+                >
+                  <el-option label="全部" value="-1" selected>全部</el-option>
+                  <el-option label="已完成" value="1">已完成</el-option>
+                  <el-option label="未完成" value="0">未完成</el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item>
+                <el-button
+                  size="small"
+                  icon="el-icon-search"
+                  type="primary"
+                  @click="detailSearchPage"
+                >查询</el-button>
+              </el-form-item>
+            </el-form>
+          </div>
           <div class="app-table">
             <el-table :data="detailListPages" ref="multipleTable">
               <el-table-column type="index" label="序号" align="center"></el-table-column>
@@ -142,7 +148,7 @@
                   <el-input v-model="historyData.line_type_desc" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="完成日期：" prop="plan_time" class="widhtss">
-                  <el-date-picker v-model="historyData.plan_time" type="date" placeholder="选择日期" ></el-date-picker>
+                  <el-date-picker v-model="historyData.plan_time" type="date" placeholder="选择日期"></el-date-picker>
                 </el-form-item>
               </div>
               <el-form-item label="作业名称：" prop="pro_id" v-show="addShow">
@@ -292,6 +298,11 @@ export default {
       lineTypeEndTotal: 0,
       addShow: true
     };
+  },
+  mounted() {
+    document
+      .querySelector("#app-menu-items #menu_project")
+      .classList.add("is-active");
   },
   created() {
     this.getWorkList();

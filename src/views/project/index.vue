@@ -75,7 +75,7 @@
           <el-form class="el-form-custom" :model="workData" :rules="wokRules" ref="workForm">
             <el-form-item label="名称：" prop="name">
               <el-input
-                v-model="workData.name"
+                v-model.trim="workData.name"
                 autocomplete="off"
                 placeholder="请输入作业名称"
                 maxlength="20"

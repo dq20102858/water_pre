@@ -10,11 +10,6 @@
         <el-menu-item index="cardetector">车载探测器</el-menu-item>
         <el-menu-item index="locationbind">定位从设备</el-menu-item>
         <el-menu-item index="device">机具</el-menu-item>
-        <!-- <router-link to="location">人员定位统计</router-link>
-        <router-link to="walldetector">墙壁探测器</router-link>
-        <router-link to="cardetector">车载探测器</router-link>
-        <router-link to="locationbind">定位从设备</router-link>
-        <router-link to="device">机具</router-link>-->
       </el-menu>
     </div>
     <div class="app-page">
@@ -117,7 +112,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="设备名称：" prop="name">
-          <el-input v-model="detectorData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
+          <el-input v-model.trim="detectorData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
         </el-form-item>
         <el-form-item label="设备编号：" prop="number">
           <el-input v-model="detectorData.number" autocomplete="off" maxlength="20" show-word-limit></el-input>

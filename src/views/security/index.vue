@@ -5,8 +5,8 @@
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-sec.png')" />安全管理
         </li>
-        <el-menu-item index="1">添加事件</el-menu-item>
-        <el-menu-item index="2">事件管理</el-menu-item>
+        <el-menu-item index="1">事件管理</el-menu-item>
+        <el-menu-item index="2">添加事件</el-menu-item>
         <!-- <el-menu-item index="3">设置</el-menu-item> -->
       </el-menu>
     </div>
@@ -336,8 +336,8 @@ export default {
   data() {
     return {
       defaultActive: "1",
-      addPageShow: true,
-      listPageShow: false,
+      addPageShow: false,
+      listPageShow: true,
       setPageShow: false,
       searchForm: {
         type: 1,
@@ -422,16 +422,16 @@ export default {
   methods: {
     handleSelect(key, keyPath) {
       if (key == 1) {
-        this.addPageShow = true;
-        this.listPageShow = false;
-        this.setPageShow = false;
-        this.peopleData = {};
-      } else if (key == 2) {
         this.addPageShow = false;
         this.listPageShow = true;
         this.setPageShow = false;
         this.formData = {};
         this.getDataList();
+      } else if (key == 2) {
+        this.addPageShow = true;
+        this.listPageShow = false;
+        this.setPageShow = false;
+        this.peopleData = {};
       } else {
         this.addPageShow = false;
         this.listPageShow = false;
@@ -498,16 +498,16 @@ export default {
       this.getDataList();
     },
     resetSerach() {
-       this.searchForm= {
+      (this.searchForm = {
         type: 1,
-        danger_type:"",
-        danger_determine:"",
-        loco_id:"",
-        start_location:"",
-        end_location:"",
+        danger_type: "",
+        danger_determine: "",
+        loco_id: "",
+        start_location: "",
+        end_location: "",
         time_range: []
-      },
-      this.page_cur = 1;
+      }),
+        (this.page_cur = 1);
       this.getDataList();
     },
     //================事件表单操作
@@ -641,6 +641,7 @@ export default {
                 type: "success"
               });
               this.formData = {};
+              this.defaultActive = 1;
               this.addPageShow = false;
               this.listPageShow = true;
               this.getDataList();
