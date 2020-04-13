@@ -129,7 +129,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="职位名称：" prop="name">
-              <el-input v-model="postData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
+              <el-input v-model.trim="postData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
             </el-form-item>
             <el-form-item label="职位简介：" prop="description">
               <el-input v-model="postData.description" autocomplete="off" type="textarea" maxlength="30" show-word-limit></el-input>

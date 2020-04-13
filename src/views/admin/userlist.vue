@@ -74,8 +74,8 @@
             <el-table-column prop="company" label="公司" align="center"></el-table-column>
             <el-table-column prop="depart" label="部门" align="center"></el-table-column>
             <el-table-column prop="post" label="职位" align="center"></el-table-column>
-            <el-table-column prop="create_time" label="邮箱" align="center"></el-table-column>
-            <el-table-column prop="update_time" label="电话" align="center"></el-table-column>
+            <el-table-column prop="email" label="邮箱" align="center"></el-table-column>
+            <el-table-column prop="phone" label="电话" align="center"></el-table-column>
             <el-table-column prop="dispatch_desc" label="调度信息" align="center"></el-table-column>
             <el-table-column label="操作" width="120">
               <template slot-scope="scope">
@@ -124,7 +124,7 @@
             <div class="el-form-item-inlines">
               <el-form-item label="用户名：" prop="user_name" v-if="this.userDialogTitle=='添加人员信息'">
                 <el-input
-                  v-model="userData.user_name"
+                  v-model.trim="userData.user_name"
                   autocomplete="off"
                   maxlength="20"
                   show-word-limit

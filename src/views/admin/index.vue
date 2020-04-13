@@ -75,7 +75,7 @@
           >
             <el-form-item label="公司名称：" prop="name">
               <el-input
-                v-model="companyData.name"
+                v-model.trim="companyData.name"
                 autocomplete="off"
                 maxlength="20"
                 show-word-limit

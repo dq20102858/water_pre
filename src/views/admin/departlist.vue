@@ -108,7 +108,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="部门名称：" prop="name">
-              <el-input v-model="departData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
+              <el-input v-model.trim="departData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
             </el-form-item>
             <el-form-item label="是否属于施工队：" prop="is_work_team">
               <el-radio-group v-model="departData.is_work_team">
