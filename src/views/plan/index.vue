@@ -290,7 +290,7 @@
           </table>
         </div>
       </fieldset>
-      <fieldset>
+      <fieldset v-if="dataListItem.plan_type!=2">
         <legend>实际完成信息</legend>
         <div>
           <table style="width: 100%">

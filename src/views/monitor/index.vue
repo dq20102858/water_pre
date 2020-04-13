@@ -25,51 +25,58 @@
         </div>
       </div>
     </div>
-        <div class="stations-select">
-        <el-checkbox
-          class="bridgechk"
-          v-model="bridgeCheckValue"
-          @change="bridgeCheckSelect"
-          label="桥"
-          border
-        ></el-checkbox>
-        <el-checkbox
-          class="tunnelchk"
-          v-model="tunnelCheckValue"
-          @change="tunnelCheckSelect"
-          label="隧道"
-          border
-        ></el-checkbox>
-        <el-checkbox
-          class="speedchk"
-          v-model="speedCheckValue"
-          @change="speedCheckSelect"
-          label="限速区"
-          border
-        ></el-checkbox>
-        <el-checkbox
-          class="alertchk"
-          v-model="alertCheckValue"
-          @change="alertCheckSelect"
-          label="防区"
-          border
-        ></el-checkbox>
-        <el-checkbox v-model="checked5" label="道岔" border></el-checkbox>
-        <el-checkbox
-          class="slopechk"
-          v-model="slopeCheckValue"
-          @change="slopeCheckSelect"
-          label="坡度"
-          border
-        ></el-checkbox>
-      </div>
+    <div class="stations-select">
+      <el-checkbox
+        class="bridgechk"
+        v-model="bridgeCheckValue"
+        @change="bridgeCheckSelect"
+        label="桥"
+        border
+      ></el-checkbox>
+      <el-checkbox
+        class="tunnelchk"
+        v-model="tunnelCheckValue"
+        @change="tunnelCheckSelect"
+        label="隧道"
+        border
+      ></el-checkbox>
+      <el-checkbox
+        class="speedchk"
+        v-model="speedCheckValue"
+        @change="speedCheckSelect"
+        label="限速区"
+        border
+      ></el-checkbox>
+      <el-checkbox
+        class="alertchk"
+        v-model="alertCheckValue"
+        @change="alertCheckSelect"
+        label="防区"
+        border
+      ></el-checkbox>
+      <!-- <el-checkbox v-model="checked5" label="道岔" border></el-checkbox> -->
+      <el-checkbox
+        class="slopechk"
+        v-model="slopeCheckValue"
+        @change="slopeCheckSelect"
+        label="坡度"
+        border
+      ></el-checkbox>
+    </div>
     <div class="main-canvas">
       <div class="group-canvas scrollbar">
         <canvas id="mycanvas" height="680" ref="mycanvas">
           <p>您的系统不支持此程序!</p>
         </canvas>
       </div>
-  
+    </div>
+    <div class="progresslist">
+      施工进度：
+      <el-radio-group v-model="progressCheckValue"   @change="progressCheckSelect">
+        <el-radio v-for="item in progressCheckList" :key="item.name" :label="item.name">{{item.name}}</el-radio>
+        <!-- <el-radio :label="6">备选项</el-radio>
+        <el-radio :label="9">备选项</el-radio>-->
+      </el-radio-group>
     </div>
   </div>
 </template>
@@ -94,17 +101,18 @@ export default {
       minMileage: 0,
       totalMileage: 0,
       every: 0.5,
-      bridgeCheckValue: false,
+      bridgeCheckValue: true,
       bridgeList: [],
-      tunnelCheckValue: false,
+      tunnelCheckValue: true,
       tunnelList: [],
-      speedCheckValue: false,
+      speedCheckValue: true,
       speedList: [],
-      alertCheckValue: false,
+      alertCheckValue: true,
       alertList: [],
-      checked5: true,
       slopeCheckValue: true,
-      slopeList: []
+      slopeList: [],
+      progressCheckList: [],
+      progressCheckValue: 0
     };
   },
   created() {
@@ -155,6 +163,8 @@ export default {
           this.speedList = data.data.speed_lists; //限速区
           this.alertList = data.data.alert_lists; //防区
           this.slopeList = data.data.slope_lists; //坡度
+          //施工进度
+          this.progressCheckList = data.data.project;
           this.initCanvas();
           //  this.getLineType();
         }
@@ -191,7 +201,7 @@ export default {
       function drawAxes() {
         context.save();
         context.lineWidth = 10;
-        context.strokeStyle = "#27DB07";
+        context.strokeStyle = "#ffffff";
         context.beginPath();
         context.moveTo(axis_Origin.x, axis_Origin.y);
         context.lineTo(axis_Width, axis_Origin.y);
@@ -307,17 +317,6 @@ export default {
           let startX = (start - parseInt(minkm * 1000)) * everys; //开始值
           let endX = (end - parseInt(minkm * 1000)) * everys; //结束值
           let centerX = (endX + startX) / 2; //开始结束平均值
-
-          // console.log(
-          //   "startX：" +
-          //     startX +
-          //     " endX：" +
-          //     endX +
-          //     " centerX：" +
-          //     centerX +
-          //     " betweenMeters：" +
-          //     betweenMeters
-          // );
 
           context.lineWidth = 2;
           context.fillStyle = "#ffa918";
@@ -670,66 +669,177 @@ export default {
           context.strokeStyle = "#FF5F18";
           context.fillStyle = "#FF5F18";
 
-          let slope_height=parseFloat(json[i].height);
-          let slope_length=parseFloat(json[i].length);
-          let  slope_center=(betweenMeters * everys)/2;
+          let slope_height = parseFloat(json[i].height);
+          let slope_length = parseFloat(json[i].length);
+          let slope_center = (betweenMeters * everys) / 2;
           //type  1 2 3 代表上坡 平坡 下坡
           if (json[i].line_type == 1) {
             //对角线
             if (json[i].type == 1) {
-              context.moveTo(startX + offsetX,  axis_Origin.y +100); //起点
-              context.lineTo( startX + offsetX+ betweenMeters * everys, axis_Origin.y + 50); //终点
+              context.moveTo(startX + offsetX, axis_Origin.y + 100); //起点
+              context.lineTo(
+                startX + offsetX + betweenMeters * everys,
+                axis_Origin.y + 50
+              ); //终点
               context.stroke();
-              context.fillText(slope_height,startX + offsetX+slope_center-20, axis_Origin.y +60);
-              context.fillText(slope_length,startX + offsetX+slope_center+20, axis_Origin.y + 80);
+              context.fillText(
+                slope_height,
+                startX + offsetX + slope_center - 20,
+                axis_Origin.y + 60
+              );
+              context.fillText(
+                slope_length,
+                startX + offsetX + slope_center + 20,
+                axis_Origin.y + 80
+              );
             }
-              if (json[i].type ==2) {
-              context.moveTo(startX + offsetX,  axis_Origin.y +50+25); //起点
-              context.lineTo( startX + offsetX+ betweenMeters * everys, axis_Origin.y +50+25); //终点
+            if (json[i].type == 2) {
+              context.moveTo(startX + offsetX, axis_Origin.y + 50 + 25); //起点
+              context.lineTo(
+                startX + offsetX + betweenMeters * everys,
+                axis_Origin.y + 50 + 25
+              ); //终点
               context.stroke();
-              context.fillText(slope_height,startX + offsetX+slope_center, axis_Origin.y +60);
-              context.fillText(slope_length,startX + offsetX+slope_center, axis_Origin.y + 80);
+              context.fillText(
+                slope_height,
+                startX + offsetX + slope_center,
+                axis_Origin.y + 60
+              );
+              context.fillText(
+                slope_length,
+                startX + offsetX + slope_center,
+                axis_Origin.y + 80
+              );
             }
-               if (json[i].type == 3) {
-              context.moveTo(startX + offsetX,  axis_Origin.y +50); //起点
-              context.lineTo( startX + offsetX+ betweenMeters * everys, axis_Origin.y + 100); //终点
+            if (json[i].type == 3) {
+              context.moveTo(startX + offsetX, axis_Origin.y + 50); //起点
+              context.lineTo(
+                startX + offsetX + betweenMeters * everys,
+                axis_Origin.y + 100
+              ); //终点
               context.stroke();
-              context.fillText(slope_height,startX + offsetX+slope_center+20, axis_Origin.y +60);
-              context.fillText(slope_length,startX + offsetX+slope_center-20, axis_Origin.y + 80);
+              context.fillText(
+                slope_height,
+                startX + offsetX + slope_center + 20,
+                axis_Origin.y + 60
+              );
+              context.fillText(
+                slope_length,
+                startX + offsetX + slope_center - 20,
+                axis_Origin.y + 80
+              );
             }
             //画矩形
-            context.strokeRect(startX + offsetX , axis_Origin.y + 50, betweenMeters * everys,  50);
-          } 
-          else if (json[i].line_type ==2) {
-             //对角线
-           if (json[i].type ==1) {
-             context.moveTo(startX + offsetX,  axis_Origin_Two.y +100); //起点
-              context.lineTo( startX + offsetX+ betweenMeters * everys, axis_Origin_Two.y + 50); //终点
+            context.strokeRect(
+              startX + offsetX,
+              axis_Origin.y + 50,
+              betweenMeters * everys,
+              50
+            );
+          } else if (json[i].line_type == 2) {
+            //对角线
+            if (json[i].type == 1) {
+              context.moveTo(startX + offsetX, axis_Origin_Two.y + 100); //起点
+              context.lineTo(
+                startX + offsetX + betweenMeters * everys,
+                axis_Origin_Two.y + 50
+              ); //终点
               context.stroke();
-              context.fillText(slope_height,startX + offsetX+slope_center-20, axis_Origin_Two.y +60);
-              context.fillText(slope_length,startX + offsetX+slope_center+20, axis_Origin_Two.y + 80);
-           }
-             if (json[i].type ==2) {
-              context.moveTo(startX + offsetX,  axis_Origin_Two.y +50+25); //起点
-              context.lineTo( startX + offsetX+ betweenMeters * everys, axis_Origin_Two.y +50+25); //终点
-              context.stroke();
-              context.fillText(slope_height,startX + offsetX+slope_center, axis_Origin_Two.y +60);
-              context.fillText(slope_length,startX + offsetX+slope_center, axis_Origin_Two.y + 80);
+              context.fillText(
+                slope_height,
+                startX + offsetX + slope_center - 20,
+                axis_Origin_Two.y + 60
+              );
+              context.fillText(
+                slope_length,
+                startX + offsetX + slope_center + 20,
+                axis_Origin_Two.y + 80
+              );
             }
-               if (json[i].type == 3) {
-              context.moveTo(startX + offsetX,  axis_Origin_Two.y +50); //起点
-              context.lineTo( startX + offsetX+ betweenMeters * everys, axis_Origin_Two.y + 100); //终点
+            if (json[i].type == 2) {
+              context.moveTo(startX + offsetX, axis_Origin_Two.y + 50 + 25); //起点
+              context.lineTo(
+                startX + offsetX + betweenMeters * everys,
+                axis_Origin_Two.y + 50 + 25
+              ); //终点
               context.stroke();
-              context.fillText(slope_height,startX + offsetX+slope_center+20, axis_Origin_Two.y +60);
-              context.fillText(slope_length,startX + offsetX+slope_center-20, axis_Origin_Two.y + 80);
+              context.fillText(
+                slope_height,
+                startX + offsetX + slope_center,
+                axis_Origin_Two.y + 60
+              );
+              context.fillText(
+                slope_length,
+                startX + offsetX + slope_center,
+                axis_Origin_Two.y + 80
+              );
+            }
+            if (json[i].type == 3) {
+              context.moveTo(startX + offsetX, axis_Origin_Two.y + 50); //起点
+              context.lineTo(
+                startX + offsetX + betweenMeters * everys,
+                axis_Origin_Two.y + 100
+              ); //终点
+              context.stroke();
+              context.fillText(
+                slope_height,
+                startX + offsetX + slope_center + 20,
+                axis_Origin_Two.y + 60
+              );
+              context.fillText(
+                slope_length,
+                startX + offsetX + slope_center - 20,
+                axis_Origin_Two.y + 80
+              );
             }
             //画矩形
-            context.strokeRect(startX + offsetX , axis_Origin_Two.y + 50, betweenMeters * everys,  50);
+            context.strokeRect(
+              startX + offsetX,
+              axis_Origin_Two.y + 50,
+              betweenMeters * everys,
+              50
+            );
           }
           //
         }
       }
-      //
+
+    //绘制施工进度
+      function drawProgressAxis(sprogressListJson) {
+        let json = sprogressListJson;
+        for (let i = 0; i < json.length; i++) {
+          let start =
+            parseInt(json[i].start_flag) * 1000 +
+            parseInt(json[i].start_length);
+          let end =
+            parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
+          console.log("start：" + start + " end：" + end);
+          // 计算当前站点的x轴坐标
+          let startX = (start - parseInt(minkm * 1000)) * everys;
+          let endX = (end - parseInt(minkm * 1000)) * everys;
+          //console.log("startX：" + startX + " endX：" + endX);
+          context.strokeStyle = "#FF18D3";
+          context.lineWidth = 10;
+          context.fillStyle = "#FF18D3";
+          context.font = "12px Microsoft Yahei";
+          let desc = "限速" + json[i].speed + "公里/小时";
+          context.beginPath();
+          if (json[i].line_type == 1) {
+            //画水平直线
+            context.moveTo(startX + offsetX, axis_Origin.y);
+            context.lineTo(endX + offsetX, axis_Origin.y);
+            //文字
+            context.fillText(desc, startX + 152, axis_Origin.y + 35);
+          } else {
+            context.moveTo(startX + offsetX, axis_Origin_Two.y);
+            context.lineTo(endX + offsetX, axis_Origin_Two.y);
+            context.fillText(desc, startX + 152, axis_Origin_Two.y + 35);
+          }
+          context.stroke();
+          //
+        }
+      }
+      //基础
       drawAxes();
       drawAxisLabels(axis_Origin.x, axis_Origin.y);
       drawAxisLabels(axis_Origin_Two.x, axis_Origin_Two.y);
@@ -777,7 +887,10 @@ export default {
     slopeCheckSelect() {
       this.getProjectProcessMap();
     },
-    // =============桥 隧道 限速区 防区 道岔 坡度 end
+    // 施工进度
+    progressCheckSelect(){
+  this.getProjectProcessMap();
+    },
     //top
     stationLeftMove() {
       if (this.wdpx < 0) {
@@ -980,5 +1093,10 @@ export default {
 }
 .alertchk.is-checked .el-checkbox__label {
   color: #ff1833;
+}
+.progresslist {
+  padding-top: 20px;
+  padding-left: 30px;
+  color: #fff;
 }
 </style>
