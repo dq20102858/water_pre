@@ -923,7 +923,7 @@ export default {
   },
   mounted() {
     window.addEventListener("resize", () => {
-      this.scrollwidth = document.documentElement.clientWidth - 350;
+      this.scrollwidth = document.documentElement.clientWidth - 640;
     });
   }
 };
