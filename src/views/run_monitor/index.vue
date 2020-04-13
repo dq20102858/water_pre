@@ -93,7 +93,7 @@
             <el-option label="施工计划" :value="3"></el-option>
           </el-select>
         </el-form-item>
-        <fieldset>
+        <fieldset v-if="formData.plan_type!=3">
           <legend>列车信息</legend>
           <el-form-item label="列车类型：" label-width="100px">
             <el-select v-model="formData.car_type" placeholder="请选择"></el-select>
@@ -240,7 +240,7 @@
           </div>
         </fieldset>
         <!---2 -->
-        <fieldset>
+        <fieldset  v-if="formData.plan_type!=2">
           <legend>施工信息</legend>
           <div class="el-form-item-block">
             <el-form-item label="开始时间：" label-width="100px" prop="start_time">
@@ -1157,10 +1157,35 @@ export default {
       });
     },
     planEdit() {
-      this.diaLogTitleEdit = "修改计划图";
-      this.diaLogFormEditVisible = true;
-      this.getPlanNumbers(); //日班计划列表
-      this.getUserLists(); //记录人
+      let todayNum = this.todayValue;
+      let start_time = this.getNextDate(todayNum, -1, "-"); //前一天
+      let end_time = this.getNextDate(todayNum, 1, "-"); //后一天
+      this.request({
+        url: "/dayplan/getPlanNumbers",
+        method: "get",
+        params: {
+          start_time: start_time,
+          end_time: end_time
+        }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          if (data.data.length > 0) {
+            this.diaLogTitleEdit = "修改计划图";
+            this.diaLogFormEditVisible = true;
+            this.getPlanNumbers(); //日班计划列表
+            this.getUserLists(); //记录人
+          } else {
+             this.$alert('<strong>当天没有计划！</strong>', '提示信息', {
+          dangerouslyUseHTMLString: true
+        });
+            // this.$message({
+            //   type: "warning",
+            //   message: "当天没有计划！"
+            // });
+          }
+        }
+      });
     },
     updateDayTrueplan() {
       this.$refs["refFormEditRules"].validate(valid => {

@@ -150,7 +150,7 @@
         <em v-if="dataListItem.plan_type==2">( 行车计划 )</em>
         <em v-if="dataListItem.plan_type==3">( 施工计划 )</em>
       </div>
-      <fieldset>
+      <fieldset   v-if="dataListItem.plan_type!=3">
         <legend>计划列车信息</legend>
         <div>
           <table style="width: 100%">
@@ -235,7 +235,7 @@
           </table>
         </div>
       </fieldset>
-      <fieldset>
+      <fieldset   v-if="dataListItem.plan_type!=2">
         <legend>计划施工信息</legend>
         <div>
           <table style="width: 100%">
