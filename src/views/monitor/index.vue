@@ -844,6 +844,10 @@ export default {
       drawAxisLabels(axis_Origin_Two.x, axis_Origin_Two.y);
       //画地铁站
       drawStations(this.stationList);
+        //施工进度
+      if (this.progressCheckValue) {
+        drawProgressAxis(this.progressListItem);
+      }
       //桥
       if (this.bridgeCheckValue) {
         drawBridgeAxis(this.bridgeList);
@@ -864,10 +868,7 @@ export default {
       if (this.slopeCheckValue) {
         drawSlopeAxis(this.slopeList);
       }
-      //施工进度
-      if (this.progressCheckValue) {
-        drawProgressAxis(this.progressListItem);
-      }
+    
     },
 
     // =============桥 隧道 限速区 防区 道岔 坡度 施工进度
