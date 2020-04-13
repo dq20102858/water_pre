@@ -235,7 +235,7 @@
           </table>
         </div>
       </fieldset>
-      <fieldset   v-if="dataListItem.plan_type!=2">
+      <fieldset   v-if="formData.plan_type!=2">
         <legend>计划施工信息</legend>
         <div>
           <table style="width: 100%">
@@ -290,7 +290,7 @@
           </table>
         </div>
       </fieldset>
-      <fieldset v-if="dataListItem.plan_type!=2">
+      <fieldset    v-if="formData.plan_type!=3">
         <legend>实际完成信息</legend>
         <div>
           <table style="width: 100%">

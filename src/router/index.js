@@ -128,10 +128,6 @@ const constantRouterMap = [
       {
         path: '/userlist',
         component: () => import('@/views/admin/userlist')
-      } ,
-      {
-        path: '/demo',
-        component: () => import('@/views/admin/demo')
       }
     ]
   }
