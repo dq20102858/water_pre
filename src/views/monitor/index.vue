@@ -6,11 +6,8 @@
           {{firstStation}}方向
           <i class="line-a"></i>
         </div>
-        <div class="sright">
-          {{lastStation}}方向
-          <i class="line-b"></i>
-        </div>
-        <div class="stations">
+        <div class="scenter">
+ <div class="stations">
           <i class="el-icon-arrow-left" @click="stationLeftMove"></i>
           <div class="item" :style="{width:scrollwidth  + 'px'}">
             <ul :style="{width: stationList.length * 100 + 'px','margin-left': wdpx * 100 + 'px'}">
@@ -23,9 +20,31 @@
           </div>
           <i class="el-icon-arrow-right" @click="stationRightMove"></i>
         </div>
+        </div>
+        <div class="sright">
+          {{lastStation}}方向
+          <i class="line-b"></i>
+        </div>
+       
       </div>
     </div>
-    <div class="stations-select">
+  
+    <div class="main-canvas">
+      <div class="group-canvas scrollbar">
+        <canvas id="mycanvas" height="680" ref="mycanvas">
+          <p>您的系统不支持此程序!</p>
+        </canvas>
+      </div>
+    </div>
+    <div class="progresslist">
+      施工进度：
+      <el-radio-group v-model="progressCheckValue" @change="progressCheckSelect">
+        <el-radio v-for="item in progressList" :key="item.name" :label="item.name">{{item.name}}</el-radio>
+        <!-- <el-radio :label="6">备选项</el-radio>
+        <el-radio :label="9">备选项</el-radio>-->
+      </el-radio-group>
+    </div>
+      <div class="stations-select">
       <el-checkbox
         class="bridgechk"
         v-model="bridgeCheckValue"
@@ -63,21 +82,6 @@
         border
       ></el-checkbox>
     </div>
-    <div class="main-canvas">
-      <div class="group-canvas scrollbar">
-        <canvas id="mycanvas" height="680" ref="mycanvas">
-          <p>您的系统不支持此程序!</p>
-        </canvas>
-      </div>
-    </div>
-    <div class="progresslist">
-      施工进度：
-      <el-radio-group v-model="progressCheckValue"   @change="progressCheckSelect">
-        <el-radio v-for="item in progressCheckList" :key="item.name" :label="item.name">{{item.name}}</el-radio>
-        <!-- <el-radio :label="6">备选项</el-radio>
-        <el-radio :label="9">备选项</el-radio>-->
-      </el-radio-group>
-    </div>
   </div>
 </template>
 
@@ -111,7 +115,8 @@ export default {
       alertList: [],
       slopeCheckValue: true,
       slopeList: [],
-      progressCheckList: [],
+      progressList: [],
+      progressListItem: [],
       progressCheckValue: 0
     };
   },
@@ -138,7 +143,7 @@ export default {
             if (first.start_flag > tmp.start_flag) first = tmp;
             if (end.start_flag < tmp.start_flag) end = tmp;
           }
-          this.scrollwidth = document.documentElement.clientWidth - 350;
+          this.scrollwidth = document.documentElement.clientWidth - 640;
           console.log(this.scrollwidth);
           this.firstStation = json[0].name; // 第一个站
           this.lastStation = json[json.length - 1].name; // 最后一个站
@@ -164,7 +169,7 @@ export default {
           this.alertList = data.data.alert_lists; //防区
           this.slopeList = data.data.slope_lists; //坡度
           //施工进度
-          this.progressCheckList = data.data.project;
+          this.progressList = data.data.project;
           this.initCanvas();
           //  this.getLineType();
         }
@@ -804,7 +809,7 @@ export default {
         }
       }
 
-    //绘制施工进度
+      //绘制施工进度
       function drawProgressAxis(sprogressListJson) {
         let json = sprogressListJson;
         for (let i = 0; i < json.length; i++) {
@@ -818,22 +823,16 @@ export default {
           let startX = (start - parseInt(minkm * 1000)) * everys;
           let endX = (end - parseInt(minkm * 1000)) * everys;
           //console.log("startX：" + startX + " endX：" + endX);
-          context.strokeStyle = "#FF18D3";
-          context.lineWidth = 10;
-          context.fillStyle = "#FF18D3";
-          context.font = "12px Microsoft Yahei";
-          let desc = "限速" + json[i].speed + "公里/小时";
+              context.lineWidth = 10;
+        context.strokeStyle = "#27DB07";
           context.beginPath();
           if (json[i].line_type == 1) {
             //画水平直线
             context.moveTo(startX + offsetX, axis_Origin.y);
             context.lineTo(endX + offsetX, axis_Origin.y);
-            //文字
-            context.fillText(desc, startX + 152, axis_Origin.y + 35);
-          } else {
+          } else if (json[i].line_type == 2) {
             context.moveTo(startX + offsetX, axis_Origin_Two.y);
             context.lineTo(endX + offsetX, axis_Origin_Two.y);
-            context.fillText(desc, startX + 152, axis_Origin_Two.y + 35);
           }
           context.stroke();
           //
@@ -865,8 +864,23 @@ export default {
       if (this.slopeCheckValue) {
         drawSlopeAxis(this.slopeList);
       }
+      //施工进度
+      if (this.progressCheckValue) {
+        drawProgressAxis(this.progressListItem);
+      }
     },
-    // =============桥 隧道 限速区 防区 道岔 坡度
+
+    // =============桥 隧道 限速区 防区 道岔 坡度 施工进度
+    //进度
+    progressCheckSelect(val) {
+      this.progressList.map(item => {
+        if (item.name == val) {
+          this.progressListItem = item.list;
+        }
+      });
+      console.log("progressListItem" + JSON.stringify(this.progressListItem));
+      this.getProjectProcessMap();
+    },
     //桥
     bridgeCheckSelect() {
       this.getProjectProcessMap();
@@ -887,10 +901,7 @@ export default {
     slopeCheckSelect() {
       this.getProjectProcessMap();
     },
-    // 施工进度
-    progressCheckSelect(){
-  this.getProjectProcessMap();
-    },
+
     //top
     stationLeftMove() {
       if (this.wdpx < 0) {
@@ -949,8 +960,9 @@ export default {
   font-weight: 700;
 }
 .startend .sleft {
-  float: left;
+  float: left; margin-right: 20px;
 }
+.startend .scenter{}
 .startend .sright {
   float: right;
 }
@@ -990,7 +1002,6 @@ export default {
 }
 .stations {
   float: left;
-  margin-top: 15px;
 }
 .stations .item {
   width: 500px;
@@ -1002,7 +1013,7 @@ export default {
   display: inline-block;
   background: #4b6eca;
   color: #fff;
-  padding: 10px 15px;
+  padding: 17px 15px;
   margin-left: 10px;
   cursor: pointer;
 }
@@ -1013,7 +1024,7 @@ export default {
   display: inline-block;
   background: #3062e2;
   color: #fff;
-  padding: 8px 15px;
+  padding: 15px 15px;
   font-size: 20px;
   vertical-align: top;
   cursor: pointer;
@@ -1026,20 +1037,6 @@ export default {
   padding-bottom: 30px;
   text-align: center;
 }
-/* .stations-select .el-checkbox {
-  margin-right: 0;
-}
-
-.stations-select .el-checkbox.is-bordered.is-checked {
-  border-color: #27db07;
-}
-.stations-select .el-checkbox__input.is-checked + .el-checkbox__label {
-  color: #27db07;
-}
-.stations-select .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #27db07;
-  border-color: #27db07;
-} */
 .stations-select .el-checkbox__label {
   color: #fff;
 }
@@ -1099,4 +1096,5 @@ export default {
   padding-left: 30px;
   color: #fff;
 }
+.progresslist  .el-radio__label{color:#fff;}
 </style>
