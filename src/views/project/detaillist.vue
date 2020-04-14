@@ -58,9 +58,9 @@
                   class="search-input search-select"
                   style="width:140px;"
                 >
-                  <el-option label="全部" value="-1" selected>全部</el-option>
-                  <el-option label="已完成" value="1">已完成</el-option>
-                  <el-option label="未完成" value="0">未完成</el-option>
+                  <el-option label="全部" :value="-1">全部</el-option>
+                  <el-option label="已完成" :value="1">已完成</el-option>
+                  <el-option label="未完成" :value="0">未完成</el-option>
                 </el-select>
               </el-form-item>
               <el-form-item>
@@ -166,7 +166,6 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
-
               <el-form-item label="计划数量：" prop="plan_num" v-if="historyDataType==2">
                 <el-input v-model="historyData.plan_num" autocomplete="off" placeholder="请输入数字"></el-input>
               </el-form-item>
@@ -248,7 +247,7 @@ export default {
       detailPageSize: 20,
       detailPage_total: 0,
       searchForm: {
-        is_finish: "全部"
+        is_finish: -1
       },
       dialogAddHistoryVisible: false,
       historyData: {},
@@ -314,10 +313,11 @@ export default {
       let page = this.detailPage;
       let pro_id = this.searchForm.work;
       let time_range = this.searchForm.time_range;
-      let is_finish = this.searchForm.is_finish;
-      if (this.searchForm.is_finish == -1) {
-        is_finish = null;
-      }
+     // let is_finish =-1;
+        let is_finish = this.searchForm.is_finish;
+     if (this.searchForm.is_finish ==-1) {
+        is_finish ="";
+     }
       console.log(this.searchForm);
       this.request({
         url: "/project/getPlanPages",
@@ -447,12 +447,12 @@ export default {
             this.$message.error("输入的实际开始里程不能小于计划开始里程");
             return;
           }
-          if (t_end > end) {
-            this.$message.error("输入的实际结束里程不能大于实话开始里程");
-            return;
-          }
+          // if (t_end > end) {
+          //   this.$message.error("输入的实际结束里程不能大于实际开始里程");
+          //   return;
+          // }
           if (t_end < t_start) {
-            this.$message.error("输入的实际结束里程不能小于开始里程");
+            this.$message.error("输入的实际结束里程不能小于实际开始里程");
             return;
           }
           this.request({
@@ -468,6 +468,7 @@ export default {
                 message: "保存成功",
                 type: "success"
               });
+              this.searchForm.is_finish == 0
               this.getDetailLists();
               this.dialogAddHistoryVisible = false;
             } else {

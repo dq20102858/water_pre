@@ -491,5 +491,5 @@ export default {
 }
 
 .speed-errora .el-form-item__error{ padding-left: 23px;}
-.speed-errorb .el-form-item__error{padding-left: 11px;}
+.speed-errorb .el-form-item__error{padding-left: 12px;}
 </style>
