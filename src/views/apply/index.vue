@@ -119,7 +119,7 @@
             </el-table-column>
             <el-table-column prop="next_status" label="下一步状态"></el-table-column>
             <el-table-column prop="company" label="公司简称" show-overflow-tooltip></el-table-column>
-            <el-table-column label="操作" width="120">
+            <el-table-column label="操作" width="125">
               <template slot-scope="scope">
                 <div class="app-operation">
                   <el-button
@@ -128,7 +128,6 @@
                     size="mini"
                     @click="goApply(scope.row.id,scope.row.company)"
                   >审批</el-button>
-                  <!-- <el-button v-if="scope.row.status!='未批复'" class="btn-blue" size="mini" disabled>审批</el-button> -->
                   <el-button
                     v-if="scope.row.status=='已销点'"
                     class="btn-red"

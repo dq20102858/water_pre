@@ -131,7 +131,7 @@
           <el-input v-model="detectorData.ip" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="所在位置：" class="el-form-item-inlines is-required">
-          <el-form-item prop="start_flag">
+          <el-form-item prop="start_flag" class="wall-errora">
             <b>DK</b>
             <el-input
               v-model="detectorData.start_flag"
@@ -140,7 +140,7 @@
               maxlength="4"
             ></el-input>
           </el-form-item>
-          <el-form-item prop="start_length">
+          <el-form-item prop="start_length" class="wall-errorb">
             <b>+</b>
             <el-input
               v-model="detectorData.start_length"
@@ -149,10 +149,6 @@
               maxlength="3"
             ></el-input>
           </el-form-item>
-          <!-- <b>DK</b>
-          <el-input v-model="detectorData.start_flag" autocomplete="off"></el-input>
-          <b>+</b>
-          <el-input v-model="detectorData.start_length" autocomplete="off"></el-input>-->
         </el-form-item>
         <el-form-item label="设备是否装在出入口：" prop="is_enter">
           <el-radio v-model="detectorData.is_enter" :label="1">是</el-radio>
@@ -472,4 +468,6 @@ export default {
 .el-form-item-inlines .el-form-item {
   margin-bottom: 1px !important;
 }
+.wall-errora .el-form-item__error{ padding-left: 23px;}
+.wall-errorb .el-form-item__error{padding-left: 12px;}
 </style>

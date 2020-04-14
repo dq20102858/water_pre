@@ -7,28 +7,29 @@
           <i class="line-a"></i>
         </div>
         <div class="scenter">
- <div class="stations">
-          <i class="el-icon-arrow-left" @click="stationLeftMove"></i>
-          <div class="item" :style="{width:scrollwidth  + 'px'}">
-            <ul :style="{width: stationList.length * 100 + 'px','margin-left': wdpx * 100 + 'px'}">
-              <li
-                @click="scrollPosition(item.start_flag,item.start_length)"
-                v-for="item in stationList"
-                :key="item.id"
-              >{{item.name}}</li>
-            </ul>
+          <div class="stations">
+            <i class="el-icon-arrow-left" @click="stationLeftMove"></i>
+            <div class="item" :style="{width:scrollwidth  + 'px'}">
+              <ul
+                :style="{width: stationList.length * 100 + 'px','margin-left': wdpx * 100 + 'px'}"
+              >
+                <li
+                  @click="scrollPosition(item.start_flag,item.start_length)"
+                  v-for="item in stationList"
+                  :key="item.id"
+                >{{item.name}}</li>
+              </ul>
+            </div>
+            <i class="el-icon-arrow-right" @click="stationRightMove"></i>
           </div>
-          <i class="el-icon-arrow-right" @click="stationRightMove"></i>
-        </div>
         </div>
         <div class="sright">
           {{lastStation}}方向
           <i class="line-b"></i>
         </div>
-       
       </div>
     </div>
-  
+
     <div class="main-canvas">
       <div class="group-canvas scrollbar">
         <canvas id="mycanvas" height="680" ref="mycanvas">
@@ -44,7 +45,7 @@
         <el-radio :label="9">备选项</el-radio>-->
       </el-radio-group>
     </div>
-      <div class="stations-select">
+    <div class="stations-select">
       <el-checkbox
         class="bridgechk"
         v-model="bridgeCheckValue"
@@ -823,8 +824,8 @@ export default {
           let startX = (start - parseInt(minkm * 1000)) * everys;
           let endX = (end - parseInt(minkm * 1000)) * everys;
           //console.log("startX：" + startX + " endX：" + endX);
-              context.lineWidth = 10;
-        context.strokeStyle = "#27DB07";
+          context.lineWidth = 10;
+          context.strokeStyle = "#27DB07";
           context.beginPath();
           if (json[i].line_type == 1) {
             //画水平直线
@@ -844,7 +845,7 @@ export default {
       drawAxisLabels(axis_Origin_Two.x, axis_Origin_Two.y);
       //画地铁站
       drawStations(this.stationList);
-        //施工进度
+      //施工进度
       if (this.progressCheckValue) {
         drawProgressAxis(this.progressListItem);
       }
@@ -868,7 +869,6 @@ export default {
       if (this.slopeCheckValue) {
         drawSlopeAxis(this.slopeList);
       }
-    
     },
 
     // =============桥 隧道 限速区 防区 道岔 坡度 施工进度
@@ -961,9 +961,11 @@ export default {
   font-weight: 700;
 }
 .startend .sleft {
-  float: left; margin-right: 20px;
+  float: left;
+  margin-right: 20px;
 }
-.startend .scenter{}
+.startend .scenter {
+}
 .startend .sright {
   float: right;
 }
@@ -1097,5 +1099,7 @@ export default {
   padding-left: 30px;
   color: #fff;
 }
-.progresslist  .el-radio__label{color:#fff;}
+.progresslist .el-radio__label {
+  color: #fff;
+}
 </style>

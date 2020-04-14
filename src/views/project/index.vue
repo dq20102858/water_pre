@@ -33,7 +33,7 @@
             </el-table-column>
             <el-table-column label="操作" width="180px">
               <template slot-scope="scope">
-                <div class="app-operation" style="text-al">
+                <div class="app-operation">
                   <el-button
                     v-if="scope.row.type==1"
                     class="btn-blue"

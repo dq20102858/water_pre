@@ -72,6 +72,7 @@ ul,li{list-style-type: none}
 .app-operation .el-button{margin-left: 0!important;margin-right: 5px;padding: 7px 10px;background: none}
 .app-operation .el-button:hover{opacity: 0.5;}
 .app-operation .el-button[disabled]{color: #999;border: 1px #999 solid;}
+.app-operation .el-button:last-child{margin-right:0}
 /*el-form */
 .el-form-custom .el-form-item{margin-bottom: 25px;}
 .el-form-custom .el-form-item__label{color: #1d397a;}

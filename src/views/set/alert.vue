@@ -110,7 +110,7 @@
               <div class="el-form-item__error">{{lineTypeDes}}</div>
             </el-form-item>
             <el-form-item label="开始里程：" class="el-form-item-inlines is-required">
-              <el-form-item prop="start_flag">
+              <el-form-item prop="start_flag"  class="alert-errora">
                 <b>DK</b>
                 <el-input
                   v-model="formData.start_flag"
@@ -119,7 +119,7 @@
                   maxlength="3"
                 ></el-input>
               </el-form-item>
-              <el-form-item prop="start_length">
+              <el-form-item prop="start_length"  class="alert-errorb">
                 <b>+</b>
                 <el-input
                   v-model="formData.start_length"
@@ -130,7 +130,7 @@
               </el-form-item>
             </el-form-item>
             <el-form-item label="结束里程：" class="el-form-item-inlines is-required">
-              <el-form-item prop="end_flag">
+              <el-form-item prop="end_flag"  class="alert-errora">
                 <b>DK</b>
                 <el-input
                   v-model="formData.end_flag"
@@ -139,7 +139,7 @@
                   maxlength="3"
                 ></el-input>
               </el-form-item>
-              <el-form-item prop="end_length">
+              <el-form-item prop="end_length" class="alert-errorb">
                 <b>+</b>
                 <el-input
                   v-model="formData.end_length"
@@ -508,4 +508,6 @@ export default {
 .el-form-item-inlines .el-form-item {
   margin-bottom: 1px !important;
 }
+.alert-errora .el-form-item__error{ padding-left: 23px;}
+.alert-errorb .el-form-item__error{padding-left: 12px;}
 </style>

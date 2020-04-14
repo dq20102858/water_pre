@@ -194,7 +194,7 @@
 
               <tr>
                 <td colspan="2" rowspan="2">
-                  <b>承运人签名（章）：</b>暂无
+                  <b>承运人签名（章）：</b>{{funIsEmpty(dataInfo.carrier)}}
                 </td>
                 <td style="width:200px;">审批人：{{dataInfo.approver}}</td>
                 <td style="width:200px;">销点人:{{dataInfo.logout}}</td>
