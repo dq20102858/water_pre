@@ -407,9 +407,10 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   text-align: center;
   height: 20px;
   line-height: 18px;
+
 }
 .tdbar .bar em {
-  height: 20px; background: #0f253e;
+  height: 20px; background: #102843;
   display: inline-block;
   position: relative;
 }
