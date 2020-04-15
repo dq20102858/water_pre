@@ -182,7 +182,7 @@ export default {
         name: "",
         description: ""
       };
-      this.diaLogTitle = "添加信息";
+      this.diaLogTitle = "添加机具信息";
       this.diaLogFormVisible = true;
     },
     addOrEditDialog() {
@@ -214,7 +214,7 @@ export default {
       });
     },
     goEdit(id) {
-      this.diaLogTitle = "修改信息";
+      this.diaLogTitle = "修改机具信息";
       this.diaLogFormVisible = true;
       this.request({
         url: "/location/getDevice",

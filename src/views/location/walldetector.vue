@@ -363,7 +363,7 @@ export default {
       });
     },
     goEdit(id) {
-      this.title = "修改墙壁探测器信息";
+      this.diaLogTitle = "修改墙壁探测器信息";
       this.diaLogFormVisible = true;
       this.request({
         url: "/location/getWallDetector",

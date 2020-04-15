@@ -124,7 +124,7 @@
             <div class="el-form-item-inlines">
               <el-form-item label="用户名：" prop="user_name" v-if="this.userDialogTitle=='添加人员信息'">
                 <el-input
-                  v-model.trim="userData.user_name"
+                  v-model="userData.user_name"
                   autocomplete="off"
                   maxlength="20"
                   show-word-limit
@@ -239,7 +239,8 @@ export default {
             message: "请输入姓名2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
+           { pattern: /^[^\s]*$/, message: "姓名不能有空格", trigger: "blur" }
         ],
         user_name: [
           {
@@ -247,7 +248,8 @@ export default {
             message: "请输入用户名2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
+           { pattern: /^[^\s]*$/, message: "用户名不能有空格", trigger: "blur" }
         ],
         company_id: [
           {
