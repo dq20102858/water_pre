@@ -49,7 +49,10 @@
                 <ul class="oneitem">
                   <li>
                     <p>设计工程量</p>
-                    <h3 class="p1">{{echartDataList.designTotal}}公里</h3>
+                    <h3 class="p1">
+                      {{echartDataList.designTotal}}
+                      <em>{{echartDataList.unit}}</em>
+                    </h3>
                   </li>
                   <li>
                     <p>完成百分比</p>
@@ -61,7 +64,7 @@
                   </li>
                 </ul>
                 <ul class="twoitem">
-                   <li>
+                  <li>
                     <p>年累完成</p>
                     <h3>{{echartDataList.yearTotal}}</h3>
                   </li>
@@ -362,7 +365,7 @@ export default {
   color: #1d397a;
   font-size: 18px;
   margin-bottom: 50px;
-  font-weight: 700;
+  font-weight: 400;
 }
 .second-content .oneitem {
   text-align: center;
@@ -379,18 +382,23 @@ export default {
   font-size: 15px;
   line-height: 41px;
 }
+.second-content .oneitem h3 {
+  font-size: 28px;
+}
+.second-content .oneitem h3 em {
+  font-size: 15px;
+  font-style: normal;
+}
 .second-content .oneitem .p1 {
   color: #ff5c75;
-  font-size: 24px;
 }
 .second-content .oneitem .p2 {
   color: #10a502e7;
-  font-size: 24px;
 }
 .second-content .oneitem .p3 {
   color: #1d397a;
-  font-size: 24px;
 }
+
 .second-content .twoitem {
   padding: 0 10px;
   display: flex;
