@@ -559,7 +559,7 @@ export default {
 }
 
 .el-calendar-table:not(.is-range) td.next, .el-calendar-table:not(.is-range) td.prev{
-pointer-events: none;
+pointer-events: none; background: #fafafa;
 }
-
+.el-calendar-table:not(.is-range) td.next .date, .el-calendar-table:not(.is-range) td.prev .date{color:#ccc;}
 </style>
