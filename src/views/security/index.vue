@@ -172,8 +172,14 @@
                 <template slot-scope="scope">{{scope.row.type==1?"人员提交":"机车提交"}}</template>
               </el-table-column>
               <el-table-column prop="danger_determine_name" label="隐患判定"></el-table-column>
-              <el-table-column prop="status" label="状态"></el-table-column>
-              <el-table-column prop="status" label="当前情况"></el-table-column>
+              <el-table-column prop="status" label="状态">
+                <template slot-scope="scope">
+                  <span v-if="scope.row.status==1">新事件</span>
+                  <span v-else-if="scope.row.status==2">处理中</span>
+                  <span v-else>已完成</span>
+                </template>
+              </el-table-column>
+              <el-table-column label="当前情况"></el-table-column>
               <el-table-column prop="admin" label="提交者"></el-table-column>
               <el-table-column prop="create_time" label="发布时间">
                 <template slot-scope="scope">

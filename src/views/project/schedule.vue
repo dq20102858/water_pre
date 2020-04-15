@@ -297,6 +297,7 @@ export default {
         item.end_flag = "";
         item.end_length = "";
       });
+      this.planWorkNum="";
       this.getCurrData();
     },
     getCurrData() {

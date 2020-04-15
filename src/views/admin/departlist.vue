@@ -108,7 +108,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="部门名称：" prop="name">
-              <el-input v-model.trim="departData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
+              <el-input v-model="departData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
             </el-form-item>
             <el-form-item label="是否属于施工队：" prop="is_work_team">
               <el-radio-group v-model="departData.is_work_team">
@@ -157,7 +157,8 @@ export default {
             message: "请输入部门名称2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
+           { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
         ],
         is_work_team: [
           {

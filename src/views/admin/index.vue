@@ -133,8 +133,8 @@ export default {
             message: "请输入公司名称2~30个字符",
             trigger: "blur"
           },
-          { pattern: /^\s+/, message: "首位不能有空格", trigger: "blur" }
-          //   /(^\s*)|(\s*$)/g
+          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" },
+          { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
         ],
         description: [
           { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
