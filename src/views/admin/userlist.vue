@@ -15,13 +15,13 @@
       <div class="app-page-container">
         <div class="app-page-select">
           <el-form :inline="true" ref="userSearch">
-            <el-form-item   class="form-add-item">
+            <el-form-item class="form-add-item">
               <el-button type="primary" icon="el-icon-plus" @click="openAddUser">添加人员</el-button>
             </el-form-item>
             <el-form-item label="姓名">
               <el-input v-model="userSearch.user_name" autocomplete="off" placeholder="请输入姓名"></el-input>
             </el-form-item>
-            <el-form-item  label="公司">
+            <el-form-item label="公司">
               <el-select
                 v-model="userSearch.company_id"
                 @change="getDepartLists($event)"
@@ -35,7 +35,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item  label="部门">
+            <el-form-item label="部门">
               <el-select
                 v-model="userSearch.depart_id"
                 @change="getPostLists($event)"
@@ -49,7 +49,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item  label="职位">
+            <el-form-item label="职位">
               <el-select v-model="userSearch.post_id" placeholder="请选择职位">
                 <el-option
                   v-for="item in this.postSelectList"
@@ -179,6 +179,9 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
+              <el-form-item label="手机号码：" prop="phone">
+                <el-input v-model="userData.phone" autocomplete="off"></el-input>
+              </el-form-item>
               <el-form-item label="调度信息：" prop="dispatch">
                 <el-select v-model="userData.dispatch">
                   <el-option label="普通" :value="1"></el-option>
@@ -188,9 +191,6 @@
                   <el-option label="车站值班员" :value="5"></el-option>
                   <el-option label="施工队长" :value="6"></el-option>
                 </el-select>
-              </el-form-item>
-              <el-form-item label="手机号码：" prop="phone">
-                <el-input v-model="userData.phone" autocomplete="off"></el-input>
               </el-form-item>
               <el-form-item>
                 <el-checkbox-group v-model="userData.menus">
@@ -233,15 +233,6 @@ export default {
       },
       userSearch: {},
       userAddRules: {
-        name: [
-          {
-            required: true,
-            message: "请输入姓名2~20个字符",
-            trigger: "blur"
-          },
-          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
-           { pattern: /^[^\s]*$/, message: "姓名不能有空格", trigger: "blur" }
-        ],
         user_name: [
           {
             required: true,
@@ -249,7 +240,24 @@ export default {
             trigger: "blur"
           },
           { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
-           { pattern: /^[^\s]*$/, message: "用户名不能有空格", trigger: "blur" }
+          {
+            pattern: /^[^\s]*$/,
+            message: "输入用户名不能含有空格",
+            trigger: "blur"
+          }
+        ],
+        name: [
+          {
+            required: true,
+            message: "请输入姓名2~20个字符",
+            trigger: "blur"
+          },
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
+          {
+            pattern: /^[^\s]*$/,
+            message: "输入姓名不能含有空格",
+            trigger: "blur"
+          }
         ],
         company_id: [
           {
@@ -317,7 +325,7 @@ export default {
       userMenuList: []
     };
   },
-      mounted() {
+  mounted() {
     document
       .querySelector("#app-menu-items #menu_admin")
       .classList.add("is-active");
@@ -373,8 +381,8 @@ export default {
         depart_id: "",
         post_id: ""
       };
-      this.departSelectList=[];
-      this.postSelectList=[];
+      this.departSelectList = [];
+      this.postSelectList = [];
       this.userPage_cur = 1;
       this.getUserLists();
     },
@@ -576,7 +584,7 @@ export default {
   width: 100%;
 }
 .dialog-user .el-select {
-  width: 185px; 
+  width: 185px;
 }
 
 .dialog-user .el-form-item-block {
