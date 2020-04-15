@@ -164,7 +164,8 @@ export default {
       rules: {
         number: [
           { required: true, message: "请输入命令号码", trigger: "blur" },
-           { min: 2, max: 30, message: "请输入长度在2到30个字符", trigger: "blur" }
+           { min: 2, max: 30, message: "请输入长度在2到30个字符", trigger: "blur" },
+            { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
         ],
         lid: [{ required: true, message: "请选择受令机车", trigger: "change" }],
         type: [{ required: true, message: "请选择类型", trigger: "change" }],

@@ -79,7 +79,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="机具名称：" prop="name">
-          <el-input v-model.trim="deviceData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
+          <el-input v-model="deviceData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
         </el-form-item>
         <el-form-item label="详情：" prop="description">
           <el-input type="textarea" v-model="deviceData.description" maxlength="50" show-word-limit></el-input>
@@ -111,7 +111,8 @@ export default {
             message: "请输入机具名称2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
+           { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
         ],
         description: [
           { min: 0, max: 50, message: "长度在0到50个字符", trigger: "blur" }

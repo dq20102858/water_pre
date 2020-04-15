@@ -112,7 +112,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="设备名称：" prop="name">
-          <el-input v-model.trim="detectorData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
+          <el-input v-model="detectorData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
         </el-form-item>
         <el-form-item label="设备编号：" prop="number">
           <el-input v-model="detectorData.number" autocomplete="off" maxlength="20" show-word-limit></el-input>
@@ -181,7 +181,8 @@ export default {
             message: "请输入设备名称2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
+           { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
         ],
         number: [
           {

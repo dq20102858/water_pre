@@ -370,7 +370,8 @@ export default {
             message: "请输入安全事件标题2~60个字符",
             trigger: "blur"
           },
-          { min: 2, max: 60, message: "长度在2到60个字符", trigger: "blur" }
+          { min: 2, max: 60, message: "长度在2到60个字符", trigger: "blur" },
+           { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
         ],
         address: [
           {

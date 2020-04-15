@@ -75,7 +75,7 @@
           <el-form class="el-form-custom" :model="workData" :rules="wokRules" ref="workForm">
             <el-form-item label="名称：" prop="name">
               <el-input
-                v-model.trim="workData.name"
+                v-model="workData.name"
                 autocomplete="off"
                 placeholder="请输入作业名称"
                 maxlength="20"
@@ -214,7 +214,8 @@ export default {
       wokRules: {
         name: [
           { required: true, message: "请输入名称2~20个字符", trigger: "blur" },
-          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
+           { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
         ],
         type: [{ required: true, message: "请选择类别", trigger: "change" }],
         line_type: [
