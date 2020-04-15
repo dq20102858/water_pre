@@ -167,7 +167,7 @@
             <el-table :data="dataList">
               <el-table-column prop="id" label="序号"></el-table-column>
               <el-table-column prop="title" label="事件名称"></el-table-column>
-              <el-table-column prop="address" label="事件地址"></el-table-column>
+              <el-table-column prop="address" label="事件地址" show-overflow-tooltip></el-table-column>
               <el-table-column prop="type" label="事件类型">
                 <template slot-scope="scope">{{scope.row.type==1?"人员提交":"机车提交"}}</template>
               </el-table-column>
