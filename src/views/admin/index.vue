@@ -75,7 +75,7 @@
           >
             <el-form-item label="公司名称：" prop="name">
               <el-input
-                v-model.trim="companyData.name"
+                v-model="companyData.name"
                 autocomplete="off"
                 maxlength="20"
                 show-word-limit
@@ -133,7 +133,8 @@ export default {
             message: "请输入公司名称2~30个字符",
             trigger: "blur"
           },
-          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
+          { pattern: /^\s+/, message: "首位不能有空格", trigger: "blur" }
+          //   /(^\s*)|(\s*$)/g
         ],
         description: [
           { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }

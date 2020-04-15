@@ -1,20 +1,50 @@
 <template>
   <div id="progress" ref="proWrapper">
-    <div class="sttitle">施工形象进度图</div>
-
-    <div class="station">
-      <canvas id="canvasStation" height="380" ref="canvasStation">
-        <p>您的系统不支持此程序!</p>
-      </canvas>
-    </div>
-    <div class="linebar" v-for="item in listSchedule" :key="item.id">
-      <div class="title">{{item.name}}</div>
-      <div class="bar" v-for="lines in item.lines" :key="lines.id">
-        <span>{{lines.name}}</span>
-        <em :style="{width: cwidth + 'px' }" v-html="lineFill(lines.lists)">
-          <!-- <i v-for="lists in lines.lists" :key="lists.id" :style="{{lineFill(lists.start_flag)}}"></i> -->
-        </em>
+    <div class="progress">
+      <div class="sttitle">施工形象进度图</div>
+      <div class="station">
+        <canvas id="canvasStation" height="380" ref="canvasStation">
+          <p>您的系统不支持此程序!</p>
+        </canvas>
       </div>
+      <div class="linebox">
+        <table class="lineTable">
+          <tr
+            class="linebar"
+            v-for="item in listSchedule"
+            :key="item.id"
+            v-if="item.lines.name !=''"
+          >
+            <td>
+              <div class="tdtitle">{{item.name}}</div>
+            </td>
+            <td class="tdbar">
+              <div class="bar" v-for="lines in item.lines" :key="lines.id">
+                <span>{{lines.name}}</span>
+                <em :style="{width: cwidth + 'px' }" v-html="lineFill(lines.lists)">
+                  <!-- <i v-for="lists in lines.lists" :key="lists.id" :style="{{lineFill(lists.start_flag)}}"></i> -->
+                </em>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <!-- <div class="linebox">
+        <div
+          class="linebar"
+          v-for="item in listSchedule"
+          :key="item.id"
+          v-if="item.lines.name !=''"
+        >
+          <div class="title">{{item.name}}</div>
+          <div class="bar" v-for="lines in item.lines" :key="lines.id">
+            <span>{{lines.name}}</span>
+            <em :style="{width: cwidth + 'px' }" v-html="lineFill(lines.lists)">
+             <i v-for="lists in lines.lists" :key="lists.id" :style="{{lineFill(lists.start_flag)}}"></i> 
+            </em>
+          </div>
+        </div>
+      </div>-->
     </div>
   </div>
 </template>
@@ -22,7 +52,7 @@
 export default {
   data() {
     return {
-      cwidth:0,
+      cwidth: 0,
       stationList: [],
       lineTypeList: [],
       listSchedule: [],
@@ -43,7 +73,7 @@ export default {
         if (data.status == 1) {
           this.stationList = data.data.stations;
           this.lineTypeList = data.data.line_types;
-          this.listSchedule=data.data.datas;
+          this.listSchedule = data.data.datas;
           this.getStationList();
           //  this.getLineType();
         }
@@ -52,8 +82,8 @@ export default {
 
     getStationList() {
       let clientWidth = this.$refs.proWrapper.clientWidth;
-      let canvasWidth = clientWidth - 200;
-      this.cwidth=canvasWidth;
+      let canvasWidth = clientWidth - 330;
+      this.cwidth = canvasWidth;
       console.log("canvasWidth：" + canvasWidth);
       const canvas = this.$refs.canvasStation;
       let cansText = canvas.getContext("2d");
@@ -150,7 +180,7 @@ export default {
         name0 = lineData[0].name,
         name1 = lineData[1].name;
 
-       console.log(lineData);
+      console.log(lineData);
 
       let startLength = cansText.measureText(from0).width,
         endLength = cansText.measureText(end0).width,
@@ -162,10 +192,10 @@ export default {
 
       cansText.fillText(from0, 50, 270);
       cansText.fillText(name0, 5, 270);
-      cansText.fillText(end0, parseInt( endLength+canvasWidth-120), 320);
+      cansText.fillText(end0, parseInt(endLength + canvasWidth - 120), 320);
       cansText.fillText(from1, 50, 320);
       cansText.fillText(name1, 5, 320);
-      cansText.fillText(end1, parseInt( endLength+canvasWidth-120), 270);
+      cansText.fillText(end1, parseInt(endLength + canvasWidth - 120), 270);
       //Line=====================workline
 
       // let datas = [
@@ -310,47 +340,84 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
 .sttitle {
   color: #fff;
   padding: 22px 0 0 25px;
-  font-size: 24px; text-align: center;
+  font-size: 24px;
+  text-align: center;
 }
 #progress {
   background: #081c33;
-  height: 100vh;
-}
-
-.station {
-  margin: 50px 100px 0px 100px;
-}
-
-.linebar {
+  height: 100%;
   overflow: hidden;
 }
-.linebar .title {
-  margin-left: 102px;
-  color: #fff;
-  font-weight: 700;
-  color: #fff;
+.progress {
+  background: #081c33;
+  height: 100vh;
+  min-width: 1024px;
 }
-.linebar .bar {
-  margin-bottom: 10px;
+@media (max-width: 1024px) {
+  #progress {
+    width: 1024px;
+  }
 }
-.linebar .bar span {
-  width: 96px;
+.station {
+  margin: 50px 0px 0px 230px;
+}
+.linebox {
+  margin-left: 30px; margin-right: 100px;
+  border-top: 0;
+}
+/* lineTable */
+.lineTable {
+  width: 100%;
+  border: 1px #fff solid;
+  overflow: hidden;
+  border-collapse: collapse;
+}
+.lineTable td {
+  color: #fff;
+  border: 1px solid #fff;
+}
+.lineTable .tdtitle {
+  text-align: center;
+  overflow: hidden;
+  height: 18px;
+  padding-left: 5px;
+  width: 125px;
   font-size: 12px;
-  text-align: right;
-  color: #fff;
-  display: inline-block;
+  line-height: 18px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
-.linebar .bar em {
-  border: 1px #27db07 solid;
-  height: 10px;
+.tdbar {
+  height: 18px;
+  overflow: hidden;
+}
+.tdbar .bar {
+  border-bottom: 1px solid #fff;
+  height: 18px;
+  overflow: hidden;
+}
+.tdbar .bar:last-child {
+  border-bottom: 0;
+}
+.tdbar .bar span {
+  font-size: 12px;
+  color: #fff;
+  width: 68px;
+  float: left;
+  text-align: center;
+  height: 20px;
+  line-height: 18px;
+}
+.tdbar .bar em {
+  height: 20px; background: #0f253e;
   display: inline-block;
   position: relative;
 }
-.linebar .bar em i {
+.tdbar .bar em i {
   position: absolute;
   top: 0;
   background: #27db07;
-  height: 8px;
+  height: 18px;
   display: inline-block;
 }
 /* //#27DB07 */

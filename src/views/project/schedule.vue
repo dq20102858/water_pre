@@ -556,4 +556,9 @@ export default {
   color: #fff;
   border-radius: 3px;
 }
+
+.el-calendar-table:not(.is-range) td.next, .el-calendar-table:not(.is-range) td.prev{
+pointer-events: none;
+}
+
 </style>

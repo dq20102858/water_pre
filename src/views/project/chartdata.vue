@@ -14,7 +14,11 @@
     <div class="app-page">
       <div id="echart">
         <div class="echart-top">
-          <el-menu :default-active="workSelectId.toString()" class="el-menu-cus" @select="changeWorkTypeList">
+          <el-menu
+            :default-active="workSelectId.toString()"
+            class="el-menu-cus"
+            @select="changeWorkTypeList"
+          >
             <el-menu-item
               v-for="item  in workTypeList"
               :key="item.id"
@@ -49,7 +53,7 @@
                   </li>
                   <li>
                     <p>完成百分比：</p>
-                    <h3 class="p2">{{echartDataList.percent}}公里</h3>
+                    <h3 class="p2">{{echartDataList.percent}}%</h3>
                   </li>
                 </ul>
                 <ul class="twoitem">
@@ -97,7 +101,7 @@ export default {
       echartDataNames: ""
     };
   },
-   mounted() {
+  mounted() {
     document
       .querySelector("#app-menu-items #menu_project")
       .classList.add("is-active");
@@ -179,6 +183,11 @@ export default {
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
+          let jhData = data.data.list[0].data;
+          let sjData = data.data.list[1].data;
+          let newData = jhData.concat(sjData);
+          console.log(newData);
+          var yMaxNum = Math.max.apply(null, newData);
           let myChart = this.$echarts.init(document.getElementById("oneChart"));
           myChart.setOption({
             title: {
@@ -215,21 +224,23 @@ export default {
             xAxis: {
               type: "category",
               boundaryGap: false,
+
               data: data.data.x
             },
             yAxis: {
-              type: "value"
+              type: "value",
+              max: yMaxNum + 1
             },
             series: [
               {
                 name: "计划",
                 type: "line",
-                data: data.data.list[0].data
+                data: jhData
               },
               {
                 name: "实际",
                 type: "line",
-                data: data.data.list[1].data
+                data: sjData
               }
             ]
           });

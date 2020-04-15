@@ -70,7 +70,7 @@
     </div>
 
     <el-dialog
-      width="990px"
+      width="998px"
       :close-on-click-modal="false"
       class="dialog-monitor"
       :title="this.diaLogTitle"
@@ -240,7 +240,7 @@
           </div>
         </fieldset>
         <!---2 -->
-        <fieldset  v-if="formData.plan_type!=2">
+        <fieldset v-if="formData.plan_type!=2">
           <legend>施工信息</legend>
           <div class="el-form-item-block">
             <el-form-item label="开始时间：" label-width="100px" prop="start_time">
@@ -293,7 +293,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="里程：" class="el-form-item-inlines">
+            <el-form-item label="里程：" class="el-form-item-inlines is-required">
               <el-form-item prop="start_flag">
                 <el-input
                   v-model="formData.start_flag"
@@ -364,7 +364,7 @@
             </el-form-item>
           </div>
         </fieldset>
-        <el-form-item label="内容：" label-width="110px" prop="description">
+        <el-form-item class="istextarea" label="计划内容：" label-width="110px" prop="description">
           <el-input
             v-model="formData.description"
             autocomplete="off"
@@ -1039,7 +1039,10 @@ export default {
     planAdd() {
       this.diaLogTitle = "计划图";
       this.diaLogFormVisible = true;
-
+      this.formData.number = "";
+      this.formData.start_time = "";
+      this.formData.end_time = "";
+      // };
       this.getMasterList(); //车长
       this.getdriverList(); //司机
       this.getStationList(); //车站
@@ -1176,9 +1179,9 @@ export default {
             this.getPlanNumbers(); //日班计划列表
             this.getUserLists(); //记录人
           } else {
-             this.$alert('<strong>当天没有计划！</strong>', '提示信息', {
-          dangerouslyUseHTMLString: true
-        });
+            this.$alert("<strong>当天没有计划！</strong>", "提示信息", {
+              dangerouslyUseHTMLString: true
+            });
             // this.$message({
             //   type: "warning",
             //   message: "当天没有计划！"
@@ -1418,5 +1421,11 @@ export default {
 }
 .dateinput .el-form-item__content {
   width: 180px;
+}
+.istextarea {
+  margin-right: 0 !important;
+}
+.istextarea .el-textarea__inner {
+  width: 825px;
 }
 </style>

@@ -72,22 +72,22 @@ export default {
           //A1 A2 A3 A4
           let typeData = [];
           let dataTypeArr = resdata.data.data;
-          let dataTypeArr2 = [
-            {
-              type: "A1",
-              lists: [
-                { name: "2020-04-08 05:00:00", value: 21.003 },
-                { name: "2020-04-08 10:00:00", value: 32.9 }
-              ]
-            },
-            {
-              type: "A2",
-              lists: [
-                { name: "2020-03-30 12:00:00", value: 21.003 },
-                { name: "2020-03-30 16:00:00", value: 32.9 }
-              ]
-            }
-          ];
+          // let dataTypeArr2 = [
+          //   {
+          //     type: "A1",
+          //     lists: [
+          //       { name: "2020-04-08 05:00:00", value: 21.003 },
+          //       { name: "2020-04-08 10:00:00", value: 32.9 }
+          //     ]
+          //   },
+          //   {
+          //     type: "A2",
+          //     lists: [
+          //       { name: "2020-03-30 12:00:00", value: 21.003 },
+          //       { name: "2020-03-30 16:00:00", value: 32.9 }
+          //     ]
+          //   }
+          // ];
           dataTypeArr.forEach(item => {
             let jlist = [];
             item.lists.forEach(item => {
@@ -106,7 +106,7 @@ export default {
               label: {
                 normal: {
                   position: "left",
-                     formatter: function(value, index) {
+                  formatter: function(value, index) {
                     return (
                       value.name.replace(/.00/, "").replace(/.00/, "") + "   "
                     );
@@ -163,7 +163,7 @@ export default {
               min: dataMin,
               max: dataMax,
               minInterval: 3600 * 12 * 1000,
-              maxInterval: 3600 * 1 * 1000,
+              maxInterval: 3600 * 24 * 1000,
               splitLine: {
                 show: true,
                 lineStyle: {
@@ -201,21 +201,17 @@ export default {
             dataZoom: [
               {
                 type: "slider",
-                filterMode: "weakFilter", //weakFilter参数配合echarts.graphic.clipRectByRect效果最佳
+                filterMode: "weakFilter",
                 show: true,
                 zoomLock: true,
                 xAxisIndex: [0],
                 top: 24,
-                start: 0,
-                end: 17,
-                minValueSpan: 4 * 3600 * 1000,
                 textStyle: {
                   color: "#fff"
                 },
                 borderColor: "#2B2B2B",
                 handleSize: "75%",
                 fillerColor: "#202f40"
-                // handleIcon: 'M10.7,11.9H9.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
               },
               {
                 type: "slider",
@@ -223,9 +219,6 @@ export default {
                 show: true,
                 yAxisIndex: [0],
                 left: "96%",
-                start: 0,
-                end: 100,
-                minValueSpan: 5,
                 textStyle: {
                   color: "#fff"
                 },
@@ -235,37 +228,14 @@ export default {
               },
               {
                 type: "inside",
-                xAxisIndex: [0],
-                start: 0,
-                end: 100
+                xAxisIndex: [0]
               },
               {
                 type: "inside",
-                yAxisIndex: [0],
-                zoomOnMouseWheel: false,
-                start: 0,
-                end: 100
+                yAxisIndex: [0]
               }
             ],
             series: seriesData,
-            // visualMap: {
-            //   pieces: this.project_kind_name,
-            //   dimension: 7,
-            //   left: "center",
-            //   bottom: -5,
-            //   orient: "horizontal",
-            //   textStyle: {
-            //     color: "#fff"
-            //   },
-            //   outOfRange: {
-            //     symbolSize: [0, 0, 0, 0]
-            //   },
-            //   controller: {
-            //     outOfRange: {
-            //       color: "#7A7A7A"
-            //     }
-            //   }
-            // },
             color: ["#fff"],
             animation: false
           };
