@@ -48,30 +48,30 @@
                 <h2>{{echartDataNames}} 总体完成情况</h2>
                 <ul class="oneitem">
                   <li>
-                    <p>设计工程量：</p>
+                    <p>设计工程量</p>
                     <h3 class="p1">{{echartDataList.designTotal}}公里</h3>
                   </li>
                   <li>
-                    <p>完成百分比：</p>
+                    <p>完成百分比</p>
                     <h3 class="p2">{{echartDataList.percent}}%</h3>
+                  </li>
+                  <li>
+                    <p>剩余工程量</p>
+                    <h3 class="p3">{{echartDataList.leftTotal}}</h3>
                   </li>
                 </ul>
                 <ul class="twoitem">
-                  <li>
-                    <p>月累完成：</p>
-                    <h3>{{echartDataList.monthTotal}}</h3>
-                  </li>
-                  <li>
-                    <p>年累完成：</p>
+                   <li>
+                    <p>年累完成</p>
                     <h3>{{echartDataList.yearTotal}}</h3>
                   </li>
                   <li>
-                    <p>开累完成：</p>
-                    <h3>{{echartDataList.workTotal}}</h3>
+                    <p>月累完成</p>
+                    <h3>{{echartDataList.monthTotal}}</h3>
                   </li>
                   <li>
-                    <p>剩余工程量：</p>
-                    <h3>{{echartDataList.leftTotal}}</h3>
+                    <p>开累完成</p>
+                    <h3>{{echartDataList.workTotal}}</h3>
                   </li>
                 </ul>
               </div>
@@ -362,13 +362,17 @@ export default {
   color: #1d397a;
   font-size: 18px;
   margin-bottom: 50px;
-  font-weight: 400;
+  font-weight: 700;
 }
 .second-content .oneitem {
   text-align: center;
-  margin: 70px 40px;
+  margin: 60px 10px;
   display: flex;
   justify-content: space-between;
+}
+.second-content .oneitem li {
+  width: 30%;
+  text-align: center;
 }
 .second-content .oneitem p {
   color: #1d397a;
@@ -377,32 +381,33 @@ export default {
 }
 .second-content .oneitem .p1 {
   color: #ff5c75;
-  font-size: 20px;
+  font-size: 24px;
 }
 .second-content .oneitem .p2 {
-  color: #27db07;
-  font-size: 20px;
+  color: #10a502e7;
+  font-size: 24px;
+}
+.second-content .oneitem .p3 {
+  color: #1d397a;
+  font-size: 24px;
 }
 .second-content .twoitem {
-  padding: 0 -15px;
+  padding: 0 10px;
   display: flex;
   justify-content: space-between;
 }
 .second-content .twoitem li {
-  border-right: 1px #b8ccfb solid;
-  padding: 0 15px;
-}
-.second-content .twoitem li:last-child {
-  border: 0;
+  width: 30%;
+  text-align: center;
 }
 .second-content .twoitem p {
   color: #4b6eca;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 31px;
 }
 .second-content .twoitem h3 {
-  color: #1d397a;
-  font-size: 16px;
+  color: #333;
+  font-size: 20px;
   text-align: center;
 }
 .chartbox {

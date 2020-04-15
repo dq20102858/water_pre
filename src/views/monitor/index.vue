@@ -387,26 +387,26 @@ export default {
       //绘隧道
       function drawTunnelAxis(tunnelListJson) {
         let json = tunnelListJson;
-        let json1 = [
-          {
-            id: 7,
-            name: "隧道名称一",
-            line_type: 1,
-            start_flag: 15,
-            start_length: 200,
-            end_flag: 15,
-            end_length: 800
-          },
-          {
-            id: 7,
-            name: "隧道名称二",
-            line_type: 2,
-            start_flag: 14,
-            start_length: 200,
-            end_flag: 16,
-            end_length: 100
-          }
-        ];
+        // let json1 = [
+        //   {
+        //     id: 7,
+        //     name: "隧道名称一",
+        //     line_type: 1,
+        //     start_flag: 15,
+        //     start_length: 200,
+        //     end_flag: 15,
+        //     end_length: 800
+        //   },
+        //   {
+        //     id: 7,
+        //     name: "隧道名称二",
+        //     line_type: 2,
+        //     start_flag: 14,
+        //     start_length: 200,
+        //     end_flag: 16,
+        //     end_length: 100
+        //   }
+        // ];
 
         for (let i = 0; i < json.length; i++) {
           let start =
@@ -561,104 +561,104 @@ export default {
       //绘制坡度
       function drawSlopeAxis(slopeListJson) {
         let json = slopeListJson;
-        let json1 = [
-          {
-            id: 7,
-            name: "\u9650\u901f",
-            line_type: 1,
-            start_flag: 14,
-            start_length: 200,
-            end_flag: 14,
-            end_length: 400,
-            height: "2",
-            length: "200",
-            type: 1
-          },
-          {
-            id: 7,
-            name: "\u9650\u901f",
-            line_type: 1,
-            start_flag: 14,
-            start_length: 400,
-            end_flag: 14,
-            end_length: 600,
-            height: "3",
-            length: "300",
-            type: 1
-          },
-          {
-            id: 7,
-            name: "\u9650\u901f",
-            line_type: 1,
-            start_flag: 14,
-            start_length: 600,
-            end_flag: 15,
-            end_length: 0,
-            height: "4",
-            length: "600",
-            type: 3
-          },
-          {
-            id: 7,
-            name: "\u9650\u901f",
-            line_type: 1,
-            start_flag: 15,
-            start_length: 0,
-            end_flag: 15,
-            end_length: 400,
-            height: "4",
-            length: "400",
-            type: 3
-          },
-          {
-            id: 7,
-            name: "右线",
-            line_type: 2,
-            start_flag: 14,
-            start_length: 200,
-            end_flag: 14,
-            end_length: 400,
-            height: "3",
-            length: "300",
-            type: 1
-          },
-          {
-            id: 7,
-            name: "\u9650\u901f",
-            line_type: 2,
-            start_flag: 14,
-            start_length: 400,
-            end_flag: 14,
-            end_length: 600,
-            height: "3.00",
-            length: "200",
-            type: 1
-          },
-          {
-            id: 7,
-            name: "\u9650\u901f",
-            line_type: 2,
-            start_flag: 14,
-            start_length: 600,
-            end_flag: 15,
-            end_length: 0,
-            height: "3.00",
-            length: "600",
-            type: 3
-          },
-          {
-            id: 7,
-            name: "\u9650\u901f",
-            line_type: 2,
-            start_flag: 15,
-            start_length: 0,
-            end_flag: 15,
-            end_length: 400,
-            height: "3.00",
-            length: "600",
-            type: 3
-          }
-        ];
+        // let json1 = [
+        //   {
+        //     id: 7,
+        //     name: "\u9650\u901f",
+        //     line_type: 1,
+        //     start_flag: 14,
+        //     start_length: 200,
+        //     end_flag: 14,
+        //     end_length: 400,
+        //     height: "2",
+        //     length: "200",
+        //     type: 1
+        //   },
+        //   {
+        //     id: 7,
+        //     name: "\u9650\u901f",
+        //     line_type: 1,
+        //     start_flag: 14,
+        //     start_length: 400,
+        //     end_flag: 14,
+        //     end_length: 600,
+        //     height: "3",
+        //     length: "300",
+        //     type: 1
+        //   },
+        //   {
+        //     id: 7,
+        //     name: "\u9650\u901f",
+        //     line_type: 1,
+        //     start_flag: 14,
+        //     start_length: 600,
+        //     end_flag: 15,
+        //     end_length: 0,
+        //     height: "4",
+        //     length: "600",
+        //     type: 3
+        //   },
+        //   {
+        //     id: 7,
+        //     name: "\u9650\u901f",
+        //     line_type: 1,
+        //     start_flag: 15,
+        //     start_length: 0,
+        //     end_flag: 15,
+        //     end_length: 400,
+        //     height: "4",
+        //     length: "400",
+        //     type: 3
+        //   },
+        //   {
+        //     id: 7,
+        //     name: "右线",
+        //     line_type: 2,
+        //     start_flag: 14,
+        //     start_length: 200,
+        //     end_flag: 14,
+        //     end_length: 400,
+        //     height: "3",
+        //     length: "300",
+        //     type: 1
+        //   },
+        //   {
+        //     id: 7,
+        //     name: "\u9650\u901f",
+        //     line_type: 2,
+        //     start_flag: 14,
+        //     start_length: 400,
+        //     end_flag: 14,
+        //     end_length: 600,
+        //     height: "3.00",
+        //     length: "200",
+        //     type: 1
+        //   },
+        //   {
+        //     id: 7,
+        //     name: "\u9650\u901f",
+        //     line_type: 2,
+        //     start_flag: 14,
+        //     start_length: 600,
+        //     end_flag: 15,
+        //     end_length: 0,
+        //     height: "3.00",
+        //     length: "600",
+        //     type: 3
+        //   },
+        //   {
+        //     id: 7,
+        //     name: "\u9650\u901f",
+        //     line_type: 2,
+        //     start_flag: 15,
+        //     start_length: 0,
+        //     end_flag: 15,
+        //     end_length: 400,
+        //     height: "3.00",
+        //     length: "600",
+        //     type: 3
+        //   }
+        // ];
 
         for (let i = 0; i < json.length; i++) {
           let start =
@@ -845,10 +845,7 @@ export default {
       drawAxisLabels(axis_Origin_Two.x, axis_Origin_Two.y);
       //画地铁站
       drawStations(this.stationList);
-      //施工进度
-      if (this.progressCheckValue) {
-        drawProgressAxis(this.progressListItem);
-      }
+    
       //桥
       if (this.bridgeCheckValue) {
         drawBridgeAxis(this.bridgeList);
@@ -868,6 +865,10 @@ export default {
       //坡度
       if (this.slopeCheckValue) {
         drawSlopeAxis(this.slopeList);
+      }
+        //施工进度
+      if (this.progressCheckValue) {
+        drawProgressAxis(this.progressListItem);
       }
     },
 

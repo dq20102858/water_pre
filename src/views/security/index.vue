@@ -102,7 +102,7 @@
         <div class="app-page-container">
           <div class="app-page-select">
             <el-form :model="searchForm" :inline="true">
-              <el-form-item label="事件类型">
+              <el-form-item label="事件类型" style="display:none">
                 <el-select v-model="searchForm.type">
                   <el-option label="人员提交" :value="1"></el-option>
                   <el-option label="机车提交" :value="2"></el-option>
