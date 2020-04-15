@@ -71,19 +71,6 @@
                   :before-upload="uploadBefore"
                   :on-success="uploadSuccess"
                 >
-                  <!-- <el-upload
-                  class="uploader el-upload-list--picture-card"
-                  action="/upload/uploadFile"
-                  :limit="5"
-                  list-type="picture-card"
-                  :auto-upload="false"
-                  ref="uploadRef"
-                  :before-upload="uploadBefore"
-                  :on-success="uploadSuccess"
-                  :on-exceed="uploadExceed"
-                  :on-change="uploadChange"
-                  :http-request="uploadRequest"
-                  >-->
                   <i class="el-icon-plus"></i>
                 </el-upload>
                 <el-dialog :visible.sync="dialogVisible">
