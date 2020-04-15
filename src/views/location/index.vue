@@ -26,7 +26,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="人员">
+            <el-form-item label="姓名">
               <el-select v-model="searchForm.name" placeholder="请选择人员姓名" clearable>
                 <el-option
                   v-for="item in objSelectLists"
