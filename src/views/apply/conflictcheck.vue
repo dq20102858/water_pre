@@ -23,51 +23,92 @@
         <div class="app-table">
           <el-table :data="checkList">
             <el-table-column prop="company1" label="公司名称"></el-table-column>
-            <el-table-column prop="number1" label="作业编号"></el-table-column>
+            <el-table-column prop="number1" label="作业编号">
+              <template slot-scope="scope">
+                <span
+                  style="cursor: pointer;"
+                  title="点击查看详情"
+                  @click="goDetail(scope.row.id1,scope.row.type1)"
+                >{{scope.row.number1}}</span>
+              </template>
+            </el-table-column>
             <el-table-column prop="company2" label="公司名称"></el-table-column>
-            <el-table-column prop="number2" label="作业编号"></el-table-column>
-            <el-table-column prop="txt" label="操作" width="140">
-              <!-- <template slot-scope="scope">
+            <el-table-column prop="number2" label="作业编号">
+              <template slot-scope="scope">
+                <span
+                  style="cursor: pointer;"
+                  title="点击查看详情"
+                  @click="goDetail(scope.row.id2,scope.row.type2)"
+                >{{scope.row.number2}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column prop="txt" label="操作" width="88">
+              <template slot-scope="scope">
                 <div class="app-operation">
-                  <el-button class="btn-blue" size="mini" @click="goApply(scope.row.id)">同意</el-button>
-                  <el-button class="btn-red" size="mini" @click="goRefuse(scope.row.id)">拒绝</el-button>
+                  <el-button
+                    class="btn-red"
+                    size="mini"
+                    @click="goApply(scope.row.id1,scope.row.id2,scope.row.number1,scope.row.number2,scope.row.type1,scope.row.type2)"
+                  >冲突操作</el-button>
                 </div>
-              </template> -->
+              </template>
             </el-table-column>
           </el-table>
         </div>
       </div>
     </div>
-    <el-dialog class="dialogVisible" title="同意" :visible.sync="dialogVisible" width="300px" center>
-      <span>您确定同意此任务？</span>
-      <span slot="footer" class="dialog-footer">
+    <el-dialog
+      class="dialogVisible"
+      title="冲突操作"
+      :visible.sync="dialogVisible"
+      width="480px"
+      :modal-append-to-body="false"
+      center
+    >
+      <div class="dialogoper">
+        <div class="operation" style="  border-bottom: 1px #ddd solid;
+  padding-bottom: 20px;">
+          <strong>作业编号：{{checkNumber1}}</strong>
+          <el-button class="btn-defult" size="mini" @click="goDetail(checkId1,checktype1)">查看</el-button>
+          <el-button class="btn-red" size="mini" @click="ApplyClick(checkId1,3)">拒绝</el-button>
+          <el-button class="btn-blue" size="mini" @click="ApplyClick(checkId1,2)">同意</el-button>
+        </div>
+        <div class="operation">
+          <strong>作业编号：{{checkNumber2}}</strong>
+          <el-button class="btn-defult" size="mini" @click="goDetail(checkId1,checktype2)">查看</el-button>
+          <el-button class="btn-red" size="mini" @click="ApplyClick(checkId2,3)">拒绝</el-button>
+          <el-button class="btn-blue" size="mini" @click="ApplyClick(checkId2,2)">同意</el-button>
+        </div>
+      </div>
+      <!-- <el-checkbox-group v-model="checkList" class="checkitemstyle">
+        <el-checkbox label="checkId1">作业编号：{{checkNumber1}}</el-checkbox>
+        <el-checkbox label="checkId2">作业编号：{{checkNumber2}}</el-checkbox>
+      </el-checkbox-group>-->
+      <!-- <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="ApplyClick(dialogId,2)">确定</el-button>
-        <el-button @click="dialogVisible=false">关闭</el-button>
-      </span>
-    </el-dialog>
-    <el-dialog class="dialogVisible" title="拒绝" :visible.sync="dialogRefuseVisible" width="300px" center>
-      <span>您确定拒绝此任务？</span>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="ApplyClick(dialogId,3)">确定</el-button>
-        <el-button @click="dialogRefuseVisible=false">关闭</el-button>
-      </span>
+      </span>-->
     </el-dialog>
   </div>
 </template>
 
 <script>
+import detailForm from "./applydetail.vue";
 export default {
   name: "conflictcheck",
   data() {
     return {
       projectName: "",
-      dialogId: 0,
+      checkId1: 0,
+      checkId2: 0,
+      checkNumber1: 0,
+      checkNumber2: 0,
+      checktype1: "",
+      checktype2: "",
       dialogVisible: false,
-      dialogRefuseVisible: false,
       checkList: []
     };
   },
-   mounted() {
+  mounted() {
     document
       .querySelector("#app-menu-items #menu_apply")
       .classList.add("is-active");
@@ -89,21 +130,20 @@ export default {
         }
       });
     },
-    goApply(id) {
+    goApply(id1, id2, num1, num2, type1, type2) {
       this.dialogVisible = true;
-      this.dialogId = id;
-         console.log( this.dialogId)
-    },
-    goRefuse(id) {
-      this.dialogRefuseVisible = true;
-      this.dialogId = id;
-      console.log( this.dialogId)
+      this.checkId1 = id1;
+      this.checkId2 = id2;
+      this.checkNumber1 = num1;
+      this.checkNumber2 = num2;
+      this.checktype1 = type1;
+      this.checktype2 = type2;
     },
     ApplyClick(id, status) {
       this.request({
         url: "/apply/changeStatus",
         method: "POST",
-        data: { id:  this.dialogId, status: status }
+        data: { id: id, status: status }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
@@ -112,13 +152,31 @@ export default {
             message: "恭喜您，操作成功"
           });
           this.dialogVisible = false;
-          this.dialogRefuseVisible = false;
           this.getconflictCheck();
         } else {
           // this.$message({
           //   type: "success",
           //   message: "审批失败"
           // });
+        }
+      });
+    },
+    goDetail(id, type) {
+      let laytitle = "";
+      if (type == "A1" || type == "A2") {
+        laytitle = "轨行区及施工作业许可证";
+      } else {
+        laytitle = this.projectName + "进场作业许可证";
+      }
+      this.$layer.iframe({
+        area: ["85%", "90%"],
+        title: laytitle,
+        shadeClose: false,
+        scrollbar: false,
+        content: {
+          content: detailForm,
+          parent: this,
+          data: { iframeData: { id: id } }
         }
       });
     }
@@ -128,6 +186,9 @@ export default {
 </script>
 
 <style>
+.vl-notify {
+  z-index: 9999 !important;
+}
 .el-menu--collapse .el-menu .el-submenu,
 .el-menu--popup {
   min-width: 124px;
@@ -160,6 +221,58 @@ export default {
   display: inline-block;
   margin-right: 5px;
   vertical-align: text-top;
+}
+/**/
+.dialogoper .operation {
+  margin-bottom: 15px;
+  text-align: left;
+  overflow: hidden;
+}
+.dialogoper .operation strong {
+  display: inline-block;
+  color: #4b6eca;
+  font-size: 15px;
+  padding-top: 5px;
+}
+.dialogoper .operation button {
+  float: right;
+  margin-left: 10px;
+  padding: 6px 8px;
+}
+.dialogoper .operation .btn-blue {
+  border: 1px #4b6eca solid;
+  color: #1d397a;
+}
+.dialogoper .operation .btn-defult {
+  border: 1px #999 solid;
+  color: #999;
+}
+.dialogoper .operation .btn-red {
+  border: 1px #ff5c75 solid;
+  color: #ff5c75;
+}
+
+.checkitemstyle .el-checkbox {
+  display: block;
+  margin-right: 0;
+  margin-bottom: 15px;
+}
+.checkitemstyle .el-checkbox__input {
+  float: right;
+}
+.checkitemstyle .el-checkbox__label {
+  color: #4b6eca;
+  font-size: 16px;
+}
+.checkitemstyle .el-checkbox__inner {
+  border: 1px #9db9fa solid;
+  width: 20px;
+  height: 20px;
+}
+.checkitemstyle .el-checkbox__inner::after {
+  width: 5px;
+  height: 11px;
+  left: 7px;
 }
 </style>
 

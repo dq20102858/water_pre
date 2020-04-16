@@ -9,10 +9,31 @@
     </div>
     <div class="app-page">
       <div class="app-page-container">
-        <div class="app-page-select">
-     
+        <div class="app-page-peple">
+          <div class="title">无锡地铁三号线<span>当日人数：0人</span><span>在线人数：0</span> </div>
+          <table>
+            <thead>
+              <th>公司名称</th>
+              <th>在线人数</th>
+              <th>当日人数</th>
+              <th>公司名称</th>
+              <th>在线人数</th>
+              <th>当日人数</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div class="app-table">
+          <h3 class="aptitle">当日在线人员列表</h3>
           <el-table :data="dataList">
             <el-table-column label="序号">
               <template scope="scope">
@@ -24,7 +45,7 @@
               <!-- <template slot-scope="scope">
                 <b>DK</b>
                 {{scope.row.start_flag}} + {{scope.row.start_length}}
-              </template> -->
+              </template>-->
             </el-table-column>
             <el-table-column prop="line" label="线别"></el-table-column>
             <el-table-column prop="number" label="定位设备编号"></el-table-column>
@@ -178,3 +199,43 @@ export default {
   }
 };
 </script>
+<style >
+.app-page-peple {
+  padding: 10px 0 30px 0;
+}
+.app-page-peple .title {
+  text-align: center;
+  color: #1d397a;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+.app-page-peple .title span {
+ margin-left: 20px;display: inline-block;
+ font-size: 18px;
+}
+.app-page-peple table {
+  width: 100%;
+  border: 1px #9db9fa  solid;
+  border-collapse: collapse;
+}
+.app-page-peple table td,
+.app-page-peple table th {
+  text-align: center;
+  padding: 12px 0;
+  height: 40px;
+  min-width: 0;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  color: #1d397a;
+}
+.app-page-peple table td {
+  border-top: 1px solid #9db9fa ;
+}
+ .aptitle {
+  color: #1d397a;
+  font-size: 20px;
+  margin-bottom:15px;
+}
+</style>
