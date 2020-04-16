@@ -48,13 +48,18 @@
                 </el-select>
               </el-form-item>
               <el-form-item label="安全事件标题：" prop="title">
-                <el-input v-model="formData.title"  maxlength="30" show-word-limit></el-input>
+                <el-input v-model="formData.title" maxlength="30" show-word-limit></el-input>
               </el-form-item>
               <el-form-item label="安全事件地址：" prop="address">
                 <el-input v-model="formData.address" maxlength="100" show-word-limit></el-input>
               </el-form-item>
               <el-form-item label="安全事件描述：" prop="description">
-                <el-input type="textarea" v-model="formData.description"  maxlength="255" show-word-limit></el-input>
+                <el-input
+                  type="textarea"
+                  v-model="formData.description"
+                  maxlength="255"
+                  show-word-limit
+                ></el-input>
               </el-form-item>
               <el-form-item label="相关图片：">
                 <p style="color:#3655a5">最多可以上传5张图片</p>
@@ -132,17 +137,22 @@
                   <el-input v-model="searchForm.end_location" autocomplete="off"></el-input>
                 </el-form-item>
               </span>
-              <el-form-item label="发现时间段">
-                <el-date-picker
-                  v-model="searchForm.time_range"
-                  type="daterange"
-                  range-separator="至"
-                  start-placeholder="开始日期"
-                  end-placeholder="结束日期"
-                  value-format="yyyy-MM-dd"
-                ></el-date-picker>
-              </el-form-item>
-
+  <el-form-item label="发现时间段">
+              <el-date-picker
+                v-model="searchForm.start_time"
+                :picker-options="pickerOptionsStart"
+                type="datetime" format="yyyy-MM-dd HH:mm"
+                clearable
+              ></el-date-picker>
+            </el-form-item>
+            <el-form-item label="-">
+              <el-date-picker
+                v-model="searchForm.end_time"
+                :picker-options="pickerOptionsEnd"
+                type="datetime"  format="yyyy-MM-dd HH:mm"
+                clearable
+              ></el-date-picker>
+            </el-form-item>
               <el-form-item class="form-so">
                 <label class="el-form-item__label"></label>
                 <el-button size="small" icon="el-icon-search" @click="pageSearch" type="primary">查询</el-button>
@@ -327,6 +337,24 @@
 export default {
   data() {
     return {
+       pickerOptionsStart: {
+        disabledDate: time => {
+          if (this.searchForm.end_time) {
+            return (
+              time.getTime() > new Date(this.searchForm.end_time).getTime()
+            );
+          }
+        }
+      },
+      pickerOptionsEnd: {
+        disabledDate: time => {
+          if (this.searchForm.start_time) {
+            return (
+              time.getTime() < new Date(this.searchForm.start_time).getTime()
+            );
+          }
+        }
+      },
       defaultActive: "1",
       addPageShow: false,
       listPageShow: true,
@@ -335,7 +363,7 @@ export default {
         type: 1,
         time_range: []
       },
-      uploadAction: this.hostURL + "upload/uploadFile",
+      uploadAction: this.hostURL + "/upload/uploadFile",
       dataList: [],
       companyList: [],
       trainList: [],
@@ -357,7 +385,11 @@ export default {
             trigger: "blur"
           },
           { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" },
-           { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
+          }
         ],
         address: [
           {
@@ -417,18 +449,15 @@ export default {
       if (key == 1) {
         this.addPageShow = false;
         this.listPageShow = true;
-        this.setPageShow = false;
         this.formData = {};
         this.getDataList();
       } else if (key == 2) {
         this.addPageShow = true;
         this.listPageShow = false;
-        this.setPageShow = false;
         this.peopleData = {};
       } else {
         this.addPageShow = false;
         this.listPageShow = false;
-        this.setPageShow = true;
       }
     },
     //====列表数据
@@ -440,15 +469,15 @@ export default {
       let loco_id = this.searchForm.loco_id;
       let start_location = this.searchForm.start_location;
       let end_location = this.searchForm.end_location;
-      let start_time = null;
-      let end_time = null;
-      let array_time = this.searchForm.time_range;
-      console.log(this.searchForm.time_range);
-      if (array_time != null) {
-        start_time = this.searchForm.time_range[0];
-        end_time = this.searchForm.time_range[1];
-      }
-      console.log(start_time + "_" + end_time);
+      let start_time =  this.searchForm.start_time;
+      let end_time = this.searchForm.end_time;
+      // let array_time = this.searchForm.time_range;
+      // console.log(this.searchForm.time_range);
+      // if (array_time != null) {
+      //   start_time = this.searchForm.time_range[0];
+      //   end_time = this.searchForm.time_range[1];
+      // }
+      // console.log(start_time + "_" + end_time);
 
       this.request({
         url: "/security/getSecurityPages",
@@ -634,9 +663,9 @@ export default {
                 type: "success"
               });
               this.formData = {};
-              this.defaultActive = 1;
               this.addPageShow = false;
               this.listPageShow = true;
+              this.defaultActive = 1;
               this.getDataList();
             } else {
               this.$message({
