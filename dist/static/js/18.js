@@ -1,20 +1,6 @@
 webpackJsonp([18],{
 
-/***/ "KbQT":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("Rgrv");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("dbd3248e", content, true);
-
-/***/ }),
-
-/***/ "Rgrv":
+/***/ "a5Hi":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("FZ+f")(false);
@@ -22,328 +8,25 @@ exports = module.exports = __webpack_require__("FZ+f")(false);
 
 
 // module
-exports.push([module.i, "\n.app-page-chart {\r\n  min-width: 1170px;\r\n  padding: 20px;\n}\n.maintitle {\r\n  text-align: center;\r\n  font-size: 20px;\r\n  color: #4b6eca;\r\n  padding-bottom: 20px;\n}\n.el-menu--collapse .el-menu .el-submenu,\r\n.el-menu--popup {\r\n  min-width: 124px;\r\n  text-align: center;\r\n  padding: 0;\n}\n.el-menu--horizontal .el-menu .el-menu-item.is-active,\r\n.el-menu--horizontal .el-menu .el-submenu.is-active > .el-submenu__title {\r\n  background: #4b6eca;\r\n  color: #fff;\n}\n.chartleft {\r\n  float: left;\r\n  width: 80%;\r\n  background: #fff;\r\n  padding: 30px;\r\n  border-radius: 6px;\n}\n.chartright {\r\n  float: left;\r\n  width: 19%;\r\n  margin-left: 1%;\n}\n.chartright .sidebox {\r\n  background: #fff;\r\n  padding: 20px;\r\n  margin-bottom: 20px;\n}\n.chartright .sidebox .btnitem {\r\n  margin-bottom: 15px;\n}\n.chartright .sidebox .btnitems {\r\n  margin-bottom: 15px;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-pack: justify;\r\n      -ms-flex-pack: justify;\r\n          justify-content: space-between;\n}\n.chartright .sidebox .btnitems .is-plain {\r\n  width: 100% !important;\r\n  display: inline-block;\r\n  background: #fff;\n}\n.chartright .el-date-editor.el-input,\r\n.chartright .el-date-editor.el-input__inner {\r\n  width: 100%;\n}\n.chartright .sidebox .btnitem .is-plain {\r\n  width: 100% !important;\r\n  background: #fff;\n}\n.chartright .sidebox .is-plain:hover {\r\n  background: #4b6eca;\r\n  border-color: #4b6eca;\r\n  color: #fff;\n}\n.chartright .sidebox .is-plain:focus {\r\n  background: #4b6eca;\r\n  border-color: #4b6eca;\r\n  color: #fff;\n}\n.chartright .sidebox h3 {\r\n  font-size: 14px;\n}\n.chartright .chklist {\r\n  margin-top: 15px;\n}\n.chartright .chklist .el-checkbox {\r\n  margin-bottom: 10px;\n}\n@media (max-width: 960px) {\n.chartleft {\r\n    width: 100%;\n}\n.chartright {\r\n    width: 100%;\r\n    margin-top: 20px;\n}\n}\r\n/*dialog  */\n.dialog-monitor .el-dialog__body {\r\n  padding: 30px 30px 0 30px;\n}\n.dialog-monitor b {\r\n  font-weight: 500;\n}\n.dialog-monitor .el-textarea__inner {\r\n  border: 1px #9db9fa solid;\r\n  color: #4b6eca;\r\n  height: 55px;\r\n  width: 550px;\n}\n.dialog-monitor .el-textarea {\r\n  width: 100%;\n}\n.dialog-monitor .el-form-item-inline .el-input--medium {\r\n  display: inline-block;\r\n  width: 80px;\r\n  text-align: center;\n}\n.dialog-monitor .el-form-item-inline input {\r\n  display: inline-block;\r\n  width: 80px;\r\n  text-align: center;\n}\n.dialog-monitor .el-form-item__label {\r\n  padding-right: 0;\n}\n.dialog-monitor .el-select {\r\n  width: 150px;\n}\n.dialog-monitor input {\r\n  width: 150px;\n}\n.dialog-monitor .el-date-editor input {\r\n  width: 180px;\n}\n.dialog-monitor .el-date-editor.el-input {\r\n  width: 180px;\n}\n.dialog-monitor b {\r\n  padding-right: 8px;\n}\n.dialog-monitor fieldset {\r\n  border: 1px #9db9fa solid;\r\n  margin-bottom: 15px;\r\n  border-radius: 3px;\r\n  padding: 5px 5px 0 5px;\n}\n.dialog-monitor fieldset legend {\r\n  font-size: 16px;\r\n  color: #4b6eca;\r\n  padding: 0 10px;\n}\n.el-form-item-block {\r\n  display: block;\n}\n.el-form-item-inlines {\r\n  display: inline-block;\n}\n.el-form-item-inlines .el-form-item {\r\n  display: inline-block;\n}\n.el-form-item-inlines .el-form-item .el-form-item__content {\r\n  margin-left: 0;\n}\n.el-form-item-inlines .el-input {\r\n  width: 72px;\n}\n.el-form-item-inlines input {\r\n  display: inline-block;\r\n  width: 72px;\r\n  text-align: center;\n}\n.el-form-item-inlines .el-form-item {\r\n  margin-bottom: 1px !important;\n}\n.dateinput input {\r\n  width: 180px;\n}\n.dateinput .el-select {\r\n  width: 180px;\n}\n.dateinput .el-form-item__content {\r\n  width: 180px;\n}\r\n", ""]);
+exports.push([module.i, "\n.dialog-user .el-textarea {\r\n  width: 100% !important;\n}\n.dialog-user .el-form-item__label {\r\n  width: 110px;\n}\n.dialog-user .el-input--medium {\r\n  width: 100%;\n}\n.dialog-user .el-select {\r\n  width: 185px;\n}\n.dialog-user .el-form-item-block {\r\n  display: block;\n}\n.el-form-item-inlines {\r\n  display: inline-block;\n}\n.dialog-user .el-form-item-inlines .el-form-item {\r\n  display: inline-block;\n}\n.el-form-item-block {\r\n  display: block;\n}\n.dialog-user .el-form-item-inlines .el-checkbox-group {\r\n  margin-left: 110px;\n}\r\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ "WfHw":
+/***/ "lfKa":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// EXTERNAL MODULE: ./node_modules/babel-runtime/core-js/json/stringify.js
-var stringify = __webpack_require__("mvHQ");
-var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
+// EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/defineProperty.js
+var defineProperty = __webpack_require__("bOdI");
+var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/run_monitor/index.vue
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/admin/userlist.vue
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -561,351 +244,317 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
 //
 //
 
-/* harmony default export */ var run_monitor = ({
-  name: "daychart",
+/* harmony default export */ var userlist = ({
   data: function data() {
-    return {
-      mark_line: [],
-      project_kind_name: [],
-      kcolor: ["red", "green", "yellow", "#467aff", "#44ddb5", "#c245d3"],
-      todayValue: new Date(),
-      todayPreValue: "",
-      todayNextValue: "",
-      diaLogFormVisible: false,
-      diaLogTitle: "计划图",
-      formData: {
-        plan_type: 1,
-        car_type: ""
-      },
-      locoList: [],
-      lineTypeList: [],
-      masterList: [],
-      driverList: [],
-      stationList: [],
-      workTypeList: [],
-      workLineTypeList: [],
+    var _ref;
+
+    return _ref = {
       userList: [],
-      formRules: {
-        number: [{
-          required: true,
-          message: "请输入编号2~20个字符",
-          trigger: "blur"
-        }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }],
-        start_time: [{
-          required: true,
-          message: "请输入开始时间",
-          trigger: "change"
-        }],
-        end_time: [{
-          required: true,
-          message: "请输入结束时间",
-          trigger: "change"
-        }],
-        start_flag: [{
-          required: true,
-          message: "请输入里程(公里)",
-          trigger: "blur"
-        }],
-        start_length: [{
-          required: true,
-          message: "请输入里程(米)",
-          trigger: "blur"
-        }],
-        end_flag: [{
-          required: true,
-          message: "请输入里程(公里)",
-          trigger: "blur"
-        }],
-        end_length: [{
-          required: true,
-          message: "请输入里程(米)",
-          trigger: "blur"
-        }]
-      },
-      diaLogFormEditVisible: false,
-      diaLogTitleEdit: "",
-      formEditData: {},
-      numberId: 0,
-      planNumbersList: [],
-      formEditRules: {},
-      select_line_type: [],
-      select_type_plan: true,
-      select_type_now: true,
-      select_loco_type: []
-    };
+      userPage_size: 20,
+      userPage_cur: 1,
+      userPage_items: 0
+    }, defineProperty_default()(_ref, "userPage_size", 20), defineProperty_default()(_ref, "userPage_cur", 1), defineProperty_default()(_ref, "userPage_items", 0), defineProperty_default()(_ref, "userPage_total", 0), defineProperty_default()(_ref, "userDialogVisible", false), defineProperty_default()(_ref, "userDialogTitle", ""), defineProperty_default()(_ref, "userData", {
+      menus: []
+    }), defineProperty_default()(_ref, "userSearch", {}), defineProperty_default()(_ref, "userAddRules", {
+      user_name: [{
+        required: true,
+        message: "请输入用户名2~20个字符",
+        trigger: "blur"
+      }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }, {
+        pattern: /^[^\s]*$/,
+        message: "输入用户名不能含有空格",
+        trigger: "blur"
+      }],
+      name: [{
+        required: true,
+        message: "请输入姓名2~20个字符",
+        trigger: "blur"
+      }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }, {
+        pattern: /^[^\s]*$/,
+        message: "输入姓名不能含有空格",
+        trigger: "blur"
+      }],
+      company_id: [{
+        required: true,
+        message: "请选择公司",
+        trigger: "change"
+      }],
+      password: [{
+        required: true,
+        message: "请输入密码2~20个字符",
+        trigger: "blur"
+      }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }],
+      passwordEdit: [{
+        min: 2,
+        max: 20,
+        message: "请输入密码在2到20个字符",
+        trigger: "blur"
+      }],
+      depart_id: [{
+        required: true,
+        message: "请选择部门",
+        trigger: "change"
+      }],
+      post_id: [{
+        required: true,
+        message: "请选择职位",
+        trigger: "change"
+      }],
+      dispatch: [{
+        required: true,
+        message: "请选择调度信息",
+        trigger: "change"
+      }],
+      email: [{
+        type: "email",
+        message: "请输入正确的邮箱地址",
+        trigger: ["blur", "change"]
+      }],
+      phone: [{
+        pattern: /^1[34578]\d{9}$/,
+        message: "请输入正确的手机号码",
+        trigger: "blur"
+      }]
+    }), defineProperty_default()(_ref, "passwordOrg", ""), defineProperty_default()(_ref, "companySelectList", []), defineProperty_default()(_ref, "departSelectList", []), defineProperty_default()(_ref, "postSelectList", []), defineProperty_default()(_ref, "userMenuList", []), _ref;
   },
-  mounted: function mounted() {},
-  updated: function updated() {},
+  mounted: function mounted() {
+    document.querySelector("#app-menu-items #menu_admin").classList.add("is-active");
+  },
   created: function created() {
-    this.getPageLoad();
+    this.getCompanyLists();
+    this.getLineTypes();
+    this.getMenuLists();
+    this.getUserLists();
   },
 
   methods: {
-    getPageLoad: function getPageLoad() {
-      this.getLocomotiveLists(); //机车
-      this.getLineTypeList(); //线别
-    },
-    getChart: function getChart() {
+    getUserLists: function getUserLists() {
       var _this = this;
 
-      this.formData.date = this.todayValue;
-      this.todayPreValue = this.getNextDate(this.todayValue, -1);
-      this.todayNextValue = this.getNextDate(this.todayValue, 1);
-      var start_time = this.getNextDate(this.todayValue, -1, "-");
-      var end_time = this.getNextDate(this.todayValue, 1, "-");
-      var line_type = this.select_line_type.toString();
-      var type = 1;
-      var loco_type = this.select_loco_type.toString();
+      var page = this.userPage_cur;
+      var user_name = this.userSearch.user_name;
+      var company_id = this.userSearch.company_id;
+      var depart_id = this.userSearch.depart_id;
+      var post_id = this.userSearch.post_id;
       this.request({
-        url: "/dayplan/getLineDatas",
+        url: "/user/getUserPage",
         method: "get",
-        params: { start_time: start_time, end_time: end_time, line_type: line_type, type: type, loco_type: loco_type }
-      }).then(function (res) {
-        var resdata = res.data;
-        if (resdata.status == 1) {
-          //myChart
-          var myChart = _this.$echarts.init(document.getElementById("main"));
-          myChart.getDom().style.height = document.body.clientHeight - 280 + "px";
-          //站点=============
-          resdata.data.stations.map(function (item) {
-            _this.mark_line.push({
-              name: item.name + " DK " + item.start_flag + " + " + item.start_length,
-              yAxis: item.start_flag + item.start_length / 1000
-            });
-          });
-          var minLineNum = Math.min.apply(Math, _this.mark_line.map(function (item) {
-            return parseInt(item.yAxis + 2);
-          }));
-          var maxLineNum = Math.max.apply(Math, _this.mark_line.map(function (item) {
-            return parseInt(item.yAxis + 2);
-          }));
-          // 数据
-          var seriesData = [];
-          seriesData.push({
-            name: "车站",
-            type: "line",
-            markLine: {
-              silent: true,
-              data: _this.mark_line,
-              symbol: ["none"],
-              label: {
-                show: false,
-                normal: {
-                  position: "left",
-                  formatter: function formatter(value, index) {
-                    return value.name.replace(/.00/, "").replace(/.00/, "") + "   ";
-                  }
-                }
-              },
-              lineStyle: {
-                normal: {
-                  type: "solid",
-                  color: "#1D397A"
-                }
-              }
-            }
-          });
-          //划线===============
-          //debugger
-          var dataTypeArr = resdata.data.plan;
-          // alert(dataTypeArr.length);
-
-          var dataTypeArr3 = [{
-            lists: [{ name: "2020-04-09 20:00:00", value: 21.003 }, { name: "2020-04-09 23:00:00", value: 32.9 }]
-          }, {
-            lists: [{ name: "2020-04-09 19:00:00", value: 14.003 }, { name: "2020-04-09 20:00:00", value: 16.9 }]
-          }, {
-            lists: [{ name: "2020-04-09 22:00:00", value: 24.003 }, { name: "2020-04-09 23:00:00", value: 32.9 }]
-          }, {
-            lists: [{ name: "2020-04-08 20:00:00", value: 18.003 }, { name: "2020-04-09 0:00:00", value: 22.9 }]
-          }];
-          //计划线 实际线
-          var typeData = [];
-          dataTypeArr.forEach(function (item, index) {
-            var start_flag_list = [];
-            var end_flag_list = [];
-            var true_start_flag_list = [];
-            var true_end_flag_list = [];
-            start_flag_list.push(item.start_time, parseFloat(item.start_flag) + parseFloat(item.start_length / 1000));
-            end_flag_list.push(item.end_time, parseFloat(item.end_flag) + parseFloat(item.end_length / 1000));
-            true_start_flag_list.push(item.start_time, parseFloat(item.true_start_flag) + parseFloat(item.true_start_length / 1000));
-            true_end_flag_list.push(item.end_time, parseFloat(item.true_end_flag) + parseFloat(item.true_end_length / 1000));
-            if (_this.select_type_plan) {
-              typeData.push({
-                color: "blue",
-                lists: [start_flag_list, end_flag_list]
-              });
-            }
-            if (_this.select_type_now) {
-              typeData.push({
-                color: "green",
-                lists: [true_start_flag_list, true_end_flag_list]
-              });
-            }
-          });
-
-          for (var k in typeData) {
-            seriesData.push({
-              type: "line",
-              itemStyle: { normal: { color: typeData[k].color } },
-              data: typeData[k].lists
-            });
-          }
-          console.log("typeData：" + stringify_default()(typeData));
-          //console.log("projectData：" + JSON.stringify(seriesData));
-          //时间
-          var dataMin = new Date(_this.todayValue.getTime() - 24 * 60 * 60 * 1000).setHours(17);
-          var dataMax = new Date(_this.todayValue.getTime() + 24 * 60 * 60 * 1000).setHours(19);
-          //option
-          var option = {
-            textStyle: {
-              color: "#1D397A"
-            },
-            tooltip: {
-              trigger: "none",
-              axisPointer: {
-                type: "cross",
-                label: {
-                  backgroundColor: "#376df4"
-                },
-                lineStyle: {
-                  color: "#376df4",
-                  width: 1
-                }
-              }
-            },
-            grid: {
-              left: "15%",
-              right: "1%"
-            },
-            xAxis: {
-              type: "time",
-              position: "top",
-              min: dataMin,
-              max: dataMax,
-              maxInterval: 3600 * 0.1 * 1000,
-              axisLabel: {
-                formatter: function formatter(val, index) {
-                  var date = new Date(val);
-                  var months = date.getMonth() + 1 + "/" + date.getDate();
-                  var hours = date.getHours() + ":00";
-                  if (index % 6 == 0) {
-                    return months + "\r\n" + hours;
-                  }
-                }
-              },
-              splitLine: {
-                show: true,
-                lineStyle: {
-                  color: ["#c0c0c0"],
-                  type: "solid",
-                  width: 1
-                }
-              }
-            },
-            yAxis: {
-              show: false,
-              type: "value",
-              min: minLineNum - 3,
-              max: maxLineNum,
-              animation: false
-            },
-            dataZoom: [{
-              show: true,
-              realtime: true,
-              zoomLock: true,
-              start: 0,
-              end: 50
-            }, {
-              type: "inside",
-              realtime: true,
-              zoomOnMouseWheel: false,
-              start: 0,
-              end: 50
-            }],
-            // dataZoom: [
-            //   {
-            //     type: "slider",
-            //     filterMode: "weakFilter",
-            //     show: false,
-            //     zoomLock: true,
-            //     top: 24,
-            //     start: 0,
-            //     end: 50,
-            //     minValueSpan: 4 * 3600 * 1000
-            //   },
-            //   {
-            //     type: "inside",
-            //     start: 0,
-            //     end: 100
-            //   },
-            //   {
-            //     type: "inside",
-            //     zoomOnMouseWheel: false,
-            //     start: 0,
-            //     end: 100
-            //   }
-            // ],
-            series: seriesData
-          };
-          // 使用刚指定的配置项和数据显示图表。
-          myChart.clear();
-          myChart.setOption(option);
-          myChart.resize();
-          window.addEventListener("resize", function () {
-            myChart.resize();
-          });
+        params: { page: page, user_name: user_name, company_id: company_id, depart_id: depart_id, post_id: post_id }
+      }).then(function (response) {
+        var data = response.data;
+        if (data.status == 1) {
+          _this.userList = data.data.data;
+          _this.userPage_cur = parseInt(data.data.current_page);
+          _this.userPage_items = data.data.total;
+          _this.userPage_size = data.data.per_page;
+          _this.puserPage_total = data.data.last_page;
         }
       });
     },
-
-    //date 代表指定的日期，格式：2018-09-27 day 传-1表始前一天，传1表始后一天
-    getNextDate: function getNextDate(date, day, flag) {
-      var dd = new Date(date);
-      dd.setDate(dd.getDate() + day);
-      var y = dd.getFullYear();
-      var m = dd.getMonth() + 1 < 10 ? "0" + (dd.getMonth() + 1) : dd.getMonth() + 1;
-      var d = dd.getDate() < 10 ? "0" + dd.getDate() : dd.getDate();
-      if (flag == "-") {
-        return y + "-" + m + "-" + d;
-      } else {
-        return y + "年" + m + "月" + d + "日";
-      }
+    userChangePage: function userChangePage(value) {
+      this.userPage_cur = value;
+      this.getUserLists();
     },
-    preDate: function preDate() {
-      //前一天
-      this.todayValue = new Date(this.todayValue.getTime() - 24 * 60 * 60 * 1000);
-      this.getChart();
+    userFirstPage: function userFirstPage() {
+      this.userPage_cur = 1;
+      this.getUserLists();
     },
-    nextDate: function nextDate() {
-      //后一天
-      this.todayValue = new Date(this.todayValue.getTime() + 24 * 60 * 60 * 1000);
-      this.getChart();
+    userLastPage: function userLastPage() {
+      this.userPage_cur = this.userPage_total;
+      this.getUserLists();
     },
-
-    //from
-    getLocomotiveLists: function getLocomotiveLists() {
+    userSearchPage: function userSearchPage() {
+      this.userPage_cur = 1;
+      this.getUserLists();
+    },
+    resetSerach: function resetSerach() {
+      this.userSearch = {
+        user_name: "",
+        company_id: "",
+        depart_id: "",
+        post_id: ""
+      };
+      this.departSelectList = [];
+      this.postSelectList = [];
+      this.userPage_cur = 1;
+      this.getUserLists();
+    },
+    openAddUser: function openAddUser() {
+      this.userData = {
+        menus: []
+      };
+      this.userDialogVisible = true;
+      this.userDialogTitle = "添加人员信息";
+    },
+    addUser: function addUser() {
       var _this2 = this;
 
-      this.request({
-        url: "/dispatch/getLocomotiveLists",
-        method: "get"
-      }).then(function (res) {
-        var data = res.data;
-        if (data.status == 1) {
-          _this2.locoList = data.data;
-          _this2.locoList.map(function (item) {
-            _this2.select_loco_type.push(item.id);
+      this.$refs["userRulesForm"].validate(function (valid) {
+        if (valid) {
+          var data = _this2.userData;
+          // this.userData.menus = this.userData.menus.slice(1);
+          var url = "/user/addUser";
+          var baseid = _this2.userData.id;
+          console.log("this.userData.id：" + _this2.userData.id);
+          if (typeof baseid != "undefined") {
+            url = "/user/editUser";
+            var pwdEdit = _this2.userData.passwordEdit;
+            if (pwdEdit != "" && typeof pwdEdit != "undefined") {
+              _this2.userData.password = pwdEdit;
+            } else {
+              _this2.userData.password = _this2.passwordOrg;
+            }
+          }
+          _this2.request({
+            url: url,
+            method: "post",
+            data: data
+          }).then(function (response) {
+            var data = response.data;
+            if (data.status == 1) {
+              _this2.userDialogVisible = false;
+              _this2.userData.passwordEdit = "";
+              _this2.$message({
+                type: "success",
+                message: "保存成功！"
+              });
+              _this2.getUserLists();
+            }
           });
-          _this2.getChart();
-
-          _this2.$set(_this2.formData, "out_business_loco", _this2.locoList[0]["id"]);
-          _this2.$set(_this2.formData, "back_business_loco", _this2.locoList[0]["id"]);
         }
       });
     },
-    getLineTypeList: function getLineTypeList() {
+    detailUser: function detailUser(id) {
       var _this3 = this;
+
+      this.userDialogTitle = "修改人员信息";
+      this.userDialogVisible = true;
+      this.request({
+        url: "/user/getUserDetial",
+        method: "get",
+        params: { id: id }
+      }).then(function (response) {
+        var data = response.data;
+        if (data.status == 1) {
+          _this3.userData = data.data;
+          if (data.data.menus != "") {
+            _this3.userData.menus = data.data.menus.split(",");
+          } else {
+            _this3.userData.menus = [];
+          }
+
+          console.log(_this3.userData.menus);
+          _this3.passwordOrg = data.data.password;
+          _this3.getDepartListEdit(data.data.company_id); //部门
+          _this3.getPostListEdit(data.data.depart_id); //职位
+        }
+      });
+    },
+    delUser: function delUser(id) {
+      var _this4 = this;
+
+      this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+        customClass: "el-message-box-new"
+      }).then(function () {
+        _this4.request({
+          url: "/user/deleteUser",
+          method: "post",
+          data: { id: id }
+        }).then(function (res) {
+          var data = res.data;
+          if (data.status == 1) {
+            _this4.$message({
+              type: "success",
+              message: "删除成功！"
+            });
+            _this4.getUserLists();
+          }
+        });
+      }).catch(function () {});
+    },
+
+    //公司 部门 职位
+    getCompanyLists: function getCompanyLists() {
+      var _this5 = this;
+
+      this.request({
+        url: "/company/getDepartLists",
+        method: "get",
+        params: { pid: 0, type: 1 }
+      }).then(function (response) {
+        var data = response.data;
+        if (data.status == 1) {
+          _this5.companySelectList = data.data;
+        }
+      });
+    },
+    getDepartLists: function getDepartLists(val) {
+      var _this6 = this;
+
+      this.$set(this.userData, "depart_id", "");
+      this.$set(this.userData, "post_id", "");
+      this.$set(this.userSearch, "depart_id", "");
+      this.$set(this.userSearch, "post_id", "");
+      this.request({
+        url: "/company/getDepartLists",
+        method: "get",
+        params: { pid: val, type: 2 }
+      }).then(function (response) {
+        var data = response.data;
+        if (data.status == 1) {
+          _this6.departSelectList = data.data;
+        }
+      });
+    },
+    getPostLists: function getPostLists(val) {
+      var _this7 = this;
+
+      this.$set(this.userData, "post_id", "");
+      this.$set(this.userSearch, "post_id", "");
+      this.request({
+        url: "/company/getDepartLists",
+        method: "get",
+        params: { pid: val, type: 3 }
+      }).then(function (response) {
+        var data = response.data;
+        if (data.status == 1) {
+          _this7.postSelectList = data.data;
+        }
+      });
+    },
+    getDepartListEdit: function getDepartListEdit(val) {
+      var _this8 = this;
+
+      this.request({
+        url: "/company/getDepartLists",
+        method: "get",
+        params: { pid: val, type: 2 }
+      }).then(function (response) {
+        var data = response.data;
+        if (data.status == 1) {
+          _this8.departSelectList = data.data;
+        }
+      });
+    },
+    getPostListEdit: function getPostListEdit(val) {
+      var _this9 = this;
+
+      this.request({
+        url: "/company/getDepartLists",
+        method: "get",
+        params: { pid: val, type: 3 }
+      }).then(function (response) {
+        var data = response.data;
+        if (data.status == 1) {
+          _this9.postSelectList = data.data;
+        }
+      });
+    },
+    getLineTypes: function getLineTypes() {
+      var _this10 = this;
 
       this.request({
         url: "/common/getLineType",
@@ -913,323 +562,34 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
       }).then(function (res) {
         var data = res.data;
         if (data.status == 1) {
-          _this3.lineTypeList = data.data;
-          _this3.lineTypeList.map(function (item) {
-            _this3.select_line_type.push(item.id);
-          });
-          _this3.getChart();
-          _this3.$set(_this3.formData, "out_line_type", _this3.lineTypeList[0]["id"]);
-          _this3.$set(_this3.formData, "back_line_type", _this3.lineTypeList[0]["id"]);
-          _this3.$set(_this3.formData, "line_type", _this3.lineTypeList[0]["id"]);
+          _this10.userMenuList1 = data.data;
         }
       });
     },
-
-    //5:车长,6:司机,7:调度值班员，8：车站值班员 /dispatch/getUsersLists
-    getMasterList: function getMasterList() {
-      var _this4 = this;
-
-      this.request({
-        url: "/dispatch/getUsersLists?role_id=5",
-        method: "get"
-      }).then(function (res) {
-        var data = res.data;
-        if (data.status == 1) {
-          _this4.masterList = data.data;
-          _this4.$set(_this4.formData, "out_master_id", _this4.masterList[0]["id"]);
-          _this4.$set(_this4.formData, "back_master_id", _this4.masterList[0]["id"]);
-        }
-      });
-    },
-    getdriverList: function getdriverList() {
-      var _this5 = this;
-
-      this.request({
-        url: "/dispatch/getUsersLists?role_id=6",
-        method: "get"
-      }).then(function (res) {
-        var data = res.data;
-        if (data.status == 1) {
-          _this5.driverList = data.data;
-          _this5.$set(_this5.formData, "out_driver_id", _this5.driverList[0]["id"]);
-          _this5.$set(_this5.formData, "back_driver_id", _this5.driverList[0]["id"]);
-        }
-      });
-    },
-    getStationList: function getStationList() {
-      var _this6 = this;
-
-      this.request({
-        url: "/apply/getStationLists",
-        method: "get"
-      }).then(function (res) {
-        var data = res.data;
-        if (data.status == 1) {
-          _this6.stationList = data.data;
-          _this6.$set(_this6.formData, "start_station", _this6.stationList[0]["id"]);
-          _this6.$set(_this6.formData, "end_station", _this6.stationList[0]["id"]);
-        }
-      });
-    },
-    changeStartStation: function changeStartStation(value) {
-      var _this7 = this;
-
-      //alert(value);
-      this.stationList.map(function (item) {
-        if (item.id == value) {
-          _this7.formData.start_flag = parseFloat(item.start_flag);
-          _this7.formData.start_length = parseFloat(item.start_length);
-        }
-      });
-    },
-    changeEndStation: function changeEndStation(value) {
-      var _this8 = this;
-
-      //alert(value);
-      this.stationList.map(function (item) {
-        if (item.id == value) {
-          _this8.formData.end_flag = parseFloat(item.start_flag);
-          _this8.formData.end_length = parseFloat(item.start_length);
-        }
-      });
-    },
-    getWorkTypeList: function getWorkTypeList() {
-      var _this9 = this;
-
-      this.request({
-        url: "/project/getWorkTypeList",
-        method: "get"
-      }).then(function (res) {
-        var data = res.data;
-        if (data.status == 1) {
-          _this9.workTypeList = data.data;
-          var wordId = _this9.workTypeList[0]["id"];
-          _this9.$set(_this9.formData, "work_type", wordId);
-          _this9.changeWorkListItem(wordId);
-        }
-      });
-    },
-    changeWorkListItem: function changeWorkListItem(value) {
-      var that = this;
-      this.$set(this.formData, "line_type", "");
-      var selectedLineTypeLists = [];
-      this.workTypeList.forEach(function (item) {
-        if (item.id == value) {
-          selectedLineTypeLists = item.line_type_lists;
-        }
-      });
-      this.workLineTypeList = selectedLineTypeLists;
-      this.$set(this.formData, "line_type", selectedLineTypeLists[0]["id"]);
-    },
-    planAdd: function planAdd() {
-      this.diaLogTitle = "计划图";
-      this.diaLogFormVisible = true;
-
-      this.getMasterList(); //车长
-      this.getdriverList(); //司机
-      this.getStationList(); //车站
-      this.getWorkTypeList(); //作业类型
-    },
-    addDayPlanDialog: function addDayPlanDialog() {
-      var _this10 = this;
-
-      this.$refs["formRules"].validate(function (valid) {
-        if (valid) {
-          var data = _this10.formData;
-          _this10.request({
-            url: "/dayplan/addDayPlan",
-            method: "post",
-            data: data
-          }).then(function (response) {
-            var data = response.data;
-            if (data.status == 1) {
-              _this10.diaLogFormVisible = false;
-              _this10.$message({
-                type: "success",
-                message: "保存成功！"
-              });
-              _this10.getChart();
-            }
-          });
-        }
-      });
-    },
-
-    //編輯
-    getUserLists: function getUserLists() {
+    getMenuLists: function getMenuLists() {
       var _this11 = this;
 
       this.request({
-        url: "/dayplan/getUserLists",
+        url: "/user/getMenuLists",
         method: "get"
-      }).then(function (res) {
-        var data = res.data;
-        if (data.status == 1) {
-          _this11.userList = data.data;
-          var record_id = _this11.userList[0]["id"];
-          _this11.formEditData.record_id = record_id;
-          // this.$set(this.formEditData, "record_id", record_id);
-        }
-      });
-    },
-    getPlanNumbers: function getPlanNumbers() {
-      var _this12 = this;
-
-      var todayNum = this.todayValue;
-      var start_time = this.getNextDate(todayNum, -1, "-"); //前一天
-      var end_time = this.getNextDate(todayNum, 1, "-"); //后一天
-      this.request({
-        url: "/dayplan/getPlanNumbers",
-        method: "get",
-        params: {
-          start_time: start_time,
-          end_time: end_time
-        }
-      }).then(function (res) {
-        var data = res.data;
-        if (data.status == 1) {
-          _this12.planNumbersList = data.data;
-          if (_this12.numberId == 0) {
-            _this12.numberId = _this12.planNumbersList[0]["id"];
-          }
-          _this12.getPlanDetail(_this12.numberId);
-        }
-      });
-    },
-    selectPlanNumbers: function selectPlanNumbers(value) {
-      this.getPlanDetail(value);
-      this.numberId = value;
-    },
-    getPlanDetail: function getPlanDetail(id) {
-      var _this13 = this;
-
-      this.request({
-        url: "/dayplan/getDayPlanDetail",
-        method: "get",
-        params: { id: id }
       }).then(function (response) {
         var data = response.data;
         if (data.status == 1) {
-          _this13.formEditData = {
-            id: _this13.numberId,
-            number: data.data.number,
-            record_id: data.data.record_id == null ? _this13.formEditData.record_id : data.data.record_id,
-            true_start_time: data.data.true_start_time == "" ? data.data.start_time : data.data.true_start_time,
-            true_end_time: data.data.true_end_time == "" ? data.data.end_time : data.data.true_end_time,
-            true_start_flag: data.data.true_start_flag == null ? parseFloat(data.data.start_flag) : parseFloat(data.data.true_start_flag),
-            true_start_length: data.data.true_start_length == null ? parseFloat(data.data.start_length) : parseFloat(data.data.true_start_length),
-            true_end_flag: data.data.true_end_flag == null ? parseFloat(data.data.end_flag) : parseFloat(data.data.true_end_flag),
-            true_end_length: data.data.true_end_length == null ? parseFloat(data.data.end_length) : parseFloat(data.data.true_end_length),
-            finish_num: data.data.finish_num,
-            remark: data.data.remark,
-            reason: data.data.reason,
-            status: data.data.status
-          };
-          console.log(_this13.formEditData);
+          _this11.userMenuList = data.data;
         }
       });
-    },
-    planEdit: function planEdit() {
-      var _this14 = this;
-
-      var todayNum = this.todayValue;
-      var start_time = this.getNextDate(todayNum, -1, "-"); //前一天
-      var end_time = this.getNextDate(todayNum, 1, "-"); //后一天
-      this.request({
-        url: "/dayplan/getPlanNumbers",
-        method: "get",
-        params: {
-          start_time: start_time,
-          end_time: end_time
-        }
-      }).then(function (res) {
-        var data = res.data;
-        if (data.status == 1) {
-          if (data.data.length > 0) {
-            _this14.diaLogTitleEdit = "修改计划图";
-            _this14.diaLogFormEditVisible = true;
-            _this14.getPlanNumbers(); //日班计划列表
-            _this14.getUserLists(); //记录人
-          } else {
-            _this14.$alert('<strong>当天没有计划！</strong>', '提示信息', {
-              dangerouslyUseHTMLString: true
-            });
-            // this.$message({
-            //   type: "warning",
-            //   message: "当天没有计划！"
-            // });
-          }
-        }
-      });
-    },
-    updateDayTrueplan: function updateDayTrueplan() {
-      var _this15 = this;
-
-      this.$refs["refFormEditRules"].validate(function (valid) {
-        if (valid) {
-          var data = _this15.formEditData;
-          _this15.request({
-            url: "/dayplan/updateDayTrueplan",
-            method: "post",
-            data: data
-          }).then(function (response) {
-            var data = response.data;
-            if (data.status == 1) {
-              _this15.diaLogFormEditVisible = false;
-              _this15.getChart();
-              _this15.$message({
-                type: "success",
-                message: "保存成功！"
-              });
-            }
-          });
-        } else {
-          console.log("操作失败！");
-          return false;
-        }
-      });
-    },
-
-    //多选操作
-    selectDatePicker: function selectDatePicker(value) {
-      this.todayValue = value;
-      //this.$set(this.todayValue, value);
-      this.getChart();
-    },
-    refreshPage: function refreshPage() {
-      this.getPageLoad();
-      this.select_type_plan = true;
-      this.select_type_now = true;
-    },
-    selectLineTypeChart: function selectLineTypeChart(value) {
-      //alert(this.select_line_type);
-      this.getChart();
-    },
-    selectTypePlanChart: function selectTypePlanChart(value) {
-      //alert(this.select_line_type);
-      this.select_type_plan = value;
-      this.getChart();
-    },
-    selectTypeNowChart: function selectTypeNowChart(value) {
-      this.select_type_now = value;
-      this.getChart();
-    },
-    selectLocoTypeChart: function selectLocoTypeChart(value) {
-      //alert(this.select_line_type);
-      this.getChart();
     }
-    //
-
   }
+  //
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-f75c5c38","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/run_monitor/index.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app-monitor-chart"}},[_c('div',{staticClass:"app-page-chart"},[_c('div',{staticClass:"maintitle"},[_vm._v(_vm._s(_vm.todayPreValue)+" 18时 -— "+_vm._s(_vm.todayNextValue)+" 18时轨行区作业分布图")]),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('div',{staticClass:"chartright"},[_c('div',{staticClass:"sidebox"},[_c('div',{staticClass:"btnitem"},[_c('el-date-picker',{attrs:{"type":"date","placeholder":"选择日期","clearable":false},on:{"input":function($event){_vm.selectDatePicker($event)}},model:{value:(_vm.formData.date),callback:function ($$v) {_vm.$set(_vm.formData, "date", $$v)},expression:"formData.date"}})],1),_vm._v(" "),_c('div',{staticClass:"btnitems"},[_c('el-button',{attrs:{"type":"primary","plain":""},on:{"click":_vm.preDate}},[_vm._v("前一天")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary","plain":""},on:{"click":_vm.nextDate}},[_vm._v("后一天")])],1),_vm._v(" "),_c('div',{staticClass:"btnitem"},[_c('el-button',{attrs:{"type":"primary","plain":""},on:{"click":_vm.planAdd}},[_vm._v("编制日班计划图")])],1),_vm._v(" "),_c('div',{staticClass:"btnitem"},[_c('el-button',{attrs:{"type":"primary","plain":""},on:{"click":_vm.planEdit}},[_vm._v("编制日班实际图")])],1),_vm._v(" "),_c('div',{staticClass:"btnitem"},[_c('el-button',{attrs:{"type":"primary","plain":""},on:{"click":_vm.refreshPage}},[_vm._v("刷新")])],1)]),_vm._v(" "),_c('div',{staticClass:"sidebox"},[_c('h3',[_vm._v("显示控制")]),_vm._v(" "),_c('div',{staticClass:"chklist"},[_c('el-checkbox-group',{on:{"change":_vm.selectLineTypeChart},model:{value:(_vm.select_line_type),callback:function ($$v) {_vm.select_line_type=$$v},expression:"select_line_type"}},_vm._l((_vm.lineTypeList),function(item){return _c('el-checkbox',{key:item.id,attrs:{"label":item.id}},[_vm._v(_vm._s(item.name))])}))],1),_vm._v(" "),_c('div',{staticClass:"chklist"},[_c('el-checkbox',{attrs:{"label":"计划图","checked":""},on:{"change":_vm.selectTypePlanChart}}),_vm._v(" "),_c('el-checkbox',{attrs:{"label":"实际图","checked":""},on:{"change":_vm.selectTypeNowChart}})],1),_vm._v(" "),_c('div',{staticClass:"chklist"},[_c('el-checkbox-group',{on:{"change":_vm.selectLocoTypeChart},model:{value:(_vm.select_loco_type),callback:function ($$v) {_vm.select_loco_type=$$v},expression:"select_loco_type"}},_vm._l((_vm.locoList),function(item){return _c('el-checkbox',{key:item.id,attrs:{"label":item.id}},[_vm._v(_vm._s(item.name))])}))],1)])])]),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-monitor",attrs:{"width":"990px","close-on-click-modal":false,"title":this.diaLogTitle,"visible":_vm.diaLogFormVisible},on:{"update:visible":function($event){_vm.diaLogFormVisible=$event}}},[_c('el-form',{ref:"formRules",staticClass:"el-form-custom",attrs:{"inline":true,"model":_vm.formData,"rules":_vm.formRules}},[_c('el-form-item',{attrs:{"label":"日班计划编号：","prop":"number"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.formData.number),callback:function ($$v) {_vm.$set(_vm.formData, "number", $$v)},expression:"formData.number"}})],1),_vm._v(" "),_c('el-form-item',[_c('el-select',{model:{value:(_vm.formData.plan_type),callback:function ($$v) {_vm.$set(_vm.formData, "plan_type", $$v)},expression:"formData.plan_type"}},[_c('el-option',{attrs:{"label":"行车和施工计划","value":1}}),_vm._v(" "),_c('el-option',{attrs:{"label":"行车计划","value":2}}),_vm._v(" "),_c('el-option',{attrs:{"label":"施工计划","value":3}})],1)],1),_vm._v(" "),(_vm.formData.plan_type!=3)?_c('fieldset',[_c('legend',[_vm._v("列车信息")]),_vm._v(" "),_c('el-form-item',{attrs:{"label":"列车类型：","label-width":"100px"}},[_c('el-select',{attrs:{"placeholder":"请选择"},model:{value:(_vm.formData.car_type),callback:function ($$v) {_vm.$set(_vm.formData, "car_type", $$v)},expression:"formData.car_type"}})],1),_vm._v(" "),_c('div',{staticClass:"el-form-item-block"},[_c('el-form-item',{attrs:{"label":"出行车次：","label-width":"100px"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20"},model:{value:(_vm.formData.out_car),callback:function ($$v) {_vm.$set(_vm.formData, "out_car", $$v)},expression:"formData.out_car"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"本务："}},[_c('el-select',{model:{value:(_vm.formData.out_business_loco),callback:function ($$v) {_vm.$set(_vm.formData, "out_business_loco", $$v)},expression:"formData.out_business_loco"}},_vm._l((_vm.locoList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"重联："}},[_c('el-select',{attrs:{"placeholder":"请选择"},model:{value:(_vm.formData.out_reco),callback:function ($$v) {_vm.$set(_vm.formData, "out_reco", $$v)},expression:"formData.out_reco"}},_vm._l((_vm.locoList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"补机："}},[_c('el-select',{attrs:{"placeholder":"请选择"},model:{value:(_vm.formData.out_supple),callback:function ($$v) {_vm.$set(_vm.formData, "out_supple", $$v)},expression:"formData.out_supple"}},_vm._l((_vm.locoList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1)],1),_vm._v(" "),_c('div',{staticClass:"el-form-item-block"},[_c('el-form-item',{attrs:{"label":"出线级别：","label-width":"100px"}},[_c('el-select',{attrs:{"placeholder":"请选择"},model:{value:(_vm.formData.out_line_type),callback:function ($$v) {_vm.$set(_vm.formData, "out_line_type", $$v)},expression:"formData.out_line_type"}},_vm._l((_vm.lineTypeList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"车长："}},[_c('el-select',{attrs:{"placeholder":"请选择"},model:{value:(_vm.formData.out_master_id),callback:function ($$v) {_vm.$set(_vm.formData, "out_master_id", $$v)},expression:"formData.out_master_id"}},_vm._l((_vm.masterList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"司机："}},[_c('el-select',{attrs:{"placeholder":"请选择"},model:{value:(_vm.formData.out_driver_id),callback:function ($$v) {_vm.$set(_vm.formData, "out_driver_id", $$v)},expression:"formData.out_driver_id"}},_vm._l((_vm.driverList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"编组："}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20"},model:{value:(_vm.formData.out_marshalling),callback:function ($$v) {_vm.$set(_vm.formData, "out_marshalling", $$v)},expression:"formData.out_marshalling"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"el-form-item-block"},[_c('el-form-item',{attrs:{"label":"返回车次：","label-width":"100px"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20"},model:{value:(_vm.formData.back_car),callback:function ($$v) {_vm.$set(_vm.formData, "back_car", $$v)},expression:"formData.back_car"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"本务："}},[_c('el-select',{attrs:{"placeholder":"请选择"},model:{value:(_vm.formData.back_business_loco),callback:function ($$v) {_vm.$set(_vm.formData, "back_business_loco", $$v)},expression:"formData.back_business_loco"}},_vm._l((_vm.locoList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"重联："}},[_c('el-select',{attrs:{"placeholder":"请选择"},model:{value:(_vm.formData.back_reco),callback:function ($$v) {_vm.$set(_vm.formData, "back_reco", $$v)},expression:"formData.back_reco"}},_vm._l((_vm.locoList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"补机："}},[_c('el-select',{attrs:{"placeholder":"请选择"},model:{value:(_vm.formData.back_supple),callback:function ($$v) {_vm.$set(_vm.formData, "back_supple", $$v)},expression:"formData.back_supple"}},_vm._l((_vm.locoList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1)],1),_vm._v(" "),_c('div',{staticClass:"el-form-item-block"},[_c('el-form-item',{attrs:{"label":"返回级别：","label-width":"100px"}},[_c('el-select',{attrs:{"placeholder":"请选择"},model:{value:(_vm.formData.back_line_type),callback:function ($$v) {_vm.$set(_vm.formData, "back_line_type", $$v)},expression:"formData.back_line_type"}},_vm._l((_vm.lineTypeList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"车长："}},[_c('el-select',{attrs:{"placeholder":"请选择"},model:{value:(_vm.formData.back_master_id),callback:function ($$v) {_vm.$set(_vm.formData, "back_master_id", $$v)},expression:"formData.back_master_id"}},_vm._l((_vm.masterList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"司机："}},[_c('el-select',{attrs:{"placeholder":"请选择"},model:{value:(_vm.formData.back_driver_id),callback:function ($$v) {_vm.$set(_vm.formData, "back_driver_id", $$v)},expression:"formData.back_driver_id"}},_vm._l((_vm.driverList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"编组："}},[_c('el-input',{attrs:{"maxlength":"20","autocomplete":"off"},model:{value:(_vm.formData.back_marshalling),callback:function ($$v) {_vm.$set(_vm.formData, "back_marshalling", $$v)},expression:"formData.back_marshalling"}})],1)],1)],1):_vm._e(),_vm._v(" "),(_vm.formData.plan_type!=2)?_c('fieldset',[_c('legend',[_vm._v("施工信息")]),_vm._v(" "),_c('div',{staticClass:"el-form-item-block"},[_c('el-form-item',{attrs:{"label":"开始时间：","label-width":"100px","prop":"start_time"}},[_c('el-date-picker',{attrs:{"type":"datetime","format":"yyyy-MM-dd HH:mm","placeholder":"选择时间"},model:{value:(_vm.formData.start_time),callback:function ($$v) {_vm.$set(_vm.formData, "start_time", $$v)},expression:"formData.start_time"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"结束时间：","prop":"end_time"}},[_c('el-date-picker',{attrs:{"type":"datetime","format":"yyyy-MM-dd HH:mm","placeholder":"选择时间"},model:{value:(_vm.formData.end_time),callback:function ($$v) {_vm.$set(_vm.formData, "end_time", $$v)},expression:"formData.end_time"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"施工作业队：","label-width":"100px"}},[_c('el-select',{attrs:{"placeholder":"请选择"},model:{value:(_vm.formData.work_plan_id),callback:function ($$v) {_vm.$set(_vm.formData, "work_plan_id", $$v)},expression:"formData.work_plan_id"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"el-form-item-block"},[_c('el-form-item',{attrs:{"label":"工点：","label-width":"100px"}},[_c('el-select',{attrs:{"placeholder":"请选择"},on:{"change":function($event){_vm.changeStartStation($event)}},model:{value:(_vm.formData.start_station),callback:function ($$v) {_vm.$set(_vm.formData, "start_station", $$v)},expression:"formData.start_station"}},_vm._l((_vm.stationList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('b',{staticStyle:{"line-height":"31px"}},[_vm._v("—")]),_vm._v(" "),_c('el-form-item',[_c('el-select',{attrs:{"placeholder":"请选择"},on:{"change":function($event){_vm.changeEndStation($event)}},model:{value:(_vm.formData.end_station),callback:function ($$v) {_vm.$set(_vm.formData, "end_station", $$v)},expression:"formData.end_station"}},_vm._l((_vm.stationList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{staticClass:"el-form-item-inlines",attrs:{"label":"里程："}},[_c('el-form-item',{attrs:{"prop":"start_flag"}},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"公里","maxlength":"3"},model:{value:(_vm.formData.start_flag),callback:function ($$v) {_vm.$set(_vm.formData, "start_flag", $$v)},expression:"formData.start_flag"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"prop":"start_length"}},[_c('b',[_vm._v("+")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"米","maxlength":"3"},model:{value:(_vm.formData.start_length),callback:function ($$v) {_vm.$set(_vm.formData, "start_length", $$v)},expression:"formData.start_length"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"prop":"start_flag"}},[_c('b',{staticStyle:{"width":"100px"}},[_vm._v("至")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"公里","maxlength":"3"},model:{value:(_vm.formData.end_flag),callback:function ($$v) {_vm.$set(_vm.formData, "end_flag", $$v)},expression:"formData.end_flag"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"prop":"end_length"}},[_c('b',[_vm._v("+")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"米","maxlength":"3"},model:{value:(_vm.formData.end_length),callback:function ($$v) {_vm.$set(_vm.formData, "end_length", $$v)},expression:"formData.end_length"}})],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"el-form-item-block"},[_c('el-form-item',{attrs:{"label":"作业类型：","label-width":"100px"}},[_c('el-select',{attrs:{"placeholder":"请选择"},on:{"change":_vm.changeWorkListItem},model:{value:(_vm.formData.work_type),callback:function ($$v) {_vm.$set(_vm.formData, "work_type", $$v)},expression:"formData.work_type"}},_vm._l((_vm.workTypeList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{staticClass:"danwei",attrs:{"label":"线别："}},[_c('el-select',{attrs:{"placeholder":"请选择"},model:{value:(_vm.formData.line_type),callback:function ($$v) {_vm.$set(_vm.formData, "line_type", $$v)},expression:"formData.line_type"}},_vm._l((_vm.workLineTypeList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"施工项目："}},[_c('el-select',{attrs:{"placeholder":"请选择"},model:{value:(_vm.formData.item_id),callback:function ($$v) {_vm.$set(_vm.formData, "item_id", $$v)},expression:"formData.item_id"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"工序："}},[_c('el-select',{attrs:{"placeholder":"请选择"},model:{value:(_vm.formData.work_id),callback:function ($$v) {_vm.$set(_vm.formData, "work_id", $$v)},expression:"formData.work_id"}})],1)],1)]):_vm._e(),_vm._v(" "),_c('el-form-item',{attrs:{"label":"内容：","label-width":"110px","prop":"description"}},[_c('el-input',{attrs:{"autocomplete":"off","type":"textarea","maxlength":"50","show-word-limit":""},model:{value:(_vm.formData.description),callback:function ($$v) {_vm.$set(_vm.formData, "description", $$v)},expression:"formData.description"}})],1),_vm._v(" "),_c('div',{staticClass:"blank"})],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.diaLogFormVisible = false}}},[_vm._v("关闭")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.addDayPlanDialog()}}},[_vm._v("确定")])],1)],1),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-monitor",attrs:{"width":"780px","close-on-click-modal":false,"title":this.diaLogTitleEdit,"visible":_vm.diaLogFormEditVisible},on:{"update:visible":function($event){_vm.diaLogFormEditVisible=$event}}},[_c('el-form',{ref:"refFormEditRules",staticClass:"el-form-custom",attrs:{"inline":true,"model":_vm.formEditData,"rules":_vm.formEditRules}},[_c('el-form-item',{attrs:{"label":"日班计划：","label-width":"130px"}},[_c('el-select',{on:{"change":_vm.selectPlanNumbers},model:{value:(_vm.formEditData.number),callback:function ($$v) {_vm.$set(_vm.formEditData, "number", $$v)},expression:"formEditData.number"}},_vm._l((_vm.planNumbersList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.number,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"记录人：","label-width":"130px"}},[_c('el-select',{model:{value:(_vm.formEditData.record_id),callback:function ($$v) {_vm.$set(_vm.formEditData, "record_id", $$v)},expression:"formEditData.record_id"}},_vm._l((_vm.userList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('fieldset',[_c('legend',[_vm._v("实际施工信息")]),_vm._v(" "),_c('div',{staticClass:"el-form-item-block"},[_c('el-form-item',{attrs:{"label":"实际开始时间：","label-width":"120px","prop":"start_time"}},[_c('el-date-picker',{attrs:{"type":"datetime","format":"yyyy-MM-dd HH:mm","placeholder":"选择时间"},model:{value:(_vm.formEditData.true_start_time),callback:function ($$v) {_vm.$set(_vm.formEditData, "true_start_time", $$v)},expression:"formEditData.true_start_time"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"实际结束时间：","prop":"end_time"}},[_c('el-date-picker',{attrs:{"type":"datetime","format":"yyyy-MM-dd HH:mm","placeholder":"选择时间"},model:{value:(_vm.formEditData.true_end_time),callback:function ($$v) {_vm.$set(_vm.formEditData, "true_end_time", $$v)},expression:"formEditData.true_end_time"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"el-form-item-block"},[_c('el-form-item',{staticClass:"el-form-item-inlines",attrs:{"label":"开始里程(DK)：","label-width":"120px"}},[_c('el-form-item',{attrs:{"prop":"start_flag"}},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"公里","maxlength":"3"},model:{value:(_vm.formEditData.true_start_flag),callback:function ($$v) {_vm.$set(_vm.formEditData, "true_start_flag", $$v)},expression:"formEditData.true_start_flag"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"prop":"start_length"}},[_c('b',[_vm._v("+")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"米","maxlength":"3"},model:{value:(_vm.formEditData.true_start_length),callback:function ($$v) {_vm.$set(_vm.formEditData, "true_start_length", $$v)},expression:"formEditData.true_start_length"}})],1)],1),_vm._v(" "),_c('el-form-item',{staticClass:"el-form-item-inlines",attrs:{"label":"开始里程(DK)："}},[_c('el-form-item',{attrs:{"prop":"start_flag"}},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"公里","maxlength":"3"},model:{value:(_vm.formEditData.true_end_flag),callback:function ($$v) {_vm.$set(_vm.formEditData, "true_end_flag", $$v)},expression:"formEditData.true_end_flag"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"prop":"end_length"}},[_c('b',[_vm._v("+")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"米","maxlength":"3"},model:{value:(_vm.formEditData.true_end_length),callback:function ($$v) {_vm.$set(_vm.formEditData, "true_end_length", $$v)},expression:"formEditData.true_end_length"}})],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"el-form-item-block"},[_c('el-form-item',{attrs:{"label":"完成数量：","label-width":"120px"}},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"公里","maxlength":"3"},model:{value:(_vm.formEditData.finish_num),callback:function ($$v) {_vm.$set(_vm.formEditData, "finish_num", $$v)},expression:"formEditData.finish_num"}})],1),_vm._v(" "),_c('el-form-item',[_c('el-checkbox',{model:{value:(_vm.formEditData.status),callback:function ($$v) {_vm.$set(_vm.formEditData, "status", $$v)},expression:"formEditData.status"}},[_vm._v("完成")])],1)],1),_vm._v(" "),_c('div',{staticClass:"el-form-item-block"},[_c('el-form-item',{attrs:{"label":"备注：","label-width":"120px"}},[_c('el-input',{attrs:{"autocomplete":"off","type":"textarea","maxlength":"50","show-word-limit":""},model:{value:(_vm.formEditData.remark),callback:function ($$v) {_vm.$set(_vm.formEditData, "remark", $$v)},expression:"formEditData.remark"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"el-form-item-block"},[_c('el-form-item',{attrs:{"label":"未完成原因：","label-width":"120px"}},[_c('el-input',{attrs:{"autocomplete":"off","type":"textarea","maxlength":"50","show-word-limit":""},model:{value:(_vm.formEditData.reason),callback:function ($$v) {_vm.$set(_vm.formEditData, "reason", $$v)},expression:"formEditData.reason"}})],1)],1)]),_vm._v(" "),_c('div',{staticClass:"blank"})],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.diaLogFormEditVisible = false}}},[_vm._v("关闭")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.updateDayTrueplan()}}},[_vm._v("确定")])],1)],1)],1)}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"chartleft"},[_c('div',{staticStyle:{"height":"500px","width":"100%"},attrs:{"id":"main"}})])}]
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-ed11448a","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/admin/userlist.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"admins"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"router":"","default-active":"userlist","mode":"horizontal"}},[_c('li',{staticClass:"ptitle"},[_c('img',{attrs:{"src":__webpack_require__("xX+s")}}),_vm._v("人员管理\n      ")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"admin"}},[_vm._v("公司列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"departlist"}},[_vm._v("部门列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"postlist"}},[_vm._v("职位列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"userlist"}},[_vm._v("人员列表")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{ref:"userSearch",attrs:{"inline":true}},[_c('el-form-item',{staticClass:"form-add-item"},[_c('el-button',{attrs:{"type":"primary","icon":"el-icon-plus"},on:{"click":_vm.openAddUser}},[_vm._v("添加人员")])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"姓名"}},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"请输入姓名"},model:{value:(_vm.userSearch.user_name),callback:function ($$v) {_vm.$set(_vm.userSearch, "user_name", $$v)},expression:"userSearch.user_name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"公司"}},[_c('el-select',{attrs:{"placeholder":"请选择公司"},on:{"change":function($event){_vm.getDepartLists($event)}},model:{value:(_vm.userSearch.company_id),callback:function ($$v) {_vm.$set(_vm.userSearch, "company_id", $$v)},expression:"userSearch.company_id"}},_vm._l((this.companySelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"部门"}},[_c('el-select',{attrs:{"placeholder":"请选择部门"},on:{"change":function($event){_vm.getPostLists($event)}},model:{value:(_vm.userSearch.depart_id),callback:function ($$v) {_vm.$set(_vm.userSearch, "depart_id", $$v)},expression:"userSearch.depart_id"}},_vm._l((this.departSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"职位"}},[_c('el-select',{attrs:{"placeholder":"请选择职位"},model:{value:(_vm.userSearch.post_id),callback:function ($$v) {_vm.$set(_vm.userSearch, "post_id", $$v)},expression:"userSearch.post_id"}},_vm._l((this.postSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{staticClass:"form-so"},[_c('label',{staticClass:"el-form-item__label"}),_vm._v(" "),_c('el-button',{attrs:{"size":"small","icon":"el-icon-search","type":"primary"},on:{"click":_vm.getUserLists}},[_vm._v("查询")]),_vm._v(" "),_c('el-button',{attrs:{"size":"small","plain":""},on:{"click":_vm.resetSerach}},[_vm._v("重置")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{attrs:{"data":_vm.userList}},[_c('el-table-column',{attrs:{"type":"index","label":"序号","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"user_name","label":"用户名","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"name","label":"姓名","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"company","label":"公司","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"depart","label":"部门","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"post","label":"职位","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"email","label":"邮箱","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"phone","label":"电话","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"dispatch_desc","label":"调度信息","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"120"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.detailUser(scope.row.id)}}},[_vm._v("修改")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.delUser(scope.row.id)}}},[_vm._v("删除")])],1)]}}])})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.userList.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","page-size":_vm.userPage_size,"current-page":this.userPage_cur,"total":this.userPage_items,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.userChangePage}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.userFirstPage}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.userLastPage}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1)],1),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-user",attrs:{"width":"680px","title":this.userDialogTitle,"close-on-click-modal":false,"visible":_vm.userDialogVisible},on:{"update:visible":function($event){_vm.userDialogVisible=$event}}},[_c('el-form',{ref:"userRulesForm",staticClass:"el-form-custom",attrs:{"inline":true,"model":_vm.userData,"rules":_vm.userAddRules}},[_c('div',{staticClass:"el-form-item-inlines"},[(this.userDialogTitle=='添加人员信息')?_c('el-form-item',{attrs:{"label":"用户名：","prop":"user_name"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.userData.user_name),callback:function ($$v) {_vm.$set(_vm.userData, "user_name", $$v)},expression:"userData.user_name"}})],1):_vm._e(),_vm._v(" "),_c('el-form-item',{attrs:{"label":"姓名：","prop":"name"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.userData.name),callback:function ($$v) {_vm.$set(_vm.userData, "name", $$v)},expression:"userData.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"公司名称：","prop":"company_id"}},[_c('el-select',{on:{"change":function($event){_vm.getDepartLists($event)}},model:{value:(_vm.userData.company_id),callback:function ($$v) {_vm.$set(_vm.userData, "company_id", $$v)},expression:"userData.company_id"}},_vm._l((this.companySelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),(this.userDialogTitle=='添加人员信息')?_c('el-form-item',{attrs:{"label":"密码：","prop":"password"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.userData.password),callback:function ($$v) {_vm.$set(_vm.userData, "password", $$v)},expression:"userData.password"}})],1):_vm._e(),_vm._v(" "),(this.userDialogTitle=='修改人员信息')?_c('el-form-item',{attrs:{"label":"密码：","prop":"passwordEdit"}},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"不修改密码请留空"},model:{value:(_vm.userData.passwordEdit),callback:function ($$v) {_vm.$set(_vm.userData, "passwordEdit", $$v)},expression:"userData.passwordEdit"}})],1):_vm._e(),_vm._v(" "),_c('el-form-item',{attrs:{"label":"部门名称：","prop":"depart_id"}},[_c('el-select',{on:{"change":function($event){_vm.getPostLists($event)}},model:{value:(_vm.userData.depart_id),callback:function ($$v) {_vm.$set(_vm.userData, "depart_id", $$v)},expression:"userData.depart_id"}},_vm._l((this.departSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"邮箱：","prop":"email"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.userData.email),callback:function ($$v) {_vm.$set(_vm.userData, "email", $$v)},expression:"userData.email"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"职位名称：","prop":"post_id"}},[_c('el-select',{model:{value:(_vm.userData.post_id),callback:function ($$v) {_vm.$set(_vm.userData, "post_id", $$v)},expression:"userData.post_id"}},_vm._l((this.postSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"手机号码：","prop":"phone"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.userData.phone),callback:function ($$v) {_vm.$set(_vm.userData, "phone", $$v)},expression:"userData.phone"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"调度信息：","prop":"dispatch"}},[_c('el-select',{model:{value:(_vm.userData.dispatch),callback:function ($$v) {_vm.$set(_vm.userData, "dispatch", $$v)},expression:"userData.dispatch"}},[_c('el-option',{attrs:{"label":"普通","value":1}}),_vm._v(" "),_c('el-option',{attrs:{"label":"司机","value":2}}),_vm._v(" "),_c('el-option',{attrs:{"label":"车长","value":3}}),_vm._v(" "),_c('el-option',{attrs:{"label":"值班调度","value":4}}),_vm._v(" "),_c('el-option',{attrs:{"label":"车站值班员","value":5}}),_vm._v(" "),_c('el-option',{attrs:{"label":"施工队长","value":6}})],1)],1),_vm._v(" "),_c('el-form-item',[_c('el-checkbox-group',{model:{value:(_vm.userData.menus),callback:function ($$v) {_vm.$set(_vm.userData, "menus", $$v)},expression:"userData.menus"}},_vm._l((_vm.userMenuList),function(item){return _c('el-checkbox',{key:item.id,attrs:{"label":item.id+''}},[_vm._v(_vm._s(item.name))])}))],1)],1)]),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.userDialogVisible = false}}},[_vm._v("取 消")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":_vm.addUser}},[_vm._v("确 定")])],1)],1)],1)])])}
+var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var views_run_monitor = (esExports);
-// CONCATENATED MODULE: ./src/views/run_monitor/index.vue
+/* harmony default export */ var admin_userlist = (esExports);
+// CONCATENATED MODULE: ./src/views/admin/userlist.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("KbQT")
+  __webpack_require__("xjIU")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -1245,16 +605,30 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  run_monitor,
-  views_run_monitor,
+  userlist,
+  admin_userlist,
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 
-/* harmony default export */ var src_views_run_monitor = __webpack_exports__["default"] = (Component.exports);
+/* harmony default export */ var views_admin_userlist = __webpack_exports__["default"] = (Component.exports);
 
+
+/***/ }),
+
+/***/ "xjIU":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("a5Hi");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("60762d4a", content, true);
 
 /***/ })
 
