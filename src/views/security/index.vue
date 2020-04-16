@@ -48,13 +48,13 @@
                 </el-select>
               </el-form-item>
               <el-form-item label="安全事件标题：" prop="title">
-                <el-input v-model="formData.title"></el-input>
+                <el-input v-model="formData.title"  maxlength="30" show-word-limit></el-input>
               </el-form-item>
               <el-form-item label="安全事件地址：" prop="address">
-                <el-input v-model="formData.address"></el-input>
+                <el-input v-model="formData.address" maxlength="100" show-word-limit></el-input>
               </el-form-item>
               <el-form-item label="安全事件描述：" prop="description">
-                <el-input type="textarea" v-model="formData.description"></el-input>
+                <el-input type="textarea" v-model="formData.description"  maxlength="255" show-word-limit></el-input>
               </el-form-item>
               <el-form-item label="相关图片：">
                 <p style="color:#3655a5">最多可以上传5张图片</p>
@@ -286,7 +286,6 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-
             <el-form-item label="相关图片：">
               <p style="color:#3655a5">最多可以上传3张图片</p>
               <el-upload
@@ -354,27 +353,27 @@ export default {
         title: [
           {
             required: true,
-            message: "请输入安全事件标题2~60个字符",
+            message: "请输入安全事件标题2~30个字符",
             trigger: "blur"
           },
-          { min: 2, max: 60, message: "长度在2到60个字符", trigger: "blur" },
+          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" },
            { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
         ],
         address: [
           {
             required: true,
-            message: "请输入安全事件地址2~60个字符",
+            message: "请输入安全事件地址2~100个字符",
             trigger: "blur"
           },
-          { min: 2, max: 60, message: "长度在2到60个字符", trigger: "blur" }
+          { min: 2, max: 100, message: "长度在2到100个字符", trigger: "blur" }
         ],
         description: [
           {
             required: true,
-            message: "请输入安全事件描述2~500个字符",
+            message: "请输入安全事件描述2~255个字符",
             trigger: "blur"
           },
-          { min: 2, max: 500, message: "长度在2到500个字符", trigger: "blur" }
+          { min: 2, max: 255, message: "长度在2到255个字符", trigger: "blur" }
         ]
       },
       dialogImageUrl: "",
