@@ -59,7 +59,7 @@
                 {{scope.row.start_flag}} + {{scope.row.start_length}}
               </template>
             </el-table-column>
-            <el-table-column prop="line_type" label="线别"></el-table-column>
+            <el-table-column prop="line" label="线别"></el-table-column>
             <el-table-column label="报警类型">
               <template scope="scope">
                 <span v-if="scope.row.alert_type==1">超速报警</span>
