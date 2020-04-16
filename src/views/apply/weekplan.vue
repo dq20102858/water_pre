@@ -57,7 +57,7 @@
                     <p>申报人：{{item.apply}}</p>
                     <p>申报单位：{{item.company}}</p>
                     <p>{{item.start_time}} ~ {{item.end_time}}</p>
-                    <p>查看周计划</p>
+                    <p><b>查看周计划</b></p>
                     <img :src="require('@/assets/image/icon-drop.png')" />
                   </div>
                 </div>
