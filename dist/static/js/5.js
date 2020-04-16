@@ -1783,7 +1783,7 @@ var dashboard = __webpack_require__("ARoL");
       templateList: [],
       isVisible: false,
       rules: {
-        number: [{ required: true, message: "请输入命令号码", trigger: "blur" }, { min: 2, max: 30, message: "请输入长度在2到30个字符", trigger: "blur" }],
+        number: [{ required: true, message: "请输入命令号码", trigger: "blur" }, { min: 2, max: 30, message: "请输入长度在2到30个字符", trigger: "blur" }, { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }],
         lid: [{ required: true, message: "请选择受令机车", trigger: "change" }],
         type: [{ required: true, message: "请选择类型", trigger: "change" }],
         master_id: [{ required: true, message: "请选择受令机长", trigger: "change" }],
@@ -2021,14 +2021,14 @@ var dashboard = __webpack_require__("ARoL");
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-d09e760c","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dispatch/edit.vue
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-0ea1bc98","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/dispatch/edit.vue
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-page-layer",attrs:{"id":"dispatch-edit"}},[_c('div',{staticClass:"app-dialog-form"},[_c('el-form',{ref:"ruleForm",attrs:{"label-position":"top","model":_vm.ruleForm,"inline":true,"rules":_vm.rules}},[_c('el-form-item',{attrs:{"label":"命令号","prop":"number"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.ruleForm.number),callback:function ($$v) {_vm.$set(_vm.ruleForm, "number", $$v)},expression:"ruleForm.number"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令机车","prop":"lid"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.ruleForm.lid),callback:function ($$v) {_vm.$set(_vm.ruleForm, "lid", $$v)},expression:"ruleForm.lid"}},_vm._l((_vm.locomotiveList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"类型","prop":"type"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.ruleForm.type),callback:function ($$v) {_vm.$set(_vm.ruleForm, "type", $$v)},expression:"ruleForm.type"}},[_c('el-option',{attrs:{"label":"行车调度","value":"1"}}),_vm._v(" "),_c('el-option',{attrs:{"label":"施工调度","value":"2"}})],1)],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令车长","prop":"master_id"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.ruleForm.master_id),callback:function ($$v) {_vm.$set(_vm.ruleForm, "master_id", $$v)},expression:"ruleForm.master_id"}},_vm._l((_vm.masterList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令处所","prop":"location"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.ruleForm.location),callback:function ($$v) {_vm.$set(_vm.ruleForm, "location", $$v)},expression:"ruleForm.location"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令司机","prop":"driver_id"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.ruleForm.driver_id),callback:function ($$v) {_vm.$set(_vm.ruleForm, "driver_id", $$v)},expression:"ruleForm.driver_id"}},_vm._l((_vm.driverList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"值班调度","prop":"dispatch_id"}},[_c('el-select',{attrs:{"placeholder":"请选择调度员","clearable":""},model:{value:(_vm.ruleForm.dispatch_id),callback:function ($$v) {_vm.$set(_vm.ruleForm, "dispatch_id", $$v)},expression:"ruleForm.dispatch_id"}},_vm._l((_vm.dispatchList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"受令车站","prop":"station"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.ruleForm.station),callback:function ($$v) {_vm.$set(_vm.ruleForm, "station", $$v)},expression:"ruleForm.station"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"车站值班员"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.ruleForm.station_worker_id),callback:function ($$v) {_vm.$set(_vm.ruleForm, "station_worker_id", $$v)},expression:"ruleForm.station_worker_id"}},[_c('el-option',{attrs:{"label":"暂无值班员","value":"0"}}),_vm._v(" "),_vm._l((_vm.stationWorkerList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})})],2)],1),_vm._v(" "),_c('div',{staticClass:"blank"}),_vm._v(" "),_c('div',{staticClass:"contents-select"},[_c('el-select',{attrs:{"popper-class":"el-select-height"},on:{"change":_vm.templateChange},model:{value:(_vm.ruleForm.template_id),callback:function ($$v) {_vm.$set(_vm.ruleForm, "template_id", $$v)},expression:"ruleForm.template_id"}},_vm._l((_vm.templateList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})})),_vm._v(" "),_c('el-button',{staticClass:"bluebtn",attrs:{"type":"primary"},on:{"click":_vm.templateDel}},[_vm._v("删除选中模板")]),_vm._v(" "),_c('el-button',{staticClass:"redbtn",attrs:{"type":"primary"},on:{"click":_vm.templateShowDialog}},[_vm._v("\n          新建调度内容模板\n          "),_c('i',{staticClass:"el-icon-plus el-icon--right"})])],1),_vm._v(" "),_c('div',{staticClass:"blank"}),_vm._v(" "),_c('div',{staticClass:"contents-area"},[_c('p',[_vm._v("调度命令内容")]),_vm._v(" "),_c('el-input',{attrs:{"type":"textarea"},model:{value:(_vm.ruleForm.description),callback:function ($$v) {_vm.$set(_vm.ruleForm, "description", $$v)},expression:"ruleForm.description"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"app-dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('span',{staticClass:"tips"},[_vm._v("备注：*为必填项")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.submitForm('ruleForm')}}},[_vm._v("确定保存")]),_vm._v(" "),_c('el-button',{on:{"click":_vm.isCancel}},[_vm._v("关闭")])],1)],1),_vm._v(" "),_c('el-dialog',{staticClass:"app-dialog app-dialog-temp",attrs:{"width":"580px","title":"新增调度内容模板","visible":_vm.isVisible,"center":"","close-on-click-modal":false,"append-to-body":""},on:{"update:visible":function($event){_vm.isVisible=$event}}},[_c('el-form',{ref:"tempForm",attrs:{"model":_vm.tempForm,"rules":_vm.temprules,"label-width":"100px","label-position":"left"}},[_c('el-form-item',{attrs:{"label":"新增名称","prop":"name"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.tempForm.name),callback:function ($$v) {_vm.$set(_vm.tempForm, "name", $$v)},expression:"tempForm.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"新增内容","prop":"description"}},[_c('el-input',{attrs:{"type":"textarea"},model:{value:(_vm.tempForm.description),callback:function ($$v) {_vm.$set(_vm.tempForm, "description", $$v)},expression:"tempForm.description"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.isVisible = false}}},[_vm._v("取 消")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.templateSubmitTempForm('tempForm')}}},[_vm._v("确 定")])],1)],1)],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ var dispatch_edit = (esExports);
 // CONCATENATED MODULE: ./src/views/dispatch/edit.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("vcMA")
+  __webpack_require__("VL3S")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -2835,6 +2835,20 @@ var update = __webpack_require__("rjj0")("7503d14c", content, true);
 
 /***/ }),
 
+/***/ "VL3S":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("j7IM");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("729a4168", content, true);
+
+/***/ }),
+
 /***/ "VUzc":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2879,6 +2893,21 @@ exports.push([module.i, "\n.app-page-select {\r\n  margin-bottom: 10px;\r\n  wid
 
 /***/ }),
 
+/***/ "j7IM":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nbody{padding-right:0 !important;\n}\n#dispatch-edit .app-dialog-form {\r\n  padding: 10px 0px 30px 30px;\r\n  display: block;\n}\n#dispatch-edit .app-dialog-form .el-form-item__label {\r\n  width: 100px;\n}\n#dispatch-edit .app-dialog-form .el-input input {\r\n  width: 240px;\n}\n#dispatch-edit .app-dialog-form .el-form--label-top .el-form-item__label {\r\n  padding-bottom: 5px;\n}\n#dispatch-edit .app-dialog-form .bluebtn {\r\n  margin-left: 10px;\n}\n#dispatch-edit .app-dialog-form .redbtn {\r\n  background: #ff5c75;\r\n  border-color: #ff5c75;\n}\n#dispatch-edit .app-dialog-form .contents-select {\r\n  text-align: right;\r\n  margin-right: 20px;\n}\n#dispatch-edit .app-dialog-form .contents-select .el-input input {\r\n  width: auto;\n}\n#dispatch-edit .app-dialog-form .contents-area {\r\n  display: block;\r\n  margin-right: 20px;\n}\n#dispatch-edit .app-dialog-form .contents-area .el-textarea {\r\n  width: 100%;\n}\n#dispatch-edit .app-dialog-form .contents-area .el-textarea__inner {\r\n  width: 100%;\r\n  height: 100px;\r\n  box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n  -moz-box-sizing: border-box;\n}\n#dispatch-edit .app-dialog-form .contents-area p {\r\n  color: #1d397a;\r\n  padding-bottom: 10px;\n}\n#dispatch-edit .app-dialog-form .el-form-item__error {\r\n  padding-top: 5px;\n}\n#dispatch-edit .app-dialog-footer {\r\n  margin-top: 20px;\r\n  margin-right: 20px;\n}\n#dispatch-edit .app-dialog-footer .tips {\r\n  color: #ff5c75;\r\n  font-size: 14px;\n}\n#dispatch-edit .app-dialog-footer .el-button {\r\n  float: right;\r\n  margin-right: 10px;\n}\n.app-dialog-temp .el-textarea__inner {\r\n  height: 120px;\r\n  width: 100%;\r\n  box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n  -moz-box-sizing: border-box;\n}\n.app-dialog-temp .el-textarea {\r\n  width: 100%;\n}\n.app-dialog-temp .el-form-item__error {\r\n  padding-top: 5px;\n}\n.app-dialog-temp .el-form-item {\r\n  margin-bottom: 25px;\n}\n.el-select-height .el-select-dropdown__wrap {\r\n  max-height: 200px;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "jPpr":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2900,21 +2929,6 @@ module.exports = win;
 
 /***/ }),
 
-/***/ "p15X":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("FZ+f")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\nbody{padding-right:0 !important;\n}\n#dispatch-edit .app-dialog-form {\r\n  padding: 10px 0px 30px 30px;\r\n  display: block;\n}\n#dispatch-edit .app-dialog-form .el-form-item__label {\r\n  width: 100px;\n}\n#dispatch-edit .app-dialog-form .el-input input {\r\n  width: 240px;\n}\n#dispatch-edit .app-dialog-form .el-form--label-top .el-form-item__label {\r\n  padding-bottom: 5px;\n}\n#dispatch-edit .app-dialog-form .bluebtn {\r\n  margin-left: 10px;\n}\n#dispatch-edit .app-dialog-form .redbtn {\r\n  background: #ff5c75;\r\n  border-color: #ff5c75;\n}\n#dispatch-edit .app-dialog-form .contents-select {\r\n  text-align: right;\r\n  margin-right: 20px;\n}\n#dispatch-edit .app-dialog-form .contents-select .el-input input {\r\n  width: auto;\n}\n#dispatch-edit .app-dialog-form .contents-area {\r\n  display: block;\r\n  margin-right: 20px;\n}\n#dispatch-edit .app-dialog-form .contents-area .el-textarea {\r\n  width: 100%;\n}\n#dispatch-edit .app-dialog-form .contents-area .el-textarea__inner {\r\n  width: 100%;\r\n  height: 100px;\r\n  box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n  -moz-box-sizing: border-box;\n}\n#dispatch-edit .app-dialog-form .contents-area p {\r\n  color: #1d397a;\r\n  padding-bottom: 10px;\n}\n#dispatch-edit .app-dialog-form .el-form-item__error {\r\n  padding-top: 5px;\n}\n#dispatch-edit .app-dialog-footer {\r\n  margin-top: 20px;\r\n  margin-right: 20px;\n}\n#dispatch-edit .app-dialog-footer .tips {\r\n  color: #ff5c75;\r\n  font-size: 14px;\n}\n#dispatch-edit .app-dialog-footer .el-button {\r\n  float: right;\r\n  margin-right: 10px;\n}\n.app-dialog-temp .el-textarea__inner {\r\n  height: 120px;\r\n  width: 100%;\r\n  box-sizing: border-box;\r\n  -webkit-box-sizing: border-box;\r\n  -moz-box-sizing: border-box;\n}\n.app-dialog-temp .el-textarea {\r\n  width: 100%;\n}\n.app-dialog-temp .el-form-item__error {\r\n  padding-top: 5px;\n}\n.app-dialog-temp .el-form-item {\r\n  margin-bottom: 25px;\n}\n.el-select-height .el-select-dropdown__wrap {\r\n  max-height: 200px;\n}\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-
 /***/ "them":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2933,20 +2947,6 @@ var update = __webpack_require__("rjj0")("27489bbe", content, true);
 /***/ (function(module, exports) {
 
 module.exports = {"_from":"videojs-swf@5.4.2","_id":"videojs-swf@5.4.2","_inBundle":false,"_integrity":"sha512-FGg+Csioa8/A/EacvFefBdb9Z0rSiMlheHDunZnN3xXfUF43jvjawcWFQnZvrv1Cs1nE1LBrHyUZjF7j2mKOLw==","_location":"/videojs-swf","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"videojs-swf@5.4.2","name":"videojs-swf","escapedName":"videojs-swf","rawSpec":"5.4.2","saveSpec":null,"fetchSpec":"5.4.2"},"_requiredBy":["/videojs-flash"],"_resolved":"https://registry.npmjs.org/videojs-swf/-/videojs-swf-5.4.2.tgz","_shasum":"6964a9bff903b732f3e465314ae478a02a17e8ab","_spec":"videojs-swf@5.4.2","_where":"D:\\my_codes\\subway_pre\\node_modules\\videojs-flash","author":{"name":"Brightcove"},"bugs":{"url":"https://github.com/videojs/video-js-swf/issues"},"bundleDependencies":false,"copyright":"Copyright 2014 Brightcove, Inc. https://github.com/videojs/video-js-swf/blob/master/LICENSE","deprecated":false,"description":"The Flash-fallback video player for video.js (http://videojs.com)","devDependencies":{"async":"~0.2.9","chg":"^0.3.2","flex-sdk":"4.6.0-0","grunt":"~0.4.0","grunt-bumpup":"~0.5.0","grunt-cli":"~0.1.0","grunt-connect":"~0.2.0","grunt-contrib-jshint":"~0.4.3","grunt-contrib-qunit":"~0.2.1","grunt-contrib-watch":"~0.1.4","grunt-npm":"~0.0.2","grunt-prompt":"~0.1.2","grunt-shell":"~0.6.1","grunt-tagrelease":"~0.3.1","qunitjs":"~1.12.0","video.js":"^5.9.2"},"homepage":"http://videojs.com","keywords":["flash","video","player"],"name":"videojs-swf","repository":{"type":"git","url":"git+https://github.com/videojs/video-js-swf.git"},"scripts":{"version":"chg release -y && grunt dist && git add -f dist/ && git add CHANGELOG.md"},"version":"5.4.2"}
-
-/***/ }),
-
-/***/ "vcMA":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("p15X");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("ed0f0372", content, true);
 
 /***/ })
 
