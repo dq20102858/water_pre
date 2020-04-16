@@ -3,7 +3,7 @@
     <div class="progress">
       <div class="sttitle">施工形象进度图</div>
       <div class="station">
-        <canvas id="canvasStation" height="380" ref="canvasStation">
+        <canvas id="canvasStation" height="480" ref="canvasStation">
           <p>您的系统不支持此程序!</p>
         </canvas>
       </div>
@@ -97,6 +97,7 @@ export default {
       cansText.moveTo(0, 300);
       cansText.lineTo(canvasWidth, 300);
       cansText.stroke();
+
       //起终点里程
       // cansText.lineWidth = 3;
       // cansText.moveTo(0, 245);
@@ -167,81 +168,74 @@ export default {
       console.log("lineJson:" + JSON.stringify(lineJson));
       let lineData = [];
       for (let i = 0; i < lineJson.length; i++) {
-        if (lineJson[i].name == "左线" || lineJson[i].name == "右线") {
-          lineData.push(lineJson[i]);
+        lineData.push(lineJson[i]);
+        let tfrom =
+            lineJson[i].name +
+            "   " +
+            "DK" +
+            lineJson[i].start_flag +
+            "+" +
+            lineJson[i].start_length,
+          tend = "DK" + lineJson[i].end_flag + "+" + lineJson[i].end_length;
+        let startLength = cansText.measureText(tfrom).width,
+          endLength = cansText.measureText(tend).width;
+
+        cansText.font = "12px Microsoft Yahei";
+        cansText.fillStyle = "#E8C640";
+        if (lineJson[i].id == 1) {
+          cansText.fillText(tfrom, 0, 270);
+          cansText.fillText(tend, parseInt(endLength + canvasWidth - 112), 270);
+        } else if (lineJson[i].id == 2) {
+          cansText.fillText(tfrom, 0, 320);
+          cansText.fillText(tend, parseInt(endLength + canvasWidth - 122), 320);
+          //3
+        } else if (lineJson[i].id == 3) {
+          let starttotal =  parseInt(lineJson[i].start_flag) * 1000 + parseInt(lineJson[i].start_length);
+          if(starttotal==0){
+            starttotal=this.minMileage;
+          }
+          let endtotal =
+            parseInt(lineJson[i].end_flag) * 1000 +
+            parseInt(lineJson[i].end_length);
+          let startZB = (starttotal - this.minMileage) * every + 10;
+          let endZB = parseFloat((endtotal - starttotal) * every)+ parseFloat(startZB);
+          console.log("start_total：" + starttotal + "-" + startZB);
+          console.log(
+            "end_total：" +
+              endtotal +
+              "-" +
+              (parseFloat(startZB) + parseFloat(endZB))
+          );
+          cansText.moveTo(startZB, 350);
+          cansText.lineTo(endZB, 350);
+          cansText.stroke();
+          //
+          cansText.fillText(tfrom, startZB, 370);
+          cansText.fillText(tend, endZB-50, 370);
+          //4
+        }else if (lineJson[i].id == 4) {
+          let starttotal =38940;// parseInt(lineJson[i].start_flag) * 1000 + parseInt(lineJson[i].start_length);
+        
+          let endtotal =41000;
+           // parseInt(lineJson[i].end_flag) * 1000 +
+       //     parseInt(lineJson[i].end_length);
+          let startZB = (starttotal - this.minMileage) * every + 10;
+          let endZB = parseFloat((endtotal - starttotal) * every)+ parseFloat(startZB);
+          console.log("start_total4：" + starttotal + "-" + startZB);
+          console.log(
+            "end_total4：" +
+              endtotal +
+              "-" +endZB
+          );
+          cansText.moveTo(startZB, 400);
+          cansText.lineTo(endZB, 400);
+          cansText.stroke();
+          //
+          cansText.fillText(tfrom, startZB, 420);
+          cansText.fillText(tend, endZB-50, 420);
         }
+
       }
-
-      let from0 =
-          "DK" + lineData[0].start_flag + "+" + lineData[0].start_length,
-        end0 = "DK" + lineData[0].end_flag + "+" + lineData[0].end_length,
-        from1 = "DK" + lineData[1].start_flag + "+" + lineData[1].start_length,
-        end1 = "DK" + lineData[1].end_flag + "+" + lineData[1].end_length,
-        name0 = lineData[0].name,
-        name1 = lineData[1].name;
-
-      console.log(lineData);
-
-      let startLength = cansText.measureText(from0).width,
-        endLength = cansText.measureText(end0).width,
-        n0Length = cansText.measureText(name0).width,
-        n1Length = cansText.measureText(name1).width;
-
-      cansText.font = "12px Microsoft Yahei";
-      cansText.fillStyle = "#E8C640";
-
-      cansText.fillText(from0, 50, 270);
-      cansText.fillText(name0, 5, 270);
-      cansText.fillText(end0, parseInt(endLength + canvasWidth - 120), 320);
-      cansText.fillText(from1, 50, 320);
-      cansText.fillText(name1, 5, 320);
-      cansText.fillText(end1, parseInt(endLength + canvasWidth - 120), 270);
-      //Line=====================workline
-
-      // let datas = [
-      //   {
-      //     name: "焊接1",
-      //     lines: [
-      //       {
-      //         name: "左线1",
-      //         lists: [
-      //           {
-      //             start_flag: "21",
-      //             start_length: "370",
-      //             end_flag: "22",
-      //             end_length: "520"
-      //           },
-      //           {
-      //             start_flag: "23",
-      //             start_length: "300",
-      //             end_flag: "23",
-      //             end_length: "500"
-      //           }
-      //         ]
-      //       },
-      //       {
-      //         name: "右线1",
-      //         lists: [
-      //           {
-      //             start_flag: "30",
-      //             start_length: "100",
-      //             end_flag: "30",
-      //             end_length: "500"
-      //           },
-      //           {
-      //             start_flag: "33",
-      //             start_length: "20",
-      //             end_flag: "33",
-      //             end_length: "400"
-      //           }
-      //         ]
-      //       }
-      //     ]
-      //   }
-      // ];
-
-      // this.listSchedule = datas;
-
       //
     },
     lineFill: function(paras) {
@@ -362,7 +356,8 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   margin: 50px 0px 0px 230px;
 }
 .linebox {
-  margin-left: 30px; margin-right: 100px;
+  margin-left: 30px;
+  margin-right: 100px;
   border-top: 0;
 }
 /* lineTable */
@@ -407,10 +402,10 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   text-align: center;
   height: 20px;
   line-height: 18px;
-
 }
 .tdbar .bar em {
-  height: 20px; background: #102843;
+  height: 20px;
+  background: #102843;
   display: inline-block;
   position: relative;
 }

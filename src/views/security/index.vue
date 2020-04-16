@@ -690,7 +690,12 @@ export default {
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
-          this.eventTitle = " 发起新事件：";
+          if(id==0){
+             this.eventTitle = "";
+          }
+          else{
+             this.eventTitle = " 发起新事件：";
+          }
           this.eventDesc = data.data.description;
           this.eventPictureList = data.data.file;
         }
