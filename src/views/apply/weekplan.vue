@@ -52,11 +52,11 @@
             <el-row :gutter="20" v-if="weekList.length>0">
               <el-col :span="6" v-for="item in weekList" :key="item.id">
                 <div class="grid-content" @click="goDetail(item.id)">
-                  <div class="grid-title">{{item.description}}</div>
+                  <div class="grid-title">{{getWeek(item.start_time)}}</div>
                   <div class="grid-box">
                     <p>申报人：{{item.apply}}</p>
                     <p>申报单位：{{item.company}}</p>
-                    <p>{{item.start_time}}-{{item.end_time}}</p>
+                    <p>{{item.start_time}} ~ {{item.end_time}}</p>
                     <p>查看周计划</p>
                     <img :src="require('@/assets/image/icon-drop.png')" />
                   </div>
@@ -240,6 +240,35 @@ export default {
       return cellValue
         ? fecha.format(new Date(cellValue), "yyyy年MM月dd日")
         : "";
+    },
+    getWeek(t) {
+      t = new Date(t);
+      if (t == undefined) {
+        t = new Date();
+      } else if (t instanceof Date) {
+        var _t = new Date();
+        _t.setYear(t.getFullYear());
+        _t.setMonth(t.getMonth());
+        _t.setDate(t.getDate());
+        var date1 = _t.getDate(); //给定的日期是几号
+        _t.setDate(1);
+        var d = _t.getDay(); //1. 得到当前的1号是星期几。
+        var fisrtWeekend = d;
+        if (d == 0) {
+          fisrtWeekend = 1;
+          //1号就是星期天
+        } else {
+          fisrtWeekend = 7 - d + 1; //第一周的周未是几号
+        }
+        if (date1 <= fisrtWeekend) {
+          return t.getMonth() + 1 + "月第 1周";
+        } else {
+          let weeks = 1 + Math.ceil((date1 - fisrtWeekend) / 7);
+          return t.getMonth() + 1 + "月第" + weeks + "周";
+        }
+      } else {
+        throw "getFormatDate - error : 你的参数不是日期类型，也不是为空";
+      }
     }
     //end
   }
