@@ -189,7 +189,7 @@ export default {
           let jhData = data.data.list[0].data;
           let sjData = data.data.list[1].data;
           let newData = jhData.concat(sjData);
-          console.log(newData);
+          //console.log(newData);
           var yMaxNum = Math.max.apply(null, newData);
           let myChart = this.$echarts.init(document.getElementById("oneChart"));
           myChart.setOption({
@@ -202,7 +202,25 @@ export default {
               }
             },
             tooltip: {
-              trigger: "axis"
+              trigger: "axis",
+              formatter: function(params) {
+                var showHtm = "";
+                showHtm += date + "-" + params[0].axisValue + "<br>";
+                showHtm +=
+                  params[0].marker +
+                  params[0].seriesName +
+                  "：" +
+                  params[0].value +
+                  "<br>";
+                showHtm +=
+                  params[1].marker +
+                  params[1].seriesName +
+                  "：" +
+                  params[1].value +
+                  "<br>";
+
+                return showHtm;
+              }
             },
             color: ["#4b6eca", "#ff5c75"],
             legend: {
@@ -227,7 +245,6 @@ export default {
             xAxis: {
               type: "category",
               boundaryGap: false,
-
               data: data.data.x
             },
             yAxis: {
@@ -265,7 +282,7 @@ export default {
         if (data.status == 1) {
           this.echartDataList = data.data;
           this.echartDataNames = proName;
-          console.log("echartDataList：" + this.echartDataList);
+          //console.log("echartDataList：" + this.echartDataList);
         }
       });
     },
