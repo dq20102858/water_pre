@@ -137,22 +137,24 @@
                   <el-input v-model="searchForm.end_location" autocomplete="off"></el-input>
                 </el-form-item>
               </span>
-  <el-form-item label="发现时间段">
-              <el-date-picker
-                v-model="searchForm.start_time"
-                :picker-options="pickerOptionsStart"
-                type="datetime" format="yyyy-MM-dd HH:mm"
-                clearable
-              ></el-date-picker>
-            </el-form-item>
-            <el-form-item label="-">
-              <el-date-picker
-                v-model="searchForm.end_time"
-                :picker-options="pickerOptionsEnd"
-                type="datetime"  format="yyyy-MM-dd HH:mm"
-                clearable
-              ></el-date-picker>
-            </el-form-item>
+              <el-form-item label="发现时间段">
+                <el-date-picker
+                  v-model="searchForm.start_time"
+                  :picker-options="pickerOptionsStart"
+                  type="datetime"
+                  format="yyyy-MM-dd HH:mm"
+                  clearable
+                ></el-date-picker>
+              </el-form-item>
+              <el-form-item label="-">
+                <el-date-picker
+                  v-model="searchForm.end_time"
+                  :picker-options="pickerOptionsEnd"
+                  type="datetime"
+                  format="yyyy-MM-dd HH:mm"
+                  clearable
+                ></el-date-picker>
+              </el-form-item>
               <el-form-item class="form-so">
                 <label class="el-form-item__label"></label>
                 <el-button size="small" icon="el-icon-search" @click="pageSearch" type="primary">查询</el-button>
@@ -337,7 +339,7 @@
 export default {
   data() {
     return {
-       pickerOptionsStart: {
+      pickerOptionsStart: {
         disabledDate: time => {
           if (this.searchForm.end_time) {
             return (
@@ -469,7 +471,7 @@ export default {
       let loco_id = this.searchForm.loco_id;
       let start_location = this.searchForm.start_location;
       let end_location = this.searchForm.end_location;
-      let start_time =  this.searchForm.start_time;
+      let start_time = this.searchForm.start_time;
       let end_time = this.searchForm.end_time;
       // let array_time = this.searchForm.time_range;
       // console.log(this.searchForm.time_range);
@@ -518,6 +520,7 @@ export default {
     pageSearch() {
       this.page_cur = 1;
       this.getDataList();
+      this.goDetail(0);
     },
     resetSerach() {
       (this.searchForm = {
@@ -531,6 +534,7 @@ export default {
       }),
         (this.page_cur = 1);
       this.getDataList();
+      this.goDetail(0);
     },
     //================事件表单操作
     //获取公司
