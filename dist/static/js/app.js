@@ -3349,7 +3349,7 @@ var constantRouterMap = [{
   }, {
     path: '/slope',
     component: function component() {
-      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(21)]).then(__webpack_require__.bind(null, "Dt0U"));
+      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(22)]).then(__webpack_require__.bind(null, "Dt0U"));
     }
   }]
 }, {
@@ -3384,7 +3384,7 @@ var constantRouterMap = [{
   }, {
     path: '/chartdata',
     component: function component() {
-      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(23)]).then(__webpack_require__.bind(null, "V81q"));
+      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(19)]).then(__webpack_require__.bind(null, "V81q"));
     }
   }, {
     path: '/detaillist',
@@ -3404,7 +3404,7 @@ var constantRouterMap = [{
   }, {
     path: '/departlist',
     component: function component() {
-      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(20)]).then(__webpack_require__.bind(null, "BQKP"));
+      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(21)]).then(__webpack_require__.bind(null, "BQKP"));
     }
   }, {
     path: '/postlist',
@@ -3452,7 +3452,7 @@ var asyncRouterMap = {
     return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(28)]).then(__webpack_require__.bind(null, "Sp6l"));
   }, //定位管理
   '/views/real_time/index': function viewsReal_timeIndex() {
-    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(19)]).then(__webpack_require__.bind(null, "2jNM"));
+    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(20)]).then(__webpack_require__.bind(null, "2jNM"));
   }, //实时管理
   '/views/progress/index': function viewsProgressIndex() {
     return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, "naN1"));
@@ -3496,7 +3496,7 @@ var asyncRouterMap = {
     return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(24)]).then(__webpack_require__.bind(null, "RwO4"));
   }, //墙壁探测器
   '/views/location/cardetector': function viewsLocationCardetector() {
-    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(22)]).then(__webpack_require__.bind(null, "4nWN"));
+    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(23)]).then(__webpack_require__.bind(null, "4nWN"));
   }, //车载探测器
   '/views/location/locationbind': function viewsLocationLocationbind() {
     return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(33)]).then(__webpack_require__.bind(null, "6QbA"));
