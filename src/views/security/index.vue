@@ -143,6 +143,7 @@
                   :picker-options="pickerOptionsStart"
                   type="datetime"
                   format="yyyy-MM-dd HH:mm"
+                  placeholder="开始时间"
                   clearable
                 ></el-date-picker>
               </el-form-item>
@@ -152,6 +153,7 @@
                   :picker-options="pickerOptionsEnd"
                   type="datetime"
                   format="yyyy-MM-dd HH:mm"
+                  placeholder="结束时间"
                   clearable
                 ></el-date-picker>
               </el-form-item>
@@ -473,6 +475,7 @@ export default {
       let end_location = this.searchForm.end_location;
       let start_time = this.searchForm.start_time;
       let end_time = this.searchForm.end_time;
+
       // let array_time = this.searchForm.time_range;
       // console.log(this.searchForm.time_range);
       // if (array_time != null) {
@@ -518,9 +521,18 @@ export default {
       this.pageChange(this.page_total);
     },
     pageSearch() {
-      this.page_cur = 1;
-      this.getDataList();
-      this.goDetail(0);
+      let start_times = this.searchForm.start_time;
+      let end_times = this.searchForm.end_time;
+      if (start_times == null || end_times == null) {
+        this.$message({
+          message: "请选择完整的时间段",
+          type: "warning"
+        });
+      } else {
+        this.page_cur = 1;
+        this.getDataList();
+        this.goDetail(0);
+      }
     },
     resetSerach() {
       (this.searchForm = {
@@ -690,11 +702,10 @@ export default {
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
-          if(id==0){
-             this.eventTitle = "";
-          }
-          else{
-             this.eventTitle = " 发起新事件：";
+          if (id == 0) {
+            this.eventTitle = "";
+          } else {
+            this.eventTitle = " 发起新事件：";
           }
           this.eventDesc = data.data.description;
           this.eventPictureList = data.data.file;
