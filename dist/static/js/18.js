@@ -1,83 +1,26 @@
 webpackJsonp([18],{
 
-/***/ "a5Hi":
+/***/ "2jgy":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("FZ+f")(false);
-// imports
+// style-loader: Adds some css to the DOM by adding a <style> tag
 
-
-// module
-exports.push([module.i, "\n.dialog-user .el-textarea {\r\n  width: 100% !important;\n}\n.dialog-user .el-form-item__label {\r\n  width: 110px;\n}\n.dialog-user .el-input--medium {\r\n  width: 100%;\n}\n.dialog-user .el-select {\r\n  width: 185px;\n}\n.dialog-user .el-form-item-block {\r\n  display: block;\n}\n.el-form-item-inlines {\r\n  display: inline-block;\n}\n.dialog-user .el-form-item-inlines .el-form-item {\r\n  display: inline-block;\n}\n.el-form-item-block {\r\n  display: block;\n}\n.dialog-user .el-form-item-inlines .el-checkbox-group {\r\n  margin-left: 110px;\n}\r\n", ""]);
-
-// exports
-
+// load the styles
+var content = __webpack_require__("U99Y");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("634302e4", content, true);
 
 /***/ }),
 
-/***/ "lfKa":
+/***/ "RwO4":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/defineProperty.js
-var defineProperty = __webpack_require__("bOdI");
-var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
-
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/admin/userlist.vue
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/location/walldetector.vue
 //
 //
 //
@@ -244,317 +187,94 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 //
 //
 
-/* harmony default export */ var userlist = ({
+/* harmony default export */ var walldetector = ({
   data: function data() {
-    var _ref;
-
-    return _ref = {
-      userList: [],
-      userPage_size: 20,
-      userPage_cur: 1,
-      userPage_items: 0
-    }, defineProperty_default()(_ref, "userPage_size", 20), defineProperty_default()(_ref, "userPage_cur", 1), defineProperty_default()(_ref, "userPage_items", 0), defineProperty_default()(_ref, "userPage_total", 0), defineProperty_default()(_ref, "userDialogVisible", false), defineProperty_default()(_ref, "userDialogTitle", ""), defineProperty_default()(_ref, "userData", {
-      menus: []
-    }), defineProperty_default()(_ref, "userSearch", {}), defineProperty_default()(_ref, "userAddRules", {
-      user_name: [{
-        required: true,
-        message: "请输入用户名2~20个字符",
-        trigger: "blur"
-      }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }, {
-        pattern: /^[^\s]*$/,
-        message: "输入用户名不能含有空格",
-        trigger: "blur"
-      }],
-      name: [{
-        required: true,
-        message: "请输入姓名2~20个字符",
-        trigger: "blur"
-      }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }, {
-        pattern: /^[^\s]*$/,
-        message: "输入姓名不能含有空格",
-        trigger: "blur"
-      }],
-      company_id: [{
-        required: true,
-        message: "请选择公司",
-        trigger: "change"
-      }],
-      password: [{
-        required: true,
-        message: "请输入密码2~20个字符",
-        trigger: "blur"
-      }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }],
-      passwordEdit: [{
-        min: 2,
-        max: 20,
-        message: "请输入密码在2到20个字符",
-        trigger: "blur"
-      }],
-      depart_id: [{
-        required: true,
-        message: "请选择部门",
-        trigger: "change"
-      }],
-      post_id: [{
-        required: true,
-        message: "请选择职位",
-        trigger: "change"
-      }],
-      dispatch: [{
-        required: true,
-        message: "请选择调度信息",
-        trigger: "change"
-      }],
-      email: [{
-        type: "email",
-        message: "请输入正确的邮箱地址",
-        trigger: ["blur", "change"]
-      }],
-      phone: [{
-        pattern: /^1[34578]\d{9}$/,
-        message: "请输入正确的手机号码",
-        trigger: "blur"
-      }]
-    }), defineProperty_default()(_ref, "passwordOrg", ""), defineProperty_default()(_ref, "companySelectList", []), defineProperty_default()(_ref, "departSelectList", []), defineProperty_default()(_ref, "postSelectList", []), defineProperty_default()(_ref, "userMenuList", []), _ref;
+    return {
+      activeIndex: 1,
+      diaLogFormVisible: false,
+      diaLogTitle: "添加信息",
+      detectorData: {},
+      detectorRules: {
+        depart_id: [{ required: true, message: "请选择公司", trigger: "change" }],
+        name: [{
+          required: true,
+          message: "请输入设备名称2~20个字符",
+          trigger: "blur"
+        }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }, { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }],
+        number: [{
+          required: true,
+          message: "请输入设备编号2~20个字符",
+          trigger: "blur"
+        }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }],
+        line_type: [{ required: true, message: "请选择线路", trigger: "change" }],
+        ip: [{
+          required: true,
+          message: "请输入IP地址",
+          trigger: "blur"
+        }, {
+          pattern: "^((25[0-5]|2[0-4]\\d|[1]{1}\\d{1}\\d{1}|[1-9]{1}\\d{1}|\\d{1})($|(?!\\.$)\\.)){4}$",
+          message: "请输入正确的IP地址",
+          trigger: "blur"
+        }],
+        start_flag: [{
+          required: true,
+          message: "请输入位置公里",
+          trigger: "blur"
+        }, {
+          pattern: /^\d{1,4}$/,
+          message: "请输入1-4位正整数",
+          trigger: "blur"
+        }],
+        start_length: [{
+          required: true,
+          message: "请请输入位置米",
+          trigger: "blur"
+        }, {
+          pattern: /^\d{1,3}$/,
+          message: "请输入1-3位正整数",
+          trigger: "blur"
+        }],
+        is_enter: [{
+          required: true,
+          message: "请选择",
+          trigger: "change"
+        }]
+      },
+      page_cur: 1,
+      pageTotal: 0,
+      page_size: 20,
+      page_total: 0,
+      dataList: [],
+      companyList: [],
+      linTypeList: [],
+      numberSearch: ""
+    };
   },
   mounted: function mounted() {
-    document.querySelector("#app-menu-items #menu_admin").classList.add("is-active");
+    document.querySelector("#app-menu-items #menu_location").classList.add("is-active");
   },
   created: function created() {
-    this.getCompanyLists();
-    this.getLineTypes();
-    this.getMenuLists();
-    this.getUserLists();
+    this.getCompanyList();
+    this.getLiTypeList();
+    this.getDataList();
   },
 
   methods: {
-    getUserLists: function getUserLists() {
+    getCompanyList: function getCompanyList() {
       var _this = this;
 
-      var page = this.userPage_cur;
-      var user_name = this.userSearch.user_name;
-      var company_id = this.userSearch.company_id;
-      var depart_id = this.userSearch.depart_id;
-      var post_id = this.userSearch.post_id;
       this.request({
-        url: "/user/getUserPage",
-        method: "get",
-        params: { page: page, user_name: user_name, company_id: company_id, depart_id: depart_id, post_id: post_id }
-      }).then(function (response) {
-        var data = response.data;
+        url: "/apply/getCompanyLists",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
         if (data.status == 1) {
-          _this.userList = data.data.data;
-          _this.userPage_cur = parseInt(data.data.current_page);
-          _this.userPage_items = data.data.total;
-          _this.userPage_size = data.data.per_page;
-          _this.puserPage_total = data.data.last_page;
+          _this.companyList = data.data;
         }
       });
     },
-    userChangePage: function userChangePage(value) {
-      this.userPage_cur = value;
-      this.getUserLists();
-    },
-    userFirstPage: function userFirstPage() {
-      this.userPage_cur = 1;
-      this.getUserLists();
-    },
-    userLastPage: function userLastPage() {
-      this.userPage_cur = this.userPage_total;
-      this.getUserLists();
-    },
-    userSearchPage: function userSearchPage() {
-      this.userPage_cur = 1;
-      this.getUserLists();
-    },
-    resetSerach: function resetSerach() {
-      this.userSearch = {
-        user_name: "",
-        company_id: "",
-        depart_id: "",
-        post_id: ""
-      };
-      this.departSelectList = [];
-      this.postSelectList = [];
-      this.userPage_cur = 1;
-      this.getUserLists();
-    },
-    openAddUser: function openAddUser() {
-      this.userData = {
-        menus: []
-      };
-      this.userDialogVisible = true;
-      this.userDialogTitle = "添加人员信息";
-    },
-    addUser: function addUser() {
+    getLiTypeList: function getLiTypeList() {
       var _this2 = this;
-
-      this.$refs["userRulesForm"].validate(function (valid) {
-        if (valid) {
-          var data = _this2.userData;
-          // this.userData.menus = this.userData.menus.slice(1);
-          var url = "/user/addUser";
-          var baseid = _this2.userData.id;
-          console.log("this.userData.id：" + _this2.userData.id);
-          if (typeof baseid != "undefined") {
-            url = "/user/editUser";
-            var pwdEdit = _this2.userData.passwordEdit;
-            if (pwdEdit != "" && typeof pwdEdit != "undefined") {
-              _this2.userData.password = pwdEdit;
-            } else {
-              _this2.userData.password = _this2.passwordOrg;
-            }
-          }
-          _this2.request({
-            url: url,
-            method: "post",
-            data: data
-          }).then(function (response) {
-            var data = response.data;
-            if (data.status == 1) {
-              _this2.userDialogVisible = false;
-              _this2.userData.passwordEdit = "";
-              _this2.$message({
-                type: "success",
-                message: "保存成功！"
-              });
-              _this2.getUserLists();
-            }
-          });
-        }
-      });
-    },
-    detailUser: function detailUser(id) {
-      var _this3 = this;
-
-      this.userDialogTitle = "修改人员信息";
-      this.userDialogVisible = true;
-      this.request({
-        url: "/user/getUserDetial",
-        method: "get",
-        params: { id: id }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this3.userData = data.data;
-          if (data.data.menus != "") {
-            _this3.userData.menus = data.data.menus.split(",");
-          } else {
-            _this3.userData.menus = [];
-          }
-
-          console.log(_this3.userData.menus);
-          _this3.passwordOrg = data.data.password;
-          _this3.getDepartListEdit(data.data.company_id); //部门
-          _this3.getPostListEdit(data.data.depart_id); //职位
-        }
-      });
-    },
-    delUser: function delUser(id) {
-      var _this4 = this;
-
-      this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
-        customClass: "el-message-box-new"
-      }).then(function () {
-        _this4.request({
-          url: "/user/deleteUser",
-          method: "post",
-          data: { id: id }
-        }).then(function (res) {
-          var data = res.data;
-          if (data.status == 1) {
-            _this4.$message({
-              type: "success",
-              message: "删除成功！"
-            });
-            _this4.getUserLists();
-          }
-        });
-      }).catch(function () {});
-    },
-
-    //公司 部门 职位
-    getCompanyLists: function getCompanyLists() {
-      var _this5 = this;
-
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: 0, type: 1 }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this5.companySelectList = data.data;
-        }
-      });
-    },
-    getDepartLists: function getDepartLists(val) {
-      var _this6 = this;
-
-      this.$set(this.userData, "depart_id", "");
-      this.$set(this.userData, "post_id", "");
-      this.$set(this.userSearch, "depart_id", "");
-      this.$set(this.userSearch, "post_id", "");
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: val, type: 2 }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this6.departSelectList = data.data;
-        }
-      });
-    },
-    getPostLists: function getPostLists(val) {
-      var _this7 = this;
-
-      this.$set(this.userData, "post_id", "");
-      this.$set(this.userSearch, "post_id", "");
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: val, type: 3 }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this7.postSelectList = data.data;
-        }
-      });
-    },
-    getDepartListEdit: function getDepartListEdit(val) {
-      var _this8 = this;
-
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: val, type: 2 }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this8.departSelectList = data.data;
-        }
-      });
-    },
-    getPostListEdit: function getPostListEdit(val) {
-      var _this9 = this;
-
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: val, type: 3 }
-      }).then(function (response) {
-        var data = response.data;
-        if (data.status == 1) {
-          _this9.postSelectList = data.data;
-        }
-      });
-    },
-    getLineTypes: function getLineTypes() {
-      var _this10 = this;
 
       this.request({
         url: "/common/getLineType",
@@ -562,34 +282,155 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
       }).then(function (res) {
         var data = res.data;
         if (data.status == 1) {
-          _this10.userMenuList1 = data.data;
+          _this2.linTypeList = data.data;
         }
       });
     },
-    getMenuLists: function getMenuLists() {
-      var _this11 = this;
+    getDataList: function getDataList() {
+      var _this3 = this;
 
+      var page = this.page_cur;
+      var number = this.numberSearch;
       this.request({
-        url: "/user/getMenuLists",
-        method: "get"
+        url: "/location/getWallDetectorPages",
+        method: "get",
+        params: {
+          page: page,
+          number: number
+        }
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this3.dataList = data.data.data;
+          _this3.page_cur = parseInt(data.data.current_page);
+          _this3.pageTotal = data.data.total;
+          _this3.page_size = data.data.per_page;
+          _this3.page_total = data.data.last_page;
+        }
+      });
+    },
+    pageChange: function pageChange(value) {
+      this.page_cur = value;
+      this.getDataList();
+    },
+    toFirstPage: function toFirstPage() {
+      this.pageChange(1);
+    },
+    toLastPage: function toLastPage() {
+      this.page_cur = this.page_total;
+      this.pageChange(this.page_total);
+    },
+    searchEvent: function searchEvent() {
+      this.page_cur = 1;
+      this.getDataList();
+    },
+
+    //
+    addDialogInfo: function addDialogInfo() {
+      this.detectorData = {
+        depart_id: "",
+        name: "",
+        number: "",
+        line_type: "",
+        ip: "",
+        start_flag: "",
+        start_length: "",
+        is_enter: ""
+      };
+      this.diaLogTitle = "添加墙壁探测器信息";
+      this.diaLogFormVisible = true;
+    },
+    addOrEditDialog: function addOrEditDialog() {
+      var _this4 = this;
+
+      this.$refs["detectorForm"].validate(function (valid) {
+        if (valid) {
+          var data = _this4.detectorData;
+          _this4.request({
+            url: "/location/addOrEditWallDetector",
+            method: "post",
+            data: data
+          }).then(function (response) {
+            var data = response.data;
+            if (data.status == 1) {
+              _this4.diaLogFormVisible = false;
+              _this4.detectorData.name = "";
+              _this4.detectorData.description = "";
+              _this4.getDataList();
+              _this4.$message({
+                type: "success",
+                message: "保存成功！"
+              });
+            }
+          });
+        } else {
+          console.log("操作失败！");
+          return false;
+        }
+      });
+    },
+    goEdit: function goEdit(id) {
+      var _this5 = this;
+
+      this.diaLogTitle = "修改墙壁探测器信息";
+      this.diaLogFormVisible = true;
+      this.request({
+        url: "/location/getWallDetector",
+        method: "get",
+        params: { id: id }
       }).then(function (response) {
         var data = response.data;
         if (data.status == 1) {
-          _this11.userMenuList = data.data;
+          _this5.detectorData = data.data;
+          _this5.detectorData.start_flag = parseInt(data.data.start_flag);
+          _this5.detectorData.start_length = parseInt(data.data.start_length);
         }
       });
+    },
+    goDel: function goDel(id) {
+      var _this6 = this;
+
+      this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+        customClass: "el-message-box-new"
+      }).then(function () {
+        _this6.request({
+          url: "/location/deleteWallDetector",
+          method: "post",
+          data: { id: id }
+        }).then(function (res) {
+          var data = res.data;
+          if (data.status == 1) {
+            _this6.$message({
+              type: "success",
+              message: "删除成功！"
+            });
+            _this6.getDataList();
+          }
+        });
+      }).catch(function () {});
+    },
+    changeTime: function changeTime(time) {
+      if (time !== null && time !== undefined && time !== "") {
+        return "<span style='display:block'>" + time.substring(0, 10) + "</span><span style='display:block'>" + time.substring(time.length - 8) + "</span>";
+      } else {
+        return "";
+      }
     }
+    //
+
   }
-  //
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-ed11448a","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/admin/userlist.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"admins"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"router":"","default-active":"userlist","mode":"horizontal"}},[_c('li',{staticClass:"ptitle"},[_c('img',{attrs:{"src":__webpack_require__("xX+s")}}),_vm._v("人员管理\n      ")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"admin"}},[_vm._v("公司列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"departlist"}},[_vm._v("部门列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"postlist"}},[_vm._v("职位列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"userlist"}},[_vm._v("人员列表")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{ref:"userSearch",attrs:{"inline":true}},[_c('el-form-item',{staticClass:"form-add-item"},[_c('el-button',{attrs:{"type":"primary","icon":"el-icon-plus"},on:{"click":_vm.openAddUser}},[_vm._v("添加人员")])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"姓名"}},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"请输入姓名"},model:{value:(_vm.userSearch.user_name),callback:function ($$v) {_vm.$set(_vm.userSearch, "user_name", $$v)},expression:"userSearch.user_name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"公司"}},[_c('el-select',{attrs:{"placeholder":"请选择公司"},on:{"change":function($event){_vm.getDepartLists($event)}},model:{value:(_vm.userSearch.company_id),callback:function ($$v) {_vm.$set(_vm.userSearch, "company_id", $$v)},expression:"userSearch.company_id"}},_vm._l((this.companySelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"部门"}},[_c('el-select',{attrs:{"placeholder":"请选择部门"},on:{"change":function($event){_vm.getPostLists($event)}},model:{value:(_vm.userSearch.depart_id),callback:function ($$v) {_vm.$set(_vm.userSearch, "depart_id", $$v)},expression:"userSearch.depart_id"}},_vm._l((this.departSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"职位"}},[_c('el-select',{attrs:{"placeholder":"请选择职位"},model:{value:(_vm.userSearch.post_id),callback:function ($$v) {_vm.$set(_vm.userSearch, "post_id", $$v)},expression:"userSearch.post_id"}},_vm._l((this.postSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{staticClass:"form-so"},[_c('label',{staticClass:"el-form-item__label"}),_vm._v(" "),_c('el-button',{attrs:{"size":"small","icon":"el-icon-search","type":"primary"},on:{"click":_vm.getUserLists}},[_vm._v("查询")]),_vm._v(" "),_c('el-button',{attrs:{"size":"small","plain":""},on:{"click":_vm.resetSerach}},[_vm._v("重置")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{attrs:{"data":_vm.userList}},[_c('el-table-column',{attrs:{"type":"index","label":"序号","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"user_name","label":"用户名","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"name","label":"姓名","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"company","label":"公司","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"depart","label":"部门","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"post","label":"职位","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"email","label":"邮箱","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"phone","label":"电话","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"dispatch_desc","label":"调度信息","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"120"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.detailUser(scope.row.id)}}},[_vm._v("修改")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.delUser(scope.row.id)}}},[_vm._v("删除")])],1)]}}])})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.userList.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","page-size":_vm.userPage_size,"current-page":this.userPage_cur,"total":this.userPage_items,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.userChangePage}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.userFirstPage}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.userLastPage}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1)],1),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-user",attrs:{"width":"680px","title":this.userDialogTitle,"close-on-click-modal":false,"visible":_vm.userDialogVisible},on:{"update:visible":function($event){_vm.userDialogVisible=$event}}},[_c('el-form',{ref:"userRulesForm",staticClass:"el-form-custom",attrs:{"inline":true,"model":_vm.userData,"rules":_vm.userAddRules}},[_c('div',{staticClass:"el-form-item-inlines"},[(this.userDialogTitle=='添加人员信息')?_c('el-form-item',{attrs:{"label":"用户名：","prop":"user_name"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.userData.user_name),callback:function ($$v) {_vm.$set(_vm.userData, "user_name", $$v)},expression:"userData.user_name"}})],1):_vm._e(),_vm._v(" "),_c('el-form-item',{attrs:{"label":"姓名：","prop":"name"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.userData.name),callback:function ($$v) {_vm.$set(_vm.userData, "name", $$v)},expression:"userData.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"公司名称：","prop":"company_id"}},[_c('el-select',{on:{"change":function($event){_vm.getDepartLists($event)}},model:{value:(_vm.userData.company_id),callback:function ($$v) {_vm.$set(_vm.userData, "company_id", $$v)},expression:"userData.company_id"}},_vm._l((this.companySelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),(this.userDialogTitle=='添加人员信息')?_c('el-form-item',{attrs:{"label":"密码：","prop":"password"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.userData.password),callback:function ($$v) {_vm.$set(_vm.userData, "password", $$v)},expression:"userData.password"}})],1):_vm._e(),_vm._v(" "),(this.userDialogTitle=='修改人员信息')?_c('el-form-item',{attrs:{"label":"密码：","prop":"passwordEdit"}},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"不修改密码请留空"},model:{value:(_vm.userData.passwordEdit),callback:function ($$v) {_vm.$set(_vm.userData, "passwordEdit", $$v)},expression:"userData.passwordEdit"}})],1):_vm._e(),_vm._v(" "),_c('el-form-item',{attrs:{"label":"部门名称：","prop":"depart_id"}},[_c('el-select',{on:{"change":function($event){_vm.getPostLists($event)}},model:{value:(_vm.userData.depart_id),callback:function ($$v) {_vm.$set(_vm.userData, "depart_id", $$v)},expression:"userData.depart_id"}},_vm._l((this.departSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"邮箱：","prop":"email"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.userData.email),callback:function ($$v) {_vm.$set(_vm.userData, "email", $$v)},expression:"userData.email"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"职位名称：","prop":"post_id"}},[_c('el-select',{model:{value:(_vm.userData.post_id),callback:function ($$v) {_vm.$set(_vm.userData, "post_id", $$v)},expression:"userData.post_id"}},_vm._l((this.postSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"手机号码：","prop":"phone"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.userData.phone),callback:function ($$v) {_vm.$set(_vm.userData, "phone", $$v)},expression:"userData.phone"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"调度信息：","prop":"dispatch"}},[_c('el-select',{model:{value:(_vm.userData.dispatch),callback:function ($$v) {_vm.$set(_vm.userData, "dispatch", $$v)},expression:"userData.dispatch"}},[_c('el-option',{attrs:{"label":"普通","value":1}}),_vm._v(" "),_c('el-option',{attrs:{"label":"司机","value":2}}),_vm._v(" "),_c('el-option',{attrs:{"label":"车长","value":3}}),_vm._v(" "),_c('el-option',{attrs:{"label":"值班调度","value":4}}),_vm._v(" "),_c('el-option',{attrs:{"label":"车站值班员","value":5}}),_vm._v(" "),_c('el-option',{attrs:{"label":"施工队长","value":6}})],1)],1),_vm._v(" "),_c('el-form-item',[_c('el-checkbox-group',{model:{value:(_vm.userData.menus),callback:function ($$v) {_vm.$set(_vm.userData, "menus", $$v)},expression:"userData.menus"}},_vm._l((_vm.userMenuList),function(item){return _c('el-checkbox',{key:item.id,attrs:{"label":item.id+''}},[_vm._v(_vm._s(item.name))])}))],1)],1)]),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.userDialogVisible = false}}},[_vm._v("取 消")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":_vm.addUser}},[_vm._v("确 定")])],1)],1)],1)])])}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-ea80a060","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/location/walldetector.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"location"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"router":"","default-active":"walldetector","mode":"horizontal"}},[_c('li',{staticClass:"ptitle"},[_c('img',{attrs:{"src":__webpack_require__("1xgB")}}),_vm._v("定位管理\n      ")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"location"}},[_vm._v("人员定位统计")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"walldetector"}},[_vm._v("墙壁探测器")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"cardetector"}},[_vm._v("车载探测器")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"locationbind"}},[_vm._v("定位从设备")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"device"}},[_vm._v("机具")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{attrs:{"inline":true}},[_c('el-form-item',[_c('el-button',{attrs:{"type":"primary","icon":"el-icon-plus"},on:{"click":_vm.addDialogInfo}},[_vm._v("添加设备")])],1),_vm._v(" "),_c('div',{staticClass:"el-serach"},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"请输入设备编号查询","clearable":"","maxlength":"30"},model:{value:(_vm.numberSearch),callback:function ($$v) {_vm.numberSearch=$$v},expression:"numberSearch"}}),_vm._v(" "),_c('el-button',{on:{"click":_vm.searchEvent}},[_vm._v("查询")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{attrs:{"data":_vm.dataList}},[_c('el-table-column',{attrs:{"prop":"id","label":"序号"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('span',[_vm._v(_vm._s(scope.$index+(_vm.page_cur - 1) * _vm.page_size + 1))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"name","label":"名称"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"number","label":"设备编号"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"location","label":"位置"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"is_enter","label":"是否在出入口"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.is_enter==1)?_c('span',{staticStyle:{"background":"#5cb85c","color":"#fff","border-radius":"3px","padding":"1px 4px"}},[_vm._v("是")]):_c('span',{staticStyle:{"background":"#d9534f","color":"#fff","border-radius":"3px","padding":"1px 4px"}},[_vm._v("否")])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"line","label":"线路"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"company","label":"公司名称"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"ip","label":"IP地址"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"create_time","label":"创建时间"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('p',{domProps:{"innerHTML":_vm._s(_vm.changeTime(scope.row.create_time))}})]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"120"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.goEdit(scope.row.id)}}},[_vm._v("修改")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.goDel(scope.row.id)}}},[_vm._v("删除")])],1)]}}])})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.dataList.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","page-size":this.page_size,"current-page":this.page_cur,"total":this.pageTotal,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.pageChange}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.toFirstPage}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.toLastPage}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1)],1)])]),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-sebei",attrs:{"width":"700px","close-on-click-modal":false,"title":this.diaLogTitle,"visible":_vm.diaLogFormVisible},on:{"update:visible":function($event){_vm.diaLogFormVisible=$event}}},[_c('el-form',{ref:"detectorForm",staticClass:"el-form-custom",attrs:{"model":_vm.detectorData,"rules":_vm.detectorRules}},[_c('el-form-item',{attrs:{"label":"公司名称：","prop":"depart_id"}},[_c('el-select',{attrs:{"placeholder":"请选择公司","clearable":""},model:{value:(_vm.detectorData.depart_id),callback:function ($$v) {_vm.$set(_vm.detectorData, "depart_id", $$v)},expression:"detectorData.depart_id"}},_vm._l((_vm.companyList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"设备名称：","prop":"name"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.detectorData.name),callback:function ($$v) {_vm.$set(_vm.detectorData, "name", $$v)},expression:"detectorData.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"设备编号：","prop":"number"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.detectorData.number),callback:function ($$v) {_vm.$set(_vm.detectorData, "number", $$v)},expression:"detectorData.number"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"设定线路","prop":"line_type"}},[_c('el-select',{attrs:{"placeholder":"请选择","clearable":""},model:{value:(_vm.detectorData.line_type),callback:function ($$v) {_vm.$set(_vm.detectorData, "line_type", $$v)},expression:"detectorData.line_type"}},_vm._l((_vm.linTypeList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"IP地址：","prop":"ip"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.detectorData.ip),callback:function ($$v) {_vm.$set(_vm.detectorData, "ip", $$v)},expression:"detectorData.ip"}})],1),_vm._v(" "),_c('el-form-item',{staticClass:"el-form-item-inlines is-required",attrs:{"label":"所在位置："}},[_c('el-form-item',{staticClass:"wall-errora",attrs:{"prop":"start_flag"}},[_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"公里","maxlength":"4"},model:{value:(_vm.detectorData.start_flag),callback:function ($$v) {_vm.$set(_vm.detectorData, "start_flag", $$v)},expression:"detectorData.start_flag"}})],1),_vm._v(" "),_c('el-form-item',{staticClass:"wall-errorb",attrs:{"prop":"start_length"}},[_c('b',[_vm._v("+")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off","placeholder":"米","maxlength":"3"},model:{value:(_vm.detectorData.start_length),callback:function ($$v) {_vm.$set(_vm.detectorData, "start_length", $$v)},expression:"detectorData.start_length"}})],1)],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"设备是否装在出入口：","prop":"is_enter"}},[_c('el-radio',{attrs:{"label":1},model:{value:(_vm.detectorData.is_enter),callback:function ($$v) {_vm.$set(_vm.detectorData, "is_enter", $$v)},expression:"detectorData.is_enter"}},[_vm._v("是")]),_vm._v(" "),_c('el-radio',{attrs:{"label":0},model:{value:(_vm.detectorData.is_enter),callback:function ($$v) {_vm.$set(_vm.detectorData, "is_enter", $$v)},expression:"detectorData.is_enter"}},[_vm._v("否")])],1),_vm._v(" "),_c('div',{staticClass:"blank"})],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.diaLogFormVisible = false}}},[_vm._v("关闭")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.addOrEditDialog()}}},[_vm._v("确定")])],1)],1)],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var admin_userlist = (esExports);
-// CONCATENATED MODULE: ./src/views/admin/userlist.vue
+/* harmony default export */ var location_walldetector = (esExports);
+// CONCATENATED MODULE: ./src/views/location/walldetector.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("xjIU")
+  __webpack_require__("2jgy")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -605,30 +446,31 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  userlist,
-  admin_userlist,
+  walldetector,
+  location_walldetector,
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 
-/* harmony default export */ var views_admin_userlist = __webpack_exports__["default"] = (Component.exports);
+/* harmony default export */ var views_location_walldetector = __webpack_exports__["default"] = (Component.exports);
 
 
 /***/ }),
 
-/***/ "xjIU":
+/***/ "U99Y":
 /***/ (function(module, exports, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
 
-// load the styles
-var content = __webpack_require__("a5Hi");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("60762d4a", content, true);
+
+// module
+exports.push([module.i, "\n.dialog-sebei .el-textarea__inner {\r\n  border: 1px #9db9fa solid;\r\n  color: #4b6eca;\r\n  height: 100px;\n}\n.dialog-sebei .el-textarea {\r\n  width: 100% !important;\n}\n.dialog-sebei .el-form-item__label {\r\n  width: 170px;\n}\n.dialog-sebei .el-form-item__content {\r\n  margin-left: 170px;\n}\n.dialog-sebei .el-form-item-inline .el-input--medium {\r\n  display: inline-block;\r\n  width: 80px;\r\n  text-align: center;\n}\n.dialog-sebei .el-form-item-inline input {\r\n  display: inline-block;\r\n  width: 80px;\r\n  text-align: center;\n}\n.dialog-sebei .el-select {\r\n  width: 100%;\n}\n.el-form-item-inlines {\r\n  display: inline-block;\n}\n.el-form-item-inlines .el-form-item {\r\n  display: inline-block;\n}\n.el-form-item-inlines .el-form-item .el-form-item__content {\r\n  margin-left: 0;\n}\n.el-form-item-inlines .el-input {\r\n  width: 100px;\n}\n.el-form-item-inlines input {\r\n  display: inline-block;\r\n  width: 100px;\r\n  text-align: center;\n}\n.el-form-item-inlines .el-form-item {\r\n  margin-bottom: 1px !important;\n}\n.wall-errora .el-form-item__error{ padding-left: 23px;\n}\n.wall-errorb .el-form-item__error{padding-left: 12px;\n}\r\n", ""]);
+
+// exports
+
 
 /***/ })
 
