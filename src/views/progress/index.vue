@@ -190,15 +190,18 @@ export default {
           cansText.fillText(tend, parseInt(endLength + canvasWidth - 122), 320);
           //3
         } else if (lineJson[i].id == 3) {
-          let starttotal =  parseInt(lineJson[i].start_flag) * 1000 + parseInt(lineJson[i].start_length);
-          if(starttotal==0){
-            starttotal=this.minMileage;
+          let starttotal =
+            parseInt(lineJson[i].start_flag) * 1000 +
+            parseInt(lineJson[i].start_length);
+          if (starttotal == 0) {
+            starttotal = this.minMileage;
           }
           let endtotal =
             parseInt(lineJson[i].end_flag) * 1000 +
             parseInt(lineJson[i].end_length);
           let startZB = (starttotal - this.minMileage) * every + 10;
-          let endZB = parseFloat((endtotal - starttotal) * every)+ parseFloat(startZB);
+          let endZB =
+            parseFloat((endtotal - starttotal) * every) + parseFloat(startZB);
           console.log("start_total：" + starttotal + "-" + startZB);
           console.log(
             "end_total：" +
@@ -211,26 +214,27 @@ export default {
           cansText.stroke();
           //
           cansText.fillText(tfrom, startZB, 370);
-          cansText.fillText(tend, endZB-50, 370);
+          cansText.fillText(tend, endZB - 50, 370);
           //4
-        }else if (lineJson[i].id == 4) {
-          let starttotal = parseInt(lineJson[i].start_flag) * 1000 + parseInt(lineJson[i].start_length);
-        
-          let endtotal = parseInt(lineJson[i].end_flag) * 1000 +  parseInt(lineJson[i].end_length);
+        } else if (lineJson[i].id == 4) {
+          let starttotal =
+            parseInt(lineJson[i].start_flag) * 1000 +
+            parseInt(lineJson[i].start_length);
+
+          let endtotal =
+            parseInt(lineJson[i].end_flag) * 1000 +
+            parseInt(lineJson[i].end_length);
           let startZB = (starttotal - this.minMileage) * every + 10;
-          let endZB = parseFloat((endtotal - starttotal) * every)+ parseFloat(startZB);
+          let endZB =
+            parseFloat((endtotal - starttotal) * every) + parseFloat(startZB);
           console.log("start_total4：" + starttotal + "-" + startZB);
-          console.log(
-            "end_total4：" +
-              endtotal +
-              "-" +endZB
-          );
+          console.log("end_total4：" + endtotal + "-" + endZB);
           cansText.moveTo(startZB, 400);
           cansText.lineTo(endZB, 400);
           cansText.stroke();
           //
           cansText.fillText(tfrom, startZB, 420);
-          cansText.fillText(tend, endZB-50, 420);
+          cansText.fillText(tend, endZB - 50, 420);
         }
       }
       //
@@ -335,20 +339,20 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   text-align: center;
 }
 #progress {
-  background: #081c33;
+  position: absolute;
+  width: 100%;
   height: 100%;
-  overflow: hidden;
+  background: #081c33;
 }
 .progress {
   background: #081c33;
-  height: 100vh;
-  min-width: 1024px;
+  padding-bottom: 30px;
 }
-@media (max-width: 1024px) {
+ @media (max-width: 1024px) {
   #progress {
-    width: 1024px;
+    width: 1024px; 
   }
-}
+} 
 .station {
   margin: 50px 0px 0px 230px;
 }
