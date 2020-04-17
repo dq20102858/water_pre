@@ -123,6 +123,11 @@ export default {
       getLocomotiveList: []
     };
   },
+    mounted() {
+    document
+      .querySelector("#app-menu-items #menu_search")
+      .classList.add("is-active");
+  },
   created() {
     this.getLocomotiveLists();
     this.getDataList();
