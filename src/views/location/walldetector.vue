@@ -20,7 +20,7 @@
               <el-button type="primary" icon="el-icon-plus" @click="addDialogInfo">添加设备</el-button>
             </el-form-item>
             <div class="el-serach">
-              <el-input v-model="numberSearch" autocomplete="off" placeholder="请输入设备编号查询" clearable></el-input>
+              <el-input v-model="numberSearch" autocomplete="off" placeholder="请输入设备编号查询" clearable maxlength="30"></el-input>
               <el-button @click="searchEvent">查询</el-button>
             </div>
           </el-form>

@@ -22,7 +22,7 @@
               <el-button type="primary" icon="el-icon-plus" @click="goAdd">添加限速</el-button>
             </el-form-item>
             <div class="el-serach">
-              <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable></el-input>
+              <el-input v-model="searchName" autocomplete="off"  maxlength="30" placeholder="请输入名称查询" clearable></el-input>
               <el-button @click="searchEvent">查询</el-button>
             </div>
           </el-form>

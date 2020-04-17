@@ -19,7 +19,7 @@
               <el-button type="primary" icon="el-icon-plus" @click="openAddUser">添加人员</el-button>
             </el-form-item>
             <el-form-item label="姓名">
-              <el-input v-model="userSearch.user_name" autocomplete="off" placeholder="请输入姓名"></el-input>
+              <el-input v-model="userSearch.user_name" autocomplete="off" placeholder="请输入姓名" maxlength="30"></el-input>
             </el-form-item>
             <el-form-item label="公司">
               <el-select

@@ -24,7 +24,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label=" 最大速度">
-              <el-input v-model="searchForm.speed" autocomplete="off"></el-input>
+              <el-input v-model="searchForm.speed" autocomplete="off" maxlength="30"></el-input>
             </el-form-item>
             <el-form-item label="开始时间">
               <el-date-picker v-model="searchForm.start_time" :picker-options="pickerOptionsStart"  type="datetime" format="yyyy-MM-dd HH:mm"></el-date-picker>

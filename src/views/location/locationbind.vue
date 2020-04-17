@@ -40,7 +40,7 @@
               <el-input
                 v-model="searchForm.keyword"
                 autocomplete="off"
-                placeholder="按编号/被绑定名称"
+                placeholder="按编号/被绑定名称" maxlength="30"
                 clearable
               ></el-input>
             </el-form-item>

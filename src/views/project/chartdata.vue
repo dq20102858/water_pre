@@ -31,7 +31,7 @@
               type="month"
               placeholder="在此选择年月查询"
               format="yyyy-MM"
-              value-format="yyyy-MM"
+              value-format="yyyy-MM" :editable=false
             ></el-date-picker>
             <el-button @click="searchChartByDate">查询</el-button>
           </div>
