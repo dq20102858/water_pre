@@ -214,11 +214,9 @@ export default {
           cansText.fillText(tend, endZB-50, 370);
           //4
         }else if (lineJson[i].id == 4) {
-          let starttotal =38940;// parseInt(lineJson[i].start_flag) * 1000 + parseInt(lineJson[i].start_length);
+          let starttotal = parseInt(lineJson[i].start_flag) * 1000 + parseInt(lineJson[i].start_length);
         
-          let endtotal =41000;
-           // parseInt(lineJson[i].end_flag) * 1000 +
-       //     parseInt(lineJson[i].end_length);
+          let endtotal = parseInt(lineJson[i].end_flag) * 1000 +  parseInt(lineJson[i].end_length);
           let startZB = (starttotal - this.minMileage) * every + 10;
           let endZB = parseFloat((endtotal - starttotal) * every)+ parseFloat(startZB);
           console.log("start_total4：" + starttotal + "-" + startZB);
@@ -234,7 +232,6 @@ export default {
           cansText.fillText(tfrom, startZB, 420);
           cansText.fillText(tend, endZB-50, 420);
         }
-
       }
       //
     },

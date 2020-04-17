@@ -32,10 +32,10 @@
               </el-select>
             </el-form-item>
             <el-form-item label="开始时间">
-              <el-date-picker v-model="searchForm.start_time" :picker-options="pickerOptionsStart" type="date"></el-date-picker>
+              <el-date-picker v-model="searchForm.start_time" :picker-options="pickerOptionsStart" type="datetime" format="yyyy-MM-dd HH:mm"></el-date-picker>
             </el-form-item>
             <el-form-item label="结束时间">
-              <el-date-picker v-model="searchForm.end_time" :picker-options="pickerOptionsEnd" type="date"></el-date-picker>
+              <el-date-picker v-model="searchForm.end_time" :picker-options="pickerOptionsEnd"  type="datetime" format="yyyy-MM-dd HH:mm"></el-date-picker>
             </el-form-item>
             <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
