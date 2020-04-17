@@ -180,7 +180,7 @@
                   <span v-else>已完成</span>
                 </template>
               </el-table-column>
-              <el-table-column label="当前情况"></el-table-column>
+              <el-table-column label="当前情况" prop="current_status"></el-table-column>
               <el-table-column prop="admin" label="提交者"></el-table-column>
               <el-table-column prop="create_time" label="发布时间">
                 <template slot-scope="scope">
