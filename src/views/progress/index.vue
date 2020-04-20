@@ -217,13 +217,13 @@ export default {
           cansText.fillText(tend, endZB - 50, 370);
           //4
         } else if (lineJson[i].id == 4) {
-          let starttotal =
-            parseInt(lineJson[i].start_flag) * 1000 +
-            parseInt(lineJson[i].start_length);
+          let starttotal =30000;
+          //  parseInt(lineJson[i].start_flag) * 1000 +
+           // parseInt(lineJson[i].start_length);
 
-          let endtotal =
-            parseInt(lineJson[i].end_flag) * 1000 +
-            parseInt(lineJson[i].end_length);
+          let endtotal =35000;
+         //   parseInt(lineJson[i].end_flag) * 1000 +
+        //    parseInt(lineJson[i].end_length);
           let startZB = (starttotal - this.minMileage) * every + 10;
           let endZB =
             parseFloat((endtotal - starttotal) * every) + parseFloat(startZB);
@@ -362,7 +362,7 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   border-top: 0;
 }
 /* lineTable */
-.lineTable {
+.lineTable {  background: #102843;
   width: 100%;
   border: 1px #fff solid;
   overflow: hidden;
@@ -406,7 +406,7 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
 }
 .tdbar .bar em {
   height: 20px;
-  background: #102843;
+  background: #081c33;
   display: inline-block;
   position: relative;
 }
@@ -418,4 +418,6 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   display: inline-block;
 }
 /* //#27DB07 */
+
 </style>
+

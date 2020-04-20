@@ -219,7 +219,7 @@ export default {
                   params[1].value +
                   "<br>";
 
-                return showHtm;
+                return  showHtm;
               }
             },
             color: ["#4b6eca", "#ff5c75"],
@@ -507,4 +507,6 @@ export default {
   padding: 20px;
   background: #fff;
 }
+
+
 </style>
