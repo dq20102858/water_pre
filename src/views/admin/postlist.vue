@@ -226,8 +226,8 @@ export default {
           this.postLists = data.data.data;
           this.departPage_size = data.data.per_page;
           this.postPage_cur = parseInt(data.data.current_page);
-          this.postPage_items = parseInt(data.data.total);
-          this.postPage_total = parseInt(data.data.last_page);
+          this.postPage_items = data.data.total;
+          this.postPage_total = data.data.last_page;
         }
       });
     },
@@ -242,7 +242,7 @@ export default {
       this.getPageLists();
     },
     postLastPage() {
-      this.postPage_cur = this.departPage_total;
+      this.postPage_cur = this.postPage_total;
       this.getPageLists();
     },
     postSearchPage() {

@@ -362,7 +362,7 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   border-top: 0;
 }
 /* lineTable */
-.lineTable {  background: #102843;
+.lineTable { 
   width: 100%;
   border: 1px #fff solid;
   overflow: hidden;
@@ -406,7 +406,7 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
 }
 .tdbar .bar em {
   height: 20px;
-  background: #081c33;
+ background: #112843;
   display: inline-block;
   position: relative;
 }
