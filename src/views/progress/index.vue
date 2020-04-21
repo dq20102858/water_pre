@@ -74,18 +74,18 @@ export default {
     getStationList() {
       let clientWidth = this.$refs.proWrapper.clientWidth;
       let canvasWidth = clientWidth - 330;
-      this.cwidth = canvasWidth - 29;
+      this.cwidth = canvasWidth-10;
       const canvas = this.$refs.canvasStation;
       let cansText = canvas.getContext("2d");
       canvas.width = canvasWidth;
 
       cansText.moveTo(9, 250);
-      cansText.lineTo(canvasWidth - 18, 250);
+      cansText.lineTo(canvasWidth, 250);
       cansText.strokeStyle = "#fff";
       cansText.lineWidth = 10;
       cansText.stroke();
       cansText.moveTo(9, 300);
-      cansText.lineTo(canvasWidth - 18, 300);
+      cansText.lineTo(canvasWidth, 300);
       cansText.stroke();
 
       //Station=====================Station
@@ -184,15 +184,15 @@ export default {
           let endtotal =
             parseInt(lineJson[i].end_flag) * 1000 +
             parseInt(lineJson[i].end_length);
-          let startZB = (starttotal - this.minMileage) * every + 10;
+          let startZB = (starttotal - this.minMileage) * every + 9;
           let endZB =
             parseFloat((endtotal - starttotal) * every) + parseFloat(startZB);
           cansText.moveTo(startZB, 350);
           cansText.lineTo(endZB, 350);
           cansText.stroke();
           //
-          cansText.fillText(tfrom, startZB + 5, 370);
-          cansText.fillText(tend, endZB - 50, 370);
+          cansText.fillText(tfrom, startZB+5, 370);
+          cansText.fillText(tend, endZB - 60, 370);
           //4
         } else if (lineJson[i].id == 4) {
           let starttotal =
@@ -212,7 +212,7 @@ export default {
           console.log("beteew：" + beteew);
           if (beteew < 160) {
             cansText.fillText(tfrom, startZB - 130, 420);
-            cansText.fillText(tend, endZB - 55, 420);
+            cansText.fillText(tend, endZB - 56, 420);
           } else {
             cansText.fillText(tfrom, startZB, 420);
             cansText.fillText(tend, endZB - 55, 420);
@@ -232,12 +232,13 @@ export default {
           parseFloat(paras[i].end_flag) * 1000 +
           parseFloat(paras[i].end_length);
         let leftPosition =
-          parseFloat(starMileage - this.minMileage) * this.every + 1;
+          parseFloat(starMileage - this.minMileage) * this.every ;
         let widthPosition = parseFloat(endMileage - starMileage) * this.every;
         if (starMileage == 0) {
-          leftPosition = 1;
+          leftPosition =0;
           widthPosition = parseFloat(endMileage - this.minMileage) * this.every;
         }
+
         let titles =
           "DK " +
           paras[i].start_flag +
@@ -366,13 +367,13 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   width: 1px;
   background: #fff;
   position: absolute;
-  right: 119px;
+  right: 100px;
   top: 245px;
   z-index: 1000;
 }
 .linebox {
   margin-left: 30px;
-  margin-right: 119px;
+  margin-right: 100px;
   border-top: 0;
   overflow: hidden;
   clear: both;
@@ -400,18 +401,17 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   text-overflow: ellipsis;
 }
 .tdbar {
-  height: 19px;
+  height: 18px;
   overflow: hidden;
 }
 .tdbar .bar {
   border-bottom: 1px solid #fff;
-  height: 20px;
-  padding-bottom: 1px;
+  height: 19px;
   overflow: hidden;
+  
 }
 .tdbar .bar:last-child {
-  height: 19px;
-  border: 0;
+  border-bottom: 0;
 }
 .tdbar .bar span {
   font-size: 12px;
@@ -420,23 +420,23 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   float: left;
   line-height: 18px;
   text-align: center;
+  border-right: 0px #fff solid;
 }
 .tdbar .bar em {
   height: 20px;
   display: inline-block;
   position: relative;
-  overflow: hidden;
 }
 .tdbar .bar em i {
   position: absolute;
   top: 0;
   background: #27db07;
-  height:21px;
+  height: 18px;
   display: inline-block;
-  overflow: hidden;
 }
 .clear {
   clear: both;
 }
+/* //#27DB07 */
 </style>
 
