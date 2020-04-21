@@ -3,11 +3,13 @@
     <div class="progress">
       <div class="sttitle">施工形象进度图</div>
       <div class="station">
+        <div :style="{height:stationlineHeight  + 'px'}" class="stationlineleft"></div>
+        <div :style="{height:stationlineHeight  + 'px'}" class="stationlineright"></div>
         <canvas id="canvasStation" height="480" ref="canvasStation">
           <p>您的系统不支持此程序!</p>
         </canvas>
       </div>
-      <div class="linebox">
+      <div class="linebox" ref="reflinebox">
         <table class="lineTable">
           <tr
             class="linebar"
@@ -28,6 +30,7 @@
             </td>
           </tr>
         </table>
+        <div class="clear"></div>
       </div>
       <!-- <div class="linebox">
         <div
@@ -57,8 +60,14 @@ export default {
       lineTypeList: [],
       listSchedule: [],
       minMileage: 0,
-      every: 0
+      every: 0,
+      stationlineHeight: 0,
+      stationlineTwoHeight: 0
     };
+  },
+  updated() {
+       this.getStationList();
+        this.stationlineHeight = 238 + this.$refs.reflinebox.offsetHeight;
   },
   created() {
     this.getProjectProcessMap();
@@ -74,8 +83,6 @@ export default {
           this.stationList = data.data.stations;
           this.lineTypeList = data.data.line_types;
           this.listSchedule = data.data.datas;
-          this.getStationList();
-          //  this.getLineType();
         }
       });
     },
@@ -84,7 +91,6 @@ export default {
       let clientWidth = this.$refs.proWrapper.clientWidth;
       let canvasWidth = clientWidth - 330;
       this.cwidth = canvasWidth;
-      console.log("canvasWidth：" + canvasWidth);
       const canvas = this.$refs.canvasStation;
       let cansText = canvas.getContext("2d");
       canvas.width = canvasWidth;
@@ -120,13 +126,13 @@ export default {
         (end.start_flag - first.start_flag) * 1000 +
         end.start_length -
         first.start_length;
-      console.log("总里程mileage：" + mileage);
+     // console.log("总里程mileage：" + mileage);
       this.minMileage = first.start_flag * 1000 + first.start_length; //最小里程
-      console.log("最小里程minMileage：" + this.minMileage);
+     // console.log("最小里程minMileage：" + this.minMileage);
       //每米长度等于px
       let every = (parseInt(canvasWidth - 30) / mileage).toFixed(5);
       this.every = every;
-      console.log("每米长度every：" + every);
+     // console.log("每米长度every：" + every);
       //
       let img = new Image();
       img.src = require("@/assets/image/sta.png");
@@ -185,7 +191,7 @@ export default {
         if (lineJson[i].id == 1) {
           cansText.fillText(tfrom, 0, 270);
           cansText.fillText(tend, parseInt(endLength + canvasWidth - 112), 270);
-        } else if (lineJson[i].id == 2) {
+        } else if (lineJson[i].line_type == 2) {
           cansText.fillText(tfrom, 0, 320);
           cansText.fillText(tend, parseInt(endLength + canvasWidth - 122), 320);
           //3
@@ -217,13 +223,13 @@ export default {
           cansText.fillText(tend, endZB - 50, 370);
           //4
         } else if (lineJson[i].id == 4) {
-          let starttotal =30000;
+          let starttotal = 30000;
           //  parseInt(lineJson[i].start_flag) * 1000 +
-           // parseInt(lineJson[i].start_length);
+          // parseInt(lineJson[i].start_length);
 
-          let endtotal =35000;
-         //   parseInt(lineJson[i].end_flag) * 1000 +
-        //    parseInt(lineJson[i].end_length);
+          let endtotal = 35000;
+          //   parseInt(lineJson[i].end_flag) * 1000 +
+          //    parseInt(lineJson[i].end_length);
           let startZB = (starttotal - this.minMileage) * every + 10;
           let endZB =
             parseFloat((endtotal - starttotal) * every) + parseFloat(startZB);
@@ -244,32 +250,48 @@ export default {
       let start = 0;
       for (let i = 0; i < paras.length; i++) {
         let starMileage =
-          parseInt(paras[i].start_flag) * 1000 +
-          parseInt(paras[i].start_length);
+          parseFloat(paras[i].start_flag) * 1000 +
+          parseFloat(paras[i].start_length);
         let endMileage =
-          parseInt(paras[i].end_flag) * 1000 + parseInt(paras[i].end_length);
+          parseFloat(paras[i].end_flag) * 1000 +
+          parseFloat(paras[i].end_length);
         let leftPosition =
-          parseInt(starMileage - this.minMileage) * this.every + 10;
-        let widthPosition = parseInt(endMileage - starMileage) * this.every;
-        // console.log("starNum:" + starMileage + " endNum:" + endMileage);
-        // console.log(
-        //   "leftPosition:" + leftPosition + " widthPosition:" + widthPosition
-        // );
+          parseFloat(starMileage - this.minMileage) * this.every + 10;
+        let widthPosition = parseFloat(endMileage - starMileage) * this.every;
+        if (starMileage == 0) {
+          leftPosition = 10;
+          widthPosition = parseFloat(endMileage - this.minMileage) * this.every;
+        }
+
+        console.log(
+          "starMileage：" +
+            paras[i].line_type +
+            " star：" +
+            starMileage +
+            " end：" +
+            endMileage +
+            "_" +
+            widthPosition
+        );
+
+        // if(starMileage==0){
+        //   leftPosition=leftPosition+68;
+        // }
         result +=
           "<i style='width:" +
           widthPosition +
           "px;left:" +
           leftPosition +
-          "px'>";
+          "px'></i>";
       }
       return result;
     }
   },
   mounted() {
-    window.addEventListener("resize", this.getProjectProcessMap);
+    window.addEventListener("resize",    this.getStationList);
   },
   destroyed() {
-    window.removeEventListener("resize", this.getProjectProcessMap);
+    window.removeEventListener("resize", this.getStationList);
   }
 };
 
@@ -348,21 +370,43 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   background: #081c33;
   padding-bottom: 30px;
 }
- @media (max-width: 1024px) {
+@media (max-width: 1024px) {
   #progress {
-    width: 1024px; 
+    width: 1024px;
   }
-} 
+}
 .station {
   margin: 50px 0px 0px 230px;
+  position: relative;
+  z-index: 999;
+}
+.stationlineleft {
+  min-height: 239px;
+  width: 1px;
+  background: #fff;
+  position: absolute;
+  left: 0px;
+  top: 245px;
+  z-index: 1000;
+}
+.stationlineright {
+  min-height: 240px;
+  width: 1px;
+  background: #fff;
+  position: absolute;
+  right: 100px;
+  top: 245px;
+  z-index: 1000;
 }
 .linebox {
   margin-left: 30px;
   margin-right: 100px;
   border-top: 0;
+  overflow: hidden;
+  clear: both;
 }
 /* lineTable */
-.lineTable { 
+.lineTable {
   width: 100%;
   border: 1px #fff solid;
   overflow: hidden;
@@ -389,7 +433,7 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
 }
 .tdbar .bar {
   border-bottom: 1px solid #fff;
-  height: 18px;
+  height: 19px;
   overflow: hidden;
 }
 .tdbar .bar:last-child {
@@ -401,12 +445,11 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   width: 68px;
   float: left;
   text-align: center;
-  height: 20px;
-  line-height: 18px;
+  border-right: 0px #fff solid;
 }
 .tdbar .bar em {
   height: 20px;
- background: #112843;
+  background: #112843;
   display: inline-block;
   position: relative;
 }
@@ -417,7 +460,9 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   height: 18px;
   display: inline-block;
 }
+.clear {
+  clear: both;
+}
 /* //#27DB07 */
-
 </style>
 
