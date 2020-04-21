@@ -780,7 +780,7 @@ export default {
               data: typeData[k].lists
             });
           }
-          console.log("typeData：" + JSON.stringify(typeData));
+          //console.log("typeData：" + JSON.stringify(typeData));
           //console.log("projectData：" + JSON.stringify(seriesData));
           //时间
           let dataMin = new Date(

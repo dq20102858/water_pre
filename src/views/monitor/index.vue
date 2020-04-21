@@ -106,15 +106,15 @@ export default {
       minMileage: 0,
       totalMileage: 0,
       every: 0.5,
-      bridgeCheckValue: false,
+      bridgeCheckValue: true,
       bridgeList: [],
-      tunnelCheckValue: false,
+      tunnelCheckValue: true,
       tunnelList: [],
-      speedCheckValue: false,
+      speedCheckValue: true,
       speedList: [],
-      alertCheckValue: false,
+      alertCheckValue: true,
       alertList: [],
-      slopeCheckValue: false,
+      slopeCheckValue: true,
       slopeList: [],
       progressList: [],
       progressListItem: [],
@@ -184,6 +184,7 @@ export default {
     },
 
     initCanvas() {
+      let that = this;
       //坐标轴宽度高度
       let axis_Width = this.totalMileage / 2 + 600;
       let axis_Height = "680";
@@ -333,86 +334,134 @@ export default {
       }
       //绘制请点
       function drawAxesApply(applyListJson) {
-        let json1 = applyListJson;
-        let json = [
-          {
-            line_type: 1,
-            number: "A4-2-007-1",
-            command_num: "(2020)\u5b57\u7b2c04.21-007-2000",
-            description: "\u98ce\u98ce\u5149\u5149",
-            work_area: "DK14+130\u81f3DK42+410",
-            start_time: "2020-04-21 00:00:00",
-            end_time: "2020-04-21 23:00:00",
-            start_flag: "14",
-            start_length: "130",
-            end_flag: "150",
-            end_length: "400",
-            type: "A4"
-          },
-          {
-            line_type: 2,
-            number: "A4-2-007-1",
-            command_num: "(2020)\u5b57\u7b2c04.21-2",
-            description: "\u98ce\u98ce\u5149\u5149",
-            work_area: "DK14+130\u81f3DK42+410",
-            start_time: "2020-04-21 00:00:00",
-            end_time: "2020-04-21 23:00:00",
-            start_flag: "14",
-            start_length: "500",
-            end_flag: "15",
-            end_length: "200",
-            type: "A4"
-          }
-        ];
-        console.log(json);
+        let json = applyListJson;
+        // let json1 = [
+        //   {
+        //     line_type: 1,
+        //     number: "A4-2-007-1",
+        //     command_num: "(2020)\u5b57\u7b2c04.21-007-2000",
+        //     description: "\u98ce\u98ce\u5149\u5149",
+        //     work_area: "DK14+130\u81f3DK42+410",
+        //     start_time: "2020-04-21 00:00:00",
+        //     end_time: "2020-04-21 23:00:00",
+        //     start_flag: "14",
+        //     start_length: "130",
+        //     end_flag: "150",
+        //     end_length: "400",
+        //     type: "A4"
+        //   },
+        //   {
+        //     line_type: 2,
+        //     number: "A4-2-007-1",
+        //     command_num: "(2020)\u5b57\u7b2c04.21-2",
+        //     description: "\u98ce\u98ce\u5149\u5149",
+        //     work_area: "DK14+130\u81f3DK42+410",
+        //     start_time: "2020-04-21 00:00:00",
+        //     end_time: "2020-04-21 23:00:00",
+        //     start_flag: "14",
+        //     start_length: "500",
+        //     end_flag: "15",
+        //     end_length: "200",
+        //     type: "A4"
+        //   }
+        // ];
+        // console.log(json);
+        let clickXY = [];
         for (let i = 0; i < json.length; i++) {
-          let start = 14000;
-          //   parseInt(json[i].start_flag) * 1000 +
-          //     parseInt(json[i].start_length);
-          let end = 15000;
-          //     parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
+          let start =
+            parseInt(json[i].start_flag) * 1000 +
+            parseInt(json[i].start_length);
+          let end =
+            parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
           console.log("start：" + start + " end：" + end);
           // 计算当前站点的x轴坐标
           let startX = (start - parseInt(minkm * 1000)) * everys; //开始值
           let endX = (end - parseInt(minkm * 1000)) * everys; //结束值
           let centerX = (endX + startX) / 2; //开始结束平均值
-          let desc = json[i].command_num;
+          let desc = json[i].type;
           let dksatrt = "DK" + json[i].start_flag + " +" + json[i].start_length;
           let dkend = "DK" + json[i].end_flag + " +" + json[i].end_length;
 
           context.lineWidth = 4;
           context.strokeStyle = "#ffff00";
           context.beginPath();
-          context.fillStyle = "#ffff00";
-          context.font = "13px Microsoft Yahei";
 
           if (json[i].line_type == 1) {
             //画水平直线
             context.moveTo(startX + offsetX, axis_applay.y);
             context.lineTo(endX + offsetX, axis_applay.y);
             //文字
-            context.fillText(desc, centerX + offsetX, axis_applay.y - 20);
+            context.fillStyle = "#ffff00";
+            context.font = "28px Microsoft Yahei";
+            context.fillText(desc, centerX + offsetX, axis_applay.y - 30);
+            context.fillStyle = "#ffff00";
+            context.font = "13px Microsoft Yahei";
             context.fillText(dkend, startX + 139, axis_applay.y - 15);
             context.fillText(dksatrt, endX + 66, axis_applay.y - 15);
+
+            clickXY.push({
+              x: centerX + offsetX,
+              y: axis_applay.y - 20,
+              r: 50,
+              i: json[i]
+            });
           } else if (json[i].line_type == 2) {
             context.moveTo(startX + offsetX, axis_applay_two.y);
             context.lineTo(endX + offsetX, axis_applay_two.y);
             //文字
-            context.fillText(desc, centerX + offsetX, axis_applay.y + 225);
+            context.fillStyle = "#ffff00";
+            context.font = "28px Microsoft Yahei";
+            context.fillText(desc, centerX + offsetX, axis_applay.y + 220);
+            context.fillStyle = "#ffff00";
+            context.font = "13px Microsoft Yahei";
             context.fillText(dkend, startX + 139, axis_applay_two.y - 15);
             context.fillText(dksatrt, endX + 66, axis_applay_two.y - 15);
+            clickXY.push({
+              x: centerX + offsetX,
+              y: axis_applay.y + 225,
+              r: 50,
+              i: json[i]
+            });
           }
           context.stroke();
-          // context.save();
-          // context.lineWidth = 4;
-          // context.strokeStyle = "#ffff00";
-          // context.beginPath();
-          // context.moveTo(axis_applay.x, axis_applay.y);
-          // context.lineTo(axis_Width, axis_applay.y);
-          // context.moveTo(axis_applay_two.x, axis_applay_two.y);
-          // context.lineTo(axis_Width, axis_applay_two.y);
-          // context.stroke();
+          //
         }
+        canvas.addEventListener(
+          "click",
+          function(e) {
+            var x = event.pageX - canvas.getBoundingClientRect().left;
+            var y = event.pageY - canvas.getBoundingClientRect().top;
+            console.log(clickXY);
+            for (let i of clickXY) {
+            
+                //   that.dialogVisible = true;
+                let infos = i.i;
+                that.$alert(
+                  "<p style='color:#4b6eca'><span style='color:#1d397a'>作业编号：</span>" +
+                    infos.number +
+                    "</p><p style='color:#4b6eca'><span style='color:#1d397a'>作业令号</span>：" +
+                    infos.command_num +
+                    "</p>" +
+                    "<p style='color:#4b6eca'><span style='color:#1d397a'>开始时间：</span>" +
+                    infos.start_time +
+                    "</p><p style='color:#4b6eca'><span style='color:#1d397a'>结束时间：</span>" +
+                    infos.end_time +
+                    "</p>" +
+                    "<p style='color:#4b6eca'><span style='color:#1d397a'>施工区间：</span>" +
+                    infos.work_area +
+                    "</p><p style='color:#4b6eca'><span style='color:#1d397a'>施工内容：</span>" +
+                    infos.description +
+                    "</p>",
+                  {
+                    dangerouslyUseHTMLString: true,
+                     confirmButtonText: '关闭'
+                  }
+                ) .catch(() => {});
+                break;
+            }
+          },
+          false
+        );
       }
 
       //绘制桥
@@ -906,6 +955,7 @@ export default {
       console.log(startX);
       document.querySelector(".group-canvas").scrollTo(startX, 0);
     }
+
     //
   },
   mounted() {

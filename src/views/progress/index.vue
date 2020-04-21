@@ -32,22 +32,6 @@
         </table>
         <div class="clear"></div>
       </div>
-      <!-- <div class="linebox">
-        <div
-          class="linebar"
-          v-for="item in listSchedule"
-          :key="item.id"
-          v-if="item.lines.name !=''"
-        >
-          <div class="title">{{item.name}}</div>
-          <div class="bar" v-for="lines in item.lines" :key="lines.id">
-            <span>{{lines.name}}</span>
-            <em :style="{width: cwidth + 'px' }" v-html="lineFill(lines.lists)">
-             <i v-for="lists in lines.lists" :key="lists.id" :style="{{lineFill(lists.start_flag)}}"></i> 
-            </em>
-          </div>
-        </div>
-      </div>-->
     </div>
   </div>
 </template>
@@ -66,8 +50,8 @@ export default {
     };
   },
   updated() {
-       this.getStationList();
-        this.stationlineHeight = 238 + this.$refs.reflinebox.offsetHeight;
+    this.getStationList();
+    this.stationlineHeight = 238 + this.$refs.reflinebox.offsetHeight;
   },
   created() {
     this.getProjectProcessMap();
@@ -90,25 +74,20 @@ export default {
     getStationList() {
       let clientWidth = this.$refs.proWrapper.clientWidth;
       let canvasWidth = clientWidth - 330;
-      this.cwidth = canvasWidth;
+      this.cwidth = canvasWidth - 29;
       const canvas = this.$refs.canvasStation;
       let cansText = canvas.getContext("2d");
       canvas.width = canvasWidth;
 
-      cansText.moveTo(0, 250);
-      cansText.lineTo(canvasWidth, 250);
-      cansText.strokeStyle = "#B4D3E5";
+      cansText.moveTo(9, 250);
+      cansText.lineTo(canvasWidth - 18, 250);
+      cansText.strokeStyle = "#fff";
       cansText.lineWidth = 10;
       cansText.stroke();
-      cansText.moveTo(0, 300);
-      cansText.lineTo(canvasWidth, 300);
+      cansText.moveTo(9, 300);
+      cansText.lineTo(canvasWidth - 18, 300);
       cansText.stroke();
 
-      //起终点里程
-      // cansText.lineWidth = 3;
-      // cansText.moveTo(0, 245);
-      // cansText.lineTo(0, 380);
-      // cansText.stroke();
       //Station=====================Station
       let json = this.stationList;
       //console.log(JSON.stringify(json))
@@ -126,13 +105,13 @@ export default {
         (end.start_flag - first.start_flag) * 1000 +
         end.start_length -
         first.start_length;
-     // console.log("总里程mileage：" + mileage);
+      // console.log("总里程mileage：" + mileage);
       this.minMileage = first.start_flag * 1000 + first.start_length; //最小里程
-     // console.log("最小里程minMileage：" + this.minMileage);
+      // console.log("最小里程minMileage：" + this.minMileage);
       //每米长度等于px
       let every = (parseInt(canvasWidth - 30) / mileage).toFixed(5);
       this.every = every;
-     // console.log("每米长度every：" + every);
+      // console.log("每米长度every：" + every);
       //
       let img = new Image();
       img.src = require("@/assets/image/sta.png");
@@ -149,7 +128,7 @@ export default {
           // 粗线向右移动了100像素，所以需要修正x轴
           if (i == 0) start = startX; //从左侧126像素开始绘制
           //console.log("startX：" + parseInt(startX - start) );
-          cansText.drawImage(img, startX - start, 126, 22, 120);
+          cansText.drawImage(img, startX - start - 1, 126, 22, 120);
           //站名
           cansText.font = "16px Microsoft Yahei";
           cansText.fillStyle = "#0AE39A";
@@ -189,11 +168,11 @@ export default {
         cansText.font = "12px Microsoft Yahei";
         cansText.fillStyle = "#E8C640";
         if (lineJson[i].id == 1) {
-          cansText.fillText(tfrom, 0, 270);
-          cansText.fillText(tend, parseInt(endLength + canvasWidth - 112), 270);
-        } else if (lineJson[i].line_type == 2) {
-          cansText.fillText(tfrom, 0, 320);
-          cansText.fillText(tend, parseInt(endLength + canvasWidth - 122), 320);
+          cansText.fillText(tfrom, 15, 270);
+          cansText.fillText(tend, parseInt(endLength + canvasWidth - 115), 270);
+        } else if (lineJson[i].id == 2) {
+          cansText.fillText(tfrom, 15, 320);
+          cansText.fillText(tend, parseInt(endLength + canvasWidth - 125), 320);
           //3
         } else if (lineJson[i].id == 3) {
           let starttotal =
@@ -208,39 +187,36 @@ export default {
           let startZB = (starttotal - this.minMileage) * every + 10;
           let endZB =
             parseFloat((endtotal - starttotal) * every) + parseFloat(startZB);
-          console.log("start_total：" + starttotal + "-" + startZB);
-          console.log(
-            "end_total：" +
-              endtotal +
-              "-" +
-              (parseFloat(startZB) + parseFloat(endZB))
-          );
           cansText.moveTo(startZB, 350);
           cansText.lineTo(endZB, 350);
           cansText.stroke();
           //
-          cansText.fillText(tfrom, startZB, 370);
+          cansText.fillText(tfrom, startZB + 5, 370);
           cansText.fillText(tend, endZB - 50, 370);
           //4
         } else if (lineJson[i].id == 4) {
-          let starttotal = 30000;
-          //  parseInt(lineJson[i].start_flag) * 1000 +
-          // parseInt(lineJson[i].start_length);
-
-          let endtotal = 35000;
-          //   parseInt(lineJson[i].end_flag) * 1000 +
-          //    parseInt(lineJson[i].end_length);
+          let starttotal =
+            parseInt(lineJson[i].start_flag) * 1000 +
+            parseInt(lineJson[i].start_length);
+          let endtotal =
+            parseInt(lineJson[i].end_flag) * 1000 +
+            parseInt(lineJson[i].end_length);
           let startZB = (starttotal - this.minMileage) * every + 10;
           let endZB =
             parseFloat((endtotal - starttotal) * every) + parseFloat(startZB);
-          console.log("start_total4：" + starttotal + "-" + startZB);
-          console.log("end_total4：" + endtotal + "-" + endZB);
           cansText.moveTo(startZB, 400);
           cansText.lineTo(endZB, 400);
           cansText.stroke();
           //
-          cansText.fillText(tfrom, startZB, 420);
-          cansText.fillText(tend, endZB - 50, 420);
+          let beteew = endZB - startZB;
+          console.log("beteew：" + beteew);
+          if (beteew < 160) {
+            cansText.fillText(tfrom, startZB - 130, 420);
+            cansText.fillText(tend, endZB - 55, 420);
+          } else {
+            cansText.fillText(tfrom, startZB, 420);
+            cansText.fillText(tend, endZB - 55, 420);
+          }
         }
       }
       //
@@ -256,29 +232,25 @@ export default {
           parseFloat(paras[i].end_flag) * 1000 +
           parseFloat(paras[i].end_length);
         let leftPosition =
-          parseFloat(starMileage - this.minMileage) * this.every + 10;
+          parseFloat(starMileage - this.minMileage) * this.every + 1;
         let widthPosition = parseFloat(endMileage - starMileage) * this.every;
         if (starMileage == 0) {
-          leftPosition = 10;
+          leftPosition = 1;
           widthPosition = parseFloat(endMileage - this.minMileage) * this.every;
         }
-
-        console.log(
-          "starMileage：" +
-            paras[i].line_type +
-            " star：" +
-            starMileage +
-            " end：" +
-            endMileage +
-            "_" +
-            widthPosition
-        );
-
-        // if(starMileage==0){
-        //   leftPosition=leftPosition+68;
-        // }
+        let titles =
+          "DK " +
+          paras[i].start_flag +
+          "+" +
+          paras[i].start_length +
+          "~" +
+          paras[i].end_flag +
+          "+" +
+          paras[i].end_length;
         result +=
-          "<i style='width:" +
+          "<i title='" +
+          titles +
+          "' style='width:" +
           widthPosition +
           "px;left:" +
           leftPosition +
@@ -288,7 +260,7 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener("resize",    this.getStationList);
+    window.addEventListener("resize", this.getStationList);
   },
   destroyed() {
     window.removeEventListener("resize", this.getStationList);
@@ -385,7 +357,7 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   width: 1px;
   background: #fff;
   position: absolute;
-  left: 0px;
+  left: 8px;
   top: 245px;
   z-index: 1000;
 }
@@ -394,13 +366,13 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   width: 1px;
   background: #fff;
   position: absolute;
-  right: 100px;
+  right: 119px;
   top: 245px;
   z-index: 1000;
 }
 .linebox {
   margin-left: 30px;
-  margin-right: 100px;
+  margin-right: 119px;
   border-top: 0;
   overflow: hidden;
   clear: both;
@@ -428,41 +400,43 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   text-overflow: ellipsis;
 }
 .tdbar {
-  height: 18px;
+  height: 19px;
   overflow: hidden;
 }
 .tdbar .bar {
   border-bottom: 1px solid #fff;
-  height: 19px;
+  height: 20px;
+  padding-bottom: 1px;
   overflow: hidden;
 }
 .tdbar .bar:last-child {
-  border-bottom: 0;
+  height: 19px;
+  border: 0;
 }
 .tdbar .bar span {
   font-size: 12px;
   color: #fff;
-  width: 68px;
+  width: 78px;
   float: left;
+  line-height: 18px;
   text-align: center;
-  border-right: 0px #fff solid;
 }
 .tdbar .bar em {
   height: 20px;
-  background: #112843;
   display: inline-block;
   position: relative;
+  overflow: hidden;
 }
 .tdbar .bar em i {
   position: absolute;
   top: 0;
   background: #27db07;
-  height: 18px;
+  height:21px;
   display: inline-block;
+  overflow: hidden;
 }
 .clear {
   clear: both;
 }
-/* //#27DB07 */
 </style>
 
