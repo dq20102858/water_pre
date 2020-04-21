@@ -43,7 +43,7 @@
         </div>
         <div class="sidebox">
           <h3>显示控制</h3>
-          <div class="chklist">
+          <div class="chklist chlone">
             <el-checkbox-group v-model="select_line_type" @change="selectLineTypeChart">
               <el-checkbox
                 v-for="item in lineTypeList"
@@ -60,7 +60,7 @@
             <el-checkbox label="区间封锁"></el-checkbox>
             <el-checkbox label="清点"></el-checkbox>-->
           </div>
-          <div class="chklist">
+          <div class="chklist chltwo">
             <el-checkbox-group v-model="select_loco_type" @change="selectLocoTypeChart">
               <el-checkbox v-for="item in locoList" :key="item.id" :label="item.id">{{item.name}}</el-checkbox>
             </el-checkbox-group>
@@ -264,7 +264,7 @@
             </el-form-item>
           </div>
           <div class="el-form-item-block">
-            <el-form-item label="工点：" label-width="100px">
+            <el-form-item label="工点：" label-width="100px"  prop="start_station">
               <el-select
                 v-model="formData.start_station"
                 placeholder="请选择"
@@ -279,7 +279,7 @@
               </el-select>
             </el-form-item>
             <b style="line-height: 31px;">—</b>
-            <el-form-item>
+            <el-form-item prop="end_station">
               <el-select
                 v-model="formData.end_station"
                 placeholder="请选择"
@@ -302,7 +302,7 @@
                   maxlength="3"
                 ></el-input>
               </el-form-item>
-              <el-form-item prop="start_length">
+              <el-form-item prop="start_length"   class="lengtherror">
                 <b>+</b>
                 <el-input
                   v-model="formData.start_length"
@@ -311,7 +311,7 @@
                   maxlength="3"
                 ></el-input>
               </el-form-item>
-              <el-form-item prop="start_flag">
+              <el-form-item prop="start_flag"   class="lengtherror">
                 <b style="width:100px">至</b>
                 <el-input
                   v-model="formData.end_flag"
@@ -320,7 +320,7 @@
                   maxlength="3"
                 ></el-input>
               </el-form-item>
-              <el-form-item prop="end_length">
+              <el-form-item prop="end_length" class="lengtherror">
                 <b>+</b>
                 <el-input
                   v-model="formData.end_length"
@@ -555,42 +555,56 @@ export default {
         start_time: [
           {
             required: true,
-            message: "请输入开始时间",
+            message: "请选择开始时间",
             trigger: "change"
           }
         ],
         end_time: [
           {
             required: true,
-            message: "请输入结束时间",
+            message: "请选择结束时间",
+            trigger: "change"
+          }
+        ],
+           start_station: [
+          {
+            required: true,
+            message: "请选择开始站点",
+            trigger: "change"
+          }
+        ],
+           end_station: [
+          {
+            required: true,
+            message: "请选择结束站点",
             trigger: "change"
           }
         ],
         start_flag: [
           {
             required: true,
-            message: "请输入里程(公里)",
+            message: "请输入公里",
             trigger: "blur"
           }
         ],
         start_length: [
           {
             required: true,
-            message: "请输入里程(米)",
+            message: "请输入米",
             trigger: "blur"
           }
         ],
         end_flag: [
           {
             required: true,
-            message: "请输入里程(公里)",
+            message: " 请输入公里",
             trigger: "blur"
           }
         ],
         end_length: [
           {
             required: true,
-            message: "请输入里程(米)",
+            message: "请输入米",
             trigger: "blur"
           }
         ]
@@ -988,8 +1002,8 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.stationList = data.data;
-          this.$set(this.formData, "start_station", this.stationList[0]["id"]);
-          this.$set(this.formData, "end_station", this.stationList[0]["id"]);
+          // this.$set(this.formData, "start_station", this.stationList[0]["id"]);
+          //this.$set(this.formData, "end_station", this.stationList[0]["id"]);
         }
       });
     },
@@ -1040,9 +1054,10 @@ export default {
     planAdd() {
       this.diaLogTitle = "计划图";
       this.diaLogFormVisible = true;
-      this.formData.number = "";
-      this.formData.start_time = "";
-      this.formData.end_time = "";
+
+      // this.formData.number = "";
+      // this.formData.start_time = "";
+      // this.formData.end_time = "";
       // };
       this.getMasterList(); //车长
       this.getdriverList(); //司机
@@ -1429,4 +1444,16 @@ export default {
 .istextarea .el-textarea__inner {
   width: 825px;
 }
+.lengtherror .el-form-item__error{padding-left: 20px;}
+
+.chlone .el-checkbox:nth-child(1) .el-checkbox__label{color:#0000ff}
+.chlone .el-checkbox:nth-child(2) .el-checkbox__label{color:#00c000}
+.chlone .el-checkbox:nth-child(3) .el-checkbox__label{color:#008000}
+.chlone .el-checkbox:nth-child(4) .el-checkbox__label{color:#000040}
+
+.chltwo .el-checkbox:nth-child(1) .el-checkbox__label{color:#800000}
+.chltwo .el-checkbox:nth-child(2) .el-checkbox__label{color:#008000}
+.chltwo .el-checkbox:nth-child(3) .el-checkbox__label{color:#000080}
+.chltwo .el-checkbox:nth-child(4) .el-checkbox__label{color:#808000}
+
 </style>

@@ -106,20 +106,24 @@ export default {
       minMileage: 0,
       totalMileage: 0,
       every: 0.5,
-      bridgeCheckValue: true,
+      bridgeCheckValue: false,
       bridgeList: [],
-      tunnelCheckValue: true,
+      tunnelCheckValue: false,
       tunnelList: [],
-      speedCheckValue: true,
+      speedCheckValue: false,
       speedList: [],
-      alertCheckValue: true,
+      alertCheckValue: false,
       alertList: [],
-      slopeCheckValue: true,
+      slopeCheckValue: false,
       slopeList: [],
       progressList: [],
       progressListItem: [],
-      progressCheckValue: 0
+      progressCheckValue: 0,
+      applyList: []
     };
+  },
+  updated() {
+    this.initCanvas();
   },
   created() {
     this.getProjectProcessMap();
@@ -163,6 +167,8 @@ export default {
               " minKM：" +
               this.minKM
           );
+          this.applyList = data.data.apply_lists; //请点
+          console.log("applyList：" + this.applyList);
           //桥 隧道等
           this.bridgeList = data.data.bridge_lists; //桥
           this.tunnelList = data.data.tunnel_lists; //隧道
@@ -171,7 +177,7 @@ export default {
           this.slopeList = data.data.slope_lists; //坡度
           //施工进度
           this.progressList = data.data.project;
-          this.initCanvas();
+
           //  this.getLineType();
         }
       });
@@ -190,6 +196,15 @@ export default {
         x: 100,
         y: axis_Height - 200
       };
+      //请点标尺
+      let axis_applay = {
+        x: 100,
+        y: axis_Height - 500
+      };
+      let axis_applay_two = {
+        x: 100,
+        y: axis_Height - 250
+      };
       //刻度的间隔
       let tick_Spacing = 100;
       //标记数值
@@ -207,18 +222,24 @@ export default {
       function drawAxes() {
         context.save();
         context.lineWidth = 10;
-        context.strokeStyle = "#ffffff";
+        context.strokeStyle = "#fff";
         context.beginPath();
         context.moveTo(axis_Origin.x, axis_Origin.y);
         context.lineTo(axis_Width, axis_Origin.y);
         context.moveTo(axis_Origin_Two.x, axis_Origin_Two.y);
         context.lineTo(axis_Width, axis_Origin_Two.y);
         context.stroke();
-        //drawHorizontalAxis();
+        //左线 右线 文字
+        context.fillStyle = "#fff";
+        context.font = "22px Microsoft Yahei";
+        context.fillText("左线", axis_Origin.x - 80, axis_Origin.y + 8);
+        context.fillText("右线", axis_Origin_Two.x - 80, axis_Origin_Two.y + 8);
         drawHorizontalAxisTicks(axis_Origin.x, axis_Origin.y);
         drawHorizontalAxisTicks(axis_Origin_Two.x, axis_Origin_Two.y);
+
         context.restore();
       }
+
       //绘制水平的小标
       function drawHorizontalAxisTicks(axis_Origin_X, axis_Origin_y) {
         context.lineWidth = 2;
@@ -294,7 +315,7 @@ export default {
             //console.log("total：" + total);
             // 计算当前站点的x轴坐标
             let startX = (total - parseInt(minkm * 1000)) * everys;
-            context.drawImage(img, startX + 89.5, 105, 22, 120);
+            context.drawImage(img, startX + 89.5, 105, 24, 120);
             //站名
             context.font = "bold 24px Microsoft Yahei";
             context.fillStyle = "#fff";
@@ -310,6 +331,90 @@ export default {
           }
         };
       }
+      //绘制请点
+      function drawAxesApply(applyListJson) {
+        let json1 = applyListJson;
+        let json = [
+          {
+            line_type: 1,
+            number: "A4-2-007-1",
+            command_num: "(2020)\u5b57\u7b2c04.21-007-2000",
+            description: "\u98ce\u98ce\u5149\u5149",
+            work_area: "DK14+130\u81f3DK42+410",
+            start_time: "2020-04-21 00:00:00",
+            end_time: "2020-04-21 23:00:00",
+            start_flag: "14",
+            start_length: "130",
+            end_flag: "150",
+            end_length: "400",
+            type: "A4"
+          },
+          {
+            line_type: 2,
+            number: "A4-2-007-1",
+            command_num: "(2020)\u5b57\u7b2c04.21-2",
+            description: "\u98ce\u98ce\u5149\u5149",
+            work_area: "DK14+130\u81f3DK42+410",
+            start_time: "2020-04-21 00:00:00",
+            end_time: "2020-04-21 23:00:00",
+            start_flag: "14",
+            start_length: "500",
+            end_flag: "15",
+            end_length: "200",
+            type: "A4"
+          }
+        ];
+        console.log(json);
+        for (let i = 0; i < json.length; i++) {
+          let start = 14000;
+          //   parseInt(json[i].start_flag) * 1000 +
+          //     parseInt(json[i].start_length);
+          let end = 15000;
+          //     parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
+          console.log("start：" + start + " end：" + end);
+          // 计算当前站点的x轴坐标
+          let startX = (start - parseInt(minkm * 1000)) * everys; //开始值
+          let endX = (end - parseInt(minkm * 1000)) * everys; //结束值
+          let centerX = (endX + startX) / 2; //开始结束平均值
+          let desc = json[i].command_num;
+          let dksatrt = "DK" + json[i].start_flag + " +" + json[i].start_length;
+          let dkend = "DK" + json[i].end_flag + " +" + json[i].end_length;
+
+          context.lineWidth = 4;
+          context.strokeStyle = "#ffff00";
+          context.beginPath();
+          context.fillStyle = "#ffff00";
+          context.font = "13px Microsoft Yahei";
+
+          if (json[i].line_type == 1) {
+            //画水平直线
+            context.moveTo(startX + offsetX, axis_applay.y);
+            context.lineTo(endX + offsetX, axis_applay.y);
+            //文字
+            context.fillText(desc, centerX + offsetX, axis_applay.y - 20);
+            context.fillText(dkend, startX + 139, axis_applay.y - 15);
+            context.fillText(dksatrt, endX + 66, axis_applay.y - 15);
+          } else if (json[i].line_type == 2) {
+            context.moveTo(startX + offsetX, axis_applay_two.y);
+            context.lineTo(endX + offsetX, axis_applay_two.y);
+            //文字
+            context.fillText(desc, centerX + offsetX, axis_applay.y + 225);
+            context.fillText(dkend, startX + 139, axis_applay_two.y - 15);
+            context.fillText(dksatrt, endX + 66, axis_applay_two.y - 15);
+          }
+          context.stroke();
+          // context.save();
+          // context.lineWidth = 4;
+          // context.strokeStyle = "#ffff00";
+          // context.beginPath();
+          // context.moveTo(axis_applay.x, axis_applay.y);
+          // context.lineTo(axis_Width, axis_applay.y);
+          // context.moveTo(axis_applay_two.x, axis_applay_two.y);
+          // context.lineTo(axis_Width, axis_applay_two.y);
+          // context.stroke();
+        }
+      }
+
       //绘制桥
       function drawBridgeAxis(bridgeListJson) {
         let json = bridgeListJson;
@@ -387,27 +492,6 @@ export default {
       //绘隧道
       function drawTunnelAxis(tunnelListJson) {
         let json = tunnelListJson;
-        // let json1 = [
-        //   {
-        //     id: 7,
-        //     name: "隧道名称一",
-        //     line_type: 1,
-        //     start_flag: 15,
-        //     start_length: 200,
-        //     end_flag: 15,
-        //     end_length: 800
-        //   },
-        //   {
-        //     id: 7,
-        //     name: "隧道名称二",
-        //     line_type: 2,
-        //     start_flag: 14,
-        //     start_length: 200,
-        //     end_flag: 16,
-        //     end_length: 100
-        //   }
-        // ];
-
         for (let i = 0; i < json.length; i++) {
           let start =
             parseInt(json[i].start_flag) * 1000 +
@@ -561,105 +645,6 @@ export default {
       //绘制坡度
       function drawSlopeAxis(slopeListJson) {
         let json = slopeListJson;
-        // let json1 = [
-        //   {
-        //     id: 7,
-        //     name: "\u9650\u901f",
-        //     line_type: 1,
-        //     start_flag: 14,
-        //     start_length: 200,
-        //     end_flag: 14,
-        //     end_length: 400,
-        //     height: "2",
-        //     length: "200",
-        //     type: 1
-        //   },
-        //   {
-        //     id: 7,
-        //     name: "\u9650\u901f",
-        //     line_type: 1,
-        //     start_flag: 14,
-        //     start_length: 400,
-        //     end_flag: 14,
-        //     end_length: 600,
-        //     height: "3",
-        //     length: "300",
-        //     type: 1
-        //   },
-        //   {
-        //     id: 7,
-        //     name: "\u9650\u901f",
-        //     line_type: 1,
-        //     start_flag: 14,
-        //     start_length: 600,
-        //     end_flag: 15,
-        //     end_length: 0,
-        //     height: "4",
-        //     length: "600",
-        //     type: 3
-        //   },
-        //   {
-        //     id: 7,
-        //     name: "\u9650\u901f",
-        //     line_type: 1,
-        //     start_flag: 15,
-        //     start_length: 0,
-        //     end_flag: 15,
-        //     end_length: 400,
-        //     height: "4",
-        //     length: "400",
-        //     type: 3
-        //   },
-        //   {
-        //     id: 7,
-        //     name: "右线",
-        //     line_type: 2,
-        //     start_flag: 14,
-        //     start_length: 200,
-        //     end_flag: 14,
-        //     end_length: 400,
-        //     height: "3",
-        //     length: "300",
-        //     type: 1
-        //   },
-        //   {
-        //     id: 7,
-        //     name: "\u9650\u901f",
-        //     line_type: 2,
-        //     start_flag: 14,
-        //     start_length: 400,
-        //     end_flag: 14,
-        //     end_length: 600,
-        //     height: "3.00",
-        //     length: "200",
-        //     type: 1
-        //   },
-        //   {
-        //     id: 7,
-        //     name: "\u9650\u901f",
-        //     line_type: 2,
-        //     start_flag: 14,
-        //     start_length: 600,
-        //     end_flag: 15,
-        //     end_length: 0,
-        //     height: "3.00",
-        //     length: "600",
-        //     type: 3
-        //   },
-        //   {
-        //     id: 7,
-        //     name: "\u9650\u901f",
-        //     line_type: 2,
-        //     start_flag: 15,
-        //     start_length: 0,
-        //     end_flag: 15,
-        //     end_length: 400,
-        //     height: "3.00",
-        //     length: "600",
-        //     type: 3
-        //   }
-        // ];
-
         for (let i = 0; i < json.length; i++) {
           let start =
             parseInt(json[i].start_flag) * 1000 +
@@ -674,7 +659,7 @@ export default {
           context.lineWidth = 1;
           context.strokeStyle = "#FF5F18";
           context.fillStyle = "#FF5F18";
-
+          context.font = "12px Microsoft Yahei";
           let slope_height = parseFloat(json[i].height);
           let slope_length = parseFloat(json[i].length);
           let slope_center = (betweenMeters * everys) / 2;
@@ -809,7 +794,6 @@ export default {
           //
         }
       }
-
       //绘制施工进度
       function drawProgressAxis(sprogressListJson) {
         let json = sprogressListJson;
@@ -839,13 +823,15 @@ export default {
           //
         }
       }
-      //基础
+      //==================基础
       drawAxes();
       drawAxisLabels(axis_Origin.x, axis_Origin.y);
       drawAxisLabels(axis_Origin_Two.x, axis_Origin_Two.y);
+      //
+      drawAxesApply(this.applyList);
       //画地铁站
       drawStations(this.stationList);
-    
+
       //桥
       if (this.bridgeCheckValue) {
         drawBridgeAxis(this.bridgeList);
@@ -866,7 +852,7 @@ export default {
       if (this.slopeCheckValue) {
         drawSlopeAxis(this.slopeList);
       }
-        //施工进度
+      //施工进度
       if (this.progressCheckValue) {
         drawProgressAxis(this.progressListItem);
       }
@@ -880,28 +866,27 @@ export default {
           this.progressListItem = item.list;
         }
       });
-      console.log("progressListItem" + JSON.stringify(this.progressListItem));
-      this.getProjectProcessMap();
+      this.initCanvas();
     },
     //桥
     bridgeCheckSelect() {
-      this.getProjectProcessMap();
+      this.initCanvas();
     },
     //隧道
     tunnelCheckSelect() {
-      this.getProjectProcessMap();
+      this.initCanvas();
     },
     //限速区
     speedCheckSelect() {
-      this.getProjectProcessMap();
+      this.initCanvas();
     },
     //防区
     alertCheckSelect() {
-      this.getProjectProcessMap();
+      this.initCanvas();
     },
     //坡度
     slopeCheckSelect() {
-      this.getProjectProcessMap();
+      this.initCanvas();
     },
 
     //top
