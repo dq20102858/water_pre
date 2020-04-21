@@ -354,7 +354,7 @@ export default {
           this.userPage_cur = parseInt(data.data.current_page);
           this.userPage_items = data.data.total;
           this.userPage_size = data.data.per_page;
-          this.puserPage_total = data.data.last_page;
+          this.userPage_total = data.data.last_page;
         }
       });
     },

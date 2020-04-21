@@ -185,9 +185,7 @@ export default {
         color: "默认"
       };
     },
-
     addCompany() {
-      console.log("this.companyData.id：" + this.companyData.id);
       this.$refs["companyRulesForm"].validate(valid => {
         if (valid) {
           let data = this.companyData;

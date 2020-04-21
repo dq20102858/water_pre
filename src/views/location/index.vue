@@ -17,7 +17,11 @@
         <div class="app-page-select">
           <el-form :model="searchForm" :inline="true">
             <el-form-item label="公司">
-              <el-select v-model="searchForm.depart_id" placeholder="请选择公司"  @change="selectCompanyList($event)">
+              <el-select
+                v-model="searchForm.depart_id"
+                placeholder="请选择公司"
+                @change="selectCompanyList($event)"
+              >
                 <el-option
                   v-for="item in companyList"
                   :key="item.id"
@@ -48,15 +52,39 @@
             </el-form-item>
             <el-form-item label="开始位置" class="el-form-item-inline">
               <b>DK</b>
-              <el-input v-model="searchForm.start_flag" autocomplete="off" placeholder="公里" title="请输入数字" oninput = "value=value.replace(/[^\d]/g,'')"></el-input>
+              <el-input
+                v-model="searchForm.start_flag"
+                autocomplete="off"
+                placeholder="公里"
+                title="请输入数字"
+                oninput="value=value.replace(/[^\d]/g,'')"
+              ></el-input>
               <b>+</b>
-              <el-input v-model="searchForm.start_length" autocomplete="off" placeholder="米" title="请输入数字" oninput = "value=value.replace(/[^\d]/g,'')"></el-input>
+              <el-input
+                v-model="searchForm.start_length"
+                autocomplete="off"
+                placeholder="米"
+                title="请输入数字"
+                oninput="value=value.replace(/[^\d]/g,'')"
+              ></el-input>
             </el-form-item>
             <el-form-item label="结束位置" class="el-form-item-inline">
               <b>DK</b>
-              <el-input v-model="searchForm.end_flag" autocomplete="off" placeholder="公里" title="请输入数字" oninput = "value=value.replace(/[^\d]/g,'')"></el-input>
+              <el-input
+                v-model="searchForm.end_flag"
+                autocomplete="off"
+                placeholder="公里"
+                title="请输入数字"
+                oninput="value=value.replace(/[^\d]/g,'')"
+              ></el-input>
               <b>+</b>
-              <el-input v-model="searchForm.end_length" autocomplete="off" placeholder="米" title="请输入数字" oninput = "value=value.replace(/[^\d]/g,'')"></el-input>
+              <el-input
+                v-model="searchForm.end_length"
+                autocomplete="off"
+                placeholder="米"
+                title="请输入数字"
+                oninput="value=value.replace(/[^\d]/g,'')"
+              ></el-input>
             </el-form-item>
             <el-form-item label="开始时间">
               <el-date-picker
@@ -86,9 +114,19 @@
           <el-table :data="dataList">
             <el-table-column prop="id" label="序号"></el-table-column>
             <el-table-column prop="name" label="姓名"></el-table-column>
-            <el-table-column prop="company" label="公司"></el-table-column>
-            <el-table-column prop="num" label="在线时长"></el-table-column>
-            <el-table-column prop="id" label="出入场次数查询"></el-table-column>
+            <el-table-column prop="company" label="公司名称"></el-table-column>
+            <el-table-column label="开始位置">
+              <template slot-scope="scope">
+                <span>DK{{scope.row.start_flag}} + {{scope.row.start_length}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="结束位置">
+              <template slot-scope="scope">
+                <span>DK{{scope.row.end_flag}} + {{scope.row.end_length}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column  label="在线时长"></el-table-column>
+            <el-table-column prop="num" label="出入场次数查询"></el-table-column>
           </el-table>
           <div class="app-pagination">
             <el-pagination
@@ -255,7 +293,7 @@ export default {
         start_time: "",
         end_time: ""
       };
-      this.objSelectLists=[];
+      this.objSelectLists = [];
       this.getDataList();
     }
     //
@@ -273,7 +311,9 @@ export default {
   width: 80px;
   text-align: center;
 }
-.app-page-select b{color: #999;}
+.app-page-select b {
+  color: #999;
+}
 .dialog-loction .el-textarea__inner {
   border: 1px #9db9fa solid;
   color: #4b6eca;
