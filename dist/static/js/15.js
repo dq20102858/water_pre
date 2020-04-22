@@ -1,6 +1,6 @@
 webpackJsonp([15],{
 
-/***/ "JNiL":
+/***/ "J8bz":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("FZ+f")(false);
@@ -8,24 +8,24 @@ exports = module.exports = __webpack_require__("FZ+f")(false);
 
 
 // module
-exports.push([module.i, "\n.sttitle {\r\n  color: #fff;\r\n  padding: 22px 0 0 25px;\r\n  font-size: 24px;\r\n  text-align: center;\n}\n#progress {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  background: #081c33;\n}\n.progress {\r\n  background: #081c33;\r\n  padding-bottom: 30px;\n}\n@media (max-width: 1024px) {\n#progress {\r\n    width: 1024px;\n}\n}\n.station {\r\n  margin: 50px 0px 0px 230px;\r\n  position: relative;\r\n  z-index: 999;\n}\n.stationlineleft {\r\n  min-height: 239px;\r\n  width: 1px;\r\n  background: #fff;\r\n  position: absolute;\r\n  left: 0px;\r\n  top: 245px;\r\n  z-index: 1000;\n}\n.stationlineright {\r\n  min-height: 240px;\r\n  width: 1px;\r\n  background: #fff;\r\n  position: absolute;\r\n  right: 100px;\r\n  top: 245px;\r\n  z-index: 1000;\n}\n.linebox {\r\n  margin-left: 30px;\r\n  margin-right: 100px;\r\n  border-top: 0;\r\n  overflow: hidden;\r\n  clear: both;\n}\r\n/* lineTable */\n.lineTable {\r\n  width: 100%;\r\n  border: 1px #fff solid;\r\n  overflow: hidden;\r\n  border-collapse: collapse;\n}\n.lineTable td {\r\n  color: #fff;\r\n  border: 1px solid #fff;\n}\n.lineTable .tdtitle {\r\n  text-align: center;\r\n  overflow: hidden;\r\n  height: 18px;\r\n  padding-left: 5px;\r\n  width: 125px;\r\n  font-size: 12px;\r\n  line-height: 18px;\r\n  white-space: nowrap;\r\n  text-overflow: ellipsis;\n}\n.tdbar {\r\n  height: 18px;\r\n  overflow: hidden;\n}\n.tdbar .bar {\r\n  border-bottom: 1px solid #fff;\r\n  height: 19px;\r\n  overflow: hidden;\n}\n.tdbar .bar:last-child {\r\n  border-bottom: 0;\n}\n.tdbar .bar span {\r\n  font-size: 12px;\r\n  color: #fff;\r\n  width: 68px;\r\n  float: left;\r\n  text-align: center;\r\n  border-right: 0px #fff solid;\n}\n.tdbar .bar em {\r\n  height: 20px;\r\n  background: #112843;\r\n  display: inline-block;\r\n  position: relative;\n}\n.tdbar .bar em i {\r\n  position: absolute;\r\n  top: 0;\r\n  background: #27db07;\r\n  height: 18px;\r\n  display: inline-block;\n}\n.clear {\r\n  clear: both;\n}\r\n/* //#27DB07 */\r\n", ""]);
+exports.push([module.i, "\n.sttitle {\r\n  color: #fff;\r\n  padding: 22px 0 0 25px;\r\n  font-size: 24px;\r\n  text-align: center;\n}\n#progress {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  background: #081c33;\n}\n.progress {\r\n  background: #081c33;\r\n  padding-bottom: 30px;\n}\n@media (max-width: 1024px) {\n#progress {\r\n    width: 1024px;\n}\n}\n.station {\r\n  margin: 50px 0px 0px 230px;\r\n  position: relative;\r\n  z-index: 999;\n}\n.stationlineleft {\r\n  min-height: 239px;\r\n  width: 1px;\r\n  background: #fff;\r\n  position: absolute;\r\n  left: 8px;\r\n  top: 245px;\r\n  z-index: 1000;\n}\n.stationlineright {\r\n  min-height: 240px;\r\n  width: 1px;\r\n  background: #fff;\r\n  position: absolute;\r\n  right: 100px;\r\n  top: 245px;\r\n  z-index: 1000;\n}\n.linebox {\r\n  margin-left: 30px;\r\n  margin-right: 100px;\r\n  border-top: 0;\r\n  overflow: hidden;\r\n  clear: both;\n}\r\n/* lineTable */\n.lineTable {\r\n  width: 100%;\r\n  border: 1px #fff solid;\r\n  overflow: hidden;\r\n  border-collapse: collapse;\n}\n.lineTable td {\r\n  color: #fff;\r\n  border: 1px solid #fff;\n}\n.lineTable .tdtitle {\r\n  text-align: center;\r\n  overflow: hidden;\r\n  height: 18px;\r\n  padding-left: 5px;\r\n  width: 125px;\r\n  font-size: 12px;\r\n  line-height: 18px;\r\n  white-space: nowrap;\r\n  text-overflow: ellipsis;\n}\n.tdbar .bar {\r\n  border-bottom: 1px solid #fff;\r\n  height: 18px;\r\n  overflow: hidden;\n}\n.tdbar .bar:last-child {\r\n  border-bottom: 0;\n}\n.tdbar .bar span {\r\n  font-size: 12px;\r\n  color: #fff;\r\n  width: 78px;\r\n  float: left;\r\n  line-height: 18px;\r\n  text-align: center;\r\n  border-right: 0px #fff solid;\n}\n.tdbar .bar em {\r\n  height: 20px;\r\n  display: inline-block;\r\n  position: relative;\n}\n.tdbar .bar em i {\r\n  position: absolute;\r\n  top: 0;\r\n  background: #27db07;\r\n  height: 19px;\r\n  display: inline-block;\r\n  border-left: 1px #67db17 solid;\n}\n.clear {\r\n  clear: both;\n}\r\n/* //#27DB07 */\r\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ "j2ny":
+/***/ "ZSp2":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("JNiL");
+var content = __webpack_require__("J8bz");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("rjj0")("d9e278b0", content, true);
+var update = __webpack_require__("rjj0")("87972e9c", content, true);
 
 /***/ }),
 
@@ -48,22 +48,6 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/progress/index.vue
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -142,25 +126,20 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
     getStationList: function getStationList() {
       var clientWidth = this.$refs.proWrapper.clientWidth;
       var canvasWidth = clientWidth - 330;
-      this.cwidth = canvasWidth;
+      this.cwidth = canvasWidth - 10;
       var canvas = this.$refs.canvasStation;
       var cansText = canvas.getContext("2d");
       canvas.width = canvasWidth;
 
-      cansText.moveTo(0, 250);
+      cansText.moveTo(9, 250);
       cansText.lineTo(canvasWidth, 250);
-      cansText.strokeStyle = "#B4D3E5";
+      cansText.strokeStyle = "#fff";
       cansText.lineWidth = 10;
       cansText.stroke();
-      cansText.moveTo(0, 300);
+      cansText.moveTo(9, 300);
       cansText.lineTo(canvasWidth, 300);
       cansText.stroke();
 
-      //起终点里程
-      // cansText.lineWidth = 3;
-      // cansText.moveTo(0, 245);
-      // cansText.lineTo(0, 380);
-      // cansText.stroke();
       //Station=====================Station
       var json = this.stationList;
       //console.log(JSON.stringify(json))
@@ -196,7 +175,7 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
           // 粗线向右移动了100像素，所以需要修正x轴
           if (_i == 0) start = startX; //从左侧126像素开始绘制
           //console.log("startX：" + parseInt(startX - start) );
-          cansText.drawImage(img, startX - start, 126, 22, 120);
+          cansText.drawImage(img, startX - start - 1, 126, 22, 120);
           //站名
           cansText.font = "16px Microsoft Yahei";
           cansText.fillStyle = "#0AE39A";
@@ -226,11 +205,11 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
         cansText.font = "12px Microsoft Yahei";
         cansText.fillStyle = "#E8C640";
         if (lineJson[_i2].id == 1) {
-          cansText.fillText(tfrom, 0, 270);
-          cansText.fillText(tend, parseInt(endLength + canvasWidth - 112), 270);
-        } else if (lineJson[_i2].line_type == 2) {
-          cansText.fillText(tfrom, 0, 320);
-          cansText.fillText(tend, parseInt(endLength + canvasWidth - 122), 320);
+          cansText.fillText(tfrom, 15, 270);
+          cansText.fillText(tend, parseInt(endLength + canvasWidth - 115), 270);
+        } else if (lineJson[_i2].id == 2) {
+          cansText.fillText(tfrom, 15, 320);
+          cansText.fillText(tend, parseInt(endLength + canvasWidth - 125), 320);
           //3
         } else if (lineJson[_i2].id == 3) {
           var starttotal = parseInt(lineJson[_i2].start_flag) * 1000 + parseInt(lineJson[_i2].start_length);
@@ -238,35 +217,33 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
             starttotal = this.minMileage;
           }
           var endtotal = parseInt(lineJson[_i2].end_flag) * 1000 + parseInt(lineJson[_i2].end_length);
-          var startZB = (starttotal - this.minMileage) * every + 10;
+          var startZB = (starttotal - this.minMileage) * every + 9;
           var endZB = parseFloat((endtotal - starttotal) * every) + parseFloat(startZB);
-          console.log("start_total：" + starttotal + "-" + startZB);
-          console.log("end_total：" + endtotal + "-" + (parseFloat(startZB) + parseFloat(endZB)));
           cansText.moveTo(startZB, 350);
           cansText.lineTo(endZB, 350);
           cansText.stroke();
           //
-          cansText.fillText(tfrom, startZB, 370);
-          cansText.fillText(tend, endZB - 50, 370);
+          cansText.fillText(tfrom, startZB + 5, 370);
+          cansText.fillText(tend, endZB - 60, 370);
           //4
         } else if (lineJson[_i2].id == 4) {
-          var _starttotal = 30000;
-          //  parseInt(lineJson[i].start_flag) * 1000 +
-          // parseInt(lineJson[i].start_length);
-
-          var _endtotal = 35000;
-          //   parseInt(lineJson[i].end_flag) * 1000 +
-          //    parseInt(lineJson[i].end_length);
+          var _starttotal = parseInt(lineJson[_i2].start_flag) * 1000 + parseInt(lineJson[_i2].start_length);
+          var _endtotal = parseInt(lineJson[_i2].end_flag) * 1000 + parseInt(lineJson[_i2].end_length);
           var _startZB = (_starttotal - this.minMileage) * every + 10;
           var _endZB = parseFloat((_endtotal - _starttotal) * every) + parseFloat(_startZB);
-          console.log("start_total4：" + _starttotal + "-" + _startZB);
-          console.log("end_total4：" + _endtotal + "-" + _endZB);
           cansText.moveTo(_startZB, 400);
           cansText.lineTo(_endZB, 400);
           cansText.stroke();
           //
-          cansText.fillText(tfrom, _startZB, 420);
-          cansText.fillText(tend, _endZB - 50, 420);
+          var beteew = _endZB - _startZB;
+          console.log("beteew：" + beteew);
+          if (beteew < 160) {
+            cansText.fillText(tfrom, _startZB - 150, 420);
+            cansText.fillText(tend, _endZB - 56, 420);
+          } else {
+            cansText.fillText(tfrom, _startZB, 420);
+            cansText.fillText(tend, _endZB - 55, 420);
+          }
         }
       }
       //
@@ -278,19 +255,15 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
       for (var i = 0; i < paras.length; i++) {
         var starMileage = parseFloat(paras[i].start_flag) * 1000 + parseFloat(paras[i].start_length);
         var endMileage = parseFloat(paras[i].end_flag) * 1000 + parseFloat(paras[i].end_length);
-        var leftPosition = parseFloat(starMileage - this.minMileage) * this.every + 10;
+        var leftPosition = parseFloat(starMileage - this.minMileage) * this.every;
         var widthPosition = parseFloat(endMileage - starMileage) * this.every;
         if (starMileage == 0) {
-          leftPosition = 10;
+          leftPosition = 0;
           widthPosition = parseFloat(endMileage - this.minMileage) * this.every;
         }
 
-        console.log("starMileage：" + paras[i].line_type + " star：" + starMileage + " end：" + endMileage + "_" + widthPosition);
-
-        // if(starMileage==0){
-        //   leftPosition=leftPosition+68;
-        // }
-        result += "<i style='width:" + widthPosition + "px;left:" + leftPosition + "px'></i>";
+        var titles = "DK " + paras[i].start_flag + "+" + paras[i].start_length + "~" + paras[i].end_flag + "+" + paras[i].end_length;
+        result += "<i title='" + titles + "' style='width:" + widthPosition + "px;left:" + leftPosition + "px'></i>";
       }
       return result;
     }
@@ -356,14 +329,14 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function (text, x, y) {
   context.textAlign = align;
   context.textBaseline = baseline;
 };
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-1eaebf49","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/progress/index.vue
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-238fb47a","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/progress/index.vue
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"proWrapper",attrs:{"id":"progress"}},[_c('div',{staticClass:"progress"},[_c('div',{staticClass:"sttitle"},[_vm._v("施工形象进度图")]),_vm._v(" "),_c('div',{staticClass:"station"},[_c('div',{staticClass:"stationlineleft",style:({height:_vm.stationlineHeight  + 'px'})}),_vm._v(" "),_c('div',{staticClass:"stationlineright",style:({height:_vm.stationlineHeight  + 'px'})}),_vm._v(" "),_c('canvas',{ref:"canvasStation",attrs:{"id":"canvasStation","height":"480"}},[_c('p',[_vm._v("您的系统不支持此程序!")])])]),_vm._v(" "),_c('div',{ref:"reflinebox",staticClass:"linebox"},[_c('table',{staticClass:"lineTable"},_vm._l((_vm.listSchedule),function(item){return (item.lines.name !='')?_c('tr',{key:item.id,staticClass:"linebar"},[_c('td',[_c('div',{staticClass:"tdtitle"},[_vm._v(_vm._s(item.name))])]),_vm._v(" "),_c('td',{staticClass:"tdbar"},_vm._l((item.lines),function(lines){return _c('div',{key:lines.id,staticClass:"bar"},[_c('span',[_vm._v(_vm._s(lines.name))]),_vm._v(" "),_c('em',{style:({width: _vm.cwidth + 'px' }),domProps:{"innerHTML":_vm._s(_vm.lineFill(lines.lists))}})])}))]):_vm._e()})),_vm._v(" "),_c('div',{staticClass:"clear"})])])])}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ var views_progress = (esExports);
 // CONCATENATED MODULE: ./src/views/progress/index.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("j2ny")
+  __webpack_require__("ZSp2")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */

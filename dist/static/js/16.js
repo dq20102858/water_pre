@@ -1,6 +1,20 @@
 webpackJsonp([16],{
 
-/***/ "BQxP":
+/***/ "NTi2":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("koJd");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("55d5d884", content, true);
+
+/***/ }),
+
+/***/ "koJd":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("FZ+f")(false);
@@ -15,20 +29,6 @@ exports.push([module.i, "\n#progress {\r\n  background: #081c33;\r\n  height: 10
 
 /***/ }),
 
-/***/ "VGg/":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("BQxP");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("0adde9cf", content, true);
-
-/***/ }),
-
 /***/ "lZYz":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -39,7 +39,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var defineProperty = __webpack_require__("bOdI");
 var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 
+// EXTERNAL MODULE: ./node_modules/babel-runtime/core-js/get-iterator.js
+var get_iterator = __webpack_require__("BO1k");
+var get_iterator_default = /*#__PURE__*/__webpack_require__.n(get_iterator);
+
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/monitor/index.vue
+
 
 //
 //
@@ -149,15 +154,15 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
       minMileage: 0,
       totalMileage: 0,
       every: 0.5,
-      bridgeCheckValue: false,
+      bridgeCheckValue: true,
       bridgeList: [],
-      tunnelCheckValue: false,
+      tunnelCheckValue: true,
       tunnelList: [],
-      speedCheckValue: false,
+      speedCheckValue: true,
       speedList: [],
-      alertCheckValue: false,
+      alertCheckValue: true,
       alertList: [],
-      slopeCheckValue: false,
+      slopeCheckValue: true,
       slopeList: [],
       progressList: [],
       progressListItem: [],
@@ -219,6 +224,7 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
       });
     },
     initCanvas: function initCanvas() {
+      var that = this;
       //坐标轴宽度高度
       var axis_Width = this.totalMileage / 2 + 600;
       var axis_Height = "680";
@@ -271,7 +277,6 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
         context.fillText("右线", axis_Origin_Two.x - 80, axis_Origin_Two.y + 8);
         drawHorizontalAxisTicks(axis_Origin.x, axis_Origin.y);
         drawHorizontalAxisTicks(axis_Origin_Two.x, axis_Origin_Two.y);
-
         context.restore();
       }
 
@@ -346,83 +351,131 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
       }
       //绘制请点
       function drawAxesApply(applyListJson) {
-        var json1 = applyListJson;
-        var json = [{
-          line_type: 1,
-          number: "A4-2-007-1",
-          command_num: "(2020)\u5B57\u7B2C04.21-007-2000",
-          description: "\u98CE\u98CE\u5149\u5149",
-          work_area: "DK14+130\u81F3DK42+410",
-          start_time: "2020-04-21 00:00:00",
-          end_time: "2020-04-21 23:00:00",
-          start_flag: "14",
-          start_length: "130",
-          end_flag: "150",
-          end_length: "400",
-          type: "A4"
-        }, {
-          line_type: 2,
-          number: "A4-2-007-1",
-          command_num: "(2020)\u5B57\u7B2C04.21-2",
-          description: "\u98CE\u98CE\u5149\u5149",
-          work_area: "DK14+130\u81F3DK42+410",
-          start_time: "2020-04-21 00:00:00",
-          end_time: "2020-04-21 23:00:00",
-          start_flag: "14",
-          start_length: "500",
-          end_flag: "15",
-          end_length: "200",
-          type: "A4"
-        }];
-        console.log(json);
+        var json = applyListJson;
+        // let json1 = [
+        //   {
+        //     line_type: 1,
+        //     number: "A4-2-007-1",
+        //     command_num: "(2020)\u5b57\u7b2c04.21-007-2000",
+        //     description: "\u98ce\u98ce\u5149\u5149",
+        //     work_area: "DK14+130\u81f3DK42+410",
+        //     start_time: "2020-04-21 00:00:00",
+        //     end_time: "2020-04-21 23:00:00",
+        //     start_flag: "14",
+        //     start_length: "130",
+        //     end_flag: "150",
+        //     end_length: "400",
+        //     type: "A4"
+        //   },
+        //   {
+        //     line_type: 2,
+        //     number: "A4-2-007-1",
+        //     command_num: "(2020)\u5b57\u7b2c04.21-2",
+        //     description: "\u98ce\u98ce\u5149\u5149",
+        //     work_area: "DK14+130\u81f3DK42+410",
+        //     start_time: "2020-04-21 00:00:00",
+        //     end_time: "2020-04-21 23:00:00",
+        //     start_flag: "14",
+        //     start_length: "500",
+        //     end_flag: "15",
+        //     end_length: "200",
+        //     type: "A4"
+        //   }
+        // ];
+        // console.log(json);
+        var clickXY = [];
         for (var i = 0; i < json.length; i++) {
-          var start = 14000;
-          //   parseInt(json[i].start_flag) * 1000 +
-          //     parseInt(json[i].start_length);
-          var end = 15000;
-          //     parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
+          var start = parseInt(json[i].start_flag) * 1000 + parseInt(json[i].start_length);
+          var end = parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
           console.log("start：" + start + " end：" + end);
           // 计算当前站点的x轴坐标
           var startX = (start - parseInt(minkm * 1000)) * everys; //开始值
           var endX = (end - parseInt(minkm * 1000)) * everys; //结束值
           var centerX = (endX + startX) / 2; //开始结束平均值
-          var desc = json[i].command_num;
+          var desc = json[i].type;
           var dksatrt = "DK" + json[i].start_flag + " +" + json[i].start_length;
           var dkend = "DK" + json[i].end_flag + " +" + json[i].end_length;
 
           context.lineWidth = 4;
           context.strokeStyle = "#ffff00";
           context.beginPath();
-          context.fillStyle = "#ffff00";
-          context.font = "13px Microsoft Yahei";
 
           if (json[i].line_type == 1) {
             //画水平直线
             context.moveTo(startX + offsetX, axis_applay.y);
             context.lineTo(endX + offsetX, axis_applay.y);
             //文字
-            context.fillText(desc, centerX + offsetX, axis_applay.y - 20);
+            context.fillStyle = "#ffff00";
+            context.font = "28px Microsoft Yahei";
+            context.fillText(desc, centerX + offsetX, axis_applay.y - 30);
+            context.fillStyle = "#ffff00";
+            context.font = "13px Microsoft Yahei";
             context.fillText(dkend, startX + 139, axis_applay.y - 15);
             context.fillText(dksatrt, endX + 66, axis_applay.y - 15);
+
+            clickXY.push({
+              x: centerX + offsetX,
+              y: axis_applay.y - 20,
+              r: 50,
+              i: json[i]
+            });
           } else if (json[i].line_type == 2) {
             context.moveTo(startX + offsetX, axis_applay_two.y);
             context.lineTo(endX + offsetX, axis_applay_two.y);
             //文字
-            context.fillText(desc, centerX + offsetX, axis_applay.y + 225);
+            context.fillStyle = "#ffff00";
+            context.font = "28px Microsoft Yahei";
+            context.fillText(desc, centerX + offsetX, axis_applay.y + 220);
+            context.fillStyle = "#ffff00";
+            context.font = "13px Microsoft Yahei";
             context.fillText(dkend, startX + 139, axis_applay_two.y - 15);
             context.fillText(dksatrt, endX + 66, axis_applay_two.y - 15);
+            clickXY.push({
+              x: centerX + offsetX,
+              y: axis_applay.y + 225,
+              r: 50,
+              i: json[i]
+            });
           }
           context.stroke();
-          // context.save();
-          // context.lineWidth = 4;
-          // context.strokeStyle = "#ffff00";
-          // context.beginPath();
-          // context.moveTo(axis_applay.x, axis_applay.y);
-          // context.lineTo(axis_Width, axis_applay.y);
-          // context.moveTo(axis_applay_two.x, axis_applay_two.y);
-          // context.lineTo(axis_Width, axis_applay_two.y);
-          // context.stroke();
+          //
         }
+        canvas.addEventListener("click", function (e) {
+          var x = event.pageX - canvas.getBoundingClientRect().left;
+          var y = event.pageY - canvas.getBoundingClientRect().top;
+          console.log(clickXY);
+          var _iteratorNormalCompletion = true;
+          var _didIteratorError = false;
+          var _iteratorError = undefined;
+
+          try {
+            for (var _iterator = get_iterator_default()(clickXY), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+              var _i = _step.value;
+
+
+              //   that.dialogVisible = true;
+              var infos = _i.i;
+              that.$alert("<p style='color:#4b6eca'><span style='color:#1d397a'>作业编号：</span>" + infos.number + "</p><p style='color:#4b6eca'><span style='color:#1d397a'>作业令号</span>：" + infos.command_num + "</p>" + "<p style='color:#4b6eca'><span style='color:#1d397a'>开始时间：</span>" + infos.start_time + "</p><p style='color:#4b6eca'><span style='color:#1d397a'>结束时间：</span>" + infos.end_time + "</p>" + "<p style='color:#4b6eca'><span style='color:#1d397a'>施工区间：</span>" + infos.work_area + "</p><p style='color:#4b6eca'><span style='color:#1d397a'>施工内容：</span>" + infos.description + "</p>", {
+                dangerouslyUseHTMLString: true,
+                confirmButtonText: '关闭'
+              }).catch(function () {});
+              break;
+            }
+          } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+              }
+            } finally {
+              if (_didIteratorError) {
+                throw _iteratorError;
+              }
+            }
+          }
+        }, false);
       }
 
       //绘制桥
@@ -780,6 +833,7 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
       console.log(startX);
       document.querySelector(".group-canvas").scrollTo(startX, 0);
     }
+
     //
 
   }
@@ -790,14 +844,14 @@ var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
     _this3.scrollwidth = document.documentElement.clientWidth - 640;
   });
 }));
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-057c90ff","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/monitor/index.vue
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-1f80831f","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/monitor/index.vue
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"progress"}},[_c('div',{staticClass:"station-top"},[_c('div',{staticClass:"startend"},[_c('div',{staticClass:"sleft"},[_vm._v("\n        "+_vm._s(_vm.firstStation)+"方向\n        "),_c('i',{staticClass:"line-a"})]),_vm._v(" "),_c('div',{staticClass:"scenter"},[_c('div',{staticClass:"stations"},[_c('i',{staticClass:"el-icon-arrow-left",on:{"click":_vm.stationLeftMove}}),_vm._v(" "),_c('div',{staticClass:"item",style:({width:_vm.scrollwidth  + 'px'})},[_c('ul',{style:({width: _vm.stationList.length * 100 + 'px','margin-left': _vm.wdpx * 100 + 'px'})},_vm._l((_vm.stationList),function(item){return _c('li',{key:item.id,on:{"click":function($event){_vm.scrollPosition(item.start_flag,item.start_length)}}},[_vm._v(_vm._s(item.name))])}))]),_vm._v(" "),_c('i',{staticClass:"el-icon-arrow-right",on:{"click":_vm.stationRightMove}})])]),_vm._v(" "),_c('div',{staticClass:"sright"},[_vm._v("\n        "+_vm._s(_vm.lastStation)+"方向\n        "),_c('i',{staticClass:"line-b"})])])]),_vm._v(" "),_c('div',{staticClass:"main-canvas"},[_c('div',{staticClass:"group-canvas scrollbar"},[_c('canvas',{ref:"mycanvas",attrs:{"id":"mycanvas","height":"680"}},[_c('p',[_vm._v("您的系统不支持此程序!")])])])]),_vm._v(" "),_c('div',{staticClass:"progresslist"},[_vm._v("\n    施工进度：\n    "),_c('el-radio-group',{on:{"change":_vm.progressCheckSelect},model:{value:(_vm.progressCheckValue),callback:function ($$v) {_vm.progressCheckValue=$$v},expression:"progressCheckValue"}},_vm._l((_vm.progressList),function(item){return _c('el-radio',{key:item.name,attrs:{"label":item.name}},[_vm._v(_vm._s(item.name))])}))],1),_vm._v(" "),_c('div',{staticClass:"stations-select"},[_c('el-checkbox',{staticClass:"bridgechk",attrs:{"label":"桥","border":""},on:{"change":_vm.bridgeCheckSelect},model:{value:(_vm.bridgeCheckValue),callback:function ($$v) {_vm.bridgeCheckValue=$$v},expression:"bridgeCheckValue"}}),_vm._v(" "),_c('el-checkbox',{staticClass:"tunnelchk",attrs:{"label":"隧道","border":""},on:{"change":_vm.tunnelCheckSelect},model:{value:(_vm.tunnelCheckValue),callback:function ($$v) {_vm.tunnelCheckValue=$$v},expression:"tunnelCheckValue"}}),_vm._v(" "),_c('el-checkbox',{staticClass:"speedchk",attrs:{"label":"限速区","border":""},on:{"change":_vm.speedCheckSelect},model:{value:(_vm.speedCheckValue),callback:function ($$v) {_vm.speedCheckValue=$$v},expression:"speedCheckValue"}}),_vm._v(" "),_c('el-checkbox',{staticClass:"alertchk",attrs:{"label":"防区","border":""},on:{"change":_vm.alertCheckSelect},model:{value:(_vm.alertCheckValue),callback:function ($$v) {_vm.alertCheckValue=$$v},expression:"alertCheckValue"}}),_vm._v(" "),_c('el-checkbox',{staticClass:"slopechk",attrs:{"label":"坡度","border":""},on:{"change":_vm.slopeCheckSelect},model:{value:(_vm.slopeCheckValue),callback:function ($$v) {_vm.slopeCheckValue=$$v},expression:"slopeCheckValue"}})],1)])}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ var views_monitor = (esExports);
 // CONCATENATED MODULE: ./src/views/monitor/index.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("VGg/")
+  __webpack_require__("NTi2")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
