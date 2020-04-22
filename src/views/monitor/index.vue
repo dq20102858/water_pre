@@ -237,7 +237,6 @@ export default {
         context.fillText("右线", axis_Origin_Two.x - 80, axis_Origin_Two.y + 8);
         drawHorizontalAxisTicks(axis_Origin.x, axis_Origin.y);
         drawHorizontalAxisTicks(axis_Origin_Two.x, axis_Origin_Two.y);
-
         context.restore();
       }
 

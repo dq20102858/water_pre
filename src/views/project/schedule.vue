@@ -128,13 +128,7 @@
             </ul>
           </div>
           <div v-else style="margin-top:20px;width:280px;">
-            <el-input
-              placeholder="请输入计划数量"
-              v-model="planWorkNum"
-              onkeyup="this.value = this.value.replace(/[^\d.]/g,'');"
-              max="10000000"
-              maxlength="8"
-            >
+            <el-input placeholder="请输入正确的数字" v-model="planWorkNum" max="10000000" maxlength="8">
               <template slot="prepend">计划数量</template>
             </el-input>
           </div>
@@ -157,21 +151,21 @@
             <span class="ptxt">作业：</span>
             <span class="ptxt">{{planWorkName}}</span>
           </div>
-		  <div v-if="proType==1">
-			  <el-table :data="planDetailList" class="plan-show" border>
-				<el-table-column property="line_type_desc" label="线别"></el-table-column>
-				<el-table-column property="plan_tip" label="计划里程" width="200px"></el-table-column>
-				<el-table-column property="true_tip" label="实际里程" width="200px"></el-table-column>
-				<el-table-column property="remark" label="备注"></el-table-column>
-			  </el-table>
-		  </div>
-		  <div v-else>
-			  <el-table :data="planDetailList" class="plan-show" border>
-				<el-table-column property="plan_num" label="计划完成" width="200px"></el-table-column>
-				<el-table-column property="true_num" label="实际完成" width="200px"></el-table-column>
-				<el-table-column property="remark" label="备注"></el-table-column>
-			  </el-table>
-		  </div>
+          <div v-if="proType==1">
+            <el-table :data="planDetailList" class="plan-show" border>
+              <el-table-column property="line_type_desc" label="线别"></el-table-column>
+              <el-table-column property="plan_tip" label="计划里程" width="200px"></el-table-column>
+              <el-table-column property="true_tip" label="实际里程" width="200px"></el-table-column>
+              <el-table-column property="remark" label="备注"></el-table-column>
+            </el-table>
+          </div>
+          <div v-else>
+            <el-table :data="planDetailList" class="plan-show" border>
+              <el-table-column property="plan_num" label="计划完成" width="200px"></el-table-column>
+              <el-table-column property="true_num" label="实际完成" width="200px"></el-table-column>
+              <el-table-column property="remark" label="备注"></el-table-column>
+            </el-table>
+          </div>
           <div class="plan-btn">
             <el-button @click="dialogDetailVisible=false">关闭</el-button>
           </div>
@@ -201,10 +195,10 @@ export default {
       dialogDetailVisible: false,
       calendarLists: {},
       dateCellValue: "",
-      proType:1
+      proType: 1
     };
   },
-   mounted() {
+  mounted() {
     document
       .querySelector("#app-menu-items #menu_project")
       .classList.add("is-active");
@@ -264,10 +258,9 @@ export default {
         let data = response.data;
         if (data.status == 1 && data.data.length > 0) {
           this.planDetailList = data.data;
-          if(this.planDetailList.length>0){
-            this.proType = this.planDetailList[0]['pro_type'];
+          if (this.planDetailList.length > 0) {
+            this.proType = this.planDetailList[0]["pro_type"];
           }
-
         }
       });
     },
@@ -297,7 +290,7 @@ export default {
         item.end_flag = "";
         item.end_length = "";
       });
-      this.planWorkNum="";
+      this.planWorkNum = "";
       this.getCurrData();
     },
     getCurrData() {
@@ -370,8 +363,10 @@ export default {
         }
       }
       if (this.planOneDataType == 2) {
-        if (this.planWorkNum == "") {
-          that.$message.error("请输入计划数量");
+        let num = this.planWorkNum;
+        var regexp = /^[1-9]\d*$/;
+        if (!regexp.test(num)) {
+          that.$message.error("请输入正确的计划数量");
           return;
         }
       }
@@ -558,8 +553,13 @@ export default {
   border-radius: 3px;
 }
 
-.el-calendar-table:not(.is-range) td.next, .el-calendar-table:not(.is-range) td.prev{
-pointer-events: none; background: #fafafa;
+.el-calendar-table:not(.is-range) td.next,
+.el-calendar-table:not(.is-range) td.prev {
+  pointer-events: none;
+  background: #fafafa;
 }
-.el-calendar-table:not(.is-range) td.next .date, .el-calendar-table:not(.is-range) td.prev .date{color:#ccc;}
+.el-calendar-table:not(.is-range) td.next .date,
+.el-calendar-table:not(.is-range) td.prev .date {
+  color: #ccc;
+}
 </style>

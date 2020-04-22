@@ -31,7 +31,8 @@
               type="month"
               placeholder="在此选择年月查询"
               format="yyyy-MM"
-              value-format="yyyy-MM" :editable=false
+              value-format="yyyy-MM"
+              :editable="false"
             ></el-date-picker>
             <el-button @click="searchChartByDate">查询</el-button>
           </div>
@@ -219,7 +220,7 @@ export default {
                   params[1].value +
                   "<br>";
 
-                return  showHtm;
+                return showHtm;
               }
             },
             color: ["#4b6eca", "#ff5c75"],
@@ -315,7 +316,7 @@ export default {
             },
             grid: {
               left: "1%",
-              right: "1%",
+              right: "3%",
               bottom: "1%",
               containLabel: true
             },
@@ -329,6 +330,12 @@ export default {
                 type: "category",
                 boundaryGap: false,
                 data: data.data.x
+                // axisLabel: {
+                //   formatter: function(value) {
+                //     let val = value.split("-");
+                //     return val[1] + "\n" + val[0];
+                //   }
+                // }
               }
             ],
             yAxis: [
@@ -507,6 +514,4 @@ export default {
   padding: 20px;
   background: #fff;
 }
-
-
 </style>

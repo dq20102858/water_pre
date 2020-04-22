@@ -706,34 +706,32 @@ export default {
           //划线===============
           //debugger
           let dataTypeArr = resdata.data.plan;
-          // alert(dataTypeArr.length);
-
-          let dataTypeArr3 = [
-            {
-              lists: [
-                { name: "2020-04-09 20:00:00", value: 21.003 },
-                { name: "2020-04-09 23:00:00", value: 32.9 }
-              ]
-            },
-            {
-              lists: [
-                { name: "2020-04-09 19:00:00", value: 14.003 },
-                { name: "2020-04-09 20:00:00", value: 16.9 }
-              ]
-            },
-            {
-              lists: [
-                { name: "2020-04-09 22:00:00", value: 24.003 },
-                { name: "2020-04-09 23:00:00", value: 32.9 }
-              ]
-            },
-            {
-              lists: [
-                { name: "2020-04-08 20:00:00", value: 18.003 },
-                { name: "2020-04-09 0:00:00", value: 22.9 }
-              ]
-            }
-          ];
+          // let dataTypeArr3 = [
+          //   {
+          //     lists: [
+          //       { name: "2020-04-09 20:00:00", value: 21.003 },
+          //       { name: "2020-04-09 23:00:00", value: 32.9 }
+          //     ]
+          //   },
+          //   {
+          //     lists: [
+          //       { name: "2020-04-09 19:00:00", value: 14.003 },
+          //       { name: "2020-04-09 20:00:00", value: 16.9 }
+          //     ]
+          //   },
+          //   {
+          //     lists: [
+          //       { name: "2020-04-09 22:00:00", value: 24.003 },
+          //       { name: "2020-04-09 23:00:00", value: 32.9 }
+          //     ]
+          //   },
+          //   {
+          //     lists: [
+          //       { name: "2020-04-08 20:00:00", value: 18.003 },
+          //       { name: "2020-04-09 0:00:00", value: 22.9 }
+          //     ]
+          //   }
+          // ];
           //计划线 实际线
           let typeData = [];
           dataTypeArr.forEach((item, index) => {
@@ -823,7 +821,7 @@ export default {
                   let months = date.getMonth() + 1 + "/" + date.getDate();
                   let hours = date.getHours() + ":00";
                   if (index % 6 == 0) {
-                    return months + "\r\n" + hours;
+                    return months + "\n" + hours;
                   }
                 }
               },

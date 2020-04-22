@@ -50,8 +50,8 @@
               <el-form-item label="安全事件标题：" prop="title">
                 <el-input v-model="formData.title" maxlength="30" show-word-limit></el-input>
               </el-form-item>
-              <el-form-item label="安全事件地址：" prop="address">
-                <el-input v-model="formData.address" maxlength="100" show-word-limit></el-input>
+              <el-form-item label="安全事件地址：" prop="address" class="textarea1">
+                <el-input   type="textarea" v-model="formData.address" maxlength="100" show-word-limit></el-input>
               </el-form-item>
               <el-form-item label="安全事件描述：" prop="description">
                 <el-input
@@ -875,7 +875,10 @@ export default {
   width: 100%;
 }
 #security .el-textarea__inner {
-  height: 100px;
+  height: 130px;
+}
+#security  .textarea1 .el-textarea__inner {
+  height: 70px;
 }
 #security .el-form-item-inline .el-input--medium {
   display: inline-block;
