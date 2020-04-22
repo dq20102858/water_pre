@@ -1,87 +1,87 @@
 <template>
   <div id="progress">
-    <div class="station-top">
-      <div class="startend">
-        <div class="sleft">
-          {{firstStation}}方向
-          <i class="line-a"></i>
-        </div>
-        <div class="scenter">
-          <div class="stations">
-            <i class="el-icon-arrow-left" @click="stationLeftMove"></i>
-            <div class="item" :style="{width:scrollwidth  + 'px'}">
-              <ul
-                :style="{width: stationList.length * 100 + 'px','margin-left': wdpx * 100 + 'px'}"
-              >
-                <li
-                  @click="scrollPosition(item.start_flag,item.start_length)"
-                  v-for="item in stationList"
-                  :key="item.id"
-                >{{item.name}}</li>
-              </ul>
+    <div class="progress">
+      <div class="station-top">
+        <div class="startend">
+          <div class="sleft">
+            {{firstStation}}方向
+            <i class="line-a"></i>
+          </div>
+          <div class="scenter">
+            <div class="stations">
+              <i class="el-icon-arrow-left" @click="stationLeftMove"></i>
+              <div class="item" :style="{width:scrollwidth  + 'px'}">
+                <ul
+                  :style="{width: stationList.length * 100 + 'px','margin-left': wdpx * 100 + 'px'}"
+                >
+                  <li
+                    @click="scrollPosition(item.start_flag,item.start_length)"
+                    v-for="item in stationList"
+                    :key="item.id"
+                  >{{item.name}}</li>
+                </ul>
+              </div>
+              <i class="el-icon-arrow-right" @click="stationRightMove"></i>
             </div>
-            <i class="el-icon-arrow-right" @click="stationRightMove"></i>
+          </div>
+          <div class="sright">
+            {{lastStation}}方向
+            <i class="line-b"></i>
           </div>
         </div>
-        <div class="sright">
-          {{lastStation}}方向
-          <i class="line-b"></i>
+      </div>
+      <div class="main-canvas">
+        <div class="group-canvas scrollbar">
+          <canvas id="mycanvas" height="680" ref="mycanvas">
+            <p>您的系统不支持此程序!</p>
+          </canvas>
         </div>
       </div>
-    </div>
-
-    <div class="main-canvas">
-      <div class="group-canvas scrollbar">
-        <canvas id="mycanvas" height="680" ref="mycanvas">
-          <p>您的系统不支持此程序!</p>
-        </canvas>
+      <div class="progresslist"  v-if="this.progressCheckValue !=''">
+        <span>
+        施工进度：</span>
+        <el-radio-group v-model="progressCheckValue" @change="progressCheckSelect">
+          <el-radio v-for="item in progressList" :key="item.name" :label="item.name">{{item.name}}</el-radio>
+        </el-radio-group>
       </div>
-    </div>
-    <div class="progresslist">
-      施工进度：
-      <el-radio-group v-model="progressCheckValue" @change="progressCheckSelect">
-        <el-radio v-for="item in progressList" :key="item.name" :label="item.name">{{item.name}}</el-radio>
-        <!-- <el-radio :label="6">备选项</el-radio>
-        <el-radio :label="9">备选项</el-radio>-->
-      </el-radio-group>
-    </div>
-    <div class="stations-select">
-      <el-checkbox
-        class="bridgechk"
-        v-model="bridgeCheckValue"
-        @change="bridgeCheckSelect"
-        label="桥"
-        border
-      ></el-checkbox>
-      <el-checkbox
-        class="tunnelchk"
-        v-model="tunnelCheckValue"
-        @change="tunnelCheckSelect"
-        label="隧道"
-        border
-      ></el-checkbox>
-      <el-checkbox
-        class="speedchk"
-        v-model="speedCheckValue"
-        @change="speedCheckSelect"
-        label="限速区"
-        border
-      ></el-checkbox>
-      <el-checkbox
-        class="alertchk"
-        v-model="alertCheckValue"
-        @change="alertCheckSelect"
-        label="防区"
-        border
-      ></el-checkbox>
-      <!-- <el-checkbox v-model="checked5" label="道岔" border></el-checkbox> -->
-      <el-checkbox
-        class="slopechk"
-        v-model="slopeCheckValue"
-        @change="slopeCheckSelect"
-        label="坡度"
-        border
-      ></el-checkbox>
+      <div class="stations-select">
+        <el-checkbox
+          class="bridgechk"
+          v-model="bridgeCheckValue"
+          @change="bridgeCheckSelect"
+          label="桥"
+          border
+        ></el-checkbox>
+        <el-checkbox
+          class="tunnelchk"
+          v-model="tunnelCheckValue"
+          @change="tunnelCheckSelect"
+          label="隧道"
+          border
+        ></el-checkbox>
+        <el-checkbox
+          class="speedchk"
+          v-model="speedCheckValue"
+          @change="speedCheckSelect"
+          label="限速区"
+          border
+        ></el-checkbox>
+        <el-checkbox
+          class="alertchk"
+          v-model="alertCheckValue"
+          @change="alertCheckSelect"
+          label="防区"
+          border
+        ></el-checkbox>
+        <!-- <el-checkbox v-model="checked5" label="道岔" border></el-checkbox> -->
+        <el-checkbox
+          class="slopechk"
+          v-model="slopeCheckValue"
+          @change="slopeCheckSelect"
+          label="坡度"
+          border
+        ></el-checkbox>
+      </div>
     </div>
   </div>
 </template>
@@ -176,9 +176,9 @@ export default {
           this.alertList = data.data.alert_lists; //防区
           this.slopeList = data.data.slope_lists; //坡度
           //施工进度
-          this.progressList = data.data.project;
-
-          //  this.getLineType();
+          this.progressList =data.data.project;
+          this.progressCheckValue = data.data.project[0]["name"];
+          this.progressListItem =data.data.project[0].list;
         }
       });
     },
@@ -239,7 +239,6 @@ export default {
         drawHorizontalAxisTicks(axis_Origin_Two.x, axis_Origin_Two.y);
         context.restore();
       }
-
       //绘制水平的小标
       function drawHorizontalAxisTicks(axis_Origin_X, axis_Origin_y) {
         context.lineWidth = 2;
@@ -334,37 +333,7 @@ export default {
       //绘制请点
       function drawAxesApply(applyListJson) {
         let json = applyListJson;
-        // let json1 = [
-        //   {
-        //     line_type: 1,
-        //     number: "A4-2-007-1",
-        //     command_num: "(2020)\u5b57\u7b2c04.21-007-2000",
-        //     description: "\u98ce\u98ce\u5149\u5149",
-        //     work_area: "DK14+130\u81f3DK42+410",
-        //     start_time: "2020-04-21 00:00:00",
-        //     end_time: "2020-04-21 23:00:00",
-        //     start_flag: "14",
-        //     start_length: "130",
-        //     end_flag: "150",
-        //     end_length: "400",
-        //     type: "A4"
-        //   },
-        //   {
-        //     line_type: 2,
-        //     number: "A4-2-007-1",
-        //     command_num: "(2020)\u5b57\u7b2c04.21-2",
-        //     description: "\u98ce\u98ce\u5149\u5149",
-        //     work_area: "DK14+130\u81f3DK42+410",
-        //     start_time: "2020-04-21 00:00:00",
-        //     end_time: "2020-04-21 23:00:00",
-        //     start_flag: "14",
-        //     start_length: "500",
-        //     end_flag: "15",
-        //     end_length: "200",
-        //     type: "A4"
-        //   }
-        // ];
-        // console.log(json);
+
         let clickXY = [];
         for (let i = 0; i < json.length; i++) {
           let start =
@@ -372,7 +341,7 @@ export default {
             parseInt(json[i].start_length);
           let end =
             parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
-          console.log("start：" + start + " end：" + end);
+          //console.log("start：" + start + " end：" + end);
           // 计算当前站点的x轴坐标
           let startX = (start - parseInt(minkm * 1000)) * everys; //开始值
           let endX = (end - parseInt(minkm * 1000)) * everys; //结束值
@@ -425,44 +394,44 @@ export default {
           context.stroke();
           //
         }
-        canvas.addEventListener(
-          "click",
-          function(e) {
-            var x = event.pageX - canvas.getBoundingClientRect().left;
-            var y = event.pageY - canvas.getBoundingClientRect().top;
-            console.log(clickXY);
-            for (let i of clickXY) {
-            
-                //   that.dialogVisible = true;
-                let infos = i.i;
-                that.$alert(
-                  "<p style='color:#4b6eca'><span style='color:#1d397a'>作业编号：</span>" +
-                    infos.number +
-                    "</p><p style='color:#4b6eca'><span style='color:#1d397a'>作业令号</span>：" +
-                    infos.command_num +
-                    "</p>" +
-                    "<p style='color:#4b6eca'><span style='color:#1d397a'>开始时间：</span>" +
-                    infos.start_time +
-                    "</p><p style='color:#4b6eca'><span style='color:#1d397a'>结束时间：</span>" +
-                    infos.end_time +
-                    "</p>" +
-                    "<p style='color:#4b6eca'><span style='color:#1d397a'>施工区间：</span>" +
-                    infos.work_area +
-                    "</p><p style='color:#4b6eca'><span style='color:#1d397a'>施工内容：</span>" +
-                    infos.description +
-                    "</p>",
-                  {
-                    dangerouslyUseHTMLString: true,
-                     confirmButtonText: '关闭'
-                  }
-                ) .catch(() => {});
-                break;
-            }
-          },
-          false
-        );
+        // canvas.addEventListener(
+        //   "click",
+        //   function(e) {
+        //     var x = event.pageX - canvas.getBoundingClientRect().left;
+        //     var y = event.pageY - canvas.getBoundingClientRect().top;
+        //     //console.log(clickXY);
+        //     for (let i of clickXY) {
+        //       //   that.dialogVisible = true;
+        //       let infos = i.i;
+        //       that
+        //         .$alert(
+        //           "<p style='color:#4b6eca'><span style='color:#1d397a'>作业编号：</span>" +
+        //             infos.number +
+        //             "</p><p style='color:#4b6eca'><span style='color:#1d397a'>作业令号</span>：" +
+        //             infos.command_num +
+        //             "</p>" +
+        //             "<p style='color:#4b6eca'><span style='color:#1d397a'>开始时间：</span>" +
+        //             infos.start_time +
+        //             "</p><p style='color:#4b6eca'><span style='color:#1d397a'>结束时间：</span>" +
+        //             infos.end_time +
+        //             "</p>" +
+        //             "<p style='color:#4b6eca'><span style='color:#1d397a'>施工区间：</span>" +
+        //             infos.work_area +
+        //             "</p><p style='color:#4b6eca'><span style='color:#1d397a'>施工内容：</span>" +
+        //             infos.description +
+        //             "</p>",
+        //           {
+        //             dangerouslyUseHTMLString: true,
+        //             confirmButtonText: "关闭"
+        //           }
+        //         )
+        //         .catch(() => {});
+        //       break;
+        //     }
+        //   },
+        //   false
+        // );
       }
-
       //绘制桥
       function drawBridgeAxis(bridgeListJson) {
         let json = bridgeListJson;
@@ -621,7 +590,7 @@ export default {
             parseInt(json[i].start_length);
           let end =
             parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
-          console.log("start：" + start + " end：" + end);
+          //console.log("start：" + start + " end：" + end);
           // 计算当前站点的x轴坐标
           let startX = (start - parseInt(minkm * 1000)) * everys;
           let endX = (end - parseInt(minkm * 1000)) * everys;
@@ -656,7 +625,7 @@ export default {
             parseInt(json[i].start_length);
           let end =
             parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
-          console.log("start：" + start + " end：" + end);
+          //console.log("start：" + start + " end：" + end);
           // 计算当前站点的x轴坐标
           let startX = (start - parseInt(minkm * 1000)) * everys;
           let endX = (end - parseInt(minkm * 1000)) * everys;
@@ -851,7 +820,7 @@ export default {
             parseInt(json[i].start_length);
           let end =
             parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
-          console.log("start：" + start + " end：" + end);
+          //console.log("start：" + start + " end：" + end);
           // 计算当前站点的x轴坐标
           let startX = (start - parseInt(minkm * 1000)) * everys;
           let endX = (end - parseInt(minkm * 1000)) * everys;
@@ -905,8 +874,7 @@ export default {
         drawProgressAxis(this.progressListItem);
       }
     },
-
-    // =============桥 隧道 限速区 防区 道岔 坡度 施工进度
+    // ===================================桥 隧道 限速区 防区 道岔 坡度 施工进度
     //进度
     progressCheckSelect(val) {
       this.progressList.map(item => {
@@ -951,10 +919,9 @@ export default {
     scrollPosition(start_flag, start_length) {
       let total = start_flag;
       let startX = (total - this.minKM) * 1000 * 0.5;
-      console.log(startX);
+      //console.log(startX);
       document.querySelector(".group-canvas").scrollTo(startX, 0);
     }
-
     //
   },
   mounted() {
@@ -967,8 +934,13 @@ export default {
 
 <style>
 #progress {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   background: #081c33;
-  height: 100vh;
+}
+.progress {
+  background: #081c33;
 }
 .main-canvas {
   background: #081c33;

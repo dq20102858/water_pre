@@ -57,10 +57,11 @@ export default {
           this.mark_line = JSON.parse(
             JSON.stringify(resdata.data.y).replace(/value/g, "yAxis")
           );
+          console.log(this.mark_line);
           let minLineNum = Math.min.apply(
             Math,
             this.mark_line.map(function(item) {
-              return parseInt(item.yAxis + 2);
+              return parseInt(item.yAxis - 2);
             })
           );
           let maxLineNum = Math.max.apply(
@@ -72,22 +73,6 @@ export default {
           //A1 A2 A3 A4
           let typeData = [];
           let dataTypeArr = resdata.data.data;
-          // let dataTypeArr2 = [
-          //   {
-          //     type: "A1",
-          //     lists: [
-          //       { name: "2020-04-08 05:00:00", value: 21.003 },
-          //       { name: "2020-04-08 10:00:00", value: 32.9 }
-          //     ]
-          //   },
-          //   {
-          //     type: "A2",
-          //     lists: [
-          //       { name: "2020-03-30 12:00:00", value: 21.003 },
-          //       { name: "2020-03-30 16:00:00", value: 32.9 }
-          //     ]
-          //   }
-          // ];
           dataTypeArr.forEach(item => {
             let jlist = [];
             item.lists.forEach(item => {
@@ -124,7 +109,7 @@ export default {
             seriesData.push({
               name: typeData[k].name,
               type: "scatter",
-              symbolSize: 10,
+              symbolSize: 8,
               itemStyle: { normal: { color: this.kcolor[k] } },
               data: typeData[k].lists
             });

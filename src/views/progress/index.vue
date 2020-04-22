@@ -43,10 +43,14 @@ export default {
       stationList: [],
       lineTypeList: [],
       listSchedule: [],
+      totalMileage: 0,
       minMileage: 0,
       every: 0,
       stationlineHeight: 0,
-      stationlineTwoHeight: 0
+      stationlineTwoHeight: 0,
+      everyLineType: 0,
+      lineTypeMinMileage: 0,
+      lineTypeTotalMileage: 0
     };
   },
   updated() {
@@ -65,7 +69,18 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.stationList = data.data.stations;
-          this.lineTypeList = data.data.line_types;
+          let linetypeJson = data.data.line_types;
+          this.lineTypeList = linetypeJson;
+          for (let i = 0; i < linetypeJson.length; i++) {
+            if (linetypeJson[i].id == 1) {
+              this.lineTypeMinMileage =
+                parseInt(linetypeJson[i].start_flag) * 1000 +
+                parseInt(linetypeJson[i].start_length);
+              this.lineTypeTotalMileage =
+                parseInt(linetypeJson[i].end_flag) * 1000 +
+                parseInt(linetypeJson[i].end_length);
+            }
+          }
           this.listSchedule = data.data.datas;
         }
       });
@@ -75,6 +90,13 @@ export default {
       let clientWidth = this.$refs.proWrapper.clientWidth;
       let canvasWidth = clientWidth - 330;
       this.cwidth = canvasWidth - 10;
+      let lineTypeBetwentMileage =
+        this.lineTypeTotalMileage - this.lineTypeMinMileage;
+      this.everyLineType = (
+        parseInt(this.cwidth) / lineTypeBetwentMileage
+      ).toFixed(5);
+      console.log("cwidth" + this.cwidth + "_" + this.everyLineType);
+
       const canvas = this.$refs.canvasStation;
       let cansText = canvas.getContext("2d");
       canvas.width = canvasWidth;
@@ -99,19 +121,23 @@ export default {
         if (first.start_flag > tmp.start_flag) first = tmp;
         if (end.start_flag < tmp.start_flag) end = tmp;
       }
-
+      console.log(JSON.stringify(end));
       // 总里程（最大数 - 最小数)
-      let mileage =
-        (end.start_flag - first.start_flag) * 1000 +
-        end.start_length -
-        first.start_length;
-      // console.log("总里程mileage：" + mileage);
-      this.minMileage = first.start_flag * 1000 + first.start_length; //最小里程
-      // console.log("最小里程minMileage：" + this.minMileage);
-      //每米长度等于px
-      let every = (parseInt(canvasWidth - 30) / mileage).toFixed(5);
-      this.every = every;
-      // console.log("每米长度every：" + every);
+      // let totalMileage =
+      //   (end.start_flag - first.start_flag) * 1000 +
+      //   end.start_length -
+      //   first.start_length;
+      // this.totalMileage = totalMileage;
+      // // console.log("总里程mileage：" + mileage);
+      // this.minMileage = first.start_flag * 1000 + first.start_length; //最小里程
+      // // console.log("最小里程minMileage：" + this.minMileage);
+  
+
+      let totalMileage = this.lineTypeTotalMileage;
+      this.minMileage = this.lineTypeMinMileage;
+       //每米长度等于px
+     // let every = (parseInt(canvasWidth - 30) / totalMileage).toFixed(5);
+        let every =this.every = this.everyLineType;
       //
       let img = new Image();
       img.src = require("@/assets/image/sta.png");
@@ -122,13 +148,10 @@ export default {
           let total =
             parseInt(json[i].start_flag) * 1000 +
             parseInt(json[i].start_length);
-          //console.log("total：" + total);
           // 计算当前站点的x轴
           let startX = total * every;
-          // 粗线向右移动了100像素，所以需要修正x轴
-          if (i == 0) start = startX; //从左侧126像素开始绘制
-          //console.log("startX：" + parseInt(startX - start) );
-          cansText.drawImage(img, startX - start - 1, 126, 22, 120);
+          if (i == 0) start = startX; 
+          cansText.drawImage(img, startX - start-2, 126, 22, 120);
           //站名
           cansText.font = "16px Microsoft Yahei";
           cansText.fillStyle = "#0AE39A";
@@ -150,7 +173,7 @@ export default {
 
       //Line=====================line
       let lineJson = this.lineTypeList;
-      console.log("lineJson:" + JSON.stringify(lineJson));
+      //console.log("lineJson:" + JSON.stringify(lineJson));
       let lineData = [];
       for (let i = 0; i < lineJson.length; i++) {
         lineData.push(lineJson[i]);
@@ -209,7 +232,6 @@ export default {
           cansText.stroke();
           //
           let beteew = endZB - startZB;
-          console.log("beteew：" + beteew);
           if (beteew < 160) {
             cansText.fillText(tfrom, startZB - 150, 420);
             cansText.fillText(tend, endZB - 56, 420);
@@ -222,21 +244,37 @@ export default {
       //
     },
     lineFill: function(paras) {
+      // paras = [
+      //   {
+      //     id: 11,
+      //     pro_id: 59,
+      //     pro_name: "\u91cc\u7a0b\u4f5c\u4e1a0414",
+      //     line_type: 1,
+      //     start_flag: "38",
+      //     start_length: "940",
+      //     end_flag: "42",
+      //     end_length: "410"
+      //   }
+      // ];
+      //console.log("everyLineType：" + this.everyLineType);
       let result = "";
       let start = 0;
       for (let i = 0; i < paras.length; i++) {
         let starMileage =
-          parseFloat(paras[i].start_flag) * 1000 +
-          parseFloat(paras[i].start_length);
+          parseInt(paras[i].start_flag) * 1000 +
+          parseInt(paras[i].start_length);
         let endMileage =
-          parseFloat(paras[i].end_flag) * 1000 +
-          parseFloat(paras[i].end_length);
+          parseInt(paras[i].end_flag) * 1000 + parseInt(paras[i].end_length);
         let leftPosition =
-          parseFloat(starMileage - this.minMileage) * this.every;
-        let widthPosition = parseFloat(endMileage - starMileage) * this.every;
+          parseFloat(starMileage - this.lineTypeMinMileage) *
+          this.everyLineType;
+        let widthPosition =
+          parseFloat(endMileage - starMileage) * this.everyLineType;
         if (starMileage == 0) {
           leftPosition = 0;
-          widthPosition = parseFloat(endMileage - this.minMileage) * this.every;
+          widthPosition =
+            parseFloat(endMileage - this.lineTypeMinMileage) *
+            this.everyLineType;
         }
 
         let titles =

@@ -115,14 +115,14 @@
                 <el-table-column prop="location" label="装车地"></el-table-column>
                 <el-table-column prop="attention" label="防护措施及要求"></el-table-column>
                 <el-table-column prop="remark" label="备注"></el-table-column>
-                <el-table-column label="操作" width="140">
+                <!-- <el-table-column label="操作" width="140">
                   <template slot-scope="scope">
                     <div class="app-operation">
                       <el-button class="btn-blue" size="mini">已转换</el-button>
                       <el-button class="btn-blue" size="mini">报表</el-button>
                     </div>
                   </template>
-                </el-table-column>
+                </el-table-column> -->
               </el-table>
             </div>
           </div>

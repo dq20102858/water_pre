@@ -19,7 +19,12 @@
               <el-button type="primary" icon="el-icon-plus" @click="openAddUser">添加人员</el-button>
             </el-form-item>
             <el-form-item label="姓名">
-              <el-input v-model="userSearch.user_name" autocomplete="off" placeholder="请输入姓名" maxlength="30"></el-input>
+              <el-input
+                v-model="userSearch.user_name"
+                autocomplete="off"
+                placeholder="请输入姓名"
+                maxlength="30"
+              ></el-input>
             </el-form-item>
             <el-form-item label="公司">
               <el-select
@@ -272,7 +277,12 @@ export default {
             message: "请输入密码2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
+          {
+            pattern: /^[^\s]*$/,
+            message: "输入密码不能含有空格",
+            trigger: "blur"
+          }
         ],
         passwordEdit: [
           {

@@ -30,6 +30,8 @@
                   title="点击查看详情"
                   @click="goDetail(scope.row.id1,scope.row.type1)"
                 >{{scope.row.number1}}</span>
+                <span style="color:#029b02;font-size:12px;" v-if="scope.row.status1 ==2">已同意</span>
+                <span style="color:#ff0;font-size:12px;" v-if="scope.row.status1 ==3">已拒绝</span>
               </template>
             </el-table-column>
             <el-table-column prop="company2" label="公司名称"></el-table-column>
@@ -40,6 +42,9 @@
                   title="点击查看详情"
                   @click="goDetail(scope.row.id2,scope.row.type2)"
                 >{{scope.row.number2}}</span>
+
+                <span style="color:#029b02;font-size:12px;" v-if="scope.row.status2 ==2">已同意</span>
+                <span style="color:#ff0;font-size:12px;" v-if="scope.row.status2 ==3">已拒绝</span>
               </template>
             </el-table-column>
             <el-table-column prop="txt" label="操作" width="88">
@@ -48,8 +53,8 @@
                   <el-button
                     class="btn-red"
                     size="mini"
-                    @click="goApply(scope.row.id1,scope.row.id2,scope.row.number1,scope.row.number2,scope.row.type1,scope.row.type2)"
-                  >冲突操作</el-button>
+                    @click="goApply(scope.row.id1,scope.row.id2,scope.row.number1,scope.row.number2,scope.row.type1,scope.row.type2,scope.row.status1,scope.row.status2)"
+                  >冲突处理</el-button>
                 </div>
               </template>
             </el-table-column>
@@ -68,25 +73,30 @@
       <div class="dialogoper">
         <div class="operation" style="  border-bottom: 1px #ddd solid;
   padding-bottom: 20px;">
-          <strong>作业编号：{{checkNumber1}}</strong>
+          <strong>
+            作业编号：{{checkNumber1}}
+            <span style="color:#029b02;font-size:12px;" v-if="status1 ==2">已同意</span>
+            <span style="color:#ff0;font-size:12px;" v-if="status1 ==3">已拒绝</span>
+          </strong>
           <el-button class="btn-defult" size="mini" @click="goDetail(checkId1,checktype1)">查看</el-button>
-          <el-button class="btn-red" size="mini" @click="ApplyClick(checkId1,3)">拒绝</el-button>
-          <el-button class="btn-blue" size="mini" @click="ApplyClick(checkId1,2)">同意</el-button>
+          <span v-if="status1 !=2 && status1!=3">
+            <el-button class="btn-red" size="mini" @click="ApplyClick(checkId1,3)">拒绝</el-button>
+            <el-button class="btn-blue" size="mini" @click="ApplyClick(checkId1,2)">同意</el-button>
+          </span>
         </div>
         <div class="operation">
-          <strong>作业编号：{{checkNumber2}}</strong>
-          <el-button class="btn-defult" size="mini" @click="goDetail(checkId1,checktype2)">查看</el-button>
-          <el-button class="btn-red" size="mini" @click="ApplyClick(checkId2,3)">拒绝</el-button>
-          <el-button class="btn-blue" size="mini" @click="ApplyClick(checkId2,2)">同意</el-button>
+          <strong>
+            作业编号：{{checkNumber2}}
+            <span style="color:#029b02;font-size:12px;" v-if="status1 ==2">已同意</span>
+            <span style="color:#ff0;font-size:12px;" v-if="status1 ==3">已拒绝</span>
+          </strong>
+          <el-button class="btn-defult" size="mini" @click="goDetail(checkId2,checktype2)">查看</el-button>
+          <span v-if="status2 !=2 && status2!=3">
+            <el-button class="btn-red" size="mini" @click="ApplyClick(checkId2,3)">拒绝</el-button>
+            <el-button class="btn-blue" size="mini" @click="ApplyClick(checkId2,2)">同意</el-button>
+          </span>
         </div>
       </div>
-      <!-- <el-checkbox-group v-model="checkList" class="checkitemstyle">
-        <el-checkbox label="checkId1">作业编号：{{checkNumber1}}</el-checkbox>
-        <el-checkbox label="checkId2">作业编号：{{checkNumber2}}</el-checkbox>
-      </el-checkbox-group>-->
-      <!-- <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="ApplyClick(dialogId,2)">确定</el-button>
-      </span>-->
     </el-dialog>
   </div>
 </template>
@@ -104,6 +114,8 @@ export default {
       checkNumber2: 0,
       checktype1: "",
       checktype2: "",
+      status2: "",
+      status2: "",
       dialogVisible: false,
       checkList: []
     };
@@ -130,7 +142,7 @@ export default {
         }
       });
     },
-    goApply(id1, id2, num1, num2, type1, type2) {
+    goApply(id1, id2, num1, num2, type1, type2, status1, status2) {
       this.dialogVisible = true;
       this.checkId1 = id1;
       this.checkId2 = id2;
@@ -138,6 +150,8 @@ export default {
       this.checkNumber2 = num2;
       this.checktype1 = type1;
       this.checktype2 = type2;
+      this.status1 = status1;
+      this.status2 = status2;
     },
     ApplyClick(id, status) {
       this.request({

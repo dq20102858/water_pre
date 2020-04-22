@@ -51,7 +51,12 @@
                 <el-input v-model="formData.title" maxlength="30" show-word-limit></el-input>
               </el-form-item>
               <el-form-item label="安全事件地址：" prop="address" class="textarea1">
-                <el-input   type="textarea" v-model="formData.address" maxlength="100" show-word-limit></el-input>
+                <el-input
+                  type="textarea"
+                  v-model="formData.address"
+                  maxlength="100"
+                  show-word-limit
+                ></el-input>
               </el-form-item>
               <el-form-item label="安全事件描述：" prop="description">
                 <el-input
@@ -252,7 +257,7 @@
         </div>
         <!-- dialog -->
         <el-dialog
-          width="400px"
+          width="480px"
           :close-on-click-modal="false"
           class="dialog-dangers"
           title="隐患类型设置"
@@ -260,7 +265,7 @@
         >
           <el-form class="el-form-custom">
             <el-form-item>
-              <el-radio-group v-model="dangerTypeValue">
+              <el-radio-group v-model="dangerTypeValue" class="my-radio">
                 <el-radio
                   v-for="item in dangerDetermineList"
                   :key="item.id"
@@ -459,6 +464,7 @@ export default {
         this.addPageShow = true;
         this.listPageShow = false;
         this.peopleData = {};
+          this.formData = {};
       } else {
         this.addPageShow = false;
         this.listPageShow = false;
@@ -877,7 +883,7 @@ export default {
 #security .el-textarea__inner {
   height: 130px;
 }
-#security  .textarea1 .el-textarea__inner {
+#security .textarea1 .el-textarea__inner {
   height: 70px;
 }
 #security .el-form-item-inline .el-input--medium {
@@ -1051,5 +1057,8 @@ export default {
 }
 .dialog-danger .el-form-item__content {
   margin-left: 110px;
+}
+.my-radio .el-radio {
+  margin-right: 15px !important;
 }
 </style>
