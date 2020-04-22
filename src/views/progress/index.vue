@@ -15,7 +15,6 @@
             class="linebar"
             v-for="item in listSchedule"
             :key="item.id"
-            v-if="item.lines.name !=''"
           >
             <td>
               <div class="tdtitle">{{item.name}}</div>

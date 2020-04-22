@@ -37,9 +37,8 @@
           </canvas>
         </div>
       </div>
-      <div class="progresslist"  v-if="this.progressCheckValue !=''">
-        <span>
-        施工进度：</span>
+      <div class="progresslist" v-if="this.progressCheckValue !=''">
+        <span>施工进度：</span>
         <el-radio-group v-model="progressCheckValue" @change="progressCheckSelect">
           <el-radio v-for="item in progressList" :key="item.name" :label="item.name">{{item.name}}</el-radio>
         </el-radio-group>
@@ -176,9 +175,9 @@ export default {
           this.alertList = data.data.alert_lists; //防区
           this.slopeList = data.data.slope_lists; //坡度
           //施工进度
-          this.progressList =data.data.project;
+          this.progressList = data.data.project;
           this.progressCheckValue = data.data.project[0]["name"];
-          this.progressListItem =data.data.project[0].list;
+          this.progressListItem = data.data.project[0].list;
         }
       });
     },
@@ -394,43 +393,75 @@ export default {
           context.stroke();
           //
         }
-        // canvas.addEventListener(
-        //   "click",
-        //   function(e) {
-        //     var x = event.pageX - canvas.getBoundingClientRect().left;
-        //     var y = event.pageY - canvas.getBoundingClientRect().top;
-        //     //console.log(clickXY);
-        //     for (let i of clickXY) {
-        //       //   that.dialogVisible = true;
-        //       let infos = i.i;
-        //       that
-        //         .$alert(
-        //           "<p style='color:#4b6eca'><span style='color:#1d397a'>作业编号：</span>" +
-        //             infos.number +
-        //             "</p><p style='color:#4b6eca'><span style='color:#1d397a'>作业令号</span>：" +
-        //             infos.command_num +
-        //             "</p>" +
-        //             "<p style='color:#4b6eca'><span style='color:#1d397a'>开始时间：</span>" +
-        //             infos.start_time +
-        //             "</p><p style='color:#4b6eca'><span style='color:#1d397a'>结束时间：</span>" +
-        //             infos.end_time +
-        //             "</p>" +
-        //             "<p style='color:#4b6eca'><span style='color:#1d397a'>施工区间：</span>" +
-        //             infos.work_area +
-        //             "</p><p style='color:#4b6eca'><span style='color:#1d397a'>施工内容：</span>" +
-        //             infos.description +
-        //             "</p>",
-        //           {
-        //             dangerouslyUseHTMLString: true,
-        //             confirmButtonText: "关闭"
-        //           }
-        //         )
-        //         .catch(() => {});
-        //       break;
+        // canvas.addEventListener("click", function(e) {
+        //   var x = event.pageX - canvas.getBoundingClientRect().left;
+        //   var y = event.pageY - canvas.getBoundingClientRect().top;
+        //   for (let i of clickXY) {
+        //     if (
+        //       x > i.x - i.r &&
+        //       x < i.x + i.r &&
+        //       y > i.y - i.r &&
+        //       y < i.y + i.r
+        //     ) {
+        //       alert("13");
         //     }
-        //   },
-        //   false
-        // );
+        //     // for (let item of clickXY) {
+        //     //   var xx = item.x - canvas.getBoundingClientRect().left; // x - e.layerX;
+        //     //   var yy = item.y - canvas.getBoundingClientRect().top; // y - e.layerY;
+        //     //   var isMove = Math.sqrt(xx * xx + yy * yy);
+
+        //     //   if (isMove < item.r) {
+        //     //     alert("13");
+        //     //   }
+        //   }
+        //   // if(isMove < d)
+        //   //     run("pink");
+        //   // else
+        //   //     run("black");
+        // });
+        canvas.addEventListener(
+          "click",
+          function(e) {
+            var x = event.pageX - canvas.getBoundingClientRect().left;
+            var y = event.pageY - canvas.getBoundingClientRect().top;
+            //console.log(clickXY);
+            for (let i of clickXY) {
+              if (
+                x > i.x - i.r &&
+                x < i.x + i.r &&
+                y > i.y - i.r &&
+                y < i.y + i.r
+              ) {
+                let infos = i.i;
+                that
+                  .$alert(
+                    "<p style='color:#4b6eca'><span style='color:#1d397a'>作业编号：</span>" +
+                      infos.number +
+                      "</p><p style='color:#4b6eca'><span style='color:#1d397a'>作业令号</span>：" +
+                      infos.command_num +
+                      "</p>" +
+                      "<p style='color:#4b6eca'><span style='color:#1d397a'>开始时间：</span>" +
+                      infos.start_time +
+                      "</p><p style='color:#4b6eca'><span style='color:#1d397a'>结束时间：</span>" +
+                      infos.end_time +
+                      "</p>" +
+                      "<p style='color:#4b6eca'><span style='color:#1d397a'>施工区间：</span>" +
+                      infos.work_area +
+                      "</p><p style='color:#4b6eca'><span style='color:#1d397a'>施工内容：</span>" +
+                      infos.description +
+                      "</p>",
+                    {
+                      dangerouslyUseHTMLString: true,
+                      confirmButtonText: "关闭"
+                    }
+                  )
+                  .catch(() => {});
+                break;
+              }
+            }
+          },
+          false
+        );
       }
       //绘制桥
       function drawBridgeAxis(bridgeListJson) {
