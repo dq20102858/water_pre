@@ -74,7 +74,7 @@ export default {
     getStationList() {
       let clientWidth = this.$refs.proWrapper.clientWidth;
       let canvasWidth = clientWidth - 330;
-      this.cwidth = canvasWidth-10;
+      this.cwidth = canvasWidth - 10;
       const canvas = this.$refs.canvasStation;
       let cansText = canvas.getContext("2d");
       canvas.width = canvasWidth;
@@ -191,7 +191,7 @@ export default {
           cansText.lineTo(endZB, 350);
           cansText.stroke();
           //
-          cansText.fillText(tfrom, startZB+5, 370);
+          cansText.fillText(tfrom, startZB + 5, 370);
           cansText.fillText(tend, endZB - 60, 370);
           //4
         } else if (lineJson[i].id == 4) {
@@ -211,7 +211,7 @@ export default {
           let beteew = endZB - startZB;
           console.log("beteew：" + beteew);
           if (beteew < 160) {
-            cansText.fillText(tfrom, startZB - 130, 420);
+            cansText.fillText(tfrom, startZB - 150, 420);
             cansText.fillText(tend, endZB - 56, 420);
           } else {
             cansText.fillText(tfrom, startZB, 420);
@@ -232,10 +232,10 @@ export default {
           parseFloat(paras[i].end_flag) * 1000 +
           parseFloat(paras[i].end_length);
         let leftPosition =
-          parseFloat(starMileage - this.minMileage) * this.every ;
+          parseFloat(starMileage - this.minMileage) * this.every;
         let widthPosition = parseFloat(endMileage - starMileage) * this.every;
         if (starMileage == 0) {
-          leftPosition =0;
+          leftPosition = 0;
           widthPosition = parseFloat(endMileage - this.minMileage) * this.every;
         }
 
@@ -400,19 +400,15 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.tdbar {
-  height: 18px;
-  overflow: hidden;
-}
 .tdbar .bar {
   border-bottom: 1px solid #fff;
-  height: 19px;
+  height: 18px;
   overflow: hidden;
-  
 }
 .tdbar .bar:last-child {
   border-bottom: 0;
 }
+
 .tdbar .bar span {
   font-size: 12px;
   color: #fff;
@@ -431,8 +427,9 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   position: absolute;
   top: 0;
   background: #27db07;
-  height: 18px;
+  height: 19px;
   display: inline-block;
+  border-left: 1px #67db17 solid;
 }
 .clear {
   clear: both;
