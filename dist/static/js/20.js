@@ -1,26 +1,134 @@
 webpackJsonp([20],{
 
-/***/ "6YUE":
+/***/ "2CIj":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.dialog-user .el-textarea {\r\n  width: 100% !important;\n}\n.dialog-user .el-form-item__label {\r\n  width: 110px;\n}\n.dialog-user .el-input--medium {\r\n  width: 100%;\n}\n.dialog-user .el-select {\r\n  width: 185px;\n}\n.dialog-user .el-form-item-block {\r\n  display: block;\n}\n.el-form-item-inlines {\r\n  display: inline-block;\n}\n.dialog-user .el-form-item-inlines .el-form-item {\r\n  display: inline-block;\n}\n.el-form-item-block {\r\n  display: block;\n}\n.dialog-user .el-form-item-inlines .el-checkbox-group {\r\n  margin-left: 110px;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "M5Mc":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("icTj");
+var content = __webpack_require__("2CIj");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("rjj0")("49c2069b", content, true);
+var update = __webpack_require__("rjj0")("024592f0", content, true);
 
 /***/ }),
 
-/***/ "BQKP":
+/***/ "lfKa":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/admin/departlist.vue
+// EXTERNAL MODULE: ./node_modules/babel-runtime/helpers/defineProperty.js
+var defineProperty = __webpack_require__("bOdI");
+var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/admin/userlist.vue
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -155,111 +263,170 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ var departlist = ({
+/* harmony default export */ var userlist = ({
   data: function data() {
-    return {
-      departLists: [],
-      departPage_cur: 1,
-      departPage_size: 20,
-      departPage_items: 0,
-      departPage_total: 0,
-      departDialogVisible: false,
-      departDialogTitle: "",
-      departData: {},
-      departAddRules: {
-        pid: [{
-          required: true,
-          message: "请选择公司",
-          trigger: "change"
-        }],
-        name: [{
-          required: true,
-          message: "请输入部门名称2~20个字符",
-          trigger: "blur"
-        }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }, { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }],
-        is_work_team: [{
-          required: true,
-          message: "请选择施工队",
-          trigger: "change"
-        }],
-        description: [{ min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }]
-      },
-      search_pid: '',
-      companySelectList: [],
-      departSelectLists: [],
-      postSelectLists: []
-    };
+    var _ref;
+
+    return _ref = {
+      userList: [],
+      userPage_size: 20,
+      userPage_cur: 1,
+      userPage_items: 0
+    }, defineProperty_default()(_ref, "userPage_size", 20), defineProperty_default()(_ref, "userPage_cur", 1), defineProperty_default()(_ref, "userPage_items", 0), defineProperty_default()(_ref, "userPage_total", 0), defineProperty_default()(_ref, "userDialogVisible", false), defineProperty_default()(_ref, "userDialogTitle", ""), defineProperty_default()(_ref, "userData", {
+      menus: []
+    }), defineProperty_default()(_ref, "userSearch", {}), defineProperty_default()(_ref, "userAddRules", {
+      user_name: [{
+        required: true,
+        message: "请输入用户名2~20个字符",
+        trigger: "blur"
+      }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }, {
+        pattern: /^[^\s]*$/,
+        message: "输入用户名不能含有空格",
+        trigger: "blur"
+      }],
+      name: [{
+        required: true,
+        message: "请输入姓名2~20个字符",
+        trigger: "blur"
+      }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }, {
+        pattern: /^[^\s]*$/,
+        message: "输入姓名不能含有空格",
+        trigger: "blur"
+      }],
+      company_id: [{
+        required: true,
+        message: "请选择公司",
+        trigger: "change"
+      }],
+      password: [{
+        required: true,
+        message: "请输入密码2~20个字符",
+        trigger: "blur"
+      }, { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }, {
+        pattern: /^[^\s]*$/,
+        message: "输入密码不能含有空格",
+        trigger: "blur"
+      }],
+      passwordEdit: [{
+        min: 2,
+        max: 20,
+        message: "请输入密码在2到20个字符",
+        trigger: "blur"
+      }],
+      depart_id: [{
+        required: true,
+        message: "请选择部门",
+        trigger: "change"
+      }],
+      post_id: [{
+        required: true,
+        message: "请选择职位",
+        trigger: "change"
+      }],
+      dispatch: [{
+        required: true,
+        message: "请选择调度信息",
+        trigger: "change"
+      }],
+      email: [{
+        type: "email",
+        message: "请输入正确的邮箱地址",
+        trigger: ["blur", "change"]
+      }],
+      phone: [{
+        pattern: /^1[34578]\d{9}$/,
+        message: "请输入正确的手机号码",
+        trigger: "blur"
+      }]
+    }), defineProperty_default()(_ref, "passwordOrg", ""), defineProperty_default()(_ref, "companySelectList", []), defineProperty_default()(_ref, "departSelectList", []), defineProperty_default()(_ref, "postSelectList", []), defineProperty_default()(_ref, "userMenuList", []), _ref;
   },
   mounted: function mounted() {
     document.querySelector("#app-menu-items #menu_admin").classList.add("is-active");
   },
   created: function created() {
     this.getCompanyLists();
-    this.getPageLists();
+    this.getLineTypes();
+    this.getMenuLists();
+    this.getUserLists();
   },
 
   methods: {
-    getPageLists: function getPageLists() {
+    getUserLists: function getUserLists() {
       var _this = this;
 
-      //type  1 公司  2 部门 3 职位
-      var page = this.departPage_cur;
-      var type = 2;
-      var pid = this.search_pid;
+      var page = this.userPage_cur;
+      var user_name = this.userSearch.user_name;
+      var company_id = this.userSearch.company_id;
+      var depart_id = this.userSearch.depart_id;
+      var post_id = this.userSearch.post_id;
       this.request({
-        url: "/company/getPageLists",
+        url: "/user/getUserPage",
         method: "get",
-        params: { page: page, type: type, pid: pid }
+        params: { page: page, user_name: user_name, company_id: company_id, depart_id: depart_id, post_id: post_id }
       }).then(function (response) {
         var data = response.data;
         if (data.status == 1) {
-          _this.departLists = data.data.data;
-          _this.departPage_size = data.data.per_page;
-          _this.departPage_cur = parseInt(data.data.current_page);
-          _this.departPage_items = parseInt(data.data.total);
-          _this.departPage_total = parseInt(data.data.last_page);
+          _this.userList = data.data.data;
+          _this.userPage_cur = parseInt(data.data.current_page);
+          _this.userPage_items = data.data.total;
+          _this.userPage_size = data.data.per_page;
+          _this.userPage_total = data.data.last_page;
         }
       });
     },
-
-
-    //部门
-    departChangePage: function departChangePage(value) {
-      this.departPage_cur = value;
-      this.getPageLists();
+    userChangePage: function userChangePage(value) {
+      this.userPage_cur = value;
+      this.getUserLists();
     },
-    departFirstPage: function departFirstPage() {
-      this.departPage_cur = 1;
-      this.getPageLists();
+    userFirstPage: function userFirstPage() {
+      this.userPage_cur = 1;
+      this.getUserLists();
     },
-    departLastPage: function departLastPage() {
-      this.departPage_cur = this.departPage_total;
-      this.getPageLists();
+    userLastPage: function userLastPage() {
+      this.userPage_cur = this.userPage_total;
+      this.getUserLists();
     },
-    departSearchPage: function departSearchPage() {
-      this.departPage_cur = 1;
-      this.getPageLists();
+    userSearchPage: function userSearchPage() {
+      this.userPage_cur = 1;
+      this.getUserLists();
     },
     resetSerach: function resetSerach() {
-      this.search_pid = "";
-      this.getPageLists();
+      this.userSearch = {
+        user_name: "",
+        company_id: "",
+        depart_id: "",
+        post_id: ""
+      };
+      this.departSelectList = [];
+      this.postSelectList = [];
+      this.userPage_cur = 1;
+      this.getUserLists();
     },
-    openAddDepart: function openAddDepart() {
-      this.departDialogVisible = true;
-      this.departDialogTitle = "添加部门信息";
-      this.departData = {};
+    openAddUser: function openAddUser() {
+      this.userData = {
+        menus: []
+      };
+      this.userDialogVisible = true;
+      this.userDialogTitle = "添加人员信息";
     },
-    addDepart: function addDepart() {
+    addUser: function addUser() {
       var _this2 = this;
 
-      this.$refs["departRulesForm"].validate(function (valid) {
+      this.$refs["userRulesForm"].validate(function (valid) {
         if (valid) {
-          var data = _this2.departData;
-          _this2.departData.type = 2;
-          var url = "/company/addCompanyDo";
-          var baseid = _this2.departData.id;
+          var data = _this2.userData;
+          // this.userData.menus = this.userData.menus.slice(1);
+          var url = "/user/addUser";
+          var baseid = _this2.userData.id;
+          console.log("this.userData.id：" + _this2.userData.id);
           if (typeof baseid != "undefined") {
-            url = "/company/editCompany";
+            url = "/user/editUser";
+            var pwdEdit = _this2.userData.passwordEdit;
+            if (pwdEdit != "" && typeof pwdEdit != "undefined") {
+              _this2.userData.password = pwdEdit;
+            } else {
+              _this2.userData.password = _this2.passwordOrg;
+            }
           }
           _this2.request({
             url: url,
@@ -268,34 +435,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }).then(function (response) {
             var data = response.data;
             if (data.status == 1) {
-              _this2.departDialogVisible = false;
+              _this2.userDialogVisible = false;
+              _this2.userData.passwordEdit = "";
               _this2.$message({
                 type: "success",
                 message: "保存成功！"
               });
-              _this2.getPageLists();
+              _this2.getUserLists();
             }
           });
         }
       });
     },
-    detailDepart: function detailDepart(id) {
+    detailUser: function detailUser(id) {
       var _this3 = this;
 
-      this.departDialogTitle = "修改部门信息";
-      this.departDialogVisible = true;
+      this.userDialogTitle = "修改人员信息";
+      this.userDialogVisible = true;
       this.request({
-        url: "/company/getDepartDetail",
+        url: "/user/getUserDetial",
         method: "get",
         params: { id: id }
       }).then(function (response) {
         var data = response.data;
         if (data.status == 1) {
-          _this3.departData = data.data;
+          _this3.userData = data.data;
+          if (data.data.menus != "") {
+            _this3.userData.menus = data.data.menus.split(",");
+          } else {
+            _this3.userData.menus = [];
+          }
+
+          console.log(_this3.userData.menus);
+          _this3.passwordOrg = data.data.password;
+          _this3.getDepartListEdit(data.data.company_id); //部门
+          _this3.getPostListEdit(data.data.depart_id); //职位
         }
       });
     },
-    delDepart: function delDepart(id) {
+    delUser: function delUser(id) {
       var _this4 = this;
 
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
@@ -305,7 +483,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         customClass: "el-message-box-new"
       }).then(function () {
         _this4.request({
-          url: "/company/deleteCompany",
+          url: "/user/deleteUser",
           method: "post",
           data: { id: id }
         }).then(function (res) {
@@ -315,7 +493,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
               type: "success",
               message: "删除成功！"
             });
-            _this4.getPageLists();
+            _this4.getUserLists();
           }
         });
       }).catch(function () {});
@@ -325,30 +503,116 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getCompanyLists: function getCompanyLists() {
       var _this5 = this;
 
-      var pid = 0;
-      var type = 1;
       this.request({
         url: "/company/getDepartLists",
         method: "get",
-        params: { pid: pid, type: type }
+        params: { pid: 0, type: 1 }
       }).then(function (response) {
         var data = response.data;
         if (data.status == 1) {
           _this5.companySelectList = data.data;
         }
       });
+    },
+    getDepartLists: function getDepartLists(val) {
+      var _this6 = this;
+
+      this.$set(this.userData, "depart_id", "");
+      this.$set(this.userData, "post_id", "");
+      this.$set(this.userSearch, "depart_id", "");
+      this.$set(this.userSearch, "post_id", "");
+      this.request({
+        url: "/company/getDepartLists",
+        method: "get",
+        params: { pid: val, type: 2 }
+      }).then(function (response) {
+        var data = response.data;
+        if (data.status == 1) {
+          _this6.departSelectList = data.data;
+        }
+      });
+    },
+    getPostLists: function getPostLists(val) {
+      var _this7 = this;
+
+      this.$set(this.userData, "post_id", "");
+      this.$set(this.userSearch, "post_id", "");
+      this.request({
+        url: "/company/getDepartLists",
+        method: "get",
+        params: { pid: val, type: 3 }
+      }).then(function (response) {
+        var data = response.data;
+        if (data.status == 1) {
+          _this7.postSelectList = data.data;
+        }
+      });
+    },
+    getDepartListEdit: function getDepartListEdit(val) {
+      var _this8 = this;
+
+      this.request({
+        url: "/company/getDepartLists",
+        method: "get",
+        params: { pid: val, type: 2 }
+      }).then(function (response) {
+        var data = response.data;
+        if (data.status == 1) {
+          _this8.departSelectList = data.data;
+        }
+      });
+    },
+    getPostListEdit: function getPostListEdit(val) {
+      var _this9 = this;
+
+      this.request({
+        url: "/company/getDepartLists",
+        method: "get",
+        params: { pid: val, type: 3 }
+      }).then(function (response) {
+        var data = response.data;
+        if (data.status == 1) {
+          _this9.postSelectList = data.data;
+        }
+      });
+    },
+    getLineTypes: function getLineTypes() {
+      var _this10 = this;
+
+      this.request({
+        url: "/common/getLineType",
+        method: "get"
+      }).then(function (res) {
+        var data = res.data;
+        if (data.status == 1) {
+          _this10.userMenuList1 = data.data;
+        }
+      });
+    },
+    getMenuLists: function getMenuLists() {
+      var _this11 = this;
+
+      this.request({
+        url: "/user/getMenuLists",
+        method: "get"
+      }).then(function (response) {
+        var data = response.data;
+        if (data.status == 1) {
+          _this11.userMenuList = data.data;
+        }
+      });
     }
   }
   //
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-b3e5c176","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/admin/departlist.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"admins"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"router":"","default-active":"departlist","mode":"horizontal"}},[_c('li',{staticClass:"ptitle"},[_c('img',{attrs:{"src":__webpack_require__("xX+s")}}),_vm._v("人员管理\n      ")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"admin"}},[_vm._v("公司列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"departlist"}},[_vm._v("部门列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"postlist"}},[_vm._v("职位列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"userlist"}},[_vm._v("人员列表")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{attrs:{"inline":true}},[_c('el-form-item',{staticClass:"form-add-item"},[_c('el-button',{attrs:{"type":"primary","icon":"el-icon-plus"},on:{"click":_vm.openAddDepart}},[_vm._v("添加部门")])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"公司"}},[_c('el-select',{attrs:{"placeholder":"请选择公司"},model:{value:(_vm.search_pid),callback:function ($$v) {_vm.search_pid=$$v},expression:"search_pid"}},_vm._l((this.companySelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{staticClass:"form-so"},[_c('label',{staticClass:"el-form-item__label"}),_vm._v(" "),_c('el-button',{attrs:{"size":"small","icon":"el-icon-search","type":"primary"},on:{"click":_vm.departSearchPage}},[_vm._v("查询")]),_vm._v(" "),_c('el-button',{attrs:{"size":"small","plain":""},on:{"click":_vm.resetSerach}},[_vm._v("重置")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{ref:"multipleTable",attrs:{"data":_vm.departLists}},[_c('el-table-column',{attrs:{"type":"index","label":"序号","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"company","label":"公司名称","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"name","label":"部门名称","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"是否属于施工队","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.is_work_team === 0)?_c('el-tag',[_vm._v("否")]):_c('el-tag',{attrs:{"type":"success"}},[_vm._v("是")])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"description","label":"部门详情","width":"200","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"create_time","label":"创建时间","width":"200","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"update_time","label":"修改时间","width":"200","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"120"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.detailDepart(scope.row.id)}}},[_vm._v("修改")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.delDepart(scope.row.id)}}},[_vm._v("删除")])],1)]}}])})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.departLists.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","page-size":_vm.departPage_size,"current-page":this.departPage_cur,"total":this.departPage_items,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.departChangePage}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.departFirstPage}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.departLastPage}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1)],1),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-depart",attrs:{"width":"580px","title":_vm.departDialogTitle,"visible":_vm.departDialogVisible,"close-on-click-modal":false},on:{"update:visible":function($event){_vm.departDialogVisible=$event}}},[_c('el-form',{ref:"departRulesForm",staticClass:"el-form-custom",attrs:{"model":_vm.departData,"rules":_vm.departAddRules}},[(_vm.departDialogTitle=='添加部门信息')?_c('el-form-item',{attrs:{"label":"公司名称：","prop":"pid"}},[_c('el-select',{model:{value:(_vm.departData.pid),callback:function ($$v) {_vm.$set(_vm.departData, "pid", $$v)},expression:"departData.pid"}},_vm._l((this.companySelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1):_vm._e(),_vm._v(" "),_c('el-form-item',{attrs:{"label":"部门名称：","prop":"name"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.departData.name),callback:function ($$v) {_vm.$set(_vm.departData, "name", $$v)},expression:"departData.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"是否属于施工队：","prop":"is_work_team"}},[_c('el-radio-group',{model:{value:(_vm.departData.is_work_team),callback:function ($$v) {_vm.$set(_vm.departData, "is_work_team", $$v)},expression:"departData.is_work_team"}},[_c('el-radio',{attrs:{"label":1}},[_vm._v("是")]),_vm._v(" "),_c('el-radio',{attrs:{"label":0}},[_vm._v("否")])],1)],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"部门简介：","prop":"description"}},[_c('el-input',{attrs:{"autocomplete":"off","type":"textarea","maxlength":"30","show-word-limit":""},model:{value:(_vm.departData.description),callback:function ($$v) {_vm.$set(_vm.departData, "description", $$v)},expression:"departData.description"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.departDialogVisible = false}}},[_vm._v("取 消")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.addDepart()}}},[_vm._v("确 定")])],1)],1)],1)])])}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-db1249ca","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/admin/userlist.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"admins"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"router":"","default-active":"userlist","mode":"horizontal"}},[_c('li',{staticClass:"ptitle"},[_c('img',{attrs:{"src":__webpack_require__("xX+s")}}),_vm._v("人员管理\n      ")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"admin"}},[_vm._v("公司列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"departlist"}},[_vm._v("部门列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"postlist"}},[_vm._v("职位列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"userlist"}},[_vm._v("人员列表")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{ref:"userSearch",attrs:{"inline":true}},[_c('el-form-item',{staticClass:"form-add-item"},[_c('el-button',{attrs:{"type":"primary","icon":"el-icon-plus"},on:{"click":_vm.openAddUser}},[_vm._v("添加人员")])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"姓名"}},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"请输入姓名","maxlength":"30"},model:{value:(_vm.userSearch.user_name),callback:function ($$v) {_vm.$set(_vm.userSearch, "user_name", $$v)},expression:"userSearch.user_name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"公司"}},[_c('el-select',{attrs:{"placeholder":"请选择公司"},on:{"change":function($event){_vm.getDepartLists($event)}},model:{value:(_vm.userSearch.company_id),callback:function ($$v) {_vm.$set(_vm.userSearch, "company_id", $$v)},expression:"userSearch.company_id"}},_vm._l((this.companySelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"部门"}},[_c('el-select',{attrs:{"placeholder":"请选择部门"},on:{"change":function($event){_vm.getPostLists($event)}},model:{value:(_vm.userSearch.depart_id),callback:function ($$v) {_vm.$set(_vm.userSearch, "depart_id", $$v)},expression:"userSearch.depart_id"}},_vm._l((this.departSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"职位"}},[_c('el-select',{attrs:{"placeholder":"请选择职位"},model:{value:(_vm.userSearch.post_id),callback:function ($$v) {_vm.$set(_vm.userSearch, "post_id", $$v)},expression:"userSearch.post_id"}},_vm._l((this.postSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{staticClass:"form-so"},[_c('label',{staticClass:"el-form-item__label"}),_vm._v(" "),_c('el-button',{attrs:{"size":"small","icon":"el-icon-search","type":"primary"},on:{"click":_vm.getUserLists}},[_vm._v("查询")]),_vm._v(" "),_c('el-button',{attrs:{"size":"small","plain":""},on:{"click":_vm.resetSerach}},[_vm._v("重置")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{attrs:{"data":_vm.userList}},[_c('el-table-column',{attrs:{"type":"index","label":"序号","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"user_name","label":"用户名","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"name","label":"姓名","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"company","label":"公司","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"depart","label":"部门","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"post","label":"职位","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"email","label":"邮箱","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"phone","label":"电话","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"dispatch_desc","label":"调度信息","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"120"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.detailUser(scope.row.id)}}},[_vm._v("修改")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.delUser(scope.row.id)}}},[_vm._v("删除")])],1)]}}])})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.userList.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","page-size":_vm.userPage_size,"current-page":this.userPage_cur,"total":this.userPage_items,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.userChangePage}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.userFirstPage}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.userLastPage}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1)],1),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-user",attrs:{"width":"680px","title":this.userDialogTitle,"close-on-click-modal":false,"visible":_vm.userDialogVisible},on:{"update:visible":function($event){_vm.userDialogVisible=$event}}},[_c('el-form',{ref:"userRulesForm",staticClass:"el-form-custom",attrs:{"inline":true,"model":_vm.userData,"rules":_vm.userAddRules}},[_c('div',{staticClass:"el-form-item-inlines"},[(this.userDialogTitle=='添加人员信息')?_c('el-form-item',{attrs:{"label":"用户名：","prop":"user_name"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.userData.user_name),callback:function ($$v) {_vm.$set(_vm.userData, "user_name", $$v)},expression:"userData.user_name"}})],1):_vm._e(),_vm._v(" "),_c('el-form-item',{attrs:{"label":"姓名：","prop":"name"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.userData.name),callback:function ($$v) {_vm.$set(_vm.userData, "name", $$v)},expression:"userData.name"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"公司名称：","prop":"company_id"}},[_c('el-select',{on:{"change":function($event){_vm.getDepartLists($event)}},model:{value:(_vm.userData.company_id),callback:function ($$v) {_vm.$set(_vm.userData, "company_id", $$v)},expression:"userData.company_id"}},_vm._l((this.companySelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),(this.userDialogTitle=='添加人员信息')?_c('el-form-item',{attrs:{"label":"密码：","prop":"password"}},[_c('el-input',{attrs:{"autocomplete":"off","maxlength":"20","show-word-limit":""},model:{value:(_vm.userData.password),callback:function ($$v) {_vm.$set(_vm.userData, "password", $$v)},expression:"userData.password"}})],1):_vm._e(),_vm._v(" "),(this.userDialogTitle=='修改人员信息')?_c('el-form-item',{attrs:{"label":"密码：","prop":"passwordEdit"}},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"不修改密码请留空"},model:{value:(_vm.userData.passwordEdit),callback:function ($$v) {_vm.$set(_vm.userData, "passwordEdit", $$v)},expression:"userData.passwordEdit"}})],1):_vm._e(),_vm._v(" "),_c('el-form-item',{attrs:{"label":"部门名称：","prop":"depart_id"}},[_c('el-select',{on:{"change":function($event){_vm.getPostLists($event)}},model:{value:(_vm.userData.depart_id),callback:function ($$v) {_vm.$set(_vm.userData, "depart_id", $$v)},expression:"userData.depart_id"}},_vm._l((this.departSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"邮箱：","prop":"email"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.userData.email),callback:function ($$v) {_vm.$set(_vm.userData, "email", $$v)},expression:"userData.email"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"职位名称：","prop":"post_id"}},[_c('el-select',{model:{value:(_vm.userData.post_id),callback:function ($$v) {_vm.$set(_vm.userData, "post_id", $$v)},expression:"userData.post_id"}},_vm._l((this.postSelectList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"手机号码：","prop":"phone"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.userData.phone),callback:function ($$v) {_vm.$set(_vm.userData, "phone", $$v)},expression:"userData.phone"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"调度信息：","prop":"dispatch"}},[_c('el-select',{model:{value:(_vm.userData.dispatch),callback:function ($$v) {_vm.$set(_vm.userData, "dispatch", $$v)},expression:"userData.dispatch"}},[_c('el-option',{attrs:{"label":"普通","value":1}}),_vm._v(" "),_c('el-option',{attrs:{"label":"司机","value":2}}),_vm._v(" "),_c('el-option',{attrs:{"label":"车长","value":3}}),_vm._v(" "),_c('el-option',{attrs:{"label":"值班调度","value":4}}),_vm._v(" "),_c('el-option',{attrs:{"label":"车站值班员","value":5}}),_vm._v(" "),_c('el-option',{attrs:{"label":"施工队长","value":6}})],1)],1),_vm._v(" "),_c('el-form-item',[_c('el-checkbox-group',{model:{value:(_vm.userData.menus),callback:function ($$v) {_vm.$set(_vm.userData, "menus", $$v)},expression:"userData.menus"}},_vm._l((_vm.userMenuList),function(item){return _c('el-checkbox',{key:item.id,attrs:{"label":item.id+''}},[_vm._v(_vm._s(item.name))])}))],1)],1)]),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.userDialogVisible = false}}},[_vm._v("取 消")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":_vm.addUser}},[_vm._v("确 定")])],1)],1)],1)])])}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var admin_departlist = (esExports);
-// CONCATENATED MODULE: ./src/views/admin/departlist.vue
+/* harmony default export */ var admin_userlist = (esExports);
+// CONCATENATED MODULE: ./src/views/admin/userlist.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("6YUE")
+  __webpack_require__("M5Mc")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -364,30 +628,15 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  departlist,
-  admin_departlist,
+  userlist,
+  admin_userlist,
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 
-/* harmony default export */ var views_admin_departlist = __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
-
-/***/ "icTj":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("FZ+f")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.admins .el-dialog {\r\n  width: 500px !important;\n}\n.dialog-depart .el-textarea {\r\n  width: 100% !important;\n}\n.dialog-depart .el-textarea__inner {\r\n  height: 80px;\n}\n.dialog-depart .el-form-item__label {\r\n  width: 140px;\n}\n.dialog-depart .el-form-item__content {\r\n  margin-left: 140px;\n}\n.dialog-depart .el-input--medium {\r\n  width: 100%;\n}\n.dialog-depart .el-select {\r\n  width: 100%;\n}\r\n", ""]);
-
-// exports
+/* harmony default export */ var views_admin_userlist = __webpack_exports__["default"] = (Component.exports);
 
 
 /***/ })
