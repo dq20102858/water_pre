@@ -1,6 +1,20 @@
 webpackJsonp([13],{
 
-/***/ "B6aP":
+/***/ "2y0B":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("PK94");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("fefaf7b2", content, true);
+
+/***/ }),
+
+/***/ "PK94":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("FZ+f")(false);
@@ -8,322 +22,32 @@ exports = module.exports = __webpack_require__("FZ+f")(false);
 
 
 // module
-exports.push([module.i, "\n.security-title {\r\n  background: #3655a5;\r\n  color: #fff;\r\n  border-bottom: none !important;\r\n  font-size: 18px;\r\n  border-radius: 6px 6px 0 0;\r\n  padding: 12px 0;\r\n  text-align: center;\n}\n#security .formbox {\r\n  padding: 50px 100px 30px 100px;\n}\n#security .el-textarea {\r\n  width: 100%;\n}\n#security .el-textarea__inner {\r\n  height: 130px;\n}\n#security  .textarea1 .el-textarea__inner {\r\n  height: 70px;\n}\n#security .el-form-item-inline .el-input--medium {\r\n  display: inline-block;\r\n  width: 80px;\r\n  text-align: center;\n}\n#security .el-form-item-inline input {\r\n  display: inline-block;\r\n  width: 80px;\r\n  text-align: center;\n}\n#security .listpagedetail {\r\n  margin-top: 30px;\r\n  margin-bottom: 30px;\n}\n#security .listpagedetail .app-page-container {\r\n  min-height: 300px;\n}\n#security .listpagedetail .detailleft {\r\n  float: left;\r\n  width: 49%;\n}\n#security .listpagedetail .detailright {\r\n  float: right;\r\n  width: 49%;\r\n  height: 400px;\n}\n.steps-info {\r\n  line-height: 28px;\n}\n.steps-info .imgs img {\r\n  width: 148px;\r\n  height: 148px;\r\n  margin-right: 10px;\r\n  border-radius: 6px;\n}\n.steps-section {\r\n  overflow-x: auto;\n}\n.timeline {\r\n  width: 100%;\r\n  height: auto;\r\n  padding-bottom: 10px;\r\n  font-size: 0;\r\n  white-space: nowrap;\n}\n.timeline li {\r\n  text-align: center;\r\n  position: relative;\r\n  display: inline-block;\r\n  *display: inline;\r\n  zoom: 1;\r\n  width: auto;\r\n  font-size: 16px;\r\n  padding: 20px;\n}\n.timeline li .time {\r\n  padding-top: 10px;\r\n  color: #333;\r\n  font-weight: 400;\n}\n.timeline li .time p {\r\n  line-height: 31px;\n}\n.timeline li .time:before {\r\n  content: \"\";\r\n  display: block;\r\n  position: absolute;\r\n  width: 28px;\r\n  height: 28px;\r\n  top: 50px;\r\n  margin-bottom: -4px;\r\n  left: 50%;\r\n  margin-left: -15px;\r\n  border: 5px #898989 solid;\r\n  background: #fff;\r\n  border-radius: 100%;\r\n  background-size: 10px 10px;\r\n  z-index: 100;\n}\n.timeline li .time:after {\r\n  content: \"\";\r\n  display: block;\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 2px;\r\n  background: #898989;\r\n  left: 0;\r\n  top: 65px;\r\n  margin-left: -2px;\r\n  z-index: 99;\n}\n.timeline li:last-child .time:before {\r\n  content: \"\";\r\n  display: block;\r\n  position: absolute;\r\n  width: 28px;\r\n  height: 28px;\r\n  top: 50px;\r\n  margin-bottom: -4px;\r\n  left: 50%;\r\n  margin-left: -15px;\r\n  border: 5px #4b6eca solid;\r\n  background: #fff;\r\n  border-radius: 100%;\r\n  background-size: 10px 10px;\r\n  z-index: 9999;\n}\n.timeline li .desc {\r\n  color: #888;\r\n  padding-bottom: 50px;\r\n  font-size: 16px;\n}\n.uploader .el-upload {\r\n  border: 1px dashed #9db9fa;\r\n  border-radius: 6px;\r\n  cursor: pointer;\r\n  position: relative;\r\n  overflow: hidden;\r\n  font-size: 28px;\r\n  color: #8c939d;\r\n  width: 148px;\r\n  height: 148px;\r\n  line-height: 148px;\r\n  text-align: center;\n}\n.uploader .upimgitem {\r\n  width: 100%;\r\n  margin-top: 10px;\n}\n.uploaderthree .el-upload {\r\n  border: 1px dashed #9db9fa;\r\n  border-radius: 6px;\r\n  cursor: pointer;\r\n  position: relative;\r\n  overflow: hidden;\r\n  font-size: 28px;\r\n  color: #8c939d;\r\n  width: 148px;\r\n  height: 148px;\r\n  line-height: 148px;\r\n  text-align: center;\n}\n.uploaderthree .upimgitem {\r\n  width: 100%;\r\n  margin-top: 10px;\n}\n.dialog-danger .el-textarea__inner {\r\n  border: 1px #9db9fa solid;\r\n  color: #4b6eca;\r\n  height: 100px;\n}\n.dialog-danger .el-textarea {\r\n  width: 100% !important;\n}\n.dialog-danger .el-select {\r\n  width: 100%;\n}\n.dialog-danger .el-form-item__label {\r\n  width: 110px;\n}\n.dialog-danger .el-form-item__content {\r\n  margin-left: 110px;\n}\r\n", ""]);
+exports.push([module.i, "\n.sttitle {\r\n  color: #fff;\r\n  padding: 22px 0 0 25px;\r\n  font-size: 24px;\r\n  text-align: center;\n}\n#progress {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  background: #081c33;\n}\n.progress {\r\n  background: #081c33;\r\n  padding-bottom: 30px;\n}\n@media (max-width: 1024px) {\n#progress {\r\n    width: 1024px;\n}\n}\n.station {\r\n  margin: 50px 0px 0px 230px;\r\n  position: relative;\r\n  z-index: 999;\n}\n.stationlineleft {\r\n  min-height: 239px;\r\n  width: 1px;\r\n  background: #fff;\r\n  position: absolute;\r\n  left: 8px;\r\n  top: 245px;\r\n  z-index: 1000;\n}\n.stationlineright {\r\n  min-height: 240px;\r\n  width: 1px;\r\n  background: #fff;\r\n  position: absolute;\r\n  right: 100px;\r\n  top: 245px;\r\n  z-index: 1000;\n}\n.linebox {\r\n  margin-left: 30px;\r\n  margin-right: 100px;\r\n  border-top: 0;\r\n  overflow: hidden;\r\n  clear: both;\n}\r\n/* lineTable */\n.lineTable {\r\n  width: 100%;\r\n  border: 1px #fff solid;\r\n  overflow: hidden;\r\n  border-collapse: collapse;\n}\n.lineTable td {\r\n  color: #fff;\r\n  border: 1px solid #fff;\n}\n.lineTable .tdtitle {\r\n  text-align: center;\r\n  overflow: hidden;\r\n  height: 18px;\r\n  padding-left: 5px;\r\n  width: 125px;\r\n  font-size: 12px;\r\n  line-height: 18px;\r\n  white-space: nowrap;\r\n  text-overflow: ellipsis;\n}\n.tdbar .bar {\r\n  border-bottom: 1px solid #fff;\r\n  height: 18px;\r\n  overflow: hidden;\n}\n.tdbar .bar:last-child {\r\n  border-bottom: 0;\n}\n.tdbar .bar span {\r\n  font-size: 12px;\r\n  color: #fff;\r\n  width: 78px;\r\n  float: left;\r\n  line-height: 18px;\r\n  text-align: center;\r\n  border-right: 0px #fff solid;\n}\n.tdbar .bar em {\r\n  height: 20px;\r\n  display: inline-block;\r\n  position: relative;\n}\n.tdbar .bar em i {\r\n  position: absolute;\r\n  top: 0;\r\n  background: #27db07;\r\n  height: 19px;\r\n  display: inline-block;\r\n  border-left: 1px #67db17 solid;\n}\n.clear {\r\n  clear: both;\n}\r\n/* //#27DB07 */\r\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ "h5Rs":
+/***/ "mC5q":
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAB4CAYAAAD2SgIRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAHRmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDggNzkuMTY0MDM2LCAyMDE5LzA4LzEzLTAxOjA2OjU3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUuNSAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIwLTAzLTA5VDEzOjM1OjU1KzA4OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMC0wNC0yMlQxNDo0OToxNiswODowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMC0wNC0yMlQxNDo0OToxNiswODowMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDplY2NlYTQzYi1jODczLTI2NDUtOTM2OC03N2VlY2EwZmE5NGQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QzFDNDIyOTVGQzIxMTFFNzgyMTFDQzIwRTFCNkNBQjIiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpDMUM0MjI5NUZDMjExMUU3ODIxMUNDMjBFMUI2Q0FCMiIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkMxQzQyMjkyRkMyMTExRTc4MjExQ0MyMEUxQjZDQUIyIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkMxQzQyMjkzRkMyMTExRTc4MjExQ0MyMEUxQjZDQUIyIi8+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjcyZTQ0MzI2LTkxZmYtYjI0Zi1iMGU0LWQyZDg0NTVkYzdmNiIgc3RFdnQ6d2hlbj0iMjAyMC0wMy0wOVQxMzo0MTowNCswODowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIxLjAgKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDplY2NlYTQzYi1jODczLTI2NDUtOTM2OC03N2VlY2EwZmE5NGQiIHN0RXZ0OndoZW49IjIwMjAtMDQtMjJUMTQ6NDk6MTYrMDg6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMS4wIChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPHBob3Rvc2hvcDpEb2N1bWVudEFuY2VzdG9ycz4gPHJkZjpCYWc+IDxyZGY6bGk+eG1wLmRpZDpDMUM0MjI5NUZDMjExMUU3ODIxMUNDMjBFMUI2Q0FCMjwvcmRmOmxpPiA8L3JkZjpCYWc+IDwvcGhvdG9zaG9wOkRvY3VtZW50QW5jZXN0b3JzPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PiO+MIUAAAIMSURBVGiB7ZnBSltBFIb/q92qIAgG1D5BoVsXLuy+byKFZhE3LvMC7rNpwIWLrhQstbgqpEJLH6GiKC40wSf4urkJ13jm3pnA4J1wfxgI957zMTnzz5whyQDF0EIUapLgNxXvtyTtSvoo6W3+7J+k7/m4dmYC1lgE9oEhbg2Bgzz2BcOCLgE/SoDT+pbnVIIHAdCxBlXgPUfiI3CRj0dHTNsFfgfcGAlfgPVC3DpwbMTdA+8tcNcIPpn+ioVxZsR3LfC5EbhTAv5gxJ+P3xc3yKbhxvsSj986fC/p+c67MwLXSsAt49mVBf5tBH4uAbeNZ38nnwo12wZGRt16QKsQt5E/m9YoZ5g+7hgJAA/A13w8OWI6RZa12n8ciWX6Nc2xwKvAZQD0J55nhYAV4NQDegosWwwXeDyOSqBHZblVYGE7oFeV5wMW0C9A+z45GXi3/0+SMkmHPsEhzTST5D2L9Np/KDiLAQ665IXO+PUXr+qKVZR3fUPBUWscBRxUilC7RfFxtBlLkXxcj1LMt4+liDVOyxVBSs9u0Q76ppnGB9di8YI038dmPWpci4M+vS2d3t0tSE2XnhnsXYpanMfRdl6ap1u09h/Nx+ntvLRq3JxuE0Uthbfm2xVBqgU4vQ6S3s6LCk7Px83iSWouhbMqvZ8V5v8Plte/bTY1ngncXApnU+PjiWqzeN6z/g9+6LPjimg+WgAAAABJRU5ErkJggg=="
+
+/***/ }),
+
+/***/ "naN1":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/security/index.vue
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// EXTERNAL MODULE: ./node_modules/babel-runtime/core-js/json/stringify.js
+var stringify = __webpack_require__("mvHQ");
+var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/progress/index.vue
+
 //
 //
 //
@@ -362,538 +86,288 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ var security = ({
+/* harmony default export */ var progress = ({
   data: function data() {
-    var _this = this;
-
     return {
-      pickerOptionsStart: {
-        disabledDate: function disabledDate(time) {
-          if (_this.searchForm.end_time) {
-            return time.getTime() > new Date(_this.searchForm.end_time).getTime();
-          }
-        }
-      },
-      pickerOptionsEnd: {
-        disabledDate: function disabledDate(time) {
-          if (_this.searchForm.start_time) {
-            return time.getTime() < new Date(_this.searchForm.start_time).getTime();
-          }
-        }
-      },
-      defaultActive: "1",
-      addPageShow: false,
-      listPageShow: true,
-      setPageShow: false,
-      searchForm: {
-        type: 1,
-        time_range: []
-      },
-      uploadAction: this.hostURL + "/upload/uploadFile",
-      dataList: [],
-      companyList: [],
-      trainList: [],
-      dangerTypeList: [],
-      dangerDetermineList: [],
-      objSelectLists: [],
-      formData: {},
-      formRules: {
-        depart_id: [{ required: true, message: "请选择公司", trigger: "change" }],
-        admin_id: [{ required: true, message: "请选择人员", trigger: "change" }],
-        title: [{
-          required: true,
-          message: "请输入安全事件标题2~30个字符",
-          trigger: "blur"
-        }, { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }, {
-          pattern: /(^\S+).*(\S+$)/,
-          message: "开始和结尾不能有空格",
-          trigger: "blur"
-        }],
-        address: [{
-          required: true,
-          message: "请输入安全事件地址2~100个字符",
-          trigger: "blur"
-        }, { min: 2, max: 100, message: "长度在2到100个字符", trigger: "blur" }],
-        description: [{
-          required: true,
-          message: "请输入安全事件描述2~255个字符",
-          trigger: "blur"
-        }, { min: 2, max: 255, message: "长度在2到255个字符", trigger: "blur" }]
-      },
-      dialogImageUrl: "",
-      dialogVisible: false,
-      eventTitle: "",
-      eventDesc: "",
-      eventPictureList: [],
-      eventPeopleList: [],
-      diaDangerFormVisible: false,
-      dangerIdValue: 0,
-      dangerTypeValue: "",
-      diaPeopleFormVisible: false,
-      peopleData: {},
-      assignersList: [],
-      peopleRules: {
-        user_id: [{ required: true, message: "请选择指派人员", trigger: "change" }],
-        remark: [{
-          min: 2,
-          max: 200,
-          message: "请输入备注描述长度在2到200个字符",
-          trigger: "blur"
-        }]
-      }
+      cwidth: 0,
+      stationList: [],
+      lineTypeList: [],
+      listSchedule: [],
+      totalMileage: 0,
+      minMileage: 0,
+      every: 0,
+      stationlineHeight: 0,
+      stationlineTwoHeight: 0,
+      everyLineType: 0,
+      lineTypeMinMileage: 0,
+      lineTypeTotalMileage: 0
     };
   },
+  updated: function updated() {
+    this.getStationList();
+    this.stationlineHeight = 238 + this.$refs.reflinebox.offsetHeight;
+  },
   created: function created() {
-    //alert(document.location.hostname);
-    this.getCompanyLists();
-    this.getTrainList();
-    this.getDangerType();
-    this.getDangerDetermine();
-    this.getAssigners();
-    this.getDataList();
+    this.getProjectProcessMap();
   },
 
   methods: {
-    handleSelect: function handleSelect(key, keyPath) {
-      if (key == 1) {
-        this.addPageShow = false;
-        this.listPageShow = true;
-        this.formData = {};
-        this.getDataList();
-      } else if (key == 2) {
-        this.addPageShow = true;
-        this.listPageShow = false;
-        this.peopleData = {};
-      } else {
-        this.addPageShow = false;
-        this.listPageShow = false;
-      }
-    },
-
-    //====列表数据
-    getDataList: function getDataList() {
-      var _this2 = this;
-
-      var page = this.page_cur;
-      var type = this.searchForm.type;
-      var danger_type = this.searchForm.danger_type;
-      var danger_determine = this.searchForm.danger_determine;
-      var loco_id = this.searchForm.loco_id;
-      var start_location = this.searchForm.start_location;
-      var end_location = this.searchForm.end_location;
-      var start_time = this.searchForm.start_time;
-      var end_time = this.searchForm.end_time;
-
-      // let array_time = this.searchForm.time_range;
-      // console.log(this.searchForm.time_range);
-      // if (array_time != null) {
-      //   start_time = this.searchForm.time_range[0];
-      //   end_time = this.searchForm.time_range[1];
-      // }
-      // console.log(start_time + "_" + end_time);
+    getProjectProcessMap: function getProjectProcessMap() {
+      var _this = this;
 
       this.request({
-        url: "/security/getSecurityPages",
-        method: "get",
-        params: {
-          page: page,
-          type: type,
-          danger_type: danger_type,
-          danger_determine: danger_determine,
-          loco_id: loco_id,
-          start_location: start_location,
-          end_location: end_location,
-          start_time: start_time,
-          end_time: end_time
-        }
-      }).then(function (res) {
-        var data = res.data;
-        if (data.status == 1) {
-          _this2.dataList = data.data.data;
-          _this2.page_cur = parseInt(data.data.current_page);
-          _this2.pageTotal = data.data.total;
-          _this2.page_size = data.data.per_page;
-          _this2.page_total = data.data.last_page;
-        }
-      });
-    },
-    pageChange: function pageChange(value) {
-      this.page_cur = value;
-      this.getDataList();
-    },
-    pageToFirst: function pageToFirst() {
-      this.pageChange(1);
-    },
-    pageToLast: function pageToLast() {
-      this.page_cur = this.page_total;
-      this.pageChange(this.page_total);
-    },
-    pageSearch: function pageSearch() {
-      var start_times = this.searchForm.start_time;
-      var end_times = this.searchForm.end_time;
-      if (start_times == null || end_times == null) {
-        this.$message({
-          message: "请选择完整的时间段",
-          type: "warning"
-        });
-      } else {
-        this.page_cur = 1;
-        this.getDataList();
-        this.goDetail(0);
-      }
-    },
-    resetSerach: function resetSerach() {
-      this.searchForm = {
-        type: 1,
-        danger_type: "",
-        danger_determine: "",
-        loco_id: "",
-        start_location: "",
-        end_location: "",
-        time_range: []
-      }, this.page_cur = 1;
-      this.getDataList();
-      this.goDetail(0);
-    },
-
-    //================事件表单操作
-    //获取公司
-    getCompanyLists: function getCompanyLists() {
-      var _this3 = this;
-
-      this.request({
-        url: "/apply/getCompanyLists",
+        url: "/project/projectProcessMap",
         method: "get"
-      }).then(function (res) {
-        var data = res.data;
-        if (data.status == 1) {
-          _this3.companyList = data.data;
-        }
-      });
-    },
-    selectCompanyList: function selectCompanyList(val) {
-      var _this4 = this;
-
-      this.$set(this.formData, "admin_id", "");
-      this.request({
-        url: "/user/getUserByDepart",
-        method: "get",
-        params: { id: val, type: 1 }
       }).then(function (response) {
         var data = response.data;
         if (data.status == 1) {
-          _this4.objSelectLists = data.data;
-        }
-      });
-    },
-
-    //获取机车
-    getTrainList: function getTrainList() {
-      var _this5 = this;
-
-      this.request({
-        url: "/dispatch/getLocomotiveLists",
-        method: "get"
-      }).then(function (res) {
-        var data = res.data;
-        if (data.status == 1) {
-          _this5.trainList = data.data;
-        }
-      });
-    },
-
-    //获取隐患类型
-    getDangerType: function getDangerType() {
-      var _this6 = this;
-
-      this.request({
-        url: "/security/getDangerType",
-        method: "get"
-      }).then(function (res) {
-        var data = res.data;
-        if (data.status == 1) {
-          _this6.dangerTypeList = data.data.data.reverse();
-        }
-      });
-    },
-
-    //获取隐患判定
-    getDangerDetermine: function getDangerDetermine() {
-      var _this7 = this;
-
-      this.request({
-        url: "/security/getDangerDetermine",
-        method: "get"
-      }).then(function (res) {
-        var data = res.data;
-        if (data.status == 1) {
-          _this7.dangerDetermineList = data.data.data.reverse();
-        }
-      });
-    },
-
-    //上传图片
-    uploadExceed: function uploadExceed() {
-      this.$message({
-        type: "warning",
-        message: "\u6700\u591A\u53EF\u4EE5\u4E0A\u4F205\u5F20\u56FE\u7247"
-      });
-    },
-    uploadSuccess: function uploadSuccess(res, file) {
-      // let result= URL.createObjectURL(file.raw);
-      console.log("图上传成功", res);
-      var upload_list_li = document.getElementsByClassName("el-upload-list")[0].children;
-      if (res.data.url != "") {
-        for (var i = 0; i < upload_list_li.length; i++) {
-          var li_a = upload_list_li[i];
-          var imgElement = document.createElement("img");
-          imgElement.setAttribute("src", "http://" + res.data.url);
-          imgElement.setAttribute("class", "upimgitem");
-          if (li_a.lastElementChild.nodeName !== "IMG") {
-            li_a.appendChild(imgElement);
-          }
-        }
-      }
-    },
-    uploadBefore: function uploadBefore(file) {
-      var isJPEG = file.type === "image/jpeg";
-      var isJPG = file.type === "image/jpg";
-      var isPNG = file.type === "image/png";
-      var isGIF = file.type === "image/gif";
-      var isLt2M = file.size / 1024 / 1024 < 2;
-
-      if (!isJPEG && !isJPG && !isPNG && !isGIF) {
-        this.$message.error("上传图片只能是 jpg  png  gif 格式!");
-      }
-      if (!isLt2M) {
-        this.$message.error("上传图片大小不能超过 2MB!");
-      }
-      return isJPEG || isJPG || isPNG || isGIF && isLt2M;
-    },
-
-    //保存
-    addEvent: function addEvent() {
-      var _this8 = this;
-
-      this.$refs["formRulesRef"].validate(function (valid) {
-        if (valid) {
-          var data = _this8.formData;
-          var img_urls = [];
-          var uls = document.getElementsByClassName("el-upload-list");
-          for (var i = 0; i < uls.length; i++) {
-            var imgs = uls[i].getElementsByClassName("upimgitem");
-            for (var j = 0; j < imgs.length; j++) {
-              //img_urls[i][j] = imgs[j].src;
-              img_urls.push({
-                src: imgs[j].src
-              });
+          _this.stationList = data.data.stations;
+          var linetypeJson = data.data.line_types;
+          _this.lineTypeList = linetypeJson;
+          for (var i = 0; i < linetypeJson.length; i++) {
+            if (linetypeJson[i].id == 1) {
+              _this.lineTypeMinMileage = parseInt(linetypeJson[i].start_flag) * 1000 + parseInt(linetypeJson[i].start_length);
+              _this.lineTypeTotalMileage = parseInt(linetypeJson[i].end_flag) * 1000 + parseInt(linetypeJson[i].end_length);
             }
           }
-          _this8.formData.file = img_urls;
-          _this8.request({
-            url: "/security/addSecurity",
-            method: "post",
-            data: data
-          }).then(function (res) {
-            var data = res.data;
-            if (data.status == 1) {
-              _this8.$message({
-                showClose: true,
-                message: "添加成功",
-                type: "success"
-              });
-              _this8.formData = {};
-              _this8.addPageShow = false;
-              _this8.listPageShow = true;
-              _this8.defaultActive = 1;
-              _this8.getDataList();
-            } else {
-              _this8.$message({
-                showClose: true,
-                message: "添加失败",
-                type: "error"
-              });
-            }
-          });
+          _this.listSchedule = data.data.datas;
         }
       });
     },
-    goDetail: function goDetail(id) {
-      var _this9 = this;
+    getStationList: function getStationList() {
+      var clientWidth = this.$refs.proWrapper.clientWidth;
+      var canvasWidth = clientWidth - 330;
+      this.cwidth = canvasWidth - 10;
+      var lineTypeBetwentMileage = this.lineTypeTotalMileage - this.lineTypeMinMileage;
+      this.everyLineType = (parseInt(this.cwidth) / lineTypeBetwentMileage).toFixed(5);
+      console.log("cwidth" + this.cwidth + "_" + this.everyLineType);
 
-      this.request({
-        url: "/security/getSecurityDetail",
-        method: "get",
-        params: { id: id }
-      }).then(function (res) {
-        var data = res.data;
-        if (data.status == 1) {
-          if (id == 0) {
-            _this9.eventTitle = "";
+      var canvas = this.$refs.canvasStation;
+      var cansText = canvas.getContext("2d");
+      canvas.width = canvasWidth;
+
+      cansText.moveTo(9, 250);
+      cansText.lineTo(canvasWidth, 250);
+      cansText.strokeStyle = "#fff";
+      cansText.lineWidth = 10;
+      cansText.stroke();
+      cansText.moveTo(9, 300);
+      cansText.lineTo(canvasWidth, 300);
+      cansText.stroke();
+
+      //Station=====================Station
+      var json = this.stationList;
+      //console.log(JSON.stringify(json))
+      //找到最大数与最小数
+      var first = json[0];
+      var end = json[0];
+      for (var i = 1; i < json.length; i++) {
+        var tmp = json[i];
+        if (first.start_flag > tmp.start_flag) first = tmp;
+        if (end.start_flag < tmp.start_flag) end = tmp;
+      }
+      console.log(stringify_default()(end));
+      // 总里程（最大数 - 最小数)
+      // let totalMileage =
+      //   (end.start_flag - first.start_flag) * 1000 +
+      //   end.start_length -
+      //   first.start_length;
+      // this.totalMileage = totalMileage;
+      // // console.log("总里程mileage：" + mileage);
+      // this.minMileage = first.start_flag * 1000 + first.start_length; //最小里程
+      // // console.log("最小里程minMileage：" + this.minMileage);
+
+
+      var totalMileage = this.lineTypeTotalMileage;
+      this.minMileage = this.lineTypeMinMileage;
+      //每米长度等于px
+      // let every = (parseInt(canvasWidth - 30) / totalMileage).toFixed(5);
+      var every = this.every = this.everyLineType;
+      //
+      var img = new Image();
+      img.src = __webpack_require__("mC5q");
+      img.onload = function () {
+        var start = 0;
+        for (var _i = 0; _i < json.length; _i++) {
+          // 绘制站点图
+          var total = parseInt(json[_i].start_flag) * 1000 + parseInt(json[_i].start_length);
+          // 计算当前站点的x轴
+          var startX = total * every;
+          if (_i == 0) start = startX;
+          cansText.drawImage(img, startX - start - 2, 126, 22, 120);
+          //站名
+          cansText.font = "16px Microsoft Yahei";
+          cansText.fillStyle = "#0AE39A";
+          var origin = json[_i].name.split("");
+          for (var x = 0; x < origin.length; x++) {
+            cansText.fillText(origin[x], startX - start + 2, 138 - origin.length * 19 + 19 * x);
+          }
+          //DK
+          var codes = "DK" + json[_i].start_flag + " +" + json[_i].start_length;
+          cansText.fillStyle = "#fff";
+          cansText.font = "12px  Microsoft Yahei";
+          cansText.fillTextVertical(codes, startX - start + 20, 165);
+        }
+      };
+
+      //Line=====================line
+      var lineJson = this.lineTypeList;
+      //console.log("lineJson:" + JSON.stringify(lineJson));
+      var lineData = [];
+      for (var _i2 = 0; _i2 < lineJson.length; _i2++) {
+        lineData.push(lineJson[_i2]);
+        var tfrom = lineJson[_i2].name + "   " + "DK" + lineJson[_i2].start_flag + "+" + lineJson[_i2].start_length,
+            tend = "DK" + lineJson[_i2].end_flag + "+" + lineJson[_i2].end_length;
+        var startLength = cansText.measureText(tfrom).width,
+            endLength = cansText.measureText(tend).width;
+
+        cansText.font = "12px Microsoft Yahei";
+        cansText.fillStyle = "#E8C640";
+        if (lineJson[_i2].id == 1) {
+          cansText.fillText(tfrom, 15, 270);
+          cansText.fillText(tend, parseInt(endLength + canvasWidth - 115), 270);
+        } else if (lineJson[_i2].id == 2) {
+          cansText.fillText(tfrom, 15, 320);
+          cansText.fillText(tend, parseInt(endLength + canvasWidth - 125), 320);
+          //3
+        } else if (lineJson[_i2].id == 3) {
+          var starttotal = parseInt(lineJson[_i2].start_flag) * 1000 + parseInt(lineJson[_i2].start_length);
+          if (starttotal == 0) {
+            starttotal = this.minMileage;
+          }
+          var endtotal = parseInt(lineJson[_i2].end_flag) * 1000 + parseInt(lineJson[_i2].end_length);
+          var startZB = (starttotal - this.minMileage) * every + 9;
+          var endZB = parseFloat((endtotal - starttotal) * every) + parseFloat(startZB);
+          cansText.moveTo(startZB, 350);
+          cansText.lineTo(endZB, 350);
+          cansText.stroke();
+          //
+          cansText.fillText(tfrom, startZB + 5, 370);
+          cansText.fillText(tend, endZB - 60, 370);
+          //4
+        } else if (lineJson[_i2].id == 4) {
+          var _starttotal = parseInt(lineJson[_i2].start_flag) * 1000 + parseInt(lineJson[_i2].start_length);
+          var _endtotal = parseInt(lineJson[_i2].end_flag) * 1000 + parseInt(lineJson[_i2].end_length);
+          var _startZB = (_starttotal - this.minMileage) * every + 10;
+          var _endZB = parseFloat((_endtotal - _starttotal) * every) + parseFloat(_startZB);
+          cansText.moveTo(_startZB, 400);
+          cansText.lineTo(_endZB, 400);
+          cansText.stroke();
+          //
+          var beteew = _endZB - _startZB;
+          if (beteew < 160) {
+            cansText.fillText(tfrom, _startZB - 150, 420);
+            cansText.fillText(tend, _endZB - 56, 420);
           } else {
-            _this9.eventTitle = " 发起新事件：";
-          }
-          _this9.eventDesc = data.data.description;
-          _this9.eventPictureList = data.data.file;
-        }
-      });
-      this.request({
-        url: "/security/getSecurtiyLogLists",
-        method: "get",
-        params: { sid: id }
-      }).then(function (res) {
-        var data = res.data;
-        if (data.status == 1) {
-          _this9.eventPeopleList = data.data;
-        }
-      });
-    },
-
-    //查看
-    goDetermine: function goDetermine(id) {
-      this.diaDangerFormVisible = true;
-      this.dangerIdValue = id;
-    },
-    setDetermineDialog: function setDetermineDialog() {
-      var _this10 = this;
-
-      var values = this.dangerTypeValue;
-      if (values == "") {
-        this.$message.error("请选择隐患类型");
-        return false;
-      }
-      var id = this.dangerIdValue;
-      var type = values;
-      this.request({
-        url: "/security/securityJudge",
-        method: "post",
-        data: { sid: id, type: type }
-      }).then(function (res) {
-        var data = res.data;
-        if (data.status == 1) {
-          _this10.$message({
-            showClose: true,
-            message: "设置成功",
-            type: "success"
-          });
-          _this10.diaDangerFormVisible = false;
-          _this10.addPageShow = false;
-          _this10.listPageShow = true;
-          _this10.getDataList();
-        } else {
-          _this10.$message.error("设置失败，请稍后再试");
-        }
-      });
-    },
-
-    //===============人员指派
-    //上传图片
-    uploadThreeExceed: function uploadThreeExceed() {
-      this.$message({
-        type: "warning",
-        message: "\u6700\u591A\u53EF\u4EE5\u4E0A\u4F203\u5F20\u56FE\u7247"
-      });
-    },
-    uploadThreeSuccess: function uploadThreeSuccess(res, file) {
-      console.log("图上传成功", res);
-      var upload_list_li = document.getElementsByClassName("el-upload-list")[1].children;
-      if (res.data.url != "") {
-        for (var i = 0; i < upload_list_li.length; i++) {
-          var li_a = upload_list_li[i];
-          var imgElement = document.createElement("img");
-          imgElement.setAttribute("src", "http://" + res.data.url);
-          imgElement.setAttribute("class", "upimgitems");
-          if (li_a.lastElementChild.nodeName !== "IMG") {
-            li_a.appendChild(imgElement);
+            cansText.fillText(tfrom, _startZB, 420);
+            cansText.fillText(tend, _endZB - 55, 420);
           }
         }
       }
+      //
     },
 
-    //获取人员
-    getAssigners: function getAssigners() {
-      var _this11 = this;
-
-      this.request({
-        url: "/security/getAssigners",
-        method: "get"
-      }).then(function (res) {
-        var data = res.data;
-        if (data.status == 1) {
-          _this11.assignersList = data.data;
+    lineFill: function lineFill(paras) {
+      // paras = [
+      //   {
+      //     id: 11,
+      //     pro_id: 59,
+      //     pro_name: "\u91cc\u7a0b\u4f5c\u4e1a0414",
+      //     line_type: 1,
+      //     start_flag: "38",
+      //     start_length: "940",
+      //     end_flag: "42",
+      //     end_length: "410"
+      //   }
+      // ];
+      //console.log("everyLineType：" + this.everyLineType);
+      var result = "";
+      var start = 0;
+      for (var i = 0; i < paras.length; i++) {
+        var starMileage = parseInt(paras[i].start_flag) * 1000 + parseInt(paras[i].start_length);
+        var endMileage = parseInt(paras[i].end_flag) * 1000 + parseInt(paras[i].end_length);
+        var leftPosition = parseFloat(starMileage - this.lineTypeMinMileage) * this.everyLineType;
+        var widthPosition = parseFloat(endMileage - starMileage) * this.everyLineType;
+        if (starMileage == 0) {
+          leftPosition = 0;
+          widthPosition = parseFloat(endMileage - this.lineTypeMinMileage) * this.everyLineType;
         }
-      });
-    },
-    goAssign: function goAssign(id) {
-      this.diaPeopleFormVisible = true;
-      this.dangerIdValue = id;
-    },
-    saveAssignDialog: function saveAssignDialog() {
-      var _this12 = this;
 
-      this.$refs["peopleRulesRef"].validate(function (valid) {
-        if (valid) {
-          var data = _this12.peopleData;
-          var user_id = _this12.peopleData.user_id;
-          var sid = _this12.dangerIdValue;
-          var img_urls = [];
-          var uls = document.getElementsByClassName("el-upload-list");
-          for (var i = 0; i < uls.length; i++) {
-            var imgs = uls[i].getElementsByClassName("upimgitems");
-            for (var j = 0; j < imgs.length; j++) {
-              img_urls.push({
-                src: imgs[j].src
-              });
-            }
-          }
-          console.log("img_urls：" + img_urls);
-          _this12.request({
-            url: "/security/assignPeople",
-            method: "POST",
-            header: { "Content-Type": "application/x-www-form-urlencoded" },
-            data: { user_id: user_id, sid: sid, file: img_urls }
-          }).then(function (res) {
-            var data = res.data;
-            if (data.status == 1) {
-              _this12.$message({
-                showClose: true,
-                message: "添加成功",
-                type: "success"
-              });
-              _this12.diaPeopleFormVisible = false;
-              _this12.addPageShow = false;
-              _this12.listPageShow = true;
-              _this12.goDetail(_this12.dangerIdValue);
-            } else {
-              _this12.$message({
-                showClose: true,
-                message: "添加失败",
-                type: "error"
-              });
-            }
-          });
-        }
-      });
-    },
-    changeTime: function changeTime(time) {
-      if (time !== null && time !== undefined && time !== "") {
-        return "<span style='display:block'>" + time.substring(0, 10) + "</span><span style='display:block'>" + time.substring(time.length - 8) + "</span>";
-      } else {
-        return "";
+        var titles = "DK " + paras[i].start_flag + "+" + paras[i].start_length + "~" + paras[i].end_flag + "+" + paras[i].end_length;
+        result += "<i title='" + titles + "' style='width:" + widthPosition + "px;left:" + leftPosition + "px'></i>";
       }
+      return result;
     }
-    //
-
+  },
+  mounted: function mounted() {
+    window.addEventListener("resize", this.getStationList);
+  },
+  destroyed: function destroyed() {
+    window.removeEventListener("resize", this.getStationList);
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-5d8156a1","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/security/index.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"security"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"default-active":_vm.defaultActive,"mode":"horizontal"},on:{"select":_vm.handleSelect}},[_c('li',{staticClass:"ptitle"},[_c('img',{attrs:{"src":__webpack_require__("k0DF")}}),_vm._v("安全管理\n      ")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"1"}},[_vm._v("事件管理")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"2"}},[_vm._v("添加事件")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.addPageShow),expression:"addPageShow"}],staticClass:"addpage"},[_c('div',{staticClass:"security-title"},[_vm._v("安全事件添加")]),_vm._v(" "),_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"formbox"},[_c('el-form',{ref:"formRulesRef",staticClass:"el-form-custom",attrs:{"label-width":"120px","label-position":"right","model":_vm.formData,"rules":_vm.formRules}},[_c('el-form-item',{attrs:{"label":"添加事件公司：","prop":"depart_id"}},[_c('el-select',{attrs:{"placeholder":"请选择公司"},on:{"change":function($event){_vm.selectCompanyList($event)}},model:{value:(_vm.formData.depart_id),callback:function ($$v) {_vm.$set(_vm.formData, "depart_id", $$v)},expression:"formData.depart_id"}},_vm._l((_vm.companyList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"人员：","prop":"admin_id"}},[_c('el-select',{attrs:{"placeholder":"请选择人员："},model:{value:(_vm.formData.admin_id),callback:function ($$v) {_vm.$set(_vm.formData, "admin_id", $$v)},expression:"formData.admin_id"}},_vm._l((this.objSelectLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"安全事件标题：","prop":"title"}},[_c('el-input',{attrs:{"maxlength":"30","show-word-limit":""},model:{value:(_vm.formData.title),callback:function ($$v) {_vm.$set(_vm.formData, "title", $$v)},expression:"formData.title"}})],1),_vm._v(" "),_c('el-form-item',{staticClass:"textarea1",attrs:{"label":"安全事件地址：","prop":"address"}},[_c('el-input',{attrs:{"type":"textarea","maxlength":"100","show-word-limit":""},model:{value:(_vm.formData.address),callback:function ($$v) {_vm.$set(_vm.formData, "address", $$v)},expression:"formData.address"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"安全事件描述：","prop":"description"}},[_c('el-input',{attrs:{"type":"textarea","maxlength":"255","show-word-limit":""},model:{value:(_vm.formData.description),callback:function ($$v) {_vm.$set(_vm.formData, "description", $$v)},expression:"formData.description"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"相关图片："}},[_c('p',{staticStyle:{"color":"#3655a5"}},[_vm._v("最多可以上传5张图片")]),_vm._v(" "),_c('el-upload',{staticClass:"uploader el-upload-list--picture-card",attrs:{"action":_vm.uploadAction,"limit":5,"list-type":"picture-card","auto-upload":true,"on-exceed":_vm.uploadExceed,"before-upload":_vm.uploadBefore,"on-success":_vm.uploadSuccess}},[_c('i',{staticClass:"el-icon-plus"})]),_vm._v(" "),_c('el-dialog',{attrs:{"visible":_vm.dialogVisible},on:{"update:visible":function($event){_vm.dialogVisible=$event}}},[_c('img',{attrs:{"width":"100%","src":_vm.dialogImageUrl,"alt":""}})])],1),_vm._v(" "),_c('el-form-item',[_c('el-button',{attrs:{"type":"primary"},on:{"click":_vm.addEvent}},[_vm._v("信息确认无误，点击上传")])],1)],1)],1)])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.listPageShow),expression:"listPageShow"}],staticClass:"listpage"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{attrs:{"model":_vm.searchForm,"inline":true}},[_c('el-form-item',{staticStyle:{"display":"none"},attrs:{"label":"事件类型"}},[_c('el-select',{model:{value:(_vm.searchForm.type),callback:function ($$v) {_vm.$set(_vm.searchForm, "type", $$v)},expression:"searchForm.type"}},[_c('el-option',{attrs:{"label":"人员提交","value":1}}),_vm._v(" "),_c('el-option',{attrs:{"label":"机车提交","value":2}})],1)],1),_vm._v(" "),(_vm.searchForm.type==2)?_c('span',[_c('el-form-item',{attrs:{"label":"隐患类型"}},[_c('el-select',{model:{value:(_vm.searchForm.danger_type),callback:function ($$v) {_vm.$set(_vm.searchForm, "danger_type", $$v)},expression:"searchForm.danger_type"}},_vm._l((_vm.dangerTypeList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"隐患判定"}},[_c('el-select',{model:{value:(_vm.searchForm.danger_determine),callback:function ($$v) {_vm.$set(_vm.searchForm, "danger_determine", $$v)},expression:"searchForm.danger_determine"}},_vm._l((this.dangerDetermineList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"机车"}},[_c('el-select',{model:{value:(_vm.searchForm.loco_id),callback:function ($$v) {_vm.$set(_vm.searchForm, "loco_id", $$v)},expression:"searchForm.loco_id"}},_vm._l((this.trainList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{staticClass:"el-form-item-inline",attrs:{"label":"位置范围"}},[_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.searchForm.start_location),callback:function ($$v) {_vm.$set(_vm.searchForm, "start_location", $$v)},expression:"searchForm.start_location"}}),_vm._v(" "),_c('b',[_vm._v("~")]),_vm._v(" "),_c('el-input',{attrs:{"autocomplete":"off"},model:{value:(_vm.searchForm.end_location),callback:function ($$v) {_vm.$set(_vm.searchForm, "end_location", $$v)},expression:"searchForm.end_location"}})],1)],1):_vm._e(),_vm._v(" "),_c('el-form-item',{attrs:{"label":"发现时间段"}},[_c('el-date-picker',{attrs:{"picker-options":_vm.pickerOptionsStart,"type":"datetime","format":"yyyy-MM-dd HH:mm","placeholder":"开始时间","clearable":""},model:{value:(_vm.searchForm.start_time),callback:function ($$v) {_vm.$set(_vm.searchForm, "start_time", $$v)},expression:"searchForm.start_time"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"-"}},[_c('el-date-picker',{attrs:{"picker-options":_vm.pickerOptionsEnd,"type":"datetime","format":"yyyy-MM-dd HH:mm","placeholder":"结束时间","clearable":""},model:{value:(_vm.searchForm.end_time),callback:function ($$v) {_vm.$set(_vm.searchForm, "end_time", $$v)},expression:"searchForm.end_time"}})],1),_vm._v(" "),_c('el-form-item',{staticClass:"form-so"},[_c('label',{staticClass:"el-form-item__label"}),_vm._v(" "),_c('el-button',{attrs:{"size":"small","icon":"el-icon-search","type":"primary"},on:{"click":_vm.pageSearch}},[_vm._v("查询")]),_vm._v(" "),_c('el-button',{attrs:{"size":"small","plain":""},on:{"click":_vm.resetSerach}},[_vm._v("重置")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{attrs:{"data":_vm.dataList}},[_c('el-table-column',{attrs:{"prop":"id","label":"序号"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"title","label":"事件名称"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"address","label":"事件地址","show-overflow-tooltip":""}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"type","label":"事件类型"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_vm._v(_vm._s(scope.row.type==1?"人员提交":"机车提交"))]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"danger_determine_name","label":"隐患判定"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"status","label":"状态"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.status==1)?_c('span',[_vm._v("新事件")]):(scope.row.status==2)?_c('span',[_vm._v("处理中")]):_c('span',[_vm._v("已完成")])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"当前情况","prop":"current_status"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"admin","label":"提交者"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"create_time","label":"发布时间"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('p',{domProps:{"innerHTML":_vm._s(_vm.changeTime(scope.row.create_time))}})]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"200"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.goDetail(scope.row.id)}}},[_vm._v("查看")]),_vm._v(" "),_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.goAssign(scope.row.id)}}},[_vm._v("指派")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.goDetermine(scope.row.id)}}},[_vm._v("隐患判定")])],1)]}}])})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.dataList.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","page-size":this.page_size,"current-page":this.page_cur,"total":this.pageTotal,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.pageChange}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.pageToFirst}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.pageToLast}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1)],1)]),_vm._v(" "),_c('div',{staticClass:"listpagedetail"},[_c('div',{staticClass:"detailleft"},[_c('div',{staticClass:"security-title"},[_vm._v("施工问题详情")]),_vm._v(" "),_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"steps-info"},[_c('h3',[_vm._v(_vm._s(_vm.eventTitle))]),_vm._v("\n              "+_vm._s(_vm.eventDesc)+"\n              "),_c('div',{staticClass:"imgs"},_vm._l((_vm.eventPictureList),function(item){return _c('img',{key:item.id,attrs:{"src":item.src}})}))])])]),_vm._v(" "),_c('div',{staticClass:"detailright"},[_c('div',{staticClass:"security-title"},[_vm._v("处理进度")]),_vm._v(" "),_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"steps-section"},[_c('ul',{staticClass:"timeline"},_vm._l((_vm.eventPeopleList),function(item){return _c('li',{key:item.id},[_c('div',{staticClass:"desc"},[_vm._v(_vm._s(item.description))]),_vm._v(" "),_c('div',{staticClass:"time"},[_vm._v("\n                    "+_vm._s(item.user_name)+"\n                    "),_c('p',[_vm._v(_vm._s(item.create_time))])])])}))])])])]),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-dangers",attrs:{"width":"400px","close-on-click-modal":false,"title":"隐患类型设置","visible":_vm.diaDangerFormVisible},on:{"update:visible":function($event){_vm.diaDangerFormVisible=$event}}},[_c('el-form',{staticClass:"el-form-custom"},[_c('el-form-item',[_c('el-radio-group',{model:{value:(_vm.dangerTypeValue),callback:function ($$v) {_vm.dangerTypeValue=$$v},expression:"dangerTypeValue"}},_vm._l((_vm.dangerDetermineList),function(item){return _c('el-radio',{key:item.id,attrs:{"label":item.id,"border":""}},[_vm._v(_vm._s(item.name))])}))],1),_vm._v(" "),_c('div',{staticClass:"blank"})],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.diaDangerFormVisible = false}}},[_vm._v("关闭")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.setDetermineDialog()}}},[_vm._v("确定")])],1)],1),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-danger",attrs:{"width":"700px","close-on-click-modal":false,"title":"指派人员","visible":_vm.diaPeopleFormVisible},on:{"update:visible":function($event){_vm.diaPeopleFormVisible=$event}}},[_c('el-form',{ref:"peopleRulesRef",staticClass:"el-form-custom",attrs:{"model":_vm.peopleData,"rules":_vm.peopleRules}},[_c('el-form-item',{attrs:{"label":"指派人员：","prop":"user_id"}},[_c('el-select',{model:{value:(_vm.peopleData.user_id),callback:function ($$v) {_vm.$set(_vm.peopleData, "user_id", $$v)},expression:"peopleData.user_id"}},_vm._l((this.assignersList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"相关图片："}},[_c('p',{staticStyle:{"color":"#3655a5"}},[_vm._v("最多可以上传3张图片")]),_vm._v(" "),_c('el-upload',{staticClass:"uploaderthree el-upload-list--picture-card",attrs:{"action":_vm.uploadAction,"limit":3,"list-type":"picture-card","auto-upload":true,"before-upload":_vm.uploadBefore,"on-exceed":_vm.uploadThreeExceed,"on-success":_vm.uploadThreeSuccess}},[_c('i',{staticClass:"el-icon-plus"})]),_vm._v(" "),_c('el-dialog',{attrs:{"visible":_vm.dialogVisible},on:{"update:visible":function($event){_vm.dialogVisible=$event}}},[_c('img',{attrs:{"width":"100%","src":_vm.dialogImageUrl,"alt":""}})])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"备注描述：","prop":"remark"}},[_c('el-input',{attrs:{"type":"textarea"},model:{value:(_vm.peopleData.remark),callback:function ($$v) {_vm.$set(_vm.peopleData, "remark", $$v)},expression:"peopleData.remark"}})],1),_vm._v(" "),_c('div',{staticClass:"blank"})],1),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.diaPeopleFormVisible = false}}},[_vm._v("关闭")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.saveAssignDialog()}}},[_vm._v("确定")])],1)],1)],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.setPageShow),expression:"setPageShow"}],staticClass:"setpage"},[_vm._v("setPageShow")])])])}
+
+//prototype
+CanvasRenderingContext2D.prototype.fillTextVertical = function (text, x, y) {
+  var context = this;
+  var canvas = context.canvas;
+
+  var arrText = text.split("");
+  var arrWidth = arrText.map(function (letter) {
+    return context.measureText(letter).width;
+  });
+
+  var align = context.textAlign;
+  var baseline = context.textBaseline;
+
+  if (align == "left") {
+    x = x + Math.max.apply(null, arrWidth) / 2;
+  } else if (align == "right") {
+    x = x - Math.max.apply(null, arrWidth) / 2;
+  }
+  if (baseline == "bottom" || baseline == "alphabetic" || baseline == "ideographic") {
+    y = y - arrWidth[0] / 2;
+  } else if (baseline == "top" || baseline == "hanging") {
+    y = y + arrWidth[0] / 2;
+  }
+
+  context.textAlign = "center";
+  context.textBaseline = "middle";
+
+  // 开始逐字绘制
+  arrText.forEach(function (letter, index) {
+    // 确定下一个字符的纵坐标位置
+    var letterWidth = arrWidth[index];
+    // 是否需要旋转判断
+    var code = letter.charCodeAt(0);
+    if (code <= 256) {
+      context.translate(x, y);
+      // 英文字符，旋转90°
+      context.rotate(90 * Math.PI / 180);
+      context.translate(-x, -y);
+    } else if (index > 0 && text.charCodeAt(index - 1) < 256) {
+      // y修正
+      y = y + arrWidth[index - 1] / 2;
+    }
+    context.fillText(letter, x, y);
+    // 旋转坐标系还原成初始态
+    context.setTransform(1, 0, 0, 1, 0, 0);
+    // 确定下一个字符的纵坐标位置
+    var letterWidth = arrWidth[index];
+    y = y + letterWidth;
+  });
+  // 水平垂直对齐方式还原
+  context.textAlign = align;
+  context.textBaseline = baseline;
+};
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-61e5320f","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/progress/index.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"proWrapper",attrs:{"id":"progress"}},[_c('div',{staticClass:"progress"},[_c('div',{staticClass:"sttitle"},[_vm._v("施工形象进度图")]),_vm._v(" "),_c('div',{staticClass:"station"},[_c('div',{staticClass:"stationlineleft",style:({height:_vm.stationlineHeight  + 'px'})}),_vm._v(" "),_c('div',{staticClass:"stationlineright",style:({height:_vm.stationlineHeight  + 'px'})}),_vm._v(" "),_c('canvas',{ref:"canvasStation",attrs:{"id":"canvasStation","height":"480"}},[_c('p',[_vm._v("您的系统不支持此程序!")])])]),_vm._v(" "),_c('div',{ref:"reflinebox",staticClass:"linebox"},[_c('table',{staticClass:"lineTable"},_vm._l((_vm.listSchedule),function(item){return (item.lines.name !='')?_c('tr',{key:item.id,staticClass:"linebar"},[_c('td',[_c('div',{staticClass:"tdtitle"},[_vm._v(_vm._s(item.name))])]),_vm._v(" "),_c('td',{staticClass:"tdbar"},_vm._l((item.lines),function(lines){return _c('div',{key:lines.id,staticClass:"bar"},[_c('span',[_vm._v(_vm._s(lines.name))]),_vm._v(" "),_c('em',{style:({width: _vm.cwidth + 'px' }),domProps:{"innerHTML":_vm._s(_vm.lineFill(lines.lists))}})])}))]):_vm._e()})),_vm._v(" "),_c('div',{staticClass:"clear"})])])])}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var views_security = (esExports);
-// CONCATENATED MODULE: ./src/views/security/index.vue
+/* harmony default export */ var views_progress = (esExports);
+// CONCATENATED MODULE: ./src/views/progress/index.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("u5Hp")
+  __webpack_require__("2y0B")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -909,37 +383,16 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  security,
-  views_security,
+  progress,
+  views_progress,
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 
-/* harmony default export */ var src_views_security = __webpack_exports__["default"] = (Component.exports);
+/* harmony default export */ var src_views_progress = __webpack_exports__["default"] = (Component.exports);
 
-
-/***/ }),
-
-/***/ "k0DF":
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAqCAYAAAA0yJLWAAAB/klEQVRYhe3Y3XHiMBAAYJfgElwCHcDrreQZdUAKuJX1wozfUAcpIemAdMC9rnQa0UHoIO6Ae7iDIw441g+BmaCZfZW/kbXalYoiYsDCT5ikOUi35GjX0NArk2bH0a4ZmieQblmjmQrty5j5B4fQvqzRTEG6JUPzxBrjmTS7kOCNfeNo1yDdkkmaw8JPRgNqNFMmaV439pGjXfPGvoUCgqIxHpBWh1VtffUf09jHi348IKChV9H6qrg25EOgUzeH4or0HXVH3VHfA4VOCe1Lhk7dBAqUezguaxxpczUUoO1+/Pwt+oV+31l8OQrQdv2uQGhfAtIq6fftJxbal7Uyz6mgz9qfUSiuSL9rcUbAYkEBK0WrD73XACwFFLSn+plzDpYKCt7on8KQtqmgYNQQjCNt+peEGFAU6hysD4KFn8T2+NHn1ClYDlAS6hwsFcSk2QllZ2drUCgsB+iAYpJeUibZ34pTMQeU9mUByj3kmjA1ONLmb+a0vro25oA6LmkhhfZSAWi7d0fLLaxWv/AXRVEUXJG++l46NVIzMfa3DT4PCe3LlHMrO+irYaNBx7CLZuSJNmf0YOgUoO3yougl+S1UtL7KsmpI2/5VK3mI1lcg7a+oXzXQ6uTBKTsbdXQgbU8eiBfF/XsTOM5UQNvVyjxHb+KswNZXQtlZrvn+AFIMAHEisPysAAAAAElFTkSuQmCC"
-
-/***/ }),
-
-/***/ "u5Hp":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("B6aP");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("d849be80", content, true);
 
 /***/ })
 

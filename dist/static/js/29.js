@@ -1,6 +1,20 @@
 webpackJsonp([29],{
 
-/***/ "qtvA":
+/***/ "UegS":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("Vvwm");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("408ea378", content, true);
+
+/***/ }),
+
+/***/ "Vvwm":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("FZ+f")(false);
@@ -84,8 +98,9 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
           myChart.getDom().style.height = document.body.clientHeight - 280 + "px";
           //站点
           _this.mark_line = JSON.parse(stringify_default()(resdata.data.y).replace(/value/g, "yAxis"));
+          console.log(_this.mark_line);
           var minLineNum = Math.min.apply(Math, _this.mark_line.map(function (item) {
-            return parseInt(item.yAxis + 2);
+            return parseInt(item.yAxis - 2);
           }));
           var maxLineNum = Math.max.apply(Math, _this.mark_line.map(function (item) {
             return parseInt(item.yAxis + 2);
@@ -93,22 +108,6 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
           //A1 A2 A3 A4
           var typeData = [];
           var dataTypeArr = resdata.data.data;
-          // let dataTypeArr2 = [
-          //   {
-          //     type: "A1",
-          //     lists: [
-          //       { name: "2020-04-08 05:00:00", value: 21.003 },
-          //       { name: "2020-04-08 10:00:00", value: 32.9 }
-          //     ]
-          //   },
-          //   {
-          //     type: "A2",
-          //     lists: [
-          //       { name: "2020-03-30 12:00:00", value: 21.003 },
-          //       { name: "2020-03-30 16:00:00", value: 32.9 }
-          //     ]
-          //   }
-          // ];
           dataTypeArr.forEach(function (item) {
             var jlist = [];
             item.lists.forEach(function (item) {
@@ -143,7 +142,7 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
             seriesData.push({
               name: typeData[k].name,
               type: "scatter",
-              symbolSize: 10,
+              symbolSize: 8,
               itemStyle: { normal: { color: _this.kcolor[k] } },
               data: typeData[k].lists
             });
@@ -264,14 +263,14 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-4ce3c71c","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/apply/daychart.vue
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-5417c278","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/apply/daychart.vue
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app-apply-chart"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"router":"","default-active":"daychart","mode":"horizontal"}},[_c('li',{staticClass:"ptitle"},[_vm._v(_vm._s(_vm.projectName))]),_vm._v(" "),_c('el-submenu',{attrs:{"index":"1"}},[_c('template',{slot:"title"},[_vm._v("日班计划")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"daychart"}},[_vm._v("日班图表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"apply"}},[_vm._v("日班列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"conflictcheck"}},[_vm._v("冲突检测")])],2),_vm._v(" "),_c('el-menu-item',[_c('router-link',{attrs:{"to":{name:'weekplan'}}},[_vm._v("周计划")])],1)],1)],1),_vm._v(" "),_vm._m(0)])}
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app-page-chart"},[_c('div',{staticClass:"maintitle"},[_vm._v("日班图表")]),_vm._v(" "),_c('div',{staticStyle:{"height":"500px","width":"100%"},attrs:{"id":"main"}})])}]
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ var apply_daychart = (esExports);
 // CONCATENATED MODULE: ./src/views/apply/daychart.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("zBxF")
+  __webpack_require__("UegS")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -297,20 +296,6 @@ var Component = normalizeComponent(
 
 /* harmony default export */ var views_apply_daychart = __webpack_exports__["default"] = (Component.exports);
 
-
-/***/ }),
-
-/***/ "zBxF":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("qtvA");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("41089a14", content, true);
 
 /***/ })
 
