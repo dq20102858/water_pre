@@ -115,6 +115,7 @@
             <el-table-column prop="id" label="序号"></el-table-column>
             <el-table-column prop="name" label="姓名"></el-table-column>
             <el-table-column prop="company" label="公司名称"></el-table-column>
+             <el-table-column prop="line" label="线别"></el-table-column>
             <el-table-column label="开始位置">
               <template slot-scope="scope">
                 <span>DK{{scope.row.start_flag}} + {{scope.row.start_length}}</span>
@@ -125,7 +126,7 @@
                 <span>DK{{scope.row.end_flag}} + {{scope.row.end_length}}</span>
               </template>
             </el-table-column>
-            <el-table-column  label="在线时长"></el-table-column>
+            <el-table-column prop="time_length"  label="在线时长"></el-table-column>
             <el-table-column prop="num" label="出入场次数查询"></el-table-column>
           </el-table>
           <div class="app-pagination">
