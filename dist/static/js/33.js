@@ -1,121 +1,12 @@
 webpackJsonp([33],{
 
-/***/ "aJNJ":
+/***/ "AJau":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/plan/index.vue
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/project/detaillist.vue
 //
 //
 //
@@ -356,169 +247,295 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ var plan = ({
+/* harmony default export */ var detaillist = ({
   data: function data() {
-    var _this = this;
-
     return {
-      searchForm: {},
-      pickerOptionsStart: {
-        disabledDate: function disabledDate(time) {
-          if (_this.searchForm.end_time) {
-            return time.getTime() > new Date(_this.searchForm.end_time).getTime();
-          }
-        }
+      detailListPages: [],
+      detailPage: 1,
+      detailTotal: 0,
+      detailPageSize: 20,
+      detailPage_total: 0,
+      searchForm: {
+        is_finish: -1
       },
-      pickerOptionsEnd: {
-        disabledDate: function disabledDate(time) {
-          if (_this.searchForm.start_time) {
-            return time.getTime() < new Date(_this.searchForm.start_time).getTime();
-          }
-        }
+      dialogAddHistoryVisible: false,
+      historyData: {},
+      historyDataType: 1,
+      historyTitle: "",
+      historyRules: {
+        pro_id: [{ required: true, message: "请选择作业", trigger: "change" }],
+        line_type: [{ required: true, message: "请选择线别", trigger: "change" }],
+        start_flag: [{ required: true, message: "请输入计划里程", trigger: "blur" }],
+        t_start_flag: [{ required: true, message: "请输入实际里程", trigger: "blur" }],
+        plan_time: [{ required: true, message: "请选择日期", trigger: "change" }],
+        plan_num: [{ required: true, message: "请输入计划数量", trigger: "blur" }, {
+          pattern: /^\d{1,5}$/,
+          message: "请输入1-5位正整数",
+          trigger: "blur"
+        }],
+        true_num: [{
+          pattern: /^\d{1,5}$/,
+          message: "请输入1-5位正整数",
+          trigger: "blur"
+        }],
+        is_finish: [{ required: true, message: "请选择是否完成", trigger: "change" }],
+        remark: [{ min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }]
       },
-      stationList: [],
-      end_station: [],
-      dataList: [],
-      dataListItem: [],
-      page_cur: 1,
-      pageTotal: 0,
-      page_size: 20,
-      page_total: 0,
-      dialogFormVisible: false,
-      dialogTitle: ""
+      workLists: [],
+      workLineTypeList: [],
+      lineTypeListDes: [],
+      lineTypeDes: "",
+      lineTypeStartTotal: 0,
+      lineTypeEndTotal: 0,
+      addShow: true
     };
   },
+  mounted: function mounted() {
+    document.querySelector("#app-menu-items #menu_project").classList.add("is-active");
+  },
   created: function created() {
-    this.getStationList();
-    this.getDataList();
+    this.getWorkList();
+    this.getDetailLists();
   },
 
   methods: {
-    getStationList: function getStationList() {
+    //获取分页列表数据
+    getDetailLists: function getDetailLists() {
+      var _this = this;
+
+      var page = this.detailPage;
+      var pro_id = this.searchForm.work;
+      var time_range = this.searchForm.time_range;
+      // let is_finish =-1;
+      var is_finish = this.searchForm.is_finish;
+      if (this.searchForm.is_finish == -1) {
+        is_finish = "";
+      }
+      console.log(this.searchForm);
+      this.request({
+        url: "/project/getPlanPages",
+        method: "get",
+        params: { page: page, pro_id: pro_id, time_range: time_range, is_finish: is_finish }
+      }).then(function (response) {
+        var data = response.data;
+        if (data.status == 1) {
+          _this.detailListPages = data.data.data;
+          _this.detailPage = parseInt(data.data.current_page);
+          _this.detailTotal = parseInt(data.data.total);
+          _this.detailPageSize = data.data.per_page;
+          _this.detailPage_total = parseInt(data.data.last_page);
+        }
+      });
+    },
+    detailPageChange: function detailPageChange(value) {
+      this.detailPage = value;
+      this.getDetailLists();
+    },
+    detailPageFirst: function detailPageFirst() {
+      this.detailPageChange(1);
+    },
+    detailPageLast: function detailPageLast() {
+      this.detailPage = this.detailPage_total;
+      this.detailPageChange(this.detailPage_total);
+    },
+    detailSearchPage: function detailSearchPage() {
+      this.detailPage = 1;
+      this.getDetailLists();
+    },
+
+
+    //获取二级分类
+    getWorkList: function getWorkList() {
       var _this2 = this;
 
       this.request({
-        url: "/apply/getStationLists",
+        url: "/project/getWorkTypeList",
         method: "get"
-      }).then(function (res) {
-        var data = res.data;
+      }).then(function (response) {
+        var data = response.data;
         if (data.status == 1) {
-          _this2.stationList = data.data;
+          _this2.workLists = data.data;
         }
       });
     },
-    getDataList: function getDataList() {
+    changeWorkListItem: function changeWorkListItem(value) {
+      var that = this;
+      this.$set(this.historyData, "line_type", "");
+      this.lineTypeDes = "";
+      var selectedLineTypeLists = [];
+      var selectedLineTypeDes = [];
+
+      this.workLists.forEach(function (item) {
+        if (item.id == value) {
+          selectedLineTypeLists = item.line_type_lists;
+          selectedLineTypeDes = item.des;
+          that.historyDataType = item.type;
+        }
+      });
+      this.workLineTypeList = selectedLineTypeLists;
+      this.lineTypeListDes = selectedLineTypeDes;
+    },
+    changeWorkLineTypeList: function changeWorkLineTypeList(value) {
       var _this3 = this;
 
-      var page = this.page_cur;
-      var start_station = this.searchForm.start_station;
-      var end_station = this.searchForm.end_station;
-      var type = this.searchForm.type;
-      var start_time = this.searchForm.start_time;
-      var end_time = this.searchForm.end_time;
-      this.request({
-        url: "/dayplan/getDayplanLists",
-        method: "get",
-        params: {
-          page: page,
-          start_station: start_station,
-          end_station: end_station,
-          type: type,
-          start_time: start_time,
-          end_time: end_time
-        }
-      }).then(function (res) {
-        var data = res.data;
-        if (data.status == 1) {
-          _this3.dataList = data.data.data;
-          _this3.page_cur = parseInt(data.data.current_page);
-          _this3.pageTotal = data.data.total;
-          _this3.page_size = data.data.per_page;
-          _this3.page_total = data.data.last_page;
+      this.lineTypeListDes.map(function (item, i) {
+        if (item.line_type == value) {
+          _this3.lineTypeDes = item.tip;
+          _this3.lineTypeStartTotal = item.total_start_flag * 1000 + parseInt(item.total_start_length);
+          _this3.lineTypeEndTotal = item.total_end_flag * 1000 + parseInt(item.total_end_length);
+          console.log("lineTypeStartTotal：" + _this3.lineTypeStartTotal + " lineTypeEndTotal：" + _this3.lineTypeEndTotal);
+          //console.log(item.tip);
         }
       });
     },
-    pageChange: function pageChange(value) {
-      this.page_cur = value;
-      this.getDataList();
-    },
-    pageToFirst: function pageToFirst() {
-      this.pageChange(1);
-    },
-    pageToLast: function pageToLast() {
-      this.page_cur = this.page_total;
-      this.pageChange(this.page_total);
-    },
-    pageSearchEvent: function pageSearchEvent() {
-      this.page_cur = 1;
-      this.getDataList();
-    },
-    resetSerach: function resetSerach() {
-      this.searchForm = {
-        start_station: "",
-        end_station: "",
-        type: "",
-        start_time: "",
-        end_time: ""
+
+    //打开添加弹窗
+    addHistory: function addHistory() {
+      this.dialogAddHistoryVisible = true;
+      this.historyTitle = "添加历史记录";
+      this.addShow = true;
+      this.lineTypeDes = "";
+      this.historyData = {
+        pro_id: "",
+        line_type: "",
+        plan_num: "",
+        true_num: "",
+        start_flag: "",
+        start_length: ""
       };
-      this.page_cur = 1;
-      this.getDataList();
     },
-    goDetail: function goDetail(id) {
+    addOrEditPlanDo: function addOrEditPlanDo() {
       var _this4 = this;
 
-      this.dialogTitle = "施工管理详情";
-      this.dialogFormVisible = true;
+      this.$refs["detailForm"].validate(function (valid) {
+        if (valid) {
+          var data = _this4.historyData;
+
+          var start = _this4.historyData.start_flag * 1000 + parseInt(_this4.historyData.start_length);
+          var end = _this4.historyData.end_flag * 1000 + parseInt(_this4.historyData.end_length);
+          var t_start = _this4.historyData.t_start_flag * 1000 + parseInt(_this4.historyData.t_start_length);
+          var t_end = _this4.historyData.t_end_flag * 1000 + parseInt(_this4.historyData.t_end_length);
+          if (_this4.addShow == true) {
+            if (start < _this4.lineTypeStartTotal || end > _this4.lineTypeEndTotal) {
+              _this4.$message.error("请输入" + _this4.lineTypeDes);
+              return;
+            }
+          }
+          if (end < start) {
+            _this4.$message.error("输入的计划结束里程不能小于开始里程");
+            return;
+          }
+          if (t_start < start) {
+            _this4.$message.error("输入的实际开始里程不能小于计划开始里程");
+            return;
+          }
+          // if (t_end > end) {
+          //   this.$message.error("输入的实际结束里程不能大于实际开始里程");
+          //   return;
+          // }
+          if (t_end < t_start) {
+            _this4.$message.error("输入的实际结束里程不能小于实际开始里程");
+            return;
+          }
+          _this4.request({
+            url: "/project/addOrEditPlan",
+            method: "post",
+            data: data
+          }).then(function (response) {
+            var data = response.data;
+            var msg = "";
+            if (data.status == 1) {
+              _this4.$message({
+                showClose: true,
+                message: "保存成功",
+                type: "success"
+              });
+              _this4.searchForm.is_finish == 0;
+              _this4.getDetailLists();
+              _this4.dialogAddHistoryVisible = false;
+            } else {
+              _this4.$message({
+                showClose: true,
+                message: "保存失败",
+                type: "error"
+              });
+            }
+          });
+        }
+      });
+    },
+    getPlanDetail: function getPlanDetail(id) {
+      var _this5 = this;
+
+      this.historyTitle = "修改历史记录 ";
+      this.addShow = false;
       this.request({
-        url: "/dayplan/getDayPlanDetail",
+        url: "/project/getPlanDetail",
         method: "get",
         params: { id: id }
       }).then(function (response) {
         var data = response.data;
         if (data.status == 1) {
-          _this4.dataListItem = data.data;
-          //   this.detectorData.start_flag = parseInt(data.data.start_flag);
-          //   this.detectorData.start_length = parseInt(data.data.start_length);
+          _this5.historyData = data.data;
+          _this5.historyData.is_finish = _this5.historyData.is_finish.toString();
+          if (data.data.plan_num > 0) {
+            _this5.dialogAddHistoryVisible = true;
+            _this5.historyDataType = 2;
+          } else {
+            _this5.dialogAddHistoryVisible = true;
+            _this5.historyDataType = 1;
+          }
         }
       });
     },
-    goDetele: function goDetele(id) {
-      var _this5 = this;
+    deletePlan: function deletePlan(id) {
+      var _this6 = this;
 
-      this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
+      this.$confirm("您确定删除作业?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning",
         customClass: "el-message-box-new"
       }).then(function () {
-        _this5.request({
-          url: "dayplan/deleteDayPlan",
+        var data = {
+          id: id
+        };
+        _this6.request({
+          url: "/project/deletePlan",
           method: "post",
-          data: { id: id }
-        }).then(function (res) {
-          var data = res.data;
+          data: data
+        }).then(function (response) {
+          var data = response.data;
           if (data.status == 1) {
-            _this5.$message({
-              type: "success",
-              message: "删除成功！"
+            _this6.$message({
+              showClose: true,
+              message: "删除成功",
+              type: "success"
             });
-            _this5.getDataList();
+            _this6.getDetailLists();
+          } else {
+            _this6.$message({
+              showClose: true,
+              message: "删除失败",
+              type: "error"
+            });
           }
         });
       }).catch(function () {});
     }
+
     //
 
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-27d25004","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/plan/index.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"planlist"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"router":"","mode":"horizontal"}},[_c('li',{staticClass:"ptitle"},[_vm._v("施工生产调度指挥管理系统")])])],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{attrs:{"model":_vm.searchForm,"inline":true}},[_c('el-form-item',{attrs:{"label":"工点"}},[_c('el-select',{attrs:{"placeholder":"请选择起始车站","clearable":""},model:{value:(_vm.searchForm.start_station),callback:function ($$v) {_vm.$set(_vm.searchForm, "start_station", $$v)},expression:"searchForm.start_station"}},_vm._l((_vm.stationList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',[_c('el-select',{attrs:{"placeholder":"请选择结束车站","clearable":""},model:{value:(_vm.searchForm.end_station),callback:function ($$v) {_vm.$set(_vm.searchForm, "end_station", $$v)},expression:"searchForm.end_station"}},_vm._l((_vm.stationList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"计划类型"}},[_c('el-select',{attrs:{"placeholder":"请选择日班计划类型","clearable":""},model:{value:(_vm.searchForm.type),callback:function ($$v) {_vm.$set(_vm.searchForm, "type", $$v)},expression:"searchForm.type"}},[_c('el-option',{attrs:{"label":"有车施工计划","value":1}}),_vm._v(" "),_c('el-option',{attrs:{"label":"无车施工计划","value":2}})],1)],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"开始时间"}},[_c('el-date-picker',{attrs:{"picker-options":_vm.pickerOptionsStart,"type":"date","clearable":""},model:{value:(_vm.searchForm.start_time),callback:function ($$v) {_vm.$set(_vm.searchForm, "start_time", $$v)},expression:"searchForm.start_time"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"结束时间"}},[_c('el-date-picker',{attrs:{"picker-options":_vm.pickerOptionsEnd,"type":"date","clearable":""},model:{value:(_vm.searchForm.end_time),callback:function ($$v) {_vm.$set(_vm.searchForm, "end_time", $$v)},expression:"searchForm.end_time"}})],1),_vm._v(" "),_c('el-form-item',{staticClass:"form-so"},[_c('label',{staticClass:"el-form-item__label"}),_vm._v(" "),_c('el-button',{attrs:{"size":"small","icon":"el-icon-search","type":"primary"},on:{"click":_vm.pageSearchEvent}},[_vm._v("查询")]),_vm._v(" "),_c('el-button',{attrs:{"size":"small","plain":""},on:{"click":_vm.resetSerach}},[_vm._v("重置")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{attrs:{"data":_vm.dataList}},[_c('el-table-column',{attrs:{"label":"序号"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('span',[_vm._v(_vm._s(scope.$index+(_vm.page_cur - 1) * _vm.page_size + 1))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"number","label":"计划编号"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"line_type","label":"施工线别"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"施工站点","width":"240"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('p',[_vm._v("站点："+_vm._s(scope.row.start_station)+"-"+_vm._s(scope.row.end_station))]),_vm._v(" "),_c('p',[_vm._v("里程：DK"+_vm._s(parseFloat(scope.row.start_flag))+" + "+_vm._s(parseFloat(scope.row.start_length))+" ~ DK "+_vm._s(parseFloat(scope.row.end_flag))+" + "+_vm._s(parseFloat(scope.row.end_length)))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"作业时间","width":"200"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('p',[_vm._v("开始："+_vm._s(scope.row.start_time))]),_vm._v(" "),_c('p',[_vm._v("结束："+_vm._s(scope.row.end_time))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"施工内容"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('p',[_vm._v("项目："+_vm._s(scope.row.work))]),_vm._v(" "),_c('p',[_vm._v("工序："+_vm._s(scope.row.item))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"行车信息","width":"280"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('p',[_vm._v("始发："+_vm._s(scope.row.start_time)+" - "+_vm._s(scope.row.start_station))]),_vm._v(" "),_c('p',[_vm._v("终止："+_vm._s(scope.row.end_time)+" - "+_vm._s(scope.row.end_station))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"status","label":"完成情况"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.status==1)?_c('span',{staticClass:"statuse1"},[_vm._v("未完成")]):_vm._e(),_vm._v(" "),(scope.row.status==2)?_c('span',{staticClass:"statuse2"},[_vm._v("已完成")]):_vm._e()]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"120"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.goDetail(scope.row.id)}}},[_vm._v("详情")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.goDetele(scope.row.id)}}},[_vm._v("删除")])],1)]}}])})],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.dataList.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","page-size":this.page_size,"current-page":this.page_cur,"total":this.pageTotal,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.pageChange}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.pageToFirst}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.pageToLast}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1)],1)])]),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-planinfo",attrs:{"width":"980px","close-on-click-modal":false,"title":this.dialogTitle,"visible":_vm.dialogFormVisible},on:{"update:visible":function($event){_vm.dialogFormVisible=$event}}},[_c('div',{staticClass:"ptielss"},[_vm._v("\n      日班计划编号：\n      "),_c('span',[_vm._v(_vm._s(_vm.dataListItem.number))]),_vm._v(" "),(_vm.dataListItem.plan_type==1)?_c('em',[_vm._v("( 行车和施工计划 )")]):_vm._e(),_vm._v(" "),(_vm.dataListItem.plan_type==2)?_c('em',[_vm._v("( 行车计划 )")]):_vm._e(),_vm._v(" "),(_vm.dataListItem.plan_type==3)?_c('em',[_vm._v("( 施工计划 )")]):_vm._e()]),_vm._v(" "),(_vm.dataListItem.plan_type!=3)?_c('fieldset',[_c('legend',[_vm._v("计划列车信息")]),_vm._v(" "),_c('div',[_c('table',{staticStyle:{"width":"100%"}},[_c('tr',[_c('td',{attrs:{"colspan":"3"}},[_c('b',[_vm._v("列车类型：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.car_type)+"\n            ")])]),_vm._v(" "),_c('tr',[_c('td',[_c('b',[_vm._v("出发车次：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.out_car)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("本务：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.out_business_loco)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("重连：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.out_reco)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("补机：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.out_supple)+"\n            ")])]),_vm._v(" "),_c('tr',[_c('td',[_c('b',[_vm._v("出发线别：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.out_line)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("车长：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.out_master)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("司机：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.out_driver)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("出发编组：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.out_marshalling)+"\n            ")])]),_vm._v(" "),_c('tr',[_c('td',[_c('b',[_vm._v("返回车次：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.back_car)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("本务：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.back_business_loco)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("重连：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.back_reco)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("补机：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.back_supple)+"\n            ")])]),_vm._v(" "),_c('tr',[_c('td',[_c('b',[_vm._v("返回线别：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.back_line)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("车长：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.back_master)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("司机：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.back_driver)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("返回编组：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.back_marshalling)+"\n            ")])])])])]):_vm._e(),_vm._v(" "),(_vm.dataListItem.plan_type!=2)?_c('fieldset',[_c('legend',[_vm._v("计划施工信息")]),_vm._v(" "),_c('div',[_c('table',{staticStyle:{"width":"100%"}},[_c('tr',[_c('td',[_c('b',[_vm._v("开始时间：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.start_time)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("结束时间：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.end_time)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("作业类型：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.work_type)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("线别：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.line)+"\n            ")])]),_vm._v(" "),_c('tr',[_c('td',{attrs:{"colspan":"2"}},[_c('b',[_vm._v("涉及站点：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.start_station)+" - "+_vm._s(_vm.dataListItem.end_station)+"\n            ")]),_vm._v(" "),_c('td',{attrs:{"colspan":"2"}},[_c('b',{staticClass:"blue"},[_vm._v("里程：")]),_vm._v("\n              DK"+_vm._s(parseFloat(_vm.dataListItem.start_flag))+"+"+_vm._s(parseFloat(_vm.dataListItem.start_length))+" ~ DK"+_vm._s(parseFloat(_vm.dataListItem.end_flag))+"+"+_vm._s(parseFloat(_vm.dataListItem.end_length))+"\n            ")])]),_vm._v(" "),_c('tr',[_c('td',[_c('b',[_vm._v("施工作业队：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.work_plan_id)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("项目：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.item)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("工序：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.work)+"\n            ")])]),_vm._v(" "),_c('tr',[_c('td',{attrs:{"colspan":"4"}},[_c('b',[_vm._v("备注：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.description)+"\n            ")])])])])]):_vm._e(),_vm._v(" "),(_vm.dataListItem.plan_type!=2)?_c('fieldset',[_c('legend',[_vm._v("实际完成信息")]),_vm._v(" "),_c('div',[_c('table',{staticStyle:{"width":"100%"}},[_c('tr',[_c('td',[_c('b',[_vm._v("开始时间：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.true_start_time)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("结束时间：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.true_end_time)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("记录人：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.record)+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("记录时间：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.back_line)+"\n            ")])]),_vm._v(" "),_c('tr',[_c('td',[_c('b',[_vm._v("开始里程：")]),_vm._v("\n              DK"+_vm._s(parseFloat(_vm.dataListItem.true_start_flag))+"+"+_vm._s(parseFloat(_vm.dataListItem.true_start_length))+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("结束里程：")]),_vm._v("\n              DK"+_vm._s(parseFloat(_vm.dataListItem.true_end_flag))+"+"+_vm._s(parseFloat(_vm.dataListItem.true_end_length))+"\n            ")]),_vm._v(" "),_c('td',[_c('b',[_vm._v("完成长度：")]),_vm._v("\n              "+_vm._s(_vm.dataListItem.nums)+" 公里\n            ")])]),_vm._v(" "),_c('tr',[_c('td',{attrs:{"colspan":"4"}},[_c('b',[_vm._v("备注：")])])])])])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"dialog-footer",attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.dialogFormVisible = false}}},[_vm._v("关闭")])],1)])],1)}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-27d5cfa5","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/project/detaillist.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"project"}},[_c('div',{staticClass:"el-menu-top"},[_c('el-menu',{attrs:{"router":"","default-active":"detaillist","mode":"horizontal"}},[_c('li',{staticClass:"ptitle"},[_c('img',{attrs:{"src":__webpack_require__("MV+A")}}),_vm._v("工程进度\n      ")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"project"}},[_vm._v("添加作业")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"schedule"}},[_vm._v("计划日程")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"detaillist"}},[_vm._v("详情列表")]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"chartdata"}},[_vm._v("图表数据")])],1)],1),_vm._v(" "),_c('div',{staticClass:"app-page"},[_c('div',{attrs:{"id":"detail"}},[_c('div',{staticClass:"app-page-container"},[_c('div',{staticClass:"app-page-select"},[_c('el-form',{attrs:{"model":_vm.searchForm,"inline":true}},[_c('el-form-item',{staticClass:"form-add-item"},[_c('el-button',{attrs:{"size":"small","icon":"el-icon-plus","type":"primary"},on:{"click":_vm.addHistory}},[_vm._v("添加历史记录")])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"作业"}},[_c('el-select',{staticClass:"search-input search-select",attrs:{"clearable":"","placeholder":"请选择作业"},model:{value:(_vm.searchForm.work),callback:function ($$v) {_vm.$set(_vm.searchForm, "work", $$v)},expression:"searchForm.work"}},_vm._l((_vm.workLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}},[_vm._v(_vm._s(item.name))])}))],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"时间"}},[_c('el-date-picker',{attrs:{"type":"daterange","align":"right","unlink-panels":"","range-separator":"至","start-placeholder":"开始日期","end-placeholder":"结束日期","value-format":"yyyy-MM-dd"},model:{value:(_vm.searchForm.time_range),callback:function ($$v) {_vm.$set(_vm.searchForm, "time_range", $$v)},expression:"searchForm.time_range"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"状态"}},[_c('el-select',{staticClass:"search-input search-select",staticStyle:{"width":"140px"},attrs:{"placeholder":"请选择状态"},model:{value:(_vm.searchForm.is_finish),callback:function ($$v) {_vm.$set(_vm.searchForm, "is_finish", $$v)},expression:"searchForm.is_finish"}},[_c('el-option',{attrs:{"label":"全部","value":-1}},[_vm._v("全部")]),_vm._v(" "),_c('el-option',{attrs:{"label":"已完成","value":1}},[_vm._v("已完成")]),_vm._v(" "),_c('el-option',{attrs:{"label":"未完成","value":0}},[_vm._v("未完成")])],1)],1),_vm._v(" "),_c('el-form-item',[_c('el-button',{attrs:{"size":"small","icon":"el-icon-search","type":"primary"},on:{"click":_vm.detailSearchPage}},[_vm._v("查询")])],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"app-table"},[_c('el-table',{ref:"multipleTable",attrs:{"data":_vm.detailListPages}},[_c('el-table-column',{attrs:{"type":"index","label":"序号","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"pro_name","label":"作业名称","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"计划完成","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.plan_num>0)?_c('span',[_vm._v(_vm._s(scope.row.plan_num))]):_c('span',[_vm._v(_vm._s(scope.row.plan_tip))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"实际完成","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.plan_num>0)?_c('span',[_vm._v(_vm._s(scope.row.true_num))]):_c('span',[_vm._v(_vm._s(scope.row.true_tip))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"状态","align":"center"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(scope.row.is_finish == 1)?_c('span',[_vm._v("已完成")]):_c('span',[_vm._v("未完成")])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"remark","label":"备注","align":"center","show-overflow-tooltip":""}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"plan_date","label":"日期","align":"center"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"操作","width":"120"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"app-operation"},[_c('el-button',{staticClass:"btn-blue",attrs:{"size":"mini"},on:{"click":function($event){_vm.getPlanDetail(scope.row.id)}}},[_vm._v("修改")]),_vm._v(" "),_c('el-button',{staticClass:"btn-red",attrs:{"size":"mini"},on:{"click":function($event){_vm.deletePlan(scope.row.id)}}},[_vm._v("删除")])],1)]}}])})],1)],1),_vm._v(" "),_c('div',{staticClass:"app-pagination"},[(_vm.detailListPages.length !== 0)?_c('el-pagination',{staticClass:"pagination",attrs:{"layout":"slot,prev, pager, next,slot,total","current-page":this.detailPage,"total":this.detailTotal,"page-size":this.detailPageSize,"prev-text":"上一页","next-text":"下一页"},on:{"current-change":_vm.detailPageChange}},[_c('button',{staticClass:"btn-first",attrs:{"type":"button"},on:{"click":_vm.detailPageFirst}},[_c('span',[_vm._v("首页")])]),_vm._v(" "),_c('button',{staticClass:"btn-last",attrs:{"type":"button"},on:{"click":_vm.detailPageLast}},[_c('span',[_vm._v("尾页")])])]):_vm._e()],1),_vm._v(" "),_c('el-dialog',{staticClass:"dialog-plan-detail",attrs:{"width":"700px","close-on-click-modal":false,"title":this.historyTitle,"visible":_vm.dialogAddHistoryVisible},on:{"update:visible":function($event){_vm.dialogAddHistoryVisible=$event}}},[_c('el-form',{ref:"detailForm",staticClass:"el-form-custom",attrs:{"model":_vm.historyData,"rules":_vm.historyRules}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.addShow),expression:"!addShow"}],staticClass:"ptxtbox"},[_c('el-form-item',{staticClass:"widhtss",attrs:{"label":"作业名称："}},[_c('el-input',{attrs:{"disabled":""},model:{value:(_vm.historyData.pro_name),callback:function ($$v) {_vm.$set(_vm.historyData, "pro_name", $$v)},expression:"historyData.pro_name"}})],1),_vm._v(" "),(_vm.historyDataType==1)?_c('el-form-item',{staticClass:"widhtss",attrs:{"label":"线别："}},[_c('el-input',{attrs:{"disabled":""},model:{value:(_vm.historyData.line_type_desc),callback:function ($$v) {_vm.$set(_vm.historyData, "line_type_desc", $$v)},expression:"historyData.line_type_desc"}})],1):_vm._e(),_vm._v(" "),_c('el-form-item',{staticClass:"widhtss",attrs:{"label":"完成日期：","prop":"plan_time"}},[_c('el-date-picker',{attrs:{"type":"date","placeholder":"选择日期"},model:{value:(_vm.historyData.plan_time),callback:function ($$v) {_vm.$set(_vm.historyData, "plan_time", $$v)},expression:"historyData.plan_time"}})],1)],1),_vm._v(" "),_c('el-form-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.addShow),expression:"addShow"}],attrs:{"label":"作业名称：","prop":"pro_id"}},[_c('el-select',{attrs:{"clearable":"","placeholder":"请选择作业"},on:{"change":_vm.changeWorkListItem},model:{value:(_vm.historyData.pro_id),callback:function ($$v) {_vm.$set(_vm.historyData, "pro_id", $$v)},expression:"historyData.pro_id"}},_vm._l((_vm.workLists),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})}))],1),_vm._v(" "),(_vm.historyDataType==2)?_c('el-form-item',{attrs:{"label":"计划数量：","prop":"plan_num"}},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"请输入数字"},model:{value:(_vm.historyData.plan_num),callback:function ($$v) {_vm.$set(_vm.historyData, "plan_num", $$v)},expression:"historyData.plan_num"}})],1):_vm._e(),_vm._v(" "),(_vm.historyDataType==2)?_c('el-form-item',{attrs:{"label":"实际数量：","prop":"true_num"}},[_c('el-input',{attrs:{"autocomplete":"off","placeholder":"请输入个，股，孔等"},model:{value:(_vm.historyData.true_num),callback:function ($$v) {_vm.$set(_vm.historyData, "true_num", $$v)},expression:"historyData.true_num"}})],1):_vm._e(),_vm._v(" "),(_vm.historyDataType==1)?_c('div',{staticStyle:{"padding-bottom":"25px"}},[_c('el-form-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.addShow),expression:"addShow"}],attrs:{"label":"线别：","prop":"line_type"}},[_c('el-select',{attrs:{"clearable":"","placeholder":"请选择线别"},on:{"change":_vm.changeWorkLineTypeList},model:{value:(_vm.historyData.line_type),callback:function ($$v) {_vm.$set(_vm.historyData, "line_type", $$v)},expression:"historyData.line_type"}},_vm._l((_vm.workLineTypeList),function(item){return _c('el-option',{key:item.id,attrs:{"label":item.name,"value":item.id}})})),_vm._v(" "),_c('div',{staticClass:"el-form-item__error"},[_vm._v(_vm._s(_vm.lineTypeDes))])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"计划里程：","prop":"start_flag"}},[_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"公里"},model:{value:(_vm.historyData.start_flag),callback:function ($$v) {_vm.$set(_vm.historyData, "start_flag", $$v)},expression:"historyData.start_flag"}}),_vm._v("+\n                "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"米"},model:{value:(_vm.historyData.start_length),callback:function ($$v) {_vm.$set(_vm.historyData, "start_length", $$v)},expression:"historyData.start_length"}}),_vm._v(" "),_c('em',[_vm._v("~")]),_vm._v(" "),_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"公里"},model:{value:(_vm.historyData.end_flag),callback:function ($$v) {_vm.$set(_vm.historyData, "end_flag", $$v)},expression:"historyData.end_flag"}}),_vm._v("+\n                "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"米"},model:{value:(_vm.historyData.end_length),callback:function ($$v) {_vm.$set(_vm.historyData, "end_length", $$v)},expression:"historyData.end_length"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"实际里程：","prop":"t_start_flag"}},[_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"公里"},model:{value:(_vm.historyData.t_start_flag),callback:function ($$v) {_vm.$set(_vm.historyData, "t_start_flag", $$v)},expression:"historyData.t_start_flag"}}),_vm._v("+\n                "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"米"},model:{value:(_vm.historyData.t_start_length),callback:function ($$v) {_vm.$set(_vm.historyData, "t_start_length", $$v)},expression:"historyData.t_start_length"}}),_vm._v(" "),_c('em',[_vm._v("~")]),_vm._v(" "),_c('b',[_vm._v("DK")]),_vm._v(" "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"公里"},model:{value:(_vm.historyData.t_end_flag),callback:function ($$v) {_vm.$set(_vm.historyData, "t_end_flag", $$v)},expression:"historyData.t_end_flag"}}),_vm._v("+\n                "),_c('el-input',{staticClass:"pinput",attrs:{"placeholder":"米"},model:{value:(_vm.historyData.t_end_length),callback:function ($$v) {_vm.$set(_vm.historyData, "t_end_length", $$v)},expression:"historyData.t_end_length"}})],1)],1):_vm._e(),_vm._v(" "),_c('el-form-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.addShow),expression:"addShow"}],attrs:{"label":"完成日期：","prop":"plan_time"}},[_c('el-date-picker',{attrs:{"type":"date","placeholder":"选择日期"},model:{value:(_vm.historyData.plan_time),callback:function ($$v) {_vm.$set(_vm.historyData, "plan_time", $$v)},expression:"historyData.plan_time"}})],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"是否完成：","prop":"is_finish"}},[_c('el-radio',{attrs:{"label":"1","value":"1"},model:{value:(_vm.historyData.is_finish),callback:function ($$v) {_vm.$set(_vm.historyData, "is_finish", $$v)},expression:"historyData.is_finish"}},[_vm._v("是")]),_vm._v(" "),_c('el-radio',{attrs:{"label":"0","value":"0"},model:{value:(_vm.historyData.is_finish),callback:function ($$v) {_vm.$set(_vm.historyData, "is_finish", $$v)},expression:"historyData.is_finish"}},[_vm._v("否")])],1),_vm._v(" "),_c('el-form-item',{attrs:{"label":"备注：","prop":"remark"}},[_c('el-input',{attrs:{"placeholder":"填写备注","type":"textarea","maxlength":"30","show-word-limit":""},model:{value:(_vm.historyData.remark),callback:function ($$v) {_vm.$set(_vm.historyData, "remark", $$v)},expression:"historyData.remark"}})],1)],1),_vm._v(" "),_c('div',{attrs:{"slot":"footer"},slot:"footer"},[_c('el-button',{on:{"click":function($event){_vm.dialogAddHistoryVisible = false}}},[_vm._v("关闭")]),_vm._v(" "),_c('el-button',{attrs:{"type":"primary"},on:{"click":function($event){_vm.addOrEditPlanDo()}}},[_vm._v("确定")])],1)],1)],1)])])])}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var views_plan = (esExports);
-// CONCATENATED MODULE: ./src/views/plan/index.vue
+/* harmony default export */ var project_detaillist = (esExports);
+// CONCATENATED MODULE: ./src/views/project/detaillist.vue
 function injectStyle (ssrContext) {
-  __webpack_require__("vapi")
+  __webpack_require__("kVlz")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -534,20 +551,34 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  plan,
-  views_plan,
+  detaillist,
+  project_detaillist,
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 
-/* harmony default export */ var src_views_plan = __webpack_exports__["default"] = (Component.exports);
+/* harmony default export */ var views_project_detaillist = __webpack_exports__["default"] = (Component.exports);
 
 
 /***/ }),
 
-/***/ "kNVZ":
+/***/ "kVlz":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("m/RF");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("062b139f", content, true);
+
+/***/ }),
+
+/***/ "m/RF":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("FZ+f")(false);
@@ -555,24 +586,10 @@ exports = module.exports = __webpack_require__("FZ+f")(false);
 
 
 // module
-exports.push([module.i, "\n.nowrap {\r\n  white-space: nowrap;\r\n  width: 200px;\n}\n.nowrap .cell {\r\n  white-space: nowrap;\r\n  width: 200px;\n}\n.nowrap p {\r\n  white-space: nowrap;\r\n  width: 200px;\n}\n.dialog-planinfo .ptielss {\r\n  font-size: 18px;\r\n  margin-bottom: 15px;\r\n  text-align: right;\r\n  color: #333;\n}\n.dialog-planinfo .ptielss span {\r\n  color: #cb9f00;\n}\n.dialog-planinfo .ptielss em {\r\n  color: #25ade2;\r\n  font-style: normal;\n}\n.dialog-planinfo fieldset {\r\n  border: 1px #9db9fa solid;\r\n  margin-bottom: 15px;\r\n  border-radius: 3px;\r\n  padding: 5px 15px;\n}\n.dialog-planinfo fieldset legend {\r\n  font-size: 16px;\r\n  color: #4b6eca;\r\n  padding: 0 10px;\n}\n.dialog-planinfo .blue {\r\n  color: #4b6eca;\n}\n.dialog-planinfo td {\r\n  color: #79899c;\r\n  padding: 8px 0;\r\n  width: 26%;\n}\n.dialog-planinfo td b {\r\n  color: #636b6f;\r\n  font-size: 15px;\r\n  display: inline-block;\r\n  width: 90px;\r\n  text-align: right;\n}\r\n", ""]);
+exports.push([module.i, "\n.ptxtbox {\r\n  margin-bottom: 25px;\n}\n.dialog-plan-detail .el-form-item__label {\r\n  width: 110px;\n}\n.dialog-plan-detail .el-form-item__content {\r\n  margin-left: 110px;\n}\n.dialog-plan-detail .el-form-item {\r\n  margin-bottom: 25px;\n}\n.dialog-plan-detail .el-form-item em {\r\n  padding: 0 10px;\n}\n.dialog-plan-detail .el-form-item:last-child {\r\n  margin-bottom: 0;\n}\n.dialog-plan-detail .el-input__inner {\r\n  border: 1px #9db9fa solid;\r\n  color: #4b6eca;\r\n  width: 100%;\n}\n.dialog-plan-detail .el-form-item__error {\r\n  padding-top: 5px;\n}\n.dialog-plan-detail .el-select {\r\n  width: 100%;\n}\n.dialog-plan-detail .el-input {\r\n  width: auto;\n}\n.dialog-plan-detail .widhtss .el-input {\r\n  width: 100%;\n}\n.dialog-plan-detail .pinput input {\r\n  width: 55px;\r\n  margin: 0 3px;\r\n  padding: 0 5px;\r\n  height: 31px !important;\r\n  text-align: center;\n}\n.dialog-plan-detail .el-textarea {\r\n  width: 100%;\n}\n.dialog-plan-detail .el-textarea__inner {\r\n  width: 100%;\r\n  height: 60px;\r\n  -webkit-box-sizing: border-box;\r\n          box-sizing: border-box;\n}\r\n\r\n/* end detail */\n.app-page-container {\r\n  border-radius: 6px;\r\n  padding: 20px;\r\n  background: #fff;\n}\r\n", ""]);
 
 // exports
 
-
-/***/ }),
-
-/***/ "vapi":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("kNVZ");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("e21853ce", content, true);
 
 /***/ })
 

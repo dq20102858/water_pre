@@ -3314,7 +3314,7 @@ var constantRouterMap = [{
 }, {
   path: '/401',
   component: function component() {
-    return __webpack_require__.e/* import() */(11).then(__webpack_require__.bind(null, "eRLo"));
+    return __webpack_require__.e/* import() */(12).then(__webpack_require__.bind(null, "eRLo"));
   },
   hidden: true
 }, {
@@ -3389,7 +3389,7 @@ var constantRouterMap = [{
   }, {
     path: '/detaillist',
     component: function component() {
-      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(32)]).then(__webpack_require__.bind(null, "AJau"));
+      return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(33)]).then(__webpack_require__.bind(null, "AJau"));
     }
   }]
 }, {
@@ -3443,19 +3443,19 @@ var asyncRouterMap = {
     return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, "KYsC"));
   }, //工程进度
   '/views/monitor/index': function viewsMonitorIndex() {
-    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, "lZYz"));
+    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, "lZYz"));
   }, //行车监控
   '/views/run_monitor/index': function viewsRun_monitorIndex() {
     return __webpack_require__.e/* import() */(30).then(__webpack_require__.bind(null, "WfHw"));
   }, //列车运行监控
   '/views/location/index': function viewsLocationIndex() {
-    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(35)]).then(__webpack_require__.bind(null, "Sp6l"));
+    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(31)]).then(__webpack_require__.bind(null, "Sp6l"));
   }, //定位管理
   '/views/real_time/index': function viewsReal_timeIndex() {
     return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(19)]).then(__webpack_require__.bind(null, "2jNM"));
   }, //实时管理
   '/views/progress/index': function viewsProgressIndex() {
-    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, "naN1"));
+    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, "naN1"));
   }, //进度形象图
   '/views/security/index': function viewsSecurityIndex() {
     return __webpack_require__.e/* import() */(14).then(__webpack_require__.bind(null, "h5Rs"));
@@ -3467,13 +3467,13 @@ var asyncRouterMap = {
     return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, "43N1"));
   }, //施工请点
   '/views/plan/index': function viewsPlanIndex() {
-    return __webpack_require__.e/* import() */(33).then(__webpack_require__.bind(null, "aJNJ"));
+    return __webpack_require__.e/* import() */(34).then(__webpack_require__.bind(null, "aJNJ"));
   }, //施工计划
   '/views/search/index': function viewsSearchIndex() {
     return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, "Rv23"));
   }, //查询统计
   '/views/description/index': function viewsDescriptionIndex() {
-    return __webpack_require__.e/* import() */(12).then(__webpack_require__.bind(null, "ap+h"));
+    return __webpack_require__.e/* import() */(13).then(__webpack_require__.bind(null, "ap+h"));
   }, //项目介绍
   '/views/set/index': function viewsSetIndex() {
     return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, "bUWe"));
@@ -3499,10 +3499,10 @@ var asyncRouterMap = {
     return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(24)]).then(__webpack_require__.bind(null, "4nWN"));
   }, //车载探测器
   '/views/location/locationbind': function viewsLocationLocationbind() {
-    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(34)]).then(__webpack_require__.bind(null, "6QbA"));
+    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(35)]).then(__webpack_require__.bind(null, "6QbA"));
   }, //定位从设备
   '/views/location/device': function viewsLocationDevice() {
-    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(31)]).then(__webpack_require__.bind(null, "ZFGK"));
+    return Promise.all/* import() */([__webpack_require__.e(0), __webpack_require__.e(32)]).then(__webpack_require__.bind(null, "ZFGK"));
   } //机具
 
 
