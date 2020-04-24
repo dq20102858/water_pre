@@ -48,7 +48,7 @@
                 </p>
                 <p class="calendar-show remark">
                   <span>备注：</span>
-                  <span
+                  <span class="calendar-beizhu"
                     v-if="typeof(calendarLists[data.day])!=='undefined'"
                   >{{calendarLists[data.day]["remark"]}}</span>
                 </p>
@@ -286,7 +286,7 @@ export default {
       this.planOneData.forEach(function(item) {
         item.checked = false;
         item.start_flag = "";
-        item.end_length = "";
+        item.start_length = "";
         item.end_flag = "";
         item.end_length = "";
       });
@@ -561,5 +561,9 @@ export default {
 .el-calendar-table:not(.is-range) td.next .date,
 .el-calendar-table:not(.is-range) td.prev .date {
   color: #ccc;
+}
+.calendar-beizhu {
+  height: 40px;
+  overflow: hidden;
 }
 </style>

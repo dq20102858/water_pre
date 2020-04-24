@@ -1,7 +1,7 @@
 <template>
   <div id="location">
     <div class="el-menu-top">
-      <el-menu router default-active="location" mode="horizontal">
+      <el-menu router default-active="location" mode="horizontal"  @select="handleMenuSelect">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-location.png')" />定位管理
         </li>
@@ -31,7 +31,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="姓名">
-              <el-select v-model="searchForm.name" placeholder="请选择人员姓名" clearable>
+              <el-select v-model="searchForm.name" filterable placeholder="请选择人员姓名" clearable>
                 <el-option
                   v-for="item in objSelectLists"
                   :key="item.id"
@@ -194,6 +194,9 @@ export default {
     this.getDataList();
   },
   methods: {
+   handleMenuSelect (index) {
+   this.pageChange(1);
+    },
     getCompanyList() {
       this.request({
         url: "/apply/getCompanyLists",

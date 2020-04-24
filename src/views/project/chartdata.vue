@@ -195,7 +195,7 @@ export default {
           let myChart = this.$echarts.init(document.getElementById("oneChart"));
           myChart.setOption({
             title: {
-              text: proName + "  " + date + "  单位："+ data.data.unit,
+              text: proName + "  " + date + "  单位：" + data.data.unit,
               textStyle: {
                 color: "#1D397A",
                 fontWeight: "400",
@@ -328,14 +328,15 @@ export default {
             xAxis: [
               {
                 type: "category",
-                boundaryGap: false,
+                axisLabel: {
+                  show: true,
+                  interval: 0,
+                  rotate: 0,
+                  textStyle: {
+                    color: "#333"
+                  }
+                },
                 data: data.data.x
-                // axisLabel: {
-                //   formatter: function(value) {
-                //     let val = value.split("-");
-                //     return val[1] + "\n" + val[0];
-                //   }
-                // }
               }
             ],
             yAxis: [

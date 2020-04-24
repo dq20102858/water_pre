@@ -72,7 +72,7 @@
                   :on-success="handleAvatarSuccess"
                 -->
                 <el-upload
-                    ref="uploadfive"
+                  ref="uploadfive"
                   class="uploader el-upload-list--picture-card"
                   :action="uploadAction"
                   :limit="5"
@@ -309,7 +309,7 @@
             <el-form-item label="相关图片：">
               <p style="color:#3655a5">最多可以上传3张图片</p>
               <el-upload
-          
+                ref="uploadthree"
                 class="uploaderthree el-upload-list--picture-card"
                 :action="uploadAction"
                 :limit="3"
@@ -466,8 +466,8 @@ export default {
         this.addPageShow = true;
         this.listPageShow = false;
         this.peopleData = {};
-          this.formData = {};
-          this.$refs.uploadfive.clearFiles(); 
+        this.formData = {};
+        this.$refs.uploadfive.clearFiles();
       } else {
         this.addPageShow = false;
         this.listPageShow = false;
@@ -802,9 +802,13 @@ export default {
         }
       });
     },
+    //指派
     goAssign(id) {
       this.diaPeopleFormVisible = true;
       this.dangerIdValue = id;
+      this.$set(this.peopleData, "user_id", "");
+      this.$refs.uploadthree.clearFiles();
+      this.$set(this.peopleData, "remark", "");
     },
     saveAssignDialog() {
       this.$refs["peopleRulesRef"].validate(valid => {

@@ -1,7 +1,7 @@
 <template>
   <div id="location">
     <div class="el-menu-top">
-      <el-menu router default-active="walldetector" mode="horizontal">
+      <el-menu router default-active="walldetector" mode="horizontal"  @select="handleMenuSelect">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-location.png')" />定位管理
         </li>
@@ -261,6 +261,9 @@ export default {
     this.getDataList();
   },
   methods: {
+      handleMenuSelect (index) {
+   this.pageChange(1);
+    },
     getCompanyList() {
       this.request({
         url: "/apply/getCompanyLists",
