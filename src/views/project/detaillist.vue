@@ -147,9 +147,9 @@
                 <el-form-item label="线别：" v-if="historyDataType==1" class="widhtss">
                   <el-input v-model="historyData.line_type_desc" disabled></el-input>
                 </el-form-item>
-                <el-form-item label="完成日期：" prop="plan_time" class="widhtss">
+                <!-- <el-form-item label="完成日期：" prop="plan_time" class="widhtss" disabled>
                   <el-date-picker v-model="historyData.plan_time" type="date" placeholder="选择日期"></el-date-picker>
-                </el-form-item>
+                </el-form-item> -->
               </div>
               <el-form-item label="作业名称：" prop="pro_id" v-show="addShow">
                 <el-select

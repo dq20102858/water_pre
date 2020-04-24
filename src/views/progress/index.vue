@@ -17,7 +17,7 @@
             :key="item.id"
           >
             <td>
-              <div class="tdtitle">{{item.name}}</div>
+              <div class="tdtitle"  :title="item.name">{{item.name}}</div>
             </td>
             <td class="tdbar">
               <div class="bar" v-for="lines in item.lines" :key="lines.id">
