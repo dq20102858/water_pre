@@ -72,6 +72,7 @@
                   :on-success="handleAvatarSuccess"
                 -->
                 <el-upload
+                    ref="uploadfive"
                   class="uploader el-upload-list--picture-card"
                   :action="uploadAction"
                   :limit="5"
@@ -308,6 +309,7 @@
             <el-form-item label="相关图片：">
               <p style="color:#3655a5">最多可以上传3张图片</p>
               <el-upload
+          
                 class="uploaderthree el-upload-list--picture-card"
                 :action="uploadAction"
                 :limit="3"
@@ -465,6 +467,7 @@ export default {
         this.listPageShow = false;
         this.peopleData = {};
           this.formData = {};
+          this.$refs.uploadfive.clearFiles(); 
       } else {
         this.addPageShow = false;
         this.listPageShow = false;
@@ -479,6 +482,7 @@ export default {
       let loco_id = this.searchForm.loco_id;
       let start_location = this.searchForm.start_location;
       let end_location = this.searchForm.end_location;
+
       let start_time = this.searchForm.start_time;
       let end_time = this.searchForm.end_time;
 

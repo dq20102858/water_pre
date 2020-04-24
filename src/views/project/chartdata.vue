@@ -195,7 +195,7 @@ export default {
           let myChart = this.$echarts.init(document.getElementById("oneChart"));
           myChart.setOption({
             title: {
-              text: proName + "  " + date + "  单位：公里",
+              text: proName + "  " + date + "  单位："+ data.data.unit,
               textStyle: {
                 color: "#1D397A",
                 fontWeight: "400",

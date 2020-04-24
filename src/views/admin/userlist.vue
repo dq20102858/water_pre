@@ -114,7 +114,7 @@
         </div>
         <el-dialog
           width="680px"
-          class="dialog-user"
+          class="dialog-users"
           :title="this.userDialogTitle"
           :close-on-click-modal="false"
           :visible.sync="userDialogVisible"
@@ -583,33 +583,33 @@ export default {
 </script>
 
 <style>
-.dialog-user .el-textarea {
+.dialog-users .el-textarea {
   width: 100% !important;
 }
-.dialog-user .el-form-item__label {
+.dialog-users .el-form-item__label {
   width: 110px;
 }
 
-.dialog-user .el-input--medium {
+.dialog-users .el-input--medium {
   width: 100%;
 }
-.dialog-user .el-select {
+.dialog-users .el-select {
   width: 185px;
 }
 
-.dialog-user .el-form-item-block {
+.dialog-users .el-form-item-block {
   display: block;
 }
 .el-form-item-inlines {
   display: inline-block;
 }
-.dialog-user .el-form-item-inlines .el-form-item {
+.dialog-users .el-form-item-inlines .el-form-item {
   display: inline-block;
 }
 .el-form-item-block {
   display: block;
 }
-.dialog-user .el-form-item-inlines .el-checkbox-group {
+.dialog-users .el-form-item-inlines .el-checkbox-group {
   margin-left: 110px;
 }
 </style>

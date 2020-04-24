@@ -20,7 +20,7 @@
               <el-select
                 v-model="searchForm.depart_id"
                 placeholder="请选择公司"
-                @change="selectCompanyList($event)"
+                @change="selectCompanyList($event)" clearable
               >
                 <el-option
                   v-for="item in companyList"

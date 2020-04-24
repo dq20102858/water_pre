@@ -234,9 +234,9 @@ export default {
           { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
            { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
         ],
-        sub_pid: [
-          { required: true, message: "请选择所属部门：", trigger: "change" }
-        ],
+        // sub_pid: [
+        //   { required: true, message: "请选择所属部门：", trigger: "change" }
+        // ],
         post_pid: [
           { required: true, message: "请选择所属职位：", trigger: "change" }
         ],
@@ -439,6 +439,8 @@ export default {
       this.$set(this.locationData, "sub_pid", "");
       this.$set(this.locationData, "post_pid", "");
       this.$set(this.locationData, "bind_obj", "");
+       this.postSelectLists=[];
+      this.objSelectLists=[];
       this.request({
         url: "/company/getDepartLists",
         method: "get",
@@ -460,6 +462,7 @@ export default {
     selectDepartLists(val) {
       this.$set(this.locationData, "post_pid", "");
       this.$set(this.locationData, "bind_obj", "");
+       this.objSelectLists=[];
       this.request({
         url: "/company/getDepartLists",
         method: "get",
@@ -474,7 +477,6 @@ export default {
     //选择职位
     selectPostLists(val) {
       this.objSelectLists = [];
-      //this.$set(this.locationData, "bind_obj", "");
       this.request({
         url: "/user/getUserByDepart",
         method: "get",
