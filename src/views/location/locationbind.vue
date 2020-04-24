@@ -199,8 +199,6 @@
             </el-select>
           </el-form-item>
         </div>
-        <!-- </div> -->
-        <div v-html="locationData.type"></div>
         <div class="blank"></div>
       </el-form>
       <div slot="footer" class="dialog-footer">

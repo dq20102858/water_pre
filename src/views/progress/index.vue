@@ -189,6 +189,12 @@ export default {
 
         cansText.font = "12px Microsoft Yahei";
         cansText.fillStyle = "#E8C640";
+          let starttotal =
+            parseInt(lineJson[i].start_flag) * 1000 +
+            parseInt(lineJson[i].start_length);
+          let endtotal =
+            parseInt(lineJson[i].end_flag) * 1000 +
+            parseInt(lineJson[i].end_length);
         if (lineJson[i].id == 1) {
           cansText.fillText(tfrom, 15, 270);
           cansText.fillText(tend, parseInt(endLength + canvasWidth - 115), 270);
@@ -197,15 +203,9 @@ export default {
           cansText.fillText(tend, parseInt(endLength + canvasWidth - 125), 320);
           //3
         } else if (lineJson[i].id == 3) {
-          let starttotal =
-            parseInt(lineJson[i].start_flag) * 1000 +
-            parseInt(lineJson[i].start_length);
           if (starttotal == 0) {
             starttotal = this.minMileage;
           }
-          let endtotal =
-            parseInt(lineJson[i].end_flag) * 1000 +
-            parseInt(lineJson[i].end_length);
           let startZB = (starttotal - this.minMileage) * every + 9;
           let endZB =
             parseFloat((endtotal - starttotal) * every) + parseFloat(startZB);
@@ -217,12 +217,6 @@ export default {
           cansText.fillText(tend, endZB - 60, 370);
           //4
         } else if (lineJson[i].id == 4) {
-          let starttotal =
-            parseInt(lineJson[i].start_flag) * 1000 +
-            parseInt(lineJson[i].start_length);
-          let endtotal =
-            parseInt(lineJson[i].end_flag) * 1000 +
-            parseInt(lineJson[i].end_length);
           let startZB = (starttotal - this.minMileage) * every + 10;
           let endZB =
             parseFloat((endtotal - starttotal) * every) + parseFloat(startZB);

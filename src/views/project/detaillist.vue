@@ -270,15 +270,15 @@ export default {
         plan_num: [
           { required: true, message: "请输入计划数量", trigger: "blur" },
           {
-            pattern: /^\d{1,5}$/,
-            message: "请输入1-5位正整数",
+            pattern: /^\d{1,8}$/,
+            message: "请输入1-8位正整数",
             trigger: "blur"
           }
         ],
         true_num: [
           {
-            pattern: /^\d{1,5}$/,
-            message: "请输入1-5位正整数",
+            pattern: /^\d{1,8}$/,
+            message: "请输入1-8位正整数",
             trigger: "blur"
           }
         ],
