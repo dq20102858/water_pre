@@ -47,17 +47,14 @@
                   >{{calendarLists[data.day]["true"]}}{{calendarLists[data.day]["unit"]}}</span>
                 </p>
                 <p class="calendar-show remark">
-                 
-                  <el-tooltip  v-if="typeof(calendarLists[data.day])!=='undefined'"
+                  <el-tooltip
+                    v-if="typeof(calendarLists[data.day])!=='undefined'"
                     class="item"
                     effect="dark"
                     :content="calendarLists[data.day]['remark']"
                     placement="top-start"
                   >
-                    <span
-                      class="calendar-beizhu"
-                     
-                    >备注：{{calendarLists[data.day]["remark"]}}</span>
+                    <span class="calendar-beizhu">备注：{{calendarLists[data.day]["remark"]}}</span>
                   </el-tooltip>
                 </p>
               </div>
@@ -572,7 +569,11 @@ export default {
   color: #ccc;
 }
 .calendar-beizhu {
-  height: 40px; max-width: 180px;white-space: nowrap;text-overflow: ellipsis;display: inline-block;
+  height: 40px;
+  max-width: 180px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
   overflow: hidden;
 }
 </style>
