@@ -32,10 +32,20 @@
               </el-select>
             </el-form-item>
             <el-form-item label="开始时间">
-              <el-date-picker v-model="searchForm.start_time" :picker-options="pickerOptionsStart" type="datetime" format="yyyy-MM-dd HH:mm"></el-date-picker>
+              <el-date-picker
+                v-model="searchForm.start_time"
+                :picker-options="pickerOptionsStart"
+                type="datetime"
+                format="yyyy-MM-dd HH:mm"
+              ></el-date-picker>
             </el-form-item>
             <el-form-item label="结束时间">
-              <el-date-picker v-model="searchForm.end_time" :picker-options="pickerOptionsEnd"  type="datetime" format="yyyy-MM-dd HH:mm"></el-date-picker>
+              <el-date-picker
+                v-model="searchForm.end_time"
+                :picker-options="pickerOptionsEnd"
+                type="datetime"
+                format="yyyy-MM-dd HH:mm"
+              ></el-date-picker>
             </el-form-item>
             <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
@@ -107,12 +117,11 @@
 export default {
   data() {
     return {
-       pickerOptionsStart: {
+      pickerOptionsStart: {
         disabledDate: time => {
           if (this.searchForm.end_time) {
             return (
-              time.getTime() >
-              new Date(this.searchForm.end_time).getTime()
+              time.getTime() > new Date(this.searchForm.end_time).getTime()
             );
           }
         }
@@ -121,8 +130,7 @@ export default {
         disabledDate: time => {
           if (this.searchForm.start_time) {
             return (
-              time.getTime() <
-              new Date(this.searchForm.start_time).getTime()
+              time.getTime() < new Date(this.searchForm.start_time).getTime()
             );
           }
         }
@@ -198,6 +206,7 @@ export default {
     },
     resetSerach() {
       this.searchForm = {};
+      this.page_cur = 1;
       this.getDataList();
     },
     goDel(id) {

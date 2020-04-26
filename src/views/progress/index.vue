@@ -42,14 +42,12 @@ export default {
       stationList: [],
       lineTypeList: [],
       listSchedule: [],
-      totalMileage: 0,
-      minMileage: 0,
-      every: 0,
       stationlineHeight: 0,
       stationlineTwoHeight: 0,
+       every: 0,
       everyLineType: 0,
       lineTypeMinMileage: 0,
-      lineTypeTotalMileage: 0
+      lineTypeMaxMileage: 0
     };
   },
   updated() {
@@ -75,7 +73,7 @@ export default {
               this.lineTypeMinMileage =
                 parseInt(linetypeJson[i].start_flag) * 1000 +
                 parseInt(linetypeJson[i].start_length);
-              this.lineTypeTotalMileage =
+              this.lineTypeMaxMileage =
                 parseInt(linetypeJson[i].end_flag) * 1000 +
                 parseInt(linetypeJson[i].end_length);
             }
@@ -87,13 +85,14 @@ export default {
 
     getStationList() {
       let clientWidth = this.$refs.proWrapper.clientWidth;
-      let canvasWidth = clientWidth - 330;
+      let canvasWidth = clientWidth - 270;
       this.cwidth = canvasWidth - 10;
-      let lineTypeBetwentMileage =
-        this.lineTypeTotalMileage - this.lineTypeMinMileage;
+      let lineTypeBetwentMileage =this.lineTypeMaxMileage - this.lineTypeMinMileage;
+       let lineTypeTotalMileage =this.lineTypeMaxMileage+ this.lineTypeMinMileage;
       this.everyLineType = (
         parseInt(this.cwidth) / lineTypeBetwentMileage
       ).toFixed(5);
+       this.every = (parseInt(canvasWidth) / lineTypeBetwentMileage).toFixed(5);
       console.log("cwidth" + this.cwidth + "_" + this.everyLineType);
 
       const canvas = this.$refs.canvasStation;
@@ -111,32 +110,9 @@ export default {
 
       //Station=====================Station
       let json = this.stationList;
-      //console.log(JSON.stringify(json))
-      //找到最大数与最小数
-      let first = json[0];
-      let end = json[0];
-      for (let i = 1; i < json.length; i++) {
-        let tmp = json[i];
-        if (first.start_flag > tmp.start_flag) first = tmp;
-        if (end.start_flag < tmp.start_flag) end = tmp;
-      }
-      console.log(JSON.stringify(end));
-      // 总里程（最大数 - 最小数)
-      // let totalMileage =
-      //   (end.start_flag - first.start_flag) * 1000 +
-      //   end.start_length -
-      //   first.start_length;
-      // this.totalMileage = totalMileage;
-      // // console.log("总里程mileage：" + mileage);
-      // this.minMileage = first.start_flag * 1000 + first.start_length; //最小里程
-      // // console.log("最小里程minMileage：" + this.minMileage);
-  
-
-      let totalMileage = this.lineTypeTotalMileage;
-      this.minMileage = this.lineTypeMinMileage;
-       //每米长度等于px
-     // let every = (parseInt(canvasWidth - 30) / totalMileage).toFixed(5);
-        let every =this.every = this.everyLineType;
+      let lineTypeMinMileage = this.lineTypeMinMileage;
+      let every =this.every; //每米长度等于px
+      console.log("every："+every);
       //
       let img = new Image();
       img.src = require("@/assets/image/sta.png");
@@ -144,35 +120,27 @@ export default {
         let start = 0;
         for (let i = 0; i < json.length; i++) {
           // 绘制站点图
-          let total =
-            parseInt(json[i].start_flag) * 1000 +
-            parseInt(json[i].start_length);
+          let total =parseInt(json[i].start_flag) * 1000 +parseInt(json[i].start_length);
+          let  startLineX=(total-lineTypeMinMileage)* every;
+          console.log("total："+total+" lineTypeTotalMileage："+lineTypeMinMileage+" startLineX："+startLineX);
           // 计算当前站点的x轴
-          let startX = total * every;
-          if (i == 0) start = startX; 
-          cansText.drawImage(img, startX - start-2, 126, 22, 120);
-          //站名
-          cansText.font = "16px Microsoft Yahei";
-          cansText.fillStyle = "#0AE39A";
+          cansText.drawImage(img, startLineX, 126, 22, 120);
+          // //站名
+          cansText.font = "17px Microsoft Yahei";
+          cansText.fillStyle = "#6289f2";
           let origin = json[i].name.split("");
           for (let x = 0; x < origin.length; x++) {
-            cansText.fillText(
-              origin[x],
-              startX - start + 2,
-              138 - origin.length * 19 + 19 * x
-            );
+            cansText.fillText(origin[x],startLineX,138 - origin.length * 19 + 19 * x);
           }
           //DK
           let codes = "DK" + json[i].start_flag + " +" + json[i].start_length;
           cansText.fillStyle = "#fff";
           cansText.font = "12px  Microsoft Yahei";
-          cansText.fillTextVertical(codes, startX - start + 20, 165);
+          cansText.fillTextVertical(codes,startLineX+ 18, 175);
         }
       };
-
-      //Line=====================line
+      //Line=====================
       let lineJson = this.lineTypeList;
-      //console.log("lineJson:" + JSON.stringify(lineJson));
       let lineData = [];
       for (let i = 0; i < lineJson.length; i++) {
         lineData.push(lineJson[i]);
@@ -204,9 +172,9 @@ export default {
           //3
         } else if (lineJson[i].id == 3) {
           if (starttotal == 0) {
-            starttotal = this.minMileage;
+            starttotal = this.lineTypeMinMileage;
           }
-          let startZB = (starttotal - this.minMileage) * every + 9;
+          let startZB = (starttotal - this.lineTypeMinMileage) * every + 9;
           let endZB =
             parseFloat((endtotal - starttotal) * every) + parseFloat(startZB);
           cansText.moveTo(startZB, 350);
@@ -217,7 +185,7 @@ export default {
           cansText.fillText(tend, endZB - 60, 370);
           //4
         } else if (lineJson[i].id == 4) {
-          let startZB = (starttotal - this.minMileage) * every + 10;
+          let startZB = (starttotal - this.lineTypeMinMileage) * every + 10;
           let endZB =
             parseFloat((endtotal - starttotal) * every) + parseFloat(startZB);
           cansText.moveTo(startZB, 400);
@@ -226,8 +194,8 @@ export default {
           //
           let beteew = endZB - startZB;
           if (beteew < 160) {
-            cansText.fillText(tfrom, startZB - 150, 420);
-            cansText.fillText(tend, endZB - 56, 420);
+            cansText.fillText(tfrom, startZB - 160, 420);
+            cansText.fillText(tend, endZB - 80, 420);
           } else {
             cansText.fillText(tfrom, startZB, 420);
             cansText.fillText(tend, endZB - 55, 420);
@@ -398,13 +366,13 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   width: 1px;
   background: #fff;
   position: absolute;
-  right: 100px;
+  right: 40px;
   top: 245px;
   z-index: 1000;
 }
 .linebox {
   margin-left: 30px;
-  margin-right: 100px;
+  margin-right: 40px;
   border-top: 0;
   overflow: hidden;
   clear: both;

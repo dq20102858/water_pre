@@ -35,6 +35,7 @@
             <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
               <el-button size="small" icon="el-icon-search" @click="pageSearch" type="primary">查询</el-button>
+                <el-button size="small" plain @click="resetSerach">重置</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -173,6 +174,11 @@ export default {
       this.getDataList();
     },
     pageSearch() {
+      this.page_cur = 1;
+      this.getDataList();
+    },
+        resetSerach() {
+      this.searchForm = {};
       this.page_cur = 1;
       this.getDataList();
     },
