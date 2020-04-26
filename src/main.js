@@ -7,7 +7,6 @@ import '@/assets/css/index.scss' // global css
 import App from './App'
 import router from './router/index'
 import store from './store'
-import './icons' //icons
 import './permission' // permission control
 import * as filters from './filters' // global filters
 import eventBus from './utils/eventBus'

@@ -18,7 +18,6 @@
       }
     };
 </script>
-
 <style>
 .sidebar-container .el-scrollbar__wrap{background-image: linear-gradient(#6289f2 ,#4b6eca, #3b5cae, #1d397a);height: 100%;}
 .sidebar-container .app-menu {padding: 10px 0;}

@@ -38,22 +38,14 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
-// import Breadcrumb from "@/components/Breadcrumb";
 import Hamburger from "@/components/Hamburger";
 export default {
   data() {
     return {
       levelList: null,
-      systems: ["", "蜂巢办"],
-      Anumber: 0,
-      Bnumber: 0,
-      notify: 0
-      // systems: ["", "912租房网", "房鲸灵"],
     };
   },
-  props: ["msg"],
   components: {
-    // Breadcrumb,
     Hamburger
   },
   computed: {
@@ -82,10 +74,7 @@ export default {
     },
     handleCommand(system) {
       this.$store.dispatch("ChangeSystem", system).then(() => {
-        // this.$router.replace({
-        //   name: 'dashboard'
-        // })
-        location.href = "/"; // In order to re-instantiate the vue-router object to avoid bugs
+        location.href = "/";
       });
     }
   }
@@ -211,4 +200,5 @@ export default {
     font-weight: bold;
   }
 }
+
 </style>
