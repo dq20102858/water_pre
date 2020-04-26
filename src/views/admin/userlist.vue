@@ -187,7 +187,7 @@
               <el-form-item label="手机号码：" prop="phone">
                 <el-input v-model="userData.phone" autocomplete="off"></el-input>
               </el-form-item>
-              <el-form-item label="调度信息：" prop="dispatch">
+              <!-- <el-form-item label="调度信息：" prop="dispatch" style="">
                 <el-select v-model="userData.dispatch">
                   <el-option label="普通" :value="1"></el-option>
                   <el-option label="司机" :value="2"></el-option>
@@ -196,7 +196,7 @@
                   <el-option label="车站值班员" :value="5"></el-option>
                   <el-option label="施工队长" :value="6"></el-option>
                 </el-select>
-              </el-form-item>
+              </el-form-item> -->
               <el-form-item>
                 <el-checkbox-group v-model="userData.menus">
                   <el-checkbox
