@@ -1,6 +1,6 @@
 <template>
     <div id="monitor">
-    
+
     </div>
 </template>
 <script>
@@ -15,3 +15,6 @@
         }
     }
 </script>
+<style scoped>
+.dd{width: ;}
+</style>

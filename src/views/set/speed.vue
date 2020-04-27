@@ -240,9 +240,9 @@ export default {
             message: "请输入限速",
             trigger: "blur"
           },
-          {
-            pattern: /^\d{0,3}.\d{0,2}$/,
-            message: "请输入1-3位带小数点的数字",
+            {
+             pattern:/^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
+            message: "请输入1-3位正数字并可保留两位小数点",
             trigger: "blur"
           }
         ]

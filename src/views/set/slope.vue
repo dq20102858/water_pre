@@ -133,7 +133,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="高度：" prop="height">
-              <el-input v-model="formData.height" autocomplete="off" placeholder="请输入高度米"></el-input>
+              <el-input v-model="formData.height" autocomplete="off" placeholder="请输入高度米" maxlength="6"></el-input>
             </el-form-item>
             <!-- <el-form-item label="长度：" prop="length">
               <el-input v-model="formData.length" autocomplete="off"></el-input>
@@ -201,6 +201,18 @@ export default {
         line_type: [
           { required: true, message: "请选择线别", trigger: "change" }
         ],
+        height: [
+          {
+            required: true,
+            message: "请输入高度",
+            trigger: "blur"
+          },
+          {
+            pattern: /^\d+(\.\d{0,2})?$/,
+            message: "请输入数字最多只能保留两位小数",
+            trigger: "blur"
+          }
+        ],
         start_flag: [
           {
             required: true,
@@ -246,18 +258,6 @@ export default {
           {
             pattern: /^\d{1,3}$/,
             message: "请输入1-3位正整数",
-            trigger: "blur"
-          }
-        ],
-        height: [
-          {
-            required: true,
-            message: "请输入高度",
-            trigger: "blur"
-          },
-          {
-            pattern: /^\d{1,3}.\d{0,2}$/,
-            message: "请输入1-3位可带两位小数点的数字",
             trigger: "blur"
           }
         ]

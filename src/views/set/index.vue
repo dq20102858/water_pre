@@ -50,7 +50,7 @@
               </template>
             </el-table-column>
             <el-table-column prop="line" label="线别"></el-table-column>
-            <el-table-column prop="company" label="公司"></el-table-column>
+            <!-- <el-table-column prop="company" label="公司"></el-table-column> -->
             <el-table-column prop="create_time" label="创建时间"></el-table-column>
             <el-table-column prop="update_time" label="修改时间" :formatter="timestampToTime"></el-table-column>
             <el-table-column label="操作" width="120">
