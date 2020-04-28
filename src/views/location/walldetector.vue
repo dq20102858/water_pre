@@ -223,7 +223,7 @@ export default {
         start_length: [
           {
             required: true,
-            message: "请请输入位置米",
+            message: "请输入位置米",
             trigger: "blur"
           },
           {

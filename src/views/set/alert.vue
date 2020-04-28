@@ -205,7 +205,7 @@ export default {
         start_length: [
           {
             required: true,
-            message: "请请输入开始米",
+            message: "请输入开始米",
             trigger: "blur"
           },
           {
