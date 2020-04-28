@@ -7,14 +7,14 @@
                 gif来源
                 <a href='/' target='_blank'>airbnb</a> 页面
                 <h2>你没有权限去该页面</h2>
-                <h6>如有不满请联系你领导</h6>
+                <h6>如有疑问请联系管理员</h6>
                 <ul class="list-unstyled">
                     <li>或者你可以去:</li>
                     <li class="link-type">
-                        <router-link to="/collect">回首页</router-link>
+                        <router-link to="/">回首页</router-link>
                     </li>
                     <li class="link-type">
-                        <a href="、/">随便看看</a>
+                        <a href="/">随便看看</a>
                     </li>
                     <li>
                         <a @click.prevent="dialogVisible=true" href="#">点我看图</a>

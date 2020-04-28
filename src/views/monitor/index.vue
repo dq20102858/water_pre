@@ -101,13 +101,13 @@ export default {
       firstStation: "",
       lastStation: "",
       scrollwidth: 900,
-      bridgeCheckValue: false,
+      bridgeCheckValue: true,
       bridgeList: [],
       tunnelCheckValue: true,
       tunnelList: [],
-      speedCheckValue: false,
+      speedCheckValue: true,
       speedList: [],
-      alertCheckValue: false,
+      alertCheckValue: true,
       alertList: [],
       slopeCheckValue: true,
       slopeList: [],
@@ -703,37 +703,41 @@ export default {
           if (json[i].line_type == 1) {
             let startX = (start - leftLineMinMileage) * everys;
             let endX = (end - leftLineMinMileage) * everys;
+            let centerX = (endX + startX) / 2; //开始结束平均值
             //画水平直线
             context.moveTo(startX + offsetX, axis_LeftLine.y);
             context.lineTo(endX + offsetX, axis_LeftLine.y);
             //文字
-            context.fillText(desc, startX + 178, axis_LeftLine.y + 35);
+            context.fillText(desc, centerX + 100, axis_LeftLine.y + 35);
           } else if (json[i].line_type == 2) {
             let startX = (start - leftLineMinMileage) * everys;
             let endX = (end - leftLineMinMileage) * everys;
+            let centerX = (endX + startX) / 2; //开始结束平均值
             context.moveTo(startX + offsetX, axis_LeftLine_Two.y);
             context.lineTo(endX + offsetX, axis_LeftLine_Two.y);
-            context.fillText(desc, startX + 178, axis_LeftLine_Two.y + 35);
+            context.fillText(desc, centerX + 100, axis_LeftLine_Two.y + 35);
           } else if (json[i].line_type == 3) {
             let startX = (start - enterLineMinMileage) * everys;
             let endX = (end - enterLineMinMileage) * everys;
+            let centerX = (endX + startX) / 2; //开始结束平均值
             if (start == 0) {
               startX = 0;
               endX = end * everys;
             }
             context.moveTo(startX + offsetX, axis_OutLine.y);
             context.lineTo(endX + offsetX, axis_OutLine.y);
-            context.fillText(desc, startX + 178, axis_OutLine.y + 35);
+            context.fillText(desc, centerX + 100, axis_OutLine.y + 35);
           } else if (json[i].line_type == 4) {
             let startX = (start - outLineMinMileage) * everys;
             let endX = (end - outLineMinMileage) * everys;
+            let centerX = (endX + startX) / 2; //开始结束平均值
             if (start == 0) {
               startX = 0;
               endX = end * everys;
             }
             context.moveTo(startX + offsetX, axis_OutLine_Two.y);
             context.lineTo(endX + offsetX, axis_OutLine_Two.y);
-            context.fillText(desc, startX + 178, axis_OutLine_Two.y + 35);
+            context.fillText(desc, centerX + 100, axis_OutLine_Two.y + 35);
           }
           context.stroke();
           //
