@@ -1,323 +1,258 @@
 <template>
   <div id="security">
     <div class="el-menu-top">
-      <el-menu :default-active="defaultActive" mode="horizontal" @select="handleSelect">
+      <el-menu mode="horizontal">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-sec.png')" />安全管理
         </li>
-        <el-menu-item index="1">事件管理</el-menu-item>
-        <el-menu-item index="2">添加事件</el-menu-item>
-        <!-- <el-menu-item index="3">设置</el-menu-item> -->
+        <el-menu-item class="is-active">事件管理</el-menu-item>
       </el-menu>
     </div>
+    <!-- list -->
     <div class="app-page">
-      <div class="addpage" v-show="addPageShow">
-        <div class="security-title">安全事件添加</div>
-        <div class="app-page-container">
-          <div class="formbox">
-            <el-form
-              class="el-form-custom"
-              label-width="120px"
-              label-position="right"
-              :model="formData"
-              :rules="formRules"
-              ref="formRulesRef"
+      <div class="app-page-container">
+        <div class="app-page-select">
+          <el-form :model="searchForm" :inline="true">
+            <el-form-item class="form-add-item">
+              <el-button
+                size="small"
+                icon="el-icon-plus"
+                type="primary"
+                @click="addDialogEvents"
+              >添加事件</el-button>
+            </el-form-item>
+
+            <el-form-item label="事件类型" style="display:none">
+              <el-select v-model="searchForm.type">
+                <el-option label="人员提交" :value="1"></el-option>
+                <el-option label="机车提交" :value="2"></el-option>
+              </el-select>
+            </el-form-item>
+            <span v-if="searchForm.type==2">
+              <el-form-item label="隐患类型">
+                <el-select v-model="searchForm.danger_type">
+                  <el-option
+                    v-for="item in dangerTypeList"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="隐患判定">
+                <el-select v-model="searchForm.danger_determine">
+                  <el-option
+                    v-for="item in this.dangerDetermineList"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="机车">
+                <el-select v-model="searchForm.loco_id">
+                  <el-option
+                    v-for="item in this.trainList"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="位置范围" class="el-form-item-inline">
+                <el-input v-model="searchForm.start_location" autocomplete="off"></el-input>
+                <b>~</b>
+                <el-input v-model="searchForm.end_location" autocomplete="off"></el-input>
+              </el-form-item>
+            </span>
+            <el-form-item label="发现时间段">
+              <el-date-picker
+                v-model="searchForm.start_time"
+                :picker-options="pickerOptionsStart"
+                type="datetime"
+                format="yyyy-MM-dd HH:mm"
+                placeholder="开始时间"
+                clearable
+              ></el-date-picker>
+            </el-form-item>
+            <el-form-item label="-">
+              <el-date-picker
+                v-model="searchForm.end_time"
+                :picker-options="pickerOptionsEnd"
+                type="datetime"
+                format="yyyy-MM-dd HH:mm"
+                placeholder="结束时间"
+                clearable
+              ></el-date-picker>
+            </el-form-item>
+            <el-form-item class="form-so">
+              <label class="el-form-item__label"></label>
+              <el-button size="small" icon="el-icon-search" @click="pageSearch" type="primary">查询</el-button>
+              <el-button size="small" plain @click="resetSerach">重置</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
+        <div class="app-table">
+          <el-table :data="dataList">
+            <el-table-column prop="id" label="序号"></el-table-column>
+            <el-table-column prop="title" label="事件名称"></el-table-column>
+            <el-table-column prop="address" label="事件地址" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="type" label="事件类型">
+              <template slot-scope="scope">{{scope.row.type==1?"人员提交":"机车提交"}}</template>
+            </el-table-column>
+            <el-table-column prop="danger_determine_name" label="隐患判定"></el-table-column>
+            <el-table-column prop="status" label="状态">
+              <template slot-scope="scope">
+                <span v-if="scope.row.status==1">新事件</span>
+                <span v-else-if="scope.row.status==2">处理中</span>
+                <span v-else>已完成</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="当前情况" prop="current_status"></el-table-column>
+            <el-table-column prop="admin" label="提交者"></el-table-column>
+            <el-table-column prop="create_time" label="发布时间">
+              <template slot-scope="scope">
+                <p v-html="changeTime(scope.row.create_time)"></p>
+              </template>
+            </el-table-column>
+            <el-table-column label="操作" width="200">
+              <template slot-scope="scope">
+                <div class="app-operation">
+                  <el-button class="btn-blue" size="mini" @click="goDetail(scope.row.id)">查看</el-button>
+                  <el-button class="btn-blue" size="mini" @click="goAssign(scope.row.id)">指派</el-button>
+                  <el-button class="btn-red" size="mini" @click="goDetermine(scope.row.id)">隐患判定</el-button>
+                </div>
+              </template>
+            </el-table-column>
+          </el-table>
+          <div class="app-pagination">
+            <el-pagination
+              class="pagination"
+              v-if="dataList.length !== 0"
+              layout="slot,prev, pager, next,slot,total"
+              :page-size="this.page_size"
+              :current-page="this.page_cur"
+              :total="this.pageTotal"
+              @current-change="pageChange"
+              prev-text="上一页"
+              next-text="下一页"
             >
-              <el-form-item label="添加事件公司：" prop="depart_id">
-                <el-select
-                  v-model="formData.depart_id"
-                  placeholder="请选择公司"
-                  @change="selectCompanyList($event)"
-                >
-                  <el-option
-                    v-for="item in companyList"
-                    :key="item.id"
-                    :label="item.name"
-                    :value="item.id"
-                  ></el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item label="人员：" prop="admin_id">
-                <el-select v-model="formData.admin_id" placeholder="请选择人员：">
-                  <el-option
-                    v-for="item in this.objSelectLists"
-                    :key="item.id"
-                    :label="item.name"
-                    :value="item.id"
-                  ></el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item label="安全事件标题：" prop="title">
-                <el-input v-model="formData.title" maxlength="30" show-word-limit></el-input>
-              </el-form-item>
-              <el-form-item label="安全事件地址：" prop="address" class="textarea1">
-                <el-input
-                  type="textarea"
-                  v-model="formData.address"
-                  maxlength="100"
-                  show-word-limit
-                ></el-input>
-              </el-form-item>
-              <el-form-item label="安全事件描述：" prop="description">
-                <el-input
-                  type="textarea"
-                  v-model="formData.description"
-                  maxlength="255"
-                  show-word-limit
-                ></el-input>
-              </el-form-item>
-              <el-form-item label="相关图片：">
-                <p style="color:#3655a5">最多可以上传5张图片</p>
-                <!-- action="http://129.211.168.161/upload/uploadFile" 
-                  :on-success="handleAvatarSuccess"
-                -->
-                <el-upload
-                  ref="uploadfive"
-                  class="uploader el-upload-list--picture-card"
-                  :action="uploadAction"
-                  :limit="5"
-                  list-type="picture-card"
-                  :auto-upload="true"
-                  :on-exceed="uploadExceed"
-                  :before-upload="uploadBefore"
-                  :on-success="uploadSuccess"
-                >
-                  <i class="el-icon-plus"></i>
-                </el-upload>
-                <el-dialog :visible.sync="dialogVisible">
-                  <img width="100%" :src="dialogImageUrl" alt />
-                </el-dialog>
-              </el-form-item>
-              <el-form-item>
-                <el-button type="primary" @click="addEvent">信息确认无误，点击上传</el-button>
-              </el-form-item>
-            </el-form>
+              <button @click="pageToFirst" type="button" class="btn-first">
+                <span>首页</span>
+              </button>
+              <button @click="pageToLast" type="button" class="btn-last">
+                <span>尾页</span>
+              </button>
+            </el-pagination>
+          </div>
+        </div>
+        <!-- end table -->
+      </div>
+      <div class="listpagedetail">
+        <div class="detailleft">
+          <div class="security-title">施工问题详情</div>
+          <div class="app-page-container">
+            <div class="steps-info">
+              <h3>{{eventTitle}}</h3>
+              {{eventDesc}}
+              <div class="imgs">
+                <img
+                  :preview-src-list="eventPictureList"
+                  v-for="item  in eventPictureList"
+                  :key="item.id"
+                  :src="item.src"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="detailright">
+          <div class="security-title">处理进度</div>
+          <div class="app-page-container">
+            <div class="steps-section">
+              <ul class="timeline">
+                <li v-for="item in eventPeopleList" :key="item.id">
+                  <div class="desc">{{item.description}}</div>
+                  <div class="time">
+                    {{item.user_name}}
+                    <p>{{item.create_time}}</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-      <!-- list -->
-      <div class="listpage" v-show="listPageShow">
-        <div class="app-page-container">
-          <div class="app-page-select">
-            <el-form :model="searchForm" :inline="true">
-              <el-form-item label="事件类型" style="display:none">
-                <el-select v-model="searchForm.type">
-                  <el-option label="人员提交" :value="1"></el-option>
-                  <el-option label="机车提交" :value="2"></el-option>
-                </el-select>
-              </el-form-item>
-              <span v-if="searchForm.type==2">
-                <el-form-item label="隐患类型">
-                  <el-select v-model="searchForm.danger_type">
-                    <el-option
-                      v-for="item in dangerTypeList"
-                      :key="item.id"
-                      :label="item.name"
-                      :value="item.id"
-                    ></el-option>
-                  </el-select>
-                </el-form-item>
-                <el-form-item label="隐患判定">
-                  <el-select v-model="searchForm.danger_determine">
-                    <el-option
-                      v-for="item in this.dangerDetermineList"
-                      :key="item.id"
-                      :label="item.name"
-                      :value="item.id"
-                    ></el-option>
-                  </el-select>
-                </el-form-item>
-                <el-form-item label="机车">
-                  <el-select v-model="searchForm.loco_id">
-                    <el-option
-                      v-for="item in this.trainList"
-                      :key="item.id"
-                      :label="item.name"
-                      :value="item.id"
-                    ></el-option>
-                  </el-select>
-                </el-form-item>
-                <el-form-item label="位置范围" class="el-form-item-inline">
-                  <el-input v-model="searchForm.start_location" autocomplete="off"></el-input>
-                  <b>~</b>
-                  <el-input v-model="searchForm.end_location" autocomplete="off"></el-input>
-                </el-form-item>
-              </span>
-              <el-form-item label="发现时间段">
-                <el-date-picker
-                  v-model="searchForm.start_time"
-                  :picker-options="pickerOptionsStart"
-                  type="datetime"
-                  format="yyyy-MM-dd HH:mm"
-                  placeholder="开始时间"
-                  clearable
-                ></el-date-picker>
-              </el-form-item>
-              <el-form-item label="-">
-                <el-date-picker
-                  v-model="searchForm.end_time"
-                  :picker-options="pickerOptionsEnd"
-                  type="datetime"
-                  format="yyyy-MM-dd HH:mm"
-                  placeholder="结束时间"
-                  clearable
-                ></el-date-picker>
-              </el-form-item>
-              <el-form-item class="form-so">
-                <label class="el-form-item__label"></label>
-                <el-button size="small" icon="el-icon-search" @click="pageSearch" type="primary">查询</el-button>
-                <el-button size="small" plain @click="resetSerach">重置</el-button>
-              </el-form-item>
-            </el-form>
-          </div>
-          <div class="app-table">
-            <el-table :data="dataList">
-              <el-table-column prop="id" label="序号"></el-table-column>
-              <el-table-column prop="title" label="事件名称"></el-table-column>
-              <el-table-column prop="address" label="事件地址" show-overflow-tooltip></el-table-column>
-              <el-table-column prop="type" label="事件类型">
-                <template slot-scope="scope">{{scope.row.type==1?"人员提交":"机车提交"}}</template>
-              </el-table-column>
-              <el-table-column prop="danger_determine_name" label="隐患判定"></el-table-column>
-              <el-table-column prop="status" label="状态">
-                <template slot-scope="scope">
-                  <span v-if="scope.row.status==1">新事件</span>
-                  <span v-else-if="scope.row.status==2">处理中</span>
-                  <span v-else>已完成</span>
-                </template>
-              </el-table-column>
-              <el-table-column label="当前情况" prop="current_status"></el-table-column>
-              <el-table-column prop="admin" label="提交者"></el-table-column>
-              <el-table-column prop="create_time" label="发布时间">
-                <template slot-scope="scope">
-                  <p v-html="changeTime(scope.row.create_time)"></p>
-                </template>
-              </el-table-column>
-              <el-table-column label="操作" width="200">
-                <template slot-scope="scope">
-                  <div class="app-operation">
-                    <el-button class="btn-blue" size="mini" @click="goDetail(scope.row.id)">查看</el-button>
-                    <el-button class="btn-blue" size="mini" @click="goAssign(scope.row.id)">指派</el-button>
-                    <el-button class="btn-red" size="mini" @click="goDetermine(scope.row.id)">隐患判定</el-button>
-                  </div>
-                </template>
-              </el-table-column>
-            </el-table>
-            <div class="app-pagination">
-              <el-pagination
-                class="pagination"
-                v-if="dataList.length !== 0"
-                layout="slot,prev, pager, next,slot,total"
-                :page-size="this.page_size"
-                :current-page="this.page_cur"
-                :total="this.pageTotal"
-                @current-change="pageChange"
-                prev-text="上一页"
-                next-text="下一页"
-              >
-                <button @click="pageToFirst" type="button" class="btn-first">
-                  <span>首页</span>
-                </button>
-                <button @click="pageToLast" type="button" class="btn-last">
-                  <span>尾页</span>
-                </button>
-              </el-pagination>
-            </div>
-          </div>
-          <!-- end table -->
-        </div>
-        <div class="listpagedetail">
-          <div class="detailleft">
-            <div class="security-title">施工问题详情</div>
-            <div class="app-page-container">
-              <div class="steps-info">
-                <h3>{{eventTitle}}</h3>
-                {{eventDesc}}
-                <div class="imgs">
-                  <img v-for="item  in eventPictureList" :key="item.id" :src="item.src" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="detailright">
-            <div class="security-title">处理进度</div>
-            <div class="app-page-container">
-              <div class="steps-section">
-                <ul class="timeline">
-                  <li v-for="item in eventPeopleList" :key="item.id">
-                    <div class="desc">{{item.description}}</div>
-                    <div class="time">
-                      {{item.user_name}}
-                      <p>{{item.create_time}}</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- dialog -->
-        <el-dialog
-          width="480px"
-          :close-on-click-modal="false"
-          class="dialog-dangers"
-          title="隐患类型设置"
-          :visible.sync="diaDangerFormVisible"
-        >
-          <el-form class="el-form-custom">
-            <el-form-item>
-              <el-radio-group v-model="dangerTypeValue" class="my-radio">
-                <el-radio
-                  v-for="item in dangerDetermineList"
-                  :key="item.id"
-                  :label="item.id"
-                  border
-                >{{item.name}}</el-radio>
-              </el-radio-group>
-            </el-form-item>
-            <div class="blank"></div>
-          </el-form>
-          <div slot="footer" class="dialog-footer">
-            <el-button @click="diaDangerFormVisible = false">关闭</el-button>
-            <el-button type="primary" @click="setDetermineDialog()">确定</el-button>
-          </div>
-        </el-dialog>
-        <!-- // -->
-        <el-dialog
-          width="700px"
-          :close-on-click-modal="false"
-          class="dialog-danger"
-          title="指派人员"
-          :visible.sync="diaPeopleFormVisible"
-        >
+      <!-- dialog -->
+      <el-dialog
+        width="900px"
+        :close-on-click-modal="false"
+        class="dialog-dangers"
+        title="安全事件添加"
+        :visible.sync="dialogFormEvent"
+      >
+        <div class="formbox">
           <el-form
             class="el-form-custom"
-            :model="peopleData"
-            :rules="peopleRules"
-            ref="peopleRulesRef"
+            label-width="120px"
+            label-position="right"
+            :model="formData"
+            :rules="formRules"
+            ref="formRulesRef"
           >
-            <el-form-item label="指派人员：" prop="user_id">
-              <el-select v-model="peopleData.user_id">
+            <el-form-item label="添加事件公司：" prop="depart_id">
+              <el-select
+                v-model="formData.depart_id"
+                placeholder="请选择公司"
+                @change="selectCompanyList($event)"
+              >
                 <el-option
-                  v-for="item in this.assignersList"
+                  v-for="item in companyList"
                   :key="item.id"
                   :label="item.name"
                   :value="item.id"
                 ></el-option>
               </el-select>
             </el-form-item>
+            <el-form-item label="人员：" prop="admin_id">
+              <el-select v-model="formData.admin_id" placeholder="请选择人员：">
+                <el-option
+                  v-for="item in this.objSelectLists"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="安全事件标题：" prop="title">
+              <el-input v-model="formData.title" maxlength="30" show-word-limit></el-input>
+            </el-form-item>
+            <el-form-item label="安全事件地址：" prop="address" class="textarea1">
+              <el-input type="textarea" v-model="formData.address" maxlength="100" show-word-limit></el-input>
+            </el-form-item>
+            <el-form-item label="安全事件描述：" prop="description">
+              <el-input
+                type="textarea"
+                v-model="formData.description"
+                maxlength="255"
+                show-word-limit
+              ></el-input>
+            </el-form-item>
             <el-form-item label="相关图片：">
-              <p style="color:#3655a5">最多可以上传3张图片</p>
+              <p style="color:#3655a5">最多可以上传5张图片</p>
+              <!-- action="http://129.211.168.161/upload/uploadFile" 
+                  :on-success="handleAvatarSuccess"
+              -->
               <el-upload
-                ref="uploadthree"
-                class="uploaderthree el-upload-list--picture-card"
+                ref="uploadfive"
+                class="uploader el-upload-list--picture-card"
                 :action="uploadAction"
-                :limit="3"
+                :limit="5"
                 list-type="picture-card"
                 :auto-upload="true"
+                :on-exceed="uploadExceed"
                 :before-upload="uploadBefore"
-                :on-exceed="uploadThreeExceed"
-                :on-success="uploadThreeSuccess"
+                :on-success="uploadSuccess"
               >
                 <i class="el-icon-plus"></i>
               </el-upload>
@@ -325,22 +260,97 @@
                 <img width="100%" :src="dialogImageUrl" alt />
               </el-dialog>
             </el-form-item>
-            <el-form-item label="备注描述：" prop="remark">
-              <el-input type="textarea" v-model="peopleData.remark"></el-input>
-            </el-form-item>
-            <div class="blank"></div>
+            <!-- <el-form-item>
+              <el-button type="primary" @click="addEvent">信息确认无误，点击上传</el-button>
+            </el-form-item>-->
           </el-form>
-          <div slot="footer" class="dialog-footer">
-            <el-button @click="diaPeopleFormVisible = false">关闭</el-button>
-            <el-button type="primary" @click="saveAssignDialog()">确定</el-button>
-          </div>
-        </el-dialog>
-        <!-- // -->
-      </div>
+        </div>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormEvent = false">关闭</el-button>
+          <el-button type="primary" @click="addEvent()">确定上传信息</el-button>
+        </div>
+      </el-dialog>
 
+      <el-dialog
+        width="480px"
+        :close-on-click-modal="false"
+        class="dialog-dangers"
+        title="隐患类型设置"
+        :visible.sync="diaDangerFormVisible"
+      >
+        <el-form class="el-form-custom">
+          <el-form-item>
+            <el-radio-group v-model="dangerTypeValue" class="my-radio">
+              <el-radio
+                v-for="item in dangerDetermineList"
+                :key="item.id"
+                :label="item.id"
+                border
+              >{{item.name}}</el-radio>
+            </el-radio-group>
+          </el-form-item>
+          <div class="blank"></div>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="diaDangerFormVisible = false">关闭</el-button>
+          <el-button type="primary" @click="setDetermineDialog()">确定</el-button>
+        </div>
+      </el-dialog>
+      <!-- // -->
+      <el-dialog
+        width="700px"
+        :close-on-click-modal="false"
+        class="dialog-danger"
+        title="指派人员"
+        :visible.sync="diaPeopleFormVisible"
+      >
+        <el-form
+          class="el-form-custom"
+          :model="peopleData"
+          :rules="peopleRules"
+          ref="peopleRulesRef"
+        >
+          <el-form-item label="指派人员：" prop="user_id">
+            <el-select v-model="peopleData.user_id">
+              <el-option
+                v-for="item in this.assignersList"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id"
+              ></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="相关图片：">
+            <p style="color:#3655a5">最多可以上传3张图片</p>
+            <el-upload
+              ref="uploadthree"
+              class="uploaderthree el-upload-list--picture-card"
+              :action="uploadAction"
+              :limit="3"
+              list-type="picture-card"
+              :auto-upload="true"
+              :before-upload="uploadBefore"
+              :on-exceed="uploadThreeExceed"
+              :on-success="uploadThreeSuccess"
+            >
+              <i class="el-icon-plus"></i>
+            </el-upload>
+            <el-dialog :visible.sync="dialogVisible">
+              <img width="100%" :src="dialogImageUrl" alt />
+            </el-dialog>
+          </el-form-item>
+          <el-form-item label="备注描述：" prop="remark">
+            <el-input type="textarea" v-model="peopleData.remark"></el-input>
+          </el-form-item>
+          <div class="blank"></div>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="diaPeopleFormVisible = false">关闭</el-button>
+          <el-button type="primary" @click="saveAssignDialog()">确定</el-button>
+        </div>
+      </el-dialog>
+      <!-- // -->
       <!-- end dialog -->
-      <div class="setpage" v-show="setPageShow">setPageShow</div>
-      <!-- end set -->
     </div>
   </div>
 </template>
@@ -366,10 +376,6 @@ export default {
           }
         }
       },
-      defaultActive: "1",
-      addPageShow: false,
-      listPageShow: true,
-      setPageShow: false,
       searchForm: {
         type: 1,
         time_range: []
@@ -429,6 +435,7 @@ export default {
           }
         ]
       },
+      dialogFormEvent: false,
       dialogImageUrl: "",
       dialogVisible: false,
       eventTitle: "",
@@ -466,23 +473,6 @@ export default {
     this.getDataList();
   },
   methods: {
-    handleSelect(key, keyPath) {
-      if (key == 1) {
-        this.addPageShow = false;
-        this.listPageShow = true;
-        this.formData = {};
-        this.getDataList();
-      } else if (key == 2) {
-        this.addPageShow = true;
-        this.listPageShow = false;
-        this.peopleData = {};
-        this.formData = {};
-        this.$refs.uploadfive.clearFiles();
-      } else {
-        this.addPageShow = false;
-        this.listPageShow = false;
-      }
-    },
     //====列表数据
     getDataList() {
       let page = this.page_cur;
@@ -569,6 +559,15 @@ export default {
       this.goDetail(0);
     },
     //================事件表单操作
+    addDialogEvents() {
+      this.dialogFormEvent = true;
+      debugger
+      let uploadImgs = document.getElementsByClassName("el-upload-list");
+      if (uploadImgs.length > 0) {
+        this.$refs.uploadfive.clearFiles();
+      }
+      console.log("uploadImgs：" + uploadImgs.length);
+    },
     //获取公司
     getCompanyLists() {
       this.request({
@@ -646,7 +645,7 @@ export default {
         for (let i = 0; i < upload_list_li.length; i++) {
           let li_a = upload_list_li[i];
           let imgElement = document.createElement("img");
-          imgElement.setAttribute("src", "http://" + res.data.url);
+          imgElement.setAttribute("src", res.data.url);
           imgElement.setAttribute("class", "upimgitem");
           if (li_a.lastElementChild.nodeName !== "IMG") {
             li_a.appendChild(imgElement);
@@ -699,9 +698,7 @@ export default {
                 type: "success"
               });
               this.formData = {};
-              this.addPageShow = false;
-              this.listPageShow = true;
-              this.defaultActive = 1;
+              this.dialogFormEvent = false;
               this.getDataList();
             } else {
               this.$message({
@@ -786,13 +783,13 @@ export default {
     },
     uploadThreeSuccess(res, file) {
       console.log("图上传成功", res);
-      let upload_list_li = document.getElementsByClassName("el-upload-list")[1]
+      let upload_list_li = document.getElementsByClassName("el-upload-list")[0]
         .children;
       if (res.data.url != "") {
         for (let i = 0; i < upload_list_li.length; i++) {
           let li_a = upload_list_li[i];
           let imgElement = document.createElement("img");
-          imgElement.setAttribute("src", "http://" + res.data.url);
+          imgElement.setAttribute("src", res.data.url);
           imgElement.setAttribute("class", "upimgitems");
           if (li_a.lastElementChild.nodeName !== "IMG") {
             li_a.appendChild(imgElement);
@@ -814,11 +811,15 @@ export default {
     },
     //指派
     goAssign(id) {
+      this.dialogFormEvent = false;
       this.diaPeopleFormVisible = true;
       this.dangerIdValue = id;
       this.$set(this.peopleData, "user_id", "");
-      this.$refs.uploadthree.clearFiles();
       this.$set(this.peopleData, "remark", "");
+      let uploadImgs = document.getElementsByClassName("el-upload-list");
+      if (uploadImgs.length > 0) {
+        this.$refs.uploadthree.clearFiles();
+      }
     },
     saveAssignDialog() {
       this.$refs["peopleRulesRef"].validate(valid => {
@@ -893,7 +894,7 @@ export default {
   text-align: center;
 }
 #security .formbox {
-  padding: 50px 100px 30px 100px;
+  padding: 0 10px;
 }
 #security .el-textarea {
   width: 100%;
