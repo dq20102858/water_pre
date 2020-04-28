@@ -463,7 +463,6 @@ export default {
           }
         };
       }
-
       //绘制桥
       function drawBridgeAxis(bridgeListJson) {
         let json = bridgeListJson;
@@ -947,42 +946,41 @@ export default {
       }
       //绘制请点
       function drawAxesApply(applyListJson) {
-        let json1 = applyListJson;
-
-        let json=[
-            {
-                "line_type": 1,
-                "number": "A4-2-007-1",
-                "command_num": "(2020)\u5b57\u7b2c04.21-007-2",
-                "description": "\u98ce\u98ce\u5149\u5149",
-                "work_area": "DK14+130\u81f3DK42+410",
-                "start_time": "2020-04-28 00:00:00",
-                "end_time": "2020-04-28 23:59:59",
-                "start_flag": "14",
-                "start_length": "600",
-                "end_flag": "16",
-                "end_length": "410",
-                "type": "A4",
-                "start_total": 14600,
-                "end_total": 16410
-            },
-            {
-                "line_type": 2,
-                "number": "A4-2-007-1",
-                "command_num": "(2020)\u5b57\u7b2c04.21-007-2",
-                "description": "\u98ce\u98ce\u5149\u5149",
-                "work_area": "DK14+130\u81f3DK42+410",
-                "start_time": "2020-04-28 00:00:00",
-                "end_time": "2020-04-28 23:59:59",
-                "start_flag": "14",
-                "start_length": "600",
-                "end_flag": "16",
-                "end_length": "410",
-                "type": "A4",
-                "start_total": 14600,
-                "end_total": 16410
-            }
-        ]
+        let json = applyListJson;
+        let json1 = [
+          {
+            line_type: 1,
+            number: "A4-2-007-1",
+            command_num: "(2020)\u5b57\u7b2c04.21-007-2",
+            description: "\u98ce\u98ce\u5149\u5149",
+            work_area: "DK14+130\u81f3DK42+410",
+            start_time: "2020-04-28 00:00:00",
+            end_time: "2020-04-28 23:59:59",
+            start_flag: "14",
+            start_length: "600",
+            end_flag: "16",
+            end_length: "410",
+            type: "A4",
+            start_total: 14600,
+            end_total: 16410
+          },
+          {
+            line_type: 2,
+            number: "A4-2-007-1",
+            command_num: "(2020)\u5b57\u7b2c04.21-007-2",
+            description: "\u98ce\u98ce\u5149\u5149",
+            work_area: "DK14+130\u81f3DK42+410",
+            start_time: "2020-04-28 00:00:00",
+            end_time: "2020-04-28 23:59:59",
+            start_flag: "14",
+            start_length: "600",
+            end_flag: "16",
+            end_length: "410",
+            type: "A4",
+            start_total: 14600,
+            end_total: 16410
+          }
+        ];
         console.log("applyListJson" + applyListJson);
         let clickXY = [];
         for (let i = 0; i < json.length; i++) {
@@ -1010,45 +1008,50 @@ export default {
             let endX = (end - leftLineMinMileage) * everys;
             let centerX = (endX + startX) / 2; //开始结束平均值
             //画水平直线
-            context.fillRect(startX + offsetX - 1, axis_applay.y - 14, 2, 15);
-            context.fillRect(endX + offsetX - 1, axis_applay.y - 14, 2, 15);
+            context.fillRect(startX + offsetX - 1, axis_applay.y - 8, 2, 15);
+            context.fillRect(endX + offsetX - 1, axis_applay.y - 8, 2, 15);
             context.moveTo(startX + offsetX, axis_applay.y);
             context.lineTo(endX + offsetX, axis_applay.y);
             //文字
             context.font = "24px Microsoft Yahei";
             context.fillText(desc, centerX + offsetX, axis_applay.y - 25);
-             context.fillStyle = "#ffff00";
-            context.font = "12px Microsoft Yahei";
-            context.fillText(dksatrt, startX + 139, axis_applay.y - 15);
-            context.fillText(dkend, endX + 60, axis_applay.y - 15);
             clickXY.push({
               x: centerX + offsetX,
-              y: axis_applay.y - 20,
+              y: axis_applay.y - 25,
               r: 50,
               i: json[i]
             });
+            context.fillStyle = "#ffff00";
+            context.font = "12px Microsoft Yahei";
+            context.fillText(dksatrt, startX + 139, axis_applay.y - 15);
+            context.fillText(dkend, endX + 60, axis_applay.y - 15);
           } else if (json[i].line_type == 2) {
             let startX = (start - leftLineMinMileage) * everys;
             let endX = (end - leftLineMinMileage) * everys;
             let centerX = (endX + startX) / 2; //开始结束平均值
-            context.fillRect(startX + offsetX - 1, axis_applay_two.y - 99, 2,15);
-            context.fillRect(endX + offsetX - 1, axis_applay_two.y - 99, 2, 15);
-            context.moveTo(startX + offsetX, axis_applay_two.y-85);
-            context.lineTo(endX + offsetX, axis_applay_two.y-85);
+            context.fillRect(
+              startX + offsetX - 1,
+              axis_applay_two.y - 93,
+              2,
+              15
+            );
+            context.fillRect(endX + offsetX - 1, axis_applay_two.y - 93, 2, 15);
+            context.moveTo(startX + offsetX, axis_applay_two.y - 85);
+            context.lineTo(endX + offsetX, axis_applay_two.y - 85);
             //文字
             context.fillStyle = "#ffff00";
             context.font = "24px Microsoft Yahei";
             context.fillText(desc, centerX + offsetX, axis_applay.y + 180);
-            context.fillStyle = "#ffff00";
-            context.font = "12px Microsoft Yahei";
-            context.fillText(dksatrt, startX + 139, axis_applay_two.y - 99);
-            context.fillText(dkend, endX + 60, axis_applay_two.y - 99);
             clickXY.push({
               x: centerX + offsetX,
               y: axis_applay_two.y + 180,
               r: 50,
               i: json[i]
             });
+            context.fillStyle = "#ffff00";
+            context.font = "12px Microsoft Yahei";
+            context.fillText(dksatrt, startX + 139, axis_applay_two.y - 99);
+            context.fillText(dkend, endX + 60, axis_applay_two.y - 99);
           }
           context.stroke();
 
