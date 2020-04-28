@@ -408,7 +408,12 @@ export default {
             message: "请输入安全事件地址2~100个字符",
             trigger: "blur"
           },
-          { min: 2, max: 100, message: "长度在2到100个字符", trigger: "blur" }
+          { min: 2, max: 100, message: "长度在2到100个字符", trigger: "blur" },
+          {
+            pattern: /\s\S+|S+\s|\S/,
+            message: "内容不能全是空格",
+            trigger: "blur"
+          }
         ],
         description: [
           {
@@ -416,7 +421,12 @@ export default {
             message: "请输入安全事件描述2~255个字符",
             trigger: "blur"
           },
-          { min: 2, max: 255, message: "长度在2到255个字符", trigger: "blur" }
+          { min: 2, max: 255, message: "长度在2到255个字符", trigger: "blur" },
+          {
+            pattern: /\s\S+|S+\s|\S/,
+            message: "内容不能全是空格",
+            trigger: "blur"
+          }
         ]
       },
       dialogImageUrl: "",

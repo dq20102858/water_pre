@@ -112,7 +112,8 @@
       :close-on-click-modal="false"
       append-to-body
     >
-      <el-form class="el-form-custom"
+      <el-form
+        class="el-form-custom"
         :model="tempForm"
         :rules="temprules"
         ref="tempFormRef"
@@ -190,6 +191,11 @@ export default {
             max: 30,
             message: "请输入长度在2到30个字符",
             trigger: "blur"
+          },
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
           }
         ],
         driver_id: [
@@ -239,7 +245,7 @@ export default {
             message: "请输入长度在2到500个字符",
             trigger: "blur"
           },
-            {
+          {
             pattern: /\s\S+|S+\s|\S/,
             message: "内容不能全是空格",
             trigger: "blur"

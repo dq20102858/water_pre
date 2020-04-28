@@ -31,7 +31,7 @@
             </el-form-item>
             <el-form-item>
               <el-select v-model="searchForm.type" placeholder="请选择类型" clearable>
-                <el-option label="人" value="1"></el-option>
+                <!-- <el-option label="人" value="1"></el-option> -->
                 <el-option label="车" value="2"></el-option>
                 <el-option label="机具" value="3"></el-option>
               </el-select>
@@ -120,7 +120,7 @@
         <div v-if="locationData.id>0">
           <el-form-item label="设备类型：" prop="type">
             <el-select v-model="locationData.type" placeholder="请选择" disabled>
-              <el-option label="人" :value="1"></el-option>
+              <!-- <el-option label="人" :value="1"></el-option> -->
               <el-option label="车" :value="2"></el-option>
               <el-option label="机具" :value="3"></el-option>
             </el-select>
@@ -144,7 +144,7 @@
               clearable
               @change="selectDeviceType($event)"
             >
-              <el-option label="人" :value="1"></el-option>
+              <!-- <el-option label="人" :value="1"></el-option> -->
               <el-option label="车" :value="2"></el-option>
               <el-option label="机具" :value="3"></el-option>
             </el-select>
