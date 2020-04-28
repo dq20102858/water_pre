@@ -794,8 +794,8 @@ export default {
             parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
           //console.log("start：" + start + " end：" + end);
           // 计算当前站点的x轴坐标
-          let startX = (start - parseInt(minkm * 1000)) * everys;
-          let endX = (end - parseInt(minkm * 1000)) * everys;
+          // let startX = (start - parseInt(minkm * 1000)) * everys;
+          // let endX = (end - parseInt(minkm * 1000)) * everys;
           //console.log("startX：" + startX + " endX：" + endX);
           context.strokeStyle = "#ff1833";
           context.lineWidth = 10;
@@ -812,15 +812,41 @@ export default {
             json[i].end_length;
           context.beginPath();
           if (json[i].line_type == 1) {
+                let startX = (start - leftLineMinMileage) * everys;
+            let endX = (end - leftLineMinMileage) * everys;
             //画水平直线
             context.moveTo(startX + offsetX, axis_LeftLine.y);
             context.lineTo(endX + offsetX, axis_LeftLine.y);
             //文字
             context.fillText(desc, startX + 178, axis_LeftLine.y + 35);
-          } else {
+          } else   if (json[i].line_type ==2) {
+                let startX = (start - leftLineMinMileage) * everys;
+            let endX = (end - leftLineMinMileage) * everys;
             context.moveTo(startX + offsetX, axis_LeftLine_Two.y);
             context.lineTo(endX + offsetX, axis_LeftLine_Two.y);
             context.fillText(desc, startX + 178, axis_LeftLine_Two.y + 35);
+          }
+          else   if (json[i].line_type ==3) {
+                let startX = (start - enterLineMinMileage) * everys;
+            let endX = (end - enterLineMinMileage) * everys;
+            if (start == 0) {
+              startX = 0;
+              endX = end * everys;
+            }
+            context.moveTo(startX + offsetX, axis_OutLine.y);
+            context.lineTo(endX + offsetX, axis_OutLine.y);
+            context.fillText(desc, startX + 178, axis_OutLine.y + 35);
+          }
+          else   if (json[i].line_type ==4) {
+             let startX = (start - outLineMinMileage) * everys;
+            let endX = (end - outLineMinMileage) * everys;
+            if (start == 0) {
+              startX = 0;
+              endX = end * everys;
+            }
+            context.moveTo(startX + offsetX, axis_OutLine_Two.y);
+            context.lineTo(endX + offsetX, axis_OutLine_Two.y);
+            context.fillText(desc, startX + 178, axis_OutLine_Two.y + 35);
           }
           context.stroke();
           //
