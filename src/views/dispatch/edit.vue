@@ -91,7 +91,9 @@
         <div class="blank"></div>
         <div class="contents-area">
           <p>调度命令内容</p>
-          <el-input type="textarea" v-model="ruleForm.description"></el-input>
+          <el-form-item prop="description" class="el-from-desc">
+            <el-input type="textarea" v-model="ruleForm.description"></el-input>
+          </el-form-item>
         </div>
       </el-form>
       <div slot="footer" class="app-dialog-footer">
@@ -110,10 +112,10 @@
       :close-on-click-modal="false"
       append-to-body
     >
-      <el-form
+      <el-form class="el-form-custom"
         :model="tempForm"
         :rules="temprules"
-        ref="tempForm"
+        ref="tempFormRef"
         label-width="100px"
         label-position="left"
       >
@@ -126,7 +128,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="isVisible = false">取 消</el-button>
-        <el-button type="primary" @click="templateSubmitTempForm('tempForm')">确 定</el-button>
+        <el-button type="primary" @click="templateSubmitTempForm('tempFormRef')">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -164,8 +166,17 @@ export default {
       rules: {
         number: [
           { required: true, message: "请输入命令号码", trigger: "blur" },
-           { min: 2, max: 30, message: "请输入长度在2到30个字符", trigger: "blur" },
-            { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
+          {
+            min: 2,
+            max: 30,
+            message: "请输入长度在2到30个字符",
+            trigger: "blur"
+          },
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
+          }
         ],
         lid: [{ required: true, message: "请选择受令机车", trigger: "change" }],
         type: [{ required: true, message: "请选择类型", trigger: "change" }],
@@ -174,24 +185,65 @@ export default {
         ],
         location: [
           { required: true, message: "请输入令处所", trigger: "blur" },
-          { min: 2, max: 30, message: "请输入长度在2到30个字符", trigger: "blur" }
+          {
+            min: 2,
+            max: 30,
+            message: "请输入长度在2到30个字符",
+            trigger: "blur"
+          }
         ],
         driver_id: [
           { required: true, message: "请选择受令机车", trigger: "change" }
         ],
         station: [
-          { min: 2, max: 30, message: "请输入长度在2到30个字符", trigger: "blur" }
+          {
+            min: 2,
+            max: 30,
+            message: "请输入长度在2到30个字符",
+            trigger: "blur"
+          }
         ],
         dispatch_id: [
           { required: true, message: "请选择调度员", trigger: "change" }
+        ],
+        description: [
+          { required: true, message: "请输入调度命令内容", trigger: "blur" },
+          {
+            min: 2,
+            max: 500,
+            message: "请输入长度在2到500个字符",
+            trigger: "blur"
+          }
         ]
       },
       temprules: {
-        name: [{ required: true, message: "请输入名称", trigger: "blur" },
-         { min: 2, max: 30, message: "请输入长度在2到30个字符", trigger: "blur" }],
+        name: [
+          { required: true, message: "请输入名称", trigger: "blur" },
+          {
+            min: 2,
+            max: 30,
+            message: "请输入长度在2到30个字符",
+            trigger: "blur"
+          },
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
+          }
+        ],
         description: [
           { required: true, message: "请输入内容", trigger: "blur" },
-           { min: 2, max:500, message: "请输入长度在2到500个字符", trigger: "blur" }
+          {
+            min: 2,
+            max: 500,
+            message: "请输入长度在2到500个字符",
+            trigger: "blur"
+          },
+            {
+            pattern: /\s\S+|S+\s|\S/,
+            message: "内容不能全是空格",
+            trigger: "blur"
+          }
         ]
       }
     };
@@ -337,27 +389,29 @@ export default {
       this.$confirm("您确定要删除此模板?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
-        ,customClass:"el-message-box-new"
-      }).then(() => {
-        this.request({
-          url: "/dispatch/deleteTemplate",
-          method: "post",
-          data: { id: this.ruleForm.template_id }
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.ruleForm.template_id = 1;
-            this.getTemplateLists();
-            this.$message({
-              message: "恭喜您，删除成功",
-              type: "success"
-            });
-          } else {
-            this.$message.error("删除失败");
-          }
-        });
-      }).catch(()=>{});
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/dispatch/deleteTemplate",
+            method: "post",
+            data: { id: this.ruleForm.template_id }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.ruleForm.template_id = 1;
+              this.getTemplateLists();
+              this.$message({
+                message: "恭喜您，删除成功",
+                type: "success"
+              });
+            } else {
+              this.$message.error("删除失败");
+            }
+          });
+        })
+        .catch(() => {});
     },
     templateSubmitTempForm(formName) {
       this.$refs[formName].validate(valid => {
@@ -397,7 +451,9 @@ export default {
 </script>
 
 <style>
-body{padding-right:0 !important;}
+body {
+  padding-right: 0 !important;
+}
 #dispatch-edit .app-dialog-form {
   padding: 10px 0px 30px 30px;
   display: block;
@@ -478,5 +534,8 @@ body{padding-right:0 !important;}
 }
 .el-select-height .el-select-dropdown__wrap {
   max-height: 200px;
+}
+.el-from-desc {
+  width: 100%;
 }
 </style>

@@ -15,7 +15,7 @@
       <div class="app-page-container">
         <div class="app-page-select">
           <el-form :inline="true">
-            <el-form-item   class="form-add-item">
+            <el-form-item class="form-add-item">
               <el-button type="primary" icon="el-icon-plus" @click="openAddDepart">添加部门</el-button>
             </el-form-item>
             <el-form-item label="公司">
@@ -36,7 +36,7 @@
                 @click="departSearchPage"
                 type="primary"
               >查询</el-button>
-                <el-button size="small"   plain  @click="resetSerach">重置</el-button>
+              <el-button size="small" plain @click="resetSerach">重置</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -117,7 +117,13 @@
               </el-radio-group>
             </el-form-item>
             <el-form-item label="部门简介：" prop="description">
-              <el-input v-model="departData.description" autocomplete="off" type="textarea" maxlength="30" show-word-limit></el-input>
+              <el-input
+                v-model="departData.description"
+                autocomplete="off"
+                type="textarea"
+                maxlength="30"
+                show-word-limit
+              ></el-input>
             </el-form-item>
           </el-form>
           <div slot="footer" class="dialog-footer">
@@ -158,7 +164,11 @@ export default {
             trigger: "blur"
           },
           { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
-           { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
+          }
         ],
         is_work_team: [
           {
@@ -171,13 +181,13 @@ export default {
           { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
         ]
       },
-      search_pid: '',
+      search_pid: "",
       companySelectList: [],
       departSelectLists: [],
       postSelectLists: []
     };
   },
-      mounted() {
+  mounted() {
     document
       .querySelector("#app-menu-items #menu_admin")
       .classList.add("is-active");
@@ -225,7 +235,7 @@ export default {
       this.departPage_cur = 1;
       this.getPageLists();
     },
-     resetSerach() {
+    resetSerach() {
       this.search_pid = "";
       this.getPageLists();
     },
@@ -281,23 +291,25 @@ export default {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning",
-        customClass:"el-message-box-new"
-      }).then(() => {
-        this.request({
-          url: "/company/deleteCompany",
-          method: "post",
-          data: { id: id }
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.$message({
-              type: "success",
-              message: "删除成功！"
-            });
-            this.getPageLists();
-          }
-        });
-      }).catch(()=>{});
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/company/deleteCompany",
+            method: "post",
+            data: { id: id }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "删除成功！"
+              });
+              this.getPageLists();
+            }
+          });
+        })
+        .catch(() => {});
     },
     //公司 部门 职位
     getCompanyLists() {
@@ -313,8 +325,7 @@ export default {
           this.companySelectList = data.data;
         }
       });
-    },
-   
+    }
   }
   //
 };

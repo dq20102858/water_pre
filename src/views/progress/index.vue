@@ -1,23 +1,19 @@
 <template>
-  <div id="progress" ref="proWrapper">
+  <div id="progress" ref="proWrapper" :style="conheight">
     <div class="progress">
       <div class="sttitle">施工形象进度图</div>
       <div class="station">
         <div :style="{height:stationlineHeight  + 'px'}" class="stationlineleft"></div>
         <div :style="{height:stationlineHeight  + 'px'}" class="stationlineright"></div>
-        <canvas id="canvasStation" height="480" ref="canvasStation">
+        <canvas id="canvasStation" height="400" ref="canvasStation">
           <p>您的系统不支持此程序!</p>
         </canvas>
       </div>
       <div class="linebox" ref="reflinebox">
         <table class="lineTable">
-          <tr
-            class="linebar"
-            v-for="item in listSchedule"
-            :key="item.id"
-          >
+          <tr class="linebar" v-for="item in listSchedule" :key="item.id">
             <td>
-              <div class="tdtitle"  :title="item.name">{{item.name}}</div>
+              <div class="tdtitle" :title="item.name">{{item.name}}</div>
             </td>
             <td class="tdbar">
               <div class="bar" v-for="lines in item.lines" :key="lines.id">
@@ -38,13 +34,16 @@
 export default {
   data() {
     return {
+      conheight: {
+        height: ""
+      },
       cwidth: 0,
       stationList: [],
       lineTypeList: [],
       listSchedule: [],
       stationlineHeight: 0,
       stationlineTwoHeight: 0,
-       every: 0,
+      every: 0,
       everyLineType: 0,
       lineTypeMinMileage: 0,
       lineTypeMaxMileage: 0
@@ -52,10 +51,13 @@ export default {
   },
   updated() {
     this.getStationList();
-    this.stationlineHeight = 238 + this.$refs.reflinebox.offsetHeight;
+    this.stationlineHeight = 188 + this.$refs.reflinebox.offsetHeight;
   },
   created() {
     this.getProjectProcessMap();
+  },
+  mounted() {
+    document.querySelector(body).classList.add("is-active");
   },
   methods: {
     getProjectProcessMap() {
@@ -87,56 +89,71 @@ export default {
       let clientWidth = this.$refs.proWrapper.clientWidth;
       let canvasWidth = clientWidth - 270;
       this.cwidth = canvasWidth - 10;
-      let lineTypeBetwentMileage =this.lineTypeMaxMileage - this.lineTypeMinMileage;
-       let lineTypeTotalMileage =this.lineTypeMaxMileage+ this.lineTypeMinMileage;
+      let lineTypeBetwentMileage =
+        this.lineTypeMaxMileage - this.lineTypeMinMileage;
+      let lineTypeTotalMileage =
+        this.lineTypeMaxMileage + this.lineTypeMinMileage;
       this.everyLineType = (
         parseInt(this.cwidth) / lineTypeBetwentMileage
       ).toFixed(5);
-       this.every = (parseInt(canvasWidth) / lineTypeBetwentMileage).toFixed(5);
+      this.every = (parseInt(canvasWidth) / lineTypeBetwentMileage).toFixed(5);
       console.log("cwidth" + this.cwidth + "_" + this.everyLineType);
 
       const canvas = this.$refs.canvasStation;
       let cansText = canvas.getContext("2d");
       canvas.width = canvasWidth;
 
-      cansText.moveTo(9, 250);
-      cansText.lineTo(canvasWidth, 250);
+      cansText.moveTo(9, 220);
+      cansText.lineTo(canvasWidth, 220);
       cansText.strokeStyle = "#fff";
       cansText.lineWidth = 10;
       cansText.stroke();
-      cansText.moveTo(9, 300);
-      cansText.lineTo(canvasWidth, 300);
+      cansText.moveTo(9, 270);
+      cansText.lineTo(canvasWidth, 270);
       cansText.stroke();
 
       //Station=====================Station
       let json = this.stationList;
       let lineTypeMinMileage = this.lineTypeMinMileage;
-      let every =this.every; //每米长度等于px
-      console.log("every："+every);
+      let every = this.every; //每米长度等于px
+      console.log("every：" + every);
       //
       let img = new Image();
-      img.src = require("@/assets/image/sta.png");
+      img.src = require("@/assets/image/stasm.png");
       img.onload = function() {
         let start = 0;
         for (let i = 0; i < json.length; i++) {
           // 绘制站点图
-          let total =parseInt(json[i].start_flag) * 1000 +parseInt(json[i].start_length);
-          let  startLineX=(total-lineTypeMinMileage)* every;
-          console.log("total："+total+" lineTypeTotalMileage："+lineTypeMinMileage+" startLineX："+startLineX);
+          let total =
+            parseInt(json[i].start_flag) * 1000 +
+            parseInt(json[i].start_length);
+          let startLineX = (total - lineTypeMinMileage) * every;
+          console.log(
+            "total：" +
+              total +
+              " lineTypeTotalMileage：" +
+              lineTypeMinMileage +
+              " startLineX：" +
+              startLineX
+          );
           // 计算当前站点的x轴
-          cansText.drawImage(img, startLineX, 126, 22, 120);
+          cansText.drawImage(img, startLineX, 126, 18, 90);
           // //站名
           cansText.font = "17px Microsoft Yahei";
           cansText.fillStyle = "#6289f2";
           let origin = json[i].name.split("");
           for (let x = 0; x < origin.length; x++) {
-            cansText.fillText(origin[x],startLineX,138 - origin.length * 19 + 19 * x);
+            cansText.fillText(
+              origin[x],
+              startLineX,
+              138 - origin.length * 19 + 19 * x
+            );
           }
           //DK
           let codes = "DK" + json[i].start_flag + " +" + json[i].start_length;
           cansText.fillStyle = "#fff";
           cansText.font = "12px  Microsoft Yahei";
-          cansText.fillTextVertical(codes,startLineX+ 18, 175);
+          cansText.fillTextVertical(codes, startLineX + 18, 156);
         }
       };
       //Line=====================
@@ -157,18 +174,18 @@ export default {
 
         cansText.font = "12px Microsoft Yahei";
         cansText.fillStyle = "#E8C640";
-          let starttotal =
-            parseInt(lineJson[i].start_flag) * 1000 +
-            parseInt(lineJson[i].start_length);
-          let endtotal =
-            parseInt(lineJson[i].end_flag) * 1000 +
-            parseInt(lineJson[i].end_length);
+        let starttotal =
+          parseInt(lineJson[i].start_flag) * 1000 +
+          parseInt(lineJson[i].start_length);
+        let endtotal =
+          parseInt(lineJson[i].end_flag) * 1000 +
+          parseInt(lineJson[i].end_length);
         if (lineJson[i].id == 1) {
-          cansText.fillText(tfrom, 15, 270);
-          cansText.fillText(tend, parseInt(endLength + canvasWidth - 115), 270);
+          cansText.fillText(tfrom, 15, 240);
+          cansText.fillText(tend, parseInt(endLength + canvasWidth - 115), 240);
         } else if (lineJson[i].id == 2) {
-          cansText.fillText(tfrom, 15, 320);
-          cansText.fillText(tend, parseInt(endLength + canvasWidth - 125), 320);
+          cansText.fillText(tfrom, 15, 290);
+          cansText.fillText(tend, parseInt(endLength + canvasWidth - 125), 290);
           //3
         } else if (lineJson[i].id == 3) {
           if (starttotal == 0) {
@@ -177,47 +194,34 @@ export default {
           let startZB = (starttotal - this.lineTypeMinMileage) * every + 9;
           let endZB =
             parseFloat((endtotal - starttotal) * every) + parseFloat(startZB);
-          cansText.moveTo(startZB, 350);
-          cansText.lineTo(endZB, 350);
+          cansText.moveTo(startZB, 320);
+          cansText.lineTo(endZB, 320);
           cansText.stroke();
           //
-          cansText.fillText(tfrom, startZB + 5, 370);
-          cansText.fillText(tend, endZB - 60, 370);
+          cansText.fillText(tfrom, startZB + 5, 340);
+          cansText.fillText(tend, endZB - 60, 340);
           //4
         } else if (lineJson[i].id == 4) {
           let startZB = (starttotal - this.lineTypeMinMileage) * every + 10;
           let endZB =
             parseFloat((endtotal - starttotal) * every) + parseFloat(startZB);
-          cansText.moveTo(startZB, 400);
-          cansText.lineTo(endZB, 400);
+          cansText.moveTo(startZB, 370);
+          cansText.lineTo(endZB, 370);
           cansText.stroke();
           //
           let beteew = endZB - startZB;
           if (beteew < 160) {
-            cansText.fillText(tfrom, startZB - 160, 420);
-            cansText.fillText(tend, endZB - 80, 420);
+            cansText.fillText(tfrom, startZB - 160, 390);
+            cansText.fillText(tend, endZB - 80, 390);
           } else {
-            cansText.fillText(tfrom, startZB, 420);
-            cansText.fillText(tend, endZB - 55, 420);
+            cansText.fillText(tfrom, startZB, 390);
+            cansText.fillText(tend, endZB - 55, 390);
           }
         }
       }
       //
     },
     lineFill: function(paras) {
-      // paras = [
-      //   {
-      //     id: 11,
-      //     pro_id: 59,
-      //     pro_name: "\u91cc\u7a0b\u4f5c\u4e1a0414",
-      //     line_type: 1,
-      //     start_flag: "38",
-      //     start_length: "940",
-      //     end_flag: "42",
-      //     end_length: "410"
-      //   }
-      // ];
-      //console.log("everyLineType：" + this.everyLineType);
       let result = "";
       let start = 0;
       for (let i = 0; i < paras.length; i++) {
@@ -335,7 +339,7 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
 #progress {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: #081c33;
 }
 .progress {
@@ -353,21 +357,21 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   z-index: 999;
 }
 .stationlineleft {
-  min-height: 239px;
+  min-height: 188px;
   width: 1px;
   background: #fff;
   position: absolute;
   left: 8px;
-  top: 245px;
+  top: 215px;
   z-index: 1000;
 }
 .stationlineright {
-  min-height: 240px;
+  min-height: 188px;
   width: 1px;
   background: #fff;
   position: absolute;
   right: 40px;
-  top: 245px;
+  top: 215px;
   z-index: 1000;
 }
 .linebox {

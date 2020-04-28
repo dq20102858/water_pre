@@ -294,7 +294,7 @@ export default {
             axis_Width,
             axis_OutLine.x,
             axis_OutLine.y,
-            "CDK"
+            "RDK"
           );
           context.font = "16px Microsoft Yahei";
           context.fillText("入场线", axis_OutLine.x - 68, axis_OutLine.y + 25);
@@ -307,7 +307,7 @@ export default {
             axis_Width,
             axis_OutLine_Two.x,
             axis_OutLine_Two.y,
-            "RDK"
+            "CDK"
           );
           context.font = "16px Microsoft Yahei";
           context.fillText(
@@ -463,112 +463,7 @@ export default {
           }
         };
       }
-      //绘制请点
-      function drawAxesApply(applyListJson) {
-        let json = applyListJson;
-        let clickXY = [];
-        for (let i = 0; i < json.length; i++) {
-          let start =
-            parseInt(json[i].start_flag) * 1000 +
-            parseInt(json[i].start_length);
-          let end =
-            parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
-          //console.log("start：" + start + " end：" + end);
-          // 计算当前站点的x轴坐标
-          let startX = (start - parseInt(minkm * 1000)) * everys; //开始值
-          let endX = (end - parseInt(minkm * 1000)) * everys; //结束值
-          let centerX = (endX + startX) / 2; //开始结束平均值
-          let desc = json[i].type;
-          let dksatrt = "DK" + json[i].start_flag + " +" + json[i].start_length;
-          let dkend = "DK" + json[i].end_flag + " +" + json[i].end_length;
 
-          context.lineWidth = 2;
-          context.fillStyle = "#ffff00";
-          context.strokeStyle = "#ffff00";
-          context.beginPath();
-
-          if (json[i].line_type == 1) {
-            //画水平直线
-            context.fillRect(startX + offsetX - 1, axis_LeftLine.y - 53, 2, 15);
-            context.fillRect(endX + offsetX - 1, axis_LeftLine.y - 53, 2, 15);
-            context.moveTo(startX + offsetX, axis_applay.y);
-            context.lineTo(endX + offsetX, axis_applay.y);
-            //文字
-            context.font = "24px Microsoft Yahei";
-            context.fillText(desc, centerX + offsetX, axis_applay.y - 25);
-            context.fillStyle = "#fff";
-            context.font = "12px Microsoft Yahei";
-            context.fillText(dksatrt, startX + 139, axis_applay.y - 15);
-            context.fillText(dkend, endX + 66, axis_applay.y - 15);
-            clickXY.push({
-              x: centerX + offsetX,
-              y: axis_applay.y - 20,
-              r: 50,
-              i: json[i]
-            });
-          } else if (json[i].line_type == 2) {
-            context.fillRect(startX + offsetX - 1, axis_LeftLine.y - 46, 2, 22);
-            context.fillRect(endX + offsetX - 1, axis_LeftLine.y - 46, 2, 22);
-            context.moveTo(startX + offsetX, axis_applay_two.y);
-            context.lineTo(endX + offsetX, axis_applay_two.y);
-            //文字
-            context.fillStyle = "#ffff00";
-            context.font = "24px Microsoft Yahei";
-            context.fillText(desc, centerX + offsetX, axis_applay.y + 225);
-            context.fillStyle = "#ffff00";
-            context.font = "12px Microsoft Yahei";
-            context.fillText(dksatrt, startX + 139, axis_applay_two.y - 15);
-            context.fillText(dkend, endX + 66, axis_applay_two.y - 15);
-            clickXY.push({
-              x: centerX + offsetX,
-              y: axis_applay_two.y + 225,
-              r: 50,
-              i: json[i]
-            });
-          }
-          context.stroke();
-
-          //
-        }
-        //clickXYList=clickXY;
-        canvas.addEventListener("click", function(e) {
-          var x = event.pageX - canvas.getBoundingClientRect().left;
-          var y = event.pageY - canvas.getBoundingClientRect().top;
-          console.log(clickXY);
-          for (let i of clickXY) {
-            if (
-              x > i.x - i.r &&
-              x < i.x + i.r &&
-              y > i.y - i.r &&
-              y < i.y + i.r
-            ) {
-              let infos = i.i;
-              that.$alert(
-                "<p style='color:#4b6eca'><span style='color:#1d397a'>作业编号：</span>" +
-                  infos.number +
-                  "</p><p style='color:#4b6eca'><span style='color:#1d397a'>作业令号</span>：" +
-                  infos.command_num +
-                  "</p>" +
-                  "<p style='color:#4b6eca'><span style='color:#1d397a'>开始时间：</span>" +
-                  infos.start_time +
-                  "</p><p style='color:#4b6eca'><span style='color:#1d397a'>结束时间：</span>" +
-                  infos.end_time +
-                  "</p>" +
-                  "<p style='color:#4b6eca'><span style='color:#1d397a'>施工区间：</span>" +
-                  infos.work_area +
-                  "</p><p style='color:#4b6eca'><span style='color:#1d397a'>施工内容：</span>" +
-                  infos.description +
-                  "</p>",
-                {
-                  dangerouslyUseHTMLString: true,
-                  confirmButtonText: "关闭"
-                }
-              );
-              // .catch(() => {});
-            }
-          }
-        });
-      }
       //绘制桥
       function drawBridgeAxis(bridgeListJson) {
         let json = bridgeListJson;
@@ -792,11 +687,6 @@ export default {
             parseInt(json[i].start_length);
           let end =
             parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
-          //console.log("start：" + start + " end：" + end);
-          // 计算当前站点的x轴坐标
-          // let startX = (start - parseInt(minkm * 1000)) * everys;
-          // let endX = (end - parseInt(minkm * 1000)) * everys;
-          //console.log("startX：" + startX + " endX：" + endX);
           context.strokeStyle = "#ff1833";
           context.lineWidth = 10;
           context.fillStyle = "#ff1833";
@@ -812,22 +702,21 @@ export default {
             json[i].end_length;
           context.beginPath();
           if (json[i].line_type == 1) {
-                let startX = (start - leftLineMinMileage) * everys;
+            let startX = (start - leftLineMinMileage) * everys;
             let endX = (end - leftLineMinMileage) * everys;
             //画水平直线
             context.moveTo(startX + offsetX, axis_LeftLine.y);
             context.lineTo(endX + offsetX, axis_LeftLine.y);
             //文字
             context.fillText(desc, startX + 178, axis_LeftLine.y + 35);
-          } else   if (json[i].line_type ==2) {
-                let startX = (start - leftLineMinMileage) * everys;
+          } else if (json[i].line_type == 2) {
+            let startX = (start - leftLineMinMileage) * everys;
             let endX = (end - leftLineMinMileage) * everys;
             context.moveTo(startX + offsetX, axis_LeftLine_Two.y);
             context.lineTo(endX + offsetX, axis_LeftLine_Two.y);
             context.fillText(desc, startX + 178, axis_LeftLine_Two.y + 35);
-          }
-          else   if (json[i].line_type ==3) {
-                let startX = (start - enterLineMinMileage) * everys;
+          } else if (json[i].line_type == 3) {
+            let startX = (start - enterLineMinMileage) * everys;
             let endX = (end - enterLineMinMileage) * everys;
             if (start == 0) {
               startX = 0;
@@ -836,9 +725,8 @@ export default {
             context.moveTo(startX + offsetX, axis_OutLine.y);
             context.lineTo(endX + offsetX, axis_OutLine.y);
             context.fillText(desc, startX + 178, axis_OutLine.y + 35);
-          }
-          else   if (json[i].line_type ==4) {
-             let startX = (start - outLineMinMileage) * everys;
+          } else if (json[i].line_type == 4) {
+            let startX = (start - outLineMinMileage) * everys;
             let endX = (end - outLineMinMileage) * everys;
             if (start == 0) {
               startX = 0;
@@ -1057,6 +945,154 @@ export default {
           //
         }
       }
+      //绘制请点
+      function drawAxesApply(applyListJson) {
+        let json1 = applyListJson;
+
+        let json=[
+            {
+                "line_type": 1,
+                "number": "A4-2-007-1",
+                "command_num": "(2020)\u5b57\u7b2c04.21-007-2",
+                "description": "\u98ce\u98ce\u5149\u5149",
+                "work_area": "DK14+130\u81f3DK42+410",
+                "start_time": "2020-04-28 00:00:00",
+                "end_time": "2020-04-28 23:59:59",
+                "start_flag": "14",
+                "start_length": "600",
+                "end_flag": "16",
+                "end_length": "410",
+                "type": "A4",
+                "start_total": 14600,
+                "end_total": 16410
+            },
+            {
+                "line_type": 2,
+                "number": "A4-2-007-1",
+                "command_num": "(2020)\u5b57\u7b2c04.21-007-2",
+                "description": "\u98ce\u98ce\u5149\u5149",
+                "work_area": "DK14+130\u81f3DK42+410",
+                "start_time": "2020-04-28 00:00:00",
+                "end_time": "2020-04-28 23:59:59",
+                "start_flag": "14",
+                "start_length": "600",
+                "end_flag": "16",
+                "end_length": "410",
+                "type": "A4",
+                "start_total": 14600,
+                "end_total": 16410
+            }
+        ]
+        console.log("applyListJson" + applyListJson);
+        let clickXY = [];
+        for (let i = 0; i < json.length; i++) {
+          let start =
+            parseInt(json[i].start_flag) * 1000 +
+            parseInt(json[i].start_length);
+          let end =
+            parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
+          //console.log("start：" + start + " end：" + end);
+          // 计算当前站点的x轴坐标
+          //let startX = (start - parseInt(minkm * 1000)) * everys; //开始值
+          // let endX = (end - parseInt(minkm * 1000)) * everys; //结束值
+
+          let desc = json[i].type;
+          let dksatrt = "DK" + json[i].start_flag + " +" + json[i].start_length;
+          let dkend = "DK" + json[i].end_flag + " +" + json[i].end_length;
+
+          context.lineWidth = 2;
+          context.fillStyle = "#ffff00";
+          context.strokeStyle = "#ffff00";
+          context.beginPath();
+
+          if (json[i].line_type == 1) {
+            let startX = (start - leftLineMinMileage) * everys;
+            let endX = (end - leftLineMinMileage) * everys;
+            let centerX = (endX + startX) / 2; //开始结束平均值
+            //画水平直线
+            context.fillRect(startX + offsetX - 1, axis_applay.y - 14, 2, 15);
+            context.fillRect(endX + offsetX - 1, axis_applay.y - 14, 2, 15);
+            context.moveTo(startX + offsetX, axis_applay.y);
+            context.lineTo(endX + offsetX, axis_applay.y);
+            //文字
+            context.font = "24px Microsoft Yahei";
+            context.fillText(desc, centerX + offsetX, axis_applay.y - 25);
+             context.fillStyle = "#ffff00";
+            context.font = "12px Microsoft Yahei";
+            context.fillText(dksatrt, startX + 139, axis_applay.y - 15);
+            context.fillText(dkend, endX + 60, axis_applay.y - 15);
+            clickXY.push({
+              x: centerX + offsetX,
+              y: axis_applay.y - 20,
+              r: 50,
+              i: json[i]
+            });
+          } else if (json[i].line_type == 2) {
+            let startX = (start - leftLineMinMileage) * everys;
+            let endX = (end - leftLineMinMileage) * everys;
+            let centerX = (endX + startX) / 2; //开始结束平均值
+            context.fillRect(startX + offsetX - 1, axis_applay_two.y - 99, 2,15);
+            context.fillRect(endX + offsetX - 1, axis_applay_two.y - 99, 2, 15);
+            context.moveTo(startX + offsetX, axis_applay_two.y-85);
+            context.lineTo(endX + offsetX, axis_applay_two.y-85);
+            //文字
+            context.fillStyle = "#ffff00";
+            context.font = "24px Microsoft Yahei";
+            context.fillText(desc, centerX + offsetX, axis_applay.y + 180);
+            context.fillStyle = "#ffff00";
+            context.font = "12px Microsoft Yahei";
+            context.fillText(dksatrt, startX + 139, axis_applay_two.y - 99);
+            context.fillText(dkend, endX + 60, axis_applay_two.y - 99);
+            clickXY.push({
+              x: centerX + offsetX,
+              y: axis_applay_two.y + 180,
+              r: 50,
+              i: json[i]
+            });
+          }
+          context.stroke();
+
+          //
+        }
+        //clickXYList=clickXY;
+        // canvas.addEventListener("click", function(e) {
+        //   var x = event.pageX - canvas.getBoundingClientRect().left;
+        //   var y = event.pageY - canvas.getBoundingClientRect().top;
+        //   console.log(clickXY);
+        //   for (let i of clickXY) {
+        //     if (
+        //       x > i.x - i.r &&
+        //       x < i.x + i.r &&
+        //       y > i.y - i.r &&
+        //       y < i.y + i.r
+        //     ) {
+        //       let infos = i.i;
+        //       that.$alert(
+        //         "<p style='color:#4b6eca'><span style='color:#1d397a'>作业编号：</span>" +
+        //           infos.number +
+        //           "</p><p style='color:#4b6eca'><span style='color:#1d397a'>作业令号</span>：" +
+        //           infos.command_num +
+        //           "</p>" +
+        //           "<p style='color:#4b6eca'><span style='color:#1d397a'>开始时间：</span>" +
+        //           infos.start_time +
+        //           "</p><p style='color:#4b6eca'><span style='color:#1d397a'>结束时间：</span>" +
+        //           infos.end_time +
+        //           "</p>" +
+        //           "<p style='color:#4b6eca'><span style='color:#1d397a'>施工区间：</span>" +
+        //           infos.work_area +
+        //           "</p><p style='color:#4b6eca'><span style='color:#1d397a'>施工内容：</span>" +
+        //           infos.description +
+        //           "</p>",
+        //         {
+        //           dangerouslyUseHTMLString: true,
+        //           confirmButtonText: "关闭"
+        //         }
+        //       );
+        //       // .catch(() => {});
+        //     }
+        //   }
+        // });
+      }
       //画地铁站
       drawStations(this.stationList);
       //桥
@@ -1072,8 +1108,10 @@ export default {
         drawSpeedAxis(this.speedList);
       }
       //防区
-      if (this.alertCheckValue) {
-        drawAlertAxis(this.alertList);
+      if (this.alertList.length > 0) {
+        if (this.alertCheckValue) {
+          drawAlertAxis(this.alertList);
+        }
       }
       //坡度
       if (this.slopeCheckValue) {
@@ -1084,7 +1122,9 @@ export default {
         drawProgressAxis(this.progressListItem);
       }
       //作业
-      drawAxesApply(this.applyList);
+      if (this.applyList.length > 0) {
+        drawAxesApply(this.applyList);
+      }
     },
     // ===================================桥 隧道 限速区 防区 道岔 坡度 施工进度
     //进度
@@ -1110,7 +1150,9 @@ export default {
     },
     //防区
     alertCheckSelect() {
-      this.initCanvas();
+      if (this.alertList.length > 0) {
+        this.initCanvas();
+      }
     },
     //坡度
     slopeCheckSelect() {
