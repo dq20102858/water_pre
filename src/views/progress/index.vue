@@ -18,7 +18,7 @@
             <td class="tdbar">
               <div class="bar" v-for="lines in item.lines" :key="lines.id">
                 <span>{{lines.name}}</span>
-                <em :style="{width: cwidth + 'px' }" v-html="lineFill(lines.lists)">
+                <em :style="{width: cwidth + 'px' }" v-html="lineFill(lines.lists,lines.name)">
                   <!-- <i v-for="lists in lines.lists" :key="lists.id" :style="{{lineFill(lists.start_flag)}}"></i> -->
                 </em>
               </div>
@@ -46,7 +46,9 @@ export default {
       every: 0,
       everyLineType: 0,
       lineTypeMinMileage: 0,
-      lineTypeMaxMileage: 0
+      lineTypeMaxMileage: 0,
+      lineTypeEnterMinMileage:0,
+      lineTypeOutMinMileage:0
     };
   },
   updated() {
@@ -78,6 +80,15 @@ export default {
               this.lineTypeMaxMileage =
                 parseInt(linetypeJson[i].end_flag) * 1000 +
                 parseInt(linetypeJson[i].end_length);
+            }else  if (linetypeJson[i].id == 3) {
+              this.lineTypeEnterMinMileage =
+                parseInt(linetypeJson[i].start_flag) * 1000 +
+                parseInt(linetypeJson[i].start_length);
+            }else  if (linetypeJson[i].id == 4) {
+              this.lineTypeOutMinMileage =
+                parseInt(linetypeJson[i].start_flag) * 1000 +
+                parseInt(linetypeJson[i].start_length);
+              
             }
           }
           this.listSchedule = data.data.datas;
@@ -89,8 +100,7 @@ export default {
       let clientWidth = this.$refs.proWrapper.clientWidth;
       let canvasWidth = clientWidth - 270;
       this.cwidth = canvasWidth - 10;
-      let lineTypeBetwentMileage =
-        this.lineTypeMaxMileage - this.lineTypeMinMileage;
+      let lineTypeBetwentMileage =this.lineTypeMaxMileage - this.lineTypeMinMileage;
       let lineTypeTotalMileage =
         this.lineTypeMaxMileage + this.lineTypeMinMileage;
       this.everyLineType = (
@@ -221,27 +231,44 @@ export default {
       }
       //
     },
-    lineFill: function(paras) {
+    lineFill: function(paras, linename) {
+      // paras = [
+      //   {
+      //     id: 69,
+      //     pro_id: 65,
+      //     pro_name:
+      //       "\u91cc\u7a0b\u4f5c\u4e1a0424\u4f5c\u4e1a\u540d\u79f0\u4f5c\u4e1a\u540d\u79f0\u4f5c\u4e1a\u540d\u79f0",
+      //     line_type: 3,
+      //     start_flag: "12",
+      //     start_length: "400",
+      //     end_flag: "18",
+      //     end_length: "600"
+      //   }
+      // ];
       let result = "";
       let start = 0;
       for (let i = 0; i < paras.length; i++) {
-        let starMileage =
-          parseInt(paras[i].start_flag) * 1000 +
-          parseInt(paras[i].start_length);
-        let endMileage =
-          parseInt(paras[i].end_flag) * 1000 + parseInt(paras[i].end_length);
-        let leftPosition =
-          parseFloat(starMileage - this.lineTypeMinMileage) *
-          this.everyLineType;
-        let widthPosition =
-          parseFloat(endMileage - starMileage) * this.everyLineType;
-        if (starMileage == 0) {
-          leftPosition = 0;
-          widthPosition =
-            parseFloat(endMileage - this.lineTypeMinMileage) *
-            this.everyLineType;
-        }
+        let starMileage =parseInt(paras[i].start_flag) * 1000 +parseInt(paras[i].start_length);
+        let endMileage =parseInt(paras[i].end_flag) * 1000 + parseInt(paras[i].end_length);
+        let leftPosition =parseFloat(starMileage - this.lineTypeMinMileage) *this.everyLineType;
+        let widthPosition =parseFloat(endMileage - starMileage) * this.everyLineType;
 
+        // if (linename == "入场线") {
+        //   let enterMinMileage = this.lineTypeEnterMinMileage;
+        //   if (enterMinMileage == 0) {
+        //      leftPosition =parseFloat(starMileage - this.lineTypeMinMileage) *this.everyLineType;
+        //      widthPosition =parseFloat(endMileage - starMileage) * this.everyLineType;
+        //   }
+        //   else{
+        //      leftPosition =parseFloat(starMileage - this.lineTypeEnterMinMileage) *this.everyLineType;
+        //      widthPosition =parseFloat(endMileage - starMileage) * this.everyLineType;
+        //   }
+          if (starMileage == 0) {
+            leftPosition = 0;
+            widthPosition =
+              parseFloat(endMileage - this.lineTypeMinMileage) *
+              this.everyLineType;
+          }
         let titles =
           "DK " +
           paras[i].start_flag +
@@ -425,6 +452,7 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   height: 20px;
   display: inline-block;
   position: relative;
+  overflow: hidden;
 }
 .tdbar .bar em i {
   position: absolute;
