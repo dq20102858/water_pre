@@ -129,8 +129,9 @@ export default {
       pickerOptionsEnd: {
         disabledDate: time => {
           if (this.searchForm.start_time) {
+            console.log(time.getTime());
             return (
-              time.getTime() < new Date(this.searchForm.start_time).getTime()
+              time.getTime() < new Date(this.searchForm.start_time).getTime() - 8.64e7 
             );
           }
         }

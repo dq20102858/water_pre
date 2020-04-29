@@ -427,9 +427,9 @@ export default {
       this.$refs["userRulesForm"].validate(valid => {
         if (valid) {
           let data = this.userData;
-          if (this.userData.avatar == null) {
-            this.userData.avatar = "/static/avatar.jpg";
-          }
+          // if (this.userData.avatar == null) {
+          //   this.userData.avatar = "/static/avatar.jpg";
+          // }
           let url = "/user/addUser";
           let baseid = this.userData.id;
           console.log("this.userData.id：" + this.userData.id);
