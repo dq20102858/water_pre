@@ -308,6 +308,9 @@ export default {
       this.formData = {};
       this.diaLogTitle = "添加信息";
       this.diaLogFormVisible = true;
+       this.$nextTick(() => {
+        this.$refs["formRules"].clearValidate();
+      });
       this.lineTypeDes = "";
     },
     addOrEditDialog() {
@@ -358,6 +361,9 @@ export default {
     goEdit(id) {
       this.diaLogTitle = "修改信息";
       this.diaLogFormVisible = true;
+       this.$nextTick(() => {
+        this.$refs["formRules"].clearValidate();
+      });
       this.request({
         url: "/search/getRoadDeviceDetail",
         method: "get",

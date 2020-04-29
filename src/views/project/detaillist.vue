@@ -403,6 +403,9 @@ export default {
       this.dialogAddHistoryVisible = true;
       this.historyTitle = "添加历史记录";
       this.addShow = true;
+        this.$nextTick(() => {
+        this.$refs["detailForm"].clearValidate();
+      });
       this.lineTypeDes = "";
       this.historyData = {
         pro_id: "",
@@ -485,6 +488,10 @@ export default {
     getPlanDetail(id) {
       this.historyTitle = "修改历史记录 ";
       this.addShow = false;
+       this.addShow = true;
+        this.$nextTick(() => {
+        this.$refs["detailForm"].clearValidate();
+      });
       this.request({
         url: "/project/getPlanDetail",
         method: "get",

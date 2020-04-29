@@ -72,7 +72,7 @@
           :title="this.title"
           :visible.sync="workVisible"
         >
-          <el-form class="el-form-custom" :model="workData" :rules="wokRules" ref="workForm">
+          <el-form class="el-form-custom" :model="workData" :rules="workRules" ref="workForm">
             <el-form-item label="名称：" prop="name">
               <el-input
                 v-model="workData.name"
@@ -211,7 +211,7 @@ export default {
         line_type: []
       },
       title: "添加作业信息",
-      wokRules: {
+      workRules: {
         name: [
           { required: true, message: "请输入名称2~20个字符", trigger: "blur" },
           { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
@@ -290,6 +290,9 @@ export default {
     openAddWork() {
       this.title = "添加作业信息";
       this.workVisible = true;
+       this.$nextTick(() => {
+        this.$refs["workForm"].clearValidate();
+      });
       this.workData = {
         name: "",
         sort: "",
@@ -329,6 +332,9 @@ export default {
     editWork(id) {
       this.title = "修改作业信息";
       this.workVisible = true;
+        this.$nextTick(() => {
+        this.$refs["workForm"].clearValidate();
+      });
       this.request({
         url: "/project/getWorkDetail",
         method: "get",

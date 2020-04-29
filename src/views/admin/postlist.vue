@@ -16,10 +16,10 @@
       <div class="app-page-container">
         <div class="app-page-select">
           <el-form :inline="true">
-            <el-form-item  class="form-add-item">
+            <el-form-item class="form-add-item">
               <el-button type="primary" icon="el-icon-plus" @click="openAddPost">添加职位</el-button>
             </el-form-item>
-            <el-form-item  label="公司">
+            <el-form-item label="公司">
               <el-select v-model="search_pid" @change="getDepartLists($event)" placeholder="请选择公司">
                 <el-option
                   v-for="item in this.companySelectList"
@@ -29,8 +29,13 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item  label="部门">
-              <el-select v-model="search_departid" ref="departselectClear"  placeholder="请选择部门"  clearable>
+            <el-form-item label="部门">
+              <el-select
+                v-model="search_departid"
+                ref="departselectClear"
+                placeholder="请选择部门"
+                clearable
+              >
                 <el-option
                   v-for="item in this.departSelectList"
                   :key="item.id"
@@ -47,7 +52,7 @@
                 type="primary"
                 @click="postSearchPage"
               >查询</el-button>
-                <el-button size="small"   plain  @click="resetSerach">重置</el-button>
+              <el-button size="small" plain @click="resetSerach">重置</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -132,7 +137,13 @@
               <el-input v-model="postData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
             </el-form-item>
             <el-form-item label="职位简介：" prop="description">
-              <el-input v-model="postData.description" autocomplete="off" type="textarea" maxlength="30" show-word-limit></el-input>
+              <el-input
+                v-model="postData.description"
+                autocomplete="off"
+                type="textarea"
+                maxlength="30"
+                show-word-limit
+              ></el-input>
             </el-form-item>
           </el-form>
           <div slot="footer" class="dialog-footer">
@@ -181,7 +192,11 @@ export default {
             trigger: "blur"
           },
           { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
-           { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
+          }
         ],
         description: [
           { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
@@ -194,7 +209,7 @@ export default {
       postSelectList: []
     };
   },
-    mounted() {
+  mounted() {
     document
       .querySelector("#app-menu-items #menu_admin")
       .classList.add("is-active");
@@ -209,12 +224,12 @@ export default {
       let type = 3;
       let page = this.postPage_cur;
       console.log(this.search_departid);
-        let pid =0;
+      let pid = 0;
       if (this.search_departid == "" && this.search_pid != "") {
-         pid = this.search_pid;
-         //type=2;
+        pid = this.search_pid;
+        //type=2;
       } else {
-         pid = this.search_departid;
+        pid = this.search_departid;
       }
       this.request({
         url: "/company/getPageLists",
@@ -252,12 +267,15 @@ export default {
     resetSerach() {
       this.search_pid = "";
       this.search_departid = "";
-      this.departSelectList=[];
+      this.departSelectList = [];
       this.getPageLists();
     },
     openAddPost() {
       this.postDialogTitle = "添加职位信息";
       this.postDialogVisible = true;
+      this.$nextTick(() => {
+        this.$refs["postRulesForm"].clearValidate();
+      });
       this.postData = {};
     },
     addPost(type) {
@@ -291,6 +309,9 @@ export default {
     detailPost(id) {
       this.postDialogTitle = "修改职位信息";
       this.postDialogVisible = true;
+      this.$nextTick(() => {
+        this.$refs["postRulesForm"].clearValidate();
+      });
       this.request({
         url: "/company/getDepartDetail",
         method: "get",
@@ -353,7 +374,7 @@ export default {
           this.departSelectList = data.data;
         }
       });
-    },
+    }
   }
   //
 };

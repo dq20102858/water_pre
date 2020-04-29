@@ -197,7 +197,7 @@
                   <el-option label="施工队长" :value="6"></el-option>
                 </el-select>
               </el-form-item>-->
-                <el-form-item label="权限设置：" class="checkbox-group">
+              <el-form-item label="权限设置：" class="checkbox-group">
                 <el-checkbox-group v-model="userData.menus">
                   <el-checkbox
                     v-for="item in userMenuList"
@@ -221,7 +221,6 @@
                   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                 </el-upload>
               </el-form-item>
-            
             </div>
           </el-form>
           <div slot="footer" class="dialog-footer">
@@ -420,13 +419,16 @@ export default {
       };
       this.userDialogVisible = true;
       this.userDialogTitle = "添加人员信息";
+      this.$nextTick(() => {
+        this.$refs["userRulesForm"].clearValidate();
+      });
     },
     addUser() {
       this.$refs["userRulesForm"].validate(valid => {
         if (valid) {
           let data = this.userData;
-          if( this.userData.avatar ==null){
-              this.userData.avatar="/static/avatar.jpg";
+          if (this.userData.avatar == null) {
+            this.userData.avatar = "/static/avatar.jpg";
           }
           let url = "/user/addUser";
           let baseid = this.userData.id;
@@ -462,6 +464,9 @@ export default {
     detailUser(id) {
       this.userDialogTitle = "修改人员信息";
       this.userDialogVisible = true;
+      this.$nextTick(() => {
+        this.$refs["userRulesForm"].clearValidate();
+      });
       this.request({
         url: "/user/getUserDetial",
         method: "get",
@@ -607,7 +612,7 @@ export default {
     uploadSuccess(res, file) {
       // let result= URL.createObjectURL(file.raw);
       console.log("图上传成功", res);
-      this.userData.avatar= res.data.url;
+      this.userData.avatar = res.data.url;
       // let upload_list_li = document.getElementsByClassName("el-upload-list")[0]
       //   .children;
       // if (res.data.url != "") {
@@ -661,13 +666,13 @@ export default {
 .dialog-users .el-form-item-block {
   display: block;
 }
-.dialog-users  .el-form-item-inliness {
+.dialog-users .el-form-item-inliness {
   display: inline-block;
 }
 .dialog-users .el-form-item-inliness .el-form-item {
   display: inline-block;
 }
-.dialog-users  .el-form-item-block {
+.dialog-users .el-form-item-block {
   display: block;
 }
 .dialog-users .el-form-item-inliness .el-checkbox-group {
@@ -679,7 +684,9 @@ export default {
 .dialog-users .checkbox-group .el-form-item__content {
   display: initial !important;
 }
-.dialog-users .checkbox-group .el-checkbox-group{margin-left: 110px;}
+.dialog-users .checkbox-group .el-checkbox-group {
+  margin-left: 110px;
+}
 .avatar-uploader .el-upload {
   border: 1px dashed #d9d9d9;
   border-radius: 6px;

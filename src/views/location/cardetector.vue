@@ -1,7 +1,7 @@
 <template>
   <div id="location">
     <div class="el-menu-top">
-      <el-menu router default-active="cardetector" mode="horizontal"  @select="handleMenuSelect">
+      <el-menu router default-active="cardetector" mode="horizontal" @select="handleMenuSelect">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-location.png')" />定位管理
         </li>
@@ -38,7 +38,7 @@
                 <p v-html="changeTime(scope.row.create_time)"></p>
               </template>
             </el-table-column>
-                <el-table-column prop="update_time" label="修改时间">
+            <el-table-column prop="update_time" label="修改时间">
               <template slot-scope="scope">
                 <p v-html="changeTime(scope.row.update_time)"></p>
               </template>
@@ -139,7 +139,11 @@ export default {
             trigger: "blur"
           },
           { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
-           { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
+          }
         ],
         number: [
           {
@@ -166,15 +170,17 @@ export default {
     };
   },
   mounted() {
-    document.querySelector("#app-menu-items #menu_location") .classList.add("is-active");
+    document
+      .querySelector("#app-menu-items #menu_location")
+      .classList.add("is-active");
   },
   created() {
     this.getCompanyList();
     this.getDataList();
   },
   methods: {
-      handleMenuSelect (index) {
-   this.pageChange(1);
+    handleMenuSelect(index) {
+      this.pageChange(1);
     },
     getCompanyList() {
       this.request({
@@ -242,6 +248,9 @@ export default {
       this.detectorData = {};
       this.diaLogTitle = "添加车载探测器信息";
       this.diaLogFormVisible = true;
+      this.$nextTick(() => {
+        this.$refs["detectorRulesForm"].clearValidate();
+      });
     },
     addOrEditDialog() {
       this.$refs["detectorRulesForm"].validate(valid => {
@@ -273,6 +282,9 @@ export default {
     goEdit(id) {
       this.diaLogTitle = "修改车载探测器信息";
       this.diaLogFormVisible = true;
+      this.$nextTick(() => {
+        this.$refs["detectorRulesForm"].clearValidate();
+      });
       this.request({
         url: "/location/getCarDetector",
         method: "get",
@@ -289,24 +301,26 @@ export default {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
-        ,customClass:"el-message-box-new"
-      }).then(() => {
-        this.request({
-          url: "/location/deleteCarDetector",
-          method: "post",
-          data: { id: id }
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.$message({
-              type: "success",
-              message: "删除成功！"
-            });
-            this.getDataList();
-          }
-        });
-      }).catch(()=>{});
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/location/deleteCarDetector",
+            method: "post",
+            data: { id: id }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "删除成功！"
+              });
+              this.getDataList();
+            }
+          });
+        })
+        .catch(() => {});
     },
     changeTime(time) {
       if (time !== null && time !== undefined && time !== "") {

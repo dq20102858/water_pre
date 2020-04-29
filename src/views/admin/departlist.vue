@@ -242,6 +242,9 @@ export default {
     openAddDepart() {
       this.departDialogVisible = true;
       this.departDialogTitle = "添加部门信息";
+      this.$nextTick(() => {
+        this.$refs["departRulesForm"].clearValidate();
+      });
       this.departData = {};
     },
     addDepart() {
@@ -275,6 +278,9 @@ export default {
     detailDepart(id) {
       this.departDialogTitle = "修改部门信息";
       this.departDialogVisible = true;
+      this.$nextTick(() => {
+        this.$refs["departRulesForm"].clearValidate();
+      });
       this.request({
         url: "/company/getDepartDetail",
         method: "get",

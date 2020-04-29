@@ -570,7 +570,10 @@ export default {
     //================事件表单操作
     addDialogEvents() {
       this.dialogFormEvent = true;
-      let uploadImgs = document.getElementsByClassName("el-upload-list");
+        this.$nextTick(() => {
+        this.$refs["formRulesRef"].clearValidate();
+      });
+      let uploadImgs = document.getElementsByClassName("upimgitem");
       if (uploadImgs.length > 0) {
         this.$refs.uploadfive.clearFiles();
       }
@@ -824,7 +827,7 @@ export default {
       this.dangerIdValue = id;
       this.$set(this.peopleData, "user_id", "");
       this.$set(this.peopleData, "remark", "");
-      let uploadImgs = document.getElementsByClassName("el-upload-list");
+      let uploadImgs = document.getElementsByClassName("upimgitems");
       if (uploadImgs.length > 0) {
         this.$refs.uploadthree.clearFiles();
       }

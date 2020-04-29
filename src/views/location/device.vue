@@ -67,7 +67,7 @@
       :title="this.diaLogTitle"
       :visible.sync="diaLogFormVisible"
     >
-      <el-form class="el-form-custom" :model="deviceData" :rules="deviceRules" ref="deviceForm">
+      <el-form class="el-form-custom" :model="deviceData" :rules="deviceRules" ref="deviceRulesRef">
         <el-form-item label="公司名称：" prop="depart_id">
           <el-select v-model="deviceData.depart_id" placeholder="请选择公司" clearable>
             <el-option
@@ -112,7 +112,11 @@ export default {
             trigger: "blur"
           },
           { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
-           { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
+          }
         ],
         description: [
           { min: 0, max: 50, message: "长度在0到50个字符", trigger: "blur" }
@@ -135,8 +139,8 @@ export default {
     this.getDataList();
   },
   methods: {
-    handleMenuSelect (index) {
-   this.pageChange(1);
+    handleMenuSelect(index) {
+      this.pageChange(1);
     },
     getCompanyList() {
       this.request({
@@ -187,14 +191,17 @@ export default {
       };
       this.diaLogTitle = "添加机具信息";
       this.diaLogFormVisible = true;
+      this.$nextTick(() => {
+        this.$refs["deviceRulesRef"].clearValidate();
+      });
     },
     addOrEditDialog() {
-      this.$refs["deviceForm"].validate(valid => {
+      this.$refs["deviceRulesRef"].validate(valid => {
         if (valid) {
+          let data = this.deviceData;
           if (this.deviceData.description == "") {
             this.deviceData.description = "暂无";
           }
-          let data = this.deviceData;
           this.request({
             url: "/location/addOrEditDevice",
             method: "post",
@@ -210,8 +217,8 @@ export default {
               this.getDataList();
             }
           });
-        } else {
-          this.$message.error("操作失败！");
+         } else {
+          console.log("操作失败！");
           return false;
         }
       });
@@ -219,6 +226,9 @@ export default {
     goEdit(id) {
       this.diaLogTitle = "修改机具信息";
       this.diaLogFormVisible = true;
+      this.$nextTick(() => {
+        this.$refs["deviceRulesRef"].clearValidate();
+      });
       this.request({
         url: "/location/getDevice",
         method: "get",

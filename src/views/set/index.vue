@@ -150,7 +150,11 @@ export default {
             trigger: "blur"
           },
           { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
-           { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
+          }
         ],
         line_type: [
           { required: true, message: "请选择线别", trigger: "change" }
@@ -257,6 +261,9 @@ export default {
       };
       this.diaLogTitle = "添加信息";
       this.diaLogFormVisible = true;
+       this.$nextTick(() => {
+        this.$refs["formRules"].clearValidate();
+      });
       this.lineTypeDes = "";
     },
     addOrEditDialog() {
@@ -304,7 +311,9 @@ export default {
     goEdit(id) {
       this.diaLogTitle = "修改信息";
       this.diaLogFormVisible = true;
-
+      this.$nextTick(() => {
+        this.$refs["formRules"].clearValidate();
+      });
       this.request({
         url: "/search/getStationDetail",
         method: "get",
@@ -318,7 +327,7 @@ export default {
               this.lineTypeDes = "里程范围：" + item.tip;
               this.lineTypeStart = item.start;
               this.lineTypeEnd = item.end;
-              this.formData.position=parseFloat(data.data.position);
+              this.formData.position = parseFloat(data.data.position);
             }
           });
         }
@@ -349,14 +358,26 @@ export default {
         })
         .catch(() => {});
     },
-         timestampToTime(row, column){
-           let data = row[column.property]
-                if(data == null) {
-                    return null
-                }
-           let dt = new Date(data*1000)
-           return dt.getFullYear() + '-' + (dt.getMonth() + 1) + '-' + dt.getDate() + ' ' + dt.getHours() + ':' + dt.getMinutes() + ':' + dt.getSeconds()
+    timestampToTime(row, column) {
+      let data = row[column.property];
+      if (data == null) {
+        return null;
       }
+      let dt = new Date(data * 1000);
+      return (
+        dt.getFullYear() +
+        "-" +
+        (dt.getMonth() + 1) +
+        "-" +
+        dt.getDate() +
+        " " +
+        dt.getHours() +
+        ":" +
+        dt.getMinutes() +
+        ":" +
+        dt.getSeconds()
+      );
+    }
     //
   }
 };

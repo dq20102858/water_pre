@@ -1,7 +1,7 @@
 <template>
   <div id="location">
     <div class="el-menu-top">
-      <el-menu router default-active="locationbind" mode="horizontal"  @select="handleMenuSelect">
+      <el-menu router default-active="locationbind" mode="horizontal" @select="handleMenuSelect">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-location.png')" />定位管理
         </li>
@@ -40,7 +40,8 @@
               <el-input
                 v-model="searchForm.keyword"
                 autocomplete="off"
-                placeholder="按编号/被绑定名称" maxlength="30"
+                placeholder="按编号/被绑定名称"
+                maxlength="30"
                 clearable
               ></el-input>
             </el-form-item>
@@ -115,7 +116,7 @@
         ref="detectorRulesForm"
       >
         <el-form-item label="设备编号：" prop="number">
-          <el-input v-model="locationData.number" autocomplete="off"  maxlength="20" show-word-limit></el-input>
+          <el-input v-model="locationData.number" autocomplete="off" maxlength="20" show-word-limit></el-input>
         </el-form-item>
         <div v-if="locationData.id>0">
           <el-form-item label="设备类型：" prop="type">
@@ -223,7 +224,7 @@ export default {
           { required: true, message: "请选择公司", trigger: "change" }
         ],
         type: [
-          { required: true, message: "请选择设备类型：", trigger: "change" }
+          { required: true, message: "请选择设备类型", trigger: "change" }
         ],
         number: [
           {
@@ -232,19 +233,23 @@ export default {
             trigger: "blur"
           },
           { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
-           { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
+          }
         ],
         // sub_pid: [
         //   { required: true, message: "请选择所属部门：", trigger: "change" }
         // ],
         post_pid: [
-          { required: true, message: "请选择所属职位：", trigger: "change" }
+          { required: true, message: "请选择所属职位", trigger: "change" }
         ],
         loco_id: [
           { required: true, message: "请选择所属列车", trigger: "change" }
         ],
         bind_obj: [
-          { required: true, message: "请选择绑定对象：", trigger: "change" }
+          { required: true, message: "请选择绑定对象", trigger: "change" }
         ]
       },
       page_cur: 1,
@@ -270,8 +275,8 @@ export default {
     this.getDataList();
   },
   methods: {
-      handleMenuSelect (index) {
-   this.pageChange(1);
+    handleMenuSelect(index) {
+      this.pageChange(1);
     },
     getDataList() {
       let page = this.page_cur;
@@ -325,6 +330,9 @@ export default {
       this.locationData = {};
       this.diaLogTitle = "添加设备信息";
       this.diaLogFormVisible = true;
+      this.$nextTick(() => {
+        this.$refs["detectorRulesForm"].clearValidate();
+      });
     },
     addOrEditDialog() {
       this.$refs["detectorRulesForm"].validate(valid => {
@@ -357,6 +365,9 @@ export default {
       this.objSelectLists = [];
       this.diaLogTitle = "修改设备信息";
       this.diaLogFormVisible = true;
+      this.$nextTick(() => {
+        this.$refs["detectorRulesForm"].clearValidate();
+      });
       this.request({
         url: "/location/localBindDetail",
         method: "get",
@@ -377,7 +388,7 @@ export default {
               }
             });
 
-            // 
+            //
           } else if (data.data.type == 2) {
             this.getTrainList(data.data.depart_id, 1);
           } else {
@@ -442,8 +453,8 @@ export default {
       this.$set(this.locationData, "sub_pid", "");
       this.$set(this.locationData, "post_pid", "");
       this.$set(this.locationData, "bind_obj", "");
-       this.postSelectLists=[];
-      this.objSelectLists=[];
+      this.postSelectLists = [];
+      this.objSelectLists = [];
       this.request({
         url: "/company/getDepartLists",
         method: "get",
@@ -465,7 +476,7 @@ export default {
     selectDepartLists(val) {
       this.$set(this.locationData, "post_pid", "");
       this.$set(this.locationData, "bind_obj", "");
-       this.objSelectLists=[];
+      this.objSelectLists = [];
       this.request({
         url: "/company/getDepartLists",
         method: "get",

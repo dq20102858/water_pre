@@ -337,6 +337,10 @@ export default {
       };
       this.diaLogTitle = "添加墙壁探测器信息";
       this.diaLogFormVisible = true;
+       this.addShow = true;
+        this.$nextTick(() => {
+        this.$refs["detectorForm"].clearValidate();
+      });
     },
     addOrEditDialog() {
       this.$refs["detectorForm"].validate(valid => {
@@ -368,6 +372,9 @@ export default {
     goEdit(id) {
       this.diaLogTitle = "修改墙壁探测器信息";
       this.diaLogFormVisible = true;
+           this.$nextTick(() => {
+        this.$refs["detectorForm"].clearValidate();
+      });
       this.request({
         url: "/location/getWallDetector",
         method: "get",

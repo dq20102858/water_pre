@@ -134,7 +134,11 @@ export default {
             trigger: "blur"
           },
           { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" },
-          { pattern: /^[\u4e00-\u9fa5\(\)（）\da-zA-Z&]{2,50}$/, message: "输入公司名称只能包含汉字、括号、&、数字或英文字符", trigger: "blur" }
+          {
+            pattern: /^[\u4e00-\u9fa5\(\)（）\da-zA-Z&]{2,50}$/,
+            message: "输入公司名称只能包含汉字、括号、&、数字或英文字符",
+            trigger: "blur"
+          }
         ],
         description: [
           { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
@@ -180,6 +184,9 @@ export default {
     },
     openAddCompany() {
       this.companyDialogVisible = true;
+      this.$nextTick(() => {
+        this.$refs["companyRulesForm"].clearValidate();
+      });
       this.companyDialogTitle = "添加公司信息";
       this.companyData = {
         color: "默认"
@@ -219,6 +226,9 @@ export default {
     detailCompany(id) {
       this.companyDialogVisible = true;
       this.companyDialogTitle = "修改公司信息";
+      this.$nextTick(() => {
+        this.$refs["companyRulesForm"].clearValidate();
+      });
       this.request({
         url: "/company/getDepartDetail",
         method: "get",
