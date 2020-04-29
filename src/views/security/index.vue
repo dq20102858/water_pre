@@ -93,7 +93,7 @@
           </el-form>
         </div>
         <div class="app-table">
-          <el-table :data="dataList">
+          <el-table :data="dataList" empty-text="无近七日内安全管理事件">
             <el-table-column prop="id" label="序号"></el-table-column>
             <el-table-column prop="title" label="事件名称"></el-table-column>
             <el-table-column prop="address" label="事件地址" show-overflow-tooltip></el-table-column>
@@ -160,9 +160,11 @@
                   :preview-src-list="[item.src]"
                   v-for="item  in eventPictureList"
                   :key="item.id"
-                  :src="item.src"></el-image>
+                  :src="item.src"
+                ></el-image>
               </div>
-          </div>   </div>
+            </div>
+          </div>
         </div>
         <div class="detailright">
           <div class="security-title">处理进度</div>
@@ -375,8 +377,7 @@ export default {
         }
       },
       searchForm: {
-        type: 1,
-        time_range: []
+        type: 1
       },
       uploadAction: this.hostURL + "/upload/uploadFile",
       dataList: [],
@@ -458,15 +459,12 @@ export default {
             trigger: "blur"
           }
         ]
-      },
-      srcList: [
-          'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
-          'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
-        ]
+      }
     };
   },
   created() {
     //alert(document.location.hostname);
+    this.defaultDate();
     this.getCompanyLists();
     this.getTrainList();
     this.getDangerType();
@@ -475,6 +473,15 @@ export default {
     this.getDataList();
   },
   methods: {
+    defaultDate() {
+      let dateA = new Date();
+      let  end = dateA.getFullYear()+"-"+(dateA.getMonth()+1)+"-"+dateA.getDate();
+      let dateB = new Date(dateA);
+      dateB.setDate(dateA.getDate()-7);       
+      let  start = dateB.getFullYear()+"-"+(dateB.getMonth()+1)+"-"+dateB.getDate();
+      this.$set(this.searchForm,"start_time",start);
+      this.$set(this.searchForm,"end_time",end);
+    },
     //====列表数据
     getDataList() {
       let page = this.page_cur;
@@ -1017,7 +1024,7 @@ export default {
   -webkit-border-radius: 100%;
   border-radius: 100%;
   background-size: 10px 10px;
-  z-index: 9999;
+  z-index: 999;
 }
 
 .timeline li .desc {
@@ -1080,5 +1087,9 @@ export default {
 }
 .my-radio .el-radio {
   margin-right: 15px !important;
+}
+.el-image-viewer__canvas img {
+  width: auto !important;
+  height: auto !important;
 }
 </style>
