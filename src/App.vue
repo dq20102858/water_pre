@@ -63,7 +63,7 @@ ul,li{list-style-type: none}
 .app-table .el-table__header-wrapper{background: #3655a5;border-radius: 6px 6px 0 0;padding: 0 0;}
 .app-table .el-table__header-wrapper tr th{background: #3655a5;color:#fff;border-bottom: none!important;font-size: 14px;}
 .app-table .el-table__header-wrapper .is-leaf{border-bottom: none;}
-.app-table .el-table__body-wrapper {border:1px #e7eeff solid}
+.app-table .el-table__body-wrapper {border:1px #e7eeff solid;border-bottom: none;}
 .app-table .el-table__body-wrapper tr:nth-child(odd){background:#e7eeff;}
 .app-table .el-table__body-wrapper tr td{color: #1D397A;}
 .app-operation{white-space: nowrap; text-align: right;}
