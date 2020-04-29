@@ -110,8 +110,8 @@
           </el-table-column>
           <el-table-column prop="makesure_time" min-width="80" label="确认时间">
             <template slot-scope="scope">
-              <span v-if="scope.row.makesure_time.length==0">暂未确认</span>
-              <span v-else>{{scope.row.makesure_time}}</span>
+              <p v-if="scope.row.makesure_time.length==0">暂未确认</p>
+               <p  v-else v-html="changeTime(scope.row.makesure_time)"></p>
             </template>
           </el-table-column>
           <el-table-column label="操作" width="240">
@@ -381,7 +381,7 @@ export default {
     },
     changeTime(time) {
       if (time !== null && time !== undefined && time !== "") {
-        return "<span style='display:block'>"+time.substring(0, 10)+"</span><span style='display:block'>"+time.substring(time.length-8)+"</span>";
+        return "<span style='display:block; white-space: nowrap;'>"+time.substring(0, 10)+"</span><span style='display:block; white-space: nowrap;'>"+time.substring(time.length-8)+"</span>";
       } else {
         return "";
       }
@@ -394,7 +394,7 @@ export default {
 <style>
 .app-page-select {
   margin-bottom: 10px;
-  width: 100%;
+  width: 100%
 }
 .app-page-select .select-from-inline .el-form-item__label {
   width: 70px;

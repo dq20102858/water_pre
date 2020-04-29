@@ -126,7 +126,7 @@
             :rules="userAddRules"
             ref="userRulesForm"
           >
-            <div class="el-form-item-inlines">
+            <div class="el-form-item-inlinessddd">
               <el-form-item label="用户名：" prop="user_name" v-if="this.userDialogTitle=='添加人员信息'">
                 <el-input
                   v-model="userData.user_name"
@@ -196,8 +196,8 @@
                   <el-option label="车站值班员" :value="5"></el-option>
                   <el-option label="施工队长" :value="6"></el-option>
                 </el-select>
-              </el-form-item> -->
-              <el-form-item>
+              </el-form-item>-->
+                <el-form-item label="权限设置：" class="checkbox-group">
                 <el-checkbox-group v-model="userData.menus">
                   <el-checkbox
                     v-for="item in userMenuList"
@@ -206,6 +206,22 @@
                   >{{item.name}}</el-checkbox>
                 </el-checkbox-group>
               </el-form-item>
+              <el-form-item label="头像上传：">
+                <el-upload
+                  ref="uploadfive"
+                  class="avatar-uploader"
+                  :action="uploadAction"
+                  :auto-upload="true"
+                  :on-exceed="uploadExceed"
+                  :before-upload="uploadBefore"
+                  :on-success="uploadSuccess"
+                  :show-file-list="false"
+                >
+                  <img v-if="userData.avatar" :src="userData.avatar" class="avatar" />
+                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
+              </el-form-item>
+            
             </div>
           </el-form>
           <div slot="footer" class="dialog-footer">
@@ -236,6 +252,8 @@ export default {
       userData: {
         menus: []
       },
+      uploadAction: this.hostURL + "/upload/uploadFile",
+      UserimageUrl: "",
       userSearch: {},
       userAddRules: {
         user_name: [
@@ -407,7 +425,9 @@ export default {
       this.$refs["userRulesForm"].validate(valid => {
         if (valid) {
           let data = this.userData;
-          // this.userData.menus = this.userData.menus.slice(1);
+          if( this.userData.avatar ==null){
+              this.userData.avatar="/static/avatar.jpg";
+          }
           let url = "/user/addUser";
           let baseid = this.userData.id;
           console.log("this.userData.id：" + this.userData.id);
@@ -576,7 +596,48 @@ export default {
           this.userMenuList = data.data;
         }
       });
+    },
+    //上传图片
+    uploadExceed() {
+      this.$message({
+        type: "warning",
+        message: `最多可以上传5张图片`
+      });
+    },
+    uploadSuccess(res, file) {
+      // let result= URL.createObjectURL(file.raw);
+      console.log("图上传成功", res);
+      this.userData.avatar= res.data.url;
+      // let upload_list_li = document.getElementsByClassName("el-upload-list")[0]
+      //   .children;
+      // if (res.data.url != "") {
+      //   for (let i = 0; i < upload_list_li.length; i++) {
+      //     let li_a = upload_list_li[i];
+      //     let imgElement = document.createElement("img");
+      //     imgElement.setAttribute("src", res.data.url);
+      //     imgElement.setAttribute("class", "upimgitem");
+      //     if (li_a.lastElementChild.nodeName !== "IMG") {
+      //       li_a.appendChild(imgElement);
+      //     }
+      //   }
+      // }
+    },
+    uploadBefore(file) {
+      const isJPEG = file.type === "image/jpeg";
+      const isJPG = file.type === "image/jpg";
+      const isPNG = file.type === "image/png";
+      const isGIF = file.type === "image/gif";
+      const isLt2M = file.size / 1024 / 1024 < 2;
+
+      if (!isJPEG && !isJPG && !isPNG && !isGIF) {
+        this.$message.error("上传图片只能是 jpg  png  gif 格式!");
+      }
+      if (!isLt2M) {
+        this.$message.error("上传图片大小不能超过 2MB!");
+      }
+      return isJPEG || isJPG || isPNG || (isGIF && isLt2M);
     }
+    //
   }
   //
 };
@@ -600,16 +661,46 @@ export default {
 .dialog-users .el-form-item-block {
   display: block;
 }
-.el-form-item-inlines {
+.dialog-users  .el-form-item-inliness {
   display: inline-block;
 }
-.dialog-users .el-form-item-inlines .el-form-item {
+.dialog-users .el-form-item-inliness .el-form-item {
   display: inline-block;
 }
-.el-form-item-block {
+.dialog-users  .el-form-item-block {
   display: block;
 }
-.dialog-users .el-form-item-inlines .el-checkbox-group {
+.dialog-users .el-form-item-inliness .el-checkbox-group {
   margin-left: 110px;
+}
+.dialog-users .checkbox-group .el-form-item__label {
+  float: left;
+}
+.dialog-users .checkbox-group .el-form-item__content {
+  display: initial !important;
+}
+.dialog-users .checkbox-group .el-checkbox-group{margin-left: 110px;}
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
 }
 </style>

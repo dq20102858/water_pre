@@ -134,7 +134,7 @@ export default {
             trigger: "blur"
           },
           { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" },
-          { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
+          { pattern: /^[\u4e00-\u9fa5\(\)（）\da-zA-Z&]{2,50}$/, message: "输入公司名称只能包含括号、&、数字或英文字符", trigger: "blur" }
         ],
         description: [
           { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
