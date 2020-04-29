@@ -239,6 +239,7 @@ export default {
               containLabel: true
             },
             toolbox: {
+              right:30,
               feature: {
                 saveAsImage: {}
               }
@@ -316,11 +317,12 @@ export default {
             },
             grid: {
               left: "1%",
-              right: "3%",
+              right: "1%",
               bottom: "1%",
               containLabel: true
             },
             toolbox: {
+                right:30,
               feature: {
                 saveAsImage: {}
               }
