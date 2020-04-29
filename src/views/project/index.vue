@@ -53,6 +53,7 @@
               layout="slot,prev, pager, next,slot,total"
               :current-page="this.workPage"
               :total="this.workTotal"
+              :page-size="this.workPageSize"
               @current-change="workPageChange"
               prev-text="上一页"
               next-text="下一页"
@@ -66,7 +67,8 @@
             </el-pagination>
           </div>
         </div>
-        <el-dialog  width="700px"
+        <el-dialog
+          width="700px"
           :close-on-click-modal="false"
           class="dialog-work"
           :title="this.title"
@@ -107,10 +109,20 @@
               </el-form-item>
               <div class="el-form-item-inline" v-if="workData.type==2">
                 <el-form-item label="设计总量：" prop="total">
-                  <el-input v-model="workData.total" autocomplete="off" placeholder="请输入数字" maxlength="5"></el-input>
+                  <el-input
+                    v-model="workData.total"
+                    autocomplete="off"
+                    placeholder="请输入数字"
+                    maxlength="5"
+                  ></el-input>
                 </el-form-item>
                 <el-form-item label="单位：" prop="unit" v-if="workData.type==2">
-                  <el-input v-model="workData.unit" autocomplete="off" placeholder="请输入个，股，孔等" maxlength="4"></el-input>
+                  <el-input
+                    v-model="workData.unit"
+                    autocomplete="off"
+                    placeholder="请输入个，股，孔等"
+                    maxlength="4"
+                  ></el-input>
                 </el-form-item>
               </div>
             </div>
@@ -146,7 +158,8 @@
               <template slot-scope="scope">
                 <span
                   v-if="scope.row.line_type == item.id"
-                  v-for="item in lineTypeList" :key="item.id"
+                  v-for="item in lineTypeList"
+                  :key="item.id"
                 >{{item.name}}</span>
               </template>
             </el-table-column>
@@ -203,6 +216,7 @@ export default {
       workLists: [],
       workPage: 1,
       workTotal: 0,
+      workPageSize: 20,
       workPage_total: 0,
       workVisible: false,
       lineTypeList: [],
@@ -215,7 +229,11 @@ export default {
         name: [
           { required: true, message: "请输入名称2~20个字符", trigger: "blur" },
           { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
-           { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
+          }
         ],
         type: [{ required: true, message: "请选择类别", trigger: "change" }],
         line_type: [
@@ -269,9 +287,14 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.workLists = data.data.data;
+
           this.workPage = parseInt(data.data.current_page);
           this.workTotal = parseInt(data.data.total);
+          this.workPageSize = data.data.per_page;
           this.workPage_total = parseInt(data.data.last_page);
+          // this.workPage = parseInt(data.data.current_page);
+          // this.workTotal =data.data.total;
+          // this.workPage_total =data.data.last_page;
         }
       });
     },
@@ -280,17 +303,17 @@ export default {
       this.getWorkLists();
     },
     workPageFirst() {
-      this.workPageChange(1);
+      this.workPage = 1;
+      this.getWorkLists();
     },
     workPageLast() {
       this.workPage = this.workPage_total;
-      this.workPageChange(this.workPage_total);
+      this.getWorkLists();
     },
-
     openAddWork() {
       this.title = "添加作业信息";
       this.workVisible = true;
-       this.$nextTick(() => {
+      this.$nextTick(() => {
         this.$refs["workForm"].clearValidate();
       });
       this.workData = {
@@ -332,7 +355,7 @@ export default {
     editWork(id) {
       this.title = "修改作业信息";
       this.workVisible = true;
-        this.$nextTick(() => {
+      this.$nextTick(() => {
         this.$refs["workForm"].clearValidate();
       });
       this.request({
@@ -343,7 +366,7 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.workData = data.data;
-             console.log(data.data.line_type);
+          console.log(data.data.line_type);
         }
       });
     },

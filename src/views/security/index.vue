@@ -475,12 +475,22 @@ export default {
   methods: {
     defaultDate() {
       let dateA = new Date();
-      let  end = dateA.getFullYear()+"-"+(dateA.getMonth()+1)+"-"+dateA.getDate();
+      let end =
+        dateA.getFullYear() +
+        "-" +
+        (dateA.getMonth() + 1) +
+        "-" +
+        dateA.getDate();
       let dateB = new Date(dateA);
-      dateB.setDate(dateA.getDate()-7);       
-      let  start = dateB.getFullYear()+"-"+(dateB.getMonth()+1)+"-"+dateB.getDate();
-      this.$set(this.searchForm,"start_time",start);
-      this.$set(this.searchForm,"end_time",end);
+      dateB.setDate(dateA.getDate() - 7);
+      let start =
+        dateB.getFullYear() +
+        "-" +
+        (dateB.getMonth() + 1) +
+        "-" +
+        dateB.getDate();
+      this.$set(this.searchForm, "start_time", start);
+      this.$set(this.searchForm, "end_time", end);
     },
     //====列表数据
     getDataList() {
@@ -540,18 +550,27 @@ export default {
       this.pageChange(this.page_total);
     },
     pageSearch() {
-      let start_times = this.searchForm.start_time;
-      let end_times = this.searchForm.end_time;
-      if (start_times == null || end_times == null) {
-        this.$message({
-          message: "请选择完整的时间段",
-          type: "warning"
-        });
-      } else {
-        this.page_cur = 1;
+          this.page_cur = 1;
         this.getDataList();
         this.goDetail(0);
-      }
+      // let start_times = this.searchForm.start_time;
+      // let end_times = this.searchForm.end_time;
+      // if (start_times != null) {
+      //   if (end_times == null) {
+      //     this.$message({
+      //       message: "请选择完整的时间段",
+      //       type: "warning"
+      //     });
+      //   }
+      //   else
+      //   {
+
+      //   }
+      // } else {
+      //   this.page_cur = 1;
+      //   this.getDataList();
+      //   this.goDetail(0);
+      // }
     },
     resetSerach() {
       (this.searchForm = {
@@ -570,7 +589,7 @@ export default {
     //================事件表单操作
     addDialogEvents() {
       this.dialogFormEvent = true;
-        this.$nextTick(() => {
+      this.$nextTick(() => {
         this.$refs["formRulesRef"].clearValidate();
       });
       let uploadImgs = document.getElementsByClassName("upimgitem");

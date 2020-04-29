@@ -70,6 +70,7 @@
                   type="primary"
                   @click="detailSearchPage"
                 >查询</el-button>
+                <el-button size="small" plain @click="resetSerach">重置</el-button>
               </el-form-item>
             </el-form>
           </div>
@@ -149,7 +150,7 @@
                 </el-form-item>
                 <!-- <el-form-item label="完成日期：" prop="plan_time" class="widhtss" disabled>
                   <el-date-picker v-model="historyData.plan_time" type="date" placeholder="选择日期"></el-date-picker>
-                </el-form-item> -->
+                </el-form-item>-->
               </div>
               <el-form-item label="作业名称：" prop="pro_id" v-show="addShow">
                 <el-select
@@ -313,11 +314,11 @@ export default {
       let page = this.detailPage;
       let pro_id = this.searchForm.work;
       let time_range = this.searchForm.time_range;
-     // let is_finish =-1;
-        let is_finish = this.searchForm.is_finish;
-     if (this.searchForm.is_finish ==-1) {
-        is_finish ="";
-     }
+      // let is_finish =-1;
+      let is_finish = this.searchForm.is_finish;
+      if (this.searchForm.is_finish == -1) {
+        is_finish = "";
+      }
       console.log(this.searchForm);
       this.request({
         url: "/project/getPlanPages",
@@ -349,7 +350,13 @@ export default {
       this.detailPage = 1;
       this.getDetailLists();
     },
-
+    resetSerach() {
+      this.searchForm = {
+        time_range: ""
+      };
+      this.workLists = [];
+      this.getDetailLists();
+    },
     //获取二级分类
     getWorkList() {
       this.request({
@@ -403,7 +410,7 @@ export default {
       this.dialogAddHistoryVisible = true;
       this.historyTitle = "添加历史记录";
       this.addShow = true;
-        this.$nextTick(() => {
+      this.$nextTick(() => {
         this.$refs["detailForm"].clearValidate();
       });
       this.lineTypeDes = "";
@@ -471,7 +478,7 @@ export default {
                 message: "保存成功",
                 type: "success"
               });
-              this.searchForm.is_finish == 0
+              this.searchForm.is_finish == 0;
               this.getDetailLists();
               this.dialogAddHistoryVisible = false;
             } else {
@@ -488,8 +495,8 @@ export default {
     getPlanDetail(id) {
       this.historyTitle = "修改历史记录 ";
       this.addShow = false;
-       this.addShow = true;
-        this.$nextTick(() => {
+      this.addShow = true;
+      this.$nextTick(() => {
         this.$refs["detailForm"].clearValidate();
       });
       this.request({
