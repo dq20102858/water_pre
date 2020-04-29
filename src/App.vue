@@ -88,7 +88,7 @@ ul,li{list-style-type: none}
 .app-dialog-form .el-textarea__inner {border: 1px #9db9fa solid;color: #4b6eca;}
 /*pagination */
 .app-pagination{text-align: right;margin-top: 20px;}
-.app-pagination .el-pagination {border-radius: 4px;overflow: hidden; display: inline-block;padding: 0; margin: 20px 0;border: 1px solid #3655A5;}
+.app-pagination .el-pagination {border-radius: 4px;overflow: hidden; display: inline-block;padding: 0; border: 1px solid #3655A5;}
 .app-pagination .el-pagination .el-pager li{background-color: #fff ;color: #1d397a; border-left: 1px solid #3655A5;color: #337ab7;float: left;padding: 0 12px; position: relative; text-decoration: none;margin: 0;border-radius: 0;}
 .app-pagination .el-pagination .el-pager li.active{background: #3655A5!important;color: #fff;}
 .app-pagination .el-pagination .el-pager li:hover{background: #fafafa;color: #3655a5;}

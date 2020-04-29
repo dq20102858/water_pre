@@ -156,15 +156,13 @@
               <h3>{{eventTitle}}</h3>
               {{eventDesc}}
               <div class="imgs">
-                <img
-                  :preview-src-list="eventPictureList"
+                <el-image
+                  :preview-src-list="[item.src]"
                   v-for="item  in eventPictureList"
                   :key="item.id"
-                  :src="item.src"
-                />
+                  :src="item.src"></el-image>
               </div>
-            </div>
-          </div>
+          </div>   </div>
         </div>
         <div class="detailright">
           <div class="security-title">处理进度</div>
@@ -460,7 +458,11 @@ export default {
             trigger: "blur"
           }
         ]
-      }
+      },
+      srcList: [
+          'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
+          'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
+        ]
     };
   },
   created() {
