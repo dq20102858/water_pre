@@ -563,7 +563,6 @@ export default {
     //================事件表单操作
     addDialogEvents() {
       this.dialogFormEvent = true;
-      debugger
       let uploadImgs = document.getElementsByClassName("el-upload-list");
       if (uploadImgs.length > 0) {
         this.$refs.uploadfive.clearFiles();
