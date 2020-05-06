@@ -52,6 +52,7 @@ ul,li{list-style-type: none}
 .app-page-select .form-add-item{margin-right: 40px;}
 .app-page-select .el-range-separator{padding: 0;}
 .app-page-select .select-from-inline{display: inline-block;white-space: nowrap;width: 100%;}
+.app-page-select .el-button  span{font-size:14px!important;}
 .btn-red-addedit {background: #ff5c75;border-color: #ff5c75;margin-right: 20px;}
 .btn-red-addedit:hover, .btn-red-addedit:focus{background: #fe3a58;border-color: #fe3a58;}
 .el-serach {float: right;border: 2px #4b6eca solid; border-radius: 3px;}
