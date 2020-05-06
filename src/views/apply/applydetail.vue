@@ -189,12 +189,12 @@
                 <td colspan="2">
                   <div class="textoverflow clblue">{{funIsEmpty(dataInfo.other)}}</div>
                 </td>
-                <td colspan="2">监理确认并签字：{{funIsEmpty(dataInfo.supervisor)}}</td>
+                <td colspan="2">监理确认并签字：{{dataInfo.supervisor}}</td>
               </tr>
 
               <tr>
                 <td colspan="2" rowspan="2">
-                  <b>承运人签名（章）：</b>{{funIsEmpty(dataInfo.carrier)}}
+                  <b>承运人签名（章）：</b>{{dataInfo.carrier}}
                 </td>
                 <td style="width:200px;">审批人：{{dataInfo.approver}}</td>
                 <td style="width:200px;">销点人:{{dataInfo.logout}}</td>
@@ -331,7 +331,7 @@
             <div class="onebox">
               <div
                 class="itemconn"
-              >本人谨此声明：⑴ 此进场作业许可证所述工作现已完成，本人及属下员工已经撤离，安全措施已经撤除，并已被告之在轨道区域/车辆上工作已不再安全。⑵ 完成情况及所有故障/损坏已经书面呈报。</div>
+              >本人谨此声明：⑴ 此进场作业许可证所述工作现已完成，本人及属下员工已经撤离，安全措施已经撤除，并已被告知在轨道区域/车辆上工作已不再安全。⑵ 完成情况及所有故障/损坏已经书面呈报。</div>
               <div class="singn lines">
                 <span class="pull-left">销点负责人（签名）<b>{{dataInfo.logout}}</b></span>
                 <span class="pull-right">{{dataInfo.logout_time}}</span>

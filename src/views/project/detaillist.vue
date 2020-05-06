@@ -495,10 +495,9 @@ export default {
     getPlanDetail(id) {
       this.historyTitle = "修改历史记录 ";
       this.addShow = false;
-      this.addShow = true;
-      this.$nextTick(() => {
-        this.$refs["detailForm"].clearValidate();
-      });
+      // this.$nextTick(() => {
+      //   this.$refs["detailForm"].clearValidate();
+      // });
       this.request({
         url: "/project/getPlanDetail",
         method: "get",

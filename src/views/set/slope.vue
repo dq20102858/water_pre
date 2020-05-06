@@ -209,7 +209,7 @@ export default {
           },
           {
             pattern: /^\d+(\.\d{0,2})?$/,
-            message: "请输入数字最多只能保留两位小数",
+            message: "请输入整数或保留两位小数的数字",
             trigger: "blur"
           }
         ],

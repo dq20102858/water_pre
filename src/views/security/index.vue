@@ -239,7 +239,7 @@
               ></el-input>
             </el-form-item>
             <el-form-item label="相关图片：">
-              <p style="color:#3655a5">最多可以上传5张图片,支持格式 jpg png gif，大小不能超过 2MB</p>
+              <p style="color:#3655a5">最多可以上传5张图片，支持格式 jpg png gif，大小不能超过 2MB。</p>
               <!-- action="http://129.211.168.161/upload/uploadFile" 
                   :on-success="handleAvatarSuccess"
               -->
@@ -321,7 +321,7 @@
             </el-select>
           </el-form-item>
           <el-form-item label="相关图片：">
-            <p style="color:#3655a5">最多可以上传3张图片</p>
+            <p style="color:#3655a5">最多可以上传3张图片，支持格式 jpg png gif，大小不能超过 2MB。</p>
             <el-upload
               ref="uploadthree"
               class="uploaderthree el-upload-list--picture-card"

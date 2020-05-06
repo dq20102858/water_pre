@@ -31,7 +31,7 @@
                   @click="goDetail(scope.row.id1,scope.row.type1)"
                 >{{scope.row.number1}}</span>
                 <span style="color:#029b02;font-size:12px;" v-if="scope.row.status1 ==2">已同意</span>
-                <span style="color:#ff0;font-size:12px;" v-if="scope.row.status1 ==3">已拒绝</span>
+                <span style="color:#ff5c75;font-size:12px;" v-if="scope.row.status1 ==3">已拒绝</span>
               </template>
             </el-table-column>
             <el-table-column prop="company2" label="公司名称"></el-table-column>
@@ -44,7 +44,7 @@
                 >{{scope.row.number2}}</span>
 
                 <span style="color:#029b02;font-size:12px;" v-if="scope.row.status2 ==2">已同意</span>
-                <span style="color:#ff0;font-size:12px;" v-if="scope.row.status2 ==3">已拒绝</span>
+                <span style="color:#ff5c75;font-size:12px;" v-if="scope.row.status2 ==3">已拒绝</span>
               </template>
             </el-table-column>
             <el-table-column prop="txt" label="操作" width="88">
@@ -76,24 +76,24 @@
           <strong>
             作业编号：{{checkNumber1}}
             <span style="color:#029b02;font-size:12px;" v-if="status1 ==2">已同意</span>
-            <span style="color:#ff0;font-size:12px;" v-if="status1 ==3">已拒绝</span>
+            <span style="color:#ff5c75;font-size:12px;" v-if="status1 ==3">已拒绝</span>
           </strong>
           <el-button class="btn-defult" size="mini" @click="goDetail(checkId1,checktype1)">查看</el-button>
           <span v-if="status1 !=2 && status1!=3">
             <el-button class="btn-red" size="mini" @click="ApplyClick(checkId1,3)">拒绝</el-button>
-            <el-button class="btn-blue" size="mini" @click="ApplyClick(checkId1,2)">同意</el-button>
+            <el-button class="btn-blue" size="mini" @click="ApplyClick(checkId1,2)"  v-if="status2 !=2">同意</el-button>
           </span>
         </div>
         <div class="operation">
           <strong>
             作业编号：{{checkNumber2}}
-            <span style="color:#029b02;font-size:12px;" v-if="status1 ==2">已同意</span>
-            <span style="color:#ff0;font-size:12px;" v-if="status1 ==3">已拒绝</span>
+            <span style="color:#029b02;font-size:12px;" v-if="status2 ==2">已同意</span>
+            <span style="color:#ff5c75;font-size:12px;" v-if="status2 ==3">已拒绝</span>
           </strong>
           <el-button class="btn-defult" size="mini" @click="goDetail(checkId2,checktype2)">查看</el-button>
           <span v-if="status2 !=2 && status2!=3">
             <el-button class="btn-red" size="mini" @click="ApplyClick(checkId2,3)">拒绝</el-button>
-            <el-button class="btn-blue" size="mini" @click="ApplyClick(checkId2,2)">同意</el-button>
+            <el-button class="btn-blue" size="mini" @click="ApplyClick(checkId2,2)"   v-if="status1 !=2">同意</el-button>
           </span>
         </div>
       </div>

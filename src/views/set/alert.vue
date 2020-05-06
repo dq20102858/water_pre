@@ -21,7 +21,13 @@
               <el-button type="primary" icon="el-icon-plus" @click="goAdd">添加防区</el-button>
             </el-form-item>
             <div class="el-serach">
-              <el-input v-model="searchName" autocomplete="off"  maxlength="30" placeholder="请输入名称查询" clearable></el-input>
+              <el-input
+                v-model="searchName"
+                autocomplete="off"
+                maxlength="30"
+                placeholder="请输入名称查询"
+                clearable
+              ></el-input>
               <el-button @click="searchEvent">查询</el-button>
             </div>
           </el-form>
@@ -88,7 +94,7 @@
         >
           <el-form class="el-form-custom" :model="formData" :rules="formRules" ref="formRules">
             <el-form-item label="名称：" prop="name">
-             <el-select v-model="formData.name" placeholder="请选择">
+              <el-select v-model="formData.name" placeholder="请选择">
                 <el-option label="防区" value="防区"></el-option>
                 <el-option label="施工地段" value="施工地段"></el-option>
               </el-select>
@@ -110,7 +116,7 @@
               <div class="el-form-item__error">{{lineTypeDes}}</div>
             </el-form-item>
             <el-form-item label="开始里程：" class="el-form-item-inlines is-required">
-              <el-form-item prop="start_flag"  class="alert-errora">
+              <el-form-item prop="start_flag" class="alert-errora">
                 <b>DK</b>
                 <el-input
                   v-model="formData.start_flag"
@@ -119,7 +125,7 @@
                   maxlength="3"
                 ></el-input>
               </el-form-item>
-              <el-form-item prop="start_length"  class="alert-errorb">
+              <el-form-item prop="start_length" class="alert-errorb">
                 <b>+</b>
                 <el-input
                   v-model="formData.start_length"
@@ -130,7 +136,7 @@
               </el-form-item>
             </el-form-item>
             <el-form-item label="结束里程：" class="el-form-item-inlines is-required">
-              <el-form-item prop="end_flag"  class="alert-errora">
+              <el-form-item prop="end_flag" class="alert-errora">
                 <b>DK</b>
                 <el-input
                   v-model="formData.end_flag"
@@ -151,15 +157,15 @@
             </el-form-item>
             <el-form-item label="开始时间" prop="start_time">
               <el-date-picker
-                @change="changeStarttime"
                 v-model="formData.start_time"
+                :picker-options="pickerOptionsStart"
                 type="datetime"
                 placeholder="选择时间"
               ></el-date-picker>
             </el-form-item>
             <el-form-item label="结束时间" prop="end_time">
               <el-date-picker
-                @change="changeEndtime"
+                :picker-options="pickerOptionsEnd"
                 v-model="formData.end_time"
                 type="datetime"
                 placeholder="选择时间"
@@ -180,13 +186,29 @@
 export default {
   data() {
     return {
+      pickerOptionsStart: {
+        disabledDate: time => {
+          if (this.formData.end_time) {
+            return (
+              time.getTime() > new Date(this.formData.end_time).getTime()
+            );
+          }
+        }
+      },
+      pickerOptionsEnd: {
+        disabledDate: time => {
+          if (this.formData.start_time) {
+            return (
+              time.getTime() < new Date(this.formData.start_time).getTime()
+            );
+          }
+        }
+      },
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
       formData: {},
       formRules: {
-        name: [
-           { required: true, message: "请选择名称", trigger: "change" }
-        ],
+        name: [{ required: true, message: "请选择名称", trigger: "change" }],
         line_type: [
           { required: true, message: "请选择线别", trigger: "change" }
         ],
@@ -332,7 +354,7 @@ export default {
       this.formData = {};
       this.diaLogTitle = "添加信息";
       this.diaLogFormVisible = true;
-       this.$nextTick(() => {
+      this.$nextTick(() => {
         this.$refs["formRules"].clearValidate();
       });
       this.lineTypeDes = "";
@@ -387,7 +409,7 @@ export default {
     goEdit(id) {
       this.diaLogTitle = "修改信息";
       this.diaLogFormVisible = true;
-       this.$nextTick(() => {
+      this.$nextTick(() => {
         this.$refs["formRules"].clearValidate();
       });
       this.request({
@@ -514,6 +536,10 @@ export default {
 .el-form-item-inlines .el-form-item {
   margin-bottom: 1px !important;
 }
-.alert-errora .el-form-item__error{ padding-left: 23px;}
-.alert-errorb .el-form-item__error{padding-left: 12px;}
+.alert-errora .el-form-item__error {
+  padding-left: 23px;
+}
+.alert-errorb .el-form-item__error {
+  padding-left: 12px;
+}
 </style>
