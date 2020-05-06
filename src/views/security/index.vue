@@ -239,7 +239,7 @@
               ></el-input>
             </el-form-item>
             <el-form-item label="相关图片：">
-              <p style="color:#3655a5">最多可以上传5张图片</p>
+              <p style="color:#3655a5">最多可以上传5张图片,支持格式 jpg png gif，大小不能超过 2MB</p>
               <!-- action="http://129.211.168.161/upload/uploadFile" 
                   :on-success="handleAvatarSuccess"
               -->
@@ -550,9 +550,9 @@ export default {
       this.pageChange(this.page_total);
     },
     pageSearch() {
-          this.page_cur = 1;
-        this.getDataList();
-        this.goDetail(0);
+      this.page_cur = 1;
+      this.getDataList();
+      this.goDetail(0);
       // let start_times = this.searchForm.start_time;
       // let end_times = this.searchForm.end_time;
       // if (start_times != null) {
@@ -684,19 +684,31 @@ export default {
       }
     },
     uploadBefore(file) {
-      const isJPEG = file.type === "image/jpeg";
-      const isJPG = file.type === "image/jpg";
-      const isPNG = file.type === "image/png";
-      const isGIF = file.type === "image/gif";
-      const isLt2M = file.size / 1024 / 1024 < 2;
-
-      if (!isJPEG && !isJPG && !isPNG && !isGIF) {
-        this.$message.error("上传图片只能是 jpg  png  gif 格式!");
+      var filename  = file.name.substring(file.name.lastIndexOf(".") + 1);
+      const extension =
+        filename  === "GIF" ||
+        filename  === "gif" ||
+        filename  === "jpeg" ||
+        filename  === "jpg" ||
+        filename  === "JPG" ||
+        filename  === "png" ||
+        filename  === "PNG";
+      const isLtM = file.size / 1024 / 1024 < 2;
+      if (!extension) {
+        this.$message({
+          message: "上传图片只能是 jpg  png  gif 格式!",
+          type: "error"
+        });
+        return false; //必须加上return false; 才能阻止
       }
-      if (!isLt2M) {
-        this.$message.error("上传图片大小不能超过 2MB!");
+      if (!isLtM) {
+        this.$message({
+          message: "上传图片大小不能超过 2MB!",
+          type: "error"
+        });
+        return false;
       }
-      return isJPEG || isJPG || isPNG || (isGIF && isLt2M);
+      return extension || isLtM;
     },
     //保存
     addEvent() {

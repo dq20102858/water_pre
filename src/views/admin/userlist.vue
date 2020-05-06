@@ -628,19 +628,31 @@ export default {
       // }
     },
     uploadBefore(file) {
-      const isJPEG = file.type === "image/jpeg";
-      const isJPG = file.type === "image/jpg";
-      const isPNG = file.type === "image/png";
-      const isGIF = file.type === "image/gif";
-      const isLt2M = file.size / 1024 / 1024 < 2;
-
-      if (!isJPEG && !isJPG && !isPNG && !isGIF) {
-        this.$message.error("上传图片只能是 jpg  png  gif 格式!");
+      var filename = file.name.substring(file.name.lastIndexOf(".") + 1);
+      const extension =
+        filename === "GIF" ||
+        filename === "gif" ||
+        filename === "jpeg" ||
+        filename === "jpg" ||
+        filename === "JPG" ||
+        filename === "png" ||
+        filename === "PNG";
+      const isLtM = file.size / 1024 / 1024 < 2;
+      if (!extension) {
+        this.$message({
+          message: "上传图片只能是 jpg  png  gif 格式!",
+          type: "error"
+        });
+        return false; //必须加上return false; 才能阻止
       }
-      if (!isLt2M) {
-        this.$message.error("上传图片大小不能超过 2MB!");
+      if (!isLtM) {
+        this.$message({
+          message: "上传图片大小不能超过 2MB!",
+          type: "error"
+        });
+        return false;
       }
-      return isJPEG || isJPG || isPNG || (isGIF && isLt2M);
+      return extension || isLtM;
     }
     //
   }
