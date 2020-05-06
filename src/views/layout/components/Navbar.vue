@@ -18,9 +18,8 @@
     <div class="right-menu">
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
         <div class="avatar-wrapper">
-          <img class="user-avatar" src="../../../assets/image/user.png" />
-
-          <span style="font-size:12px;">欢迎，{{name}}</span>
+          <!-- <img class="user-avatar" :src="avatar" /> -->
+          <span style="font-size:12px;">欢迎您，{{name}}</span>
 
           <i class="el-icon-caret-bottom"></i>
         </div>
