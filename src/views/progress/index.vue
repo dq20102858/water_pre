@@ -465,9 +465,15 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   position: absolute;
   top: 0;
   background: #27db07;
-  height: 19px;
+  height: 18px;
   display: inline-block;
-  border-left: 1px #67db17 solid;
+  border-left: 1px #1da505 solid;
+}
+.tdbar .bar em i:first-child {
+  border-left: 0;
+}
+.tdbar .bar em i:last-child {
+  border-left: 0;
 }
 .clear {
   clear: both;

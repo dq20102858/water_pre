@@ -1233,8 +1233,7 @@ export default {
   float: left;
   margin-right: 20px;
 }
-.startend .scenter {
-}
+
 .startend .sright {
   float: right;
 }

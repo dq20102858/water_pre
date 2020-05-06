@@ -1,16 +1,10 @@
 <template>
-  <div id="monitor" style="display:none">
+  <div id="monitor">
     <div class="el-menu-top">
       <el-menu router default-active="set" mode="horizontal">
         <li class="ptitle">
-          <img :src="require('@/assets/image/icon-set.png')" />设置
+          <img :src="require('@/assets/image/icon-peple.png')" />消息
         </li>
-        <el-menu-item index="set">站点设置</el-menu-item>
-        <el-menu-item index="speed">限速设置</el-menu-item>
-        <el-menu-item index="alert">防区设置</el-menu-item>
-        <el-menu-item index="bridge">桥设置</el-menu-item>
-        <el-menu-item index="tunnel">隧道设置</el-menu-item>
-        <el-menu-item index="slope">坡度设置</el-menu-item>
       </el-menu>
       <!-- <div @click="goDetail()">to apple</div> -->
     </div>
@@ -19,12 +13,12 @@
         <div class="app-page-select">
           <el-form :inline="true">
             <el-form-item>
-              <el-button type="primary" icon="el-icon-plus" @click="goAdd">添加站点</el-button>
+              <el-button type="primary" icon="el-icon-plus" @click="goAdd">添加消息</el-button>
             </el-form-item>
-            <div class="el-serach">
+            <!-- <div class="el-serach">
               <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable></el-input>
               <el-button @click="searchEvent">查询</el-button>
-            </div>
+            </div>-->
           </el-form>
         </div>
         <div class="app-table">
@@ -34,30 +28,15 @@
                 <span>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
               </template>
             </el-table-column>
-            <el-table-column prop="name" label="名称"></el-table-column>
-            <el-table-column prop="sort" label="排序"></el-table-column>
-            <el-table-column prop="position" label="位置">
-              <template slot-scope="scope">
-                <b>DK</b>
-                {{parseFloat(scope.row.start_flag)}} + {{parseFloat(scope.row.start_length)}}
-              </template>
-            </el-table-column>
-            <el-table-column prop="type" label="站点类型">
-              <template slot-scope="scope">
-                <span v-show="scope.row.type==1">客运站</span>
-                <span v-show="scope.row.type==2">中间站</span>
-                <span v-show="scope.row.type==3">越行站</span>
-              </template>
-            </el-table-column>
-            <el-table-column prop="line" label="线别"></el-table-column>
-            <!-- <el-table-column prop="company" label="公司"></el-table-column> -->
-            <el-table-column prop="create_time" label="创建时间"></el-table-column>
-            <el-table-column prop="update_time" label="修改时间" :formatter="timestampToTime"></el-table-column>
+            <el-table-column prop="name" label="序号"></el-table-column>
+            <el-table-column prop="position" label="值班调度"></el-table-column>
+            <el-table-column prop="type" label="消息主题"></el-table-column>
+            <el-table-column prop="line" label="发送对象"></el-table-column>
+            <el-table-column prop="create_time" label="发布时间"></el-table-column>
             <el-table-column label="操作" width="120">
               <template slot-scope="scope">
                 <div class="app-operation">
-                  <el-button class="btn-blue" size="mini" @click="goEdit(scope.row.id)">修改</el-button>
-                  <el-button class="btn-red" size="mini" @click="goDel(scope.row.id)">删除</el-button>
+                  <el-button class="btn-blue" size="mini" @click="goEdit(scope.row.id)">详情</el-button>
                 </div>
               </template>
             </el-table-column>
@@ -91,42 +70,26 @@
           :visible.sync="diaLogFormVisible"
         >
           <el-form class="el-form-custom" :model="formData" :rules="formRules" ref="formRules">
-            <el-form-item label="名称：" prop="name">
+            <el-form-item label="消息主题：" prop="name">
               <el-input v-model="formData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
             </el-form-item>
-            <el-form-item label="线别：" prop="line_type">
-              <el-select
-                v-model="formData.line_type"
-                placeholder="请选择"
-                @change="selectLineType($event)"
-              >
-                <el-option
-                  v-for="item in lineTypeList"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                ></el-option>
-              </el-select>
-              <div class="el-form-item__error">{{lineTypeDes}}</div>
+            <el-form-item label="发送人员：">
+              <el-checkbox-group v-model="formData.peple">
+                <el-checkbox
+                  v-for="item in checkOptions"
+                  :label="item"
+                  :key="item"
+                >{{item}} label="">施工负责人</el-checkbox>
+              </el-checkbox-group>
             </el-form-item>
-            <el-form-item label="位置：" prop="position">
-              <el-input v-model="formData.position" autocomplete="off" placeholder="请输入位置米"></el-input>
-            </el-form-item>
-            <el-form-item label="类型：">
-              <el-select v-model="formData.type">
-                <el-option label="客运站" :value="1"></el-option>
-                <el-option label="中间站" :value="2"></el-option>
-                <el-option label="越行站" :value="3"></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="排序：" prop="sort">
-              <el-input v-model="formData.sort" autocomplete="off" maxlength="3" show-word-limit></el-input>
+            <el-form-item label="详细内容：" prop="sort">
+              <el-input v-model="formData.sort" autocomplete="off" type="textarea"></el-input>
             </el-form-item>
             <div class="blank"></div>
           </el-form>
           <div slot="footer" class="dialog-footer">
             <el-button @click="diaLogFormVisible = false">关闭</el-button>
-            <el-button type="primary" @click="addOrEditDialog()">确定</el-button>
+            <!-- <el-button type="primary" @click="addOrEditDialog()">确定</el-button> -->
           </div>
         </el-dialog>
       </div>
@@ -139,14 +102,15 @@ export default {
     return {
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
+      checkOptions: ["施工负责人", "施工人员", "行车"],
       formData: {
-        type: 1
+        peple:''
       },
       formRules: {
         name: [
           {
             required: true,
-            message: "请输入名称2~20个字符",
+            message: "请输入消息主题2~20个字符",
             trigger: "blur"
           },
           { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
@@ -156,25 +120,17 @@ export default {
             trigger: "blur"
           }
         ],
-        line_type: [
-          { required: true, message: "请选择线别", trigger: "change" }
-        ],
-        position: [
-          {
-            required: true,
-            message: "请输入位置",
-            trigger: "blur"
-          },
-          {
-            pattern: /^\d{1,7}$/,
-            message: "请输入1-7位正整数",
-            trigger: "blur"
-          }
-        ],
+        peple: [{ required: true, message: "请选择线别", trigger: "change" }],
         sort: [
           {
-            pattern: /^\d{1,3}$/,
-            message: "请输入1-3位正整数",
+            required: true,
+            message: "请输入消息内容2~200个字符",
+            trigger: "blur"
+          },
+          { min: 2, max: 200, message: "长度在2到200个字符", trigger: "blur" },
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
             trigger: "blur"
           }
         ]
@@ -183,12 +139,7 @@ export default {
       page_data_total: 0,
       page_size: 20,
       page_total: 0,
-      dataList: [],
-      searchName: "",
-      lineTypeStart: "",
-      lineTypeEnd: "",
-      lineTypeDes: "",
-      lineTypeList: []
+      dataList: []
     };
   },
   created() {
@@ -198,7 +149,7 @@ export default {
   methods: {
     getDataList() {
       let page = this.page_cur;
-      let name = this.searchName;
+      let name = "我们";
       this.request({
         url: "/search/getStationPages",
         method: "get",
@@ -244,24 +195,13 @@ export default {
         }
       });
     },
-    selectLineType(value) {
-      const that = this;
-      this.lineTypeList.map((item, index) => {
-        if (item.id == value) {
-          that.lineTypeDes = "里程范围：" + item.tip;
-          that.lineTypeStart = item.start;
-          that.lineTypeEnd = item.end;
-        }
-      });
-      console.log(this.lineTypeDes);
-    },
     goAdd() {
       this.formData = {
         type: 1
       };
       this.diaLogTitle = "添加信息";
       this.diaLogFormVisible = true;
-       this.$nextTick(() => {
+      this.$nextTick(() => {
         this.$refs["formRules"].clearValidate();
       });
       this.lineTypeDes = "";
@@ -271,21 +211,6 @@ export default {
       this.$refs["formRules"].validate(valid => {
         if (valid) {
           let data = that.formData;
-          let pnum = data.position;
-          let lineStart = that.lineTypeStart * 1000;
-          let lineEnd = that.lineTypeEnd * 1000;
-          // if (parseInt( parseInt(m_start)>) {
-          //   alert("num2 > num1！");
-          //   return false;
-          // }
-          if (parseInt(pnum) < parseInt(lineStart)) {
-            this.$message.error("输入位置不在里程范围内");
-            return false;
-          }
-          if (parseInt(pnum) > parseInt(lineEnd)) {
-            this.$message.error("输入位置不在里程范围内");
-            return false;
-          }
           this.request({
             url: "/search/addOrEditStaion",
             method: "post",
