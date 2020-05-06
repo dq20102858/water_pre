@@ -5,7 +5,7 @@
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-sec.png')" />安全管理
         </li>
-        <el-menu-item class="is-active" >事件管理</el-menu-item>
+        <el-menu-item class="is-active">事件管理</el-menu-item>
       </el-menu>
     </div>
     <!-- list -->
@@ -475,12 +475,6 @@ export default {
   methods: {
     defaultDate() {
       let dateA = new Date();
-      let end =
-        dateA.getFullYear() +
-        "-" +
-        (dateA.getMonth() + 1) +
-        "-" +
-        dateA.getDate();
       let dateB = new Date(dateA);
       dateB.setDate(dateA.getDate() - 7);
       let start =
@@ -489,6 +483,11 @@ export default {
         (dateB.getMonth() + 1) +
         "-" +
         dateB.getDate();
+      let end = new Date(
+        new Date(new Date().toLocaleDateString()).getTime() +
+          24 * 60 * 60 * 1000 -
+          1
+      );
       this.$set(this.searchForm, "start_time", start);
       this.$set(this.searchForm, "end_time", end);
     },
@@ -684,15 +683,15 @@ export default {
       }
     },
     uploadBefore(file) {
-      var filename  = file.name.substring(file.name.lastIndexOf(".") + 1);
+      var filename = file.name.substring(file.name.lastIndexOf(".") + 1);
       const extension =
-        filename  === "GIF" ||
-        filename  === "gif" ||
-        filename  === "jpeg" ||
-        filename  === "jpg" ||
-        filename  === "JPG" ||
-        filename  === "png" ||
-        filename  === "PNG";
+        filename === "GIF" ||
+        filename === "gif" ||
+        filename === "jpeg" ||
+        filename === "jpg" ||
+        filename === "JPG" ||
+        filename === "png" ||
+        filename === "PNG";
       const isLtM = file.size / 1024 / 1024 < 2;
       if (!extension) {
         this.$message({
