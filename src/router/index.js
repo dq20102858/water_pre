@@ -130,6 +130,21 @@ const constantRouterMap = [
         component: () => import('@/views/admin/userlist')
       }
     ]
+  },
+  {
+    path: '/monitor',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/monitor',
+        component: () => import('@/views/monitor/index')
+      },
+      {
+        path: '/monitor/indexmini',
+        component: () => import('@/views/monitor/indexmini')
+      } 
+    ]
   }
 ]
 export { constantRouterMap }
@@ -170,5 +185,5 @@ export const asyncRouterMap = {
   '/views/location/device': () => import('@/views/location/device'),//机具
 
 
-
+  '/views/message/index': () => import('@/views/message/index'),//机具
 }

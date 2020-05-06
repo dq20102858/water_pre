@@ -1,6 +1,6 @@
 <template>
-  <div id="progress">
-    <div class="progress">
+  <div id="monitor"  ref="proWrapper">
+    <div class="monitor">
       <div class="station-top">
         <div class="startend">
           <div class="sleft">
@@ -31,11 +31,9 @@
         </div>
       </div>
       <div class="main-canvas">
-        <div class="group-canvas scrollbar">
           <canvas id="mycanvas" height="680" ref="mycanvas">
             <p>您的系统不支持此程序!</p>
           </canvas>
-        </div>
       </div>
       <div class="progresslist" v-if="this.progressCheckValue !=''">
         <span class="namess">施工进度：</span>
@@ -215,7 +213,7 @@ export default {
         y: axis_Height - 245
       };
       //刻度的间隔
-      let tick_Spacing = 100;
+      let tick_Spacing = 10;
       let tick_Height = 8; //刻度线高度
       let everys = 0.5; //每米长度等于px
       let offsetX = 100;
@@ -229,9 +227,12 @@ export default {
       let enterLineMaxMileage = this.enterLineMaxMileage;
       let outLineMinMileage = this.outLineMinMileage;
       let outLineMaxMileage = this.leftLineMaxMileage;
-      let axis_Width = (leftLineMaxMileage - leftLineMinMileage) * everys + 150;
+     // let axis_Width = (leftLineMaxMileage - leftLineMinMileage) * everys + 150;
+     let clientWidth = this.$refs.proWrapper.clientWidth;
+       let axis_Width =clientWidth-40;
       console.log(
         "axis_Width：" +
+        clientWidth+"_"+
           axis_Width +
           "_" +
           leftLineMinMileage +
@@ -253,8 +254,8 @@ export default {
         let startLength = parseInt(lineJson[i].start_length);
         let end = parseInt(lineJson[i].end_flag) * 1000;
         let endLength = parseInt(lineJson[i].end_length);
-        axis_Width =
-          (parseInt(end + endLength) - parseInt(start + startLength)) * everys;
+        let everys_px=axis_Width/ (leftLineMaxMileage - leftLineMinMileage);
+        axis_Width =    (parseInt(end + endLength) - parseInt(start + startLength)) * everys_px;
         if (lineJson[i].id == 1) {
           drawAxisTicksNum(
             start,
@@ -384,7 +385,7 @@ export default {
               minKm++;
               //画数字
               context.fillText(
-                axis_DK + minKm + " + 000",
+              minKm ,
                 axis_Line_X + i * tick_Spacing,
                 axis_Line_y + 20
               );
@@ -399,14 +400,14 @@ export default {
               nums = parseInt(first) + parseInt(200 * (num - 1));
               //画数字
 
-              context.fillText(
-                nums,
-                axis_Line_X + i * tick_Spacing,
-                axis_Line_y + 20
-              );
+              // context.fillText(
+              //   nums,
+              //   axis_Line_X + i * tick_Spacing,
+              //   axis_Line_y + 20
+              // );
               //画小标
-              context.moveTo(axis_Line_X + i * tick_Spacing, axis_Line_y + 5);
-              context.lineTo(axis_Line_X + i * tick_Spacing, axis_Line_y + 10);
+            //  context.moveTo(axis_Line_X + i * tick_Spacing, axis_Line_y + 5);
+          //    context.lineTo(axis_Line_X + i * tick_Spacing, axis_Line_y + 10);
             }
           }
           //
@@ -445,7 +446,9 @@ export default {
               parseInt(json[i].start_length);
             //console.log("total：" + total);
             // 计算当前站点的x轴坐标
-            let startX = (total - leftLineMinMileage) * everys;
+               let everys_px=axis_Width/ (leftLineMaxMileage - leftLineMinMileage);
+   
+            let startX = (total - leftLineMinMileage) * everys_px;
             // console.log(startX);
             context.drawImage(img, startX + offsetXLine, 65, 24, 120);
             //站名
@@ -1106,32 +1109,32 @@ export default {
       if (this.progressCheckValue) {
         drawProgressAxis(this.progressListItem);
       }
-      //防区
-      if (this.alertList.length > 0) {
-        if (this.alertCheckValue) {
-          drawAlertAxis(this.alertList);
-        }
-      }
-      //限速区
-      if (this.speedCheckValue) {
-        drawSpeedAxis(this.speedList);
-      }
-      //桥
-      if (this.bridgeCheckValue) {
-        drawBridgeAxis(this.bridgeList);
-      }
-      //隧道
-      if (this.tunnelCheckValue) {
-        drawTunnelAxis(this.tunnelList);
-      }
-      //坡度
-      if (this.slopeCheckValue) {
-        drawSlopeAxis(this.slopeList);
-      }
-      //作业
-      if (this.applyList.length > 0) {
-        drawAxesApply(this.applyList);
-      }
+      // //防区
+      // if (this.alertList.length > 0) {
+      //   if (this.alertCheckValue) {
+      //     drawAlertAxis(this.alertList);
+      //   }
+      // }
+      // //限速区
+      // if (this.speedCheckValue) {
+      //   drawSpeedAxis(this.speedList);
+      // }
+      // //桥
+      // if (this.bridgeCheckValue) {
+      //   drawBridgeAxis(this.bridgeList);
+      // }
+      // //隧道
+      // if (this.tunnelCheckValue) {
+      //   drawTunnelAxis(this.tunnelList);
+      // }
+      // //坡度
+      // if (this.slopeCheckValue) {
+      //   drawSlopeAxis(this.slopeList);
+      // }
+      // //作业
+      // if (this.applyList.length > 0) {
+      //   drawAxesApply(this.applyList);
+      // }
     },
     // ===================================桥 隧道 限速区 防区 道岔 坡度 施工进度
     //进度
@@ -1194,25 +1197,20 @@ export default {
 </script>
 
 <style>
-#progress {
+#monitor {
   position: absolute;
   width: 100%;
   height: 100%;
   background: #081c33;
 }
-.progress {
+.monitor {
   background: #081c33;
 }
 .main-canvas {
   background: #081c33;
-  padding-top: 20px;
+  padding: 20px ;
 }
-.group-canvas {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  height: 680px;
-  padding-right: 100px;
-}
+
 .station-top {
   margin: 0 30px;
 }
