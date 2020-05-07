@@ -68,9 +68,16 @@
             <el-table-column prop="length" label="长度(米)">
               <template slot-scope="scope">{{parseFloat(scope.row.length)}}</template>
             </el-table-column>
-            <el-table-column prop="create_time" label="创建时间"></el-table-column>
-            <el-table-column prop="update_time" label="修改时间" :formatter="timestampToTime">
-              <!-- <template slot-scope="scope">{{timestampToTime(update_time)}}</template> -->
+             <el-table-column prop="create_time" label="创建时间">
+              <template slot-scope="scope">
+                <span class="time-warp">{{scope.row.create_time}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column prop="update_time" label="修改时间">
+              <template slot-scope="scope">
+                <span class="time-warp">{{timestampToTime(scope.row.update_time)}}</span>
+              </template>
+            </el-table-column>
             </el-table-column>
             <el-table-column label="操作" width="120">
               <template slot-scope="scope">
@@ -453,14 +460,28 @@ export default {
         })
         .catch(() => {});
     },
-      timestampToTime(row, column){
-           let data = row[column.property]
-                if(data == null) {
-                    return null
-                }
-           let dt = new Date(data*1000)
-           return dt.getFullYear() + '-' + (dt.getMonth() + 1) + '-' + dt.getDate() + ' ' + dt.getHours() + ':' + dt.getMinutes() + ':' + dt.getSeconds()
+       timestampToTime(time) {
+      // let time = row[column.property];
+      if (time == null) {
+        return null;
       }
+      const date = new Date(time * 1000);
+      let tt =
+        [
+          date.getFullYear(),
+          date.getMonth() + 1 < 10
+            ? "0" + (date.getMonth() + 1)
+            : date.getMonth() + 1,
+          date.getDate() < 10 ? "0" + date.getDate() : date.getDate()
+        ].join("-") +
+        "  " +
+        [
+          date.getHours() < 10 ? "0" + date.getHours() : date.getHours(),
+          date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes(),
+          date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds()
+        ].join(":");
+      return tt;
+    }
     //
   }
 };
