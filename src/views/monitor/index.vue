@@ -458,7 +458,7 @@ export default {
             // console.log(startX);
             context.drawImage(img, startX + offsetXLine, 65, 24, 120);
             //站名
-            context.font = "bold 24px Microsoft Yahei";
+            context.font = "bold 20px Microsoft Yahei";
             context.fillStyle = "#fff";
             context.textAlign = "left";
             let origin = json[i].name;
@@ -803,7 +803,7 @@ export default {
 
           context.lineWidth = 1;
           context.strokeStyle = "#fff";
-          context.fillStyle = "#9CD6CE";
+          context.fillStyle = "#8e7cc3";
           context.font = "12px Microsoft Yahei";
           let slope_height = parseFloat(json[i].height);
           let slope_length = parseFloat(json[i].length);
@@ -1395,14 +1395,14 @@ export default {
   color: #ff9900;
 }
 .slopechk.is-checked {
-  border-color: #9CD6CE !important;
+  border-color: #8e7cc3 !important;
 }
 .slopechk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #9CD6CE;
-  border-color: #9CD6CE;
+  background-color: #8e7cc3;
+  border-color: #8e7cc3;
 }
 .slopechk.is-checked .el-checkbox__label {
-  color: #9CD6CE;
+  color: #8e7cc3;
 }
 .alertchk.is-checked {
   border-color: #db2fdb !important;

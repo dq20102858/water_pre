@@ -85,7 +85,6 @@
         </div>
         <el-dialog
           width="700px"
-       
           :close-on-click-modal="false"
           class="dialog-station"
           :title="this.diaLogTitle"
@@ -163,7 +162,7 @@ export default {
         position: [
           {
             required: true,
-            message: "请输入位置",
+            message: "请输入位置 如 15000 ",
             trigger: "blur"
           },
           {
@@ -262,7 +261,7 @@ export default {
       };
       this.diaLogTitle = "添加信息";
       this.diaLogFormVisible = true;
-       this.$nextTick(() => {
+      this.$nextTick(() => {
         this.$refs["formRules"].clearValidate();
       });
       this.lineTypeDes = "";
@@ -360,24 +359,13 @@ export default {
         .catch(() => {});
     },
     timestampToTime(row, column) {
-      let data = row[column.property];
-      if (data == null) {
+      let time = row[column.property];
+      if (time == null) {
         return null;
       }
-      let dt = new Date(data * 1000);
-      return (
-        dt.getFullYear() +
-        "-" +
-        (dt.getMonth() + 1) +
-        "-" +
-        dt.getDate() +
-        " " +
-        dt.getHours() +
-        ":" +
-        dt.getMinutes() +
-        ":" +
-        dt.getSeconds()
-      );
+      const date = new Date(time * 1000);
+      let tt = [date.getFullYear(), ((date.getMonth()+1)<10?'0'+(date.getMonth()+1):date.getMonth()+1), (date.getDate()<10?'0'+date.getDate():date.getDate())].join('-') + '  ' +[(date.getHours()<10?'0'+date.getHours():date.getHours()), (date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes()), (date.getSeconds()<10?'0'+date.getSeconds():date.getSeconds())].join(':');
+     return tt;
     }
     //
   }

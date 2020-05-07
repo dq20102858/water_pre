@@ -57,7 +57,9 @@
                     <p>申报人：{{item.apply}}</p>
                     <p>申报单位：{{item.company}}</p>
                     <p>{{item.start_time}} ~ {{item.end_time}}</p>
-                    <p><b>查看周计划</b></p>
+                    <p>
+                      <b>查看周计划</b>
+                    </p>
                     <img :src="require('@/assets/image/icon-drop.png')" />
                   </div>
                 </div>
@@ -114,7 +116,12 @@
                 <el-table-column prop="up_part" label="编组上行端"></el-table-column>
                 <el-table-column prop="location" label="装车地"></el-table-column>
                 <el-table-column prop="attention" label="防护措施及要求"></el-table-column>
-                <el-table-column prop="remark" label="备注"></el-table-column>
+                <el-table-column prop="remark" label="备注">
+                  <template slot-scope="scope">
+                    <span class="statused" v-if="scope.row.remark==''">暂无备注</span>
+                     <span class="statused" else>{{scope.row.remark}}</span>
+                  </template>
+                </el-table-column>
                 <!-- <el-table-column label="操作" width="140">
                   <template slot-scope="scope">
                     <div class="app-operation">
@@ -122,7 +129,7 @@
                       <el-button class="btn-blue" size="mini">报表</el-button>
                     </div>
                   </template>
-                </el-table-column> -->
+                </el-table-column>-->
               </el-table>
             </div>
           </div>

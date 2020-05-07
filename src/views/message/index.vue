@@ -29,13 +29,20 @@
               </template>
             </el-table-column>
             <el-table-column prop="title" label="消息主题"></el-table-column>
-            <el-table-column prop="user" label="值班调度"></el-table-column>
-            <el-table-column prop="recept_type" label="发送对象"></el-table-column>
+            <el-table-column prop="send_user" label="值班调度人"></el-table-column>
+            <el-table-column prop="user" label="接收人"></el-table-column>
+            <el-table-column prop="recept_type" label="发送对象">
+              <template slot-scope="scope">
+                <span class="statused" v-if="scope.row.recept_type=='1'">施工负责人</span>
+                <span class="statused" v-if="scope.row.recept_type=='2'">施工人员</span>
+                <span class="statused" v-if="scope.row.recept_type=='3'">行车</span>
+              </template>
+            </el-table-column>
             <el-table-column prop="create_time" label="发布时间"></el-table-column>
             <el-table-column label="操作" width="65">
               <template slot-scope="scope">
                 <div class="app-operation">
-                  <el-button class="btn-blue" size="mini" @click="goEdit(scope.row.id)">详情</el-button>
+                  <el-button class="btn-blue" size="mini" @click="goDetail(scope.row)">详情</el-button>
                 </div>
               </template>
             </el-table-column>
@@ -95,6 +102,41 @@
             <el-button type="primary" @click="addEventDialog()">确定</el-button>
           </div>
         </el-dialog>
+        <el-dialog
+          width="700px"
+          :close-on-click-modal="false"
+          class="dialog-msg"
+          title="消息详情"
+          :visible.sync="diaLogShowFormVisible"
+        >
+          <el-form class="el-form-custom" :model="formDataShow">
+            <el-form-item label="消息主题：">
+              <el-input v-model="formDataShow.title" autocomplete="off" readonly></el-input>
+            </el-form-item>
+            <!-- <el-form-item label="发送对象：" prop="recept_type">
+              <el-checkbox-group v-model="formData.recept_type">
+                <el-checkbox :label="1">施工负责人</el-checkbox>
+                <el-checkbox :label="2">施工人员</el-checkbox>
+                <el-checkbox :label="3">行车</el-checkbox>
+              </el-checkbox-group>
+            </el-form-item>-->
+            <el-form-item label="消息内容：">
+              <el-input
+                v-model="formDataShow.description"
+                autocomplete="off"
+                type="textarea"
+                readonly
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="发送时间：">
+              <el-input v-model="formDataShow.create_time" autocomplete="off" readonly></el-input>
+            </el-form-item>
+            <div class="blank"></div>
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="diaLogShowFormVisible = false">关闭</el-button>
+          </div>
+        </el-dialog>
       </div>
     </div>
   </div>
@@ -105,6 +147,8 @@ export default {
     return {
       diaLogFormVisible: false,
       diaLogTitle: "发送消息",
+      diaLogShowFormVisible: false,
+      formDataShow: {},
       formData: {
         recept_type: []
       },
@@ -197,6 +241,11 @@ export default {
       this.$nextTick(() => {
         this.$refs["formRulesRef"].clearValidate();
       });
+      this.formData = {
+        title: "",
+        description: "",
+        recept_type: []
+      };
     },
     addEventDialog() {
       const that = this;
@@ -225,19 +274,12 @@ export default {
         }
       });
     },
-    goEdit(id) {
-      this.diaLogTitle = "查看消息";
-      this.diaLogFormVisible = true;
-      this.request({
-        url: "/search/getStationDetail",
-        method: "get",
-        params: { id }
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          //this.formData = data.data;
-        }
-      });
+    goDetail(rows) {
+      this.diaLogShowFormVisible = true;
+      this.formDataShow.title = rows.title;
+      this.formDataShow.create_time = rows.create_time;
+      this.formDataShow.description = rows.description;
+      console.log(rows);
     },
     goDel(id) {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
