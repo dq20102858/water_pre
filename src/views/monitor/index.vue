@@ -80,6 +80,13 @@
           label="坡度"
           border
         ></el-checkbox>
+        <el-checkbox
+          class="daocchk"
+          v-model="daocCheckValue"
+          @change="daocCheckSelect"
+          label="道岔"
+          border
+        ></el-checkbox>
       </div>
     </div>
   </div>
@@ -111,6 +118,8 @@ export default {
       alertList: [],
       slopeCheckValue: true,
       slopeList: [],
+      daocCheckValue: true,
+      daocList: [],
       progressList: [],
       progressListItem: [],
       progressCheckValue: 0,
@@ -266,7 +275,7 @@ export default {
             axis_LeftLine.y,
             "ZDK"
           );
-          context.font = "16px Microsoft Yahei";
+          context.font = "15px Microsoft Yahei";
           context.fillText("左线", axis_LeftLine.x - 60, axis_LeftLine.y + 25);
         } else if (lineJson[i].id == 2) {
           drawAxisTicksNum(
@@ -279,7 +288,7 @@ export default {
             axis_LeftLine_Two.y,
             "YDK"
           );
-          context.font = "16px Microsoft Yahei";
+          context.font = "15px Microsoft Yahei";
           context.fillText(
             "左线",
             axis_LeftLine_Two.x - 60,
@@ -296,7 +305,7 @@ export default {
             axis_OutLine.y,
             "RDK"
           );
-          context.font = "16px Microsoft Yahei";
+          context.font = "15px Microsoft Yahei";
           context.fillText("入场线", axis_OutLine.x - 68, axis_OutLine.y + 25);
         } else if (lineJson[i].id == 4) {
           drawAxisTicksNum(
@@ -309,7 +318,7 @@ export default {
             axis_OutLine_Two.y,
             "CDK"
           );
-          context.font = "16px Microsoft Yahei";
+          context.font = "15px Microsoft Yahei";
           context.fillText(
             "出场线",
             axis_OutLine_Two.x - 68,
@@ -463,6 +472,41 @@ export default {
           }
         };
       }
+      //绘制道岔
+      function drawDaocha() {
+        // let json1 = ListJson;
+        let json = [
+          {
+            id: 1,
+            type: 1,
+            start_flag: 15,
+            start_length: 400,
+            end_flag: 15,
+            end_length: 900
+          }
+        ];
+        let img = new Image();
+        img.src = require("@/assets/image/icon-dc.png");
+        img.onload = function() {
+          let start = 0;
+          for (let i = 0; i < json.length; i++) {
+            let start =
+              parseInt(json[i].start_flag) * 1000 +
+              parseInt(json[i].start_length);
+            let end =
+              parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
+            let betweenMeters = (end - start) * everys; //两点之间距离米
+            let startX = (start - leftLineMinMileage) * everys;
+            context.drawImage(
+              img,
+              startX + offsetXLine + 13,
+              axis_LeftLine.y + 5,
+              betweenMeters + 20,
+              196
+            );
+          }
+        };
+      }
       //绘制桥
       function drawBridgeAxis(bridgeListJson) {
         let json = bridgeListJson;
@@ -478,9 +522,9 @@ export default {
           let centerX = (endX + startX) / 2; //开始结束平均值
 
           context.lineWidth = 2;
-          context.fillStyle = "#2179cb";
+          context.fillStyle = "#fF5C75";
           context.font = "12px Microsoft Yahei";
-          context.strokeStyle = "#2179cb";
+          context.strokeStyle = "#fF5C75";
           let desc = json[i].name + " 共" + betweenMeters + "米";
           let codes =
             "DK" +
@@ -630,9 +674,9 @@ export default {
           // 计算当前站点的x轴坐标
 
           //console.log("startX：" + startX + " endX：" + endX);
-          context.strokeStyle = "#ff6000";
+          context.strokeStyle = "#ff9900";
           context.lineWidth = 10;
-          context.fillStyle = "#ff6000";
+          context.fillStyle = "#ff9900";
           context.font = "12px Microsoft Yahei";
           let desc = "限速" + json[i].speed + "公里/小时";
           context.beginPath();
@@ -686,9 +730,9 @@ export default {
             parseInt(json[i].start_length);
           let end =
             parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
-          context.strokeStyle = "#ff1833";
+          context.strokeStyle = "#db2fdb";
           context.lineWidth = 10;
-          context.fillStyle = "#ff1833";
+          context.fillStyle = "#db2fdb";
           context.font = "12px Microsoft Yahei";
           let desc =
             "防区 DK" +
@@ -759,7 +803,7 @@ export default {
 
           context.lineWidth = 1;
           context.strokeStyle = "#fff";
-          context.fillStyle = "#ff8000";
+          context.fillStyle = "#9CD6CE";
           context.font = "12px Microsoft Yahei";
           let slope_height = parseFloat(json[i].height);
           let slope_length = parseFloat(json[i].length);
@@ -1102,6 +1146,7 @@ export default {
       }
       //画地铁站
       drawStations(this.stationList);
+
       //施工进度
       if (this.progressCheckValue) {
         drawProgressAxis(this.progressListItem);
@@ -1131,6 +1176,10 @@ export default {
       //作业
       if (this.applyList.length > 0) {
         drawAxesApply(this.applyList);
+      }
+      //道岔
+      if (this.daocCheckValue) {
+        drawDaocha();
       }
     },
     // ===================================桥 隧道 限速区 防区 道岔 坡度 施工进度
@@ -1163,6 +1212,10 @@ export default {
     },
     //坡度
     slopeCheckSelect() {
+      this.initCanvas();
+    },
+    //道岔
+    daocCheckSelect() {
       this.initCanvas();
     },
 
@@ -1312,55 +1365,64 @@ export default {
   color: #fff;
 }
 .bridgechk.is-checked {
-  border-color: #2179cb !important;
+  border-color: #fF5C75 !important;
 }
 .bridgechk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #2179cb;
-  border-color: #2179cb;
+  background-color: #fF5C75;
+  border-color: #fF5C75;
 }
 .bridgechk.is-checked .el-checkbox__label {
-  color: #2179cb;
+  color: #fF5C75;
 }
 .tunnelchk.is-checked {
-  border-color: #18dbff !important;
+  border-color: #18DBFF !important;
 }
 .tunnelchk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #18dbff;
-  border-color: #18dbff;
+  background-color: #18DBFF;
+  border-color: #18DBFF;
 }
 .tunnelchk.is-checked .el-checkbox__label {
-  color: #18dbff;
+  color: #18DBFF;
 }
 .speedchk.is-checked {
-  border-color: #ff6000 !important;
+  border-color: #ff9900 !important;
 }
 .speedchk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #ff6000;
-  border-color: #ff6000;
+  background-color: #ff9900;
+  border-color: #ff9900;
 }
 .speedchk.is-checked .el-checkbox__label {
-  color: #ff6000;
+  color: #ff9900;
 }
-
 .slopechk.is-checked {
-  border-color: #ff8000 !important;
+  border-color: #9CD6CE !important;
 }
 .slopechk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #ff8000;
-  border-color: #ff8000;
+  background-color: #9CD6CE;
+  border-color: #9CD6CE;
 }
 .slopechk.is-checked .el-checkbox__label {
-  color: #ff8000;
+  color: #9CD6CE;
 }
 .alertchk.is-checked {
-  border-color: #ff1833 !important;
+  border-color: #db2fdb !important;
 }
 .alertchk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #ff1833;
-  border-color: #ff1833;
+  background-color: #db2fdb;
+  border-color: #db2fdb;
 }
 .alertchk.is-checked .el-checkbox__label {
-  color: #ff1833;
+  color: #db2fdb;
+}
+.daocchk.is-checked {
+  border-color: #107af7 !important;
+}
+.daocchk .el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: #107af7;
+  border-color: #107af7;
+}
+.daocchk.is-checked .el-checkbox__label {
+  color: #107af7;
 }
 .progresslist {
   padding-top: 20px;

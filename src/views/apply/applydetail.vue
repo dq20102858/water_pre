@@ -194,7 +194,8 @@
 
               <tr>
                 <td colspan="2" rowspan="2">
-                  <b>承运人签名（章）：</b>{{dataInfo.carrier}}
+                  <b>承运人签名（章）：</b>
+                  {{dataInfo.carrier}}
                 </td>
                 <td style="width:200px;">审批人：{{dataInfo.approver}}</td>
                 <td style="width:200px;">销点人:{{dataInfo.logout}}</td>
@@ -269,7 +270,7 @@
               <div class="item">
                 <label class="labels">C安全措施及注意事项：</label>
                 <div class="conn">
-                  <em> {{funIsEmpty(dataInfo.attention)}}</em>
+                  <em>{{funIsEmpty(dataInfo.attention)}}</em>
                 </div>
               </div>
               <div class="item">
@@ -301,7 +302,10 @@
                 style="margin-bottom:30px;"
               >本单位及本人谨此声明：愿意在规定时间内完成上述工作，并确保本人属下员工遵守上述安全措施，同时本人或本人属 下员工不会试图损坏其它单位的设备，在其它区域或车辆上工作。</div>
               <div class="singn">
-                <span class="pull-left">工点负责人（签名）<b>{{dataInfo.p_in_charge}}</b></span>
+                <span class="pull-left">
+                  工点负责人（签名）
+                  <b>{{dataInfo.p_in_charge}}</b>
+                </span>
                 <span class="pull-right">{{dataInfo.create_time}}</span>
               </div>
             </div>
@@ -316,7 +320,10 @@
             <div class="onebox">
               <div class="itemconn">兹审批此许可证生效，或按红笔修改的执行。</div>
               <div class="singn lines">
-                <span class="pull-left">审批负责人（签名）<b>{{dataInfo.approver}}</b></span>
+                <span class="pull-left">
+                  审批负责人（签名）
+                  <b>{{dataInfo.approver}}</b>
+                </span>
                 <span class="pull-right">{{dataInfo.approve_time}}</span>
               </div>
             </div>
@@ -333,7 +340,10 @@
                 class="itemconn"
               >本人谨此声明：⑴ 此进场作业许可证所述工作现已完成，本人及属下员工已经撤离，安全措施已经撤除，并已被告知在轨道区域/车辆上工作已不再安全。⑵ 完成情况及所有故障/损坏已经书面呈报。</div>
               <div class="singn lines">
-                <span class="pull-left">销点负责人（签名）<b>{{dataInfo.logout}}</b></span>
+                <span class="pull-left">
+                  销点负责人（签名）
+                  <b>{{dataInfo.logout}}</b>
+                </span>
                 <span class="pull-right">{{dataInfo.logout_time}}</span>
               </div>
             </div>
@@ -382,7 +392,7 @@ export default {
       default: ""
     }
   },
-   mounted() {
+  mounted() {
     document
       .querySelector("#app-menu-items #menu_apply")
       .classList.add("is-active");
@@ -485,7 +495,8 @@ export default {
 .app-apply-detail .conn {
   display: block;
   padding-left: 110px;
-  line-height: 24px;  word-wrap: break-word;
+  line-height: 24px;
+  word-wrap: break-word;
   word-break: break-all;
 }
 .app-apply-detail .scheck {
@@ -514,8 +525,15 @@ export default {
   margin-top: 35px;
   padding-top: 10px;
 }
+
+#app-apply {
+  width: 100%;
+}
+.app-page {
+  width: 100%;
+}
 .vtable {
-  margin: 0px;
+  width: 100%;
 }
 .vtable table {
   border-collapse: collapse;

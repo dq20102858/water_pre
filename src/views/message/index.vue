@@ -72,7 +72,7 @@
             <el-form-item label="消息主题：" prop="title">
               <el-input v-model="formData.title" autocomplete="off" maxlength="20" show-word-limit></el-input>
             </el-form-item>
-            <el-form-item label="发送对象："  prop="recept_type">
+            <el-form-item label="发送对象：" prop="recept_type">
               <el-checkbox-group v-model="formData.recept_type">
                 <el-checkbox :label="1">施工负责人</el-checkbox>
                 <el-checkbox :label="2">施工人员</el-checkbox>
@@ -104,8 +104,7 @@ export default {
   data() {
     return {
       diaLogFormVisible: false,
-      diaLogTitle: "添加信息",
-      // checkOptions: ["施工负责人", "施工人员", "行车"],
+      diaLogTitle: "发送消息",
       formData: {
         recept_type: []
       },
@@ -125,7 +124,6 @@ export default {
         ],
         recept_type: [
           {
-           
             required: true,
             message: "请选择发送对象",
             trigger: "change"
@@ -194,7 +192,7 @@ export default {
     },
 
     goAdd() {
-      this.diaLogTitle = "添加信息";
+      this.diaLogTitle = "发送消息";
       this.diaLogFormVisible = true;
       this.$nextTick(() => {
         this.$refs["formRulesRef"].clearValidate();
@@ -206,7 +204,6 @@ export default {
         if (valid) {
           //this.formData.recept_type=JSON.stringify(that.formData.recept_type);
           let data = that.formData;
-          console.log(data);
           this.request({
             url: "/message/addMessage",
             method: "post",
@@ -229,11 +226,8 @@ export default {
       });
     },
     goEdit(id) {
-      this.diaLogTitle = "修改信息";
+      this.diaLogTitle = "查看消息";
       this.diaLogFormVisible = true;
-      this.$nextTick(() => {
-        this.$refs["formRules"].clearValidate();
-      });
       this.request({
         url: "/search/getStationDetail",
         method: "get",
@@ -241,15 +235,7 @@ export default {
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
-          this.formData = data.data;
-          this.lineTypeList.map((item, index) => {
-            if (item.id == data.data.line_type) {
-              this.lineTypeDes = "里程范围：" + item.tip;
-              this.lineTypeStart = item.start;
-              this.lineTypeEnd = item.end;
-              this.formData.position = parseFloat(data.data.position);
-            }
-          });
+          //this.formData = data.data;
         }
       });
     },
@@ -277,8 +263,8 @@ export default {
           });
         })
         .catch(() => {});
-    },
-      //
+    }
+    //
   }
 };
 </script>
