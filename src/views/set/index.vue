@@ -51,8 +51,16 @@
             </el-table-column>
             <el-table-column prop="line" label="线别"></el-table-column>
             <!-- <el-table-column prop="company" label="公司"></el-table-column> -->
-            <el-table-column prop="create_time" label="创建时间"></el-table-column>
-            <el-table-column prop="update_time" label="修改时间" :formatter="timestampToTime"></el-table-column>
+            <el-table-column prop="create_time" label="创建时间">
+              <template slot-scope="scope">
+                <span class="time-warp">{{scope.row.create_time}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column prop="update_time" label="修改时间">
+              <template slot-scope="scope">
+                <span class="time-warp">{{timestampToTime(scope.row.update_time)}}</span>
+              </template>
+            </el-table-column>
             <el-table-column label="操作" width="120">
               <template slot-scope="scope">
                 <div class="app-operation">
@@ -358,14 +366,27 @@ export default {
         })
         .catch(() => {});
     },
-    timestampToTime(row, column) {
-      let time = row[column.property];
+    timestampToTime(time) {
+      // let time = row[column.property];
       if (time == null) {
         return null;
       }
       const date = new Date(time * 1000);
-      let tt = [date.getFullYear(), ((date.getMonth()+1)<10?'0'+(date.getMonth()+1):date.getMonth()+1), (date.getDate()<10?'0'+date.getDate():date.getDate())].join('-') + '  ' +[(date.getHours()<10?'0'+date.getHours():date.getHours()), (date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes()), (date.getSeconds()<10?'0'+date.getSeconds():date.getSeconds())].join(':');
-     return tt;
+      let tt =
+        [
+          date.getFullYear(),
+          date.getMonth() + 1 < 10
+            ? "0" + (date.getMonth() + 1)
+            : date.getMonth() + 1,
+          date.getDate() < 10 ? "0" + date.getDate() : date.getDate()
+        ].join("-") +
+        "  " +
+        [
+          date.getHours() < 10 ? "0" + date.getHours() : date.getHours(),
+          date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes(),
+          date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds()
+        ].join(":");
+      return tt;
     }
     //
   }
