@@ -957,19 +957,19 @@ export default {
   text-align: center;
 }
 #security .listpagedetail {
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 #security .listpagedetail .app-page-container {
   min-height: 300px;
 }
 #security .listpagedetail .detailleft {
   float: left;
-  width: 49%;
+  width: 49.2%;
 }
 #security .listpagedetail .detailright {
   float: right;
-  width: 49%;
+  width: 49.2%;
   height: 400px;
 }
 .steps-info {

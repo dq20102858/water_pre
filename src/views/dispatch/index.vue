@@ -110,7 +110,7 @@
           </el-table-column>
           <el-table-column prop="makesure_time" min-width="80" label="确认时间">
             <template slot-scope="scope">
-              <p v-if="scope.row.makesure_time.length==0">暂未确认</p>
+              <p v-if="scope.row.makesure_time.length==0"></p>
                <p  v-else v-html="changeTime(scope.row.makesure_time)"></p>
             </template>
           </el-table-column>

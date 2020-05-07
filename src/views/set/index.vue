@@ -85,6 +85,7 @@
         </div>
         <el-dialog
           width="700px"
+       
           :close-on-click-modal="false"
           class="dialog-station"
           :title="this.diaLogTitle"

@@ -28,12 +28,11 @@
                 <span>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
               </template>
             </el-table-column>
-            <el-table-column prop="name" label="序号"></el-table-column>
-            <el-table-column prop="position" label="值班调度"></el-table-column>
-            <el-table-column prop="type" label="消息主题"></el-table-column>
-            <el-table-column prop="line" label="发送对象"></el-table-column>
+            <el-table-column prop="title" label="消息主题"></el-table-column>
+            <el-table-column prop="user" label="值班调度"></el-table-column>
+            <el-table-column prop="recept_type" label="发送对象"></el-table-column>
             <el-table-column prop="create_time" label="发布时间"></el-table-column>
-            <el-table-column label="操作" width="120">
+            <el-table-column label="操作" width="65">
               <template slot-scope="scope">
                 <div class="app-operation">
                   <el-button class="btn-blue" size="mini" @click="goEdit(scope.row.id)">详情</el-button>
@@ -65,31 +64,35 @@
         <el-dialog
           width="700px"
           :close-on-click-modal="false"
-          class="dialog-station"
+          class="dialog-msg"
           :title="this.diaLogTitle"
           :visible.sync="diaLogFormVisible"
         >
-          <el-form class="el-form-custom" :model="formData" :rules="formRules" ref="formRules">
-            <el-form-item label="消息主题：" prop="name">
-              <el-input v-model="formData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
+          <el-form class="el-form-custom" :model="formData" :rules="formRules" ref="formRulesRef">
+            <el-form-item label="消息主题：" prop="title">
+              <el-input v-model="formData.title" autocomplete="off" maxlength="20" show-word-limit></el-input>
             </el-form-item>
-            <el-form-item label="发送人员：">
-              <el-checkbox-group v-model="formData.peple">
-                <el-checkbox
-                  v-for="item in checkOptions"
-                  :label="item"
-                  :key="item"
-                >{{item}} label="">施工负责人</el-checkbox>
+            <el-form-item label="发送对象："  prop="recept_type">
+              <el-checkbox-group v-model="formData.recept_type">
+                <el-checkbox :label="1">施工负责人</el-checkbox>
+                <el-checkbox :label="2">施工人员</el-checkbox>
+                <el-checkbox :label="3">行车</el-checkbox>
               </el-checkbox-group>
             </el-form-item>
-            <el-form-item label="详细内容：" prop="sort">
-              <el-input v-model="formData.sort" autocomplete="off" type="textarea"></el-input>
+            <el-form-item label="消息内容：" prop="description">
+              <el-input
+                v-model="formData.description"
+                autocomplete="off"
+                type="textarea"
+                maxlength="200"
+                show-word-limit
+              ></el-input>
             </el-form-item>
             <div class="blank"></div>
           </el-form>
           <div slot="footer" class="dialog-footer">
             <el-button @click="diaLogFormVisible = false">关闭</el-button>
-            <!-- <el-button type="primary" @click="addOrEditDialog()">确定</el-button> -->
+            <el-button type="primary" @click="addEventDialog()">确定</el-button>
           </div>
         </el-dialog>
       </div>
@@ -102,12 +105,12 @@ export default {
     return {
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
-      checkOptions: ["施工负责人", "施工人员", "行车"],
+      // checkOptions: ["施工负责人", "施工人员", "行车"],
       formData: {
-        peple:''
+        recept_type: []
       },
       formRules: {
-        name: [
+        title: [
           {
             required: true,
             message: "请输入消息主题2~20个字符",
@@ -120,8 +123,15 @@ export default {
             trigger: "blur"
           }
         ],
-        peple: [{ required: true, message: "请选择线别", trigger: "change" }],
-        sort: [
+        recept_type: [
+          {
+           
+            required: true,
+            message: "请选择发送对象",
+            trigger: "change"
+          }
+        ],
+        description: [
           {
             required: true,
             message: "请输入消息内容2~200个字符",
@@ -143,19 +153,17 @@ export default {
     };
   },
   created() {
-    this.getLineTypeLists();
     this.getDataList();
   },
   methods: {
     getDataList() {
       let page = this.page_cur;
-      let name = "我们";
+      // let recept_type = "我们";
       this.request({
-        url: "/search/getStationPages",
+        url: "/message/getMessagePages",
         method: "get",
         params: {
-          page,
-          name
+          page
         }
       }).then(res => {
         let data = res.data;
@@ -184,42 +192,29 @@ export default {
       this.page_cur = 1;
       this.getDataList();
     },
-    getLineTypeLists() {
-      this.request({
-        url: "/common/getLineType",
-        method: "get"
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          this.lineTypeList = data.data;
-        }
-      });
-    },
+
     goAdd() {
-      this.formData = {
-        type: 1
-      };
       this.diaLogTitle = "添加信息";
       this.diaLogFormVisible = true;
       this.$nextTick(() => {
-        this.$refs["formRules"].clearValidate();
+        this.$refs["formRulesRef"].clearValidate();
       });
-      this.lineTypeDes = "";
     },
-    addOrEditDialog() {
+    addEventDialog() {
       const that = this;
-      this.$refs["formRules"].validate(valid => {
+      this.$refs["formRulesRef"].validate(valid => {
         if (valid) {
+          //this.formData.recept_type=JSON.stringify(that.formData.recept_type);
           let data = that.formData;
+          console.log(data);
           this.request({
-            url: "/search/addOrEditStaion",
+            url: "/message/addMessage",
             method: "post",
             data
           }).then(response => {
             var data = response.data;
             if (data.status == 1) {
               this.diaLogFormVisible = false;
-              this.formData.name = "";
               this.getDataList();
               this.$message({
                 type: "success",
@@ -283,56 +278,36 @@ export default {
         })
         .catch(() => {});
     },
-    timestampToTime(row, column) {
-      let data = row[column.property];
-      if (data == null) {
-        return null;
-      }
-      let dt = new Date(data * 1000);
-      return (
-        dt.getFullYear() +
-        "-" +
-        (dt.getMonth() + 1) +
-        "-" +
-        dt.getDate() +
-        " " +
-        dt.getHours() +
-        ":" +
-        dt.getMinutes() +
-        ":" +
-        dt.getSeconds()
-      );
-    }
-    //
+      //
   }
 };
 </script>
 <style>
-.dialog-station .el-textarea__inner {
+.dialog-msg .el-textarea__inner {
   border: 1px #9db9fa solid;
   color: #4b6eca;
-  height: 100px;
+  height: 160px;
 }
-.dialog-station .el-textarea {
+.dialog-msg .el-textarea {
   width: 100% !important;
 }
-.dialog-station .el-form-item__label {
+.dialog-msg .el-form-item__label {
   width: 110px;
 }
-.dialog-station .el-form-item__content {
+.dialog-msg .el-form-item__content {
   margin-left: 110px;
 }
-.dialog-station .el-form-item-inline .el-input--medium {
+.dialog-msg .el-form-item-inline .el-input--medium {
   display: inline-block;
   width: 80px;
   text-align: center;
 }
-.dialog-station .el-form-item-inline input {
+.dialog-msg .el-form-item-inline input {
   display: inline-block;
   width: 80px;
   text-align: center;
 }
-.dialog-station .el-select {
+.dialog-msg .el-select {
   width: 100%;
 }
 </style>
