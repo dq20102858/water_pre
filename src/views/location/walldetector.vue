@@ -1,7 +1,7 @@
 <template>
   <div id="location">
     <div class="el-menu-top">
-      <el-menu router default-active="walldetector" mode="horizontal"  @select="handleMenuSelect">
+      <el-menu router default-active="walldetector" mode="horizontal" @select="handleMenuSelect">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-location.png')" />定位管理
         </li>
@@ -20,7 +20,13 @@
               <el-button type="primary" icon="el-icon-plus" @click="addDialogInfo">添加设备</el-button>
             </el-form-item>
             <div class="el-serach">
-              <el-input v-model="numberSearch" autocomplete="off" placeholder="请输入设备编号查询" clearable maxlength="30"></el-input>
+              <el-input
+                v-model="numberSearch"
+                autocomplete="off"
+                placeholder="请输入设备编号查询"
+                clearable
+                maxlength="30"
+              ></el-input>
               <el-button @click="searchEvent">查询</el-button>
             </div>
           </el-form>
@@ -117,8 +123,16 @@
         <el-form-item label="设备编号：" prop="number">
           <el-input v-model="detectorData.number" autocomplete="off" maxlength="20" show-word-limit></el-input>
         </el-form-item>
+        <el-form-item label="IP地址：" prop="ip">
+          <el-input v-model="detectorData.ip" autocomplete="off"></el-input>
+        </el-form-item>
         <el-form-item label="设定线路" prop="line_type">
-          <el-select v-model="detectorData.line_type" placeholder="请选择" clearable>
+          <el-select
+            v-model="detectorData.line_type"
+            placeholder="请选择"
+            clearable
+            @change="selectLineType($event)"
+          >
             <el-option
               v-for="item in linTypeList"
               :key="item.id"
@@ -126,10 +140,9 @@
               :value="item.id"
             ></el-option>
           </el-select>
+          <div class="el-form-item__error">{{lineTypeDes}}</div>
         </el-form-item>
-        <el-form-item label="IP地址：" prop="ip">
-          <el-input v-model="detectorData.ip" autocomplete="off"></el-input>
-        </el-form-item>
+
         <el-form-item label="所在位置：" class="el-form-item-inlines is-required">
           <el-form-item prop="start_flag" class="wall-errora">
             <b>DK</b>
@@ -182,7 +195,11 @@ export default {
             trigger: "blur"
           },
           { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
-           { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
+          }
         ],
         number: [
           {
@@ -246,7 +263,10 @@ export default {
       page_total: 0,
       dataList: [],
       companyList: [],
+      lineTypeDes: "",
       linTypeList: [],
+      lineTypeStart: "",
+      lineTypeEnd: "",
       numberSearch: ""
     };
   },
@@ -261,8 +281,8 @@ export default {
     this.getDataList();
   },
   methods: {
-      handleMenuSelect (index) {
-   this.pageChange(1);
+    handleMenuSelect(index) {
+      this.pageChange(1);
     },
     getCompanyList() {
       this.request({
@@ -286,7 +306,17 @@ export default {
         }
       });
     },
-
+    selectLineType(value) {
+      const that = this;
+      this.linTypeList.map((item, index) => {
+        if (item.id == value) {
+          that.lineTypeDes = "里程范围：" + item.tip;
+          that.lineTypeStart = item.start;
+          that.lineTypeEnd = item.end;
+        }
+      });
+      console.log(this.lineTypeDes);
+    },
     getDataList() {
       let page = this.page_cur;
       let number = this.numberSearch;
@@ -325,6 +355,8 @@ export default {
     },
     //
     addDialogInfo() {
+      this.diaLogTitle = "添加墙壁探测器信息";
+      this.diaLogFormVisible = true;
       this.detectorData = {
         depart_id: "",
         name: "",
@@ -335,10 +367,10 @@ export default {
         start_length: "",
         is_enter: ""
       };
-      this.diaLogTitle = "添加墙壁探测器信息";
-      this.diaLogFormVisible = true;
-       this.addShow = true;
-        this.$nextTick(() => {
+      this.lineTypeDes = "";
+
+      this.addShow = true;
+      this.$nextTick(() => {
         this.$refs["detectorForm"].clearValidate();
       });
     },
@@ -346,6 +378,20 @@ export default {
       this.$refs["detectorForm"].validate(valid => {
         if (valid) {
           let data = this.detectorData;
+
+          // //里程判断
+          let startTotal =
+            parseInt(data.start_flag * 1000) + parseInt(data.start_length);
+          let lineStartTotal = this.lineTypeStart * 1000;
+          let lineEndTotal = this.lineTypeEnd * 1000;
+          if (parseInt(startTotal) < parseInt(lineStartTotal)) {
+            this.$message.error("输入的位置不在里程范围内");
+            return false;
+          }
+          if (parseInt(startTotal) > parseInt(lineEndTotal)) {
+            this.$message.error("输入的位置不在里程范围内");
+            return false;
+          }
           this.request({
             url: "/location/addOrEditWallDetector",
             method: "post",
@@ -372,9 +418,10 @@ export default {
     goEdit(id) {
       this.diaLogTitle = "修改墙壁探测器信息";
       this.diaLogFormVisible = true;
-           this.$nextTick(() => {
+      this.$nextTick(() => {
         this.$refs["detectorForm"].clearValidate();
       });
+
       this.request({
         url: "/location/getWallDetector",
         method: "get",
@@ -383,6 +430,16 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.detectorData = data.data;
+
+          const that = this;
+          this.linTypeList.map((item, index) => {
+            if (item.id == data.data.line_type) {
+              that.lineTypeDes = "里程范围：" + item.tip;
+              that.lineTypeStart = item.start;
+              that.lineTypeEnd = item.end;
+            }
+          });
+
           this.detectorData.start_flag = parseInt(data.data.start_flag);
           this.detectorData.start_length = parseInt(data.data.start_length);
         }
@@ -479,6 +536,10 @@ export default {
 .el-form-item-inlines .el-form-item {
   margin-bottom: 1px !important;
 }
-.wall-errora .el-form-item__error{ padding-left: 23px;}
-.wall-errorb .el-form-item__error{padding-left: 12px;}
+.wall-errora .el-form-item__error {
+  padding-left: 23px;
+}
+.wall-errorb .el-form-item__error {
+  padding-left: 12px;
+}
 </style>

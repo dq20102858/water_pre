@@ -393,10 +393,9 @@ export default {
         imgcar.src = require("@/assets/image/m_apply.png");
         imgcar.onload = function() {
           let start = 0;
-     context.fillStyle = "#fff ";
-              context.font = "12px  Microsoft Yahei";
+          context.fillStyle = "#fff ";
+          context.font = "12px  Microsoft Yahei";
           for (let i = 0; i < jsonCar.length; i++) {
-           
             if (jsonCar[i].line_type == 1) {
               let total =
                 parseInt(jsonCar[i].start_flag) * 1000 +
@@ -411,7 +410,7 @@ export default {
                 " +" +
                 jsonCar[i].start_length +
                 " ]";
-          
+
               context.fillText(codes, startLineX + 25, 195);
             } else if (jsonCar[i].line_type == 2) {
               let total =

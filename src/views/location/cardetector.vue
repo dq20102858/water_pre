@@ -95,10 +95,10 @@
         <el-form-item label="设备编号：" prop="number">
           <el-input v-model="detectorData.number" autocomplete="off" maxlength="20" show-word-limit></el-input>
         </el-form-item>
-        <el-form-item label="公司名称：" prop="depart_id">
+        <el-form-item label="所属公司：" prop="depart_id">
           <el-select
             v-model="detectorData.depart_id"
-            placeholder="请选择公司"
+            placeholder="请选择所属公司"
             @change="selectGetCompanyList($event)"
           >
             <el-option
@@ -109,7 +109,7 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="所属列车" prop="loco_id">
+        <el-form-item label="所属列车：" prop="loco_id">
           <el-select v-model="detectorData.loco_id" placeholder="请选择" no-data-text="暂无列车">
             <el-option v-for="item in trainList" :key="item.id" :label="item.name" :value="item.id"></el-option>
           </el-select>
@@ -151,7 +151,12 @@ export default {
             message: "请输入设备编号2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
+          }
         ],
         depart_id: [
           { required: true, message: "请选择公司", trigger: "change" }
@@ -293,6 +298,7 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.detectorData = data.data;
+            this.getTrainList(data.data.depart_id);
         }
       });
     },

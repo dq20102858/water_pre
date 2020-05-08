@@ -56,14 +56,14 @@
                 v-model="searchForm.start_flag"
                 autocomplete="off"
                 placeholder="公里"
-                title="请输入数字"
+                title="请输入数字" maxlength="3"
                 oninput="value=value.replace(/[^\d]/g,'')"
               ></el-input>
               <b>+</b>
               <el-input
                 v-model="searchForm.start_length"
                 autocomplete="off"
-                placeholder="米"
+                placeholder="米" maxlength="3"
                 title="请输入数字"
                 oninput="value=value.replace(/[^\d]/g,'')"
               ></el-input>
@@ -73,7 +73,7 @@
               <el-input
                 v-model="searchForm.end_flag"
                 autocomplete="off"
-                placeholder="公里"
+                placeholder="公里"  maxlength="3"
                 title="请输入数字"
                 oninput="value=value.replace(/[^\d]/g,'')"
               ></el-input>
@@ -81,7 +81,7 @@
               <el-input
                 v-model="searchForm.end_length"
                 autocomplete="off"
-                placeholder="米"
+                placeholder="米"  maxlength="3"
                 title="请输入数字"
                 oninput="value=value.replace(/[^\d]/g,'')"
               ></el-input>

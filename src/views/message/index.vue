@@ -32,9 +32,12 @@
             <el-table-column prop="send_user" label="值班调度人"></el-table-column>
             <el-table-column prop="recept_type" label="发送对象">
               <template slot-scope="scope">
-                <span class="statused" v-if="scope.row.recept_type=='1'">施工负责人</span>
-                <span class="statused" v-if="scope.row.recept_type=='2'">施工人员</span>
-                <span class="statused" v-if="scope.row.recept_type=='3'">行车</span>
+                <span>{{getArrText(scope.row.recept_type)}}</span>
+                <!--   <span class="statused" v-if="scope.row.recept_type=='1'">施工负责人</span>
+                 <span class="statused" v-if="scope.row.recept_type=='1,2'">施工负责人 施工人员</span>
+                <span class="statused" v-if="scope.row.recept_type=='1,3'">施工负责人 行车</span>
+                 <span class="statused" v-if="scope.row.recept_type=='1,3'">施工负责人 行车</span>
+                <span class="statused" v-if="scope.row.recept_type=='1,2,3'">施工负责人 施工人员 行车</span>-->
               </template>
             </el-table-column>
             <el-table-column prop="create_time" label="发布时间"></el-table-column>
@@ -112,13 +115,13 @@
             <el-form-item label="消息主题：">
               <el-input v-model="formDataShow.title" autocomplete="off" readonly></el-input>
             </el-form-item>
-            <!-- <el-form-item label="发送对象：" prop="recept_type">
-              <el-checkbox-group v-model="formData.recept_type">
+            <el-form-item label="发送对象：" prop="recept_type">
+              <el-checkbox-group v-model="formDataShow.recept_type">
                 <el-checkbox :label="1">施工负责人</el-checkbox>
                 <el-checkbox :label="2">施工人员</el-checkbox>
                 <el-checkbox :label="3">行车</el-checkbox>
               </el-checkbox-group>
-            </el-form-item>-->
+            </el-form-item>
             <el-form-item label="消息内容：">
               <el-input
                 v-model="formDataShow.description"
@@ -277,8 +280,10 @@ export default {
       this.diaLogShowFormVisible = true;
       this.formDataShow.title = rows.title;
       this.formDataShow.create_time = rows.create_time;
+      let arr = JSON.parse("[" + rows.recept_type + "]");
+      this.formDataShow.recept_type = arr;
       this.formDataShow.description = rows.description;
-      console.log(rows);
+      console.log(rows + "-" + arr);
     },
     goDel(id) {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
@@ -304,6 +309,23 @@ export default {
           });
         })
         .catch(() => {});
+    },
+    getArrText(arrs) {
+      let results = "";
+      let str = JSON.parse("[" + arrs + "]");
+      let arr = str.sort((a, b) => {
+        return a - b;
+      });
+      arr.map(item => {
+        if (item == 1) {
+          results += "施工负责人    ";
+        } else if (item == 2) {
+          results += "施工人员    ";
+        } else if (item == 3) {
+          results += "行车 ";
+        }
+      });
+      return results;
     }
     //
   }

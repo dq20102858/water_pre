@@ -118,7 +118,7 @@
               <div class="el-form-item__error">{{lineTypeDes}}</div>
             </el-form-item>
             <el-form-item label="位置：" prop="position">
-              <el-input v-model="formData.position" autocomplete="off" placeholder="请输入位置米"></el-input>
+              <el-input v-model="formData.position" autocomplete="off" placeholder="请输入公里数+米数"></el-input>
             </el-form-item>
             <el-form-item label="类型：">
               <el-select v-model="formData.type">
@@ -170,7 +170,7 @@ export default {
         position: [
           {
             required: true,
-            message: "请输入位置 比如：14130",
+            message: "请输入位置 公里数+米数，比如14130",
             trigger: "blur"
           },
           {
