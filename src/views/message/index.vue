@@ -30,7 +30,6 @@
             </el-table-column>
             <el-table-column prop="title" label="消息主题"></el-table-column>
             <el-table-column prop="send_user" label="值班调度人"></el-table-column>
-            <el-table-column prop="user" label="接收人"></el-table-column>
             <el-table-column prop="recept_type" label="发送对象">
               <template slot-scope="scope">
                 <span class="statused" v-if="scope.row.recept_type=='1'">施工负责人</span>

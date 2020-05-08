@@ -182,7 +182,7 @@ export default {
     },
     pageSearch() {
       if (+this.searchForm.end_time < +this.searchForm.start_time) {
-         this.$message.error('开始时间不能小于结束时间');
+         this.$message.error('结束时间不能小于开始时间');
         return false;
       }
       this.page_cur = 1;

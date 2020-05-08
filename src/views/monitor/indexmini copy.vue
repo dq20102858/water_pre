@@ -1,10 +1,6 @@
 <template>
-  <div id="progress">
-    <div class="progress">
-        <div class="suofang">
-        <router-link to="/monitor">放大</router-link>
-        <router-link to="/monitor/indexmini">缩小</router-link>
-      </div>
+  <div id="monitor"  ref="proWrapper">
+    <div class="monitor">
       <div class="station-top">
         <div class="startend">
           <div class="sleft">
@@ -34,13 +30,10 @@
           </div>
         </div>
       </div>
-    
       <div class="main-canvas">
-        <div class="group-canvas scrollbar">
           <canvas id="mycanvas" height="680" ref="mycanvas">
             <p>您的系统不支持此程序!</p>
           </canvas>
-        </div>
       </div>
       <div class="progresslist" v-if="this.progressCheckValue !=''">
         <span class="namess">施工进度：</span>
@@ -85,13 +78,6 @@
           label="坡度"
           border
         ></el-checkbox>
-        <el-checkbox
-          class="daocchk"
-          v-model="daocCheckValue"
-          @change="daocCheckSelect"
-          label="道岔"
-          border
-        ></el-checkbox>
       </div>
     </div>
   </div>
@@ -123,8 +109,6 @@ export default {
       alertList: [],
       slopeCheckValue: true,
       slopeList: [],
-      daocCheckValue: true,
-      daocList: [],
       progressList: [],
       progressListItem: [],
       progressCheckValue: 0,
@@ -222,14 +206,14 @@ export default {
       //请点标尺起点
       let axis_applay = {
         x: 100,
-        y: axis_Height - 300
+        y: axis_Height - 535
       };
       let axis_applay_two = {
         x: 100,
         y: axis_Height - 245
       };
       //刻度的间隔
-      let tick_Spacing = 100;
+      let tick_Spacing = 10;
       let tick_Height = 8; //刻度线高度
       let everys = 0.5; //每米长度等于px
       let offsetX = 100;
@@ -243,9 +227,12 @@ export default {
       let enterLineMaxMileage = this.enterLineMaxMileage;
       let outLineMinMileage = this.outLineMinMileage;
       let outLineMaxMileage = this.leftLineMaxMileage;
-      let axis_Width = (leftLineMaxMileage - leftLineMinMileage) * everys + 150;
+     // let axis_Width = (leftLineMaxMileage - leftLineMinMileage) * everys + 150;
+     let clientWidth = this.$refs.proWrapper.clientWidth;
+       let axis_Width =clientWidth-40;
       console.log(
         "axis_Width：" +
+        clientWidth+"_"+
           axis_Width +
           "_" +
           leftLineMinMileage +
@@ -267,8 +254,8 @@ export default {
         let startLength = parseInt(lineJson[i].start_length);
         let end = parseInt(lineJson[i].end_flag) * 1000;
         let endLength = parseInt(lineJson[i].end_length);
-        axis_Width =
-          (parseInt(end + endLength) - parseInt(start + startLength)) * everys;
+        let everys_px=axis_Width/ (leftLineMaxMileage - leftLineMinMileage);
+        axis_Width =    (parseInt(end + endLength) - parseInt(start + startLength)) * everys_px;
         if (lineJson[i].id == 1) {
           drawAxisTicksNum(
             start,
@@ -280,7 +267,7 @@ export default {
             axis_LeftLine.y,
             "ZDK"
           );
-          context.font = "15px Microsoft Yahei";
+          context.font = "16px Microsoft Yahei";
           context.fillText("左线", axis_LeftLine.x - 60, axis_LeftLine.y + 25);
         } else if (lineJson[i].id == 2) {
           drawAxisTicksNum(
@@ -293,9 +280,9 @@ export default {
             axis_LeftLine_Two.y,
             "YDK"
           );
-          context.font = "15px Microsoft Yahei";
+          context.font = "16px Microsoft Yahei";
           context.fillText(
-            "右线",
+            "左线",
             axis_LeftLine_Two.x - 60,
             axis_LeftLine_Two.y + 25
           );
@@ -310,7 +297,7 @@ export default {
             axis_OutLine.y,
             "RDK"
           );
-          context.font = "15px Microsoft Yahei";
+          context.font = "16px Microsoft Yahei";
           context.fillText("入场线", axis_OutLine.x - 68, axis_OutLine.y + 25);
         } else if (lineJson[i].id == 4) {
           drawAxisTicksNum(
@@ -323,7 +310,7 @@ export default {
             axis_OutLine_Two.y,
             "CDK"
           );
-          context.font = "15px Microsoft Yahei";
+          context.font = "16px Microsoft Yahei";
           context.fillText(
             "出场线",
             axis_OutLine_Two.x - 68,
@@ -398,7 +385,7 @@ export default {
               minKm++;
               //画数字
               context.fillText(
-                axis_DK + minKm + " + 000",
+              minKm ,
                 axis_Line_X + i * tick_Spacing,
                 axis_Line_y + 20
               );
@@ -413,14 +400,14 @@ export default {
               nums = parseInt(first) + parseInt(200 * (num - 1));
               //画数字
 
-              context.fillText(
-                nums,
-                axis_Line_X + i * tick_Spacing,
-                axis_Line_y + 20
-              );
+              // context.fillText(
+              //   nums,
+              //   axis_Line_X + i * tick_Spacing,
+              //   axis_Line_y + 20
+              // );
               //画小标
-              context.moveTo(axis_Line_X + i * tick_Spacing, axis_Line_y + 5);
-              context.lineTo(axis_Line_X + i * tick_Spacing, axis_Line_y + 10);
+            //  context.moveTo(axis_Line_X + i * tick_Spacing, axis_Line_y + 5);
+          //    context.lineTo(axis_Line_X + i * tick_Spacing, axis_Line_y + 10);
             }
           }
           //
@@ -459,11 +446,13 @@ export default {
               parseInt(json[i].start_length);
             //console.log("total：" + total);
             // 计算当前站点的x轴坐标
-            let startX = (total - leftLineMinMileage) * everys;
+               let everys_px=axis_Width/ (leftLineMaxMileage - leftLineMinMileage);
+   
+            let startX = (total - leftLineMinMileage) * everys_px;
             // console.log(startX);
             context.drawImage(img, startX + offsetXLine, 65, 24, 120);
             //站名
-            context.font = "bold 20px Microsoft Yahei";
+            context.font = "bold 24px Microsoft Yahei";
             context.fillStyle = "#fff";
             context.textAlign = "left";
             let origin = json[i].name;
@@ -474,41 +463,6 @@ export default {
             context.fillStyle = "#0AE39A";
             context.font = "14px Microsoft Yahei";
             context.fillText(codes, startX + 90, 52);
-          }
-        };
-      }
-      //绘制道岔
-      function drawDaocha() {
-        // let json1 = ListJson;
-        let json = [
-          {
-            id: 1,
-            type: 1,
-            start_flag: 15,
-            start_length: 400,
-            end_flag: 15,
-            end_length: 900
-          }
-        ];
-        let img = new Image();
-        img.src = require("@/assets/image/icon-dc.png");
-        img.onload = function() {
-          let start = 0;
-          for (let i = 0; i < json.length; i++) {
-            let start =
-              parseInt(json[i].start_flag) * 1000 +
-              parseInt(json[i].start_length);
-            let end =
-              parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
-            let betweenMeters = (end - start) * everys; //两点之间距离米
-            let startX = (start - leftLineMinMileage) * everys;
-            context.drawImage(
-              img,
-              startX + offsetXLine + 13,
-              axis_LeftLine.y + 5,
-              betweenMeters + 20,
-              196
-            );
           }
         };
       }
@@ -527,9 +481,9 @@ export default {
           let centerX = (endX + startX) / 2; //开始结束平均值
 
           context.lineWidth = 2;
-          context.fillStyle = "#fF5C75";
+          context.fillStyle = "#2179cb";
           context.font = "12px Microsoft Yahei";
-          context.strokeStyle = "#fF5C75";
+          context.strokeStyle = "#2179cb";
           let desc = json[i].name + " 共" + betweenMeters + "米";
           let codes =
             "DK" +
@@ -679,9 +633,9 @@ export default {
           // 计算当前站点的x轴坐标
 
           //console.log("startX：" + startX + " endX：" + endX);
-          context.strokeStyle = "#ff9900";
+          context.strokeStyle = "#ff6000";
           context.lineWidth = 10;
-          context.fillStyle = "#ff9900";
+          context.fillStyle = "#ff6000";
           context.font = "12px Microsoft Yahei";
           let desc = "限速" + json[i].speed + "公里/小时";
           context.beginPath();
@@ -735,9 +689,9 @@ export default {
             parseInt(json[i].start_length);
           let end =
             parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
-          context.strokeStyle = "#db2fdb";
+          context.strokeStyle = "#ff1833";
           context.lineWidth = 10;
-          context.fillStyle = "#db2fdb";
+          context.fillStyle = "#ff1833";
           context.font = "12px Microsoft Yahei";
           let desc =
             "防区 DK" +
@@ -808,7 +762,7 @@ export default {
 
           context.lineWidth = 1;
           context.strokeStyle = "#fff";
-          context.fillStyle = "#8e7cc3";
+          context.fillStyle = "#ff8000";
           context.font = "12px Microsoft Yahei";
           let slope_height = parseFloat(json[i].height);
           let slope_length = parseFloat(json[i].length);
@@ -1155,36 +1109,32 @@ export default {
       if (this.progressCheckValue) {
         drawProgressAxis(this.progressListItem);
       }
-           //限速区
-      if (this.speedCheckValue) {
-        drawSpeedAxis(this.speedList);
-      }
-      //防区
-      if (this.alertList.length > 0) {
-        if (this.alertCheckValue) {
-          drawAlertAxis(this.alertList);
-        }
-      }
-      //桥
-      if (this.bridgeCheckValue) {
-        drawBridgeAxis(this.bridgeList);
-      }
-      //隧道
-      if (this.tunnelCheckValue) {
-        drawTunnelAxis(this.tunnelList);
-      }
-      //坡度
-      if (this.slopeCheckValue) {
-        drawSlopeAxis(this.slopeList);
-      }
-      //作业
-      if (this.applyList.length > 0) {
-        drawAxesApply(this.applyList);
-      }
-      //道岔
-      if (this.daocCheckValue) {
-        drawDaocha();
-      }
+      // //防区
+      // if (this.alertList.length > 0) {
+      //   if (this.alertCheckValue) {
+      //     drawAlertAxis(this.alertList);
+      //   }
+      // }
+      // //限速区
+      // if (this.speedCheckValue) {
+      //   drawSpeedAxis(this.speedList);
+      // }
+      // //桥
+      // if (this.bridgeCheckValue) {
+      //   drawBridgeAxis(this.bridgeList);
+      // }
+      // //隧道
+      // if (this.tunnelCheckValue) {
+      //   drawTunnelAxis(this.tunnelList);
+      // }
+      // //坡度
+      // if (this.slopeCheckValue) {
+      //   drawSlopeAxis(this.slopeList);
+      // }
+      // //作业
+      // if (this.applyList.length > 0) {
+      //   drawAxesApply(this.applyList);
+      // }
     },
     // ===================================桥 隧道 限速区 防区 道岔 坡度 施工进度
     //进度
@@ -1204,22 +1154,18 @@ export default {
     tunnelCheckSelect() {
       this.initCanvas();
     },
+    //限速区
+    speedCheckSelect() {
+      this.initCanvas();
+    },
     //防区
     alertCheckSelect() {
       if (this.alertList.length > 0) {
         this.initCanvas();
       }
     },
-    //限速区
-    speedCheckSelect() {
-      this.initCanvas();
-    },
     //坡度
     slopeCheckSelect() {
-      this.initCanvas();
-    },
-    //道岔
-    daocCheckSelect() {
       this.initCanvas();
     },
 
@@ -1251,37 +1197,25 @@ export default {
 </script>
 
 <style>
-#progress {
+#monitor {
   position: absolute;
   width: 100%;
   height: 100%;
   background: #081c33;
 }
-.progress {
+.monitor {
   background: #081c33;
 }
-
 .main-canvas {
   background: #081c33;
-  padding-top: 20px;
+  padding: 20px ;
 }
-.group-canvas {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  height: 680px;
-  padding-right: 100px;
-}
-.suofang { padding: 30px  0 10px 30px;
-}
-.suofang a {
-  color: #fff; margin-right: 10px;
-  font-size: 18px;
-}
+
 .station-top {
   margin: 0 30px;
 }
 .startend {
-  padding-top: 10px;
+  padding-top: 30px;
   overflow: hidden;
 }
 .startend .sleft,
@@ -1297,7 +1231,6 @@ export default {
   float: left;
   margin-right: 20px;
 }
-
 .startend .sright {
   float: right;
 }
@@ -1376,14 +1309,14 @@ export default {
   color: #fff;
 }
 .bridgechk.is-checked {
-  border-color: #ff5c75 !important;
+  border-color: #2179cb !important;
 }
 .bridgechk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #ff5c75;
-  border-color: #ff5c75;
+  background-color: #2179cb;
+  border-color: #2179cb;
 }
 .bridgechk.is-checked .el-checkbox__label {
-  color: #ff5c75;
+  color: #2179cb;
 }
 .tunnelchk.is-checked {
   border-color: #18dbff !important;
@@ -1396,44 +1329,35 @@ export default {
   color: #18dbff;
 }
 .speedchk.is-checked {
-  border-color: #ff9900 !important;
+  border-color: #ff6000 !important;
 }
 .speedchk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #ff9900;
-  border-color: #ff9900;
+  background-color: #ff6000;
+  border-color: #ff6000;
 }
 .speedchk.is-checked .el-checkbox__label {
-  color: #ff9900;
+  color: #ff6000;
 }
+
 .slopechk.is-checked {
-  border-color: #8e7cc3 !important;
+  border-color: #ff8000 !important;
 }
 .slopechk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #8e7cc3;
-  border-color: #8e7cc3;
+  background-color: #ff8000;
+  border-color: #ff8000;
 }
 .slopechk.is-checked .el-checkbox__label {
-  color: #8e7cc3;
+  color: #ff8000;
 }
 .alertchk.is-checked {
-  border-color: #db2fdb !important;
+  border-color: #ff1833 !important;
 }
 .alertchk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #db2fdb;
-  border-color: #db2fdb;
+  background-color: #ff1833;
+  border-color: #ff1833;
 }
 .alertchk.is-checked .el-checkbox__label {
-  color: #db2fdb;
-}
-.daocchk.is-checked {
-  border-color: #107af7 !important;
-}
-.daocchk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #107af7;
-  border-color: #107af7;
-}
-.daocchk.is-checked .el-checkbox__label {
-  color: #107af7;
+  color: #ff1833;
 }
 .progresslist {
   padding-top: 20px;
