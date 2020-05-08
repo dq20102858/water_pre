@@ -22,7 +22,7 @@
               <el-button type="primary" icon="el-icon-plus" @click="goAdd">添加站点</el-button>
             </el-form-item>
             <div class="el-serach">
-              <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable></el-input>
+              <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable maxlength="20"></el-input>
               <el-button @click="searchEvent">查询</el-button>
             </div>
           </el-form>
@@ -170,7 +170,7 @@ export default {
         position: [
           {
             required: true,
-            message: "请输入位置 如 15000 ",
+            message: "请输入位置 比如：14130",
             trigger: "blur"
           },
           {
