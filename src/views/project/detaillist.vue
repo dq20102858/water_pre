@@ -354,7 +354,6 @@ export default {
       this.searchForm = {
         time_range: ""
       };
-      this.workLists = [];
       this.getDetailLists();
     },
     //获取二级分类

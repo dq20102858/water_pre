@@ -97,7 +97,7 @@
         </div>
       </el-form>
       <div slot="footer" class="app-dialog-footer">
-        <span class="tips">备注：*为必填项</span>
+        <!-- <span class="tips">备注：*为必填项</span> -->
         <el-button type="primary" @click="submitForm('ruleForm')">确定保存</el-button>
         <el-button @click="isCancel">关闭</el-button>
       </div>
@@ -166,11 +166,11 @@ export default {
       isVisible: false,
       rules: {
         number: [
-          { required: true, message: "请输入命令号码", trigger: "blur" },
+          { required: true, message: "请输入命令号码2到20个字符", trigger: "blur" },
           {
             min: 2,
-            max: 30,
-            message: "请输入长度在2到30个字符",
+            max: 20,
+            message: "请输入长度在2到20个字符",
             trigger: "blur"
           },
           {
@@ -185,11 +185,11 @@ export default {
           { required: true, message: "请选择受令机长", trigger: "change" }
         ],
         location: [
-          { required: true, message: "请输入令处所", trigger: "blur" },
+          { required: true, message: "请输入受令处所2到20个字符", trigger: "blur" },
           {
             min: 2,
-            max: 30,
-            message: "请输入长度在2到30个字符",
+            max: 20,
+            message: "请输入长度在2到20个字符",
             trigger: "blur"
           },
           {
@@ -204,8 +204,8 @@ export default {
         station: [
           {
             min: 2,
-            max: 30,
-            message: "请输入长度在2到30个字符",
+            max: 20,
+            message: "请输入受令车站2到20个字符",
             trigger: "blur"
           }
         ],
@@ -213,7 +213,7 @@ export default {
           { required: true, message: "请选择调度员", trigger: "change" }
         ],
         description: [
-          { required: true, message: "请输入调度命令内容", trigger: "blur" },
+          { required: true, message: "请输入调度命令内容2到500个字符", trigger: "blur" },
           {
             min: 2,
             max: 500,

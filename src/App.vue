@@ -68,6 +68,8 @@ ul,li{list-style-type: none}
 .app-table .el-table__body-wrapper tr:nth-child(odd){background:#e7eeff;}
 .app-table .el-table__body-wrapper tr td{color: #1D397A;}
 .app-table .time-warp{width:80px;white-space: normal;display: block;}
+.app-table .time-warp-lens .cell{display: inline-block; white-space: nowrap;word-break: keep-all;text-overflow: ellipsis}
+
 .app-operation{white-space: nowrap; text-align: right;}
 .app-operation .btn-blue{ border: 1px #4b6eca solid;color: #1d397a}
 .app-operation .btn-red{border: 1px #ff5c75 solid;color: #ff5c75}

@@ -1,61 +1,105 @@
 <template>
   <div id="dispatch-detail" class="app-page-layer">
     <div class="app-dialog-form">
-      <el-form :inline="true">
-        <el-form-item label="命令号：">
-          <el-input v-model="dataInfo.number" readonly></el-input>
-        </el-form-item>
-        <el-form-item label="值班调度：">
-          <el-input v-model="dataInfo.dispatch" readonly></el-input>
-        </el-form-item>
-        <el-form-item label="命令状态：" class="redinput">
-          <p v-if="dataInfo.status=='1'">
-            <el-input readonly value="新命令"></el-input>
-          </p>
-          <p v-if="dataInfo.status=='2'">
-            <el-input readonly value="已确认"></el-input>
-          </p>
-          <p v-if="dataInfo.status=='3'">
-            <el-input readonly value="已作废"></el-input>
-          </p>
-        </el-form-item>
-        <el-form-item label="受令机车：">
-          <el-input v-model="dataInfo.loco" readonly></el-input>
-        </el-form-item>
-        <el-form-item label="受令司机：">
-          <el-input v-model="dataInfo.driver" readonly></el-input>
-        </el-form-item>
-        <el-form-item label="受令车长：">
-          <el-input v-model="dataInfo.master" readonly></el-input>
-        </el-form-item>
-        <el-form-item label="发令时间：">
-          <el-input readonly v-model="dataInfo.create_time"></el-input>
-        </el-form-item>
-        <el-form-item label="受令车站：">
-          <el-input v-model="dataInfo.station==''?'无' : dataInfo.station" readonly></el-input>
-        </el-form-item>
-        <el-form-item label="车站值班员：">
-          <el-input v-model="dataInfo.station_worker==''?'无' : dataInfo.station_worker" readonly></el-input>
-        </el-form-item>
-        <el-form-item label="确认时间：">
-          <p v-if="dataInfo.makesure_time==''">
-            <el-input readonly value="暂未确认"></el-input>
-          </p>
-          <p v-else>
-            <el-input readonly v-model="dataInfo.makesure_time"></el-input>
-          </p>
-        </el-form-item>
-        <el-form-item label="受令处所：">
-          <el-input v-model="dataInfo.location" readonly></el-input>
-        </el-form-item>
-        <el-form-item></el-form-item>
-        <el-form-item class="contents" label="调度命令内容：">
-          <el-input type="textarea" v-model="dataInfo.description"></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="app-dialog-footer">
-        <el-button @click="isCancel">关闭</el-button>
-      </div>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <b class="tname">命令号</b>
+            </td>
+            <td>
+              <p>{{dataInfo.number}}</p>
+            </td>
+            <td>
+              <b class="tname">值班调度</b>
+            </td>
+            <td>
+              <p>{{dataInfo.dispatch}}</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <b class="tname">命令状态</b>
+            </td>
+            <td>
+              <p class="redbtn" v-if="dataInfo.status=='1'">新命令</p>
+              <p class="redbtn" v-if="dataInfo.status=='2'">已确认</p>
+              <p class="redbtn" v-if="dataInfo.status=='3'">已作废</p>
+            </td>
+            <td>
+              <b class="tname">受令机车</b>
+            </td>
+            <td>
+              <p>{{dataInfo.loco}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b class="tname">受令司机</b>
+            </td>
+            <td>
+              <p>{{dataInfo.driver}}</p>
+            </td>
+            <td>
+              <b class="tname">受令车长</b>
+            </td>
+            <td>
+              <p>{{dataInfo.master}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b class="tname">发令时间</b>
+            </td>
+            <td>
+              <p>{{dataInfo.create_time}}</p>
+            </td>
+            <td>
+              <b class="tname">受令车站</b>
+            </td>
+            <td>
+              <p>{{dataInfo.station==''?'无' : dataInfo.station}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b class="tname">车站值班员</b>
+            </td>
+            <td>
+              <p>{{dataInfo.station_worker==''?'无' : dataInfo.station_worker}}</p>
+            </td>
+            <td>
+              <b class="tname">确认时间</b>
+            </td>
+            <td>
+              <p v-if="dataInfo.makesure_time==''">暂未确认</p>
+              <p v-else>{{dataInfo.makesure_time}}</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <b class="tname">受令处所</b>
+            </td>
+            <td colspan="3">
+              <p>{{dataInfo.location}}</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <b class="tname">内容</b>
+            </td>
+            <td colspan="3">
+              <p>{{dataInfo.description}}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div slot="footer" class="app-dialog-footer">
+      <el-button @click="isCancel">关闭</el-button>
     </div>
   </div>
 </template>
@@ -106,54 +150,36 @@ export default {
 </script>
 
 <style>
-#dispatch-detail .app-dialog-form {
-  padding: 30px 0px 30px 30px;
-  display: block;
-  margin-top: 1px;
+#dispatch-detail {
+  padding: 25px;
 }
-#dispatch-detail .app-dialog-form .el-form-item {
-  margin-bottom: 15px;
+#dispatch-detail table {
+  border-collapse: collapse;
+  width: 100%;
 }
-#dispatch-detail .app-dialog-form .el-form-item__label {
-  width: 120px;
+#dispatch-detail table td {
+  border: 1px solid #ddd;
+  line-height: 30px;
+  padding: 10px;
+}
+#dispatch-detail .pdate {
+  text-align: center;
+}
+#dispatch-detail p {
+  line-height: 28px;
+  font-size: 14px;
+  color: #4b6eca;
+}
+#dispatch-detail .tname {
+  white-space: nowrap;
   color: #1d397a;
 }
-#dispatch-detail .app-dialog-form .el-input input {
-  width: 245px;
-}
-#dispatch-detail .app-dialog-form .bluebtn {
-  margin-left: 10px;
-}
-#dispatch-detail .app-dialog-form .redbtn {
-  background: #ff5c75;
-  border-color: #ff5c75;
-}
-#dispatch-detail .app-dialog-form .contents {
-  display: block;
-  width: 100%;
-}
-#dispatch-detail .app-dialog-form .contents .el-textarea {
-  width: 100%;
-}
-#dispatch-detail .app-dialog-form .contents .el-form-item__content {
-  width: 623px;
-}
-#dispatch-detail .app-dialog-form .contents .el-textarea__inner {
-  width: 100%;
-  height: 100px;
+#dispatch-detail .redbtn {
+  color: #ff5c75;
 }
 #dispatch-detail .app-dialog-footer {
-  margin-top: 20px;
-}
-#dispatch-detail .app-dialog-footer .tips {
-  color: #ff5c75;
-  font-size: 16px;
-}
-#dispatch-detail .app-dialog-footer .el-button {
-  float: right;
-  margin-right: 30px;
-}
-.redinput input {
-  color: #ff5c75!important;
+  text-align: right;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 </style>

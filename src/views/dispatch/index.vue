@@ -84,6 +84,7 @@
             <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
               <el-button size="small" icon="el-icon-search" type="primary" @click="searchEvent">查询</el-button>
+              <el-button size="small" plain @click="resetSerach">重置</el-button>
             </el-form-item>
           </div>
         </el-form>
@@ -104,14 +105,14 @@
             </template>
           </el-table-column>
           <el-table-column prop="create_time" min-width="80" label="发令时间">
- <template slot-scope="scope">
-   <p v-html="changeTime(scope.row.create_time)"></p>
- </template>
+            <template slot-scope="scope">
+              <p v-html="changeTime(scope.row.create_time)"></p>
+            </template>
           </el-table-column>
           <el-table-column prop="makesure_time" min-width="80" label="确认时间">
             <template slot-scope="scope">
               <p v-if="scope.row.makesure_time.length==0"></p>
-               <p  v-else v-html="changeTime(scope.row.makesure_time)"></p>
+              <p v-else v-html="changeTime(scope.row.makesure_time)"></p>
             </template>
           </el-table-column>
           <el-table-column label="操作" width="240">
@@ -276,7 +277,7 @@ export default {
         }
       });
     },
-     searchEvent() {
+    searchEvent() {
       this.page_cur = 1;
       this.getDataLists();
     },
@@ -291,9 +292,20 @@ export default {
       this.page_cur = this.page_total;
       this.pageChange(this.page_total);
     },
+    resetSerach() {
+      this.searchForm = {
+        lid: "",
+        dispatch_id: "",
+        master_id: "",
+        driver_id: "",
+        status: "",
+        time_range: ""
+      };
+      this.getDataLists();
+    },
     addInfo: function() {
       this.$layer.iframe({
-        area: ["800px", "590px"],
+        area: ["800px", "600px"],
         title: "新建调度命令",
         skin: "layers",
         shadeClose: false,
@@ -307,7 +319,7 @@ export default {
     },
     goDetail: function(id) {
       this.$layer.iframe({
-        area: ["800px", "590px"],
+        area: ["800px", "600px"],
         title: "调度命令详情",
         shadeClose: false,
         scrollbar: false,
@@ -322,49 +334,54 @@ export default {
       this.$confirm("您确定作废命令?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
-        ,customClass:"el-message-box-new"
-      }).then(() => {
-        this.request({
-          url: "/dispatch/changeStatus",
-          method: "post",
-          data: { id: id, status: 3 },
-          contentType: "application/x-www-form-urlencoded"
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.$message({
-              type: "success",
-              message: "作废成功!"
-            });
-            this.$set(this.dataList[index], "status", 3);
-          }
-        });
-      }).catch(()=>{});
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/dispatch/changeStatus",
+            method: "post",
+            data: { id: id, status: 3 },
+            contentType: "application/x-www-form-urlencoded"
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "作废成功!"
+              });
+              this.getDataLists();
+              this.$set(this.dataList[index], "status", 3);
+            }
+          });
+        })
+        .catch(() => {});
     },
     goDel(id) {
       this.$confirm("您确定删除命令?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
-        ,customClass:"el-message-box-new"
-      }).then(() => {
-        this.request({
-          url: "/dispatch/changeStatus",
-          method: "post",
-          data: { id: id, status: 0 },
-          contentType: "application/x-www-form-urlencoded"
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.$message({
-              type: "success",
-              message: "删除成功!"
-            });
-            this.getDataLists();
-          }
-        });
-      }).catch(()=>{});
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/dispatch/changeStatus",
+            method: "post",
+            data: { id: id, status: 0 },
+            contentType: "application/x-www-form-urlencoded"
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "删除成功!"
+              });
+              this.getDataLists();
+            }
+          });
+        })
+        .catch(() => {});
     },
     goPrint: function(id) {
       this.$layer.iframe({
@@ -381,11 +398,17 @@ export default {
     },
     changeTime(time) {
       if (time !== null && time !== undefined && time !== "") {
-        return "<span style='display:block; white-space: nowrap;'>"+time.substring(0, 10)+"</span><span style='display:block; white-space: nowrap;'>"+time.substring(time.length-8)+"</span>";
+        return (
+          "<span style='display:block; white-space: nowrap;'>" +
+          time.substring(0, 10) +
+          "</span><span style='display:block; white-space: nowrap;'>" +
+          time.substring(time.length - 8) +
+          "</span>"
+        );
       } else {
         return "";
       }
-    },
+    }
     //
   }
 };
@@ -394,7 +417,7 @@ export default {
 <style>
 .app-page-select {
   margin-bottom: 10px;
-  width: 100%
+  width: 100%;
 }
 .app-page-select .select-from-inline .el-form-item__label {
   width: 70px;

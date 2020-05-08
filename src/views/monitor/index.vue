@@ -290,7 +290,7 @@ export default {
           );
           context.font = "15px Microsoft Yahei";
           context.fillText(
-            "左线",
+            "右线",
             axis_LeftLine_Two.x - 60,
             axis_LeftLine_Two.y + 25
           );
@@ -1147,19 +1147,20 @@ export default {
       //画地铁站
       drawStations(this.stationList);
 
+    
+      //限速区
+      if (this.speedCheckValue) {
+        drawSpeedAxis(this.speedList);
+      }
       //施工进度
       if (this.progressCheckValue) {
         drawProgressAxis(this.progressListItem);
       }
-      //防区
+        //防区
       if (this.alertList.length > 0) {
         if (this.alertCheckValue) {
           drawAlertAxis(this.alertList);
         }
-      }
-      //限速区
-      if (this.speedCheckValue) {
-        drawSpeedAxis(this.speedList);
       }
       //桥
       if (this.bridgeCheckValue) {
@@ -1200,15 +1201,15 @@ export default {
     tunnelCheckSelect() {
       this.initCanvas();
     },
-    //限速区
-    speedCheckSelect() {
-      this.initCanvas();
-    },
     //防区
     alertCheckSelect() {
       if (this.alertList.length > 0) {
         this.initCanvas();
       }
+    },
+    //限速区
+    speedCheckSelect() {
+      this.initCanvas();
     },
     //坡度
     slopeCheckSelect() {
@@ -1365,24 +1366,24 @@ export default {
   color: #fff;
 }
 .bridgechk.is-checked {
-  border-color: #fF5C75 !important;
+  border-color: #ff5c75 !important;
 }
 .bridgechk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #fF5C75;
-  border-color: #fF5C75;
+  background-color: #ff5c75;
+  border-color: #ff5c75;
 }
 .bridgechk.is-checked .el-checkbox__label {
-  color: #fF5C75;
+  color: #ff5c75;
 }
 .tunnelchk.is-checked {
-  border-color: #18DBFF !important;
+  border-color: #18dbff !important;
 }
 .tunnelchk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #18DBFF;
-  border-color: #18DBFF;
+  background-color: #18dbff;
+  border-color: #18dbff;
 }
 .tunnelchk.is-checked .el-checkbox__label {
-  color: #18DBFF;
+  color: #18dbff;
 }
 .speedchk.is-checked {
   border-color: #ff9900 !important;

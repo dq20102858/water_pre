@@ -34,7 +34,6 @@
             <el-form-item label="开始时间">
               <el-date-picker
                 v-model="searchForm.start_time"
-                :picker-options="pickerOptionsStart"
                 type="datetime"
                 format="yyyy-MM-dd HH:mm"
               ></el-date-picker>
@@ -42,7 +41,6 @@
             <el-form-item label="结束时间">
               <el-date-picker
                 v-model="searchForm.end_time"
-                :picker-options="pickerOptionsEnd"
                 type="datetime"
                 format="yyyy-MM-dd HH:mm"
               ></el-date-picker>
@@ -78,7 +76,7 @@
                 <span v-if="scope.row.alert_type==4">防护牌报警</span>
               </template>
             </el-table-column>
-            <el-table-column prop="create_time" label="报警时间"></el-table-column>
+            <el-table-column prop="create_time" label="报警时间" class-name="time-warp-lens"></el-table-column>
             <el-table-column prop="description" label="报警内容" show-overflow-tooltip></el-table-column>
             <el-table-column label="操作" width="70">
               <template slot-scope="scope">
@@ -117,25 +115,6 @@
 export default {
   data() {
     return {
-      pickerOptionsStart: {
-        disabledDate: time => {
-          if (this.searchForm.end_time) {
-            return (
-              time.getTime() > new Date(this.searchForm.end_time).getTime()
-            );
-          }
-        }
-      },
-      pickerOptionsEnd: {
-        disabledDate: time => {
-          if (this.searchForm.start_time) {
-            console.log(time.getTime());
-            return (
-              time.getTime() < new Date(this.searchForm.start_time).getTime() - 8.64e7 
-            );
-          }
-        }
-      },
       searchForm: {},
       page_cur: 1,
       page_items: 0,
@@ -202,6 +181,10 @@ export default {
       this.getDataList();
     },
     pageSearch() {
+      if (+this.searchForm.end_time < +this.searchForm.start_time) {
+         this.$message.error('开始时间不能小于结束时间');
+        return false;
+      }
       this.page_cur = 1;
       this.getDataList();
     },
