@@ -520,9 +520,9 @@ export default {
           let centerX = (endX + startX) / 2; //开始结束平均值
 
           context.lineWidth = 2;
-          context.fillStyle = "#9acc1b";
+          context.fillStyle = "#4D61B3";
           context.font = "12px Microsoft Yahei";
-          context.strokeStyle = "#9acc1b";
+          context.strokeStyle = "#4D61B3";
           let desc = json[i].name + " 共" + betweenMeters + "米";
           let codes =
             "DK" +
@@ -1376,14 +1376,14 @@ export default {
   font-size: 16px;
 }
 .bridgechk.is-checked {
-  border-color: #9acc1b !important;
+  border-color: #4D61B3 !important;
 }
 .bridgechk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #9acc1b;
-  border-color: #9acc1b;
+  background-color: #4D61B3;
+  border-color: #4D61B3;
 }
 .bridgechk.is-checked .el-checkbox__label {
-  color: #9acc1b;
+  color: #4D61B3;
 }
 .tunnelchk.is-checked {
   border-color: #25bfdb !important;
