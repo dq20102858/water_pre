@@ -435,12 +435,12 @@ export default {
           console.log("this.userData.id：" + this.userData.id);
           if (typeof baseid != "undefined") {
             url = "/user/editUser";
-            let pwdEdit = this.userData.passwordEdit;
-            if (pwdEdit != "" && typeof pwdEdit != "undefined") {
-              this.userData.password = pwdEdit;
-            } else {
-              this.userData.password = this.passwordOrg;
-            }
+            // let pwdEdit = this.userData.passwordEdit;
+            // if (pwdEdit != "" && typeof pwdEdit != "undefined") {
+            //   this.userData.password = pwdEdit;
+            // } else {
+            //   this.userData.password ="";
+            // }
           }
           this.request({
             url: url,
