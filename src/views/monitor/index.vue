@@ -473,6 +473,14 @@ export default {
             start_length: 400,
             end_flag: 15,
             end_length: 900
+          },
+           {
+            id: 1,
+            type: 1,
+            start_flag: 31,
+            start_length: 400,
+            end_flag: 32,
+            end_length: 200
           }
         ];
         let img = new Image();
@@ -1141,6 +1149,7 @@ export default {
         //   }
         // });
       }
+      //============================
       //画地铁站
       drawStations(this.stationList);
       //施工进度
