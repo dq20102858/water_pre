@@ -162,7 +162,7 @@ export default {
           //======站点
           this.stationList = data.data.stations;
           let json = data.data.stations;
-          this.scrollwidth = document.documentElement.clientWidth - 510;
+          this.scrollwidth = document.documentElement.clientWidth - 530;
           console.log(this.scrollwidth);
           //请点
           this.applyList = data.data.apply_lists;
@@ -474,7 +474,7 @@ export default {
             end_flag: 15,
             end_length: 900
           },
-           {
+          {
             id: 1,
             type: 1,
             start_flag: 31,
@@ -520,9 +520,9 @@ export default {
           let centerX = (endX + startX) / 2; //开始结束平均值
 
           context.lineWidth = 2;
-          context.fillStyle = "#4D61B3";
+          context.fillStyle = "#CDAA7D";
           context.font = "12px Microsoft Yahei";
-          context.strokeStyle = "#4D61B3";
+          context.strokeStyle = "#CDAA7D";
           let desc = json[i].name + " 共" + betweenMeters + "米";
           let codes =
             "DK" +
@@ -557,7 +557,7 @@ export default {
             context.font = "11px Microsoft Yahei";
             context.fillStyle = "#fff";
             context.fillText(codes, centerX + offsetX, axis_LeftLine.y - 80);
-          } else {
+          } else if (json[i].line_type == 2) {
             //画垂直线
             context.fillRect(
               startX + offsetX - 1,
@@ -808,7 +808,7 @@ export default {
 
           context.lineWidth = 1;
           context.strokeStyle = "#fff";
-          context.fillStyle = "#6E7B8B";
+          context.fillStyle = "#fff";
           context.font = "12px Microsoft Yahei";
           let slope_height = parseFloat(json[i].height);
           let slope_length = parseFloat(json[i].length);
@@ -1149,6 +1149,199 @@ export default {
         //   }
         // });
       }
+      //车定位
+      function drawAxesCar(jsonData) {
+        let jsonCar = [
+          {
+            id: 1,
+            name: "ZY01",
+            start_flag: 15,
+            start_length: 300,
+            line_type: 1
+          },
+          {
+            id: 1,
+            name: "ZY01",
+            start_flag: 25,
+            start_length: 300,
+            line_type: 1
+          },
+          {
+            id: 2,
+            name: "ZY02",
+            start_flag: 32,
+            start_length: 430,
+            line_type: 1
+          },
+          {
+            id: 1,
+            name: "ZY01",
+            start_flag: 17,
+            start_length: 300,
+            line_type: 2
+          },
+          {
+            id: 1,
+            name: "ZY01",
+            start_flag: 25,
+            start_length: 300,
+            line_type: 2
+          },
+          {
+            id: 2,
+            name: "ZY02",
+            start_flag: 33,
+            start_length: 430,
+            line_type: 2
+          }
+        ];
+
+        let imgcar = new Image();
+        imgcar.src = require("@/assets/image/icon-car.png");
+        imgcar.onload = function() {
+          let start = 0;
+
+          for (let i = 0; i < jsonCar.length; i++) {
+            context.fillStyle = "#fff";
+            context.font = "12px Microsoft Yahei";
+            if (jsonCar[i].line_type == 1) {
+              let total =
+                parseInt(jsonCar[i].start_flag) * 1000 +
+                parseInt(jsonCar[i].start_length);
+              let startLineX = (total - leftLineMinMileage) * everys;
+              context.drawImage(
+                imgcar,
+                startLineX + offsetX,
+                axis_LeftLine.y - 25,
+                140,
+                20
+              );
+              //DK
+              let codes =
+                jsonCar[i].name +
+                "[ ZDK" +
+                jsonCar[i].start_flag +
+                " +" +
+                jsonCar[i].start_length +
+                " ]";
+
+              context.fillText(
+                codes,
+                startLineX + offsetX + 18,
+                axis_LeftLine.y - 40
+              );
+            } else if (jsonCar[i].line_type == 2) {
+              let total =
+                parseInt(jsonCar[i].start_flag) * 1000 +
+                parseInt(jsonCar[i].start_length);
+              let startLineX = (total - leftLineMinMileage) * everys;
+              context.drawImage(
+                imgcar,
+                startLineX + offsetX,
+                axis_LeftLine_Two.y - 25,
+                140,
+                20
+              );
+              //DK
+              let codes =
+                jsonCar[i].name +
+                " [ YDK" +
+                jsonCar[i].start_flag +
+                " +" +
+                jsonCar[i].start_length +
+                " ]";
+              context.fillText(
+                codes,
+                startLineX + offsetX + 18,
+                axis_LeftLine_Two.y - 40
+              );
+            } //
+          }
+        };
+      }
+      //人定位
+      function drawAxesPeple(jsonData) {
+        let jsonCar = [
+          {
+            id: 1,
+            name: "R",
+            start_flag: 16,
+            start_length: 300,
+            line_type: 1
+          },
+          {
+            id: 1,
+            name: "R",
+            start_flag: 28,
+            start_length: 300,
+            line_type: 1
+          },
+          {
+            id: 1,
+            name: "R",
+            start_flag: 16,
+            start_length: 300,
+            line_type: 2
+          },
+          {
+            id: 1,
+            name: "R",
+            start_flag: 20,
+            start_length: 300,
+            line_type: 2
+          }
+        ];
+
+        let imgcar = new Image();
+        imgcar.src = require("@/assets/image/m_apply.png");
+        imgcar.onload = function() {
+          let start = 0;
+          context.fillStyle = "#fff ";
+          context.font = "12px  Microsoft Yahei";
+          for (let i = 0; i < jsonCar.length; i++) {
+            if (jsonCar[i].line_type == 1) {
+              let total =
+                parseInt(jsonCar[i].start_flag) * 1000 +
+                parseInt(jsonCar[i].start_length);
+              let startLineX = (total - leftLineMinMileage) * everys;
+              context.drawImage(
+                imgcar,
+                startLineX + offsetX,
+                axis_LeftLine.y - 40,
+                36,
+                36
+              );
+              //DK
+              let codes =" [ ZDK" +
+                jsonCar[i].start_flag +
+                " +" +
+                jsonCar[i].start_length +
+                " ]";
+
+              context.fillText(
+                codes,
+                startLineX + offsetX + 15,
+                axis_LeftLine.y -50
+              );
+            } else if (jsonCar[i].line_type == 2) {
+              let total =
+                parseInt(jsonCar[i].start_flag) * 1000 +
+                parseInt(jsonCar[i].start_length);
+              let startLineX = (total - leftLineMinMileage) * everys;
+              context.drawImage( imgcar,startLineX + offsetX,axis_LeftLine_Two.y - 40,36,36
+              );
+              //DK
+              let codes =" [ YDK" +
+                jsonCar[i].start_flag +
+                " +" +
+                jsonCar[i].start_length +
+                " ]";
+              context.fillText(codes,startLineX + offsetX + 15,axis_LeftLine_Two.y - 50
+              );
+            } //
+          }
+        };
+      }
       //============================
       //画地铁站
       drawStations(this.stationList);
@@ -1186,6 +1379,9 @@ export default {
       if (this.daocCheckValue) {
         drawDaocha();
       }
+      //定位人和车
+      drawAxesPeple(this.applyList);
+      drawAxesCar(this.applyList);
     },
     // ===================================桥 隧道 限速区 防区 道岔 坡度 施工进度
     //进度
@@ -1366,24 +1562,24 @@ export default {
 .chkleft .rlink {
   color: #fff;
   margin-right: 20px;
-  font-size: 16px;
+  font-size: 15px;
 }
 .chkright {
   float: right;
 }
 .check-list .el-checkbox__label {
   color: #fff;
-  font-size: 16px;
+  font-size: 15px;
 }
 .bridgechk.is-checked {
-  border-color: #4D61B3 !important;
+  border-color: #cdaa7d !important;
 }
 .bridgechk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #4D61B3;
-  border-color: #4D61B3;
+  background-color: #cdaa7d;
+  border-color: #cdaa7d;
 }
 .bridgechk.is-checked .el-checkbox__label {
-  color: #4D61B3;
+  color: #cdaa7d;
 }
 .tunnelchk.is-checked {
   border-color: #25bfdb !important;

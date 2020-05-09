@@ -337,7 +337,15 @@ export default {
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
-          this.lineTypeList = data.data;
+           let lineJson = data.data;
+          var newArr = new Array();
+          for (var i = 0; i < lineJson.length; i++) {
+            var j = lineJson[i];
+            if (j.id != 3 && j.id != 4) {
+              newArr.push(j);
+            }
+          }
+          this.lineTypeList = newArr;
         }
       });
     },

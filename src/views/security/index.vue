@@ -381,7 +381,7 @@ export default {
       },
       uploadAction: this.hostURL + "/upload/uploadFile",
       dataList: [],
-      dataListEmptyText:"无近七日内安全管理事件",
+      dataListEmptyText: "无近七日内安全管理事件",
       companyList: [],
       trainList: [],
       dangerTypeList: [],
@@ -550,11 +550,10 @@ export default {
       this.pageChange(this.page_total);
     },
     pageSearch() {
-      this.dataListEmptyText="暂无数据";
+      this.dataListEmptyText = "暂无数据";
       this.page_cur = 1;
       this.getDataList();
       this.goDetail(0);
-
     },
     resetSerach() {
       (this.searchForm = {
@@ -965,6 +964,9 @@ export default {
   height: 148px;
   margin-right: 10px;
   border-radius: 6px;
+}
+.steps-info .el-icon-circle-close {
+  color: #fff;
 }
 .steps-section {
   overflow-x: auto;

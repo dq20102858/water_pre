@@ -613,19 +613,19 @@ export default {
       // let result= URL.createObjectURL(file.raw);
       console.log("图上传成功", res);
       this.userData.avatar = res.data.url;
-      // let upload_list_li = document.getElementsByClassName("el-upload-list")[0]
-      //   .children;
-      // if (res.data.url != "") {
-      //   for (let i = 0; i < upload_list_li.length; i++) {
-      //     let li_a = upload_list_li[i];
-      //     let imgElement = document.createElement("img");
-      //     imgElement.setAttribute("src", res.data.url);
-      //     imgElement.setAttribute("class", "upimgitem");
-      //     if (li_a.lastElementChild.nodeName !== "IMG") {
-      //       li_a.appendChild(imgElement);
-      //     }
-      //   }
-      // }
+      let upload_list_li = document.getElementsByClassName("el-upload-list")[0]
+        .children;
+      if (res.data.url != "") {
+        for (let i = 0; i < upload_list_li.length; i++) {
+          let li_a = upload_list_li[i];
+          let imgElement = document.createElement("img");
+          imgElement.setAttribute("src", res.data.url);
+          imgElement.setAttribute("class", "upimgitem");
+          if (li_a.lastElementChild.nodeName !== "IMG") {
+            li_a.appendChild(imgElement);
+          }
+        }
+      }
     },
     uploadBefore(file) {
       var filename = file.name.substring(file.name.lastIndexOf(".") + 1);

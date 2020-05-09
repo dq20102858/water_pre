@@ -329,7 +329,7 @@ export default {
               //DK
               let codes =
                 jsonCar[i].name +
-                " [ DK" +
+                " [ ZDK" +
                 jsonCar[i].start_flag +
                 " +" +
                 jsonCar[i].start_length +
@@ -345,7 +345,7 @@ export default {
               //DK
               let codes =
                 jsonCar[i].name +
-                " [ DK" +
+                " [ YDK" +
                 jsonCar[i].start_flag +
                 " +" +
                 jsonCar[i].start_length +
@@ -360,28 +360,28 @@ export default {
         let jsonCar = [
           {
             id: 1,
-            name: "ZY01",
+            name: "R",
             start_flag: 20,
             start_length: 300,
             line_type: 1
           },
           {
             id: 1,
-            name: "ZY01",
+            name: "R",
             start_flag: 28,
             start_length: 300,
             line_type: 1
           },
           {
             id: 1,
-            name: "ZY01",
+            name: "R",
             start_flag: 30,
             start_length: 300,
             line_type: 2
           },
           {
             id: 1,
-            name: "ZY01",
+            name: "R",
             start_flag: 20,
             start_length: 300,
             line_type: 2
@@ -402,9 +402,7 @@ export default {
               let startLineX = (total - lineTypeMinMileage) * every;
               context.drawImage(imgcar, startLineX, 181, 36, 36);
               //DK
-              let codes =
-                jsonCar[i].name +
-                " [ DK" +
+              let codes =" [ ZDK" +
                 jsonCar[i].start_flag +
                 " +" +
                 jsonCar[i].start_length +
@@ -418,9 +416,7 @@ export default {
               let startLineX = (total - lineTypeMinMileage) * every;
               context.drawImage(imgcar, startLineX, 282, 36, 36);
               //DK
-              let codes =
-                jsonCar[i].name +
-                " [ DK" +
+              let codes =" [ YDK" +
                 jsonCar[i].start_flag +
                 " +" +
                 jsonCar[i].start_length +
@@ -432,8 +428,8 @@ export default {
       }
       //绘制请点
       function drawAxesApply(jsonData) {
-        let json1 = jsonData;
-        let json = [
+        let json = jsonData;
+        let json1 = [
           {
             line_type: 1,
             number: "A4-2-007-1",

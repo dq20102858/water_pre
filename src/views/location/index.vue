@@ -127,7 +127,7 @@
               </template>
             </el-table-column>
             <el-table-column prop="time_length"  label="在线时长"></el-table-column>
-            <el-table-column prop="num" label="出入场次数查询"></el-table-column>
+            <el-table-column prop="create_time" label="入场时间"></el-table-column>
           </el-table>
           <div class="app-pagination">
             <el-pagination

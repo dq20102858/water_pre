@@ -22,7 +22,13 @@
               <el-button type="primary" icon="el-icon-plus" @click="goAdd">添加桥</el-button>
             </el-form-item>
             <div class="el-serach">
-              <el-input v-model="searchName" autocomplete="off"  maxlength="30" placeholder="请输入名称查询" clearable></el-input>
+              <el-input
+                v-model="searchName"
+                autocomplete="off"
+                maxlength="30"
+                placeholder="请输入名称查询"
+                clearable
+              ></el-input>
               <el-button @click="searchEvent">查询</el-button>
             </div>
           </el-form>
@@ -30,10 +36,12 @@
         <div class="app-table">
           <el-table :data="dataList">
             <el-table-column label="序号">
-              <template scope="scope"><span>{{scope.$index+(page_cur - 1) * page_size + 1}} </span></template>
-           </el-table-column>
+              <template scope="scope">
+                <span>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
+              </template>
+            </el-table-column>
             <el-table-column prop="name" label="名称"></el-table-column>
-              <el-table-column prop="line" label="线别"></el-table-column>
+            <el-table-column prop="line" label="线别"></el-table-column>
             <el-table-column prop="position" label="起始里程">
               <template slot-scope="scope">
                 <b>DK</b>
@@ -160,7 +168,7 @@ export default {
     return {
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
-      formData: { },
+      formData: {},
       formRules: {
         name: [
           {
@@ -169,7 +177,11 @@ export default {
             trigger: "blur"
           },
           { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
-           { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
+          }
         ],
         line_type: [
           { required: true, message: "请选择线别", trigger: "change" }
@@ -235,8 +247,10 @@ export default {
       lineTypeList: []
     };
   },
-    mounted() {
-    document.querySelector("#app-menu-items #menu_set") .classList.add("is-active");
+  mounted() {
+    document
+      .querySelector("#app-menu-items #menu_set")
+      .classList.add("is-active");
   },
   created() {
     this.getLineTypeLists();
@@ -253,7 +267,7 @@ export default {
         params: {
           page,
           name,
-           road_type
+          road_type
         }
       }).then(res => {
         let data = res.data;
@@ -289,7 +303,15 @@ export default {
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
-          this.lineTypeList = data.data;
+          let lineJson = data.data;
+          var newArr = new Array();
+          for (var i = 0; i < lineJson.length; i++) {
+            var j = lineJson[i];
+            if (j.id != 3 && j.id != 4) {
+              newArr.push(j);
+            }
+          }
+          this.lineTypeList = newArr;
         }
       });
     },
@@ -308,7 +330,7 @@ export default {
       this.formData = {};
       this.diaLogTitle = "添加信息";
       this.diaLogFormVisible = true;
-       this.$nextTick(() => {
+      this.$nextTick(() => {
         this.$refs["formRules"].clearValidate();
       });
       this.lineTypeDes = "";
@@ -318,10 +340,12 @@ export default {
       this.$refs["formRules"].validate(valid => {
         if (valid) {
           let data = that.formData;
-          this.formData.road_type=1;
+          this.formData.road_type = 1;
           // //里程判断
-          let startTotal = parseInt(data.start_flag * 1000) +  parseInt(data.start_length);
-          let endTotal = parseInt(data.end_flag * 1000) +  parseInt(data.end_length);
+          let startTotal =
+            parseInt(data.start_flag * 1000) + parseInt(data.start_length);
+          let endTotal =
+            parseInt(data.end_flag * 1000) + parseInt(data.end_length);
           let lineStartTotal = that.lineTypeStart * 1000;
           let lineEndTotal = that.lineTypeEnd * 1000;
           if (parseInt(startTotal) < parseInt(lineStartTotal)) {
@@ -332,7 +356,7 @@ export default {
             this.$message.error("输入的结束里程不在里程范围内");
             return false;
           }
-             if (parseInt(endTotal) < parseInt(startTotal)) {
+          if (parseInt(endTotal) < parseInt(startTotal)) {
             this.$message.error("输入的结束里程不能小于结束里程");
             return false;
           }
@@ -361,7 +385,7 @@ export default {
     goEdit(id) {
       this.diaLogTitle = "修改信息";
       this.diaLogFormVisible = true;
-       this.$nextTick(() => {
+      this.$nextTick(() => {
         this.$refs["formRules"].clearValidate();
       });
       this.request({
@@ -386,24 +410,26 @@ export default {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
-        ,customClass:"el-message-box-new"
-      }).then(() => {
-        this.request({
-          url: "/search/deleteRoadDevice",
-          method: "post",
-          data: { id: id }
-        }).then(res => {
-          let data = res.data;
-          if (data.status == 1) {
-            this.$message({
-              type: "success",
-              message: "删除成功！"
-            });
-            this.getDataList();
-          }
-        });
-      }).catch(()=>{});
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/search/deleteRoadDevice",
+            method: "post",
+            data: { id: id }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "删除成功！"
+              });
+              this.getDataList();
+            }
+          });
+        })
+        .catch(() => {});
     }
     //
   }
@@ -462,6 +488,10 @@ export default {
 .el-form-item-inlines .el-form-item {
   margin-bottom: 1px !important;
 }
-.bridge-errora .el-form-item__error{ padding-left: 23px;}
-.bridge-errorb .el-form-item__error{padding-left: 12px;}
+.bridge-errora .el-form-item__error {
+  padding-left: 23px;
+}
+.bridge-errorb .el-form-item__error {
+  padding-left: 12px;
+}
 </style>
