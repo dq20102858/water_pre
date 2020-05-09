@@ -10,7 +10,7 @@
     <div class="app-page">
       <div class="app-page-container">
         <div class="app-page-peple">
-          <div class="title">无锡地铁三号线<span>当日人数：0人</span><span>在线人数：0</span> </div>
+          <div class="title">无锡地铁三号线<span>当日人数：{{dataInfo.oneline_num}}人</span><span>在线人数：{{dataInfo.all_num}}人</span> </div>
           <table>
             <thead>
               <th>公司名称</th>
@@ -106,6 +106,7 @@ export default {
       page_size: 20,
       page_total: 0,
       dataList: [],
+      dataInfo: [],
       getLocomotiveList: []
     };
   },
@@ -137,6 +138,7 @@ export default {
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
+          this.dataInfo=data.data;
           this.dataList = data.data.data;
           this.page_cur = parseInt(data.data.current_page);
           this.page_items = data.data.total;

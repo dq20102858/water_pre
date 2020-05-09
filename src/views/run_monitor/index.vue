@@ -919,8 +919,7 @@ export default {
           this.locoList.map(item => {
             this.select_loco_type.push(item.id);
           });
-          this.getChart();
-
+          //this.getChart();
           this.$set(this.formData, "out_business_loco", this.locoList[0]["id"]);
           this.$set(
             this.formData,
@@ -941,7 +940,7 @@ export default {
           this.lineTypeList.map(item => {
             this.select_line_type.push(item.id);
           });
-          //this.getChart();
+          this.getChart();
           this.$set(this.formData, "out_line_type", this.lineTypeList[0]["id"]);
           this.$set(
             this.formData,
@@ -1175,7 +1174,7 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           if (data.data.length > 0) {
-            this.diaLogTitleEdit = "修改计划图";
+            this.diaLogTitleEdit = "日班实际图";
             this.diaLogFormEditVisible = true;
             this.getPlanNumbers(); //日班计划列表
             this.getUserLists(); //记录人

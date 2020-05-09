@@ -93,7 +93,7 @@
           </el-form>
         </div>
         <div class="app-table">
-          <el-table :data="dataList" empty-text="无近七日内安全管理事件">
+          <el-table :data="dataList" :empty-text="dataListEmptyText">
             <el-table-column prop="id" label="序号"></el-table-column>
             <el-table-column prop="title" label="事件名称"></el-table-column>
             <el-table-column prop="address" label="事件地址" show-overflow-tooltip></el-table-column>
@@ -381,6 +381,7 @@ export default {
       },
       uploadAction: this.hostURL + "/upload/uploadFile",
       dataList: [],
+      dataListEmptyText:"无近七日内安全管理事件",
       companyList: [],
       trainList: [],
       dangerTypeList: [],
@@ -549,27 +550,11 @@ export default {
       this.pageChange(this.page_total);
     },
     pageSearch() {
+      this.dataListEmptyText="暂无数据";
       this.page_cur = 1;
       this.getDataList();
       this.goDetail(0);
-      // let start_times = this.searchForm.start_time;
-      // let end_times = this.searchForm.end_time;
-      // if (start_times != null) {
-      //   if (end_times == null) {
-      //     this.$message({
-      //       message: "请选择完整的时间段",
-      //       type: "warning"
-      //     });
-      //   }
-      //   else
-      //   {
 
-      //   }
-      // } else {
-      //   this.page_cur = 1;
-      //   this.getDataList();
-      //   this.goDetail(0);
-      // }
     },
     resetSerach() {
       (this.searchForm = {
