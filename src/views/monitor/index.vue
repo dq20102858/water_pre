@@ -1,40 +1,36 @@
 <template>
   <div id="progress">
     <div class="progress">
-        <div class="suofang">
-        <router-link to="/monitor">放大</router-link>
-        <router-link to="/monitor/indexmini">缩小</router-link>
-      </div>
-      <div class="station-top">
-        <div class="startend">
-          <div class="sleft">
-            {{firstStation}}方向
-            <i class="line-a"></i>
-          </div>
-          <div class="scenter">
-            <div class="stations">
-              <i class="el-icon-arrow-left" @click="stationLeftMove"></i>
-              <div class="item" :style="{width:scrollwidth  + 'px'}">
-                <ul
-                  :style="{width: stationList.length * 100 + 'px','margin-left': wdpx * 100 + 'px'}"
-                >
-                  <li
-                    @click="scrollPosition(item.start_flag,item.start_length)"
-                    v-for="item in stationList"
-                    :key="item.id"
-                  >{{item.name}}</li>
-                </ul>
-              </div>
-              <i class="el-icon-arrow-right" @click="stationRightMove"></i>
+      <div class="starte-top">
+        <div class="sleft">
+          {{firstStation}}方向
+          <i class="line-a"></i>
+        </div>
+        <div class="scenter">
+          <div class="stations">
+            <i class="el-icon-arrow-left" @click="stationLeftMove"></i>
+            <div class="item" :style="{width:scrollwidth  + 'px'}">
+              <ul
+                :style="{width: stationList.length * 100 + 'px','margin-left': wdpx * 100 + 'px'}"
+              >
+                <li
+                  @click="scrollPosition(item.start_flag,item.start_length)"
+                  v-for="item in stationList"
+                  :key="item.id"
+                >{{item.name}}</li>
+              </ul>
             </div>
-          </div>
-          <div class="sright">
-            {{lastStation}}方向
-            <i class="line-b"></i>
+            <i class="el-icon-arrow-right" @click="stationRightMove"></i>
           </div>
         </div>
+        <div class="sright">
+          {{lastStation}}方向
+          <i class="line-b"></i>
+        </div>
       </div>
-    
+      <div class="chkleft">
+        <router-link to="/monitor/indexmini" class="rlink">缩小</router-link>
+      </div>
       <div class="main-canvas">
         <div class="group-canvas scrollbar">
           <canvas id="mycanvas" height="680" ref="mycanvas">
@@ -42,40 +38,30 @@
           </canvas>
         </div>
       </div>
-      <div class="progresslist" v-if="this.progressCheckValue !=''">
-        <span class="namess">施工进度：</span>
-        <el-radio-group v-model="progressCheckValue" @change="progressCheckSelect">
-          <el-radio v-for="item in progressList" :key="item.name" :label="item.name">{{item.name}}</el-radio>
-        </el-radio-group>
-      </div>
-      <div class="stations-select">
+      <div class="check-list">
         <el-checkbox
           class="bridgechk"
           v-model="bridgeCheckValue"
           @change="bridgeCheckSelect"
           label="桥"
-          border
         ></el-checkbox>
         <el-checkbox
           class="tunnelchk"
           v-model="tunnelCheckValue"
           @change="tunnelCheckSelect"
           label="隧道"
-          border
         ></el-checkbox>
         <el-checkbox
           class="speedchk"
           v-model="speedCheckValue"
           @change="speedCheckSelect"
           label="限速区"
-          border
         ></el-checkbox>
         <el-checkbox
           class="alertchk"
           v-model="alertCheckValue"
           @change="alertCheckSelect"
           label="防区"
-          border
         ></el-checkbox>
         <!-- <el-checkbox v-model="checked5" label="道岔" border></el-checkbox> -->
         <el-checkbox
@@ -83,15 +69,14 @@
           v-model="slopeCheckValue"
           @change="slopeCheckSelect"
           label="坡度"
-          border
         ></el-checkbox>
-        <el-checkbox
-          class="daocchk"
-          v-model="daocCheckValue"
-          @change="daocCheckSelect"
-          label="道岔"
-          border
-        ></el-checkbox>
+        <el-checkbox class="daocchk" v-model="daocCheckValue" @change="daocCheckSelect" label="道岔"></el-checkbox>
+      </div>
+      <div class="progresslist" v-if="this.progressCheckValue !=''">
+        <span class="namess">施工进度：</span>
+        <el-radio-group v-model="progressCheckValue" @change="progressCheckSelect">
+          <el-radio v-for="item in progressList" :key="item.name" :label="item.name">{{item.name}}</el-radio>
+        </el-radio-group>
       </div>
     </div>
   </div>
@@ -177,7 +162,7 @@ export default {
           //======站点
           this.stationList = data.data.stations;
           let json = data.data.stations;
-          this.scrollwidth = document.documentElement.clientWidth - 530;
+          this.scrollwidth = document.documentElement.clientWidth - 510;
           console.log(this.scrollwidth);
           //请点
           this.applyList = data.data.apply_lists;
@@ -527,9 +512,9 @@ export default {
           let centerX = (endX + startX) / 2; //开始结束平均值
 
           context.lineWidth = 2;
-          context.fillStyle = "#fF5C75";
+          context.fillStyle = "#9acc1b";
           context.font = "12px Microsoft Yahei";
-          context.strokeStyle = "#fF5C75";
+          context.strokeStyle = "#9acc1b";
           let desc = json[i].name + " 共" + betweenMeters + "米";
           let codes =
             "DK" +
@@ -620,9 +605,9 @@ export default {
             json[i].end_length;
 
           context.lineWidth = 2;
-          context.fillStyle = "#18DBFF";
+          context.fillStyle = "#25bfdb";
           context.font = "12px Microsoft Yahei";
-          context.strokeStyle = "#18DBFF";
+          context.strokeStyle = "#25bfdb";
           context.beginPath();
           if (json[i].line_type == 1) {
             //画垂直线  矩形
@@ -675,10 +660,6 @@ export default {
             parseInt(json[i].start_length);
           let end =
             parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
-          //console.log("start：" + start + " end：" + end);
-          // 计算当前站点的x轴坐标
-
-          //console.log("startX：" + startX + " endX：" + endX);
           context.strokeStyle = "#ff9900";
           context.lineWidth = 10;
           context.fillStyle = "#ff9900";
@@ -689,39 +670,48 @@ export default {
           if (json[i].line_type == 1) {
             let startX = (start - leftLineMinMileage) * everys;
             let endX = (end - leftLineMinMileage) * everys;
+            let centerX = (endX + startX) / 2; //开始结束平均值
+            context.fillRect(centerX + offsetX, axis_LeftLine.y, 2, 30);
             context.moveTo(startX + offsetX, axis_LeftLine.y);
             context.lineTo(endX + offsetX, axis_LeftLine.y);
-            context.fillText(desc, startX + 152, axis_LeftLine.y + 35);
+            context.fillText(desc, centerX + offsetX, axis_LeftLine.y + 35);
           } else if (json[i].line_type == 2) {
             let startX = (start - leftLineMinMileage) * everys;
             let endX = (end - leftLineMinMileage) * everys;
+            let centerX = (endX + startX) / 2;
+
             if (start == 0) {
               startX = 0;
               endX = end * everys;
             }
+            context.fillRect(centerX + offsetX, axis_LeftLine_Two.y, 2, 30);
             context.moveTo(startX + offsetX, axis_LeftLine_Two.y);
             context.lineTo(endX + offsetX, axis_LeftLine_Two.y);
-            context.fillText(desc, startX + 152, axis_LeftLine_Two.y + 35);
+            context.fillText(desc, centerX + offsetX, axis_LeftLine_Two.y + 35);
           } else if (json[i].line_type == 3) {
             let startX = (start - enterLineMinMileage) * everys;
             let endX = (end - enterLineMinMileage) * everys;
+            let centerX = (endX + startX) / 2;
             if (start == 0) {
               startX = 0;
               endX = end * everys;
             }
+            context.fillRect(centerX + offsetX, axis_OutLine.y, 2, 30);
             context.moveTo(startX + offsetX, axis_OutLine.y);
             context.lineTo(endX + offsetX, axis_OutLine.y);
-            context.fillText(desc, startX + 152, axis_OutLine.y + 35);
+            context.fillText(desc, centerX + offsetX, axis_OutLine.y + 35);
           } else if (json[i].line_type == 4) {
             let startX = (start - outLineMinMileage) * everys;
             let endX = (end - outLineMinMileage) * everys;
+            let centerX = (endX + startX) / 2;
             if (start == 0) {
               startX = 0;
               endX = end * everys;
             }
+            context.fillRect(centerX + offsetX, axis_OutLine_Two.y, 2, 30);
             context.moveTo(startX + offsetX, axis_OutLine_Two.y);
             context.lineTo(endX + offsetX, axis_OutLine_Two.y);
-            context.fillText(desc, startX + 152, axis_OutLine_Two.y + 35);
+            context.fillText(desc, centerX + offsetX, axis_OutLine_Two.y + 35);
           }
           context.stroke();
         }
@@ -735,9 +725,9 @@ export default {
             parseInt(json[i].start_length);
           let end =
             parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
-          context.strokeStyle = "#db2fdb";
+          context.strokeStyle = "#df4b4b";
           context.lineWidth = 10;
-          context.fillStyle = "#db2fdb";
+          context.fillStyle = "#df4b4b";
           context.font = "12px Microsoft Yahei";
           let desc =
             "防区 DK" +
@@ -753,15 +743,15 @@ export default {
             let startX = (start - leftLineMinMileage) * everys;
             let endX = (end - leftLineMinMileage) * everys;
             let centerX = (endX + startX) / 2; //开始结束平均值
-            //画水平直线
+            context.fillRect(centerX + offsetX, axis_LeftLine.y, 2, 30);
             context.moveTo(startX + offsetX, axis_LeftLine.y);
             context.lineTo(endX + offsetX, axis_LeftLine.y);
-            //文字
             context.fillText(desc, centerX + 100, axis_LeftLine.y + 35);
           } else if (json[i].line_type == 2) {
             let startX = (start - leftLineMinMileage) * everys;
             let endX = (end - leftLineMinMileage) * everys;
-            let centerX = (endX + startX) / 2; //开始结束平均值
+            let centerX = (endX + startX) / 2;
+            context.fillRect(centerX + offsetX, axis_LeftLine_Two.y, 2, 30);
             context.moveTo(startX + offsetX, axis_LeftLine_Two.y);
             context.lineTo(endX + offsetX, axis_LeftLine_Two.y);
             context.fillText(desc, centerX + 100, axis_LeftLine_Two.y + 35);
@@ -773,6 +763,7 @@ export default {
               startX = 0;
               endX = end * everys;
             }
+            context.fillRect(centerX + offsetX, axis_OutLine.y, 2, 30);
             context.moveTo(startX + offsetX, axis_OutLine.y);
             context.lineTo(endX + offsetX, axis_OutLine.y);
             context.fillText(desc, centerX + 100, axis_OutLine.y + 35);
@@ -784,6 +775,7 @@ export default {
               startX = 0;
               endX = end * everys;
             }
+            context.fillRect(centerX + offsetX, axis_OutLine_Two.y, 2, 30);
             context.moveTo(startX + offsetX, axis_OutLine_Two.y);
             context.lineTo(endX + offsetX, axis_OutLine_Two.y);
             context.fillText(desc, centerX + 100, axis_OutLine_Two.y + 35);
@@ -808,7 +800,7 @@ export default {
 
           context.lineWidth = 1;
           context.strokeStyle = "#fff";
-          context.fillStyle = "#8e7cc3";
+          context.fillStyle = "#6E7B8B";
           context.font = "12px Microsoft Yahei";
           let slope_height = parseFloat(json[i].height);
           let slope_length = parseFloat(json[i].length);
@@ -1155,7 +1147,7 @@ export default {
       if (this.progressCheckValue) {
         drawProgressAxis(this.progressListItem);
       }
-           //限速区
+      //限速区
       if (this.speedCheckValue) {
         drawSpeedAxis(this.speedList);
       }
@@ -1246,6 +1238,10 @@ export default {
     window.addEventListener("resize", () => {
       this.scrollwidth = document.documentElement.clientWidth - 640;
     });
+    // let heightPro = document.querySelectorAll(".progress");
+    // heightPro.style.height = document.documentElement.clientHeight;
+
+    // console.log("ddd:"+heightPro.height);
   }
 };
 </script>
@@ -1261,31 +1257,14 @@ export default {
   background: #081c33;
 }
 
-.main-canvas {
-  background: #081c33;
-  padding-top: 20px;
-}
-.group-canvas {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  height: 680px;
-  padding-right: 100px;
-}
-.suofang { padding: 30px  0 10px 30px;
-}
-.suofang a {
-  color: #fff; margin-right: 10px;
-  font-size: 18px;
-}
-.station-top {
+/*starte-top*/
+.starte-top {
+  padding-top: 30px;
+  overflow: hidden;
   margin: 0 30px;
 }
-.startend {
-  padding-top: 10px;
-  overflow: hidden;
-}
-.startend .sleft,
-.startend .sright {
+.starte-top .sleft,
+.starte-top .sright {
   background: #4b6eca;
   color: #fff;
   padding: 10px 15px 15px 15px;
@@ -1293,22 +1272,22 @@ export default {
   font-size: 16px;
   font-weight: 700;
 }
-.startend .sleft {
+.starte-top .sleft {
   float: left;
   margin-right: 20px;
 }
 
-.startend .sright {
+.starte-top .sright {
   float: right;
 }
-.startend .line-a {
+.starte-top .line-a {
   position: relative;
   background: #fff;
   height: 1px;
   display: block;
   margin-top: 6px;
 }
-.startend .line-a::before {
+.starte-top .line-a::before {
   content: "";
   position: absolute;
   left: 0;
@@ -1318,14 +1297,14 @@ export default {
   border-bottom: 1px solid #fff;
   transform: rotateZ(45deg);
 }
-.startend .line-b {
+.starte-top .line-b {
   position: relative;
   background: #fff;
   height: 1px;
   display: block;
   margin-top: 6px;
 }
-.startend .line-b::before {
+.starte-top .line-b::before {
   content: "";
   position: absolute;
   right: -1px;
@@ -1335,16 +1314,16 @@ export default {
   border-bottom: 1px solid #fff;
   transform: rotateZ(135deg);
 }
-.stations {
+.starte-top .stations {
   float: left;
 }
-.stations .item {
+.starte-top .stations .item {
   width: 500px;
   overflow: hidden;
   display: inline-block;
   white-space: nowrap;
 }
-.stations ul li {
+.starte-top .stations ul li {
   display: inline-block;
   background: #4b6eca;
   color: #fff;
@@ -1352,10 +1331,10 @@ export default {
   margin-left: 10px;
   cursor: pointer;
 }
-.stations ul li:hover {
+.starte-top .stations ul li:hover {
   background: #2359e2;
 }
-.stations i {
+.starte-top .stations i {
   display: inline-block;
   background: #3062e2;
   color: #fff;
@@ -1364,36 +1343,48 @@ export default {
   vertical-align: top;
   cursor: pointer;
 }
-.stations i:hover {
+.starte-top .stations i:hover {
   background: #2359e2;
 }
-.stations-select {
-  margin-top: 30px;
-  padding-bottom: 30px;
+/*check-list*/
+.check-list {
+  margin: 20px 30px 0 30px;
   text-align: center;
 }
-.stations-select .el-checkbox__label {
+.chkleft {
+  margin: 10px 30px 0 30px;
+}
+.chkleft .rlink {
   color: #fff;
+  margin-right: 20px;
+  font-size: 16px;
+}
+.chkright {
+  float: right;
+}
+.check-list .el-checkbox__label {
+  color: #fff;
+  font-size: 16px;
 }
 .bridgechk.is-checked {
-  border-color: #ff5c75 !important;
+  border-color: #9acc1b !important;
 }
 .bridgechk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #ff5c75;
-  border-color: #ff5c75;
+  background-color: #9acc1b;
+  border-color: #9acc1b;
 }
 .bridgechk.is-checked .el-checkbox__label {
-  color: #ff5c75;
+  color: #9acc1b;
 }
 .tunnelchk.is-checked {
-  border-color: #18dbff !important;
+  border-color: #25bfdb !important;
 }
 .tunnelchk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #18dbff;
-  border-color: #18dbff;
+  background-color: #25bfdb;
+  border-color: #25bfdb;
 }
 .tunnelchk.is-checked .el-checkbox__label {
-  color: #18dbff;
+  color: #25bfdb;
 }
 .speedchk.is-checked {
   border-color: #ff9900 !important;
@@ -1406,24 +1397,24 @@ export default {
   color: #ff9900;
 }
 .slopechk.is-checked {
-  border-color: #8e7cc3 !important;
+  border-color: #6e7b8b !important;
 }
 .slopechk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #8e7cc3;
-  border-color: #8e7cc3;
+  background-color: #6e7b8b;
+  border-color: #6e7b8b;
 }
 .slopechk.is-checked .el-checkbox__label {
-  color: #8e7cc3;
+  color: #6e7b8b;
 }
 .alertchk.is-checked {
-  border-color: #db2fdb !important;
+  border-color: #df4b4b !important;
 }
 .alertchk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #db2fdb;
-  border-color: #db2fdb;
+  background-color: #df4b4b;
+  border-color: #df4b4b;
 }
 .alertchk.is-checked .el-checkbox__label {
-  color: #db2fdb;
+  color: #df4b4b;
 }
 .daocchk.is-checked {
   border-color: #107af7 !important;
@@ -1435,16 +1426,37 @@ export default {
 .daocchk.is-checked .el-checkbox__label {
   color: #107af7;
 }
+/*canvas*/
+.main-canvas {
+  background: #081c33;
+  margin: 0 10px;
+}
+.group-canvas {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 680px;
+  padding-right: 20px;
+}
+
 .progresslist {
   padding-top: 20px;
   padding-left: 30px;
   color: #fff;
+  min-height: 100px;
 }
 .progresslist .namess {
   padding-bottom: 10px;
-  display: block;
+  display: inline-block;
 }
 .progresslist .el-radio__label {
   color: #fff;
+}
+.suofang {
+  padding: 30px 0 10px 30px;
+}
+.suofang a {
+  color: #fff;
+  margin-right: 10px;
+  font-size: 18px;
 }
 </style>

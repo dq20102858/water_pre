@@ -54,7 +54,7 @@
           </div>
           <div class="chklist">
             <el-checkbox label="计划图" @change="selectTypePlanChart" checked></el-checkbox>
-            <el-checkbox label="实际图" @change="selectTypeNowChart" checked></el-checkbox>
+            <el-checkbox class="chkshiji" label="实际图" @change="selectTypeNowChart" checked></el-checkbox>
             <!--    <el-checkbox label="轨迹图"></el-checkbox>
             <el-checkbox label="批注"></el-checkbox>
             <el-checkbox label="区间封锁"></el-checkbox>
@@ -264,7 +264,7 @@
             </el-form-item>
           </div>
           <div class="el-form-item-block">
-            <el-form-item label="工点：" label-width="100px"  prop="start_station">
+            <el-form-item label="工点：" label-width="100px" prop="start_station">
               <el-select
                 v-model="formData.start_station"
                 placeholder="请选择"
@@ -302,7 +302,7 @@
                   maxlength="3"
                 ></el-input>
               </el-form-item>
-              <el-form-item prop="start_length"   class="lengtherror">
+              <el-form-item prop="start_length" class="lengtherror">
                 <b>+</b>
                 <el-input
                   v-model="formData.start_length"
@@ -311,7 +311,7 @@
                   maxlength="3"
                 ></el-input>
               </el-form-item>
-              <el-form-item prop="start_flag"   class="lengtherror">
+              <el-form-item prop="start_flag" class="lengtherror">
                 <b style="width:100px">至</b>
                 <el-input
                   v-model="formData.end_flag"
@@ -550,7 +550,11 @@ export default {
             trigger: "blur"
           },
           { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
-           { pattern: /(^\S+).*(\S+$)/, message: "开始和结尾不能有空格", trigger: "blur" }
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
+          }
         ],
         start_time: [
           {
@@ -566,14 +570,14 @@ export default {
             trigger: "change"
           }
         ],
-           start_station: [
+        start_station: [
           {
             required: true,
             message: "请选择开始站点",
             trigger: "change"
           }
         ],
-           end_station: [
+        end_station: [
           {
             required: true,
             message: "请选择结束站点",
@@ -703,37 +707,10 @@ export default {
               }
             }
           });
-          //划线===============
-          //debugger
+          //划线  计划线 实际线
           let dataTypeArr = resdata.data.plan;
-          // let dataTypeArr3 = [
-          //   {
-          //     lists: [
-          //       { name: "2020-04-09 20:00:00", value: 21.003 },
-          //       { name: "2020-04-09 23:00:00", value: 32.9 }
-          //     ]
-          //   },
-          //   {
-          //     lists: [
-          //       { name: "2020-04-09 19:00:00", value: 14.003 },
-          //       { name: "2020-04-09 20:00:00", value: 16.9 }
-          //     ]
-          //   },
-          //   {
-          //     lists: [
-          //       { name: "2020-04-09 22:00:00", value: 24.003 },
-          //       { name: "2020-04-09 23:00:00", value: 32.9 }
-          //     ]
-          //   },
-          //   {
-          //     lists: [
-          //       { name: "2020-04-08 20:00:00", value: 18.003 },
-          //       { name: "2020-04-09 0:00:00", value: 22.9 }
-          //     ]
-          //   }
-          // ];
-          //计划线 实际线
           let typeData = [];
+          console.log(dataTypeArr);
           dataTypeArr.forEach((item, index) => {
             let start_flag_list = [];
             let end_flag_list = [];
@@ -758,14 +735,24 @@ export default {
                 parseFloat(item.true_end_length / 1000)
             );
             if (this.select_type_plan) {
+              let colors = "#0000ff";
+              if (item.line_type == 1) {
+                colors = "#0ccece";
+              } else if (item.line_type == 2) {
+                colors = "#0000ff";
+              } else if (item.line_type == 3) {
+                colors = "#9900ff";
+              } else {
+                colors = "#ff00ff";
+              }
               typeData.push({
-                color: "blue",
+                color: colors,
                 lists: [start_flag_list, end_flag_list]
               });
             }
             if (this.select_type_now) {
               typeData.push({
-                color: "green",
+                color: "#2dca2d",
                 lists: [true_start_flag_list, true_end_flag_list]
               });
             }
@@ -954,7 +941,7 @@ export default {
           this.lineTypeList.map(item => {
             this.select_line_type.push(item.id);
           });
-          this.getChart();
+          //this.getChart();
           this.$set(this.formData, "out_line_type", this.lineTypeList[0]["id"]);
           this.$set(
             this.formData,
@@ -1442,16 +1429,58 @@ export default {
 .istextarea .el-textarea__inner {
   width: 825px;
 }
-.lengtherror .el-form-item__error{padding-left: 20px;}
+.lengtherror .el-form-item__error {
+  padding-left: 20px;
+}
 
-.chlone .el-checkbox:nth-child(1) .el-checkbox__label{color:#0000ff}
-.chlone .el-checkbox:nth-child(2) .el-checkbox__label{color:#00c000}
-.chlone .el-checkbox:nth-child(3) .el-checkbox__label{color:#008000}
-.chlone .el-checkbox:nth-child(4) .el-checkbox__label{color:#000040}
+.sidebox .el-checkbox__label {
+  min-width: 80px !important;
+}
+.chlone .el-checkbox:nth-child(1) .el-checkbox__label {
+  color: #0ccece;
+}
+.chlone .el-checkbox:nth-child(1)  .is-checked .el-checkbox__inner{
+background-color: #0ccece;
+    border-color: #0ccece;
+}
+.chlone .el-checkbox:nth-child(2) .el-checkbox__label {
+  color: #0000ff;
+}
+.chlone .el-checkbox:nth-child(2)  .is-checked .el-checkbox__inner{
+background-color: #0000ff;
+    border-color: #0000ff;
+}
+.chlone .el-checkbox:nth-child(3) .el-checkbox__label {
+  color: #9900ff;
+}.chlone .el-checkbox:nth-child(3)  .is-checked .el-checkbox__inner{
+background-color: #9900ff;
+    border-color: #9900ff;
+}
+.chlone .el-checkbox:nth-child(4) .el-checkbox__label {
+  color: #ff00ff;
+}.chlone .el-checkbox:nth-child(4)  .is-checked .el-checkbox__inner{
+background-color: #ff00ff;
+    border-color: #ff00ff;
+}
 
-.chltwo .el-checkbox:nth-child(1) .el-checkbox__label{color:#800000}
-.chltwo .el-checkbox:nth-child(2) .el-checkbox__label{color:#008000}
-.chltwo .el-checkbox:nth-child(3) .el-checkbox__label{color:#000080}
-.chltwo .el-checkbox:nth-child(4) .el-checkbox__label{color:#808000}
-
+.chltwo .el-checkbox .el-checkbox__label {
+  color: #f6b26b;
+}
+.chltwo  .el-checkbox__inner{
+   border-color: #f6b26b;
+}
+.chltwo  .is-checked .el-checkbox__inner{
+background-color: #f6b26b;
+    border-color: #f6b26b;
+}
+.chkshiji .el-checkbox__label {
+  color: #2dca2d !important;
+}
+.chkshiji  .el-checkbox__inner{
+   border-color: #2dca2d;
+}
+.chkshiji  .is-checked .el-checkbox__inner{
+background-color: #2dca2d;
+    border-color: #2dca2d;
+}
 </style>

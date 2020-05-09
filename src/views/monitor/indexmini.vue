@@ -1,10 +1,9 @@
 <template>
   <div id="progress" ref="proWrapper" :style="conheight">
     <div class="progress">
-      <div class="suofang">
-        <router-link to="/monitor">放大</router-link>
-        <router-link to="/monitor/indexmini">缩小</router-link>
-      </div>
+       <div class="chkleft">
+        <router-link to="/monitor/" class="rlink">返回</router-link>
+        </div>
 
       <div class="station-top">
         <!-- <div class="startend">
