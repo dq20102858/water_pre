@@ -35,7 +35,6 @@
               </template>
             </el-table-column>
             <el-table-column prop="name" label="名称"></el-table-column>
-            <el-table-column prop="sort" label="排序"></el-table-column>
             <el-table-column prop="position" label="位置">
               <template slot-scope="scope">
                 <b>DK</b>
@@ -127,7 +126,7 @@
                 <el-option label="越行站" :value="3"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="排序：" prop="sort">
+            <el-form-item label="排序：" prop="sort" style="display:none">
               <el-input v-model="formData.sort" autocomplete="off" maxlength="3" show-word-limit></el-input>
             </el-form-item>
             <div class="blank"></div>

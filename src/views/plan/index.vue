@@ -154,12 +154,12 @@
         <legend>计划列车信息</legend>
         <div>
           <table style="width: 100%">
-            <tr>
+            <!-- <tr>
               <td colspan="3">
                 <b>列车类型：</b>
                 {{dataListItem.car_type}}
               </td>
-            </tr>
+            </tr> -->
             <tr>
               <td>
                 <b>出发车次：</b>
@@ -167,15 +167,15 @@
               </td>
               <td>
                 <b>本务：</b>
-                {{dataListItem.out_business_loco}}
+                {{dataListItem.out_business_loco_name}}
               </td>
               <td>
                 <b>重连：</b>
-                {{dataListItem.out_reco}}
+                {{dataListItem.out_reco_name}}
               </td>
               <td>
                 <b>补机：</b>
-                {{dataListItem.out_supple}}
+                {{dataListItem.out_supple_name}}
               </td>
             </tr>
             <tr>
@@ -203,15 +203,15 @@
               </td>
               <td>
                 <b>本务：</b>
-                {{dataListItem.back_business_loco}}
+                {{dataListItem.back_business_loco_name}}
               </td>
               <td>
                 <b>重连：</b>
-                {{dataListItem.back_reco}}
+                {{dataListItem.back_reco_name}}
               </td>
               <td>
                 <b>补机：</b>
-                {{dataListItem.back_supple}}
+                {{dataListItem.back_supple_name}}
               </td>
             </tr>
             <tr>
@@ -260,10 +260,10 @@
             <tr>
               <td colspan="2">
                 <b>涉及站点：</b>
-                {{dataListItem.start_station}} - {{dataListItem.end_station}}
+                {{dataListItem.start_station_name}} - {{dataListItem.end_station_name}}
               </td>
               <td colspan="2">
-                <b class="blue">里程：</b>
+                <b>里程：</b>
                 DK{{parseFloat(dataListItem.start_flag)}}+{{parseFloat(dataListItem.start_length)}} ~ DK{{parseFloat(dataListItem.end_flag)}}+{{parseFloat(dataListItem.end_length)}}
               </td>
             </tr>

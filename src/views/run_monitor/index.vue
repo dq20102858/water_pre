@@ -1281,17 +1281,30 @@ export default {
             "start_length",
             parseFloat(item.start_length)
           );
-          //  this.formData.start_flag = parseFloat(item.start_flag);
-          //  this.formData.start_length = parseFloat(item.start_length);
+          this.$set(
+            this.formEditData,
+            "start_flag",
+            parseFloat(item.start_flag)
+          );
+          this.$set(
+            this.formEditData,
+            "start_length",
+            parseFloat(item.start_length)
+          );
         }
       });
     },
     changeEndStation(value) {
-      //alert(value);
       this.stationList.map(item => {
         if (item.id == value) {
           this.$set(this.formData, "end_flag", parseFloat(item.start_flag));
           this.$set(this.formData, "end_length", parseFloat(item.start_length));
+          this.$set(this.formEditData, "end_flag", parseFloat(item.start_flag));
+          this.$set(
+            this.formEditData,
+            "end_length",
+            parseFloat(item.start_length)
+          );
         }
       });
     },
@@ -1405,16 +1418,71 @@ export default {
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
+          this.formEditData = data.data;
           this.getMasterList(); //车长
           this.getdriverList(); //司机
           this.getStationList(); //车站
           this.getWorkTypeList(); //作业类型
-          this.changeWorkListItem(data.data.line_type);
-          this.formEditData = data.data;
+          
+          this.formEditData.date = this.formData.date;
+          if (data.data.out_reco == "0") {
+            this.formEditData.out_reco = "";
+          }
+
+          if (data.data.out_supple == "0") {
+            this.formEditData.out_supple = "";
+          }
+
+          if (data.data.back_reco == "0") {
+            this.formEditData.back_reco = "";
+          }
+
+          if (data.data.back_supple == "0") {
+            this.formEditData.back_supple = "";
+          }
+
+          this.formEditData.start_flag = parseFloat(data.data.start_flag);
+          this.formEditData.start_length = parseFloat(data.data.start_length);
+          this.formEditData.end_flag = parseFloat(data.data.end_flag);
+          this.formEditData.end_length = parseFloat(data.data.end_length);
+          this.formEditData.line_type = data.data.line_type.toString();
+          if (data.data.work_plan_id == "0") {
+            this.formEditData.work_plan_id = "";
+          }
+          if (data.data.item_id == "0") {
+            this.formEditData.item_id = "";
+          }
+          if (data.data.work_id == "0") {
+            this.formEditData.work_id = "";
+          }
           (this.formEditData.record_id =
             data.data.record_id == null
               ? this.formEditData.record_id
               : data.data.record_id),
+            (this.formEditData.true_start_time =
+              data.data.true_start_time == ""
+                ? data.data.start_time
+                : data.data.true_start_time),
+            (this.formEditData.true_end_time =
+              data.data.true_end_time == ""
+                ? data.data.end_time
+                : data.data.true_end_time),
+            (this.formEditData.true_start_flag =
+              data.data.true_start_flag == null
+                ? parseFloat(data.data.start_flag)
+                : parseFloat(data.data.true_start_flag)),
+            (this.formEditData.true_start_length =
+              data.data.true_start_length == null
+                ? parseFloat(data.data.start_length)
+                : parseFloat(data.data.true_start_length)),
+            (this.formEditData.true_end_flag =
+              data.data.true_end_flag == null
+                ? parseFloat(data.data.end_flag)
+                : parseFloat(data.data.true_end_flag)),
+            (this.formEditData.true_end_length =
+              data.data.true_end_length == null
+                ? parseFloat(data.data.end_length)
+                : parseFloat(data.data.true_end_length)),
             // this.formEditData = {
             //   id: this.numberId,
             //   number: data.data.number,
@@ -1478,7 +1546,6 @@ export default {
               this.numberId = this.planNumbersList[0]["id"];
             }
             this.getPlanDetail(this.numberId);
-
             // this.getPlanNumbers(); //日班计划列表
             this.getUserLists(); //记录人
           } else {
