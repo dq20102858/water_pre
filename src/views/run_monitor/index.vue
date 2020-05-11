@@ -89,13 +89,13 @@
         <el-form-item>
           <el-select v-model="formData.plan_type">
             <el-option label="行车和施工计划" :value="1"></el-option>
-            <el-option label="行车计划" :value="2"></el-option>
-            <el-option label="施工计划" :value="3"></el-option>
+            <!-- <el-option label="行车计划" :value="2"></el-option>
+            <el-option label="施工计划" :value="3"></el-option>-->
           </el-select>
         </el-form-item>
         <fieldset v-if="formData.plan_type!=3">
           <legend>列车信息</legend>
-          <el-form-item label="列车类型：" label-width="100px">
+          <el-form-item label="列车类型：" label-width="100px" style="display:none">
             <el-select v-model="formData.car_type" placeholder="请选择"></el-select>
           </el-form-item>
           <div class="el-form-item-block">
@@ -380,9 +380,9 @@
         <el-button type="primary" @click="addDayPlanDialog()">确定</el-button>
       </div>
     </el-dialog>
-
+    <!-- bj -->
     <el-dialog
-      width="780px"
+      width="998px"
       :close-on-click-modal="false"
       class="dialog-monitor"
       :title="this.diaLogTitleEdit"
@@ -409,6 +409,286 @@
           <el-select v-model="formEditData.record_id">
             <el-option v-for="item in userList" :key="item.id" :label="item.name" :value="item.id"></el-option>
           </el-select>
+        </el-form-item>
+        <fieldset v-if="formEditData.plan_type!=3">
+          <legend>列车信息</legend>
+          <el-form-item label="列车类型：" label-width="100px" style="display:none">
+            <el-select v-model="formEditData.car_type" placeholder="请选择"></el-select>
+          </el-form-item>
+          <div class="el-form-item-block">
+            <el-form-item label="出行车次：" label-width="100px">
+              <el-input v-model="formEditData.out_car" autocomplete="off" maxlength="20"></el-input>
+            </el-form-item>
+            <el-form-item label="本务：">
+              <el-select v-model="formEditData.out_business_loco">
+                <el-option
+                  v-for="item in locoList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="重联：">
+              <el-select v-model="formEditData.out_reco" placeholder="请选择">
+                <el-option
+                  v-for="item in locoList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="补机：">
+              <el-select v-model="formEditData.out_supple" placeholder="请选择">
+                <el-option
+                  v-for="item in locoList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </div>
+          <div class="el-form-item-block">
+            <el-form-item label="出线级别：" label-width="100px">
+              <el-select v-model="formEditData.out_line_type" placeholder="请选择">
+                <el-option
+                  v-for="item in lineTypeList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="车长：">
+              <el-select v-model="formEditData.out_master_id" placeholder="请选择">
+                <el-option
+                  v-for="item in masterList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="司机：">
+              <el-select v-model="formEditData.out_driver_id" placeholder="请选择">
+                <el-option
+                  v-for="item in driverList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="编组：">
+              <el-input v-model="formEditData.out_marshalling" autocomplete="off" maxlength="20"></el-input>
+            </el-form-item>
+          </div>
+          <div class="el-form-item-block">
+            <el-form-item label="返回车次：" label-width="100px">
+              <el-input v-model="formEditData.back_car" autocomplete="off" maxlength="20"></el-input>
+            </el-form-item>
+            <el-form-item label="本务：">
+              <el-select v-model="formEditData.back_business_loco" placeholder="请选择">
+                <el-option
+                  v-for="item in locoList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="重联：">
+              <el-select v-model="formEditData.back_reco" placeholder="请选择">
+                <el-option
+                  v-for="item in locoList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="补机：">
+              <el-select v-model="formEditData.back_supple" placeholder="请选择">
+                <el-option
+                  v-for="item in locoList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </div>
+          <div class="el-form-item-block">
+            <el-form-item label="返回级别：" label-width="100px">
+              <el-select v-model="formEditData.back_line_type" placeholder="请选择">
+                <el-option
+                  v-for="item in lineTypeList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="车长：">
+              <el-select v-model="formEditData.back_master_id" placeholder="请选择">
+                <el-option
+                  v-for="item in masterList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="司机：">
+              <el-select v-model="formEditData.back_driver_id" placeholder="请选择">
+                <el-option
+                  v-for="item in driverList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="编组：">
+              <el-input v-model="formEditData.back_marshalling" maxlength="20" autocomplete="off"></el-input>
+            </el-form-item>
+          </div>
+        </fieldset>
+        <!---2 -->
+        <fieldset v-if="formEditData.plan_type!=2">
+          <legend>施工信息</legend>
+          <div class="el-form-item-block">
+            <el-form-item label="开始时间：" label-width="100px" prop="start_time">
+              <el-date-picker
+                v-model="formEditData.start_time"
+                type="datetime"
+                format="yyyy-MM-dd HH:mm"
+                placeholder="选择时间"
+              ></el-date-picker>
+            </el-form-item>
+            <el-form-item label="结束时间：" prop="end_time">
+              <el-date-picker
+                v-model="formEditData.end_time"
+                type="datetime"
+                format="yyyy-MM-dd HH:mm"
+                placeholder="选择时间"
+              ></el-date-picker>
+            </el-form-item>
+            <el-form-item label="施工作业队：" label-width="100px">
+              <el-select v-model="formEditData.work_plan_id" placeholder="请选择"></el-select>
+            </el-form-item>
+          </div>
+          <div class="el-form-item-block">
+            <el-form-item label="工点：" label-width="100px" prop="start_station">
+              <el-select
+                v-model="formEditData.start_station"
+                placeholder="请选择"
+                @change="changeStartStation($event)"
+              >
+                <el-option
+                  v-for="item in stationList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <b style="line-height: 31px;">—</b>
+            <el-form-item prop="end_station">
+              <el-select
+                v-model="formEditData.end_station"
+                placeholder="请选择"
+                @change="changeEndStation($event)"
+              >
+                <el-option
+                  v-for="item in stationList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="里程：" class="el-form-item-inlines is-required">
+              <el-form-item prop="start_flag">
+                <el-input
+                  v-model="formEditData.start_flag"
+                  autocomplete="off"
+                  placeholder="公里"
+                  maxlength="3"
+                ></el-input>
+              </el-form-item>
+              <el-form-item prop="start_length" class="lengtherror">
+                <b>+</b>
+                <el-input
+                  v-model="formEditData.start_length"
+                  autocomplete="off"
+                  placeholder="米"
+                  maxlength="3"
+                ></el-input>
+              </el-form-item>
+              <el-form-item prop="start_flag" class="lengtherror">
+                <b style="width:100px">至</b>
+                <el-input
+                  v-model="formEditData.end_flag"
+                  autocomplete="off"
+                  placeholder="公里"
+                  maxlength="3"
+                ></el-input>
+              </el-form-item>
+              <el-form-item prop="end_length" class="lengtherror">
+                <b>+</b>
+                <el-input
+                  v-model="formEditData.end_length"
+                  autocomplete="off"
+                  placeholder="米"
+                  maxlength="3"
+                ></el-input>
+              </el-form-item>
+            </el-form-item>
+          </div>
+          <div class="el-form-item-block">
+            <el-form-item label="作业类型：" label-width="100px">
+              <el-select
+                v-model="formEditData.work_type"
+                placeholder="请选择"
+                @change="changeWorkListItem"
+              >
+                <el-option
+                  v-for="item in workTypeList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item class="danwei" label="线别：">
+              <el-select v-model="formEditData.line_type" placeholder="请选择">
+                <el-option
+                  v-for="item in workLineTypeList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="施工项目：">
+              <el-select v-model="formEditData.item_id" placeholder="请选择"></el-select>
+            </el-form-item>
+            <el-form-item label="工序：">
+              <el-select v-model="formEditData.work_id" placeholder="请选择"></el-select>
+            </el-form-item>
+          </div>
+        </fieldset>
+        <el-form-item class="istextarea" label="计划内容：" label-width="110px" prop="description">
+          <el-input
+            v-model="formEditData.description"
+            autocomplete="off"
+            type="textarea"
+            maxlength="50"
+            show-word-limit
+          ></el-input>
         </el-form-item>
         <fieldset>
           <legend>实际施工信息</legend>
@@ -995,8 +1275,14 @@ export default {
       //alert(value);
       this.stationList.map(item => {
         if (item.id == value) {
-          this.formData.start_flag = parseFloat(item.start_flag);
-          this.formData.start_length = parseFloat(item.start_length);
+          this.$set(this.formData, "start_flag", parseFloat(item.start_flag));
+          this.$set(
+            this.formData,
+            "start_length",
+            parseFloat(item.start_length)
+          );
+          //  this.formData.start_flag = parseFloat(item.start_flag);
+          //  this.formData.start_length = parseFloat(item.start_length);
         }
       });
     },
@@ -1004,8 +1290,8 @@ export default {
       //alert(value);
       this.stationList.map(item => {
         if (item.id == value) {
-          this.formData.end_flag = parseFloat(item.start_flag);
-          this.formData.end_length = parseFloat(item.start_length);
+          this.$set(this.formData, "end_flag", parseFloat(item.start_flag));
+          this.$set(this.formData, "end_length", parseFloat(item.start_length));
         }
       });
     },
@@ -1039,10 +1325,6 @@ export default {
       this.diaLogTitle = "计划图";
       this.diaLogFormVisible = true;
 
-      // this.formData.number = "";
-      // this.formData.start_time = "";
-      // this.formData.end_time = "";
-      // };
       this.getMasterList(); //车长
       this.getdriverList(); //司机
       this.getStationList(); //车站
@@ -1060,6 +1342,10 @@ export default {
             var data = response.data;
             if (data.status == 1) {
               this.diaLogFormVisible = false;
+              this.formData.number = "";
+              this.formData.start_time = "";
+              this.formData.end_time = "";
+
               this.$message({
                 type: "success",
                 message: "保存成功！"
@@ -1119,43 +1405,53 @@ export default {
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
-          this.formEditData = {
-            id: this.numberId,
-            number: data.data.number,
-            record_id:
-              data.data.record_id == null
-                ? this.formEditData.record_id
-                : data.data.record_id,
-            true_start_time:
-              data.data.true_start_time == ""
-                ? data.data.start_time
-                : data.data.true_start_time,
-            true_end_time:
-              data.data.true_end_time == ""
-                ? data.data.end_time
-                : data.data.true_end_time,
-            true_start_flag:
-              data.data.true_start_flag == null
-                ? parseFloat(data.data.start_flag)
-                : parseFloat(data.data.true_start_flag),
-            true_start_length:
-              data.data.true_start_length == null
-                ? parseFloat(data.data.start_length)
-                : parseFloat(data.data.true_start_length),
-            true_end_flag:
-              data.data.true_end_flag == null
-                ? parseFloat(data.data.end_flag)
-                : parseFloat(data.data.true_end_flag),
-            true_end_length:
-              data.data.true_end_length == null
-                ? parseFloat(data.data.end_length)
-                : parseFloat(data.data.true_end_length),
-            finish_num: data.data.finish_num,
-            remark: data.data.remark,
-            reason: data.data.reason,
-            status: data.data.status
-          };
-          console.log(this.formEditData);
+          this.getMasterList(); //车长
+          this.getdriverList(); //司机
+          this.getStationList(); //车站
+          this.getWorkTypeList(); //作业类型
+          this.changeWorkListItem(data.data.line_type);
+          this.formEditData = data.data;
+          (this.formEditData.record_id =
+            data.data.record_id == null
+              ? this.formEditData.record_id
+              : data.data.record_id),
+            // this.formEditData = {
+            //   id: this.numberId,
+            //   number: data.data.number,
+            //   record_id:
+            //     data.data.record_id == null
+            //       ? this.formEditData.record_id
+            //       : data.data.record_id,
+            //   true_start_time:
+            //     data.data.true_start_time == ""
+            //       ? data.data.start_time
+            //       : data.data.true_start_time,
+            //   true_end_time:
+            //     data.data.true_end_time == ""
+            //       ? data.data.end_time
+            //       : data.data.true_end_time,
+            //   true_start_flag:
+            //     data.data.true_start_flag == null
+            //       ? parseFloat(data.data.start_flag)
+            //       : parseFloat(data.data.true_start_flag),
+            //   true_start_length:
+            //     data.data.true_start_length == null
+            //       ? parseFloat(data.data.start_length)
+            //       : parseFloat(data.data.true_start_length),
+            //   true_end_flag:
+            //     data.data.true_end_flag == null
+            //       ? parseFloat(data.data.end_flag)
+            //       : parseFloat(data.data.true_end_flag),
+            //   true_end_length:
+            //     data.data.true_end_length == null
+            //       ? parseFloat(data.data.end_length)
+            //       : parseFloat(data.data.true_end_length),
+            //   finish_num: data.data.finish_num,
+            //   remark: data.data.remark,
+            //   reason: data.data.reason,
+            //   status: data.data.status
+            // };
+            console.log(this.formEditData);
         }
       });
     },
@@ -1176,7 +1472,14 @@ export default {
           if (data.data.length > 0) {
             this.diaLogTitleEdit = "日班实际图";
             this.diaLogFormEditVisible = true;
-            this.getPlanNumbers(); //日班计划列表
+
+            this.planNumbersList = data.data;
+            if (this.numberId == 0) {
+              this.numberId = this.planNumbersList[0]["id"];
+            }
+            this.getPlanDetail(this.numberId);
+
+            // this.getPlanNumbers(); //日班计划列表
             this.getUserLists(); //记录人
           } else {
             this.$alert("<strong>当天没有计划！</strong>", "提示信息", {
@@ -1438,48 +1741,50 @@ export default {
 .chlone .el-checkbox:nth-child(1) .el-checkbox__label {
   color: #0ccece;
 }
-.chlone .el-checkbox:nth-child(1)  .is-checked .el-checkbox__inner{
-background-color: #0ccece;
-    border-color: #0ccece;
+.chlone .el-checkbox:nth-child(1) .is-checked .el-checkbox__inner {
+  background-color: #0ccece;
+  border-color: #0ccece;
 }
 .chlone .el-checkbox:nth-child(2) .el-checkbox__label {
   color: #0000ff;
 }
-.chlone .el-checkbox:nth-child(2)  .is-checked .el-checkbox__inner{
-background-color: #0000ff;
-    border-color: #0000ff;
+.chlone .el-checkbox:nth-child(2) .is-checked .el-checkbox__inner {
+  background-color: #0000ff;
+  border-color: #0000ff;
 }
 .chlone .el-checkbox:nth-child(3) .el-checkbox__label {
   color: #9900ff;
-}.chlone .el-checkbox:nth-child(3)  .is-checked .el-checkbox__inner{
-background-color: #9900ff;
-    border-color: #9900ff;
+}
+.chlone .el-checkbox:nth-child(3) .is-checked .el-checkbox__inner {
+  background-color: #9900ff;
+  border-color: #9900ff;
 }
 .chlone .el-checkbox:nth-child(4) .el-checkbox__label {
   color: #ff00ff;
-}.chlone .el-checkbox:nth-child(4)  .is-checked .el-checkbox__inner{
-background-color: #ff00ff;
-    border-color: #ff00ff;
+}
+.chlone .el-checkbox:nth-child(4) .is-checked .el-checkbox__inner {
+  background-color: #ff00ff;
+  border-color: #ff00ff;
 }
 
 .chltwo .el-checkbox .el-checkbox__label {
   color: #f6b26b;
 }
-.chltwo  .el-checkbox__inner{
-   border-color: #f6b26b;
+.chltwo .el-checkbox__inner {
+  border-color: #f6b26b;
 }
-.chltwo  .is-checked .el-checkbox__inner{
-background-color: #f6b26b;
-    border-color: #f6b26b;
+.chltwo .is-checked .el-checkbox__inner {
+  background-color: #f6b26b;
+  border-color: #f6b26b;
 }
 .chkshiji .el-checkbox__label {
   color: #2dca2d !important;
 }
-.chkshiji  .el-checkbox__inner{
-   border-color: #2dca2d;
+.chkshiji .el-checkbox__inner {
+  border-color: #2dca2d;
 }
-.chkshiji  .is-checked .el-checkbox__inner{
-background-color: #2dca2d;
-    border-color: #2dca2d;
+.chkshiji .is-checked .el-checkbox__inner {
+  background-color: #2dca2d;
+  border-color: #2dca2d;
 }
 </style>

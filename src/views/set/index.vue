@@ -252,7 +252,7 @@ export default {
           var newArr = new Array();
           for (var i = 0; i < lineJson.length; i++) {
             var j = lineJson[i];
-            if (j.id != 3 && j.id != 4) {
+            if (j.id ==1) {
               newArr.push(j);
             }
           }
