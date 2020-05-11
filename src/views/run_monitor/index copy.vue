@@ -1,37 +1,56 @@
 <template>
   <div id="app-monitor-chart">
-    <div class="maintitle">{{todayPreValue}} 18时 -— {{todayNextValue}} 18时轨行区作业分布图</div>
-
-    <div class="app-page">
-      <div class="app-page-container">
-        <div class="app-page-adds">
-          <div class="btnitem">
-            <el-button @click="planAdd" type="primary" plain>编制日班计划图</el-button>
-          </div>
-          <div class="btnitem">
-            <el-button @click="planEdit" type="primary " plain>编制日班实际图</el-button>
-          </div>
-          <div class="btnitem">
-            <el-button @click="refreshPage" type="primary" plain>刷新</el-button>
-          </div>
+  
+    <div class="app-page-chart">
+      <div class="maintitle">{{todayPreValue}} 18时 -— {{todayNextValue}} 18时轨行区作业分布图</div>
+      <div class="chartleft">
+           <div class="app-page-select">
+          <el-form :inline="true">
+            <el-form-item>
+              <el-button type="primary" icon="el-icon-plus" @click="goAdd">添加站点</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
+        <div id="main" style="height:500px;width:100%;"></div>
+      </div>
+      <div class="chartright">
+        <div class="sidebox">
           <div class="btnitem">
             <el-date-picker
-              style="width:160px;"
               v-model="formData.date"
               type="date"
               placeholder="选择日期"
               :clearable="false"
               @input="selectDatePicker($event)"
             ></el-date-picker>
+          </div>
+          <div class="btnitems">
             <el-button @click="preDate" type="primary" plain>前一天</el-button>
             <el-button @click="nextDate" type="primary" plain>后一天</el-button>
           </div>
-        </div>
-        <div class="chartmain">
-          <div id="main" style="height:500px;width:100%;"></div>
+
+          <div class="btnitem">
+            <el-button @click="planAdd" type="primary" plain>编制日班计划图</el-button>
+          </div>
+          <div class="btnitem">
+            <el-button @click="planEdit" type="primary" plain>编制日班实际图</el-button>
+          </div>
+          <div class="btnitem">
+            <el-button @click="refreshPage" type="primary" plain>刷新</el-button>
+          </div>
+          <!-- <div class="btnitem">
+            <el-button type="primary" plain>区间封锁</el-button>
+          </div>
+          <div class="btnitem">
+            <el-button type="primary" plain>批注</el-button>
+          </div>
+     
+          <div class="btnitem">
+            <el-button type="primary" plain>提交</el-button>
+          </div>-->
         </div>
         <div class="sidebox">
-          <!-- <h3>显示控制</h3> -->
+          <h3>显示控制</h3>
           <div class="chklist chlone">
             <el-checkbox-group v-model="select_line_type" @change="selectLineTypeChart">
               <el-checkbox
@@ -44,6 +63,10 @@
           <div class="chklist">
             <el-checkbox label="计划图" @change="selectTypePlanChart" checked></el-checkbox>
             <el-checkbox class="chkshiji" label="实际图" @change="selectTypeNowChart" checked></el-checkbox>
+            <!--    <el-checkbox label="轨迹图"></el-checkbox>
+            <el-checkbox label="批注"></el-checkbox>
+            <el-checkbox label="区间封锁"></el-checkbox>
+            <el-checkbox label="清点"></el-checkbox>-->
           </div>
           <div class="chklist chltwo">
             <el-checkbox-group v-model="select_loco_type" @change="selectLocoTypeChart">
@@ -53,6 +76,7 @@
         </div>
       </div>
     </div>
+
     <el-dialog
       width="998px"
       :close-on-click-modal="false"
@@ -917,9 +941,8 @@ export default {
         if (resdata.status == 1) {
           //myChart
           var myChart = this.$echarts.init(document.getElementById("main"));
-          myChart.getDom().style.width = "2000px";
           myChart.getDom().style.height =
-            document.body.clientHeight - 250 + "px";
+            document.body.clientHeight - 140 + "px";
           //站点=============
           resdata.data.stations.map(item => {
             this.mark_line.push({
@@ -1058,9 +1081,8 @@ export default {
               }
             },
             grid: {
-              left: "180px",
-              right: "1px",
-              bottom: "15px"
+              left: "15%",
+              right: "1%"
             },
             xAxis: {
               type: "time",
@@ -1094,20 +1116,43 @@ export default {
               max: maxLineNum,
               animation: false
             },
+            dataZoom: [
+              {
+                show: true,
+                realtime: true,
+                zoomLock: true,
+                start: 0,
+                end: 50
+              },
+              {
+                type: "inside",
+                realtime: true,
+                zoomOnMouseWheel: false,
+                start: 0,
+                end: 50
+              }
+            ],
             // dataZoom: [
             //   {
-            //     show: true,
-            //     realtime: true,
+            //     type: "slider",
+            //     filterMode: "weakFilter",
+            //     show: false,
             //     zoomLock: true,
+            //     top: 24,
             //     start: 0,
-            //     end: 50
+            //     end: 50,
+            //     minValueSpan: 4 * 3600 * 1000
             //   },
             //   {
             //     type: "inside",
-            //     realtime: true,
+            //     start: 0,
+            //     end: 100
+            //   },
+            //   {
+            //     type: "inside",
             //     zoomOnMouseWheel: false,
             //     start: 0,
-            //     end: 50
+            //     end: 100
             //   }
             // ],
             series: seriesData
@@ -1560,6 +1605,7 @@ export default {
       this.select_type_now = true;
     },
     selectLineTypeChart(value) {
+      //alert(this.select_line_type);
       this.getChart();
     },
     selectTypePlanChart(value) {
@@ -1580,103 +1626,94 @@ export default {
 };
 </script>
 <style>
+.app-page-chart {
+  min-width: 1170px;
+  padding: 20px;
+}
 .maintitle {
   text-align: center;
   font-size: 20px;
   color: #4b6eca;
-  padding-top: 20px;
+  padding-bottom: 20px;
 }
-.app-page-adds {
-  overflow: hidden;
+.el-menu--collapse .el-menu .el-submenu,
+.el-menu--popup {
+  min-width: 124px;
   text-align: center;
-  width: 100%;
+  padding: 0;
 }
-.app-page-adds .btnitem {
-  margin-right: 15px;
+.el-menu--horizontal .el-menu .el-menu-item.is-active,
+.el-menu--horizontal .el-menu .el-submenu.is-active > .el-submenu__title {
+  background: #4b6eca;
+  color: #fff;
+}
+.chartleft {
+  float: left;
+  width: 100%;
+  background: #fff;
+  padding: 0 30px 10px 30px;
+  border-radius: 6px;
+  overflow: auto;
+}
+.chartright {
+  float: left;
+  width: 100%;
+  margin-left: 1%;
+}
+.chartright .sidebox {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.chartright .sidebox .btnitem {
+  margin-bottom: 15px;
+}
+.chartright .sidebox .btnitems {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.chartright .sidebox .btnitems .is-plain {
+  width: 100% !important;
   display: inline-block;
+  background: #fff;
 }
-.app-page-adds .sideright {
-  float: right;
-}
-.app-page-adds .el-input__inner {
-  border-color: #b3d8ff;
-  border-radius: 4px;
-  color: #409eff;
-}
-
-.chartmain {
+.chartright .el-date-editor.el-input,
+.chartright .el-date-editor.el-input__inner {
   width: 100%;
-  overflow-x: scroll;
 }
-/*sidebox */
-.sidebox {
+.chartright .sidebox .btnitem .is-plain {
   width: 100% !important;
   background: #fff;
-  text-align: center;
-  padding: 10px 0;
 }
-.sidebox .el-checkbox__label {
-  font-size: 15px;
+.chartright .sidebox .is-plain:hover {
+  background: #4b6eca;
+  border-color: #4b6eca;
+  color: #fff;
 }
-.sidebox h3 {
+.chartright .sidebox .is-plain:focus {
+  background: #4b6eca;
+  border-color: #4b6eca;
+  color: #fff;
+}
+.chartright .sidebox h3 {
   font-size: 14px;
-  display: inline-block;
 }
-.chklist {
-  display: inline-block;
+.chartright .chklist {
   margin-top: 15px;
-  margin-right: 10px;
 }
-.chlone .el-checkbox:nth-child(1) .el-checkbox__label {
-  color: #0ccece;
+.chartright .chklist .el-checkbox {
+  margin-bottom: 10px;
 }
-.chlone .el-checkbox:nth-child(1) .is-checked .el-checkbox__inner {
-  background-color: #0ccece;
-  border-color: #0ccece;
+@media (max-width: 960px) {
+  .chartleft {
+    width: 100%;
+  }
+  .chartright {
+    width: 100%;
+    margin-top: 20px;
+  }
 }
-.chlone .el-checkbox:nth-child(2) .el-checkbox__label {
-  color: #0000ff;
-}
-.chlone .el-checkbox:nth-child(2) .is-checked .el-checkbox__inner {
-  background-color: #0000ff;
-  border-color: #0000ff;
-}
-.chlone .el-checkbox:nth-child(3) .el-checkbox__label {
-  color: #9900ff;
-}
-.chlone .el-checkbox:nth-child(3) .is-checked .el-checkbox__inner {
-  background-color: #9900ff;
-  border-color: #9900ff;
-}
-.chlone .el-checkbox:nth-child(4) .el-checkbox__label {
-  color: #ff00ff;
-}
-.chlone .el-checkbox:nth-child(4) .is-checked .el-checkbox__inner {
-  background-color: #ff00ff;
-  border-color: #ff00ff;
-}
-
-.chltwo .el-checkbox .el-checkbox__label {
-  color: #f6b26b;
-}
-.chltwo .el-checkbox__inner {
-  border-color: #f6b26b;
-}
-.chltwo .is-checked .el-checkbox__inner {
-  background-color: #f6b26b;
-  border-color: #f6b26b;
-}
-.chkshiji .el-checkbox__label {
-  color: #2dca2d !important;
-}
-.chkshiji .el-checkbox__inner {
-  border-color: #2dca2d;
-}
-.chkshiji .is-checked .el-checkbox__inner {
-  background-color: #2dca2d;
-  border-color: #2dca2d;
-}
-
 /*dialog  */
 .dialog-monitor .el-dialog__body {
   padding: 30px 30px 0 30px;
@@ -1772,5 +1809,58 @@ export default {
 }
 .lengtherror .el-form-item__error {
   padding-left: 20px;
+}
+
+.sidebox .el-checkbox__label {
+  min-width: 80px !important;
+}
+.chlone .el-checkbox:nth-child(1) .el-checkbox__label {
+  color: #0ccece;
+}
+.chlone .el-checkbox:nth-child(1) .is-checked .el-checkbox__inner {
+  background-color: #0ccece;
+  border-color: #0ccece;
+}
+.chlone .el-checkbox:nth-child(2) .el-checkbox__label {
+  color: #0000ff;
+}
+.chlone .el-checkbox:nth-child(2) .is-checked .el-checkbox__inner {
+  background-color: #0000ff;
+  border-color: #0000ff;
+}
+.chlone .el-checkbox:nth-child(3) .el-checkbox__label {
+  color: #9900ff;
+}
+.chlone .el-checkbox:nth-child(3) .is-checked .el-checkbox__inner {
+  background-color: #9900ff;
+  border-color: #9900ff;
+}
+.chlone .el-checkbox:nth-child(4) .el-checkbox__label {
+  color: #ff00ff;
+}
+.chlone .el-checkbox:nth-child(4) .is-checked .el-checkbox__inner {
+  background-color: #ff00ff;
+  border-color: #ff00ff;
+}
+
+.chltwo .el-checkbox .el-checkbox__label {
+  color: #f6b26b;
+}
+.chltwo .el-checkbox__inner {
+  border-color: #f6b26b;
+}
+.chltwo .is-checked .el-checkbox__inner {
+  background-color: #f6b26b;
+  border-color: #f6b26b;
+}
+.chkshiji .el-checkbox__label {
+  color: #2dca2d !important;
+}
+.chkshiji .el-checkbox__inner {
+  border-color: #2dca2d;
+}
+.chkshiji .is-checked .el-checkbox__inner {
+  background-color: #2dca2d;
+  border-color: #2dca2d;
 }
 </style>
