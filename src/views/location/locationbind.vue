@@ -1,14 +1,14 @@
 <template>
   <div id="location">
     <div class="el-menu-top">
-      <el-menu router default-active="locationbind" mode="horizontal" @select="handleMenuSelect">
+      <el-menu router default-active="locationbind" mode="horizontal">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-location.png')" />定位管理
         </li>
         <el-menu-item index="location">人员定位统计</el-menu-item>
         <el-menu-item index="walldetector">墙壁探测器</el-menu-item>
         <el-menu-item index="cardetector">车载探测器</el-menu-item>
-        <el-menu-item index="locationbind">定位从设备</el-menu-item>
+        <el-menu-item index="locationbind" @click="pageToFirst">定位从设备</el-menu-item>
         <el-menu-item index="device">机具</el-menu-item>
       </el-menu>
     </div>
@@ -275,9 +275,6 @@ export default {
     this.getDataList();
   },
   methods: {
-    handleMenuSelect(index) {
-      this.pageChange(1);
-    },
     getDataList() {
       let page = this.page_cur;
       let depart_id = this.searchForm.depart_id;

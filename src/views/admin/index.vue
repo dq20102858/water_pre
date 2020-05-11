@@ -6,7 +6,7 @@
           <img :src="require('@/assets/image/icon-peple.png')" />人员管理
         </li>
 
-        <el-menu-item index="admin">公司列表</el-menu-item>
+        <el-menu-item index="admin" @click="companyFirstPage">公司列表</el-menu-item>
         <el-menu-item index="departlist">部门列表</el-menu-item>
         <el-menu-item index="postlist">职位列表</el-menu-item>
         <el-menu-item index="userlist">人员列表</el-menu-item>

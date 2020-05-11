@@ -5,7 +5,7 @@
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-search.png')" />查询统计
         </li>
-        <el-menu-item index="search">报警查询</el-menu-item>
+        <el-menu-item index="search" @click="resetSerach">报警查询</el-menu-item>
         <el-menu-item index="overspeed">车辆超速处理</el-menu-item>
       </el-menu>
     </div>

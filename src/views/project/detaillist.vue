@@ -5,9 +5,9 @@
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-project.png')" />工程进度
         </li>
-        <el-menu-item index="project">添加作业</el-menu-item>
+        <el-menu-item index="project">作业列表</el-menu-item>
         <el-menu-item index="schedule">计划日程</el-menu-item>
-        <el-menu-item index="detaillist">详情列表</el-menu-item>
+        <el-menu-item index="detaillist"  @click="detailPageFirst">详情列表</el-menu-item>
         <el-menu-item index="chartdata">图表数据</el-menu-item>
       </el-menu>
     </div>

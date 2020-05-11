@@ -5,7 +5,6 @@
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-sec.png')" />安全管理
         </li>
-        <el-menu-item class="is-active">事件管理</el-menu-item>
       </el-menu>
     </div>
     <!-- list -->
@@ -188,7 +187,7 @@
         width="900px"
         :close-on-click-modal="false"
         class="dialog-dangers"
-        title="安全事件添加"
+        title="添加安全事件"
         :visible.sync="dialogFormEvent"
       >
         <div class="formbox">

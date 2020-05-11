@@ -6,7 +6,7 @@
           <img :src="require('@/assets/image/icon-set.png')" />设置
         </li>
         <el-menu-item index="set">站点设置</el-menu-item>
-        <el-menu-item index="speed">限速设置</el-menu-item>
+        <el-menu-item index="speed"  @click="pageToFirst">限速设置</el-menu-item>
         <el-menu-item index="alert">防区设置</el-menu-item>
         <el-menu-item index="bridge">桥设置</el-menu-item>
         <el-menu-item index="tunnel">隧道设置</el-menu-item>
