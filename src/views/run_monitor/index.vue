@@ -934,7 +934,7 @@ export default {
           //myChart
           var myChart = this.$echarts.init(document.getElementById("main"));
           myChart.getDom().style.height =
-            document.body.clientHeight - 280 + "px";
+            document.body.clientHeight - 150 + "px";
           //站点=============
           resdata.data.stations.map(item => {
             this.mark_line.push({
@@ -1423,7 +1423,7 @@ export default {
           this.getdriverList(); //司机
           this.getStationList(); //车站
           this.getWorkTypeList(); //作业类型
-          
+
           this.formEditData.date = this.formData.date;
           if (data.data.out_reco == "0") {
             this.formEditData.out_reco = "";
@@ -1643,7 +1643,7 @@ export default {
   float: left;
   width: 80%;
   background: #fff;
-  padding: 30px;
+  padding: 0 30px 10px 30px;
   border-radius: 6px;
 }
 .chartright {
