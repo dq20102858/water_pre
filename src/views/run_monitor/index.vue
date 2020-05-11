@@ -1004,13 +1004,13 @@ export default {
             if (this.select_type_plan) {
               let colors = "#0000ff";
               if (item.line_type == 1) {
-                colors = "#0ccece";
+                colors = "#0099cc";
               } else if (item.line_type == 2) {
                 colors = "#0000ff";
               } else if (item.line_type == 3) {
                 colors = "#9900ff";
               } else {
-                colors = "#ff00ff";
+                colors = "#660033";
               }
               lineTypeData.push({
                 color: colors,
@@ -1627,11 +1627,11 @@ export default {
   margin-right: 30px;
 }
 .chlone .el-checkbox:nth-child(1) .el-checkbox__label {
-  color: #0ccece;
+  color: #0099cc;
 }
 .chlone .el-checkbox:nth-child(1) .is-checked .el-checkbox__inner {
-  background-color: #0ccece;
-  border-color: #0ccece;
+  background-color: #0099cc;
+  border-color: #0099cc;
 }
 .chlone .el-checkbox:nth-child(2) .el-checkbox__label {
   color: #0000ff;
@@ -1648,11 +1648,11 @@ export default {
   border-color: #9900ff;
 }
 .chlone .el-checkbox:nth-child(4) .el-checkbox__label {
-  color: #ff00ff;
+  color: #660033;
 }
 .chlone .el-checkbox:nth-child(4) .is-checked .el-checkbox__inner {
-  background-color: #ff00ff;
-  border-color: #ff00ff;
+  background-color: #660033;
+  border-color: #660033;
 }
 
 .chltwo .el-checkbox .el-checkbox__label {
