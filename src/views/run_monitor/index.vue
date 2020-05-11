@@ -889,8 +889,6 @@ export default {
       select_loco_type: []
     };
   },
-  mounted() {},
-  updated() {},
   created() {
     this.getPageLoad();
   },
@@ -917,10 +915,12 @@ export default {
         if (resdata.status == 1) {
           //myChart
           var myChart = this.$echarts.init(document.getElementById("main"));
+          myChart.clear();
           myChart.getDom().style.width = "2000px";
           myChart.getDom().style.height =
-            document.body.clientHeight - 250 + "px";
+            document.body.clientHeight - 260 + "px";
           //站点=============
+          this.mark_line = [];
           resdata.data.stations.map(item => {
             this.mark_line.push({
               name:
@@ -945,7 +945,9 @@ export default {
             })
           );
           // 数据
+
           let seriesData = [];
+          console.log("seriesDataAAA" + JSON.stringify(seriesData));
           seriesData.push({
             name: "车站",
             type: "line",
@@ -974,7 +976,7 @@ export default {
           });
           //划线  计划线 实际线
           let dataTypeArr = resdata.data.plan;
-          let typeData = [];
+          let lineTypeData = [];
           console.log(dataTypeArr);
           dataTypeArr.forEach((item, index) => {
             let start_flag_list = [];
@@ -1010,28 +1012,26 @@ export default {
               } else {
                 colors = "#ff00ff";
               }
-              typeData.push({
+              lineTypeData.push({
                 color: colors,
                 lists: [start_flag_list, end_flag_list]
               });
             }
             if (this.select_type_now) {
-              typeData.push({
+              lineTypeData.push({
                 color: "#2dca2d",
                 lists: [true_start_flag_list, true_end_flag_list]
               });
             }
           });
-
-          for (let k in typeData) {
+          for (let k in lineTypeData) {
             seriesData.push({
               type: "line",
-              itemStyle: { normal: { color: typeData[k].color } },
-              data: typeData[k].lists
+              itemStyle: { normal: { color: lineTypeData[k].color } },
+              data: lineTypeData[k].lists
             });
           }
-          //console.log("typeData：" + JSON.stringify(typeData));
-          //console.log("projectData：" + JSON.stringify(seriesData));
+          //console.log("seriesLineData" + JSON.stringify(seriesData));
           //时间
           let dataMin = new Date(
             this.todayValue.getTime() - 24 * 60 * 60 * 1000
@@ -1039,6 +1039,7 @@ export default {
           let dataMax = new Date(
             this.todayValue.getTime() + 24 * 60 * 60 * 1000
           ).setHours(19);
+
           //option
           var option = {
             textStyle: {
@@ -1091,8 +1092,7 @@ export default {
               show: false,
               type: "value",
               min: minLineNum - 3,
-              max: maxLineNum,
-              animation: false
+              max: maxLineNum
             },
             // dataZoom: [
             //   {
@@ -1113,8 +1113,7 @@ export default {
             series: seriesData
           };
           // 使用刚指定的配置项和数据显示图表。
-          myChart.clear();
-          myChart.setOption(option);
+          myChart.setOption(option, true);
           myChart.resize();
           window.addEventListener("resize", function() {
             myChart.resize();
@@ -1622,10 +1621,10 @@ export default {
   font-size: 14px;
   display: inline-block;
 }
-.chklist {
+.sidebox .chklist {
   display: inline-block;
   margin-top: 15px;
-  margin-right: 10px;
+  margin-right: 30px;
 }
 .chlone .el-checkbox:nth-child(1) .el-checkbox__label {
   color: #0ccece;
