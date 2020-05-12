@@ -1312,7 +1312,8 @@ export default {
                 36
               );
               //DK
-              let codes =" [ ZDK" +
+              let codes =
+                " [ ZDK" +
                 jsonCar[i].start_flag +
                 " +" +
                 jsonCar[i].start_length +
@@ -1321,22 +1322,31 @@ export default {
               context.fillText(
                 codes,
                 startLineX + offsetX + 15,
-                axis_LeftLine.y -50
+                axis_LeftLine.y - 50
               );
             } else if (jsonCar[i].line_type == 2) {
               let total =
                 parseInt(jsonCar[i].start_flag) * 1000 +
                 parseInt(jsonCar[i].start_length);
               let startLineX = (total - leftLineMinMileage) * everys;
-              context.drawImage( imgcar,startLineX + offsetX,axis_LeftLine_Two.y - 40,36,36
+              context.drawImage(
+                imgcar,
+                startLineX + offsetX,
+                axis_LeftLine_Two.y - 40,
+                36,
+                36
               );
               //DK
-              let codes =" [ YDK" +
+              let codes =
+                " [ YDK" +
                 jsonCar[i].start_flag +
                 " +" +
                 jsonCar[i].start_length +
                 " ]";
-              context.fillText(codes,startLineX + offsetX + 15,axis_LeftLine_Two.y - 50
+              context.fillText(
+                codes,
+                startLineX + offsetX + 15,
+                axis_LeftLine_Two.y - 50
               );
             } //
           }
@@ -1443,10 +1453,6 @@ export default {
     window.addEventListener("resize", () => {
       this.scrollwidth = document.documentElement.clientWidth - 640;
     });
-    // let heightPro = document.querySelectorAll(".progress");
-    // heightPro.style.height = document.documentElement.clientHeight;
-
-    // console.log("ddd:"+heightPro.height);
   }
 };
 </script>

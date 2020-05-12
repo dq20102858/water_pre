@@ -68,7 +68,7 @@
         <div class="app-table">
           <el-table :data="dataList">
             <el-table-column label="序号">
-              <template scope="scope">
+              <template slot-scope="scope">
                 <span>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
               </template>
             </el-table-column>

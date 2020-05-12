@@ -39,7 +39,6 @@
         <canvas
           id="canvasStation"
           height="650"
-          style="border-bottom:1px #ddd solid;"
           ref="canvasStation"
         >
           <p>您的系统不支持此程序!</p>

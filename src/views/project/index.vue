@@ -193,7 +193,6 @@
   </div>
 </template>
 <script>
-import { publicData } from "@/utils/common";
 export default {
   data() {
     return {
@@ -366,7 +365,7 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.workData = data.data;
-          console.log(data.data.line_type);
+          //console.log(data.data.line_type);
         }
       });
     },

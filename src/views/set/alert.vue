@@ -36,7 +36,7 @@
         <div class="app-table">
           <el-table :data="dataList">
             <el-table-column label="序号">
-              <template scope="scope">
+              <template slot-scope="scope">
                 <span>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
               </template>
             </el-table-column>
@@ -161,6 +161,7 @@
                 v-model="formData.start_time"
                 :picker-options="pickerOptionsStart"
                 type="datetime"
+                 format="yyyy-MM-dd HH:mm"
                 placeholder="选择时间"
               ></el-date-picker>
             </el-form-item>
@@ -169,6 +170,7 @@
                 :picker-options="pickerOptionsEnd"
                 v-model="formData.end_time"
                 type="datetime"
+                 format="yyyy-MM-dd HH:mm"
                 placeholder="选择时间"
               ></el-date-picker>
             </el-form-item>
@@ -421,14 +423,15 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.formData = data.data;
+          this.formData.end_time=data.data.end_time;
           this.lineTypeList.map((item, index) => {
             if (item.id == data.data.line_type) {
               this.lineTypeDes = "里程范围：" + item.tip;
               this.lineTypeStart = item.start;
               this.lineTypeEnd = item.end;
-              var timestamp = new Date(data.data.end_time);
-              console.log("timestamp:" + timestamp);
-              this.formData.end_time = timestamp;
+              // var timestamp = new Date(data.data.end_time);
+              // console.log("timestamp:" + timestamp);
+              // this.formData.end_time = timestamp;
             }
           });
         }

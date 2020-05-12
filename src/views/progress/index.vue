@@ -106,7 +106,7 @@ export default {
         parseInt(this.cwidth) / lineTypeBetwentMileage
       ).toFixed(5);
       this.every = (parseInt(canvasWidth) / lineTypeBetwentMileage).toFixed(5);
-      console.log("cwidth" + this.cwidth + "_" + this.everyLineType);
+     // console.log("cwidth" + this.cwidth + "_" + this.everyLineType);
 
       const canvas = this.$refs.canvasStation;
       let cansText = canvas.getContext("2d");
@@ -125,7 +125,7 @@ export default {
       let json = this.stationList;
       let lineTypeMinMileage = this.lineTypeMinMileage;
       let every = this.every; //每米长度等于px
-      console.log("every：" + every);
+      //console.log("every：" + every);
       //
       let img = new Image();
       img.src = require("@/assets/image/stasm.png");
@@ -137,14 +137,6 @@ export default {
             parseInt(json[i].start_flag) * 1000 +
             parseInt(json[i].start_length);
           let startLineX = (total - lineTypeMinMileage) * every;
-          console.log(
-            "total：" +
-              total +
-              " lineTypeTotalMileage：" +
-              lineTypeMinMileage +
-              " startLineX：" +
-              startLineX
-          );
           // 计算当前站点的x轴
           cansText.drawImage(img, startLineX, 126, 18, 90);
           // //站名

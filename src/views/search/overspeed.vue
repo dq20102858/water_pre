@@ -42,13 +42,13 @@
         <div class="app-table">
           <el-table :data="dataList">
             <el-table-column label="编号">
-              <template scope="scope">
+              <template slot-scope="scope">
                 <span>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
               </template>
             </el-table-column>
             <el-table-column prop="loco_id" label="机车名称"></el-table-column>
             <el-table-column label="违规类型">
-              <template scope="scope">
+              <template slot-scope="scope">
                 <span v-if="scope.row.alert_type==1">超速报警</span>
                 <span v-if="scope.row.alert_type==2">临近报警</span>
                 <span v-if="scope.row.alert_type==3">防区报警</span>

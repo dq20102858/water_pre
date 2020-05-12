@@ -36,6 +36,7 @@
 import { mapGetters } from "vuex";
 import Hamburger from "@/components/Hamburger";
 export default {
+  name:'Navbar',
   data() {
     return {
       levelList: null,

@@ -38,14 +38,14 @@
         <div class="app-table">
           <el-table :data="dataList">
             <el-table-column label="序号">
-              <template scope="scope">
+              <template slot-scope="scope">
                 <span>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
               </template>
             </el-table-column>
 
             <el-table-column prop="line" label="线别"></el-table-column>
             <el-table-column prop="name" label="坡度类型">
-              <template scope="scope">
+              <template slot-scope="scope">
                 <span v-if="scope.row.type==1">上坡</span>
                 <span v-if="scope.row.type==2">平坡</span>
                 <span v-if="scope.row.type==3">下坡</span>
