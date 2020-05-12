@@ -167,59 +167,66 @@ export default {
       const canvas = this.$refs.canvasStation;
       let context = canvas.getContext("2d");
       canvas.width = canvasWidth;
-     
 
       //左右线
       function drawAxesLine(lineJson) {
-           context.beginPath();
-           context.strokeStyle = "#fff";
+        context.beginPath();
+        context.strokeStyle = "#fff";
         context.fillStyle = "#fff";
         context.lineWidth = 10;
         let lineData = [];
         for (let i = 0; i < lineJson.length; i++) {
           lineData.push(lineJson[i]);
-          let tfrom =lineJson[i].name +"   " +"DK" +lineJson[i].start_flag +"+" +lineJson[i].start_length,
+          let tfrom =
+              lineJson[i].name +
+              "   " +
+              "DK" +
+              lineJson[i].start_flag +
+              "+" +
+              lineJson[i].start_length,
             tend = "DK" + lineJson[i].end_flag + "+" + lineJson[i].end_length;
-          let startLength = context.measureText(tfrom).width,endLength = context.measureText(tend).width;
-          let starttotal =parseInt(lineJson[i].start_total);
-          let endtotal =parseInt(lineJson[i].end_total);
+          let startLength = context.measureText(tfrom).width,
+            endLength = context.measureText(tend).width;
+          let starttotal = parseInt(lineJson[i].start_total);
+          let endtotal = parseInt(lineJson[i].end_total);
           let startX = (starttotal - lineTypeMinMileage) * every;
           if (lineJson[i].id == 1) {
             context.moveTo(startX, axis_LeftLine.y);
             context.lineTo(canvasWidth, axis_LeftLine.y);
-            context.fillText(tfrom, 0, axis_LeftLine.y+20);
-            context.fillText(tend,canvasWidth-65,axis_LeftLine.y+20);
+            context.fillText(tfrom, 0, axis_LeftLine.y + 20);
+            context.fillText(tend, canvasWidth - 65, axis_LeftLine.y + 20);
           } else if (lineJson[i].id == 2) {
-          context.moveTo(startX, axis_LeftLine_Two.y);
+            context.moveTo(startX, axis_LeftLine_Two.y);
             context.lineTo(canvasWidth, axis_LeftLine_Two.y);
-            context.fillText(tfrom, 0, axis_LeftLine_Two.y+20);
-            context.fillText(tend,canvasWidth-65,axis_LeftLine_Two.y+20);
+            context.fillText(tfrom, 0, axis_LeftLine_Two.y + 20);
+            context.fillText(tend, canvasWidth - 65, axis_LeftLine_Two.y + 20);
             //3
           } else if (lineJson[i].id == 3) {
             if (starttotal == 0) {
               starttotal = lineTypeMinMileage;
             }
-            let endX =parseFloat((endtotal - starttotal) * every);
+            let endX = parseFloat((endtotal - starttotal) * every);
             context.moveTo(startX, axis_OutLine.y);
             context.lineTo(endX, axis_OutLine.y);
             //
-            context.fillText(tfrom, 0, axis_OutLine.y+20);
-            context.fillText(tend, endX - 60, axis_OutLine.y+20);
+            context.fillText(tfrom, 0, axis_OutLine.y + 20);
+            context.fillText(tend, endX - 60, axis_OutLine.y + 20);
             //4
           } else if (lineJson[i].id == 4) {
-            let startZB = (starttotal -lineTypeMinMileage) * every ;
-            let endZB =parseFloat((endtotal - starttotal) * every) + parseFloat(startZB);
+            let startZB = (starttotal - lineTypeMinMileage) * every;
+            let endZB =
+              parseFloat((endtotal - starttotal) * every) + parseFloat(startZB);
             context.moveTo(startZB, axis_OutLine_Two.y);
             context.lineTo(endZB, axis_OutLine_Two.y);
             //
             let beteew = endZB - startZB;
-          if (beteew < 160) {
-            context.fillText(tfrom, startZB - 160, axis_OutLine_Two.y+20);
-            context.fillText(tend, endZB - 80, axis_OutLine_Two.y+20);
-          } else {
-            context.fillText(tfrom, startZB, axis_OutLine_Two.y+20);
-            context.fillText(tend, endZB - 55, axis_OutLine_Two.y+20);
-          }
+            if (beteew < 160) {
+              context.fillText(tfrom, startZB - 160, axis_OutLine_Two.y + 20);
+              context.fillText(tend, endZB - 80, axis_OutLine_Two.y + 20);
+            } else {
+              context.fillText(tfrom, startZB, axis_OutLine_Two.y + 20);
+              context.fillText(tend, endZB - 55, axis_OutLine_Two.y + 20);
+            }
           }
         }
         context.stroke();
@@ -238,26 +245,40 @@ export default {
               parseInt(json[i].start_length);
             let startLineX = (total - lineTypeMinMileage) * every;
             // 计算当前站点的x轴
-            context.drawImage(img, startLineX-8,axis_LeftLine.y-95, 18, 90);
+            context.drawImage(
+              img,
+              startLineX - 8,
+              axis_LeftLine.y - 95,
+              18,
+              90
+            );
             // //站名
             context.font = "17px Microsoft Yahei";
             context.fillStyle = "#fff";
             let origin = json[i].name.split("");
             for (let x = 0; x < origin.length; x++) {
-              context.fillText(origin[x],startLineX,axis_LeftLine.y-85 - origin.length * 19 + 19 * x  );
+              context.fillText(
+                origin[x],
+                startLineX,
+                axis_LeftLine.y - 85 - origin.length * 19 + 19 * x
+              );
             }
             //DK
             let codes = "DK" + json[i].start_flag + " +" + json[i].start_length;
             context.fillStyle = "#0AE39A";
             context.font = "12px  Microsoft Yahei";
-            context.fillTextVertical(codes, startLineX + 18, axis_LeftLine.y-65);
+            context.fillTextVertical(
+              codes,
+              startLineX + 18,
+              axis_LeftLine.y - 65
+            );
           }
         };
-       context.stroke();
+        context.stroke();
       }
       //车定位
       function drawAxesCar(jsonData) {
-       context.beginPath();
+        context.beginPath();
         let jsonCar = [
           {
             id: 1,
@@ -306,7 +327,7 @@ export default {
         imgcar.src = require("@/assets/image/icon-car.png");
         imgcar.onload = function() {
           let start = 0;
-  
+
           for (let i = 0; i < jsonCar.length; i++) {
             context.fillStyle = "#fafafa";
             context.font = " 11px";
@@ -315,7 +336,13 @@ export default {
                 parseInt(jsonCar[i].start_flag) * 1000 +
                 parseInt(jsonCar[i].start_length);
               let startLineX = (total - lineTypeMinMileage) * every;
-              context.drawImage(imgcar, startLineX, axis_LeftLine.y-25, 140, 20);
+              context.drawImage(
+                imgcar,
+                startLineX,
+                axis_LeftLine.y - 25,
+                140,
+                20
+              );
               //DK
               let codes =
                 jsonCar[i].name +
@@ -324,14 +351,20 @@ export default {
                 " +" +
                 jsonCar[i].start_length +
                 " ]";
-              context.fillText(codes, startLineX + 18, axis_LeftLine.y-30);
+              context.fillText(codes, startLineX + 18, axis_LeftLine.y - 30);
             } else if (jsonCar[i].line_type == 2) {
               // 绘制站点图
               let total =
                 parseInt(jsonCar[i].start_flag) * 1000 +
                 parseInt(jsonCar[i].start_length);
               let startLineX = (total - lineTypeMinMileage) * every;
-              context.drawImage(imgcar, startLineX, axis_LeftLine_Two.y-25, 140, 20);
+              context.drawImage(
+                imgcar,
+                startLineX,
+                axis_LeftLine_Two.y - 25,
+                140,
+                20
+              );
               //DK
               let codes =
                 jsonCar[i].name +
@@ -340,11 +373,15 @@ export default {
                 " +" +
                 jsonCar[i].start_length +
                 " ]";
-              context.fillText(codes, startLineX + 18, axis_LeftLine_Two.y-30);
+              context.fillText(
+                codes,
+                startLineX + 18,
+                axis_LeftLine_Two.y - 30
+              );
             } //
           }
         };
-          context.stroke();
+        context.stroke();
       }
       //人定位
       function drawAxesPeple(jsonData) {
@@ -391,7 +428,13 @@ export default {
                 parseInt(jsonCar[i].start_flag) * 1000 +
                 parseInt(jsonCar[i].start_length);
               let startLineX = (total - lineTypeMinMileage) * every;
-              context.drawImage(imgcar, startLineX, axis_LeftLine.y-39, 36, 36);
+              context.drawImage(
+                imgcar,
+                startLineX,
+                axis_LeftLine.y - 39,
+                36,
+                36
+              );
               //DK
               let codes =
                 " [ ZDK" +
@@ -400,13 +443,19 @@ export default {
                 jsonCar[i].start_length +
                 " ]";
 
-              context.fillText(codes, startLineX + 5, axis_LeftLine.y-39);
+              context.fillText(codes, startLineX + 5, axis_LeftLine.y - 39);
             } else if (jsonCar[i].line_type == 2) {
               let total =
                 parseInt(jsonCar[i].start_flag) * 1000 +
                 parseInt(jsonCar[i].start_length);
               let startLineX = (total - lineTypeMinMileage) * every;
-              context.drawImage(imgcar, startLineX, axis_LeftLine_Two.y-39, 36, 36);
+              context.drawImage(
+                imgcar,
+                startLineX,
+                axis_LeftLine_Two.y - 39,
+                36,
+                36
+              );
               //DK
               let codes =
                 " [ YDK" +
@@ -414,7 +463,7 @@ export default {
                 " +" +
                 jsonCar[i].start_length +
                 " ]";
-              context.fillText(codes, startLineX + 5, axis_LeftLine_Two.y-39);
+              context.fillText(codes, startLineX + 5, axis_LeftLine_Two.y - 39);
             } //
           }
         };
@@ -544,7 +593,7 @@ export default {
             let endX = (end - lineTypeMinMileage) * every;
             let centerX = (endX + startX) / 2; //开始结束平均值
             //画水平直线
-            context.fillRect(startX , 390, 2, 15);
+            context.fillRect(startX, 390, 2, 15);
             context.fillRect(endX, 390, 2, 15);
             context.moveTo(startX, 398);
             context.lineTo(endX, 398);
@@ -567,7 +616,7 @@ export default {
             let centerX = (endX + startX) / 2; //开始结束平均值
             //画水平直线
             context.fillRect(startX, 490, 2, 15);
-            context.fillRect(endX,490, 2, 15);
+            context.fillRect(endX, 490, 2, 15);
             context.moveTo(startX, 498);
             context.lineTo(endX, 498);
             //文字
@@ -627,7 +676,8 @@ export default {
       drawAxesStationList(this.stationList);
       drawAxesCar(this.applyList);
       drawAxesPeple(this.applyList);
-       drawAxesApply(this.applyList);
+      drawAxesApply(this.applyList);
+
       //
     }
   },

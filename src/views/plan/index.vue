@@ -150,7 +150,7 @@
         <em v-if="dataListItem.plan_type==2">( 行车计划 )</em>
         <em v-if="dataListItem.plan_type==3">( 施工计划 )</em>
       </div>
-      <fieldset   v-if="dataListItem.plan_type!=3">
+      <fieldset>
         <legend>计划列车信息</legend>
         <div>
           <table style="width: 100%">
@@ -235,7 +235,7 @@
           </table>
         </div>
       </fieldset>
-      <fieldset   v-if="dataListItem.plan_type!=2">
+      <fieldset>
         <legend>计划施工信息</legend>
         <div>
           <table style="width: 100%">
@@ -250,7 +250,7 @@
               </td>
               <td>
                 <b>作业类型：</b>
-                {{dataListItem.work_type}}
+                {{dataListItem.work_type_name}}
               </td>
               <td>
                 <b>线别：</b>
@@ -270,7 +270,7 @@
             <tr>
               <td>
                 <b>施工作业队：</b>
-                {{dataListItem.work_plan_id}}
+                {{dataListItem.work_plan_name}}
               </td>
               <td>
                 <b>项目：</b>
@@ -290,7 +290,7 @@
           </table>
         </div>
       </fieldset>
-      <fieldset    v-if="dataListItem.plan_type!=2">
+      <fieldset >
         <legend>实际完成信息</legend>
         <div>
           <table style="width: 100%">
@@ -329,6 +329,13 @@
             <tr>
               <td colspan="4">
                 <b>备注：</b>
+                 {{dataListItem.remark}}
+              </td>
+            </tr>
+             <tr>
+              <td colspan="4">
+                <b>未完成原因：</b>
+                 {{dataListItem.reason}}
               </td>
             </tr>
           </table>

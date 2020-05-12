@@ -244,7 +244,14 @@
               ></el-date-picker>
             </el-form-item>
             <el-form-item label="施工作业队：" label-width="100px">
-              <el-select v-model="formData.work_plan_id" placeholder="请选择"></el-select>
+              <el-select v-model="formData.work_plan_id" placeholder="请选择">
+                <el-option
+                  v-for="item in departLists"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
             </el-form-item>
           </div>
           <div class="el-form-item-block">
@@ -575,7 +582,14 @@
               ></el-date-picker>
             </el-form-item>
             <el-form-item label="施工作业队：" label-width="100px">
-              <el-select v-model="formEditData.work_plan_id" placeholder="请选择"></el-select>
+              <el-select v-model="formEditData.work_plan_id" placeholder="请选择">
+                <el-option
+                  v-for="item in departLists"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
             </el-form-item>
           </div>
           <div class="el-form-item-block">
@@ -915,6 +929,7 @@ export default {
       select_type_plan: true,
       select_type_now: true,
       select_loco_type: [],
+      departLists: [],
       itemLists: [],
       workSortLists: []
     };
@@ -988,9 +1003,7 @@ export default {
                 normal: {
                   position: "left",
                   formatter: function(value, index) {
-                    return (
-                      value.name
-                    );
+                    return value.name;
                   }
                 }
               },
@@ -1325,6 +1338,19 @@ export default {
       this.workLineTypeList = selectedLineTypeLists;
       this.$set(this.formData, "line_type", selectedLineTypeLists[0]["id"]);
     },
+    getDepartList() {
+      this.request({
+        url: "/company/getDepartLists",
+        method: "get",
+        params: { pid: 0, type: 2 }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.departLists = data.data;
+          console.log("this.departLists：" + this.departLists);
+        }
+      });
+    },
     geItemList() {
       this.request({
         url: "/set/getItemLists",
@@ -1355,6 +1381,7 @@ export default {
       this.getdriverList(); //司机
       this.getStationList(); //车站
       this.getWorkTypeList(); //作业类型
+      this.getDepartList(); //施工队
       this.geItemList(); //项目
       this.getWorkSortList(); //工序
     },
@@ -1438,6 +1465,7 @@ export default {
           this.getdriverList(); //司机
           this.getStationList(); //车站
           this.getWorkTypeList(); //作业类型
+          this.getDepartList(); //施工队
           this.geItemList(); //项目
           this.getWorkSortList(); //工序
 
