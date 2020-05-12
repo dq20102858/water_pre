@@ -469,60 +469,41 @@ export default {
     this.getTrainList();
     this.getDangerType();
     this.getDangerDetermine();
-    this.getAssigners();
+
     this.getDataList();
   },
   methods: {
     defaultDate() {
-      let dateA = new Date();
-      let dateB = new Date(dateA);
-      dateB.setDate(dateA.getDate() - 7);
-      let start =
-        dateB.getFullYear() +
-        "-" +
-        (dateB.getMonth() + 1) +
-        "-" +
-        dateB.getDate();
-      let end = new Date(
-        new Date(new Date().toLocaleDateString()).getTime() +
-          24 * 60 * 60 * 1000 -
-          1
-      );
-      this.$set(this.searchForm, "start_time", start);
-      this.$set(this.searchForm, "end_time", end);
+      // let dateA = new Date();
+      // let dateB = new Date(dateA);
+      // dateB.setDate(dateA.getDate() - 7);
+      // let start =dateB.getFullYear() +"-" + (dateB.getMonth() + 1) +"-" +dateB.getDate();
+      // let end =dateA - 7*24*60*60*1000;
+
+      let currentDate = new Date();
+      let endTime = currentDate.setHours(23, 59, 59, 999);
+      let starTime = new Date(currentDate.setDate(currentDate.getDate() - 7)).setHours(0, 0, 0, 999); 
+
+      this.$set(this.searchForm, "start_time", starTime);
+      this.$set(this.searchForm, "end_time", endTime);
     },
     //====列表数据
     getDataList() {
       let page = this.page_cur;
-      let type = this.searchForm.type;
-      let danger_type = this.searchForm.danger_type;
-      let danger_determine = this.searchForm.danger_determine;
-      let loco_id = this.searchForm.loco_id;
-      let start_location = this.searchForm.start_location;
-      let end_location = this.searchForm.end_location;
-
+      //let type = this.searchForm.type;
+      // let danger_type = this.searchForm.danger_type;
+      // let danger_determine = this.searchForm.danger_determine;
+      // let loco_id = this.searchForm.loco_id;
+      // let start_location = this.searchForm.start_location;
+      // let end_location = this.searchForm.end_location;
       let start_time = this.searchForm.start_time;
+      console.log(start_time);
       let end_time = this.searchForm.end_time;
-
-      // let array_time = this.searchForm.time_range;
-      // console.log(this.searchForm.time_range);
-      // if (array_time != null) {
-      //   start_time = this.searchForm.time_range[0];
-      //   end_time = this.searchForm.time_range[1];
-      // }
-      // console.log(start_time + "_" + end_time);
-
       this.request({
         url: "/security/getSecurityPages",
         method: "get",
         params: {
           page,
-          type,
-          danger_type,
-          danger_determine,
-          loco_id,
-          start_location,
-          end_location,
           start_time,
           end_time
         }
@@ -838,6 +819,7 @@ export default {
       this.dialogFormEvent = false;
       this.diaPeopleFormVisible = true;
       this.dangerIdValue = id;
+      this.getAssigners();
       this.$set(this.peopleData, "user_id", "");
       this.$set(this.peopleData, "remark", "");
       let uploadImgs = document.getElementsByClassName("upimgitems");

@@ -65,6 +65,10 @@ const constantRouterMap = [
       {
         path: '/slope',
         component: () => import('@/views/set/slope')
+      },
+      {
+        path: '/process',
+        component: () => import('@/views/set/process')
       }
     ]
   },

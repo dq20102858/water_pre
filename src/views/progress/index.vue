@@ -51,15 +51,14 @@ export default {
       lineTypeOutMinMileage: 0
     };
   },
+
+   
   updated() {
     this.getStationList();
     this.stationlineHeight = 188 + this.$refs.reflinebox.offsetHeight;
-  },
+   },
   created() {
     this.getProjectProcessMap();
-  },
-  mounted() {
-    document.querySelector(body).classList.add("is-active");
   },
   methods: {
     getProjectProcessMap() {
@@ -377,7 +376,6 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
 }
 .progress {
   background: #081c33;
-  height: 100vh;
   padding-bottom: 30px;
 }
 @media (max-width: 1024px) {
@@ -419,7 +417,6 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
 .lineTable {
   width: 100%;
   border: 1px #fff solid;
-  overflow: hidden;
   border-collapse: collapse;
 }
 .lineTable td {

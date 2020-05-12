@@ -92,9 +92,8 @@ export default {
                 normal: {
                   position: "left",
                   formatter: function(value, index) {
-                    return (
-                      value.name.replace(/.00/, "").replace(/.00/, "") + "   "
-                    );
+                    let aa = value.name.replace(".00", "");
+                    return aa.replace(".00", "") + "   ";
                   }
                 }
               },

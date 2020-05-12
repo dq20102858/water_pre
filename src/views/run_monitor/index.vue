@@ -341,10 +341,24 @@
               </el-select>
             </el-form-item>
             <el-form-item label="施工项目：">
-              <el-select v-model="formData.item_id" placeholder="请选择"></el-select>
+              <el-select v-model="formData.item_id" placeholder="请选择">
+                <el-option
+                  v-for="item in itemLists"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
             </el-form-item>
             <el-form-item label="工序：">
-              <el-select v-model="formData.work_id" placeholder="请选择"></el-select>
+              <el-select v-model="formData.work_id" placeholder="请选择">
+                <el-option
+                  v-for="item in workSortLists"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
             </el-form-item>
           </div>
         </fieldset>
@@ -658,10 +672,24 @@
               </el-select>
             </el-form-item>
             <el-form-item label="施工项目：">
-              <el-select v-model="formEditData.item_id" placeholder="请选择"></el-select>
+              <el-select v-model="formEditData.item_id" placeholder="请选择">
+                <el-option
+                  v-for="item in itemLists"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
             </el-form-item>
             <el-form-item label="工序：">
-              <el-select v-model="formEditData.work_id" placeholder="请选择"></el-select>
+              <el-select v-model="formEditData.work_id" placeholder="请选择">
+                <el-option
+                  v-for="item in workSortLists"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
             </el-form-item>
           </div>
         </fieldset>
@@ -886,7 +914,9 @@ export default {
       select_line_type: [],
       select_type_plan: true,
       select_type_now: true,
-      select_loco_type: []
+      select_loco_type: [],
+      itemLists: [],
+      workSortLists: []
     };
   },
   created() {
@@ -945,9 +975,7 @@ export default {
             })
           );
           // 数据
-
           let seriesData = [];
-          console.log("seriesDataAAA" + JSON.stringify(seriesData));
           seriesData.push({
             name: "车站",
             type: "line",
@@ -961,7 +989,7 @@ export default {
                   position: "left",
                   formatter: function(value, index) {
                     return (
-                      value.name.replace(/.00/, "").replace(/.00/, "") + "   "
+                      value.name
                     );
                   }
                 }
@@ -977,7 +1005,6 @@ export default {
           //划线  计划线 实际线
           let dataTypeArr = resdata.data.plan;
           let lineTypeData = [];
-          console.log(dataTypeArr);
           dataTypeArr.forEach((item, index) => {
             let start_flag_list = [];
             let end_flag_list = [];
@@ -990,16 +1017,6 @@ export default {
             end_flag_list.push(
               item.end_time,
               parseFloat(item.end_flag) + parseFloat(item.end_length / 1000)
-            );
-            true_start_flag_list.push(
-              item.start_time,
-              parseFloat(item.true_start_flag) +
-                parseFloat(item.true_start_length / 1000)
-            );
-            true_end_flag_list.push(
-              item.end_time,
-              parseFloat(item.true_end_flag) +
-                parseFloat(item.true_end_length / 1000)
             );
             if (this.select_type_plan) {
               let colors = "#0000ff";
@@ -1017,11 +1034,23 @@ export default {
                 lists: [start_flag_list, end_flag_list]
               });
             }
-            if (this.select_type_now) {
-              lineTypeData.push({
-                color: "#2dca2d",
-                lists: [true_start_flag_list, true_end_flag_list]
-              });
+            if (item.true_start_time != "") {
+              true_start_flag_list.push(
+                item.true_start_time,
+                parseFloat(item.true_start_flag) +
+                  parseFloat(item.true_start_length / 1000)
+              );
+              true_end_flag_list.push(
+                item.true_end_time,
+                parseFloat(item.true_end_flag) +
+                  parseFloat(item.true_end_length / 1000)
+              );
+              if (this.select_type_now) {
+                lineTypeData.push({
+                  color: "#2dca2d",
+                  lists: [true_start_flag_list, true_end_flag_list]
+                });
+              }
             }
           });
           for (let k in lineTypeData) {
@@ -1296,6 +1325,28 @@ export default {
       this.workLineTypeList = selectedLineTypeLists;
       this.$set(this.formData, "line_type", selectedLineTypeLists[0]["id"]);
     },
+    geItemList() {
+      this.request({
+        url: "/set/getItemLists",
+        method: "get"
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.itemLists = data.data.data;
+        }
+      });
+    },
+    getWorkSortList() {
+      this.request({
+        url: "/set/getWorkSortLists",
+        method: "get"
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.workSortLists = data.data.data;
+        }
+      });
+    },
     planAdd() {
       this.diaLogTitle = "计划图";
       this.diaLogFormVisible = true;
@@ -1304,6 +1355,8 @@ export default {
       this.getdriverList(); //司机
       this.getStationList(); //车站
       this.getWorkTypeList(); //作业类型
+      this.geItemList(); //项目
+      this.getWorkSortList(); //工序
     },
     addDayPlanDialog() {
       this.$refs["formRules"].validate(valid => {
@@ -1385,6 +1438,8 @@ export default {
           this.getdriverList(); //司机
           this.getStationList(); //车站
           this.getWorkTypeList(); //作业类型
+          this.geItemList(); //项目
+          this.getWorkSortList(); //工序
 
           this.formEditData.date = this.formData.date;
           if (data.data.out_reco == "0") {
@@ -1408,9 +1463,12 @@ export default {
           this.formEditData.end_flag = parseFloat(data.data.end_flag);
           this.formEditData.end_length = parseFloat(data.data.end_length);
           this.formEditData.line_type = data.data.line_type.toString();
+
           if (data.data.work_plan_id == "0") {
             this.formEditData.work_plan_id = "";
           }
+          this.formEditData.item_id = data.data.item_id;
+          this.formEditData.work_id = data.data.work_id;
           if (data.data.item_id == "0") {
             this.formEditData.item_id = "";
           }
@@ -1445,42 +1503,6 @@ export default {
               data.data.true_end_length == null
                 ? parseFloat(data.data.end_length)
                 : parseFloat(data.data.true_end_length)),
-            // this.formEditData = {
-            //   id: this.numberId,
-            //   number: data.data.number,
-            //   record_id:
-            //     data.data.record_id == null
-            //       ? this.formEditData.record_id
-            //       : data.data.record_id,
-            //   true_start_time:
-            //     data.data.true_start_time == ""
-            //       ? data.data.start_time
-            //       : data.data.true_start_time,
-            //   true_end_time:
-            //     data.data.true_end_time == ""
-            //       ? data.data.end_time
-            //       : data.data.true_end_time,
-            //   true_start_flag:
-            //     data.data.true_start_flag == null
-            //       ? parseFloat(data.data.start_flag)
-            //       : parseFloat(data.data.true_start_flag),
-            //   true_start_length:
-            //     data.data.true_start_length == null
-            //       ? parseFloat(data.data.start_length)
-            //       : parseFloat(data.data.true_start_length),
-            //   true_end_flag:
-            //     data.data.true_end_flag == null
-            //       ? parseFloat(data.data.end_flag)
-            //       : parseFloat(data.data.true_end_flag),
-            //   true_end_length:
-            //     data.data.true_end_length == null
-            //       ? parseFloat(data.data.end_length)
-            //       : parseFloat(data.data.true_end_length),
-            //   finish_num: data.data.finish_num,
-            //   remark: data.data.remark,
-            //   reason: data.data.reason,
-            //   status: data.data.status
-            // };
             console.log(this.formEditData);
         }
       });
@@ -1554,9 +1576,11 @@ export default {
       this.getChart();
     },
     refreshPage() {
-      this.getPageLoad();
-      this.select_type_plan = true;
-      this.select_type_now = true;
+      this.todayValue = new Date();
+      this.getChart();
+      // this.getPageLoad();
+      // this.select_type_plan = true;
+      // this.select_type_now = true;
     },
     selectLineTypeChart(value) {
       this.getChart();

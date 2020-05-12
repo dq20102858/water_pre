@@ -23,9 +23,9 @@
         </div>
         <div class="app-table">
           <el-table :data="dataList">
-            <el-table-column label="序号">
+            <el-table-column label="序号" width="80px">
               <template scope="scope">
-                <span>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
+               {{scope.$index+(page_cur - 1) * page_size + 1}}
               </template>
             </el-table-column>
             <el-table-column prop="title" label="消息主题"></el-table-column>

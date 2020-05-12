@@ -1647,7 +1647,6 @@ export default {
   padding-top: 20px;
   padding-left: 30px;
   color: #fff;
-  min-height: 100px;
 }
 .progresslist .namess {
   padding-bottom: 10px;

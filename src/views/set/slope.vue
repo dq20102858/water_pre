@@ -11,6 +11,7 @@
         <el-menu-item index="bridge">桥设置</el-menu-item>
         <el-menu-item index="tunnel">隧道设置</el-menu-item>
         <el-menu-item index="slope"  @click="pageToFirst">坡度设置</el-menu-item>
+        <el-menu-item index="process">项目工序</el-menu-item>
       </el-menu>
       <!-- <div @click="goDetail()">to apple</div> -->
     </div>
