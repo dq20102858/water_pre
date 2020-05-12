@@ -428,8 +428,8 @@ export default {
       }
       //绘制请点
       function drawAxesApply(jsonData) {
-        let json = jsonData;
-        let json1 = [
+        let json1 = jsonData;
+        let json = [
           {
             line_type: 1,
             number: "A4-2-007-1",
@@ -464,6 +464,22 @@ export default {
           },
           {
             line_type: 2,
+            number: "A3-2-007-1",
+            command_num: "(2020)\u5b57\u7b2c04.21-007-2",
+            description: "\u98ce\u98ce\u5149\u5149",
+            work_area: "DK14+160\u81f3DK21+370",
+            start_time: "2020-04-28 00:00:00",
+            end_time: "2020-04-28 23:59:59",
+            start_flag: "14",
+            start_length: "600",
+            end_flag: "21",
+            end_length: "370",
+            type: "A3",
+            start_total: 14600,
+            end_total: 21370
+          },
+            {
+            line_type: 3,
             number: "A3-2-007-1",
             command_num: "(2020)\u5b57\u7b2c04.21-007-2",
             description: "\u98ce\u98ce\u5149\u5149",
@@ -528,6 +544,23 @@ export default {
             context.fillText(dksatrt, startX + 5, 255);
             context.fillText(dkend, endX - 70, 255);
           } else if (json[i].line_type == 2) {
+            let startX = (start - lineTypeMinMileage) * every;
+            let endX = (end - lineTypeMinMileage) * every;
+            let centerX = (endX + startX) / 2; //开始结束平均值
+            //画水平直线
+            context.fillRect(startX - 1, 350, 2, 15);
+            context.fillRect(endX - 1, 350, 2, 15);
+            context.moveTo(startX, 358);
+            context.lineTo(endX, 358);
+            //文字
+            context.font = "24px Microsoft Yahei";
+            context.fillText(desc, centerX - 15, 355);
+            clickXY.push({ x: centerX, y: 345, r: 50, i: json[i] });
+            context.font = "12px Microsoft Yahei";
+            context.fillText(dksatrt, startX + 5, 355);
+            context.fillText(dkend, endX - 70, 355);
+          }
+          else if (json[i].line_type == 3) {
             let startX = (start - lineTypeMinMileage) * every;
             let endX = (end - lineTypeMinMileage) * every;
             let centerX = (endX + startX) / 2; //开始结束平均值
@@ -619,11 +652,10 @@ export default {
 
       //
       drawAxesStationList(this.stationList);
-      drawAxesLine(this.lineTypeList);
-      drawAxesPeple(this.applyList);
+        drawAxesPeple(this.applyList);
       drawAxesCar(this.applyList);
+      drawAxesLine(this.lineTypeList);
       drawAxesApply(this.applyList);
-
       //
     }
   },

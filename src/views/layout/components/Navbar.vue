@@ -24,10 +24,7 @@
           <i class="el-icon-caret-bottom"></i>
         </div>
         <el-dropdown-menu slot="dropdown">
-          <router-link to="/">
-            <el-dropdown-item style="text-align:center;">首页</el-dropdown-item>
-          </router-link>
-          <el-dropdown-item divided>
+          <el-dropdown-item>
             <span @click="logout" style="display:block;">退出登录</span>
           </el-dropdown-item>
         </el-dropdown-menu>
