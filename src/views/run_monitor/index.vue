@@ -1340,9 +1340,8 @@ export default {
     },
     getDepartList() {
       this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: 0, type: 2 }
+        url: "/dayplan/getWorkTeamLists",
+        method: "get"
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
