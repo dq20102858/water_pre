@@ -375,7 +375,7 @@ export default {
         content: {
           content: detailForm,
           parent: this,
-          data: { iframeData: { id: id } }
+          data: { iframeData: { id: id,titles:laytitle } }
         }
       });
     },
