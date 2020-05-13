@@ -24,7 +24,7 @@
         <div class="app-table">
           <el-table :data="dataList">
             <el-table-column label="序号" width="80px">
-              <template slot-scope="scope">
+              <template scope="scope">
                {{scope.$index+(page_cur - 1) * page_size + 1}}
               </template>
             </el-table-column>

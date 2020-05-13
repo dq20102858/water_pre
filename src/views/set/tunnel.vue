@@ -115,17 +115,16 @@
                 <el-option label="有道砟" :value="2"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="开始里程：" class="el-form-item-inlines is-required">
-              <el-form-item prop="start_flag" class="tunnel-errora">
-                <b>DK</b>
+            <el-form-item label="开始里程：" class="el-form-item-dk is-required">
+              <el-form-item prop="start_flag">
                 <el-input
                   v-model="formData.start_flag"
                   autocomplete="off"
                   placeholder="公里"
                   maxlength="3"
-                ></el-input>
+                ><template slot="prepend">DK</template></el-input>
               </el-form-item>
-              <el-form-item prop="start_length" class="tunnel-errorb">
+              <el-form-item prop="start_length" class="errorss">
                 <b>+</b>
                 <el-input
                   v-model="formData.start_length"
@@ -135,17 +134,16 @@
                 ></el-input>
               </el-form-item>
             </el-form-item>
-            <el-form-item label="结束里程：" class="el-form-item-inlines is-required">
-              <el-form-item prop="end_flag" class="tunnel-errora">
-                <b>DK</b>
+            <el-form-item label="结束里程：" class="el-form-item-dk is-required">
+              <el-form-item prop="end_flag">
                 <el-input
                   v-model="formData.end_flag"
                   autocomplete="off"
                   placeholder="公里"
                   maxlength="3"
-                ></el-input>
+                ><template slot="prepend">DK</template></el-input>
               </el-form-item>
-              <el-form-item prop="end_length" class="tunnel-errorb">
+              <el-form-item prop="end_length" class="errorss">
                 <b>+</b>
                 <el-input
                   v-model="formData.end_length"
@@ -480,27 +478,4 @@ export default {
   width: 80px;
   text-align: center;
 }
-.el-form-item-inlines {
-  display: inline-block;
-}
-.el-form-item-inlines .el-form-item {
-  display: inline-block;
-}
-.el-form-item-inlines .el-form-item .el-form-item__content {
-  margin-left: 0;
-}
-.el-form-item-inlines .el-input {
-  width: 100px;
-}
-.el-form-item-inlines input {
-  display: inline-block;
-  width: 100px;
-  text-align: center;
-}
-.el-form-item-inlines .el-form-item {
-  margin-bottom: 1px !important;
-}
-
-.tunnel-errora .el-form-item__error{ padding-left: 23px;}
-.tunnel-errorb .el-form-item__error{padding-left: 12px;}
 </style>

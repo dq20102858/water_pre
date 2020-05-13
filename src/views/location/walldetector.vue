@@ -143,24 +143,27 @@
           <div class="el-form-item__error">{{lineTypeDes}}</div>
         </el-form-item>
 
-        <el-form-item label="所在位置：" class="el-form-item-inlines is-required">
-          <el-form-item prop="start_flag" class="wall-errora">
-            <b>DK</b>
+        <el-form-item label="所在位置：" class="el-form-item-dk is-required">
+          <el-form-item prop="start_flag">
             <el-input
               v-model="detectorData.start_flag"
               autocomplete="off"
               placeholder="公里"
               maxlength="4"
-            ></el-input>
+            >
+            <template slot="prepend">DK</template>
+            </el-input>
           </el-form-item>
-          <el-form-item prop="start_length" class="wall-errorb">
+          <el-form-item prop="start_length" class="errorss">
             <b>+</b>
             <el-input
               v-model="detectorData.start_length"
               autocomplete="off"
               placeholder="米"
               maxlength="3"
-            ></el-input>
+            >
+            
+            </el-input>
           </el-form-item>
         </el-form-item>
         <el-form-item label="设备是否装在出入口：" prop="is_enter">
@@ -512,26 +515,6 @@ export default {
 }
 .dialog-sebei .el-select {
   width: 100%;
-}
-.el-form-item-inlines {
-  display: inline-block;
-}
-.el-form-item-inlines .el-form-item {
-  display: inline-block;
-}
-.el-form-item-inlines .el-form-item .el-form-item__content {
-  margin-left: 0;
-}
-.el-form-item-inlines .el-input {
-  width: 100px;
-}
-.el-form-item-inlines input {
-  display: inline-block;
-  width: 100px;
-  text-align: center;
-}
-.el-form-item-inlines .el-form-item {
-  margin-bottom: 1px !important;
 }
 .wall-errora .el-form-item__error {
   padding-left: 23px;

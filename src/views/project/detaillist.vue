@@ -191,22 +191,18 @@
                   </el-select>
                   <div class="el-form-item__error">{{lineTypeDes}}</div>
                 </el-form-item>
-                <el-form-item label="计划里程：" prop="start_flag">
-                  <b>DK</b>
-                  <el-input class="pinput" v-model="historyData.start_flag" placeholder="公里"></el-input>+
+                <el-form-item label="计划里程：" prop="start_flag" class="el-form-item-dks">
+                  <el-input class="pinput" v-model="historyData.start_flag" placeholder="公里"><template slot="prepend">DK</template></el-input><b>+</b>
                   <el-input class="pinput" v-model="historyData.start_length" placeholder="米"></el-input>
                   <em>~</em>
-                  <b>DK</b>
-                  <el-input class="pinput" v-model="historyData.end_flag" placeholder="公里"></el-input>+
+                  <el-input class="pinput" v-model="historyData.end_flag" placeholder="公里"><template slot="prepend">DK</template></el-input><b>+</b>
                   <el-input class="pinput" v-model="historyData.end_length" placeholder="米"></el-input>
                 </el-form-item>
-                <el-form-item label="实际里程：" prop="t_start_flag">
-                  <b>DK</b>
-                  <el-input class="pinput" v-model="historyData.t_start_flag" placeholder="公里"></el-input>+
+                <el-form-item label="实际里程：" prop="t_start_flag" class="el-form-item-dks">
+                  <el-input class="pinput" v-model="historyData.t_start_flag" placeholder="公里"><template slot="prepend">DK</template></el-input><b>+</b>
                   <el-input class="pinput" v-model="historyData.t_start_length" placeholder="米"></el-input>
                   <em>~</em>
-                  <b>DK</b>
-                  <el-input class="pinput" v-model="historyData.t_end_flag" placeholder="公里"></el-input>+
+                  <el-input class="pinput" v-model="historyData.t_end_flag" placeholder="公里"><template slot="prepend">DK</template></el-input><b>+</b>
                   <el-input class="pinput" v-model="historyData.t_end_length" placeholder="米"></el-input>
                 </el-form-item>
               </div>
@@ -594,13 +590,7 @@ export default {
 .dialog-plan-detail .widhtss .el-input {
   width: 100%;
 }
-.dialog-plan-detail .pinput input {
-  width: 55px;
-  margin: 0 3px;
-  padding: 0 5px;
-  height: 31px !important;
-  text-align: center;
-}
+
 .dialog-plan-detail .el-textarea {
   width: 100%;
 }
@@ -616,4 +606,16 @@ export default {
   padding: 20px;
   background: #fff;
 }
+
+.el-form-item-dks .pinput input {
+  width: 80px;
+  padding: 0 5px;
+  height: 36px !important;
+  line-height: 36px;
+  text-align: center;
+}
+.el-form-item-dks .el-input-group__prepend{padding: 0 10px; border:1px #9db9fa solid;border-right: 0;color: #3655A5;font-weight: 700;}
+.el-form-item-dks .errorss .el-form-item__error {padding-left: 12px;}
+.el-form-item-dks  b{padding: 0 0 0 5px;}
+.el-form-item-dks  em{font-weight: 700;}
 </style>

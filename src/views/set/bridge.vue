@@ -112,17 +112,16 @@
               </el-select>
               <div class="el-form-item__error">{{lineTypeDes}}</div>
             </el-form-item>
-            <el-form-item label="开始里程：" class="el-form-item-inlines is-required">
-              <el-form-item prop="start_flag" class="bridge-errora">
-                <b>DK</b>
+            <el-form-item label="开始里程：" class="el-form-item-dk is-required">
+              <el-form-item prop="start_flag">
                 <el-input
                   v-model="formData.start_flag"
                   autocomplete="off"
                   placeholder="公里"
                   maxlength="3"
-                ></el-input>
+                ><template slot="prepend">DK</template></el-input>
               </el-form-item>
-              <el-form-item prop="start_length" class="bridge-errorb">
+              <el-form-item prop="start_length" class="errorss">
                 <b>+</b>
                 <el-input
                   v-model="formData.start_length"
@@ -132,17 +131,16 @@
                 ></el-input>
               </el-form-item>
             </el-form-item>
-            <el-form-item label="结束里程：" class="el-form-item-inlines is-required">
-              <el-form-item prop="end_flag" class="bridge-errora">
-                <b>DK</b>
+            <el-form-item label="结束里程：" class="el-form-item-dk is-required">
+              <el-form-item prop="end_flag">
                 <el-input
                   v-model="formData.end_flag"
                   autocomplete="off"
                   placeholder="公里"
                   maxlength="3"
-                ></el-input>
+                ><template slot="prepend">DK</template></el-input>
               </el-form-item>
-              <el-form-item prop="end_length" class="bridge-errorb">
+              <el-form-item prop="end_length" class="errorss">
                 <b>+</b>
                 <el-input
                   v-model="formData.end_length"

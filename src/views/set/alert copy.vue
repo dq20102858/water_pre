@@ -7,7 +7,7 @@
         </li>
         <el-menu-item index="set">站点设置</el-menu-item>
         <el-menu-item index="speed">限速设置</el-menu-item>
-        <el-menu-item index="alert"  @click="pageToFirst">防区设置</el-menu-item>
+        <el-menu-item index="alert" @click="pageToFirst">防区设置</el-menu-item>
         <el-menu-item index="bridge">桥设置</el-menu-item>
         <el-menu-item index="tunnel">隧道设置</el-menu-item>
         <el-menu-item index="slope">坡度设置</el-menu-item>
@@ -88,6 +88,7 @@
         </div>
         <el-dialog
           width="700px"
+          :close-on-click-modal="false"
           class="dialog-station"
           :title="this.diaLogTitle"
           :visible.sync="diaLogFormVisible"
@@ -115,16 +116,17 @@
               </el-select>
               <div class="el-form-item__error">{{lineTypeDes}}</div>
             </el-form-item>
-            <el-form-item label="开始里程：" class="el-form-item-dk is-required">
-              <el-form-item prop="start_flag">
+            <el-form-item label="开始里程：" class="el-form-item-inlines is-required">
+              <el-form-item prop="start_flag" class="alert-errora">
+                <b>DK</b>
                 <el-input
                   v-model="formData.start_flag"
                   autocomplete="off"
                   placeholder="公里"
                   maxlength="3"
-                > <template slot="prepend">DK</template></el-input>
+                ></el-input>
               </el-form-item>
-              <el-form-item prop="start_length" class="errorss">
+              <el-form-item prop="start_length" class="alert-errorb">
                 <b>+</b>
                 <el-input
                   v-model="formData.start_length"
@@ -134,18 +136,17 @@
                 ></el-input>
               </el-form-item>
             </el-form-item>
-            <el-form-item label="结束里程：" class="el-form-item-dk is-required">
-              <el-form-item prop="end_flag">
+            <el-form-item label="结束里程：" class="el-form-item-inlines is-required">
+              <el-form-item prop="end_flag" class="alert-errora">
+                <b>DK</b>
                 <el-input
                   v-model="formData.end_flag"
                   autocomplete="off"
                   placeholder="公里"
                   maxlength="3"
-                >
-                <template slot="prepend">DK</template>
-                </el-input>
+                ></el-input>
               </el-form-item>
-              <el-form-item prop="end_length" class="errorss">
+              <el-form-item prop="end_length" class="alert-errorb">
                 <b>+</b>
                 <el-input
                   v-model="formData.end_length"
@@ -155,12 +156,13 @@
                 ></el-input>
               </el-form-item>
             </el-form-item>
-           <el-form-item label="开始时间">
+
+            <el-form-item label="开始时间" prop="start_time">
               <el-date-picker
                 v-model="formData.start_time"
                 :picker-options="pickerOptionsStart"
                 type="datetime"
-                 format="yyyy-MM-dd HH:mm"
+                format="yyyy-MM-dd HH:mm"
                 placeholder="选择时间"
               ></el-date-picker>
             </el-form-item>
@@ -169,7 +171,7 @@
                 :picker-options="pickerOptionsEnd"
                 v-model="formData.end_time"
                 type="datetime"
-                 format="yyyy-MM-dd HH:mm"
+                format="yyyy-MM-dd HH:mm"
                 placeholder="选择时间"
               ></el-date-picker>
             </el-form-item>
@@ -191,9 +193,7 @@ export default {
       pickerOptionsStart: {
         disabledDate: time => {
           if (this.formData.end_time) {
-            return (
-              time.getTime() > new Date(this.formData.end_time).getTime()
-            );
+            return time.getTime() > new Date(this.formData.end_time).getTime();
           }
         }
       },
@@ -422,7 +422,8 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.formData = data.data;
-          this.formData.end_time=data.data.end_time;
+          //this.formData.end_time = data.data.end_time.toString();
+          console.log(data.data.end_time);
           this.lineTypeList.map((item, index) => {
             if (item.id == data.data.line_type) {
               this.lineTypeDes = "里程范围：" + item.tip;
@@ -518,5 +519,31 @@ export default {
   display: inline-block;
   width: 80px;
   text-align: center;
+}
+.el-form-item-inlines {
+  display: inline-block;
+}
+.el-form-item-inlines .el-form-item {
+  display: inline-block;
+}
+.el-form-item-inlines .el-form-item .el-form-item__content {
+  margin-left: 0;
+}
+.el-form-item-inlines .el-input {
+  width: 100px;
+}
+.el-form-item-inlines input {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+}
+.el-form-item-inlines .el-form-item {
+  margin-bottom: 1px !important;
+}
+.alert-errora .el-form-item__error {
+  padding-left: 23px;
+}
+.alert-errorb .el-form-item__error {
+  padding-left: 12px;
 }
 </style>
