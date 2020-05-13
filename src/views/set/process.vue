@@ -7,7 +7,7 @@
         </li>
         <el-menu-item index="set">站点设置</el-menu-item>
         <el-menu-item index="speed">限速设置</el-menu-item>
-        <el-menu-item index="alert">防区设置</el-menu-item>
+        <el-menu-item index="alerts">防区设置</el-menu-item>
         <el-menu-item index="bridge">桥设置</el-menu-item>
         <el-menu-item index="tunnel">隧道设置</el-menu-item>
         <el-menu-item index="slope">坡度设置</el-menu-item>
@@ -58,7 +58,7 @@
                 <el-table-column label="操作" width="68">
                   <template slot-scope="scope">
                     <div class="app-operation">
-                           <el-button class="btn-red" size="mini" @click="goDel(scope.row.id)">删除</el-button>
+                      <el-button class="btn-red" size="mini" @click="goDel(scope.row.id)">删除</el-button>
                     </div>
                   </template>
                 </el-table-column>
@@ -79,6 +79,7 @@
         <el-form-item label="名称：" prop="name" label-width="70px">
           <el-input v-model="formData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
         </el-form-item>
+        
         <div class="blank"></div>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -94,8 +95,7 @@ export default {
     return {
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
-      formData: {
-      },
+      formData: {},
       formRules: {
         name: [
           {
@@ -111,7 +111,7 @@ export default {
           }
         ]
       },
-      itemType:4,
+      itemType: 4,
       dataItemList: [],
       dataWorkSortList: []
     };
@@ -152,7 +152,7 @@ export default {
       } else {
         this.diaLogTitle = "添加工序信息";
       }
-      this.itemType=addtype;
+      this.itemType = addtype;
       this.diaLogFormVisible = true;
       this.$nextTick(() => {
         this.$refs["formRules"].clearValidate();
@@ -163,7 +163,7 @@ export default {
       this.$refs["formRules"].validate(valid => {
         if (valid) {
           let data = that.formData;
-          that.formData.type=this.itemType;
+          that.formData.type = this.itemType;
           this.request({
             url: "/set/addItem",
             method: "post",
@@ -187,7 +187,7 @@ export default {
         }
       });
     },
-   
+
     goDel(id) {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
@@ -205,7 +205,7 @@ export default {
             if (data.status == 1) {
               this.getItemList();
               this.getWorkSortLists();
-                 this.$message({
+              this.$message({
                 type: "success",
                 message: "删除成功！"
               });
@@ -213,14 +213,16 @@ export default {
           });
         })
         .catch(() => {});
-    },
-  
+    }
+
     //
   }
 };
 </script>
 <style>
-#process  .app-page-container{min-height: 680px;}
+#process .app-page-container {
+  min-height: 680px;
+}
 .dialog-station .el-textarea__inner {
   border: 1px #9db9fa solid;
   color: #4b6eca;

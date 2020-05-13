@@ -7,7 +7,7 @@
         </li>
         <el-menu-item index="set">站点设置</el-menu-item>
         <el-menu-item index="speed">限速设置</el-menu-item>
-        <el-menu-item index="alert">防区设置</el-menu-item>
+        <el-menu-item index="alerts">防区设置</el-menu-item>
         <el-menu-item index="bridge">桥设置</el-menu-item>
         <el-menu-item index="tunnel" @click="pageToFirst">隧道设置</el-menu-item>
         <el-menu-item index="slope">坡度设置</el-menu-item>
@@ -153,7 +153,7 @@
                 ></el-input>
               </el-form-item>
             </el-form-item>
-            <div class="blank"></div>
+                        <div class="blank"></div>
           </el-form>
           <div slot="footer" class="dialog-footer">
             <el-button @click="diaLogFormVisible = false">关闭</el-button>

@@ -7,8 +7,8 @@
         </li>
         <el-menu-item index="set">站点设置</el-menu-item>
         <el-menu-item index="speed">限速设置</el-menu-item>
-        <el-menu-item index="alert">防区设置</el-menu-item>
-        <el-menu-item index="bridge"  @click="pageToFirst">桥设置</el-menu-item>
+        <el-menu-item index="alerts">防区设置</el-menu-item>
+        <el-menu-item index="bridge" @click="pageToFirst">桥设置</el-menu-item>
         <el-menu-item index="tunnel">隧道设置</el-menu-item>
         <el-menu-item index="slope">坡度设置</el-menu-item>
         <el-menu-item index="process">项目工序</el-menu-item>
@@ -119,7 +119,9 @@
                   autocomplete="off"
                   placeholder="公里"
                   maxlength="3"
-                ><template slot="prepend">DK</template></el-input>
+                >
+                  <template slot="prepend">DK</template>
+                </el-input>
               </el-form-item>
               <el-form-item prop="start_length" class="errorss">
                 <b>+</b>
@@ -138,7 +140,9 @@
                   autocomplete="off"
                   placeholder="公里"
                   maxlength="3"
-                ><template slot="prepend">DK</template></el-input>
+                >
+                  <template slot="prepend">DK</template>
+                </el-input>
               </el-form-item>
               <el-form-item prop="end_length" class="errorss">
                 <b>+</b>
@@ -150,6 +154,7 @@
                 ></el-input>
               </el-form-item>
             </el-form-item>
+       
             <div class="blank"></div>
           </el-form>
           <div slot="footer" class="dialog-footer">

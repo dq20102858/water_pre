@@ -30,6 +30,7 @@
     "babel-polyfill": "^6.26.0",
     "clipboard": "1.7.1",
     "codemirror": "5.32.0",
+    "default-passive-events": "^1.0.10",
     "echarts": "^3.8.5",
     "el-tab-pane-ext": "^0.1.1",
     "element-ui": "^2.13.0",

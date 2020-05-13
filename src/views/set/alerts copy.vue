@@ -1,13 +1,13 @@
 <template>
   <div id="monitor">
     <div class="el-menu-top">
-      <el-menu router default-active="alert" mode="horizontal">
+      <el-menu router default-active="alerts" mode="horizontal">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-set.png')" />设置
         </li>
         <el-menu-item index="set">站点设置</el-menu-item>
         <el-menu-item index="speed">限速设置</el-menu-item>
-        <el-menu-item index="alert"  @click="pageToFirst">防区设置</el-menu-item>
+        <el-menu-item index="alerts"  @click="pageToFirst">防区设置</el-menu-item>
         <el-menu-item index="bridge">桥设置</el-menu-item>
         <el-menu-item index="tunnel">隧道设置</el-menu-item>
         <el-menu-item index="slope">坡度设置</el-menu-item>

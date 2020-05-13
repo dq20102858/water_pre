@@ -11,7 +11,7 @@ import './permission' // permission control
 import * as filters from './filters' // global filters
 import eventBus from './utils/eventBus'
 import authorityCode from './authorityCode'
-
+import 'default-passive-events'
 // import echarts from 'echarts'
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts

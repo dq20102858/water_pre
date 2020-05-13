@@ -8,20 +8,19 @@
                 <span class="svg-container svg-container_login">
                     <i class="iconfont icon-zhanghu"></i>
                 </span>
-                <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="username" />
+                <el-input name="username" type="text" v-model="loginForm.username" placeholder="username" />
             </el-form-item>
             <el-form-item prop="password">
                 <span class="svg-container">
                     <i class="iconfont icon-mima password"></i>
                 </span>
-                <el-input name="password" :type="passwordType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on" placeholder="password" />
+                <el-input name="password" :type="passwordType" @keyup.enter.native="handleLogin" v-model="loginForm.password" placeholder="password" />
                 <span class="show-pwd" @click="showPwd">
                     <i class="iconfont icon-yincangmima"></i>
                 </span>
             </el-form-item>
             <el-button type="primary" style="width:100%;margin-bottom:30px;" :loading="loading" @click.native.prevent="handleLogin">登录</el-button>
         </el-form>
-        <el-dialog title="第三方登录" :visible.sync="showDialog" append-to-body></el-dialog>
     </div>
 </template>
 <script>
@@ -128,7 +127,7 @@
       }
     }
 </style>
-<style rel="stylesheet/scss" lang="scss" scoped>
+<style rel="stylesheet/scss" lang="scss">
     $bg: #2d3a4b;
     $dark_gray: #889aa4;
     $light_gray: #eee;

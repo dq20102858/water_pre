@@ -465,11 +465,10 @@ export default {
   created() {
     //alert(document.location.hostname);
     this.defaultDate();
-    this.getCompanyLists();
-    this.getTrainList();
-    this.getDangerType();
-    this.getDangerDetermine();
-
+    // this.getCompanyLists();
+    // this.getTrainList();
+    // this.getDangerType();
+    // this.getDangerDetermine();
     this.getDataList();
   },
   methods: {
@@ -484,8 +483,8 @@ export default {
       let endTime = currentDate.setHours(23, 59, 59, 999);
       let starTime = new Date(currentDate.setDate(currentDate.getDate() - 7)).setHours(0, 0, 0, 999); 
 
-      this.$set(this.searchForm, "start_time", starTime);
-      this.$set(this.searchForm, "end_time", endTime);
+      this.$set(this.searchForm, "start_time",  new Date(starTime));
+      this.$set(this.searchForm, "end_time", new Date(endTime));
     },
     //====列表数据
     getDataList() {

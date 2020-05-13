@@ -50,8 +50,8 @@ const constantRouterMap = [
         component: () => import('@/views/set/speed')
       },
       {
-        path: '/alert',
-        component: () => import('@/views/set/alert')
+        path: '/alerts',
+        component: () => import('@/views/set/alerts')
       },
       {
         path: '/bridge',
