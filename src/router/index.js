@@ -187,7 +187,5 @@ export const asyncRouterMap = {
   '/views/location/cardetector': () => import('@/views/location/cardetector'),//车载探测器
   '/views/location/locationbind': () => import('@/views/location/locationbind'),//定位从设备
   '/views/location/device': () => import('@/views/location/device'),//机具
-
-
-  '/views/message/index': () => import('@/views/message/index'),//机具
+  '/views/message/index': () => import('@/views/message/index'),
 }

@@ -1,7 +1,7 @@
 <template>
-  <div id="monitor">
+  <div id="message">
     <div class="el-menu-top">
-      <el-menu router default-active="set" mode="horizontal">
+      <el-menu mode="horizontal">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-peple.png')" />消息
         </li>
@@ -24,7 +24,7 @@
         <div class="app-table">
           <el-table :data="dataList">
             <el-table-column label="序号" width="80px">
-              <template scope="scope">
+              <template  slot-scope="scope">
                {{scope.$index+(page_cur - 1) * page_size + 1}}
               </template>
             </el-table-column>
@@ -33,11 +33,6 @@
             <el-table-column prop="recept_type" label="发送对象">
               <template slot-scope="scope">
                 <span>{{getArrText(scope.row.recept_type)}}</span>
-                <!--   <span class="statused" v-if="scope.row.recept_type=='1'">施工负责人</span>
-                 <span class="statused" v-if="scope.row.recept_type=='1,2'">施工负责人 施工人员</span>
-                <span class="statused" v-if="scope.row.recept_type=='1,3'">施工负责人 行车</span>
-                 <span class="statused" v-if="scope.row.recept_type=='1,3'">施工负责人 行车</span>
-                <span class="statused" v-if="scope.row.recept_type=='1,2,3'">施工负责人 施工人员 行车</span>-->
               </template>
             </el-table-column>
             <el-table-column prop="create_time" label="发布时间"></el-table-column>
