@@ -1444,10 +1444,8 @@ export default {
     scrollPosition(start_flag, start_length) {
       let total = start_flag;
       let startX = (total - this.minKM) * 1000 * 0.5;
-      //console.log(startX);
-      document.querySelector(".group-canvas").scrollTo(startX, 0);
+     document.querySelector(".group-canvas").scrollLeft =startX;
     }
-    //
   },
   mounted() {
     window.addEventListener("resize", () => {

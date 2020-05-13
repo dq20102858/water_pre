@@ -69,7 +69,7 @@
             <el-pagination
               class="pagination"
               v-if="dataList.length !== 0"
-              layout="slot,prev, pager, next,slot,total"
+              layout="slot,prev, pager, next,total"
               :page-size="this.page_size"
               :current-page="this.page_cur"
               :total="this.page_data_total"
