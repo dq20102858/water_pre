@@ -23,7 +23,13 @@
               <el-button type="primary" icon="el-icon-plus" @click="goAdd">添加站点</el-button>
             </el-form-item>
             <div class="el-serach">
-              <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable maxlength="20"></el-input>
+              <el-input
+                v-model="searchName"
+                autocomplete="off"
+                placeholder="请输入名称查询"
+                clearable
+                maxlength="20"
+              ></el-input>
               <el-button @click="searchEvent">查询</el-button>
             </div>
           </el-form>
@@ -118,7 +124,7 @@
               <div class="el-form-item__error">{{lineTypeDes}}</div>
             </el-form-item>
             <el-form-item label="位置：" prop="position">
-              <el-input v-model="formData.position" autocomplete="off" placeholder="请输入公里数+米数"></el-input>
+                <el-input v-model="formData.position" autocomplete="off" placeholder="请输入公里数+米数"></el-input>
             </el-form-item>
             <el-form-item label="类型：">
               <el-select v-model="formData.type">
@@ -170,7 +176,7 @@ export default {
         position: [
           {
             required: true,
-            message: "请输入位置 公里数+米数，比如14130",
+            message: "请输入公里数+米数，比如12公里300米  等同 12300",
             trigger: "blur"
           },
           {
@@ -252,7 +258,7 @@ export default {
           var newArr = new Array();
           for (var i = 0; i < lineJson.length; i++) {
             var j = lineJson[i];
-            if (j.id ==1) {
+            if (j.id == 1) {
               newArr.push(j);
             }
           }
@@ -295,11 +301,22 @@ export default {
           //   return false;
           // }
           if (parseInt(pnum) < parseInt(lineStart)) {
-            this.$message.error("输入位置不在里程范围内");
+            this.$message({
+              message:
+                "位置输入不在线别" + lineStart + "~" + lineEnd + "里程范围内",
+              duration: 5000,
+              type: "error"
+            });
+
             return false;
           }
           if (parseInt(pnum) > parseInt(lineEnd)) {
-            this.$message.error("输入位置不在里程范围内");
+            this.$message({
+              message:
+                "位置输入不在线别" + lineStart + "~" + lineEnd + "里程范围内",
+              duration: 5000,
+              type: "error"
+            });
             return false;
           }
           this.request({
