@@ -106,7 +106,7 @@
         height: 53px;
         width: 85%;
         input {
-          background: none;
+          background: none!important;
           border: 0px;
           -webkit-appearance: none;
           border-radius: 0px;

@@ -8,7 +8,7 @@
         <el-menu-item index="admin">公司列表</el-menu-item>
         <el-menu-item index="departlist">部门列表</el-menu-item>
         <el-menu-item index="postlist">职位列表</el-menu-item>
-        <el-menu-item index="userlist"    @click="userFirstPage">人员列表</el-menu-item>
+        <el-menu-item index="userlist" @click="userFirstPage">人员列表</el-menu-item>
       </el-menu>
     </div>
     <div class="app-page">
@@ -113,7 +113,7 @@
           </div>
         </div>
         <el-dialog
-          width="680px"
+          width="780px"
           class="dialog-users"
           :title="this.userDialogTitle"
           :close-on-click-modal="false"
@@ -127,18 +127,18 @@
             ref="userRulesForm"
           >
             <div class="el-form-item-inlinessddd">
-              <el-form-item label="用户名：" prop="user_name" v-if="this.userDialogTitle=='添加人员信息'">
-                <el-input
-                  v-model="userData.user_name"
-                  autocomplete="off"
-                  maxlength="20"
-                  show-word-limit
-                ></el-input>
+              <el-form-item
+                class="newitem"
+                label="用户名："
+                prop="user_name"
+                v-if="this.userDialogTitle=='添加人员信息'"
+              >
+                <el-input v-model="userData.user_name" show-word-limit></el-input>
               </el-form-item>
-              <el-form-item label="姓名：" prop="name">
-                <el-input v-model="userData.name" autocomplete="off" maxlength="20" show-word-limit></el-input>
+              <el-form-item class="newitem" label="姓名：" prop="name">
+                <el-input v-model="userData.name" autocomplete="off"></el-input>
               </el-form-item>
-              <el-form-item label="公司名称：" prop="company_id">
+              <el-form-item class="newitem" label="公司名称：" prop="company_id">
                 <el-select v-model="userData.company_id" @change="getDepartLists($event)">
                   <el-option
                     v-for="item in this.companySelectList"
@@ -148,19 +148,24 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="密码：" prop="password" v-if="this.userDialogTitle=='添加人员信息'">
-                <el-input
-                  v-model="userData.password"
-                  autocomplete="off"
-                  maxlength="20"
-                  show-word-limit
-                ></el-input>
+              <el-form-item
+                class="newitem"
+                label="密码："
+                prop="password"
+                v-if="this.userDialogTitle=='添加人员信息'"
+              >
+                <el-input v-model="userData.password" autocomplete="off"></el-input>
               </el-form-item>
-              <el-form-item label="密码：" prop="passwordEdit" v-if="this.userDialogTitle=='修改人员信息'">
+              <el-form-item
+                class="newitem"
+                label="密码："
+                prop="passwordEdit"
+                v-if="this.userDialogTitle=='修改人员信息'"
+              >
                 <el-input v-model="userData.passwordEdit" autocomplete="off" placeholder="不修改密码请留空"></el-input>
               </el-form-item>
 
-              <el-form-item label="部门名称：" prop="depart_id">
+              <el-form-item class="newitem" label="部门名称：" prop="depart_id">
                 <el-select v-model="userData.depart_id" @change="getPostLists($event)">
                   <el-option
                     v-for="item in this.departSelectList"
@@ -170,11 +175,11 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="邮箱：" prop="email">
+              <el-form-item class="newitem" label="邮箱：" prop="email">
                 <el-input v-model="userData.email" autocomplete="off"></el-input>
               </el-form-item>
 
-              <el-form-item label="职位名称：" prop="post_id">
+              <el-form-item class="newitem" label="职位名称：" prop="post_id">
                 <el-select v-model="userData.post_id">
                   <el-option
                     v-for="item in this.postSelectList"
@@ -184,7 +189,7 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="手机号码：" prop="phone">
+              <el-form-item class="newitem" label="手机号码：" prop="phone">
                 <el-input v-model="userData.phone" autocomplete="off"></el-input>
               </el-form-item>
               <!-- <el-form-item label="调度信息：" prop="dispatch" style="">
@@ -258,26 +263,57 @@ export default {
         user_name: [
           {
             required: true,
-            message: "请输入用户名2~20个字符",
+            message: "请输入用户名",
             trigger: "blur"
           },
-          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
+          { min: 2, max: 14, message: "请输入用户名长度在2到14个字符", trigger: "blur" },
           {
-            pattern: /^[^\s]*$/,
-            message: "输入用户名不能含有空格",
+            pattern: /^[\u4e00-\u9fa5A-Za-z0-9\_]*$/,
+            message: "用户名只能是汉字、字母、数字及下划线",
             trigger: "blur"
           }
         ],
         name: [
           {
             required: true,
-            message: "请输入姓名2~20个字符",
+            message: "请输入姓名",
             trigger: "blur"
           },
-          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
+          { min: 2, max: 14, message: "请输入姓名长度在2到14个字符", trigger: "blur" },
           {
-            pattern: /^[^\s]*$/,
-            message: "输入姓名不能含有空格",
+            pattern: /^[\u4e00-\u9fa5A-Za-z0-9\_]*$/,
+           message: "姓名只能是汉字、字母、数字及下划线",
+            trigger: "blur"
+          }
+        ],
+        password: [
+          {
+            required: true,
+            message: "请输入密码",
+            trigger: "blur"
+          },
+          {
+            min: 6,
+            max: 14,
+            message: "请输入密码长度6到14个字符",
+            trigger: "blur"
+          },
+          {
+            pattern: /^[0-9a-zA-Z_]{1,}$/,
+            message: "密码只能是数字、字母、下划线",
+            trigger: "blur"
+          }
+        ],
+        passwordEdit: [
+          {
+            min: 6,
+            max: 14,
+            message: "请输入密码长度6到14个字符",
+            trigger: "blur"
+          },
+          {
+            pattern: /^[0-9a-zA-Z_]{1,}$/,
+            message: "密码只能是数字、字母、下划线",
             trigger: "blur"
           }
         ],
@@ -288,27 +324,7 @@ export default {
             trigger: "change"
           }
         ],
-        password: [
-          {
-            required: true,
-            message: "请输入密码2~20个字符",
-            trigger: "blur"
-          },
-          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
-          {
-            pattern: /^[^\s]*$/,
-            message: "输入密码不能含有空格",
-            trigger: "blur"
-          }
-        ],
-        passwordEdit: [
-          {
-            min: 2,
-            max: 20,
-            message: "请输入密码在2到20个字符",
-            trigger: "blur"
-          }
-        ],
+
         depart_id: [
           {
             required: true,
@@ -435,12 +451,12 @@ export default {
           console.log("this.userData.id：" + this.userData.id);
           if (typeof baseid != "undefined") {
             url = "/user/editUser";
-          
+
             let pwdEdit = this.userData.passwordEdit;
             if (pwdEdit != "" && typeof pwdEdit != "undefined") {
               this.userData.password = pwdEdit;
             } else {
-              this.userData.password ="";
+              this.userData.password = "";
             }
           }
           this.request({
@@ -614,19 +630,19 @@ export default {
       // let result= URL.createObjectURL(file.raw);
       console.log("图上传成功", res);
       this.userData.avatar = res.data.url;
-      let upload_list_li = document.getElementsByClassName("el-upload-list")[0]
-        .children;
-      if (res.data.url != "") {
-        for (let i = 0; i < upload_list_li.length; i++) {
-          let li_a = upload_list_li[i];
-          let imgElement = document.createElement("img");
-          imgElement.setAttribute("src", res.data.url);
-          imgElement.setAttribute("class", "upimgitem");
-          if (li_a.lastElementChild.nodeName !== "IMG") {
-            li_a.appendChild(imgElement);
-          }
-        }
-      }
+      // let upload_list_li = document.getElementsByClassName("el-upload-list")[0]
+      //   .children;
+      // if (res.data.url != "") {
+      //   for (let i = 0; i < upload_list_li.length; i++) {
+      //     let li_a = upload_list_li[i];
+      //     let imgElement = document.createElement("img");
+      //     imgElement.setAttribute("src", res.data.url);
+      //     imgElement.setAttribute("class", "upimgitem");
+      //     if (li_a.lastElementChild.nodeName !== "IMG") {
+      //       li_a.appendChild(imgElement);
+      //     }
+      //   }
+      // }
     },
     uploadBefore(file) {
       var filename = file.name.substring(file.name.lastIndexOf(".") + 1);
@@ -668,7 +684,12 @@ export default {
 .dialog-users .el-form-item__label {
   width: 110px;
 }
-
+.dialog-users .newitem {
+  width: 350px;
+}
+.dialog-users .newitem .el-input--medium {
+  width: 240px;
+}
 .dialog-users .el-input--medium {
   width: 100%;
 }

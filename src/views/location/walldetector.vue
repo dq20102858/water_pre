@@ -346,7 +346,6 @@ export default {
       this.pageChange(1);
     },
     toLastPage() {
-      this.page_cur = this.page_total;
       this.pageChange(this.page_total);
     },
     searchEvent() {
@@ -402,7 +401,7 @@ export default {
               this.diaLogFormVisible = false;
               this.detectorData.name = "";
               this.detectorData.description = "";
-              this.getDataList();
+             this.pageChange(1);
               this.$message({
                 type: "success",
                 message: "保存成功！"
