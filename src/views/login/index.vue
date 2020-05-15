@@ -1,50 +1,55 @@
 <template>
   <div class="login-container">
-    <el-form
-      class="login-form"
-      autocomplete="on"
-      :model="loginForm"
-      :rules="loginRules"
-      ref="loginForm"
-      label-position="left"
-    >
+    <div
+      class="mod-new-reg-bg"
+      :style="{backgroundImage:'url('+require('@/assets/image/icon-login-bg.png')+')'}"
+    ></div>
+    <div class="login-form">
       <div class="title-container">
-        <h3 class="title">系统登录</h3>
+        <img :src="require('@/assets/image/logo.png')" />
       </div>
-      <el-form-item prop="username">
-        <el-input
-          name="username"
-          type="text"
-          v-model="loginForm.username"
-          placeholder="username"
-          autocomplete="off"
-          clearable
-        />
-      </el-form-item>
-      <el-form-item prop="password">
-        <el-input
-          name="password"
-          type="password"
-          @keyup.enter.native="handleLogin"
-          v-model="loginForm.password"
-          placeholder="password"
-          autocomplete="off"
-          clearable
-        />
-      </el-form-item>
-      <el-button
-        type="primary"
-        style="width:100%;margin-bottom:30px; padding: 15px"
-        :loading="loading"
-        @click.native.prevent="handleLogin"
-      >登录</el-button>
-    </el-form>
+      <el-form autocomplete="on" :model="loginForm" :rules="loginRules" ref="loginForm">
+        <el-form-item prop="username">
+          <el-input
+            v-model="loginForm.username"
+            placeholder="用户名"
+            autocomplete="new-password"
+            clearable
+          >
+            <template slot="prepend">
+              <img :src="require('@/assets/image/icon-login1.png')" />
+            </template>
+          </el-input>
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input
+            type="password"
+            @keyup.enter.native="handleLogin"
+            v-model="loginForm.password"
+            placeholder="登录密码"
+            autocomplete="new-password"
+            clearable
+          >
+            <template slot="prepend">
+              <img :src="require('@/assets/image/icon-login2.png')" />
+            </template>
+          </el-input>
+        </el-form-item>
+        <el-button
+          type="primary"
+          style="width:100%;margin-bottom:30px; padding: 15px"
+          :loading="loading"
+          @click.native.prevent="handleLogin"
+        >登录</el-button>
+      </el-form>
+    </div>
   </div>
 </template>
 <script>
 // import { isvalidUsername } from '@/utils/validate'
 import { loginByUsername } from "@/api/login/login";
 export default {
+  name: "login",
   data() {
     return {
       loginForm: {
@@ -54,6 +59,11 @@ export default {
       loginRules: {
         username: [
           {
+            required: true,
+            message: "请输入用户名",
+            trigger: "blur"
+          },
+          {
             min: 2,
             max: 14,
             message: "请输入用户名长度在2到14个字符",
@@ -61,6 +71,11 @@ export default {
           }
         ],
         password: [
+          {
+            required: true,
+            message: "请输入密码",
+            trigger: "blur"
+          },
           {
             min: 2,
             max: 14,
@@ -74,6 +89,7 @@ export default {
       showDialog: false
     };
   },
+  created() {},
   methods: {
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
@@ -113,58 +129,70 @@ export default {
 };
 </script>
 <style>
-.login-container .el-input {
-  display: inline-block;
-  height: 53px;
-  width: 100%;
-}
-.login-container .el-input input {
-  background: none !important;
-  border: 0px;
-  -webkit-appearance: none;
-  border-radius: 0px;
-  padding: 12px 5px 12px 15px;
-  color: #eee;
-  height: 53px;
-}
-.login-container .el-input input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #2d3a4b inset !important;
-  -webkit-text-fill-color: #fff !important;
-}
-.login-container .el-form-item {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  color: #454545;
-}
-
 .login-container {
   position: fixed;
   height: 100%;
   width: 100%;
   background-color: #2d3a4b;
 }
+.mod-new-reg-bg {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-size: cover;
+  background: none\9;
+  *background: 0 0;
+}
+
 .login-container .login-form {
   position: absolute;
   left: 0;
   right: 0;
-  width: 480px;
-  padding: 35px 35px 15px 35px;
-  margin: 120px auto;
-}
-
-.login-container .svg-container_login {
-  font-size: 20px;
+  width: 360px;
+  padding: 35px 50px 30px 50px;
+  margin: 180px auto;
+  background: #fff;
+  border-radius: 12px;
 }
 .login-container .title-container {
-  position: relative;
-}
-.login-container .title-container .title {
-  font-size: 26px;
-  font-weight: 400;
-  color: #eee;
-  margin: 0px auto 40px auto;
   text-align: center;
-  font-weight: bold;
+  margin-bottom: 35px;
+}
+.login-container .title-container img {
+  margin: 0 auto;
+  width: 88px;
+}
+.login-container .el-form-item {
+  margin-bottom: 30px;
+}
+.login-container .el-input-group__prepend {
+  border: 1px #4b6eca solid;
+  background: #fff;
+  padding: 0 5px;
+  border-right: 0;
+}
+.login-container .el-input-group__prepend img {
+  width: 32px;
+}
+.login-container .is-error .el-input-group__prepend {
+  border: 1px #f56c6c solid;
+  border-right: 0;
+}
+.login-container .el-input__inner {
+  background: #fff !important;
+  border: 6px;
+  padding: 0 5px 0 1px;
+  color: #4b6eca;
+  height: 45px;
+  border: 1px #4b6eca solid;
+  border-left: 0;
+}
+.login-container input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px white inset !important;
+}
+.login-container .el-form-item__error {
+  padding-top: 5px;
 }
 </style>

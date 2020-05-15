@@ -446,6 +446,9 @@ export default {
 .dialog-work .el-form-item__content {
   margin-left: 110px;
 }
+.dialog-work .el-form-item-inline .el-input {
+  width: 100%;
+}
 .addbtn {
   margin-bottom: 15px;
 }

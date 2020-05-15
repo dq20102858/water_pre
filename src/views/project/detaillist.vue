@@ -192,18 +192,18 @@
                   <div class="el-form-item__error">{{lineTypeDes}}</div>
                 </el-form-item>
                 <el-form-item label="计划里程：" prop="start_flag" class="el-form-item-dks">
-                  <el-input class="pinput" v-model="historyData.start_flag" placeholder="公里"><template slot="prepend">DK</template></el-input><b>+</b>
-                  <el-input class="pinput" v-model="historyData.start_length" placeholder="米"></el-input>
+                  <el-input class="pinput" v-model="historyData.start_flag" placeholder="公里" maxlength="3"><template slot="prepend">DK</template></el-input><b>+</b>
+                  <el-input class="pinput" v-model="historyData.start_length" placeholder="米" maxlength="3"></el-input>
                   <em>~</em>
-                  <el-input class="pinput" v-model="historyData.end_flag" placeholder="公里"><template slot="prepend">DK</template></el-input><b>+</b>
-                  <el-input class="pinput" v-model="historyData.end_length" placeholder="米"></el-input>
+                  <el-input class="pinput" v-model="historyData.end_flag" placeholder="公里" maxlength="3"><template slot="prepend">DK</template></el-input><b>+</b>
+                  <el-input class="pinput" v-model="historyData.end_length" placeholder="米" maxlength="3"></el-input>
                 </el-form-item>
                 <el-form-item label="实际里程：" prop="t_start_flag" class="el-form-item-dks">
-                  <el-input class="pinput" v-model="historyData.t_start_flag" placeholder="公里"><template slot="prepend">DK</template></el-input><b>+</b>
-                  <el-input class="pinput" v-model="historyData.t_start_length" placeholder="米"></el-input>
+                  <el-input class="pinput" v-model="historyData.t_start_flag" placeholder="公里" maxlength="3"><template slot="prepend">DK</template></el-input><b>+</b>
+                  <el-input class="pinput" v-model="historyData.t_start_length" placeholder="米" maxlength="3"></el-input>
                   <em>~</em>
-                  <el-input class="pinput" v-model="historyData.t_end_flag" placeholder="公里"><template slot="prepend">DK</template></el-input><b>+</b>
-                  <el-input class="pinput" v-model="historyData.t_end_length" placeholder="米"></el-input>
+                  <el-input class="pinput" v-model="historyData.t_end_flag" placeholder="公里" maxlength="3"><template slot="prepend">DK</template></el-input><b>+</b>
+                  <el-input class="pinput" v-model="historyData.t_end_length" placeholder="米" maxlength="3"></el-input>
                 </el-form-item>
               </div>
 

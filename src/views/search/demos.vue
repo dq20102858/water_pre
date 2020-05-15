@@ -145,7 +145,7 @@ export default {
     };
   },
   updated() {
-    this.bridgeCheckSelect();
+    //  this.bridgeCheckSelect();
   },
 
   mounted() {
@@ -448,13 +448,85 @@ export default {
       if (this.bridgeCheckValue) {
         this.drawBridgeAxis(this.bridgeList);
       } else {
-        context.clearRect(20,20,100,50);
-        // canvas.width = axis_Width;
-        // context = canvas.getContext("2d");  this.drawBridgeAxis(this.arrList);
-        //context.clearRect(0, 0, canvas.width, canvas.height);
-        //   context.beginPath();
-        // context.clearRect(0, 0, 1000, 1000);
-        // context.stroke();
+     context.clearRect(0, 0, canvas.width, canvas.height);
+        let json = this.bridgeList;
+        let leftLineMinMileage = this.leftLineMinMileage;
+        let leftLineMaxMileage = this.leftLineMaxMileage;
+        let axis_Width =
+          (leftLineMaxMileage - leftLineMinMileage) * everys + 150;
+        for (let i = 0; i < json.length; i++) {
+          let start =
+            parseInt(json[i].start_flag) * 1000 +
+            parseInt(json[i].start_length);
+          let end =
+            parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
+          let betweenMeters = end - start; //两点之间距离米
+          let startX = (start - leftLineMinMileage) * everys; //开始值
+          let endX = (end - leftLineMinMileage) * everys; //结束值
+          let centerX = (endX + startX) / 2; //开始结束平均值
+
+          context.lineWidth = 0;
+          context.fillStyle = "#081c33";
+          context.font = "12px Microsoft Yahei";
+          context.strokeStyle = "#081c33";
+          let desc = json[i].name + " 共" + betweenMeters + "米";
+          let codes =
+            "DK" +
+            json[i].start_flag +
+            " +" +
+            json[i].start_length +
+            " ~ " +
+            "DK" +
+            json[i].end_flag +
+            " +" +
+            json[i].end_length;
+          context.beginPath();
+          if (json[i].line_type == 1) {
+            //画垂直线
+            context.fillRect(
+              startX + offsetX - 1,
+              axis_LeftLine.y - 101,
+              2,
+              96
+            );
+            context.fillRect(endX + offsetX - 1, axis_LeftLine.y - 101, 2, 96);
+            context.moveTo(startX + offsetX, axis_LeftLine.y - 100);
+            context.lineTo(endX + offsetX, axis_LeftLine.y - 100);
+            // context.strokeRect(
+            //   startX + offsetX,
+            //   axis_LeftLine.y - 100,
+            //   betweenMeters * everys,
+            //   1
+            // );
+            //文字
+            context.fillText(desc, centerX + offsetX, axis_LeftLine.y - 95);
+            context.fillText(codes, centerX + offsetX, axis_LeftLine.y - 80);
+          } else if (json[i].line_type == 2) {
+            //画垂直线
+            context.fillRect(
+              startX + offsetX - 1,
+              axis_LeftLine_Two.y - 101,
+              2,
+              96
+            );
+            context.fillRect(
+              endX + offsetX - 1,
+              axis_LeftLine_Two.y - 101,
+              2,
+              96
+            );
+            context.moveTo(startX + offsetX, axis_LeftLine_Two.y - 100);
+            context.lineTo(endX + offsetX, axis_LeftLine_Two.y - 100);
+            //文字
+            context.fillText(desc, centerX + offsetX, axis_LeftLine_Two.y - 95);
+            context.fillText(
+              codes,
+              centerX + offsetX,
+              axis_LeftLine_Two.y - 80
+            );
+          }
+          context.stroke();
+        }
       }
     },
     //绘制桥
@@ -491,12 +563,7 @@ export default {
         context.beginPath();
         if (json[i].line_type == 1) {
           //画垂直线
-          context.fillRect(
-            startX + offsetX - 1,
-            axis_LeftLine.y - 101,
-            2,
-            96
-          );
+          context.fillRect(startX + offsetX - 1, axis_LeftLine.y - 101, 2, 96);
           context.fillRect(endX + offsetX - 1, axis_LeftLine.y - 101, 2, 96);
           context.moveTo(startX + offsetX, axis_LeftLine.y - 100);
           context.lineTo(endX + offsetX, axis_LeftLine.y - 100);
@@ -531,11 +598,7 @@ export default {
           context.fillText(desc, centerX + offsetX, axis_LeftLine_Two.y - 95);
           context.font = "11px Microsoft Yahei";
           context.fillStyle = "#fff";
-          context.fillText(
-            codes,
-            centerX + offsetX,
-            axis_LeftLine_Two.y - 80
-          );
+          context.fillText(codes, centerX + offsetX, axis_LeftLine_Two.y - 80);
         }
         context.stroke();
       }

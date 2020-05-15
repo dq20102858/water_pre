@@ -39,6 +39,7 @@
         </div>
       </div>
       <div class="check-list">
+        <span class="namess">显示图形：</span>
         <el-checkbox
           class="bridgechk"
           v-model="bridgeCheckValue"
@@ -83,6 +84,42 @@
 </template>
 
 <script>
+let canvas;
+let context;
+let axis_Height = "680";
+//左右线标尺起点
+let axis_LeftLine = {
+  x: 100,
+  y: axis_Height - 490
+};
+let axis_LeftLine_Two = {
+  x: 100,
+  y: axis_Height - 285
+};
+//出入场线
+let axis_OutLine = {
+  x: 100,
+  y: axis_Height - 150
+};
+let axis_OutLine_Two = {
+  x: 100,
+  y: axis_Height - 80
+};
+//请点标尺起点
+let axis_applay = {
+  x: 100,
+  y: axis_Height - 300
+};
+let axis_applay_two = {
+  x: 100,
+  y: axis_Height - 245
+};
+//刻度的间隔
+let tick_Spacing = 100;
+let tick_Height = 8; //刻度线高度
+let everys = 0.5; //每米长度等于px
+let offsetX = 100;
+let offsetXLine = 88;
 export default {
   data() {
     return {
@@ -174,9 +211,11 @@ export default {
           this.alertList = data.data.alert_lists; //防区
           this.slopeList = data.data.slope_lists; //坡度
           //施工进度
-          this.progressList = data.data.project;
-          this.progressCheckValue = data.data.project[0]["name"];
-          this.progressListItem = data.data.project[0].list;
+          if (data.data.project.length > 0) {
+            this.progressList = data.data.project;
+            this.progressCheckValue = data.data.project[0]["name"];
+            this.progressListItem = data.data.project[0].list;
+          }
         }
       });
     },
@@ -185,40 +224,6 @@ export default {
       const that = this;
       //坐标轴宽度高度
       //  let axis_Width = this.totalMileage / 2 + 1000;
-      let axis_Height = "680";
-      //左右线标尺起点
-      let axis_LeftLine = {
-        x: 100,
-        y: axis_Height - 490
-      };
-      let axis_LeftLine_Two = {
-        x: 100,
-        y: axis_Height - 285
-      };
-      //出入场线
-      let axis_OutLine = {
-        x: 100,
-        y: axis_Height - 150
-      };
-      let axis_OutLine_Two = {
-        x: 100,
-        y: axis_Height - 80
-      };
-      //请点标尺起点
-      let axis_applay = {
-        x: 100,
-        y: axis_Height - 300
-      };
-      let axis_applay_two = {
-        x: 100,
-        y: axis_Height - 245
-      };
-      //刻度的间隔
-      let tick_Spacing = 100;
-      let tick_Height = 8; //刻度线高度
-      let everys = 0.5; //每米长度等于px
-      let offsetX = 100;
-      let offsetXLine = 88;
 
       let minkm = this.minKM; //最小的公里数
       let minkmLength = this.minKMLength; //最小米数
@@ -238,9 +243,9 @@ export default {
           leftLineMaxMileage
       );
       //初始化
-      let canvas = this.$refs.mycanvas;
+      canvas = this.$refs.mycanvas;
       canvas.width = axis_Width;
-      let context = canvas.getContext("2d");
+      context = canvas.getContext("2d");
       let lineJson = this.lineTypeList;
       for (let i = 0; i < lineJson.length; i++) {
         context.font = "12px Microsoft Yahei";
@@ -336,7 +341,7 @@ export default {
         context.lineWidth = 10;
         context.strokeStyle = "#ffffff";
         context.moveTo(axis_Line_X, axis_Line_y);
-        context.lineTo(axis_Width + axis_Line_X, axis_Line_y);
+        context.lineTo(axis_Width + axis_Line_X+1, axis_Line_y);
         context.stroke();
         //
         context.beginPath();
@@ -446,7 +451,7 @@ export default {
             // 计算当前站点的x轴坐标
             let startX = (total - leftLineMinMileage) * everys;
             // console.log(startX);
-            context.drawImage(img, startX + offsetXLine, 65, 24, 120);
+            context.drawImage(img, startX + offsetXLine+1, 65, 24, 120);
             //站名
             context.font = "bold 20px Microsoft Yahei";
             context.fillStyle = "#fff";
@@ -1405,6 +1410,7 @@ export default {
     },
     //桥
     bridgeCheckSelect() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
       this.initCanvas();
     },
     //隧道
@@ -1444,7 +1450,7 @@ export default {
     scrollPosition(start_flag, start_length) {
       let total = start_flag;
       let startX = (total - this.minKM) * 1000 * 0.5;
-     document.querySelector(".group-canvas").scrollLeft =startX;
+      document.querySelector(".group-canvas").scrollLeft = startX;
     }
   },
   mounted() {
@@ -1558,7 +1564,10 @@ export default {
 /*check-list*/
 .check-list {
   margin: 20px 30px 0 30px;
-  text-align: center;
+}
+.check-list .namess {
+  color: #fff;
+  margin-right: 15px;
 }
 .chkleft {
   margin: 10px 30px 0 30px;
