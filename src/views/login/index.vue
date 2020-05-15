@@ -152,7 +152,7 @@ export default {
   right: 0;
   width: 360px;
   padding: 35px 50px 30px 50px;
-  margin: 180px auto;
+  margin: 200px auto;
   background: #fff;
   border-radius: 12px;
 }
