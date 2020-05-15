@@ -117,12 +117,7 @@
                   ></el-input>
                 </el-form-item>
                 <el-form-item label="单位：" prop="unit" v-if="workData.type==2">
-                  <el-input
-                    v-model="workData.unit"
-                    autocomplete="off"
-                    placeholder="请输入个，股，孔等"
-                    maxlength="4"
-                  ></el-input>
+                  <el-input v-model="workData.unit" autocomplete="off" placeholder="请输入个，股，孔等"></el-input>
                 </el-form-item>
               </div>
             </div>
@@ -262,6 +257,16 @@ export default {
           {
             required: true,
             message: "请输入单位公里，个，股，孔等",
+            trigger: "blur"
+          },
+          {
+            pattern: /\s\S+|S+\s|\S/,
+            message: "输入不能全是空格",
+            trigger: "blur"
+          },
+          {
+            pattern: /^[^\s]*$/,
+            message: "输入不能含有空格",
             trigger: "blur"
           },
           { min: 1, max: 5, message: "长度在1到5个字符", trigger: "blur" }

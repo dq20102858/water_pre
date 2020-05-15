@@ -114,7 +114,7 @@ export default {
       checkNumber2: 0,
       checktype1: "",
       checktype2: "",
-      status2: "",
+      status1: "",
       status2: "",
       dialogVisible: false,
       checkList: []

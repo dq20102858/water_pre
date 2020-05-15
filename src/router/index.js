@@ -84,6 +84,10 @@ const constantRouterMap = [
       {
         path: '/overspeed',
         component: () => import('@/views/search/overspeed')
+      },
+      {
+        path: '/demos',
+        component: () => import('@/views/search/demos')
       }
     ]
   },
