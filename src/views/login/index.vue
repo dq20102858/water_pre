@@ -68,6 +68,11 @@ export default {
             max: 14,
             message: "请输入用户名长度在2到14个字符",
             trigger: "blur"
+          },
+            {
+            pattern: /^[\u4e00-\u9fa5A-Za-z0-9\_]*$/,
+            message: "请输入正确的用户名",
+            trigger: "blur"
           }
         ],
         password: [

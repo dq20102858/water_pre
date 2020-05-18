@@ -24,15 +24,13 @@
         <div class="app-table">
           <el-table :data="dataList">
             <el-table-column label="序号" width="80px">
-              <template  slot-scope="scope">
-               {{scope.$index+(page_cur - 1) * page_size + 1}}
-              </template>
+              <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
             </el-table-column>
             <el-table-column prop="title" label="消息主题"></el-table-column>
             <el-table-column prop="send_user" label="值班调度人"></el-table-column>
             <el-table-column prop="recept_type" label="发送对象">
               <template slot-scope="scope">
-                <span>{{getArrText(scope.row.recept_type)}}</span>
+                <span v-html="getArrText(scope.row.recept_type)"></span>
               </template>
             </el-table-column>
             <el-table-column prop="create_time" label="发布时间"></el-table-column>
@@ -313,11 +311,11 @@ export default {
       });
       arr.map(item => {
         if (item == 1) {
-          results += "施工队长    ";
+          results += "<em class='m-tags'>施工队长</em>";
         } else if (item == 2) {
-          results += "施工人员    ";
+          results += "<em class='m-tags'>施工人员</em>";
         } else if (item == 3) {
-          results += "行车 ";
+          results += "<em class='m-tags'>行车</em>";
         }
       });
       return results;
@@ -353,5 +351,12 @@ export default {
 }
 .dialog-msg .el-select {
   width: 100%;
+}
+.m-tags {
+  border: 1px #a9b5d1 solid;
+  margin-right: 10px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-style: normal;
 }
 </style>

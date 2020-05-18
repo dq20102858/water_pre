@@ -644,20 +644,8 @@ export default {
     uploadSuccess(res, file) {
       // let result= URL.createObjectURL(file.raw);
       console.log("图上传成功", res);
-      this.userData.avatar = res.data.url;
-      // let upload_list_li = document.getElementsByClassName("el-upload-list")[0]
-      //   .children;
-      // if (res.data.url != "") {
-      //   for (let i = 0; i < upload_list_li.length; i++) {
-      //     let li_a = upload_list_li[i];
-      //     let imgElement = document.createElement("img");
-      //     imgElement.setAttribute("src", res.data.url);
-      //     imgElement.setAttribute("class", "upimgitem");
-      //     if (li_a.lastElementChild.nodeName !== "IMG") {
-      //       li_a.appendChild(imgElement);
-      //     }
-      //   }
-      // }
+      // this.$set(this.userData, "avatar", "http://129.211.168.161/uploads/home/20200518/df6578d3a9da5e8d5431b22ea04aa37e.png");
+      this.$set(this.userData, "avatar", res.data.url);
     },
     uploadBefore(file) {
       var filename = file.name.substring(file.name.lastIndexOf(".") + 1);

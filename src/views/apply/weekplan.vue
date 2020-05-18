@@ -51,9 +51,18 @@
             </div>
             <el-row :gutter="20" v-if="weekList.length>0">
               <el-col :span="6" v-for="item in weekList" :key="item.id">
-                <div class="grid-content" @click="goDetail(item.id)">
-                  <div class="grid-title">{{getWeek(item.start_time)}}</div>
-                  <div class="grid-box">
+                <div class="grid-content">
+                  <div class="grid-title">
+                    {{getWeek(item.start_time)}}
+                    <div class="tright">
+                      <span class="statuse1">待审核</span>
+                      <span class="statuse1" v-if="item.status==1">待审核</span>
+                      <span class="statuse2" v-if="item.status==2">审核通过</span>
+                      <span class="statuse3" v-if="item.status==3">拒绝</span>
+                      <span class="statuse4" v-if="item.status==5">审核中</span>
+                    </div>
+                  </div>
+                  <div class="grid-box" @click="goDetail(item.id)">
                     <p>申报人：{{item.apply}}</p>
                     <p>申报单位：{{item.company}}</p>
                     <p>{{item.start_time}} ~ {{item.end_time}}</p>
@@ -119,7 +128,7 @@
                 <el-table-column prop="remark" label="备注">
                   <template slot-scope="scope">
                     <span class="statused" v-if="scope.row.remark==''">暂无备注</span>
-                     <span class="statused" else>{{scope.row.remark}}</span>
+                    <span class="statused" else>{{scope.row.remark}}</span>
                   </template>
                 </el-table-column>
                 <!-- <el-table-column label="操作" width="140">
@@ -315,6 +324,9 @@ export default {
   padding: 12px 0;
   border-radius: 6px 6px 0 0;
   text-align: center;
+}
+.grid-content .grid-title .tright {
+  float: right;padding-right: 15px;
 }
 .grid-content .grid-box {
   padding: 30px 0;

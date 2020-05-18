@@ -465,7 +465,7 @@ export default {
   created() {
     //alert(document.location.hostname);
     this.defaultDate();
-    // this.getCompanyLists();
+    this.getCompanyLists();
     // this.getTrainList();
     // this.getDangerType();
     // this.getDangerDetermine();

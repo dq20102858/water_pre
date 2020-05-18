@@ -242,7 +242,7 @@ export default {
         total: [
           {
             required: true,
-            min: 2,
+            min:1,
             max: 5,
             message: "请输入1-5位正整数",
             trigger: "blur"
