@@ -192,26 +192,7 @@
               <el-form-item class="newitem" label="手机号码：" prop="phone">
                 <el-input v-model="userData.phone" autocomplete="off"></el-input>
               </el-form-item>
-              <!-- <el-form-item label="调度信息：" prop="dispatch" style="">
-                <el-select v-model="userData.dispatch">
-                  <el-option label="普通" :value="1"></el-option>
-                  <el-option label="司机" :value="2"></el-option>
-                  <el-option label="车长" :value="3"></el-option>
-                  <el-option label="值班调度" :value="4"></el-option>
-                  <el-option label="车站值班员" :value="5"></el-option>
-                  <el-option label="施工队长" :value="6"></el-option>
-                </el-select>
-              </el-form-item>-->
-              <el-form-item label="权限设置：" class="checkbox-group">
-                <el-checkbox-group v-model="userData.menus">
-                  <el-checkbox
-                    v-for="item in userMenuList"
-                    :key="item.id"
-                    :label="item.id+''"
-                  >{{item.name}}</el-checkbox>
-                </el-checkbox-group>
-              </el-form-item>
-              <el-form-item label="头像上传：">
+              <el-form-item label="头像上传：" style="width:100%;">
                 <el-upload
                   ref="uploadfive"
                   class="avatar-uploader"
@@ -225,6 +206,22 @@
                   <img v-if="userData.avatar" :src="userData.avatar" class="avatar" />
                   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                 </el-upload>
+              </el-form-item>
+              <el-form-item label="用户属于：" class="checkbox-group">
+                <el-checkbox-group v-model="userData.menus">
+                  <el-checkbox
+                    v-for="item in userMenuList"
+                    :key="item.id"
+                    :label="item.id+''"
+                  >{{item.name}}</el-checkbox>
+                </el-checkbox-group>
+              </el-form-item>
+              <el-form-item label="用户角色：" prop="sys_role">
+                <el-radio-group v-model="userData.sys_role">
+                  <el-radio :label="3">普通用户</el-radio>
+                  <el-radio :label="1">管理员</el-radio>
+                  <el-radio :label="2">业主方</el-radio>
+                </el-radio-group>
               </el-form-item>
             </div>
           </el-form>
@@ -254,7 +251,8 @@ export default {
       userDialogVisible: false,
       userDialogTitle: "",
       userData: {
-        menus: []
+        menus: [],
+        sys_role: 3
       },
       uploadAction: this.hostURL + "/upload/uploadFile",
       UserimageUrl: "",
@@ -266,7 +264,12 @@ export default {
             message: "请输入用户名",
             trigger: "blur"
           },
-          { min: 2, max: 14, message: "请输入用户名长度在2到14个字符", trigger: "blur" },
+          {
+            min: 2,
+            max: 14,
+            message: "请输入用户名长度在2到14个字符",
+            trigger: "blur"
+          },
           {
             pattern: /^[\u4e00-\u9fa5A-Za-z0-9\_]*$/,
             message: "用户名只能是汉字、字母、数字及下划线",
@@ -279,10 +282,15 @@ export default {
             message: "请输入姓名",
             trigger: "blur"
           },
-          { min: 2, max: 14, message: "请输入姓名长度在2到14个字符", trigger: "blur" },
+          {
+            min: 2,
+            max: 14,
+            message: "请输入姓名长度在2到14个字符",
+            trigger: "blur"
+          },
           {
             pattern: /^[\u4e00-\u9fa5A-Za-z0-9\_]*$/,
-           message: "姓名只能是汉字、字母、数字及下划线",
+            message: "姓名只能是汉字、字母、数字及下划线",
             trigger: "blur"
           }
         ],
@@ -358,6 +366,13 @@ export default {
             pattern: /^1[34578]\d{9}$/,
             message: "请输入正确的手机号码",
             trigger: "blur"
+          }
+        ],
+        sys_role: [
+          {
+            required: true,
+            message: "请选择用户角色",
+            trigger: "change"
           }
         ]
       },

@@ -32,10 +32,12 @@
         <router-link to="/monitor/indexmini" class="rlink">缩小</router-link>
       </div>
       <div class="main-canvas">
-        <div class="group-canvas scrollbar">
-          <canvas id="mycanvas" height="680" ref="mycanvas">
-            <p>您的系统不支持此程序!</p>
-          </canvas>
+        <div class="group-canvas">
+          <div id="scrollbar">
+            <canvas id="mycanvas" height="680" ref="mycanvas">
+              <p>您的系统不支持此程序!</p>
+            </canvas>
+          </div>
         </div>
       </div>
       <div class="check-list">
@@ -120,6 +122,8 @@ let tick_Height = 8; //刻度线高度
 let everys = 0.5; //每米长度等于px
 let offsetX = 100;
 let offsetXLine = 88;
+let scrollGapX = 0;
+let scrollStartx = 0;
 export default {
   data() {
     return {
@@ -135,6 +139,7 @@ export default {
       firstStation: "",
       lastStation: "",
       scrollwidth: 900,
+      scrollwidthTwo: 900,
       bridgeCheckValue: true,
       bridgeList: [],
       tunnelCheckValue: true,
@@ -200,6 +205,8 @@ export default {
           this.stationList = data.data.stations;
           let json = data.data.stations;
           this.scrollwidth = document.documentElement.clientWidth - 530;
+          this.scrollwidthTwo =
+            (this.leftLineMaxMileage - this.leftLineMinMileage) * everys + 150;
           console.log(this.scrollwidth);
           //请点
           this.applyList = data.data.apply_lists;
@@ -341,7 +348,7 @@ export default {
         context.lineWidth = 10;
         context.strokeStyle = "#ffffff";
         context.moveTo(axis_Line_X, axis_Line_y);
-        context.lineTo(axis_Width + axis_Line_X+1, axis_Line_y);
+        context.lineTo(axis_Width + axis_Line_X + 1, axis_Line_y);
         context.stroke();
         //
         context.beginPath();
@@ -451,7 +458,7 @@ export default {
             // 计算当前站点的x轴坐标
             let startX = (total - leftLineMinMileage) * everys;
             // console.log(startX);
-            context.drawImage(img, startX + offsetXLine+1, 65, 24, 120);
+            context.drawImage(img, startX + offsetXLine + 1, 65, 24, 120);
             //站名
             context.font = "bold 20px Microsoft Yahei";
             context.fillStyle = "#fff";
@@ -1451,9 +1458,45 @@ export default {
       let total = start_flag;
       let startX = (total - this.minKM) * 1000 * 0.5;
       document.querySelector(".group-canvas").scrollLeft = startX;
+    },
+    dragScroll: function() {
+      let gapX = 0;
+      let startx = 0;
+      let obj = document.getElementById("scrollbar"); //
+      obj.addEventListener("mousedown", function(event) {
+        if (event.button == 0) {
+          //判断是否点击鼠标左键
+          gapX = event.clientX;
+          startx = document.querySelector(".group-canvas").scrollLeft; // document.documentElement.scrollLeft; // scroll的初始位置
+          console.log(
+            "a：" +
+              event.clientX +
+              "_" +
+              document.documentElement.scrollLeft +
+              "_" +
+              event.screenX
+          );
+          //movemove事件必须绑定到$(document)上，鼠标移动是在整个屏幕上的 此处的$(document)可以改为obj
+          document.addEventListener("mousemove", move);
+          document.addEventListener("mouseup", stop);
+        }
+        return false; //阻止默认事件或冒泡
+      });
+      function move(event) {
+        var left = event.clientX - gapX; // 鼠标移动的相对距离
+        document.querySelector(".group-canvas").scrollLeft = startx - left;
+        return false; //阻止默认事件或冒泡
+      }
+      function stop() {
+        //解绑定，这一步很必要，前面有解释
+        document.removeEventListener("mousemove", move);
+        document.removeEventListener("mouseup", stop);
+      }
     }
+    //
   },
   mounted() {
+    this.dragScroll();
     window.addEventListener("resize", () => {
       this.scrollwidth = document.documentElement.clientWidth - 640;
     });
@@ -1649,13 +1692,12 @@ export default {
   background: #081c33;
   margin: 0 10px;
 }
-.group-canvas {
+.main-canvas .group-canvas {
   overflow-x: scroll;
   overflow-y: hidden;
   height: 680px;
   padding-right: 20px;
 }
-
 .progresslist {
   padding-top: 20px;
   padding-left: 30px;

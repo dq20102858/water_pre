@@ -78,7 +78,7 @@
             </el-form-item>
             <el-form-item label="发送对象：" prop="recept_type">
               <el-checkbox-group v-model="formData.recept_type">
-                <el-checkbox :label="1">施工负责人</el-checkbox>
+                <el-checkbox :label="1">施工队长</el-checkbox>
                 <el-checkbox :label="2">施工人员</el-checkbox>
                 <el-checkbox :label="3">行车</el-checkbox>
               </el-checkbox-group>
@@ -112,7 +112,7 @@
             </el-form-item>
             <el-form-item label="发送对象：" prop="recept_type">
               <el-checkbox-group v-model="formDataShow.recept_type">
-                <el-checkbox :label="1">施工负责人</el-checkbox>
+                <el-checkbox :label="1">施工队长</el-checkbox>
                 <el-checkbox :label="2">施工人员</el-checkbox>
                 <el-checkbox :label="3">行车</el-checkbox>
               </el-checkbox-group>
@@ -313,7 +313,7 @@ export default {
       });
       arr.map(item => {
         if (item == 1) {
-          results += "施工负责人    ";
+          results += "施工队长    ";
         } else if (item == 2) {
           results += "施工人员    ";
         } else if (item == 3) {
