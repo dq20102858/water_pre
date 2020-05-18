@@ -204,7 +204,7 @@ export default {
           //======站点
           this.stationList = data.data.stations;
           let json = data.data.stations;
-          this.scrollwidth = document.documentElement.clientWidth - 530;
+          this.scrollwidth = document.documentElement.clientWidth - 510;
           this.scrollwidthTwo =
             (this.leftLineMaxMileage - this.leftLineMinMileage) * everys + 150;
           console.log(this.scrollwidth);
@@ -1698,6 +1698,7 @@ export default {
   height: 680px;
   padding-right: 20px;
 }
+
 .progresslist {
   padding-top: 20px;
   padding-left: 30px;

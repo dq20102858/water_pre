@@ -642,7 +642,6 @@ export default {
       });
     },
     uploadSuccess(res, file) {
-      // let result= URL.createObjectURL(file.raw);
       console.log("图上传成功", res);
       // this.$set(this.userData, "avatar", "http://129.211.168.161/uploads/home/20200518/df6578d3a9da5e8d5431b22ea04aa37e.png");
       this.$set(this.userData, "avatar", res.data.url);
@@ -660,14 +659,14 @@ export default {
       const isLtM = file.size / 1024 / 1024 < 2;
       if (!extension) {
         this.$message({
-          message: "上传图片只能是 jpg  png  gif 格式!",
+          message: "上传图片只能是 jpg  png  gif 格式",
           type: "error"
         });
         return false; //必须加上return false; 才能阻止
       }
       if (!isLtM) {
         this.$message({
-          message: "上传图片大小不能超过 2MB!",
+          message: "上传图片大小不能超过 2MB",
           type: "error"
         });
         return false;

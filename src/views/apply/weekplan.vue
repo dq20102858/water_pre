@@ -112,12 +112,17 @@
             <span class="item">电话：{{weekdailyList.phone}}</span>
             <span class="itembtn">
               <el-button size="small" @click="goBack" type="primary">返回</el-button>
+              <el-button size="small" class="redbtn" v-print="printObj">打印</el-button>
             </span>
           </div>
           <div class="wmain">
             <div class="app-table">
               <el-table :data="weekdailyList.lists">
-                <el-table-column prop="work_time" label="日期" :formatter="dateFormat"></el-table-column>
+                <el-table-column prop="work_time" label="日期">
+                  <template slot-scope="scope">
+                    <span>{{dateFormat(scope.row.work_time)}}</span>
+                  </template>
+                </el-table-column>
                 <el-table-column prop="type" label="作业类别"></el-table-column>
                 <el-table-column prop="detail_time" min-width="60" label="作业时间"></el-table-column>
                 <el-table-column prop="description" label="作业内容"></el-table-column>
@@ -148,6 +153,128 @@
             <span class="fr">总监：暂无</span>
           </div>
         </div>
+        <div id="printWeek">
+          <div class="printtop">
+            <h3>{{weekdailyList.company}}</h3>
+            <span>申报时间： {{weekdailyList.create_time}}</span>
+            <span>申报人： {{weekdailyList.apply}}</span>
+            <span>电话：{{weekdailyList.phone}}</span>
+          </div>
+          <div class="printcenter">
+            <div class="items" v-for="item in weekdailyList.lists" :key="item.id">
+              <div class="infotitle">{{dateFormat(item.work_time)}}</div>
+              <div class="info">
+                <b>作业类别</b>
+                {{item.type}}
+              </div>
+              <div class="info">
+                <b>作业时间</b>
+                {{item.detail_time}}
+              </div>
+              <div class="info">
+                <b>作业内容</b>
+                {{item.description}}
+              </div>
+              <div class="info">
+                <b>作业区域</b>
+                {{item.area}}
+              </div>
+              <div class="info">
+                <b>编组上行端</b>
+                {{item.up_part}}
+              </div>
+              <div class="info">
+                <b>装车地</b>
+                {{item.location}}
+              </div>
+              <div class="info">
+                <b>防护措施及要求</b>
+                {{item.attention}}
+              </div>
+              <div class="info">
+                <b>备注</b>
+                {{item.remark}}
+              </div>
+            </div>
+               <div class="items" v-for="item in weekdailyList.lists" :key="item.id">
+              <div class="infotitle">{{dateFormat(item.work_time)}}</div>
+              <div class="info">
+                <b>作业类别</b>
+                {{item.type}}
+              </div>
+              <div class="info">
+                <b>作业时间</b>
+                {{item.detail_time}}
+              </div>
+              <div class="info">
+                <b>作业内容</b>
+                {{item.description}}
+              </div>
+              <div class="info">
+                <b>作业区域</b>
+                {{item.area}}
+              </div>
+              <div class="info">
+                <b>编组上行端</b>
+                {{item.up_part}}
+              </div>
+              <div class="info">
+                <b>装车地</b>
+                {{item.location}}
+              </div>
+              <div class="info">
+                <b>防护措施及要求</b>
+                {{item.attention}}
+              </div>
+              <div class="info">
+                <b>备注</b>
+                {{item.remark}}
+              </div>
+            </div>
+               <div class="items" v-for="item in weekdailyList.lists" :key="item.id">
+              <div class="infotitle">{{dateFormat(item.work_time)}}</div>
+              <div class="info">
+                <b>作业类别</b>
+                {{item.type}}
+              </div>
+              <div class="info">
+                <b>作业时间</b>
+                {{item.detail_time}}
+              </div>
+              <div class="info">
+                <b>作业内容</b>
+                {{item.description}}
+              </div>
+              <div class="info">
+                <b>作业区域</b>
+                {{item.area}}
+              </div>
+              <div class="info">
+                <b>编组上行端</b>
+                {{item.up_part}}
+              </div>
+              <div class="info">
+                <b>装车地</b>
+                {{item.location}}
+              </div>
+              <div class="info">
+                <b>防护措施及要求</b>
+                {{item.attention}}
+              </div>
+              <div class="info">
+                <b>备注</b>
+                {{item.remark}}
+              </div>
+            </div>
+          </div>
+          <div class="printbom">
+            <p>注：监理需对此项施工或运输的相关条件（如材料设备已到位，边界条件已满足等），进行确认。</p>
+            <p>
+              <span>主管领导：暂无</span>
+              <span>总监：暂无</span>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -160,6 +287,12 @@ export default {
 
   data() {
     return {
+      printObj: {
+        id: "#printWeek",
+        popTitle: " ",
+        extraCss: "",
+        extraHead: '<meta http-equiv="Content-Language"content="zh-cn"/>'
+      },
       projectName: "",
       isParent: true,
       page_cur: 1,
@@ -252,7 +385,7 @@ export default {
     goBack() {
       this.isParent = true;
     },
-    dateFormat(row, column, cellValue) {
+    dateFormat(cellValue) {
       return cellValue
         ? fecha.format(new Date(cellValue), "yyyy年MM月dd日")
         : "";
@@ -326,7 +459,8 @@ export default {
   text-align: center;
 }
 .grid-content .grid-title .tright {
-  float: right;padding-right: 15px;
+  float: right;
+  padding-right: 15px;
 }
 .grid-content .grid-box {
   padding: 30px 0;
@@ -384,5 +518,80 @@ export default {
 }
 .wfoot .fr {
   float: right;
+}
+
+#printWeek {
+  display: none;
+}
+.printtop {
+  padding-bottom: 20px;
+  overflow: hidden;
+  text-align: center;
+}
+.printtop h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1d397a;
+}
+.printtop span {
+  color: #4b6eca;
+  font-size: 16px;
+  line-height: 31px;
+  margin: 0 10px;
+}
+.printcenter {
+  line-height: 31px;
+}
+.printcenter .items {
+  margin-bottom: 50px;
+  color: #1d397a;
+}
+.printcenter .items b {
+  width: 115px;
+  display: inline-block;
+  color: #1d397a;
+}
+.printcenter .items .infotitle {
+  font-size: 19px;
+  font-weight: 700;
+  color: #1d397a;
+}
+.printbom {
+  overflow: hidden;
+}
+.printbom p {
+  color: #4b6eca;
+  font-size: 16px;
+  display: block;
+  line-height: 31px;
+}
+.printbom span {
+  float: right;
+  color: #4b6eca;
+  font-size: 16px;
+  margin-left: 30px;
+  margin-top: 30px;
+}
+@media print {
+  #printWeek {
+    display: block;
+  }
+  #printWeek table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  #printWeek table td {
+    border: 1px solid #9db9fa;
+    line-height: 30px;
+    padding: 10px;
+  }
+  undefined {
+    display: none;
+  }
+}
+.wtop .redbtn {
+  background: #ff5c75;
+  border-color: #ff5c75;
+  color: #fff;
 }
 </style>
