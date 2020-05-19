@@ -761,9 +761,9 @@ export default {
             parseInt(json[i].start_length);
           let end =
             parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
-          context.strokeStyle = "#8f40c3";
+          context.strokeStyle = "#08ce80";
           context.lineWidth = 10;
-          context.fillStyle = "#8f40c3";
+          context.fillStyle = "#08ce80";
           context.font = "12px Microsoft Yahei";
           let desc =  json[i].name;
           context.beginPath();
@@ -1804,14 +1804,14 @@ export default {
   color: #107af7;
 }
 .buildchk.is-checked {
-  border-color: #8f40c3 !important;
+  border-color: #08ce80 !important;
 }
 .buildchk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #8f40c3;
-  border-color: #8f40c3;
+  background-color: #08ce80;
+  border-color: #08ce80;
 }
 .buildchk.is-checked .el-checkbox__label {
-  color: #8f40c3;
+  color: #08ce80;
 }
 /*canvas*/
 .main-canvas {
