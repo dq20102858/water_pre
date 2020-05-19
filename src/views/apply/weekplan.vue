@@ -102,14 +102,22 @@
         </div>
         <div v-if="!isParent" class="wdetail">
           <div class="wtop">
-            <span
-              class="item"
-              :title="weekdailyList.company"
-              style="width:400px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;"
-            >作业单位： {{weekdailyList.company}}</span>
-            <span class="item">申报时间： {{weekdailyList.create_time}}</span>
-            <span class="item">申报人： {{weekdailyList.apply}}</span>
-            <span class="item">电话：{{weekdailyList.phone}}</span>
+            <span class="item" :title="weekdailyList.company">
+              <b>作业单位：</b>
+              {{weekdailyList.company}}
+            </span>
+            <span class="item">
+              <b>申报时间：</b>
+              {{weekdailyList.create_time}}
+            </span>
+            <span class="item">
+              <b>申报人：</b>
+              {{weekdailyList.apply}}
+            </span>
+            <span class="item">
+              <b>电话：</b>
+              {{weekdailyList.phone}}
+            </span>
             <span class="itembtn">
               <el-button size="small" @click="goBack" type="primary">返回</el-button>
               <el-button size="small" class="redbtn" v-print="printObj">打印</el-button>
@@ -149,8 +157,14 @@
           </div>
           <div class="wfoot">
             <span>注：监理需对此项施工或运输的相关条件（如材料设备已到位，边界条件已满足等），进行确认。</span>
-            <span class="fr">主管领导：暂无</span>
-            <span class="fr">总监：暂无</span>
+            <!-- <span class="fr">
+              <span>
+                <b>主管领导：</b>暂无
+              </span>
+              <span>
+                <b>总监：</b>暂无
+              </span>
+            </span> -->
           </div>
         </div>
         <div id="printWeek">
@@ -196,83 +210,13 @@
                 {{item.remark}}
               </div>
             </div>
-               <div class="items" v-for="item in weekdailyList.lists" :key="item.id">
-              <div class="infotitle">{{dateFormat(item.work_time)}}</div>
-              <div class="info">
-                <b>作业类别</b>
-                {{item.type}}
-              </div>
-              <div class="info">
-                <b>作业时间</b>
-                {{item.detail_time}}
-              </div>
-              <div class="info">
-                <b>作业内容</b>
-                {{item.description}}
-              </div>
-              <div class="info">
-                <b>作业区域</b>
-                {{item.area}}
-              </div>
-              <div class="info">
-                <b>编组上行端</b>
-                {{item.up_part}}
-              </div>
-              <div class="info">
-                <b>装车地</b>
-                {{item.location}}
-              </div>
-              <div class="info">
-                <b>防护措施及要求</b>
-                {{item.attention}}
-              </div>
-              <div class="info">
-                <b>备注</b>
-                {{item.remark}}
-              </div>
-            </div>
-               <div class="items" v-for="item in weekdailyList.lists" :key="item.id">
-              <div class="infotitle">{{dateFormat(item.work_time)}}</div>
-              <div class="info">
-                <b>作业类别</b>
-                {{item.type}}
-              </div>
-              <div class="info">
-                <b>作业时间</b>
-                {{item.detail_time}}
-              </div>
-              <div class="info">
-                <b>作业内容</b>
-                {{item.description}}
-              </div>
-              <div class="info">
-                <b>作业区域</b>
-                {{item.area}}
-              </div>
-              <div class="info">
-                <b>编组上行端</b>
-                {{item.up_part}}
-              </div>
-              <div class="info">
-                <b>装车地</b>
-                {{item.location}}
-              </div>
-              <div class="info">
-                <b>防护措施及要求</b>
-                {{item.attention}}
-              </div>
-              <div class="info">
-                <b>备注</b>
-                {{item.remark}}
-              </div>
-            </div>
           </div>
           <div class="printbom">
             <p>注：监理需对此项施工或运输的相关条件（如材料设备已到位，边界条件已满足等），进行确认。</p>
-            <p>
+            <!-- <p>
               <span>主管领导：暂无</span>
               <span>总监：暂无</span>
-            </p>
+            </p> -->
           </div>
         </div>
       </div>
@@ -489,35 +433,40 @@ export default {
 .wtop {
   margin-bottom: 15px;
   overflow: hidden;
-  display: flex;
-  justify-content: space-between;
 }
 .wtop .item {
   color: #4b6eca;
   display: inline-block;
-  margin-right: 24px;
+  margin-right: 30px;
   font-size: 16px;
   padding-top: 5px;
 }
-.wfoot .itembtn {
-  vertical-align: -3px;
+.wtop .item b {
+  color: #1d397a;
+  font-weight: 500;
+}
+.wtop .itembtn {
+  float: right;
 }
 .wfoot {
   margin-top: 20px;
   overflow: hidden;
-  display: flex;
-  justify-content: flex-start;
+  font-size: 14px;
 }
 .wfoot span {
   color: #4b6eca;
-  float: left;
-  margin-right: 24px;
-  font-size: 16px;
-  display: block;
-  min-width: 160px;
+  display: inline-block;
 }
 .wfoot .fr {
   float: right;
+}
+.wfoot .fr b {
+  color: #1d397a;
+  font-weight: 500;
+}
+
+.wfoot .fr span {
+  margin-left: 24px;
 }
 
 #printWeek {
@@ -543,7 +492,7 @@ export default {
   line-height: 31px;
 }
 .printcenter .items {
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   color: #1d397a;
 }
 .printcenter .items b {
@@ -570,7 +519,7 @@ export default {
   color: #4b6eca;
   font-size: 16px;
   margin-left: 30px;
-  margin-top: 30px;
+  margin-top: 15px;
 }
 @media print {
   #printWeek {

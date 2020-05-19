@@ -152,8 +152,10 @@
           <div class="security-title">施工问题详情</div>
           <div class="app-page-container">
             <div class="steps-info">
+            <div style="overflow:hidden">
               <h3>{{eventTitle}}</h3>
               {{eventDesc}}
+              </div>
               <div class="imgs">
                 <el-image
                   :preview-src-list="[item.src]"
@@ -941,12 +943,19 @@ export default {
 .steps-info {
   line-height: 28px;
 }
+.steps-info .imgs {
+  width: 100%;
+  overflow: hidden;
+  display: block;
+}
 .steps-info .imgs img {
   width: 148px;
   height: 148px;
   margin-right: 10px;
   border-radius: 6px;
+  border: 1px #f9f9f9 solid;
 }
+.steps-info .imgs  .el-image__inner--center{left: 0;top: 0;transform:translate(0%, 0%)}
 .steps-info .el-icon-circle-close {
   color: #fff;
 }
