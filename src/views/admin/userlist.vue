@@ -207,7 +207,14 @@
                   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                 </el-upload>
               </el-form-item>
-              <el-form-item label="用户属于：" class="checkbox-group">
+              <el-form-item label="用户角色：" prop="sys_role">
+                <el-radio-group v-model="userData.sys_role">
+                  <el-radio :label="3">普通用户</el-radio>
+                  <el-radio :label="1">管理员</el-radio>
+                  <el-radio :label="2">业主方</el-radio>
+                </el-radio-group>
+              </el-form-item>
+              <el-form-item label="用户职责：" class="checkbox-group" v-show="userData.sys_role==3">
                 <el-checkbox-group v-model="userData.menus">
                   <el-checkbox
                     v-for="item in userMenuList"
@@ -215,13 +222,6 @@
                     :label="item.id+''"
                   >{{item.name}}</el-checkbox>
                 </el-checkbox-group>
-              </el-form-item>
-              <el-form-item label="用户角色：" prop="sys_role">
-                <el-radio-group v-model="userData.sys_role">
-                  <el-radio :label="3">普通用户</el-radio>
-                  <el-radio :label="1">管理员</el-radio>
-                  <el-radio :label="2">业主方</el-radio>
-                </el-radio-group>
               </el-form-item>
             </div>
           </el-form>
@@ -446,7 +446,8 @@ export default {
     },
     openAddUser() {
       this.userData = {
-        menus: []
+        menus: [],
+           sys_role: 3
       };
       this.userDialogVisible = true;
       this.userDialogTitle = "添加人员信息";

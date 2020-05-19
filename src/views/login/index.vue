@@ -8,7 +8,7 @@
       <div class="title-container">
         <img :src="require('@/assets/image/logo.png')" />
       </div>
-      <el-form autocomplete="on" :model="loginForm" :rules="loginRules" ref="loginForm">
+      <el-form autocomplete="off" :model="loginForm" :rules="loginRules" ref="loginForm">
         <el-form-item prop="username">
           <el-input
             v-model="loginForm.username"
@@ -24,7 +24,6 @@
         <el-form-item prop="password">
           <el-input
             type="password"
-            @keyup.enter.native="handleLogin"
             v-model="loginForm.password"
             placeholder="登录密码"
             autocomplete="new-password"
@@ -51,11 +50,13 @@ import { loginByUsername } from "@/api/login/login";
 export default {
   name: "login",
   data() {
+ 
     return {
       loginForm: {
         username: "",
         password: ""
       },
+     
       loginRules: {
         username: [
           {
@@ -96,6 +97,9 @@ export default {
   },
   created() {},
   methods: {
+     handleLoginBlur(id,val){
+             this.disabled = !this.disabled
+     },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
@@ -199,5 +203,13 @@ export default {
 }
 .login-container .el-form-item__error {
   padding-top: 5px;
+}
+.login-container .el-button:hover {
+background: #4b6eca;
+border-color:#4b6eca;
+}
+.login-container .el-button:focus {
+background: #4b6eca;
+border-color:#4b6eca;
 }
 </style>

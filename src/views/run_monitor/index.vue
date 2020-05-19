@@ -97,7 +97,8 @@
               </el-select>
             </el-form-item>
             <el-form-item label="重联：">
-              <el-select v-model="formData.out_reco" placeholder="请选择">
+              <el-select v-model="formData.out_reco" placeholder="无">
+                <el-option label="无" :value="0"></el-option>
                 <el-option
                   v-for="item in locoList"
                   :key="item.id"
@@ -107,7 +108,8 @@
               </el-select>
             </el-form-item>
             <el-form-item label="补机：">
-              <el-select v-model="formData.out_supple" placeholder="请选择">
+              <el-select v-model="formData.out_supple" placeholder="无">
+                <el-option label="无" :value="0"></el-option>
                 <el-option
                   v-for="item in locoList"
                   :key="item.id"
@@ -167,7 +169,8 @@
               </el-select>
             </el-form-item>
             <el-form-item label="重联：">
-              <el-select v-model="formData.back_reco" placeholder="请选择">
+              <el-select v-model="formData.back_reco" placeholder="无">
+                <el-option label="无" :value="0"></el-option>
                 <el-option
                   v-for="item in locoList"
                   :key="item.id"
@@ -177,7 +180,8 @@
               </el-select>
             </el-form-item>
             <el-form-item label="补机：">
-              <el-select v-model="formData.back_supple" placeholder="请选择">
+              <el-select v-model="formData.back_supple" placeholder="无">
+                <el-option label="无" :value="0"></el-option>
                 <el-option
                   v-for="item in locoList"
                   :key="item.id"
@@ -188,7 +192,7 @@
             </el-form-item>
           </div>
           <div class="el-form-item-block">
-            <el-form-item label="返回线别" label-width="100px">
+            <el-form-item label="返回线别：" label-width="100px">
               <el-select v-model="formData.back_line_type" placeholder="请选择">
                 <el-option
                   v-for="item in lineTypeList"
@@ -435,7 +439,8 @@
               </el-select>
             </el-form-item>
             <el-form-item label="重联：">
-              <el-select v-model="formEditData.out_reco" placeholder="请选择">
+              <el-select v-model="formEditData.out_reco" placeholder="无">
+                <el-option label="无" :value="0"></el-option>
                 <el-option
                   v-for="item in locoList"
                   :key="item.id"
@@ -445,7 +450,8 @@
               </el-select>
             </el-form-item>
             <el-form-item label="补机：">
-              <el-select v-model="formEditData.out_supple" placeholder="请选择">
+              <el-select v-model="formEditData.out_supple" placeholder="无">
+                <el-option label="无" :value="0"></el-option>
                 <el-option
                   v-for="item in locoList"
                   :key="item.id"
@@ -505,7 +511,8 @@
               </el-select>
             </el-form-item>
             <el-form-item label="重联：">
-              <el-select v-model="formEditData.back_reco" placeholder="请选择">
+              <el-select v-model="formEditData.back_reco" placeholder="无">
+                <el-option label="无" :value="0"></el-option>
                 <el-option
                   v-for="item in locoList"
                   :key="item.id"
@@ -515,7 +522,8 @@
               </el-select>
             </el-form-item>
             <el-form-item label="补机：">
-              <el-select v-model="formEditData.back_supple" placeholder="请选择">
+              <el-select v-model="formEditData.back_supple" placeholder="无">
+                <el-option label="无" :value="0"></el-option>
                 <el-option
                   v-for="item in locoList"
                   :key="item.id"
@@ -719,7 +727,7 @@
         <fieldset>
           <legend>实际施工信息</legend>
           <div class="el-form-item-block">
-            <el-form-item label="实际开始时间：" label-width="120px" prop="start_time">
+            <el-form-item label="实际开始时间：" label-width="120px" prop="true_start_time">
               <el-date-picker
                 v-model="formEditData.true_start_time"
                 type="datetime"
@@ -727,7 +735,7 @@
                 placeholder="选择时间"
               ></el-date-picker>
             </el-form-item>
-            <el-form-item label="实际结束时间：" prop="end_time">
+            <el-form-item label="实际结束时间：" prop="true_end_time">
               <el-date-picker
                 v-model="formEditData.true_end_time"
                 type="datetime"
@@ -825,8 +833,28 @@
 
 <script>
 export default {
-  name: "daychart",
   data() {
+    const valEndTime = (rule, value, callback) => {
+      if (value < +this.formData.start_time) {
+        callback(new Error("结束时间不能小于开始时间"));
+      } else {
+        callback();
+      }
+    };
+    const valEditEndTime = (rule, value, callback) => {
+      if (new Date(value) < new Date(this.formEditData.start_time)) {
+        callback(new Error("结束时间不能小于开始时间"));
+      } else {
+        callback();
+      }
+    }; 
+     const valEditTrueEndTime = (rule, value, callback) => {
+      if (new Date(value) < new Date(this.formEditData.true_start_time)) {
+        callback(new Error("结束时间不能小于开始时间"));
+      } else {
+        callback();
+      }
+    };
     return {
       mark_line: [],
       project_kind_name: [],
@@ -874,7 +902,8 @@ export default {
             required: true,
             message: "请选择结束时间",
             trigger: "change"
-          }
+          },
+          { required: true, validator: valEndTime, trigger: "change" }
         ],
         start_station: [
           {
@@ -919,12 +948,98 @@ export default {
           }
         ]
       },
+      formEditRules: {
+        number: [
+          {
+            required: true,
+            message: "请输入编号2~20个字符",
+            trigger: "blur"
+          },
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
+          }
+        ],
+        start_time: [
+          {
+            required: true,
+            message: "请选择开始时间",
+            trigger: "change"
+          }
+        ],
+        end_time: [
+          {
+            required: true,
+            message: "请选择结束时间",
+            trigger: "change"
+          },
+          { required: true, validator: valEditEndTime, trigger: "change" }
+        ],
+        start_station: [
+          {
+            required: true,
+            message: "请选择开始站点",
+            trigger: "change"
+          }
+        ],
+        end_station: [
+          {
+            required: true,
+            message: "请选择结束站点",
+            trigger: "change"
+          }
+        ],
+        start_flag: [
+          {
+            required: true,
+            message: "请输入公里",
+            trigger: "blur"
+          }
+        ],
+        start_length: [
+          {
+            required: true,
+            message: "请输入米",
+            trigger: "blur"
+          }
+        ],
+        end_flag: [
+          {
+            required: true,
+            message: " 请输入公里",
+            trigger: "blur"
+          }
+        ],
+        end_length: [
+          {
+            required: true,
+            message: "请输入米",
+            trigger: "blur"
+          }
+        ],
+        true_start_time: [
+          {
+            required: true,
+            message: "请选择开始时间",
+            trigger: "change"
+          }
+        ],
+        true_end_time: [
+          {
+            required: true,
+            message: "请选择结束时间",
+            trigger: "change"
+          },
+          { required: true, validator: valEditTrueEndTime, trigger: "change" }
+        ],
+      },
       diaLogFormEditVisible: false,
       diaLogTitleEdit: "",
       formEditData: {},
       numberId: 0,
       planNumbersList: [],
-      formEditRules: {},
       select_line_type: [],
       select_type_plan: true,
       select_type_now: true,
@@ -1388,6 +1503,10 @@ export default {
       this.$refs["formRules"].validate(valid => {
         if (valid) {
           let data = this.formData;
+          if (+this.formData.end_time < +this.formData.start_time) {
+            this.$message.error("施工开始时间不能大于结束时间");
+            return false;
+          }
           this.request({
             url: "/dayplan/addDayPlan",
             method: "post",
@@ -1575,6 +1694,15 @@ export default {
       this.$refs["refFormEditRules"].validate(valid => {
         if (valid) {
           let data = this.formEditData;
+          let dataa = data.end_time;
+          // if (new Date(data.end_time) < new Date(data.start_time)) {
+          //   this.$message.error("施工开始时间不能大于结束时间");
+          //   return false;
+          // }
+          // if (new Date(data.true_end_time) < new Date(data.true_start_time)) {
+          //   this.$message.error("实际施工开始时间不能大于结束时间");
+          //   return false;
+          // }
           this.request({
             url: "/dayplan/updateDayTrueplan",
             method: "post",

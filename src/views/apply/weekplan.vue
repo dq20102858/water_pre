@@ -55,7 +55,6 @@
                   <div class="grid-title">
                     {{getWeek(item.start_time)}}
                     <div class="tright">
-                      <span class="statuse1">待审核</span>
                       <span class="statuse1" v-if="item.status==1">待审核</span>
                       <span class="statuse2" v-if="item.status==2">审核通过</span>
                       <span class="statuse3" v-if="item.status==3">拒绝</span>
@@ -69,7 +68,6 @@
                     <p>
                       <b>查看周计划</b>
                     </p>
-                    <img :src="require('@/assets/image/icon-drop.png')" />
                   </div>
                 </div>
               </el-col>
@@ -119,7 +117,9 @@
               {{weekdailyList.phone}}
             </span>
             <span class="itembtn">
-              <el-button size="small" @click="goBack" type="primary">返回</el-button>
+              <el-button size="small"  type="primary" @click="goBack">返回</el-button>
+              
+                <el-button size="small"  type="primary" @click="applyInfo(weekid)" v-show="weekdailyList.flag==1">审核</el-button>
               <el-button size="small" class="redbtn" v-print="printObj">打印</el-button>
             </span>
           </div>
@@ -216,6 +216,9 @@
             <!-- <p>
               <span>主管领导：暂无</span>
               <span>总监：暂无</span>
+
+
+
             </p> -->
           </div>
         </div>
@@ -244,6 +247,7 @@ export default {
       page_size: 20,
       page_total: 0,
       companyList: [],
+      weekid:0,
       weekList: [],
       weekdailyList: [],
       searchForm: {
@@ -323,6 +327,7 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.weekdailyList = data.data;
+          this.weekid=id;
         }
       });
     },
@@ -333,6 +338,48 @@ export default {
       return cellValue
         ? fecha.format(new Date(cellValue), "yyyy年MM月dd日")
         : "";
+    },
+    applyInfo(id){
+     this.$confirm("请选择审核状态？", "提示", {
+        confirmButtonText: "审核通过",
+        cancelButtonText: "审核不通过",
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/apply/checkStatus",
+            method: "post",
+            data: { wid: id,status:1 }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "审核成功！"
+              });
+             this.getWeekList();
+             this.goDetail(id) ;
+            }
+          });
+        })
+        .catch(() => {
+  this.request({
+            url: "/apply/checkStatus",
+            method: "post",
+            data: { wid: id,status:2 }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "审核成功！"
+              });
+               this.getWeekList();
+                this.goDetail(id) ;
+            }
+          });
+        });
     },
     getWeek(t) {
       t = new Date(t);

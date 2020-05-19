@@ -10,7 +10,7 @@
     <div class="app-page">
       <div class="app-page-container">
         <div class="app-page-peple">
-          <div class="title">无锡地铁三号线<span>当日人数：{{dataInfo.oneline_num}}人</span><span>在线人数：{{dataInfo.all_num}}人</span> </div>
+          <div class="title">{{projectName}}<span>当日人数：{{dataInfo.oneline_num}}人</span><span>在线人数：{{dataInfo.all_num}}人</span> </div>
           <table>
             <thead>
               <th>公司名称</th>
@@ -100,6 +100,7 @@ export default {
           }
         }
       },
+     projectName: "",
       searchForm: {},
       page_cur: 1,
       page_items: 0,
@@ -113,6 +114,7 @@ export default {
   created() {
     this.getLocomotiveLists();
     this.getDataList();
+    this.projectName=  localStorage.getItem("projectName");
   },
   methods: {
     //选择机车

@@ -41,6 +41,7 @@ ul,li{list-style-type: none}
 .pull-right{float: right;}
 .text-right{text-align: right}
 .blank{height:5px;clear: both;}
+ .el-button:focus {background: #4b6eca;border-color:#4b6eca;}
 /* hideSidebar */
 #app .sidebar-container{z-index: 500;}
 #app .hideSidebar  #app-menu-items .el-tooltip{padding:0 5px!important;}

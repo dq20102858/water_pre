@@ -334,7 +334,6 @@ export default {
       this.$refs["workForm"].validate(valid => {
         if (valid) {
           let data = this.workData;
-          console.log(JSON.stringify(data));
           this.request({
             url: "/project/addOrEditWork",
             method: "post",

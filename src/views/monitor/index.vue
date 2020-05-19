@@ -74,6 +74,18 @@
           label="坡度"
         ></el-checkbox>
         <el-checkbox class="daocchk" v-model="daocCheckValue" @change="daocCheckSelect" label="道岔"></el-checkbox>
+        <el-checkbox
+          class="speedchk"
+          v-model="speedCheckValue"
+          @change="speedCheckSelect"
+          label="限速区"
+        ></el-checkbox>
+        <el-checkbox
+          class="buildchk"
+          v-model="buildCheckValue"
+          @change="buildCheckSelect"
+          label="施工地段"
+        ></el-checkbox>
       </div>
       <div class="progresslist" v-if="this.progressCheckValue !=''">
         <span class="namess">施工进度：</span>
@@ -110,11 +122,11 @@ let axis_OutLine_Two = {
 //请点标尺起点
 let axis_applay = {
   x: 100,
-  y: axis_Height - 300
+  y: axis_Height - 535
 };
 let axis_applay_two = {
   x: 100,
-  y: axis_Height - 245
+  y: axis_Height - 345
 };
 //刻度的间隔
 let tick_Spacing = 100;
@@ -146,6 +158,8 @@ export default {
       tunnelList: [],
       speedCheckValue: true,
       speedList: [],
+      buildCheckValue: true,
+      buildList: [],
       alertCheckValue: true,
       alertList: [],
       slopeCheckValue: true,
@@ -215,6 +229,8 @@ export default {
           this.bridgeList = data.data.bridge_lists; //桥
           this.tunnelList = data.data.tunnel_lists; //隧道
           this.speedList = data.data.speed_lists; //限速区
+          this.buildList = data.data.work_lists; //施工地段
+          
           this.alertList = data.data.alert_lists; //防区
           this.slopeList = data.data.slope_lists; //坡度
           //施工进度
@@ -736,6 +752,71 @@ export default {
           context.stroke();
         }
       }
+         //绘制施工路段
+      function drawBuildAxis(listJson) {
+        let json = listJson;
+        for (let i = 0; i < json.length; i++) {
+          let start =
+            parseInt(json[i].start_flag) * 1000 +
+            parseInt(json[i].start_length);
+          let end =
+            parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
+          context.strokeStyle = "#8f40c3";
+          context.lineWidth = 10;
+          context.fillStyle = "#8f40c3";
+          context.font = "12px Microsoft Yahei";
+          let desc =  json[i].name;
+          context.beginPath();
+          //画水平直线
+          if (json[i].line_type == 1) {
+            let startX = (start - leftLineMinMileage) * everys;
+            let endX = (end - leftLineMinMileage) * everys;
+            let centerX = (endX + startX) / 2; //开始结束平均值
+            context.fillRect(centerX + offsetX, axis_LeftLine.y, 2, 30);
+            context.moveTo(startX + offsetX, axis_LeftLine.y);
+            context.lineTo(endX + offsetX, axis_LeftLine.y);
+            context.fillText(desc, centerX + offsetX, axis_LeftLine.y + 35);
+          } else if (json[i].line_type == 2) {
+            let startX = (start - leftLineMinMileage) * everys;
+            let endX = (end - leftLineMinMileage) * everys;
+            let centerX = (endX + startX) / 2;
+
+            if (start == 0) {
+              startX = 0;
+              endX = end * everys;
+            }
+            context.fillRect(centerX + offsetX, axis_LeftLine_Two.y, 2, 30);
+            context.moveTo(startX + offsetX, axis_LeftLine_Two.y);
+            context.lineTo(endX + offsetX, axis_LeftLine_Two.y);
+            context.fillText(desc, centerX + offsetX, axis_LeftLine_Two.y + 35);
+          } else if (json[i].line_type == 3) {
+            let startX = (start - enterLineMinMileage) * everys;
+            let endX = (end - enterLineMinMileage) * everys;
+            let centerX = (endX + startX) / 2;
+            if (start == 0) {
+              startX = 0;
+              endX = end * everys;
+            }
+            context.fillRect(centerX + offsetX, axis_OutLine.y, 2, 30);
+            context.moveTo(startX + offsetX, axis_OutLine.y);
+            context.lineTo(endX + offsetX, axis_OutLine.y);
+            context.fillText(desc, centerX + offsetX, axis_OutLine.y + 35);
+          } else if (json[i].line_type == 4) {
+            let startX = (start - outLineMinMileage) * everys;
+            let endX = (end - outLineMinMileage) * everys;
+            let centerX = (endX + startX) / 2;
+            if (start == 0) {
+              startX = 0;
+              endX = end * everys;
+            }
+            context.fillRect(centerX + offsetX, axis_OutLine_Two.y, 2, 30);
+            context.moveTo(startX + offsetX, axis_OutLine_Two.y);
+            context.lineTo(endX + offsetX, axis_OutLine_Two.y);
+            context.fillText(desc, centerX + offsetX, axis_OutLine_Two.y + 35);
+          }
+          context.stroke();
+        }
+      }
       //绘制防区
       function drawAlertAxis(alertListJson) {
         let json = alertListJson;
@@ -745,9 +826,9 @@ export default {
             parseInt(json[i].start_length);
           let end =
             parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
-          context.strokeStyle = "#df4b4b";
+          context.strokeStyle = "#e53636";
           context.lineWidth = 10;
-          context.fillStyle = "#df4b4b";
+          context.fillStyle = "#e53636";
           context.font = "12px Microsoft Yahei";
           let desc =
             "防区 DK" +
@@ -1015,33 +1096,33 @@ export default {
         let json1 = [
           {
             line_type: 1,
-            number: "A4-2-007-1",
+            number: "A1-2-007-1",
             command_num: "(2020)\u5b57\u7b2c04.21-007-2",
             description: "\u98ce\u98ce\u5149\u5149",
             work_area: "DK14+130\u81f3DK42+410",
             start_time: "2020-04-28 00:00:00",
             end_time: "2020-04-28 23:59:59",
-            start_flag: "14",
+            start_flag: "0",
             start_length: "600",
-            end_flag: "16",
-            end_length: "410",
-            type: "A4",
+            end_flag: "1",
+            end_length: "800",
+            type: "A1",
             start_total: 14600,
             end_total: 16410
           },
           {
             line_type: 2,
-            number: "A4-2-007-1",
+            number: "A3-2-007-1",
             command_num: "(2020)\u5b57\u7b2c04.21-007-2",
             description: "\u98ce\u98ce\u5149\u5149",
             work_area: "DK14+130\u81f3DK42+410",
             start_time: "2020-04-28 00:00:00",
             end_time: "2020-04-28 23:59:59",
-            start_flag: "14",
-            start_length: "600",
-            end_flag: "16",
-            end_length: "410",
-            type: "A4",
+            start_flag: "0",
+            start_length: "300",
+            end_flag: "1",
+            end_length: "500",
+            type: "A3",
             start_total: 14600,
             end_total: 16410
           }
@@ -1059,7 +1140,7 @@ export default {
           //let startX = (start - parseInt(minkm * 1000)) * everys; //开始值
           // let endX = (end - parseInt(minkm * 1000)) * everys; //结束值
 
-          let desc = json[i].type;
+          let descType = json[i].type;
           let dksatrt = "DK" + json[i].start_flag + " +" + json[i].start_length;
           let dkend = "DK" + json[i].end_flag + " +" + json[i].end_length;
 
@@ -1078,88 +1159,115 @@ export default {
             context.moveTo(startX + offsetX, axis_applay.y);
             context.lineTo(endX + offsetX, axis_applay.y);
             //文字
-            context.font = "24px Microsoft Yahei";
-            context.fillText(desc, centerX + offsetX, axis_applay.y - 25);
+            // context.font = "24px Microsoft Yahei";
+            // context.fillText(desc, centerX + offsetX, axis_applay.y - 25);
             clickXY.push({
               x: centerX + offsetX,
-              y: axis_applay.y - 25,
-              r: 50,
+              y: axis_applay.y - 30,
+              r: 20,
               i: json[i]
             });
-            context.fillStyle = "#ffff00";
-            context.font = "12px Microsoft Yahei";
-            context.fillText(dksatrt, startX + 139, axis_applay.y - 15);
-            context.fillText(dkend, endX + 60, axis_applay.y - 15);
+            let img = new Image();
+            img.src = require("@/assets/image/" + descType + ".png");
+            img.onload = function() {
+              context.drawImage(
+                img,
+                centerX + offsetX - 32,
+                axis_applay.y - 56,
+                60,
+                54
+              );
+            };
+            // img.onmousemove  = function() {
+            //   alert(descType);
+            // };
+            // context.fillStyle = "#ffff00";
+            // context.font = "12px Microsoft Yahei";
+            // context.fillText(dksatrt, startX + 139, axis_applay.y - 15);
+            // context.fillText(dkend, endX + 60, axis_applay.y - 15);
           } else if (json[i].line_type == 2) {
             let startX = (start - leftLineMinMileage) * everys;
             let endX = (end - leftLineMinMileage) * everys;
             let centerX = (endX + startX) / 2; //开始结束平均值
             context.fillRect(
               startX + offsetX - 1,
-              axis_applay_two.y - 93,
+              axis_applay_two.y - 8,
               2,
               15
             );
-            context.fillRect(endX + offsetX - 1, axis_applay_two.y - 93, 2, 15);
-            context.moveTo(startX + offsetX, axis_applay_two.y - 85);
-            context.lineTo(endX + offsetX, axis_applay_two.y - 85);
+            context.fillRect(endX + offsetX - 1, axis_applay_two.y - 8, 2, 15);
+            context.moveTo(startX + offsetX, axis_applay_two.y);
+            context.lineTo(endX + offsetX, axis_applay_two.y);
             //文字
-            context.fillStyle = "#ffff00";
-            context.font = "24px Microsoft Yahei";
-            context.fillText(desc, centerX + offsetX, axis_applay.y + 180);
+            // context.fillStyle = "#ffff00";
+            // context.font = "24px Microsoft Yahei";
+            // context.fillText(desc, centerX + offsetX, axis_applay.y + 180);
             clickXY.push({
               x: centerX + offsetX,
-              y: axis_applay_two.y + 180,
-              r: 50,
+              y: axis_applay_two.y - 30,
+              r: 20,
               i: json[i]
             });
-            context.fillStyle = "#ffff00";
-            context.font = "12px Microsoft Yahei";
-            context.fillText(dksatrt, startX + 139, axis_applay_two.y - 99);
-            context.fillText(dkend, endX + 60, axis_applay_two.y - 99);
+            let img = new Image();
+            img.src = require("@/assets/image/" + descType + ".png");
+            img.onload = function() {
+              context.drawImage(
+                img,
+                centerX + offsetX - 32,
+                axis_applay_two.y - 56,
+                60,
+                54
+              );
+            };
+            // context.fillStyle = "#ffff00";
+            // context.font = "12px Microsoft Yahei";
+            // context.fillText(dksatrt, startX + 139, axis_applay_two.y - 99);
+            // context.fillText(dkend, endX + 60, axis_applay_two.y - 99);
           }
           context.stroke();
-
           //
         }
-        //clickXYList=clickXY;
-        // canvas.addEventListener("click", function(e) {
-        //   var x = event.pageX - canvas.getBoundingClientRect().left;
-        //   var y = event.pageY - canvas.getBoundingClientRect().top;
-        //   console.log(clickXY);
-        //   for (let i of clickXY) {
-        //     if (
-        //       x > i.x - i.r &&
-        //       x < i.x + i.r &&
-        //       y > i.y - i.r &&
-        //       y < i.y + i.r
-        //     ) {
-        //       let infos = i.i;
-        //       that.$alert(
-        //         "<p style='color:#4b6eca'><span style='color:#1d397a'>作业编号：</span>" +
-        //           infos.number +
-        //           "</p><p style='color:#4b6eca'><span style='color:#1d397a'>作业令号</span>：" +
-        //           infos.command_num +
-        //           "</p>" +
-        //           "<p style='color:#4b6eca'><span style='color:#1d397a'>开始时间：</span>" +
-        //           infos.start_time +
-        //           "</p><p style='color:#4b6eca'><span style='color:#1d397a'>结束时间：</span>" +
-        //           infos.end_time +
-        //           "</p>" +
-        //           "<p style='color:#4b6eca'><span style='color:#1d397a'>施工区间：</span>" +
-        //           infos.work_area +
-        //           "</p><p style='color:#4b6eca'><span style='color:#1d397a'>施工内容：</span>" +
-        //           infos.description +
-        //           "</p>",
-        //         {
-        //           dangerouslyUseHTMLString: true,
-        //           confirmButtonText: "关闭"
-        //         }
-        //       );
-        //       // .catch(() => {});
-        //     }
-        //   }
-        // });
+        canvas.addEventListener("dblclick", function(e) {
+          var x = event.pageX - canvas.getBoundingClientRect().left;
+          var y = event.pageY - canvas.getBoundingClientRect().top;
+          console.log(clickXY);
+          for (let i of clickXY) {
+            if (
+              x > i.x - i.r &&
+              x < i.x + i.r &&
+              y > i.y - i.r &&
+              y < i.y + i.r
+            ) {
+              let infos = i.i;
+
+              that
+                .$confirm(
+                  "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>作业编号：</span>" +
+                    infos.number +
+                    "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>作业令号</span>：" +
+                    infos.command_num +
+                    "</p>" +
+                    "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>开始时间：</span>" +
+                    infos.start_time +
+                    "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>结束时间：</span>" +
+                    infos.end_time +
+                    "</p>" +
+                    "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>施工区间：</span>" +
+                    infos.work_area +
+                    "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>施工内容：</span>" +
+                    infos.description +
+                    "</p>",
+                  {
+                    distinguishCancelAndClose: true,
+                    dangerouslyUseHTMLString: true,
+                    showCancelButton: false,
+                    showConfirmButton: false
+                  }
+                )
+                .catch(() => {});
+            }
+          }
+        });
       }
       //车定位
       function drawAxesCar(jsonData) {
@@ -1167,42 +1275,42 @@ export default {
           {
             id: 1,
             name: "ZY01",
-            start_flag: 15,
+            start_flag: 1,
             start_length: 300,
             line_type: 1
           },
           {
             id: 1,
             name: "ZY01",
-            start_flag: 25,
+            start_flag: 6,
             start_length: 300,
             line_type: 1
           },
           {
             id: 2,
             name: "ZY02",
-            start_flag: 32,
+            start_flag: 1,
             start_length: 430,
-            line_type: 1
+            line_type: 2
           },
           {
             id: 1,
             name: "ZY01",
-            start_flag: 17,
+            start_flag: 7,
             start_length: 300,
             line_type: 2
           },
           {
             id: 1,
             name: "ZY01",
-            start_flag: 25,
+            start_flag: 5,
             start_length: 300,
             line_type: 2
           },
           {
             id: 2,
             name: "ZY02",
-            start_flag: 33,
+            start_flag: 3,
             start_length: 430,
             line_type: 2
           }
@@ -1277,28 +1385,28 @@ export default {
           {
             id: 1,
             name: "R",
-            start_flag: 16,
+            start_flag: 5,
             start_length: 300,
             line_type: 1
           },
           {
             id: 1,
             name: "R",
-            start_flag: 28,
+            start_flag: 3,
             start_length: 300,
             line_type: 1
           },
           {
             id: 1,
             name: "R",
-            start_flag: 16,
+            start_flag: 8,
             start_length: 300,
             line_type: 2
           },
           {
             id: 1,
             name: "R",
-            start_flag: 20,
+            start_flag: 6,
             start_length: 300,
             line_type: 2
           }
@@ -1375,6 +1483,10 @@ export default {
       if (this.speedCheckValue) {
         drawSpeedAxis(this.speedList);
       }
+      //施工路段
+      if (this.buildCheckValue) {
+        drawBuildAxis(this.buildList);
+      }
       //防区
       if (this.alertList.length > 0) {
         if (this.alertCheckValue) {
@@ -1394,9 +1506,9 @@ export default {
         drawSlopeAxis(this.slopeList);
       }
       //作业
-      if (this.applyList.length > 0) {
-        drawAxesApply(this.applyList);
-      }
+      // if (this.applyList.length > 0) {
+      drawAxesApply(this.applyList);
+      // }
       //道岔
       if (this.daocCheckValue) {
         drawDaocha();
@@ -1432,6 +1544,10 @@ export default {
     },
     //限速区
     speedCheckSelect() {
+      this.initCanvas();
+    },
+    //施工路段
+    buildCheckSelect() {
       this.initCanvas();
     },
     //坡度
@@ -1668,14 +1784,14 @@ export default {
   color: #6e7b8b;
 }
 .alertchk.is-checked {
-  border-color: #df4b4b !important;
+  border-color: #e53636 !important;
 }
 .alertchk .el-checkbox__input.is-checked .el-checkbox__inner {
-  background-color: #df4b4b;
-  border-color: #df4b4b;
+  background-color: #e53636;
+  border-color: #e53636;
 }
 .alertchk.is-checked .el-checkbox__label {
-  color: #df4b4b;
+  color: #e53636;
 }
 .daocchk.is-checked {
   border-color: #107af7 !important;
@@ -1686,6 +1802,16 @@ export default {
 }
 .daocchk.is-checked .el-checkbox__label {
   color: #107af7;
+}
+.buildchk.is-checked {
+  border-color: #8f40c3 !important;
+}
+.buildchk .el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: #8f40c3;
+  border-color: #8f40c3;
+}
+.buildchk.is-checked .el-checkbox__label {
+  color: #8f40c3;
 }
 /*canvas*/
 .main-canvas {
