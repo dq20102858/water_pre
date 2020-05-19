@@ -1095,13 +1095,13 @@ export default {
           let minLineNum = Math.min.apply(
             Math,
             this.mark_line.map(function(item) {
-              return parseInt(item.yAxis + 2);
+              return parseInt(item.yAxis -1);
             })
           );
           let maxLineNum = Math.max.apply(
             Math,
             this.mark_line.map(function(item) {
-              return parseInt(item.yAxis + 2);
+              return parseInt(item.yAxis +1);
             })
           );
           // 数据
@@ -1216,13 +1216,14 @@ export default {
               }
             },
             grid: {
+               top: "25px",
               left: "180px",
-              right: "1px",
-              bottom: "15px"
+              right: "20px",
+              bottom: "50px"
             },
             xAxis: {
               type: "time",
-              position: "top",
+              position: "bottom",
               min: dataMin,
               max: dataMax,
               maxInterval: 3600 * 0.1 * 1000,
@@ -1248,7 +1249,7 @@ export default {
             yAxis: {
               show: false,
               type: "value",
-              min: minLineNum - 3,
+              min: minLineNum,
               max: maxLineNum
             },
             // dataZoom: [
