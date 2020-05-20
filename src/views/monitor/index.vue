@@ -54,12 +54,12 @@
           @change="tunnelCheckSelect"
           label="隧道"
         ></el-checkbox>
-        <el-checkbox
+        <!-- <el-checkbox
           class="speedchk"
           v-model="speedCheckValue"
           @change="speedCheckSelect"
           label="限速区"
-        ></el-checkbox>
+        ></el-checkbox>-->
         <el-checkbox
           class="alertchk"
           v-model="alertCheckValue"
@@ -92,6 +92,20 @@
         <el-radio-group v-model="progressCheckValue" @change="progressCheckSelect">
           <el-radio v-for="item in progressList" :key="item.name" :label="item.name">{{item.name}}</el-radio>
         </el-radio-group>
+      </div>
+      <div class="cartablebox">
+        <el-table :data="cartableData">
+          <el-table-column prop="id" label="编号" width="60"></el-table-column>
+          <el-table-column prop="name" label="列车名称" width="80"></el-table-column>
+          <el-table-column prop="speed" label="当前速度" width="100"></el-table-column>
+          <el-table-column prop="address" label="当前位置" width="100"></el-table-column>
+          <el-table-column prop="linetype" label="线别" width="100"></el-table-column>
+          <el-table-column prop="status" label="状态" width="100"></el-table-column>
+          <el-table-column prop="address" label="司机"></el-table-column>
+          <el-table-column prop="address" label="车长"></el-table-column>
+          <el-table-column prop="createtime" label="最后更新时间"></el-table-column>
+          <el-table-column></el-table-column>
+        </el-table>
       </div>
     </div>
   </div>
@@ -181,7 +195,45 @@ export default {
       enterLineMinMileage: 0,
       enterLineMaxMileage: 0,
       outLineMinMileage: 0,
-      outLineMaxMileage: 0
+      outLineMaxMileage: 0,
+      cartableData: [
+        {
+          id: 1,
+          name: "ZY01",
+          speed: "0km/h",
+          address: "Dk1+300",
+          linetype: "左线",
+          status: "离线",
+          createtime: "2020-05-10 15:44:34"
+        },
+        {
+          id: 2,
+          name: "ZY02",
+          speed: "0km/h",
+          address: "Dk1+300",
+          linetype: "左线",
+          status: "离线",
+          createtime: "2020-05-10 15:44:34"
+        },
+        {
+          id: 3,
+          name: "ZY03",
+          speed: "0km/h",
+          address: "Dk1+300",
+          linetype: "左线",
+          status: "离线",
+          createtime: "2020-05-10 15:44:34"
+        },
+        {
+          id: 4,
+          name: "ZY04",
+          speed: "0km/h",
+          address: "Dk1+300",
+          linetype: "左线",
+          status: "离线",
+          createtime: "2020-05-10 15:44:34"
+        }
+      ]
     };
   },
   updated() {
@@ -230,7 +282,7 @@ export default {
           this.tunnelList = data.data.tunnel_lists; //隧道
           this.speedList = data.data.speed_lists; //限速区
           this.buildList = data.data.work_lists; //施工地段
-          
+
           this.alertList = data.data.alert_lists; //防区
           this.slopeList = data.data.slope_lists; //坡度
           //施工进度
@@ -752,7 +804,7 @@ export default {
           context.stroke();
         }
       }
-         //绘制施工路段
+      //绘制施工路段
       function drawBuildAxis(listJson) {
         let json = listJson;
         for (let i = 0; i < json.length; i++) {
@@ -765,7 +817,7 @@ export default {
           context.lineWidth = 10;
           context.fillStyle = "#08ce80";
           context.font = "12px Microsoft Yahei";
-          let desc =  json[i].name;
+          let desc = json[i].name;
           context.beginPath();
           //画水平直线
           if (json[i].line_type == 1) {
@@ -1162,9 +1214,10 @@ export default {
             // context.font = "24px Microsoft Yahei";
             // context.fillText(desc, centerX + offsetX, axis_applay.y - 25);
             clickXY.push({
-              x: centerX + offsetX,
-              y: axis_applay.y - 30,
-              r: 20,
+              x: centerX-60,
+              y: axis_applay.y - 60,
+              w: 60,
+              h: 54,
               i: json[i]
             });
             let img = new Image();
@@ -1203,9 +1256,10 @@ export default {
             // context.font = "24px Microsoft Yahei";
             // context.fillText(desc, centerX + offsetX, axis_applay.y + 180);
             clickXY.push({
-              x: centerX + offsetX,
-              y: axis_applay_two.y - 30,
-              r: 20,
+              x: centerX-60,
+              y: axis_applay_two.y - 60,
+              w: 60,
+              h: 54,
               i: json[i]
             });
             let img = new Image();
@@ -1231,14 +1285,14 @@ export default {
           var x = event.pageX - canvas.getBoundingClientRect().left;
           var y = event.pageY - canvas.getBoundingClientRect().top;
           console.log(clickXY);
-          for (let i of clickXY) {
+          for (let item of clickXY) {
             if (
-              x > i.x - i.r &&
-              x < i.x + i.r &&
-              y > i.y - i.r &&
-              y < i.y + i.r
+              x >= item.x &&
+              x <= item.x + item.w &&
+              y >= item.y &&
+              y <= item.y + item.h
             ) {
-              let infos = i.i;
+              let infos = item.i;
 
               that
                 .$confirm(
@@ -1268,6 +1322,18 @@ export default {
             }
           }
         });
+      }
+      function getEventPosition(ev) {
+        var x, y;
+        if (ev.layerX || ev.layerX == 0) {
+          x = ev.layerX;
+          y = ev.layerY;
+        } else if (ev.offsetX || ev.offsetX == 0) {
+          // Opera
+          x = ev.offsetX;
+          y = ev.offsetY;
+        }
+        return { x: x, y: y };
       }
       //车定位
       function drawAxesCar(jsonData) {
@@ -1844,5 +1910,26 @@ export default {
   color: #fff;
   margin-right: 10px;
   font-size: 18px;
+}
+.cartablebox {
+  padding: 20px 10px;
+}
+.cartablebox .app-table {
+  border-radius: 6px 6px 0 0;
+}
+.cartablebox .app-table .el-table__header-wrapper {
+  background: #3655a5;
+  border-radius: 6px 6px 0 0;
+}
+.cartablebox .el-table--medium th {
+  padding: 4px 0;
+  color: #fff;
+}
+.cartablebox .el-table--medium td {
+  padding: 2px 0;
+  color: #4b6eca;
+}
+.cartablebox .el-table th {
+  background: #1d397a !important;
 }
 </style>

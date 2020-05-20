@@ -20,7 +20,7 @@
               <el-button type="primary" icon="el-icon-plus" @click="openAddPost">添加职位</el-button>
             </el-form-item>
             <el-form-item label="公司">
-              <el-select v-model="search_pid" @change="getDepartLists($event)" placeholder="请选择公司">
+              <el-select v-model="search_pid" @change="getDepartLists($event)" placeholder="请选择公司" clearable>
                 <el-option
                   v-for="item in this.companySelectList"
                   :key="item.id"

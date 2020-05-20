@@ -19,7 +19,7 @@
               <el-button type="primary" icon="el-icon-plus" @click="openAddDepart">添加部门</el-button>
             </el-form-item>
             <el-form-item label="公司">
-              <el-select v-model="search_pid" placeholder="请选择公司">
+              <el-select v-model="search_pid" placeholder="请选择公司" clearable>
                 <el-option
                   v-for="item in this.companySelectList"
                   :key="item.id"

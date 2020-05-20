@@ -123,6 +123,7 @@
             <el-table-column label="操作" width="125">
               <template slot-scope="scope">
                 <div class="app-operation">
+                  <span v-show="scope.row.can_check==1">
                   <el-button
                     v-if="scope.row.status=='未批复'"
                     class="btn-red"
@@ -141,6 +142,7 @@
                     size="mini"
                     @click="goApplyNo(scope.row.id,scope.row.company)"
                   >注销</el-button>
+                  </span>
                   <el-button
                     class="btn-blue"
                     size="mini"

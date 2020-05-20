@@ -117,9 +117,14 @@
               {{weekdailyList.phone}}
             </span>
             <span class="itembtn">
-              <el-button size="small"  type="primary" @click="goBack">返回</el-button>
-              
-                <el-button size="small"  type="primary" @click="applyInfo(weekid)" v-show="weekdailyList.flag==1">审核</el-button>
+              <el-button size="small" type="primary" @click="goBack">返回</el-button>
+
+              <el-button
+                size="small"
+                type="primary"
+                @click="applyInfo(weekid)"
+                v-show="weekdailyList.flag==1"
+              >审核</el-button>
               <el-button size="small" class="redbtn" v-print="printObj">打印</el-button>
             </span>
           </div>
@@ -128,7 +133,7 @@
               <el-table :data="weekdailyList.lists">
                 <el-table-column prop="work_time" label="日期">
                   <template slot-scope="scope">
-                    <span>{{dateFormat(scope.row.work_time)}}</span>
+                    <span>{{scope.row.work_time | formatDate}}</span>
                   </template>
                 </el-table-column>
                 <el-table-column prop="type" label="作业类别"></el-table-column>
@@ -164,7 +169,7 @@
               <span>
                 <b>总监：</b>暂无
               </span>
-            </span> -->
+            </span>-->
           </div>
         </div>
         <div id="printWeek">
@@ -176,7 +181,7 @@
           </div>
           <div class="printcenter">
             <div class="items" v-for="item in weekdailyList.lists" :key="item.id">
-              <div class="infotitle">{{dateFormat(item.work_time)}}</div>
+              <div class="infotitle">{{item.work_time | formatDate}}</div>
               <div class="info">
                 <b>作业类别</b>
                 {{item.type}}
@@ -219,19 +224,16 @@
 
 
 
-            </p> -->
+            </p>-->
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-
 <script>
-import * as fecha from "element-ui/lib/utils/date";
 export default {
   name: "weekplan",
-
   data() {
     return {
       printObj: {
@@ -247,7 +249,7 @@ export default {
       page_size: 20,
       page_total: 0,
       companyList: [],
-      weekid:0,
+      weekid: 0,
       weekList: [],
       weekdailyList: [],
       searchForm: {
@@ -327,7 +329,7 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.weekdailyList = data.data;
-          this.weekid=id;
+          this.weekid = id;
         }
       });
     },
@@ -335,12 +337,10 @@ export default {
       this.isParent = true;
     },
     dateFormat(cellValue) {
-      return cellValue
-        ? fecha.format(new Date(cellValue), "yyyy年MM月dd日")
-        : "";
+      return ""; // this.formatDate(cellValue)
     },
-    applyInfo(id){
-     this.$confirm("请选择审核状态？", "提示", {
+    applyInfo(id) {
+      this.$confirm("请选择审核状态？", "提示", {
         confirmButtonText: "审核通过",
         cancelButtonText: "审核不通过",
         type: "warning",
@@ -350,7 +350,7 @@ export default {
           this.request({
             url: "/apply/checkStatus",
             method: "post",
-            data: { wid: id,status:1 }
+            data: { wid: id, status: 1 }
           }).then(res => {
             let data = res.data;
             if (data.status == 1) {
@@ -358,16 +358,16 @@ export default {
                 type: "success",
                 message: "审核成功！"
               });
-             this.getWeekList();
-             this.goDetail(id) ;
+              this.getWeekList();
+              this.goDetail(id);
             }
           });
         })
         .catch(() => {
-  this.request({
+          this.request({
             url: "/apply/checkStatus",
             method: "post",
-            data: { wid: id,status:2 }
+            data: { wid: id, status: 2 }
           }).then(res => {
             let data = res.data;
             if (data.status == 1) {
@@ -375,8 +375,8 @@ export default {
                 type: "success",
                 message: "审核成功！"
               });
-               this.getWeekList();
-                this.goDetail(id) ;
+              this.getWeekList();
+              this.goDetail(id);
             }
           });
         });
@@ -589,5 +589,18 @@ export default {
   background: #ff5c75;
   border-color: #ff5c75;
   color: #fff;
+}
+
+.statuse2 {
+  color: #029b02;
+}
+.statuse3 {
+  color: #ff5c75;
+}
+.statuse4 {
+  color: #0a0693;
+}
+.statuse6 {
+  color: #4072d1;
 }
 </style>

@@ -31,6 +31,7 @@
                 v-model="userSearch.company_id"
                 @change="getDepartLists($event)"
                 placeholder="请选择公司"
+                clearable
               >
                 <el-option
                   v-for="item in this.companySelectList"
@@ -45,6 +46,7 @@
                 v-model="userSearch.depart_id"
                 @change="getPostLists($event)"
                 placeholder="请选择部门"
+                clearable
               >
                 <el-option
                   v-for="item in this.departSelectList"
@@ -55,7 +57,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="职位">
-              <el-select v-model="userSearch.post_id" placeholder="请选择职位">
+              <el-select v-model="userSearch.post_id" placeholder="请选择职位" clearable>
                 <el-option
                   v-for="item in this.postSelectList"
                   :key="item.id"
@@ -447,7 +449,7 @@ export default {
     openAddUser() {
       this.userData = {
         menus: [],
-           sys_role: 3
+        sys_role: 3
       };
       this.userDialogVisible = true;
       this.userDialogTitle = "添加人员信息";

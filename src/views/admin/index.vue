@@ -130,10 +130,10 @@ export default {
         name: [
           {
             required: true,
-            message: "请输入公司名称2~30个字符",
+            message: "请输入公司名称2~20个字符",
             trigger: "blur"
           },
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" },
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
           {
             pattern: /^[\u4e00-\u9fa5\(\)（）\da-zA-Z&]{2,50}$/,
             message: "输入公司名称只能包含汉字、括号、&、数字或英文字符",
@@ -141,7 +141,7 @@ export default {
           }
         ],
         description: [
-          { min: 2, max: 30, message: "长度在2到30个字符", trigger: "blur" }
+          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
         ]
       }
     };
