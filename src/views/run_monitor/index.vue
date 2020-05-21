@@ -120,7 +120,7 @@
             </el-form-item>
           </div>
           <div class="el-form-item-block">
-            <el-form-item label="出线级别：" label-width="100px">
+            <el-form-item label="出发线别：" label-width="100px">
               <el-select v-model="formData.out_line_type" placeholder="请选择">
                 <el-option
                   v-for="item in lineTypeList"

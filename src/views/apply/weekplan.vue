@@ -14,6 +14,7 @@
     </div>
     <div class="app-page">
       <div class="app-page-container">
+        <button @click="open">测试</button>
         <div v-if="isParent">
           <div class="app-page-container-other">
             <div class="app-page-select" style="margin:10px 0">
@@ -55,7 +56,51 @@
                   <div class="grid-title">
                     {{getWeek(item.start_time)}}
                     <div class="tright">
-                  
+                      <div class="logiem">
+                        <el-popover
+                          popper-class="status-popover"
+                          placement="bottom-start"
+                          width="420"
+                          trigger="click"
+                          @show="getLogList(item.id)"
+                        >
+                          <el-steps direction="vertical" :active="1">
+                            <el-step
+                              v-for="item in logDataList"
+                              :key="item.id"
+                              :title="item.create_time+'              '+ item.remark"
+                              :description="item.reason"
+                              icon="el-icon-eleme"
+                            ></el-step>
+                          </el-steps>
+
+                          <el-tag
+                            class="statuse1"
+                            slot="reference"
+                            title="点击查看更多"
+                            v-if="item.status==1"
+                          >待审核</el-tag>
+                          <el-tag
+                            class="statuse2"
+                            slot="reference"
+                            title="点击查看更多"
+                            v-if="item.status==2"
+                          >审核通过</el-tag>
+                          <el-tag
+                            class="statuse3"
+                            slot="reference"
+                            title="点击查看更多"
+                            v-if="item.status==3"
+                          >拒绝</el-tag>
+                          <el-tag
+                            class="statuse5"
+                            slot="reference"
+                            title="点击查看更多"
+                            v-if="item.status==5"
+                          >审核中</el-tag>
+                        </el-popover>
+                      </div>
+
                       <!-- <span class="statuse1" v-if="item.status==1" @click="getLogList(item.id)">待审核</span>
                       <span class="statuse2" v-if="item.status==2" @click="getLogList(item.id)">审核通过</span>
                       <span class="statuse3" v-if="item.status==3" @click="getLogList(item.id)">拒绝</span>
@@ -119,13 +164,7 @@
             </span>
             <span class="itembtn">
               <el-button size="small" type="primary" @click="goBack">返回</el-button>
-
-              <el-button
-                size="small"
-                type="primary"
-                @click="applyInfo(weekid)"
-                v-show="weekdailyList.flag==1"
-              >审核</el-button>
+              <el-button size="small" type="primary" @click="applyInfo(weekid)" v-if="weekdailyList.flag==1">审核</el-button>
               <el-button size="small" class="redbtn" v-print="printObj">打印</el-button>
             </span>
           </div>
@@ -257,8 +296,8 @@ export default {
         depart_id: "",
         time_range: []
       },
-      logDataList:"",
-      visiblePopover:false
+      logDataList: [],
+      visiblePopover: false
     };
   },
   mounted() {
@@ -343,17 +382,20 @@ export default {
       return ""; // this.formatDate(cellValue)
     },
     applyInfo(id) {
-      this.$confirm("请选择审核状态？", "提示", {
+      this.$prompt("请选择审核状态？", "提示", {
+        distinguishCancelAndClose: true,
         confirmButtonText: "审核通过",
         cancelButtonText: "审核不通过",
-        type: "warning",
+        inputType: "textarea",
+        //  inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+        //  inputErrorMessage: '邮箱格式不正确',
         customClass: "el-message-box-new"
       })
-        .then(() => {
+        .then(({ value }) => {
           this.request({
             url: "/apply/checkStatus",
             method: "post",
-            data: { wid: id, status: 1 }
+            data: { wid: id, status: 1, reason: value }
           }).then(res => {
             let data = res.data;
             if (data.status == 1) {
@@ -366,21 +408,45 @@ export default {
             }
           });
         })
+        .catch(action => {
+          if (action === "cancel") {
+            //
+            this.request({
+              url: "/apply/checkStatus",
+              method: "post",
+              data: { wid: id, status: 2, reason: value }
+            }).then(res => {
+              let data = res.data;
+              if (data.status == 1) {
+                this.$message({
+                  type: "success",
+                  message: "审核成功！"
+                });
+                this.getWeekList();
+                this.goDetail(id);
+              }
+            });
+          }
+        });
+    },
+    open() {
+      this.$prompt("请输入邮箱", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        inputType: "textarea",
+        inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+        inputErrorMessage: "邮箱格式不正确"
+      })
+        .then(({ value }) => {
+          this.$message({
+            type: "success",
+            message: "你的邮箱是: " + value
+          });
+        })
         .catch(() => {
-          this.request({
-            url: "/apply/checkStatus",
-            method: "post",
-            data: { wid: id, status: 2 }
-          }).then(res => {
-            let data = res.data;
-            if (data.status == 1) {
-              this.$message({
-                type: "success",
-                message: "审核成功！"
-              });
-              this.getWeekList();
-              this.goDetail(id);
-            }
+          this.$message({
+            type: "info",
+            message: "取消输入"
           });
         });
     },
@@ -414,7 +480,7 @@ export default {
       }
     },
     getLogList(id) {
-      this.visiblePopover=true;
+      this.logDataList = [];
       this.request({
         url: "/apply/getWeeekLogs",
         method: "get",
@@ -422,7 +488,8 @@ export default {
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
-          this.logDataList = data.data.toString();
+          this.logDataList = data.data;
+          //this.logDataList = data.data.toString();
         }
       });
     }
@@ -467,25 +534,59 @@ export default {
 }
 .grid-content .grid-title .tright {
   float: right;
-  padding-right: 15px;
+  padding-right: 10px;
 }
-.status-popover button {
-  background: none!important;
-  border: none;
-  padding: 10px 0;
-  position: relative;
+.grid-content .grid-title .tright .el-tag {
+  background: none !important;
+  padding: 0 10px;
+  cursor: pointer;
+  font-size: 14px;
 }
 .status-popover.el-popover {
-  border: 1px solid #3655a5;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #9db9fa;
+  box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.3);
   word-break: break-all;
 }
 .status-popover .popper__arrow::after {
-  bottom: -0.2px!important;
+  top: -0.2px !important;
   margin-left: -6px;
-  border-top-color: #3655a5 !important;
+  border-bottom-color: #9db9fa !important;
 }
-.logiem p {
+
+.status-popover .el-step__main {
+  padding-bottom: 10px;
+}
+.status-popover .el-step__title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #454545;
+}
+.status-popover .el-step__description {
+  font-size: 14px;
+  color: #666;
+}
+.status-popover .is-text {
+  border-color: #333;
+  color: #333;
+}
+.status-popover .el-step__icon-inner[class*=el-icon]:not(.is-status){
+  border-color: #C0C4CC;
+  color: #C0C4CC;font-size: 20px;
+}
+.status-popover .el-step__title.is-finish {
+  color: #4b6eca;
+  border-color: #4b6eca;
+  font-weight: 700;
+}
+.status-popover .is-finish .is-text {
+  color: #4b6eca;
+  border-color: #4b6eca;
+}
+.status-popover .is-finish .el-step__icon-inner {
+  color: #4b6eca;
+  border-color: #4b6eca;
+}
+.statu .logiem p {
   line-height: 24px;
 }
 .grid-content .grid-box {
@@ -631,6 +732,7 @@ export default {
 }
 .statuse3 {
   color: #ff5c75;
+  border: 0;
 }
 .statuse4 {
   color: #0a0693;

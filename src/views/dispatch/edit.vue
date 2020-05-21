@@ -98,7 +98,7 @@
       </el-form>
       <div slot="footer" class="app-dialog-footer">
         <!-- <span class="tips">备注：*为必填项</span> -->
-        <el-button type="primary" @click="submitForm('ruleForm')">确定保存</el-button>
+        <el-button type="primary" @click="submitForm('ruleForm')">确认添加</el-button>
         <el-button @click="isCancel">关闭</el-button>
       </div>
     </div>

@@ -101,8 +101,8 @@
           <el-table-column prop="address" label="当前位置" width="100"></el-table-column>
           <el-table-column prop="linetype" label="线别" width="100"></el-table-column>
           <el-table-column prop="status" label="状态" width="100"></el-table-column>
-          <el-table-column prop="address" label="司机"></el-table-column>
-          <el-table-column prop="address" label="车长"></el-table-column>
+          <el-table-column prop="" label="司机"></el-table-column>
+          <el-table-column prop="" label="车长"></el-table-column>
           <el-table-column prop="createtime" label="最后更新时间"></el-table-column>
           <el-table-column></el-table-column>
         </el-table>
