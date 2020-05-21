@@ -55,10 +55,11 @@
                   <div class="grid-title">
                     {{getWeek(item.start_time)}}
                     <div class="tright">
-                      <span class="statuse1" v-if="item.status==1">待审核</span>
-                      <span class="statuse2" v-if="item.status==2">审核通过</span>
-                      <span class="statuse3" v-if="item.status==3">拒绝</span>
-                      <span class="statuse4" v-if="item.status==5">审核中</span>
+                  
+                      <!-- <span class="statuse1" v-if="item.status==1" @click="getLogList(item.id)">待审核</span>
+                      <span class="statuse2" v-if="item.status==2" @click="getLogList(item.id)">审核通过</span>
+                      <span class="statuse3" v-if="item.status==3" @click="getLogList(item.id)">拒绝</span>
+                      <span class="statuse4" v-if="item.status==5" @click="getLogList(item.id)">审核中</span>-->
                     </div>
                   </div>
                   <div class="grid-box" @click="goDetail(item.id)">
@@ -255,7 +256,9 @@ export default {
       searchForm: {
         depart_id: "",
         time_range: []
-      }
+      },
+      logDataList:"",
+      visiblePopover:false
     };
   },
   mounted() {
@@ -409,12 +412,24 @@ export default {
       } else {
         throw "getFormatDate - error : 你的参数不是日期类型，也不是为空";
       }
+    },
+    getLogList(id) {
+      this.visiblePopover=true;
+      this.request({
+        url: "/apply/getWeeekLogs",
+        method: "get",
+        params: { wid: id }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.logDataList = data.data.toString();
+        }
+      });
     }
     //end
   }
 };
 </script>
-
 <style>
 .el-menu--collapse .el-menu .el-submenu,
 .el-menu--popup {
@@ -445,13 +460,33 @@ export default {
   color: #fff;
   background: #3655a5;
   font-size: 16px;
-  padding: 12px 0;
+  height: 40px;
+  line-height: 40px;
   border-radius: 6px 6px 0 0;
   text-align: center;
 }
 .grid-content .grid-title .tright {
   float: right;
   padding-right: 15px;
+}
+.status-popover button {
+  background: none!important;
+  border: none;
+  padding: 10px 0;
+  position: relative;
+}
+.status-popover.el-popover {
+  border: 1px solid #3655a5;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  word-break: break-all;
+}
+.status-popover .popper__arrow::after {
+  bottom: -0.2px!important;
+  margin-left: -6px;
+  border-top-color: #3655a5 !important;
+}
+.logiem p {
+  line-height: 24px;
 }
 .grid-content .grid-box {
   padding: 30px 0;

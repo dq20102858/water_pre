@@ -140,19 +140,19 @@ export default {
           // 计算当前站点的x轴
           cansText.drawImage(img, startLineX, 126, 18, 90);
           // //站名
-          cansText.font = "17px Microsoft Yahei";
-          cansText.fillStyle = "#6289f2";
+          cansText.font = "18px Microsoft Yahei";
+          cansText.fillStyle = "#fff";
           let origin = json[i].name.split("");
           for (let x = 0; x < origin.length; x++) {
             cansText.fillText(
               origin[x],
               startLineX,
-              138 - origin.length * 19 + 19 * x
+              138 - origin.length *  20 + 20 * x
             );
           }
           //DK
           let codes = "DK" + json[i].start_flag + " +" + json[i].start_length;
-          cansText.fillStyle = "#fff";
+          cansText.fillStyle = "#5f88f9";
           cansText.font = "12px  Microsoft Yahei";
           cansText.fillTextVertical(codes, startLineX + 18, 156);
         }

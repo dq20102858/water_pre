@@ -271,19 +271,19 @@ export default {
               90
             );
             // //站名
-            context.font = "17px Microsoft Yahei";
+            context.font = "18px Microsoft Yahei";
             context.fillStyle = "#fff";
             let origin = json[i].name.split("");
             for (let x = 0; x < origin.length; x++) {
               context.fillText(
                 origin[x],
                 startLineX - 8,
-                axis_LeftLine.y - 85 - origin.length * 19 + 19 * x
+                axis_LeftLine.y - 85 - origin.length * 20 + 20 * x
               );
             }
             //DK
             let codes = "DK" + json[i].start_flag + " +" + json[i].start_length;
-            context.fillStyle = "#0AE39A";
+            context.fillStyle = "#5f88f9";
             context.font = "12px  Microsoft Yahei";
             context.fillTextVertical(
               codes,

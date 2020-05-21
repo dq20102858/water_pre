@@ -346,7 +346,7 @@ export default {
             "ZDK"
           );
           context.font = "15px Microsoft Yahei";
-          context.fillText("左线", axis_LeftLine.x - 60, axis_LeftLine.y + 25);
+          context.fillText("左线", axis_LeftLine.x - 60, axis_LeftLine.y + 28);
         } else if (lineJson[i].id == 2) {
           drawAxisTicksNum(
             start,
@@ -362,7 +362,7 @@ export default {
           context.fillText(
             "右线",
             axis_LeftLine_Two.x - 60,
-            axis_LeftLine_Two.y + 25
+            axis_LeftLine_Two.y + 28
           );
         } else if (lineJson[i].id == 3) {
           drawAxisTicksNum(
@@ -376,7 +376,7 @@ export default {
             "RDK"
           );
           context.font = "15px Microsoft Yahei";
-          context.fillText("入场线", axis_OutLine.x - 68, axis_OutLine.y + 25);
+          context.fillText("入场线", axis_OutLine.x - 68, axis_OutLine.y + 28);
         } else if (lineJson[i].id == 4) {
           drawAxisTicksNum(
             start,
@@ -392,7 +392,7 @@ export default {
           context.fillText(
             "出场线",
             axis_OutLine_Two.x - 68,
-            axis_OutLine_Two.y + 25
+            axis_OutLine_Two.y + 28
           );
         }
       }
@@ -1898,7 +1898,7 @@ export default {
 }
 .progresslist .namess {
   padding-bottom: 10px;
-  display: inline-block;
+  display: inline-block; padding-right:14px;
 }
 .progresslist .el-radio__label {
   color: #fff;
