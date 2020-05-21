@@ -1,7 +1,7 @@
 <template>
-  <div id="dispatch-detail" class="app-page-layer">
+  <div id="dispatch-detail" class="app-page-layer"  style="width:100%">
     <div class="app-dialog-form">
-      <table>
+      <table style="width:100%">
         <tbody>
           <tr>
             <td>
@@ -158,7 +158,7 @@ export default {
   width: 100%;
 }
 #dispatch-detail table td {
-  border: 1px solid #ddd;
+  border: 1px solid #9db9fa;
   line-height: 30px;
   padding: 10px;
 }

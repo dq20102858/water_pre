@@ -14,7 +14,6 @@
     </div>
     <div class="app-page">
       <div class="app-page-container">
-        <button @click="open">测试</button>
         <div v-if="isParent">
           <div class="app-page-container-other">
             <div class="app-page-select" style="margin:10px 0">
@@ -164,7 +163,7 @@
             </span>
             <span class="itembtn">
               <el-button size="small" type="primary" @click="goBack">返回</el-button>
-              <el-button size="small" type="primary" @click="applyInfo(weekid)" v-if="weekdailyList.flag==1">审核</el-button>
+              <el-button size="small" type="primary" @click="applyInfo(weekid)"  v-if="weekdailyList.flag==1">审核</el-button>
               <el-button size="small" class="redbtn" v-print="printObj">打印</el-button>
             </span>
           </div>
@@ -269,6 +268,34 @@
         </div>
       </div>
     </div>
+    <el-dialog
+      width="600px"
+      :close-on-click-modal="false"
+      class="dialog-weekplan"
+      title="审核信息"
+      :visible.sync="dialogVisible"
+    >
+      <el-form class="el-form-custom">
+        <el-form-item label="选择状态：">
+          <el-radio v-model="dialogStatus" :label="1">审核通过</el-radio>
+          <el-radio v-model="dialogStatus" :label="2">审核不通过</el-radio>
+        </el-form-item>
+        <el-form-item label="审批备注：" prop="name">
+          <el-input
+            v-model="dialogRemak"
+            autocomplete="off"
+            type="textarea"
+            maxlength="100"
+            show-word-limit
+          ></el-input>
+        </el-form-item>
+        <div class="blank"></div>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">关闭</el-button>
+        <el-button type="primary" @click="ApplyEvent">确定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -297,7 +324,10 @@ export default {
         time_range: []
       },
       logDataList: [],
-      visiblePopover: false
+      workId: 0,
+      dialogVisible: false,
+      dialogRemak: "",
+      dialogStatus: 1
     };
   },
   mounted() {
@@ -382,73 +412,28 @@ export default {
       return ""; // this.formatDate(cellValue)
     },
     applyInfo(id) {
-      this.$prompt("请选择审核状态？", "提示", {
-        distinguishCancelAndClose: true,
-        confirmButtonText: "审核通过",
-        cancelButtonText: "审核不通过",
-        inputType: "textarea",
-        //  inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
-        //  inputErrorMessage: '邮箱格式不正确',
-        customClass: "el-message-box-new"
-      })
-        .then(({ value }) => {
-          this.request({
-            url: "/apply/checkStatus",
-            method: "post",
-            data: { wid: id, status: 1, reason: value }
-          }).then(res => {
-            let data = res.data;
-            if (data.status == 1) {
-              this.$message({
-                type: "success",
-                message: "审核成功！"
-              });
-              this.getWeekList();
-              this.goDetail(id);
-            }
-          });
-        })
-        .catch(action => {
-          if (action === "cancel") {
-            //
-            this.request({
-              url: "/apply/checkStatus",
-              method: "post",
-              data: { wid: id, status: 2, reason: value }
-            }).then(res => {
-              let data = res.data;
-              if (data.status == 1) {
-                this.$message({
-                  type: "success",
-                  message: "审核成功！"
-                });
-                this.getWeekList();
-                this.goDetail(id);
-              }
-            });
-          }
-        });
+      this.dialogVisible = true;
     },
-    open() {
-      this.$prompt("请输入邮箱", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        inputType: "textarea",
-        inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
-        inputErrorMessage: "邮箱格式不正确"
-      })
-        .then(({ value }) => {
+    ApplyEvent() {
+      let wid = this.weekid;
+      let status = this.dialogStatus;
+      let reason = this.dialogRemak;
+      this.request({
+        url: "/apply/checkStatus",
+        method: "post",
+        data: { wid: wid, status: status, reason: reason }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
           this.$message({
             type: "success",
-            message: "你的邮箱是: " + value
+            message: "审核成功！"
           });
-        })
-        .catch(() => {
-          this.$message({
-            type: "info",
-            message: "取消输入"
-          });
-        });
+           this.dialogVisible = false;
+           this.goDetail(wid);
+          this.getWeekList();
+        }
+      });
     },
     getWeek(t) {
       t = new Date(t);
@@ -569,9 +554,10 @@ export default {
   border-color: #333;
   color: #333;
 }
-.status-popover .el-step__icon-inner[class*=el-icon]:not(.is-status){
-  border-color: #C0C4CC;
-  color: #C0C4CC;font-size: 20px;
+.status-popover .el-step__icon-inner[class*="el-icon"]:not(.is-status) {
+  border-color: #c0c4cc;
+  color: #c0c4cc;
+  font-size: 20px;
 }
 .status-popover .el-step__title.is-finish {
   color: #4b6eca;
@@ -729,15 +715,38 @@ export default {
 
 .statuse2 {
   color: #029b02;
+  border: none;
 }
 .statuse3 {
   color: #ff5c75;
+  border: none;
   border: 0;
 }
-.statuse4 {
-  color: #0a0693;
+.statuse1 {
+  color: #9db9fa;
+  border: none;
 }
-.statuse6 {
-  color: #4072d1;
+.statuse5 {
+  color: #9db9fa;
+  border: none;
+}
+
+.dialog-weekplan .el-textarea {
+  width: 100% !important;
+}
+.dialog-weekplan .el-textarea__inner {
+  height: 100px;
+}
+.dialog-weekplan .el-form-item__label {
+  width: 110px;
+}
+.dialog-weekplan .el-form-item__content {
+  margin-left: 110px;
+}
+.dialog-weekplan .el-input--medium {
+  width: 100%;
+}
+.dialog-weekplan .el-select {
+  width: 100%;
 }
 </style>

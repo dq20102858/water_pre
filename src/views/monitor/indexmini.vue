@@ -9,8 +9,11 @@
           <p>您的系统不支持此程序!</p>
         </canvas>
       </div>
-      <div class="linebox" ref="reflinebox">
-        <div class="clear"></div>
+      <div class="progresslist" v-if="this.progressCheckValue !=''">
+        <span class="namess">施工进度：</span>
+        <el-radio-group v-model="progressCheckValue" @change="progressCheckSelect">
+          <el-radio v-for="item in progressList" :key="item.name" :label="item.name">{{item.name}}</el-radio>
+        </el-radio-group>
       </div>
     </div>
   </div>
@@ -29,12 +32,14 @@ export default {
       stationlineHeight: 0,
       stationlineTwoHeight: 0,
       every: 0,
-      everyLineType: 0,
       lineTypeMinMileage: 0,
       lineTypeMaxMileage: 0,
       lineTypeEnterMinMileage: 0,
       lineTypeOutMinMileage: 0,
-      applyList: []
+      applyList: [],
+      progressList: [],
+      progressListItem: [],
+      progressCheckValue: 0
     };
   },
   updated() {},
@@ -42,10 +47,10 @@ export default {
     this.getProjectProcessMap();
   },
   mounted() {
-    window.addEventListener("resize", this.getStationList);
+    window.addEventListener("resize", this.initCanvas);
   },
   destroyed() {
-    window.removeEventListener("resize", this.getStationList);
+    window.removeEventListener("resize", this.initCanvas);
   },
   methods: {
     getProjectProcessMap() {
@@ -78,25 +83,82 @@ export default {
           }
           //请点
           this.applyList = data.data.apply_lists;
-          this.getStationList();
+          //施工进度
+          let jsonWork = [
+            {
+              name: "\u91cc\u7a0b\u4f5c\u4e1a0519",
+              list: [
+                {
+                  id: 184,
+                  pro_id: 114,
+                  pro_name: "\u91cc\u7a0b\u4f5c\u4e1a0519",
+                  line_type: 1,
+                  start_flag: "1",
+                  start_length: "100",
+                  end_flag: "1",
+                  end_length: "804",
+                  line: "\u5de6\u7ebf"
+                },
+                {
+                  id: 183,
+                  pro_id: 114,
+                  pro_name: "\u91cc\u7a0b\u4f5c\u4e1a0519",
+                  line_type: 1,
+                  start_flag: "6",
+                  start_length: "736",
+                  end_flag: "8",
+                  end_length: "694",
+                  line: "\u5de6\u7ebf"
+                },
+                {
+                  id: 184,
+                  pro_id: 114,
+                  pro_name: "\u91cc\u7a0b\u4f5c\u4e1a0519",
+                  line_type: 2,
+                  start_flag: "4",
+                  start_length: "232",
+                  end_flag: "5",
+                  end_length: "245",
+                  line: "\u5de6\u7ebf"
+                },
+                {
+                  id: 183,
+                  pro_id: 114,
+                  pro_name: "\u91cc\u7a0b\u4f5c\u4e1a0519",
+                  line_type: 2,
+                  start_flag: "6",
+                  start_length: "736",
+                  end_flag: "8",
+                  end_length: "694",
+                  line: "\u5de6\u7ebf"
+                }
+              ]
+            }
+          ];
+          if (data.data.project.length > 0) {
+            this.progressList = data.data.project;
+            this.progressCheckValue = data.data.project[0]["name"];
+            this.progressListItem = data.data.project[0].list;
+            // this.progressList = jsonWork;
+            // this.progressCheckValue = jsonWork[0]["name"];
+            // this.progressListItem = jsonWork[0].list;
+          }
+          this.initCanvas();
           //
         }
       });
     },
 
-    getStationList() {
+    initCanvas() {
       let clientWidth = this.$refs.proWrapper.clientWidth;
       let canvasWidth = clientWidth - 90;
-      this.cwidth = canvasWidth - 10;
+      this.cwidth = canvasWidth-30;
       let lineTypeBetwentMileage =
         this.lineTypeMaxMileage - this.lineTypeMinMileage;
       let lineTypeTotalMileage =
         this.lineTypeMaxMileage + this.lineTypeMinMileage;
-      this.everyLineType = (
-        parseInt(this.cwidth) / lineTypeBetwentMileage
-      ).toFixed(5);
-      this.every = (parseInt(canvasWidth) / lineTypeBetwentMileage).toFixed(5);
-      console.log("cwidth" + this.cwidth + "_" + this.everyLineType);
+      this.every = (parseInt( this.cwidth) / lineTypeBetwentMileage).toFixed(5);
+      console.log("canvasWidth：" + this.cwidth + "_" + this.every);
 
       //请点标尺起点
       let axis_Height = "650";
@@ -135,7 +197,7 @@ export default {
       const canvas = this.$refs.canvasStation;
       let context = canvas.getContext("2d");
       canvas.width = canvasWidth;
-
+ console.log("lineTypeMinMileage："+lineTypeMinMileage);
       //左右线
       function drawAxesLine(lineJson) {
         // lineJson=[
@@ -184,7 +246,7 @@ export default {
         context.beginPath();
         context.strokeStyle = "#fff";
         context.fillStyle = "#fff";
-        context.font="13px Microsoft Yahei";
+        context.font = "13px Microsoft Yahei";
         context.lineWidth = 10;
         let lineData = [];
         for (let i = 0; i < lineJson.length; i++) {
@@ -206,7 +268,7 @@ export default {
             context.moveTo(axis_LeftLine.x, axis_LeftLine.y);
             context.lineTo(canvasWidth, axis_LeftLine.y);
             context.fillText(tfrom, 30, axis_LeftLine.y + 25);
-            context.fillText(tend, canvasWidth -75, axis_LeftLine.y + 25);
+            context.fillText(tend, canvasWidth - 75, axis_LeftLine.y + 25);
           } else if (lineJson[i].id == 2) {
             context.moveTo(axis_LeftLine.x, axis_LeftLine_Two.y);
             context.lineTo(canvasWidth, axis_LeftLine_Two.y);
@@ -301,8 +363,8 @@ export default {
           {
             id: 1,
             name: "ZY01",
-            start_flag: 2,
-            start_length: 300,
+            start_flag: 0,
+            start_length: 500,
             line_type: 1
           },
           {
@@ -341,6 +403,9 @@ export default {
                 parseInt(jsonCar[i].start_flag) * 1000 +
                 parseInt(jsonCar[i].start_length);
               let startLineX = (total - lineTypeMinMileage) * every;
+              // if (jsonCar[i].start_flag == 0) {
+              //   startLineX = axis_LeftLine.x;
+              // }
               context.drawImage(
                 imgcar,
                 startLineX,
@@ -476,8 +541,24 @@ export default {
       //绘制请点
       let that = this;
       function drawAxesApply(jsonData) {
-        let json1 = jsonData;
-        let json = [
+        let json = jsonData;
+        let json1 = [
+          {
+            line_type: 1,
+            number: "A4-2-007-1",
+            command_num: "(2020)\u5b57\u7b2c04.21-007-2",
+            description: "\u98ce\u98ce\u5149\u5149",
+            work_area: "DK0+300\u81f3DK1+804",
+            start_time: "2020-04-28 00:00:00",
+            end_time: "2020-04-28 23:59:59",
+            start_flag: "0",
+            start_length: "300",
+            end_flag: "1",
+            end_length: "804",
+            type: "A4",
+            start_total: 14600,
+            end_total: 26410
+          },
           {
             line_type: 1,
             number: "A4-2-007-1",
@@ -538,6 +619,10 @@ export default {
             "YDK" + json[i].start_flag + " +" + json[i].start_length;
           let dkend = "YDK" + json[i].end_flag + " +" + json[i].end_length;
           let startX = (start - lineTypeMinMileage) * every;
+          console.log("startX："+startX);
+          if (startX== 0) {
+            startX = axis_LeftLine.x;
+          }
           let endX = (end - lineTypeMinMileage) * every;
           let centerX = (endX + startX) / 2; //开始结束平均值
           let desc = json[i].type;
@@ -648,15 +733,76 @@ export default {
           false
         );
       }
+      //绘制施工进度
+      function drawProgressAxis(sprogressListJson) {
+        let json = sprogressListJson;
+
+        for (let i = 0; i < json.length; i++) {
+          let start =
+            parseInt(json[i].start_flag) * 1000 +
+            parseInt(json[i].start_length);
+          let end =
+            parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
+          let startX = (start - lineTypeMinMileage) * every;
+          let endX = (end - lineTypeMinMileage) * every;
+          if (json[i].start_flag == 0) {
+            startX = axis_LeftLine.x;
+          }
+          // 计算当前站点的x轴坐标
+
+          //console.log("startX：" + startX + " endX：" + endX);
+          context.lineWidth = 10;
+          context.strokeStyle = "#27DB07";
+          context.beginPath();
+          if (json[i].line_type == 1) {
+            context.moveTo(startX, axis_LeftLine.y);
+            context.lineTo(endX + 1, axis_LeftLine.y);
+          } else if (json[i].line_type == 2) {
+            context.moveTo(startX + 1, axis_LeftLine_Two.y);
+            context.lineTo(endX + 1, axis_LeftLine_Two.y);
+          } else if (json[i].line_type == 3) {
+            if (start == 0) {
+              startX = 0;
+              endX = end * everys;
+            }
+            context.moveTo(startX + 1, axis_OutLine.y);
+            context.lineTo(endX + 1, axis_OutLine.y);
+          } else if (json[i].line_type == 4) {
+            if (start == 0) {
+              startX = 0;
+              endX = end * everys;
+            }
+            context.moveTo(startX + 1, axis_OutLine_Two.y);
+            context.lineTo(endX + 1, axis_OutLine_Two.y);
+          }
+          context.stroke();
+          //
+        }
+      }
       //
       drawAxesLine(this.lineTypeList);
       drawAxesStationList(this.stationList);
+      //施工进度
+      if (this.progressCheckValue) {
+        drawProgressAxis(this.progressListItem);
+      }
       drawAxesCar(this.applyList);
       drawAxesPeple(this.applyList);
+      //作业
+      //  if (this.applyList.length > 0) {
       drawAxesApply(this.applyList);
-      //
+      //   }
+    },
+    progressCheckSelect(val) {
+      this.progressList.map(item => {
+        if (item.name == val) {
+          this.progressListItem = item.list;
+        }
+      });
+      this.initCanvas();
     }
   }
+  //进度
 };
 
 //prototype
@@ -738,9 +884,22 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
 .station {
   margin: 30px 30px 0px 30px;
   position: relative;
-  z-index: 999; 
+  z-index: 999;
 }
 
+.progresslist {
+  padding-top: 20px;
+  padding-left: 30px;
+  color: #fff;
+}
+.progresslist .namess {
+  padding-bottom: 10px;
+  display: inline-block;
+  padding-right: 14px;
+}
+.progresslist .el-radio__label {
+  color: #fff;
+}
 .clear {
   clear: both;
 }

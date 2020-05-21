@@ -276,7 +276,6 @@ export default {
           console.log(this.scrollwidth);
           //请点
           this.applyList = data.data.apply_lists;
-          console.log("applyList：" + this.applyList);
           //桥 隧道等
           this.bridgeList = data.data.bridge_lists; //桥
           this.tunnelList = data.data.tunnel_lists; //隧道
