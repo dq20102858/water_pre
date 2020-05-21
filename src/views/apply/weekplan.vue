@@ -69,7 +69,7 @@
                               :key="item.id"
                               :title="item.create_time+'              '+ item.remark"
                               :description="item.reason"
-                              icon="el-icon-eleme"
+                              icon="el-icon-s-promotion"
                             ></el-step>
                           </el-steps>
 
@@ -569,7 +569,7 @@ export default {
   border-color: #4b6eca;
 }
 .status-popover .is-finish .el-step__icon-inner {
-  color: #4b6eca;
+  color: #4b6eca!important;
   border-color: #4b6eca;
 }
 .statu .logiem p {
