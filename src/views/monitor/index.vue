@@ -1571,9 +1571,9 @@ export default {
         drawSlopeAxis(this.slopeList);
       }
       //作业
-      // if (this.applyList.length > 0) {
+       if (this.applyList.length > 0) {
       drawAxesApply(this.applyList);
-      // }
+     }
       //道岔
       if (this.daocCheckValue) {
         drawDaocha();
