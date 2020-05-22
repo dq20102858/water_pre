@@ -1,5 +1,5 @@
 <template>
-  <div id="app-apply">
+  <div id="app-weekplan">
     <div class="el-menu-top">
       <el-menu router default-active="weekplan" mode="horizontal">
         <li class="ptitle">{{projectName}}</li>
@@ -58,7 +58,7 @@
                       <div class="logiem">
                         <el-popover
                           popper-class="status-popover"
-                          placement="bottom-start"
+                      placement="bottom"
                           width="420"
                           trigger="click"
                           @show="getLogList(item.id)"
@@ -78,32 +78,32 @@
                             slot="reference"
                             title="点击查看更多"
                             v-if="item.status==1"
-                          >待审核</el-tag>
+                          >
+                            待审核</el-tag>
                           <el-tag
                             class="statuse2"
                             slot="reference"
                             title="点击查看更多"
                             v-if="item.status==2"
-                          >审核通过</el-tag>
+                          >
+                            审核通过
+                          </el-tag>
                           <el-tag
                             class="statuse3"
                             slot="reference"
                             title="点击查看更多"
                             v-if="item.status==3"
-                          >拒绝</el-tag>
+                          >
+                            拒绝</el-tag>
                           <el-tag
                             class="statuse5"
                             slot="reference"
                             title="点击查看更多"
                             v-if="item.status==5"
-                          >审核中</el-tag>
+                          >
+                            审核中</el-tag>
                         </el-popover>
                       </div>
-
-                      <!-- <span class="statuse1" v-if="item.status==1" @click="getLogList(item.id)">待审核</span>
-                      <span class="statuse2" v-if="item.status==2" @click="getLogList(item.id)">审核通过</span>
-                      <span class="statuse3" v-if="item.status==3" @click="getLogList(item.id)">拒绝</span>
-                      <span class="statuse4" v-if="item.status==5" @click="getLogList(item.id)">审核中</span>-->
                     </div>
                   </div>
                   <div class="grid-box" @click="goDetail(item.id)">
@@ -163,7 +163,12 @@
             </span>
             <span class="itembtn">
               <el-button size="small" type="primary" @click="goBack">返回</el-button>
-              <el-button size="small" type="primary" @click="applyInfo(weekid)"  v-if="weekdailyList.flag==1">审核</el-button>
+              <el-button
+                size="small"
+                type="primary"
+                @click="applyInfo(weekid)"
+                v-if="weekdailyList.flag==1"
+              >审核</el-button>
               <el-button size="small" class="redbtn" v-print="printObj">打印</el-button>
             </span>
           </div>
@@ -276,11 +281,11 @@
       :visible.sync="dialogVisible"
     >
       <el-form class="el-form-custom">
-        <el-form-item label="选择状态：">
+        <el-form-item label="审核状态：">
           <el-radio v-model="dialogStatus" :label="1">审核通过</el-radio>
           <el-radio v-model="dialogStatus" :label="2">审核不通过</el-radio>
         </el-form-item>
-        <el-form-item label="审批备注：" prop="name">
+        <el-form-item label="审批建议：" >
           <el-input
             v-model="dialogRemak"
             autocomplete="off"
@@ -429,8 +434,8 @@ export default {
             type: "success",
             message: "审核成功！"
           });
-           this.dialogVisible = false;
-           this.goDetail(wid);
+          this.dialogVisible = false;
+          this.goDetail(wid);
           this.getWeekList();
         }
       });
@@ -515,7 +520,9 @@ export default {
   height: 40px;
   line-height: 40px;
   border-radius: 6px 6px 0 0;
-  text-align: center;
+  padding-left: 15px;
+  text-align: left;
+  font-weight: 700;
 }
 .grid-content .grid-title .tright {
   float: right;
@@ -525,7 +532,7 @@ export default {
   background: none !important;
   padding: 0 10px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 14px;font-weight: 500;;
 }
 .status-popover.el-popover {
   border: 1px solid #9db9fa;
@@ -537,18 +544,22 @@ export default {
   margin-left: -6px;
   border-bottom-color: #9db9fa !important;
 }
-
+.status-popover .el-steps {
+  max-height: 300px;
+  overflow-y: auto;
+}
 .status-popover .el-step__main {
   padding-bottom: 10px;
 }
 .status-popover .el-step__title {
   font-size: 14px;
   font-weight: 500;
-  color: #454545;
+  color: #333;
 }
 .status-popover .el-step__description {
   font-size: 14px;
-  color: #666;
+  color: #777;
+  padding-right:0
 }
 .status-popover .is-text {
   border-color: #333;
@@ -569,7 +580,7 @@ export default {
   border-color: #4b6eca;
 }
 .status-popover .is-finish .el-step__icon-inner {
-  color: #4b6eca!important;
+  color: #4b6eca !important;
   border-color: #4b6eca;
 }
 .statu .logiem p {
@@ -713,20 +724,20 @@ export default {
   color: #fff;
 }
 
-.statuse2 {
-  color: #029b02;
+#app-weekplan .statuse2 {
+  color: #10cc39;
   border: none;
 }
-.statuse3 {
+#app-weekplan .statuse3 {
   color: #ff5c75;
   border: none;
   border: 0;
 }
-.statuse1 {
-  color: #9db9fa;
+#app-weekplan .statuse1 {
+  color: #ff0;
   border: none;
 }
-.statuse5 {
+#app-weekplan .statuse5 {
   color: #9db9fa;
   border: none;
 }

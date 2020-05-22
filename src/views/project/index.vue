@@ -113,7 +113,7 @@
                     v-model="workData.total"
                     autocomplete="off"
                     placeholder="请输入数字"
-                    maxlength="5"
+                    maxlength="7"
                   ></el-input>
                 </el-form-item>
                 <el-form-item label="单位：" prop="unit" v-if="workData.type==2">
@@ -243,8 +243,8 @@ export default {
           {
             required: true,
             min:1,
-            max: 5,
-            message: "请输入1-5位正整数",
+            max: 7,
+            message: "请输入1-7位正整数",
             trigger: "blur"
           },
           {

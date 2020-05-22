@@ -351,7 +351,12 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="施工项目：">
+             <!-- <el-form-item label="计划数量：" label-width="100px" v-if="workTypeFlag==2">
+              <el-input v-model="formData.nums" autocomplete="off" maxlength="5"></el-input>
+            </el-form-item> -->
+   </div>
+                      <div class="el-form-item-block">
+            <el-form-item label="施工项目：" label-width="100px">
               <el-select v-model="formData.item_id" placeholder="请选择">
                 <el-option
                   v-for="item in itemLists"
@@ -875,6 +880,7 @@ export default {
       stationList: [],
       workTypeList: [],
       workLineTypeList: [],
+      workTypeFlag:1,
       userList: [],
       formRules: {
         number: [
@@ -1449,6 +1455,7 @@ export default {
       this.workTypeList.forEach(function(item) {
         if (item.id == value) {
           selectedLineTypeLists = item.line_type_lists;
+          that.workTypeFlag=item.type;
         }
       });
       this.workLineTypeList = selectedLineTypeLists;

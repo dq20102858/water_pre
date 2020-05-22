@@ -72,7 +72,6 @@
       <p style="padding-top:10px;">注：本调度命令一式四份，调度留存一份，联络员，施工负责人各一份。</p>
     </div>
     <div slot="footer" class="app-dialog-footer">
-      <el-button class="bluebtn" @click="isCancel">返回列表</el-button>
       <el-button class="redbtn" v-print="printObj">打印信息</el-button>
     </div>
   </div>

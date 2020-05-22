@@ -159,7 +159,7 @@
                 <b>列车类型：</b>
                 {{dataListItem.car_type}}
               </td>
-            </tr> -->
+            </tr>-->
             <tr>
               <td>
                 <b>出发车次：</b>
@@ -290,7 +290,7 @@
           </table>
         </div>
       </fieldset>
-      <fieldset >
+      <fieldset>
         <legend>实际完成信息</legend>
         <div>
           <table style="width: 100%">
@@ -315,11 +315,15 @@
             <tr>
               <td>
                 <b>开始里程：</b>
-                DK{{parseFloat(dataListItem.true_start_flag)}}+{{parseFloat(dataListItem.true_start_length)}}
+                <span
+                  v-if="dataListItem.true_start_flag!=null"
+                >DK{{parseFloat(dataListItem.true_start_flag)}}+{{parseFloat(dataListItem.true_start_length)}}</span>
               </td>
               <td>
                 <b>结束里程：</b>
-                DK{{parseFloat(dataListItem.true_end_flag)}}+{{parseFloat(dataListItem.true_end_length)}}
+                <span
+                  v-if="dataListItem.true_end_flag!=null"
+                >DK{{parseFloat(dataListItem.true_end_flag)}}+{{parseFloat(dataListItem.true_end_length)}}</span>
               </td>
               <td>
                 <b>完成长度：</b>
@@ -329,13 +333,13 @@
             <tr>
               <td colspan="4">
                 <b>备注：</b>
-                 {{dataListItem.remark}}
+                {{dataListItem.remark}}
               </td>
             </tr>
-             <tr>
+            <tr>
               <td colspan="4">
                 <b>未完成原因：</b>
-                 {{dataListItem.reason}}
+                {{dataListItem.reason}}
               </td>
             </tr>
           </table>

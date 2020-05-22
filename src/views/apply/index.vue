@@ -129,7 +129,7 @@
                     class="btn-red"
                     size="mini"
                     @click="goApply(scope.row.id,scope.row.company)"
-                  >审批</el-button>
+                  >审批</el-button>   </span>
                   <el-button
                     v-if="scope.row.status=='已销点'"
                     class="btn-red"
@@ -142,7 +142,7 @@
                     size="mini"
                     @click="goApplyNo(scope.row.id,scope.row.company)"
                   >注销</el-button>
-                  </span>
+               
                   <el-button
                     class="btn-blue"
                     size="mini"
