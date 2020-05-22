@@ -55,63 +55,74 @@
                   <div class="grid-title">
                     {{getWeek(item.start_time)}}
                     <div class="tright">
-                      <div class="logiem">
-                        <el-popover
-                          popper-class="status-popover"
-                      placement="bottom"
-                          width="420"
-                          trigger="click"
-                          @show="getLogList(item.id)"
-                        >
-                          <el-steps direction="vertical" :active="1">
+                      <el-popover
+                        popper-class="status-popover"
+                        placement="bottom"
+                        width="420"
+                        trigger="click"
+                        @show="getLogList(item.id)"
+                      >
+                        <div class="status-popovers">
+                          <ul class="layui-timeline">
+                            <li
+                              class="layui-timeline-item"
+                              v-for="item in logDataList"
+                              :key="item.id"
+                            >
+                              <i class="el-icon-s-promotion"></i>
+                              <div class="layui-timeline-content layui-text">
+                                <h3
+                                  class="layui-timeline-title"
+                                >{{item.create_time+' '+ item.remark}}</h3>
+                                <p>{{item.reason}}</p>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                        <!-- <el-steps direction="vertical" :active="1">
                             <el-step
+                              style="flex-basis:auto"
                               v-for="item in logDataList"
                               :key="item.id"
                               :title="item.create_time+'              '+ item.remark"
                               :description="item.reason"
                               icon="el-icon-s-promotion"
                             ></el-step>
-                          </el-steps>
+                        </el-steps>-->
 
-                          <el-tag
-                            class="statuse1"
-                            slot="reference"
-                            title="点击查看更多"
-                            v-if="item.status==1"
-                          >
-                            待审核</el-tag>
-                          <el-tag
-                            class="statuse2"
-                            slot="reference"
-                            title="点击查看更多"
-                            v-if="item.status==2"
-                          >
-                            审核通过
-                          </el-tag>
-                          <el-tag
-                            class="statuse3"
-                            slot="reference"
-                            title="点击查看更多"
-                            v-if="item.status==3"
-                          >
-                            拒绝</el-tag>
-                          <el-tag
-                            class="statuse5"
-                            slot="reference"
-                            title="点击查看更多"
-                            v-if="item.status==5"
-                          >
-                            审核中</el-tag>
-                        </el-popover>
-                      </div>
+                        <el-tag
+                          class="statuse1"
+                          slot="reference"
+                          title="点击查看更多"
+                          v-if="item.status==1"
+                        >待审核</el-tag>
+                        <el-tag
+                          class="statuse2"
+                          slot="reference"
+                          title="点击查看更多"
+                          v-if="item.status==2"
+                        >审核通过</el-tag>
+                        <el-tag
+                          class="statuse3"
+                          slot="reference"
+                          title="点击查看更多"
+                          v-if="item.status==3"
+                        >拒绝</el-tag>
+                        <el-tag
+                          class="statuse5"
+                          slot="reference"
+                          title="点击查看更多"
+                          v-if="item.status==5"
+                        >审核中</el-tag>
+                      </el-popover>
                     </div>
                   </div>
-                  <div class="grid-box" @click="goDetail(item.id)">
-                    <p>申报人：{{item.apply}}</p>
+                  <div class="grid-box">
+                    <p>申报人员：{{item.apply}}</p>
                     <p>申报单位：{{item.company}}</p>
-                    <p>{{item.start_time}} ~ {{item.end_time}}</p>
+                    <p>申报时间：{{item.start_time}} ~ {{item.end_time}}</p>
                     <p>
-                      <b>查看周计划</b>
+                      <b   @click="goDetail(item.id)">查看周计划</b>
                     </p>
                   </div>
                 </div>
@@ -285,7 +296,7 @@
           <el-radio v-model="dialogStatus" :label="1">审核通过</el-radio>
           <el-radio v-model="dialogStatus" :label="2">审核不通过</el-radio>
         </el-form-item>
-        <el-form-item label="审批建议：" >
+        <el-form-item label="审批建议：">
           <el-input
             v-model="dialogRemak"
             autocomplete="off"
@@ -418,7 +429,7 @@ export default {
     },
     applyInfo() {
       this.dialogVisible = true;
-      this.dialogRemak="";
+      this.dialogRemak = "";
     },
     applyEvent() {
       let wid = this.weekid;
@@ -489,28 +500,15 @@ export default {
 };
 </script>
 <style>
-.el-menu--collapse .el-menu .el-submenu,
-.el-menu--popup {
-  min-width: 124px;
-  text-align: center;
-  padding: 0;
-}
-.el-menu--horizontal .el-menu .el-menu-item.is-active,
-.el-menu--horizontal .el-menu .el-submenu.is-active > .el-submenu__title {
-  background: #4b6eca;
-  color: #fff;
-}
-.el-row {
+#app-weekplan .el-row {
   margin-bottom: 20px;
 }
-.el-col {
+#app-weekplan .el-col {
   border-radius: 4px;
 }
-
 .grid-content {
   border-radius: 4px;
   min-height: 36px;
-  text-align: center;
   background: #fff;
   margin-bottom: 20px;
 }
@@ -521,7 +519,7 @@ export default {
   height: 40px;
   line-height: 40px;
   border-radius: 6px 6px 0 0;
-  padding-left: 15px;
+  padding-left: 20px;
   text-align: left;
   font-weight: 700;
 }
@@ -533,75 +531,27 @@ export default {
   background: none !important;
   padding: 0 10px;
   cursor: pointer;
-  font-size: 14px;font-weight: 500;;
-}
-.status-popover.el-popover {
-  border: 1px solid #9db9fa;
-  box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.3);
-  word-break: break-all;
-}
-.status-popover .popper__arrow::after {
-  top: -0.2px !important;
-  margin-left: -6px;
-  border-bottom-color: #9db9fa !important;
-}
-.status-popover .el-steps {
-  max-height: 300px;
-  overflow-y: auto;
-}
-.status-popover .el-step__main {
-  padding-bottom: 10px;
-}
-.status-popover .el-step__title {
   font-size: 14px;
   font-weight: 500;
-  color: #333;
-}
-.status-popover .el-step__description {
-  font-size: 14px;
-  color: #777;
-  padding-right:0
-}
-.status-popover .is-text {
-  border-color: #333;
-  color: #333;
-}
-.status-popover .el-step__icon-inner[class*="el-icon"]:not(.is-status) {
-  border-color: #c0c4cc;
-  color: #c0c4cc;
-  font-size: 20px;
-}
-.status-popover .el-step__title.is-finish {
-  color: #4b6eca;
-  border-color: #4b6eca;
-  font-weight: 700;
-}
-.status-popover .is-finish .is-text {
-  color: #4b6eca;
-  border-color: #4b6eca;
-}
-.status-popover .is-finish .el-step__icon-inner {
-  color: #4b6eca !important;
-  border-color: #4b6eca;
-}
-.statu .logiem p {
-  line-height: 24px;
 }
 .grid-content .grid-box {
-  padding: 30px 0;
+  padding: 20px;
   border: 1px #3655a5 solid;
   border-radius: 0 0 6px 6px;
+  overflow: hidden;
 }
 .grid-content .grid-box p {
   color: #4b6eca;
   line-height: 28px;
   font-size: 16px;
 }
-.grid-content .grid-box img {
-  display: block;
-  margin: 0 auto;
-  width: 12px;
-  margin-top: 10px;
+.grid-content .grid-box b {
+  text-align: center;display: block;
+  border: 1px #4b6eca solid;
+  color: #4b6eca;
+  border-radius: 24px;
+  font-size: 15px;
+  width: 120px; margin: 10px auto 0 auto;
 }
 .grid-content .grid-box:hover {
   background: #fafafa;
@@ -760,5 +710,75 @@ export default {
 }
 .dialog-weekplan .el-select {
   width: 100%;
+}
+/* */
+.status-popovers {
+  height: 300px;
+  overflow-y: auto;
+}
+.status-popover.el-popover {
+  border: 1px solid #9db9fa;
+  box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.3);
+  word-break: break-all;
+}
+.status-popover .popper__arrow::after {
+  top: -0.2px !important;
+  margin-left: -6px;
+  border-bottom-color: #9db9fa !important;
+}
+
+.layui-timeline {
+  padding-left: 5px;
+}
+.layui-timeline-item {
+  position: relative;
+  padding-bottom: 10px;
+}
+.layui-timeline-item i {
+  position: absolute;
+  left: -5px;
+  top: 2px;
+  z-index: 10;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  background-color: #fff;
+  color: #c0c0c0;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+  font-size: 22px;
+}
+.layui-timeline-axis:hover {
+  color: #ff5722;
+}
+
+.layui-timeline-item:last-child:before {
+  display: none;
+}
+.layui-timeline-item:first-child:before {
+  display: block;
+}
+.layui-timeline-content {
+  padding-left: 25px;
+  padding-right: 15px;
+}
+.layui-timeline-content p {
+  color: #777;
+}
+.layui-timeline-title {
+  position: relative;
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+.layui-timeline-item::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 0;
+  z-index: 0;
+  width: 1px;
+  height: 100%;
+  background-color: #e6e6e6;
 }
 </style>
