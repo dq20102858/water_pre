@@ -166,7 +166,7 @@
               <el-button
                 size="small"
                 type="primary"
-                @click="applyInfo(weekid)"
+                @click="applyInfo()"
                 v-if="weekdailyList.flag==1"
               >审核</el-button>
               <el-button size="small" class="redbtn" v-print="printObj">打印</el-button>
@@ -298,7 +298,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">关闭</el-button>
-        <el-button type="primary" @click="ApplyEvent">确定</el-button>
+        <el-button type="primary" @click="applyEvent">确定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -416,10 +416,11 @@ export default {
     dateFormat(cellValue) {
       return ""; // this.formatDate(cellValue)
     },
-    applyInfo(id) {
+    applyInfo() {
       this.dialogVisible = true;
+      this.dialogRemak="";
     },
-    ApplyEvent() {
+    applyEvent() {
       let wid = this.weekid;
       let status = this.dialogStatus;
       let reason = this.dialogRemak;
@@ -746,7 +747,7 @@ export default {
   width: 100% !important;
 }
 .dialog-weekplan .el-textarea__inner {
-  height: 100px;
+  height: 120px;
 }
 .dialog-weekplan .el-form-item__label {
   width: 110px;

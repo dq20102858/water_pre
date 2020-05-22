@@ -422,7 +422,6 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.formData = data.data;
-          this.formData.end_time=data.data.end_time;
           this.lineTypeList.map((item, index) => {
             if (item.id == data.data.line_type) {
               this.lineTypeDes = "里程范围：" + item.tip;
@@ -460,27 +459,6 @@ export default {
           });
         })
         .catch(() => {});
-    },
-    changeStarttime() {
-      var start_time = new Date(this.formData.start_time).getTime();
-      var end_time = new Date(this.formData.end_time).getTime();
-      if (start_time >= end_time) {
-        this.$message.error("开始时间不能大于结束时间");
-        this.workData.start_time = "";
-      }
-    },
-    changeEndtime() {
-      var start_time = new Date(this.formData.start_time).getTime();
-      var end_time = new Date(this.formData.end_time).getTime();
-      var date_time_corp = new Date().getTime();
-      if (end_time <= start_time) {
-        this.$message.error("结束时间不能小于开始时间");
-        this.formData.end_time = "";
-      }
-      if (end_time <= date_time_corp) {
-        this.$message.error("结束时间不能小于当前时间");
-        this.formData.end_time = "";
-      }
     }
     //
   }

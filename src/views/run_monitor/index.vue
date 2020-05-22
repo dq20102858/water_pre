@@ -418,7 +418,7 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="记录人：" label-width="130px">
+        <el-form-item label="记录人：" label-width="130px" prop="record_id">
           <el-select v-model="formEditData.record_id">
             <el-option v-for="item in userList" :key="item.id" :label="item.name" :value="item.id"></el-option>
           </el-select>
@@ -1038,6 +1038,13 @@ export default {
             trigger: "change"
           },
           { required: true, validator: valEditTrueEndTime, trigger: "change" }
+        ],
+        record_id:[
+            {
+            required: true,
+            message: "请选择记录人",
+            trigger: "change"
+          }
         ]
       },
       diaLogFormEditVisible: false,
@@ -1549,8 +1556,11 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.userList = data.data;
-          let record_id = this.userList[0]["id"];
-          this.formEditData.record_id = record_id;
+          // debugger
+          // if (this.formEditData.record_id == null) {
+          //   let record_id = this.userList[0]["id"];
+          //   this.formEditData.record_id = record_id;
+          // }
           // this.$set(this.formEditData, "record_id", record_id);
         }
       });
