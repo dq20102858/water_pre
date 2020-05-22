@@ -351,12 +351,11 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-             <!-- <el-form-item label="计划数量：" label-width="100px" v-if="workTypeFlag==2">
+            <!-- <el-form-item label="计划数量：" label-width="100px" v-if="workTypeFlag==2">
               <el-input v-model="formData.nums" autocomplete="off" maxlength="5"></el-input>
-            </el-form-item> -->
-   </div>
-                      <div class="el-form-item-block">
-            <el-form-item label="施工项目：" label-width="100px">
+            </el-form-item>-->
+
+            <el-form-item label="施工项目：">
               <el-select v-model="formData.item_id" placeholder="请选择">
                 <el-option
                   v-for="item in itemLists"
@@ -852,8 +851,8 @@ export default {
       } else {
         callback();
       }
-    }; 
-     const valEditTrueEndTime = (rule, value, callback) => {
+    };
+    const valEditTrueEndTime = (rule, value, callback) => {
       if (new Date(value) < new Date(this.formEditData.true_start_time)) {
         callback(new Error("结束时间不能小于开始时间"));
       } else {
@@ -880,7 +879,7 @@ export default {
       stationList: [],
       workTypeList: [],
       workLineTypeList: [],
-      workTypeFlag:1,
+      workTypeFlag: 1,
       userList: [],
       formRules: {
         number: [
@@ -1039,7 +1038,7 @@ export default {
             trigger: "change"
           },
           { required: true, validator: valEditTrueEndTime, trigger: "change" }
-        ],
+        ]
       },
       diaLogFormEditVisible: false,
       diaLogTitleEdit: "",
@@ -1101,13 +1100,13 @@ export default {
           let minLineNum = Math.min.apply(
             Math,
             this.mark_line.map(function(item) {
-              return parseInt(item.yAxis -1);
+              return parseInt(item.yAxis - 1);
             })
           );
           let maxLineNum = Math.max.apply(
             Math,
             this.mark_line.map(function(item) {
-              return parseInt(item.yAxis +1);
+              return parseInt(item.yAxis + 1);
             })
           );
           // 数据
@@ -1222,7 +1221,7 @@ export default {
               }
             },
             grid: {
-               top: "25px",
+              top: "25px",
               left: "180px",
               right: "20px",
               bottom: "50px"
@@ -1441,7 +1440,11 @@ export default {
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
-          this.workTypeList = data.data;
+          let workTypeJson = data.data.filter(function(e) {
+            return e.type == 1;
+          });
+          //console.log("workTypeJson：" + JSON.stringify(workTypeJson));
+          this.workTypeList = workTypeJson;
           let wordId = this.workTypeList[0]["id"];
           this.$set(this.formData, "work_type", wordId);
           this.changeWorkListItem(wordId);
@@ -1455,7 +1458,7 @@ export default {
       this.workTypeList.forEach(function(item) {
         if (item.id == value) {
           selectedLineTypeLists = item.line_type_lists;
-          that.workTypeFlag=item.type;
+          that.workTypeFlag = item.type;
         }
       });
       this.workLineTypeList = selectedLineTypeLists;

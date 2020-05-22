@@ -123,13 +123,14 @@
             <el-table-column label="操作" width="125">
               <template slot-scope="scope">
                 <div class="app-operation">
-                  <span v-show="scope.row.can_check==1">
+                  <span v-if="can_check==1">
                   <el-button
                     v-if="scope.row.status=='未批复'"
                     class="btn-red"
                     size="mini"
                     @click="goApply(scope.row.id,scope.row.company)"
-                  >审批</el-button>   </span>
+                  >审批</el-button>   
+                  </span>
                   <el-button
                     v-if="scope.row.status=='已销点'"
                     class="btn-red"
@@ -252,7 +253,8 @@ export default {
       dialogVisibleOk: false,
       dialogVisibleNo: false,
       dialogId: 0,
-      dialogContent: ""
+      dialogContent: "",
+      can_check:0
     };
   },
   created() {
@@ -302,6 +304,8 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.dataList = data.data.data;
+          this.can_check=parseInt(data.data.can_check);
+        
           this.page_cur = parseInt(data.data.current_page);
           this.pageTotal = data.data.total;
           this.page_size = data.data.per_page;
