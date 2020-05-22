@@ -305,7 +305,7 @@ export default {
         if (data.status == 1) {
           this.dataList = data.data.data;
           this.can_check=parseInt(data.data.can_check);
-        
+          console.log(this.can_check);
           this.page_cur = parseInt(data.data.current_page);
           this.pageTotal = data.data.total;
           this.page_size = data.data.per_page;

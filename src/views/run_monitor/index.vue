@@ -83,7 +83,7 @@
             <el-select v-model="formData.car_type" placeholder="请选择"></el-select>
           </el-form-item>
           <div class="el-form-item-block">
-            <el-form-item label="出行车次：" label-width="100px">
+            <el-form-item label="出发车次：" label-width="100px">
               <el-input v-model="formData.out_car" autocomplete="off" maxlength="20"></el-input>
             </el-form-item>
             <el-form-item label="本务：">
@@ -429,7 +429,7 @@
             <el-select v-model="formEditData.car_type" placeholder="请选择"></el-select>
           </el-form-item>
           <div class="el-form-item-block">
-            <el-form-item label="出行车次：" label-width="100px">
+            <el-form-item label="出发车次：" label-width="100px">
               <el-input v-model="formEditData.out_car" autocomplete="off" maxlength="20"></el-input>
             </el-form-item>
             <el-form-item label="本务：">
@@ -466,7 +466,7 @@
             </el-form-item>
           </div>
           <div class="el-form-item-block">
-            <el-form-item label="出线级别：" label-width="100px">
+            <el-form-item label="出发级别：" label-width="100px">
               <el-select v-model="formEditData.out_line_type" placeholder="请选择">
                 <el-option
                   v-for="item in lineTypeList"
