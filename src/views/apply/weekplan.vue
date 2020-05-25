@@ -122,7 +122,7 @@
                     <p>申报单位：{{item.company}}</p>
                     <p>申报时间：{{item.start_time}} ~ {{item.end_time}}</p>
                     <p>
-                      <b   @click="goDetail(item.id)">查看周计划</b>
+                      <b @click="goDetail(item.id)">查看周计划</b>
                     </p>
                   </div>
                 </div>
@@ -546,12 +546,14 @@ export default {
   font-size: 16px;
 }
 .grid-content .grid-box b {
-  text-align: center;display: block;
+  text-align: center;
+  display: block;
   border: 1px #4b6eca solid;
   color: #4b6eca;
   border-radius: 24px;
   font-size: 15px;
-  width: 120px; margin: 10px auto 0 auto;
+  width: 120px;
+  margin: 10px auto 0 auto;
 }
 .grid-content .grid-box:hover {
   background: #fafafa;
@@ -726,7 +728,7 @@ export default {
   margin-left: -6px;
   border-bottom-color: #9db9fa !important;
 }
-
+/** */
 .layui-timeline {
   padding-left: 5px;
 }

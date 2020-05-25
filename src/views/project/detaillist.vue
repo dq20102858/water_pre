@@ -381,7 +381,6 @@ export default {
       this.workLineTypeList = selectedLineTypeLists;
       this.lineTypeListDes = selectedLineTypeDes;
     },
-
     changeWorkLineTypeList(value) {
       this.lineTypeListDes.map((item, i) => {
         if (item.line_type == value) {

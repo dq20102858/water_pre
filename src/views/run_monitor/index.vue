@@ -259,6 +259,61 @@
             </el-form-item>
           </div>
           <div class="el-form-item-block">
+            <el-form-item label="作业类型：" label-width="100px" prop="work_type">
+              <el-select
+                v-model="formData.work_type"
+                placeholder="请选择"
+                @change="changeWorkListItem"
+              >
+                <el-option
+                  v-for="item in workTypeList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item class="danwei" label="线别：" prop="line_type">
+              <el-select
+                v-model="formData.line_type"
+                placeholder="请选择"
+                @change="changeWorkLineTypeList"
+              >
+                <el-option
+                  v-for="item in workLineTypeList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+              <!-- <div class="el-form-item__error">{{lineTypeDes}}</div> -->
+            </el-form-item>
+            <!-- <el-form-item label="计划数量：" label-width="100px" v-if="workTypeFlag==2">
+              <el-input v-model="formData.nums" autocomplete="off" maxlength="5"></el-input>
+            </el-form-item>-->
+
+            <el-form-item label="施工项目：">
+              <el-select v-model="formData.item_id" placeholder="请选择">
+                <el-option
+                  v-for="item in itemLists"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="工序：">
+              <el-select v-model="formData.work_id" placeholder="请选择">
+                <el-option
+                  v-for="item in workSortLists"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </div>
+          <div class="el-form-item-block">
             <el-form-item label="工点：" label-width="100px" prop="start_station">
               <el-select
                 v-model="formData.start_station"
@@ -324,56 +379,6 @@
                   maxlength="3"
                 ></el-input>
               </el-form-item>
-            </el-form-item>
-          </div>
-          <div class="el-form-item-block">
-            <el-form-item label="作业类型：" label-width="100px">
-              <el-select
-                v-model="formData.work_type"
-                placeholder="请选择"
-                @change="changeWorkListItem"
-              >
-                <el-option
-                  v-for="item in workTypeList"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                ></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item class="danwei" label="线别：">
-              <el-select v-model="formData.line_type" placeholder="请选择">
-                <el-option
-                  v-for="item in workLineTypeList"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                ></el-option>
-              </el-select>
-            </el-form-item>
-            <!-- <el-form-item label="计划数量：" label-width="100px" v-if="workTypeFlag==2">
-              <el-input v-model="formData.nums" autocomplete="off" maxlength="5"></el-input>
-            </el-form-item>-->
-
-            <el-form-item label="施工项目：">
-              <el-select v-model="formData.item_id" placeholder="请选择">
-                <el-option
-                  v-for="item in itemLists"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                ></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="工序：">
-              <el-select v-model="formData.work_id" placeholder="请选择">
-                <el-option
-                  v-for="item in workSortLists"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                ></el-option>
-              </el-select>
             </el-form-item>
           </div>
         </fieldset>
@@ -605,6 +610,56 @@
             </el-form-item>
           </div>
           <div class="el-form-item-block">
+            <el-form-item label="作业类型：" label-width="100px">
+              <el-select
+                v-model="formEditData.work_type"
+                placeholder="请选择"
+                @change="changeWorkListItem"
+              >
+                <el-option
+                  v-for="item in workTypeList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item class="danwei" label="线别：">
+              <el-select
+                v-model="formEditData.line_type"
+                placeholder="请选择"
+                @change="changeWorkLineTypeList"
+              >
+                <el-option
+                  v-for="item in workLineTypeList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="施工项目：">
+              <el-select v-model="formEditData.item_id" placeholder="请选择">
+                <el-option
+                  v-for="item in itemLists"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="工序：">
+              <el-select v-model="formEditData.work_id" placeholder="请选择">
+                <el-option
+                  v-for="item in workSortLists"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </div>
+          <div class="el-form-item-block">
             <el-form-item label="工点：" label-width="100px" prop="start_station">
               <el-select
                 v-model="formEditData.start_station"
@@ -672,52 +727,6 @@
               </el-form-item>
             </el-form-item>
           </div>
-          <div class="el-form-item-block">
-            <el-form-item label="作业类型：" label-width="100px">
-              <el-select
-                v-model="formEditData.work_type"
-                placeholder="请选择"
-                @change="changeWorkListItem"
-              >
-                <el-option
-                  v-for="item in workTypeList"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                ></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item class="danwei" label="线别：">
-              <el-select v-model="formEditData.line_type" placeholder="请选择">
-                <el-option
-                  v-for="item in workLineTypeList"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                ></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="施工项目：">
-              <el-select v-model="formEditData.item_id" placeholder="请选择">
-                <el-option
-                  v-for="item in itemLists"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                ></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="工序：">
-              <el-select v-model="formEditData.work_id" placeholder="请选择">
-                <el-option
-                  v-for="item in workSortLists"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                ></el-option>
-              </el-select>
-            </el-form-item>
-          </div>
         </fieldset>
         <el-form-item class="istextarea" label="计划内容：" label-width="110px" prop="description">
           <el-input
@@ -750,7 +759,7 @@
           </div>
           <div class="el-form-item-block">
             <el-form-item label="开始里程(DK)：" label-width="120px" class="el-form-item-inlines">
-              <el-form-item prop="start_flag">
+              <el-form-item prop="true_start_flag">
                 <el-input
                   v-model="formEditData.true_start_flag"
                   autocomplete="off"
@@ -758,7 +767,7 @@
                   maxlength="3"
                 ></el-input>
               </el-form-item>
-              <el-form-item prop="start_length">
+              <el-form-item prop="true_start_length" class="lengtherror">
                 <b>+</b>
                 <el-input
                   v-model="formEditData.true_start_length"
@@ -769,7 +778,7 @@
               </el-form-item>
             </el-form-item>
             <el-form-item label="开始里程(DK)：" class="el-form-item-inlines">
-              <el-form-item prop="start_flag">
+              <el-form-item prop="true_end_flag">
                 <el-input
                   v-model="formEditData.true_end_flag"
                   autocomplete="off"
@@ -777,7 +786,7 @@
                   maxlength="3"
                 ></el-input>
               </el-form-item>
-              <el-form-item prop="end_length">
+              <el-form-item prop="true_end_length" class="lengtherror">
                 <b>+</b>
                 <el-input
                   v-model="formEditData.true_end_length"
@@ -798,7 +807,7 @@
               ></el-input>
             </el-form-item>
             <el-form-item>
-              <el-checkbox v-model="formEditData.status">完成</el-checkbox>
+              <el-checkbox v-model="formEditData.status" @change="formStatus">完成</el-checkbox>
             </el-form-item>
           </div>
           <div class="el-form-item-block">
@@ -812,7 +821,7 @@
               ></el-input>
             </el-form-item>
           </div>
-          <div class="el-form-item-block">
+          <div class="el-form-item-block" v-if="reasonShow">
             <el-form-item label="未完成原因：" label-width="120px">
               <el-input
                 v-model="formEditData.reason"
@@ -910,6 +919,12 @@ export default {
           },
           { required: true, validator: valEndTime, trigger: "change" }
         ],
+        work_type: [
+          { required: true, message: "请选择线别", trigger: "change" }
+        ],
+        line_type: [
+          { required: true, message: "请选择线别", trigger: "change" }
+        ],
         start_station: [
           {
             required: true,
@@ -982,6 +997,12 @@ export default {
           },
           { required: true, validator: valEditEndTime, trigger: "change" }
         ],
+        work_type: [
+          { required: true, message: "请选择线别", trigger: "change" }
+        ],
+        line_type: [
+          { required: true, message: "请选择线别", trigger: "change" }
+        ],
         start_station: [
           {
             required: true,
@@ -1039,11 +1060,39 @@ export default {
           },
           { required: true, validator: valEditTrueEndTime, trigger: "change" }
         ],
-        record_id:[
-            {
+        record_id: [
+          {
             required: true,
             message: "请选择记录人",
             trigger: "change"
+          }
+        ],
+        true_start_flag: [
+          {
+            required: true,
+            message: "请输入公里",
+            trigger: "blur"
+          }
+        ],
+        true_start_length: [
+          {
+            required: true,
+            message: "请输入米",
+            trigger: "blur"
+          }
+        ],
+        true_end_flag: [
+          {
+            required: true,
+            message: " 请输入公里",
+            trigger: "blur"
+          }
+        ],
+        true_end_length: [
+          {
+            required: true,
+            message: "请输入米",
+            trigger: "blur"
           }
         ]
       },
@@ -1058,7 +1107,12 @@ export default {
       select_loco_type: [],
       departLists: [],
       itemLists: [],
-      workSortLists: []
+      workSortLists: [],
+      lineTypeListDes: [],
+      lineTypeDes: "",
+      lineTypeStartTotal: 0,
+      lineTypeEndTotal: 0,
+      reasonShow: true
     };
   },
   created() {
@@ -1450,11 +1504,27 @@ export default {
           let workTypeJson = data.data.filter(function(e) {
             return e.type == 1;
           });
-          //console.log("workTypeJson：" + JSON.stringify(workTypeJson));
           this.workTypeList = workTypeJson;
-          let wordId = this.workTypeList[0]["id"];
-          this.$set(this.formData, "work_type", wordId);
-          this.changeWorkListItem(wordId);
+          // let wordId = this.workTypeList[0]["id"];
+          // this.$set(this.formData, "work_type", wordId);
+          // this.changeWorkListItem(wordId);
+        }
+      });
+    },
+    getWorkTypeListEdit(val) {
+      this.request({
+        url: "/project/getWorkTypeList",
+        method: "get"
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          let workTypeJson = data.data.filter(function(e) {
+            return e.type == 1;
+          });
+          this.workTypeList = workTypeJson;
+          // let wordId = this.workTypeList[0]["id"];
+          // this.$set(this.formData, "work_type", wordId);
+          this.changeWorkListItem(val);
         }
       });
     },
@@ -1462,14 +1532,36 @@ export default {
       const that = this;
       this.$set(this.formData, "line_type", "");
       let selectedLineTypeLists = [];
+      let selectedLineTypeDes = [];
       this.workTypeList.forEach(function(item) {
         if (item.id == value) {
           selectedLineTypeLists = item.line_type_lists;
+          selectedLineTypeDes = item.des;
           that.workTypeFlag = item.type;
         }
       });
       this.workLineTypeList = selectedLineTypeLists;
-      this.$set(this.formData, "line_type", selectedLineTypeLists[0]["id"]);
+      this.lineTypeListDes = selectedLineTypeDes;
+      // this.$set(this.formData, "line_type", selectedLineTypeLists[0]["id"]);
+    },
+
+    changeWorkLineTypeList(value) {
+      this.lineTypeListDes.map((item, i) => {
+        if (item.line_type == value) {
+          this.lineTypeDes = item.tip;
+          this.lineTypeStartTotal =
+            item.total_start_flag * 1000 + parseInt(item.total_start_length);
+          this.lineTypeEndTotal =
+            item.total_end_flag * 1000 + parseInt(item.total_end_length);
+          console.log(
+            "lineTypeStartTotal：" +
+              this.lineTypeStartTotal +
+              " lineTypeEndTotal：" +
+              this.lineTypeEndTotal
+          );
+          //console.log(item.tip);
+        }
+      });
     },
     getDepartList() {
       this.request({
@@ -1479,7 +1571,7 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.departLists = data.data;
-          console.log("this.departLists：" + this.departLists);
+          //console.log("this.departLists：" + this.departLists);
         }
       });
     },
@@ -1508,7 +1600,7 @@ export default {
     planAdd() {
       this.diaLogTitle = "计划图";
       this.diaLogFormVisible = true;
-
+      this.formData.line_type = "";
       this.getMasterList(); //车长
       this.getdriverList(); //司机
       this.getStationList(); //车站
@@ -1525,6 +1617,23 @@ export default {
             this.$message.error("施工开始时间不能大于结束时间");
             return false;
           }
+          let start =
+            this.formData.start_flag * 1000 +
+            parseInt(this.formData.start_length);
+          let end =
+            this.formData.end_flag * 1000 + parseInt(this.formData.end_length);
+          if (start < this.lineTypeStartTotal || end > this.lineTypeEndTotal) {
+            this.$message.error("请输入" + this.lineTypeDes);
+            return;
+          }
+          if (end < start) {
+            this.$message.error({
+              duration: 5000,
+              message: "输入的开始里程不能大于结束里程"
+            });
+            return;
+          }
+
           this.request({
             url: "/dayplan/addDayPlan",
             method: "post",
@@ -1600,14 +1709,19 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.formEditData = data.data;
-          this.getMasterList(); //车长
           this.getdriverList(); //司机
           this.getStationList(); //车站
-          this.getWorkTypeList(); //作业类型
+
           this.getDepartList(); //施工队
           this.geItemList(); //项目
           this.getWorkSortList(); //工序
 
+          this.getWorkTypeListEdit(this.formEditData.work_type);
+          this.changeWorkLineTypeList(this.formEditData.line_type);
+          this.formEditData.line_type = data.data.line_type.toString();
+          console.log(
+            "LLL：" + this.workLineTypeList + "_" + this.formEditData.work_type
+          );
           this.formEditData.date = this.formData.date;
           if (data.data.out_reco == "0") {
             this.formEditData.out_reco = "";
@@ -1629,7 +1743,6 @@ export default {
           this.formEditData.start_length = parseFloat(data.data.start_length);
           this.formEditData.end_flag = parseFloat(data.data.end_flag);
           this.formEditData.end_length = parseFloat(data.data.end_length);
-          this.formEditData.line_type = data.data.line_type.toString();
 
           if (data.data.work_plan_id == "0") {
             this.formEditData.work_plan_id = "";
@@ -1642,35 +1755,42 @@ export default {
           if (data.data.work_id == "0") {
             this.formEditData.work_id = "";
           }
-          (this.formEditData.record_id =
-            data.data.record_id == null
-              ? this.formEditData.record_id
-              : data.data.record_id),
-            (this.formEditData.true_start_time =
-              data.data.true_start_time == ""
-                ? data.data.start_time
-                : data.data.true_start_time),
-            (this.formEditData.true_end_time =
-              data.data.true_end_time == ""
-                ? data.data.end_time
-                : data.data.true_end_time),
-            (this.formEditData.true_start_flag =
-              data.data.true_start_flag == null
-                ? parseFloat(data.data.start_flag)
-                : parseFloat(data.data.true_start_flag)),
-            (this.formEditData.true_start_length =
-              data.data.true_start_length == null
-                ? parseFloat(data.data.start_length)
-                : parseFloat(data.data.true_start_length)),
-            (this.formEditData.true_end_flag =
-              data.data.true_end_flag == null
-                ? parseFloat(data.data.end_flag)
-                : parseFloat(data.data.true_end_flag)),
-            (this.formEditData.true_end_length =
-              data.data.true_end_length == null
-                ? parseFloat(data.data.end_length)
-                : parseFloat(data.data.true_end_length)),
-            console.log(this.formEditData);
+
+          this.formEditData.status =
+            this.formEditData.status == 1 ? true : false;
+          if (this.formEditData.status) {
+            this.reasonShow = false;
+          }
+          //
+          // (this.formEditData.record_id =
+          //   data.data.record_id == null
+          //     ? this.formEditData.record_id
+          //     : data.data.record_id),
+          //   (this.formEditData.true_start_time =
+          //     data.data.true_start_time == ""
+          //       ? data.data.start_time
+          //       : data.data.true_start_time),
+          //   (this.formEditData.true_end_time =
+          //     data.data.true_end_time == ""
+          //       ? data.data.end_time
+          //       : data.data.true_end_time),
+          //   (this.formEditData.true_start_flag =
+          //     data.data.true_start_flag == null
+          //       ? parseFloat(data.data.start_flag)
+          //       : parseFloat(data.data.true_start_flag)),
+          //   (this.formEditData.true_start_length =
+          //     data.data.true_start_length == null
+          //       ? parseFloat(data.data.start_length)
+          //       : parseFloat(data.data.true_start_length)),
+          //   (this.formEditData.true_end_flag =
+          //     data.data.true_end_flag == null
+          //       ? parseFloat(data.data.end_flag)
+          //       : parseFloat(data.data.true_end_flag)),
+          //   (this.formEditData.true_end_length =
+          //     data.data.true_end_length == null
+          //       ? parseFloat(data.data.end_length)
+          //       : parseFloat(data.data.true_end_length)),
+          console.log(this.formEditData);
         }
       });
     },
@@ -1711,11 +1831,37 @@ export default {
         }
       });
     },
+    formStatus() {
+      this.reasonShow = !this.reasonShow;
+    },
     updateDayTrueplan() {
       this.$refs["refFormEditRules"].validate(valid => {
         if (valid) {
           let data = this.formEditData;
           let dataa = data.end_time;
+
+          if (+this.formEditData.end_time < +this.formEditData.start_time) {
+            this.$message.error("施工开始时间不能大于结束时间");
+            return false;
+          }
+          let start =
+            this.formEditData.start_flag * 1000 +
+            parseInt(this.formEditData.start_length);
+          let end =
+            this.formEditData.end_flag * 1000 +
+            parseInt(this.formEditData.end_length);
+          // if (start < this.lineTypeStartTotal || end > this.lineTypeEndTotal) {
+          //   this.$message.error("请输入" + this.lineTypeDes);
+          //   return;
+          // }
+          if (end < start) {
+            this.$message.error({
+              duration: 5000,
+              message: "输入的开始里程不能大于结束里程"
+            });
+            return;
+          }
+
           // if (new Date(data.end_time) < new Date(data.start_time)) {
           //   this.$message.error("施工开始时间不能大于结束时间");
           //   return false;
@@ -1745,6 +1891,7 @@ export default {
         }
       });
     },
+
     //多选操作
     selectDatePicker(value) {
       this.todayValue = value;

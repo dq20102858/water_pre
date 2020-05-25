@@ -94,15 +94,16 @@
         </el-radio-group>
       </div>
       <div class="cartablebox">
-        <el-table :data="cartableData">
+        <div @click="showCarList" class="cartitle">{{cartableShowText}}</div>
+        <el-table :data="cartableData" v-show="cartableShow">
           <el-table-column prop="id" label="编号" width="60"></el-table-column>
           <el-table-column prop="name" label="列车名称" width="80"></el-table-column>
           <el-table-column prop="speed" label="当前速度" width="100"></el-table-column>
           <el-table-column prop="address" label="当前位置" width="100"></el-table-column>
           <el-table-column prop="linetype" label="线别" width="100"></el-table-column>
           <el-table-column prop="status" label="状态" width="100"></el-table-column>
-          <el-table-column prop="" label="司机"></el-table-column>
-          <el-table-column prop="" label="车长"></el-table-column>
+          <el-table-column prop label="司机"></el-table-column>
+          <el-table-column prop label="车长"></el-table-column>
           <el-table-column prop="createtime" label="最后更新时间"></el-table-column>
           <el-table-column></el-table-column>
         </el-table>
@@ -196,6 +197,8 @@ export default {
       enterLineMaxMileage: 0,
       outLineMinMileage: 0,
       outLineMaxMileage: 0,
+      cartableShowText: "显示机车列表信息",
+      cartableShow: false,
       cartableData: [
         {
           id: 1,
@@ -1213,7 +1216,7 @@ export default {
             // context.font = "24px Microsoft Yahei";
             // context.fillText(desc, centerX + offsetX, axis_applay.y - 25);
             clickXY.push({
-              x: centerX-60,
+              x: centerX - 60,
               y: axis_applay.y - 60,
               w: 60,
               h: 54,
@@ -1255,7 +1258,7 @@ export default {
             // context.font = "24px Microsoft Yahei";
             // context.fillText(desc, centerX + offsetX, axis_applay.y + 180);
             clickXY.push({
-              x: centerX-60,
+              x: centerX - 60,
               y: axis_applay_two.y - 60,
               w: 60,
               h: 54,
@@ -1571,9 +1574,9 @@ export default {
         drawSlopeAxis(this.slopeList);
       }
       //作业
-       if (this.applyList.length > 0) {
-      drawAxesApply(this.applyList);
-     }
+      if (this.applyList.length > 0) {
+        drawAxesApply(this.applyList);
+      }
       //道岔
       if (this.daocCheckValue) {
         drawDaocha();
@@ -1640,7 +1643,7 @@ export default {
       let startX = (total - this.minKM) * 1000 * 0.5;
       document.querySelector(".group-canvas").scrollLeft = startX;
     },
-    dragScroll: function() {
+    dragScroll() {
       let gapX = 0;
       let startx = 0;
       let obj = document.getElementById("scrollbar"); //
@@ -1672,6 +1675,16 @@ export default {
         //解绑定，这一步很必要，前面有解释
         document.removeEventListener("mousemove", move);
         document.removeEventListener("mouseup", stop);
+      }
+    },
+    showCarList() {
+      let show = this.cartableShow;
+      if (show) {
+        this.cartableShow = false;
+        this.cartableShowText = "显示机车列表信息";
+      } else {
+        this.cartableShow = true;
+        this.cartableShowText = "隐藏机车列表信息";
       }
     }
     //
@@ -1806,7 +1819,7 @@ export default {
 }
 .check-list .el-checkbox__label {
   color: #fff;
-  font-size: 15px;
+  font-size: 14px;
 }
 .bridgechk.is-checked {
   border-color: #cdaa7d !important;
@@ -1897,7 +1910,8 @@ export default {
 }
 .progresslist .namess {
   padding-bottom: 10px;
-  display: inline-block; padding-right:14px;
+  display: inline-block;
+  padding-right: 14px;
 }
 .progresslist .el-radio__label {
   color: #fff;
@@ -1912,6 +1926,14 @@ export default {
 }
 .cartablebox {
   padding: 20px 10px;
+}
+.cartitle {
+  text-align: center;
+  border: 1px #3655a5 solid;
+  color: #fff;
+  padding: 5px 0;
+
+  cursor: pointer;
 }
 .cartablebox .app-table {
   border-radius: 6px 6px 0 0;
