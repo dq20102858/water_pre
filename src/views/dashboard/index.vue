@@ -1,7 +1,7 @@
 <template>
   <div class="app-video">
- <div class="el-menu-top">
-      <el-menu  mode="horizontal">
+    <div class="el-menu-top">
+      <el-menu mode="horizontal">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-dashboard.png')" />视频监控
         </li>
@@ -11,9 +11,20 @@
       <el-row :gutter="20">
         <el-col :span="6" v-for="(item,i) in videoList" :key="i">
           <div class="grid-content">
-            <video :id="'myVideo'+item.id" class="video-js" ref="myVideo">
+            <video
+              :id="'myVideo'+item.id"
+              class="video-js vjs-default-skin vjs-big-play-centered vjs-fluid"
+              preload="auto"
+              autoplay
+              controls
+              ref="myVideo"
+            >
               <source :src="item.url" type="rtmp/flv" />
             </video>
+
+            <!-- <video :id="'myVideo'+item.id" class="video-js" ref="myVideo">
+              <source :src="item.url" type="rtmp/flv" />
+            </video>-->
           </div>
           <div class="grid-title">{{item.name}}</div>
         </el-col>
@@ -30,10 +41,9 @@ export default {
     };
   },
   updated() {
-    this.$nextTick(function () {
+    this.$nextTick(function() {
       this.initVideo();
-    })
-    
+    });
   },
   created() {
     this.getVideos();
@@ -53,14 +63,15 @@ export default {
     initVideo() {
       //初始化video
       this.videoList.map((item, i) => {
-        let id ="myVideo" + item.id;
+        let id = "myVideo" + item.id;
         let myPlayer = this.$video(id, {
           //确定播放器是否具有用户可以与之交互的控件。没有控件，启动视频播放的唯一方法是使用autoplay属性或通过Player API。
           controls: true,
           //自动播放属性,muted:静音播放
-          autoplay: true,
+          autoplay: true, // 自动播放
           //建议浏览器是否应在<video>加载元素后立即开始下载视频数据。
-          preload: "none"
+          preload: "none",
+          fluid: true
           //设置视频播放器的显示宽度（以像素为单位）
           // width: "400px",
           // //设置视频播放器的显示高度（以像素为单位）
@@ -104,5 +115,4 @@ export default {
   border-radius: 4px;
   margin-bottom: 20px;
 }
-
 </style>

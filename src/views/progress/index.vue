@@ -52,11 +52,10 @@ export default {
     };
   },
 
-   
   updated() {
     this.getStationList();
     this.stationlineHeight = 188 + this.$refs.reflinebox.offsetHeight;
-   },
+  },
   created() {
     this.getProjectProcessMap();
   },
@@ -106,7 +105,7 @@ export default {
         parseInt(this.cwidth) / lineTypeBetwentMileage
       ).toFixed(5);
       this.every = (parseInt(canvasWidth) / lineTypeBetwentMileage).toFixed(5);
-     // console.log("cwidth" + this.cwidth + "_" + this.everyLineType);
+      // console.log("cwidth" + this.cwidth + "_" + this.everyLineType);
 
       const canvas = this.$refs.canvasStation;
       let cansText = canvas.getContext("2d");
@@ -124,6 +123,7 @@ export default {
       //Station=====================Station
       let json = this.stationList;
       let lineTypeMinMileage = this.lineTypeMinMileage;
+      let lineTypeMaxMileage = this.lineTypeMaxMileage;
       let every = this.every; //每米长度等于px
       //console.log("every：" + every);
       //
@@ -139,6 +139,7 @@ export default {
           let startLineX = (total - lineTypeMinMileage) * every;
           // 计算当前站点的x轴
           cansText.drawImage(img, startLineX, 126, 18, 90);
+          let endLineX = lineTypeMaxMileage - total;
           // //站名
           cansText.font = "18px Microsoft Yahei";
           cansText.fillStyle = "#fff";
@@ -147,14 +148,20 @@ export default {
             cansText.fillText(
               origin[x],
               startLineX,
-              138 - origin.length *  20 + 20 * x
+              138 - origin.length * 20 + 20 * x
             );
           }
           //DK
           let codes = "DK" + json[i].start_flag + " +" + json[i].start_length;
           cansText.fillStyle = "#5f88f9";
           cansText.font = "12px  Microsoft Yahei";
-          cansText.fillTextVertical(codes, startLineX + 18, 156);
+          if (endLineX < 300) {
+            cansText.fillTextVertical(codes, startLineX - 1, 156);
+          } else {
+            cansText.fillTextVertical(codes, startLineX + 15, 156);
+          }
+
+          console.log(endLineX);
         }
       };
       //Line=====================
