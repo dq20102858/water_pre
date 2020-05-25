@@ -1146,8 +1146,8 @@ export default {
       }
       //绘制请点
       function drawAxesApply(applyListJson) {
-        let json1 = applyListJson;
-        let json = [
+        let json= applyListJson;
+        let json1 = [
           {
             line_type: 1,
             number: "A1-2-007-1",
