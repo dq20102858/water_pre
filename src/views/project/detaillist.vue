@@ -451,10 +451,6 @@ export default {
             this.$message.error("输入的实际开始里程不能小于计划开始里程");
             return;
           }
-          // if (t_end > end) {
-          //   this.$message.error("输入的实际结束里程不能大于实际开始里程");
-          //   return;
-          // }
           if (t_end < t_start) {
             this.$message.error("输入的实际结束里程不能小于实际开始里程");
             return;

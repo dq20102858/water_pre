@@ -1228,8 +1228,8 @@ export default {
               );
             };
             clickXY.push({
-              x: centerX + offsetX - 32,
-              y: axis_applay.y - 56,
+              x: centerX + 62,
+              y: axis_applay.y - 60,
               w: 60,
               h: 54,
               i: json[i]
@@ -1259,8 +1259,8 @@ export default {
               );
             };
             clickXY.push({
-              x: centerX + offsetX - 32,
-              y: axis_applay_two.y - 56,
+              x: centerX + 62,
+              y: axis_applay_two.y - 60,
               w: 60,
               h: 54,
               i: json[i]
@@ -1915,8 +1915,8 @@ export default {
 }
 .cartitle {
   text-align: center;
-  border: 1px #3655a5 solid;
-  color: #fff;
+  border: 1px #2048a3 solid;
+  color: #2048a3;
   padding: 5px 0;
 
   cursor: pointer;
