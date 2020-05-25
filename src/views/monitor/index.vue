@@ -1146,8 +1146,8 @@ export default {
       }
       //绘制请点
       function drawAxesApply(applyListJson) {
-        let json = applyListJson;
-        let json1 = [
+        let json1 = applyListJson;
+        let json = [
           {
             line_type: 1,
             number: "A1-2-007-1",
@@ -1215,13 +1215,7 @@ export default {
             //文字
             // context.font = "24px Microsoft Yahei";
             // context.fillText(desc, centerX + offsetX, axis_applay.y - 25);
-            clickXY.push({
-              x: centerX - 60,
-              y: axis_applay.y - 60,
-              w: 60,
-              h: 54,
-              i: json[i]
-            });
+
             let img = new Image();
             img.src = require("@/assets/image/" + descType + ".png");
             img.onload = function() {
@@ -1233,13 +1227,13 @@ export default {
                 54
               );
             };
-            // img.onmousemove  = function() {
-            //   alert(descType);
-            // };
-            // context.fillStyle = "#ffff00";
-            // context.font = "12px Microsoft Yahei";
-            // context.fillText(dksatrt, startX + 139, axis_applay.y - 15);
-            // context.fillText(dkend, endX + 60, axis_applay.y - 15);
+            clickXY.push({
+              x: centerX + offsetX - 32,
+              y: axis_applay.y - 56,
+              w: 60,
+              h: 54,
+              i: json[i]
+            });
           } else if (json[i].line_type == 2) {
             let startX = (start - leftLineMinMileage) * everys;
             let endX = (end - leftLineMinMileage) * everys;
@@ -1253,17 +1247,6 @@ export default {
             context.fillRect(endX + offsetX - 1, axis_applay_two.y - 8, 2, 15);
             context.moveTo(startX + offsetX, axis_applay_two.y);
             context.lineTo(endX + offsetX, axis_applay_two.y);
-            //文字
-            // context.fillStyle = "#ffff00";
-            // context.font = "24px Microsoft Yahei";
-            // context.fillText(desc, centerX + offsetX, axis_applay.y + 180);
-            clickXY.push({
-              x: centerX - 60,
-              y: axis_applay_two.y - 60,
-              w: 60,
-              h: 54,
-              i: json[i]
-            });
             let img = new Image();
             img.src = require("@/assets/image/" + descType + ".png");
             img.onload = function() {
@@ -1275,10 +1258,13 @@ export default {
                 54
               );
             };
-            // context.fillStyle = "#ffff00";
-            // context.font = "12px Microsoft Yahei";
-            // context.fillText(dksatrt, startX + 139, axis_applay_two.y - 99);
-            // context.fillText(dkend, endX + 60, axis_applay_two.y - 99);
+            clickXY.push({
+              x: centerX + offsetX - 32,
+              y: axis_applay_two.y - 56,
+              w: 60,
+              h: 54,
+              i: json[i]
+            });
           }
           context.stroke();
           //

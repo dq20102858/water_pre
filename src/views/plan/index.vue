@@ -88,8 +88,8 @@
             </el-table-column>
             <el-table-column label="施工内容">
               <template slot-scope="scope">
-                <p>项目：{{scope.row.work}}</p>
-                <p>工序：{{scope.row.item}}</p>
+                <p>项目：{{scope.row.item}}</p>
+                <p>工序：{{scope.row.work}}</p>
               </template>
             </el-table-column>
             <el-table-column label="行车信息" width="280">

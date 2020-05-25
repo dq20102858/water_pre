@@ -612,6 +612,7 @@
           <div class="el-form-item-block">
             <el-form-item label="作业类型：" label-width="100px">
               <el-select
+                disabled
                 v-model="formEditData.work_type"
                 placeholder="请选择"
                 @change="changeWorkListItem"
@@ -626,6 +627,7 @@
             </el-form-item>
             <el-form-item class="danwei" label="线别：">
               <el-select
+                disabled
                 v-model="formEditData.line_type"
                 placeholder="请选择"
                 @change="changeWorkLineTypeList"
@@ -662,6 +664,7 @@
           <div class="el-form-item-block">
             <el-form-item label="工点：" label-width="100px" prop="start_station">
               <el-select
+                disabled
                 v-model="formEditData.start_station"
                 placeholder="请选择"
                 @change="changeStartStation($event)"
@@ -677,6 +680,7 @@
             <b style="line-height: 31px;">—</b>
             <el-form-item prop="end_station">
               <el-select
+                disabled
                 v-model="formEditData.end_station"
                 placeholder="请选择"
                 @change="changeEndStation($event)"
@@ -692,6 +696,7 @@
             <el-form-item label="里程：" class="el-form-item-inlines is-required">
               <el-form-item prop="start_flag">
                 <el-input
+                  disabled
                   v-model="formEditData.start_flag"
                   autocomplete="off"
                   placeholder="公里"
@@ -701,6 +706,7 @@
               <el-form-item prop="start_length" class="lengtherror">
                 <b>+</b>
                 <el-input
+                  disabled
                   v-model="formEditData.start_length"
                   autocomplete="off"
                   placeholder="米"
@@ -710,6 +716,7 @@
               <el-form-item prop="start_flag" class="lengtherror">
                 <b style="width:100px">至</b>
                 <el-input
+                  disabled
                   v-model="formEditData.end_flag"
                   autocomplete="off"
                   placeholder="公里"
@@ -719,6 +726,7 @@
               <el-form-item prop="end_length" class="lengtherror">
                 <b>+</b>
                 <el-input
+                  disabled
                   v-model="formEditData.end_length"
                   autocomplete="off"
                   placeholder="米"
@@ -758,7 +766,11 @@
             </el-form-item>
           </div>
           <div class="el-form-item-block">
-            <el-form-item label="开始里程(DK)：" label-width="120px" class="el-form-item-inlines">
+            <el-form-item
+              label="开始里程(DK)："
+              label-width="120px"
+              class="el-form-item-inlines is-required"
+            >
               <el-form-item prop="true_start_flag">
                 <el-input
                   v-model="formEditData.true_start_flag"
@@ -777,7 +789,7 @@
                 ></el-input>
               </el-form-item>
             </el-form-item>
-            <el-form-item label="开始里程(DK)：" class="el-form-item-inlines">
+            <el-form-item label="开始里程(DK)：" class="el-form-item-inlines is-required">
               <el-form-item prop="true_end_flag">
                 <el-input
                   v-model="formEditData.true_end_flag"
@@ -1511,7 +1523,7 @@ export default {
         }
       });
     },
-    getWorkTypeListEdit(val) {
+    getWorkTypeListEdit(val, val2) {
       this.request({
         url: "/project/getWorkTypeList",
         method: "get"
@@ -1525,6 +1537,7 @@ export default {
           // let wordId = this.workTypeList[0]["id"];
           // this.$set(this.formData, "work_type", wordId);
           this.changeWorkListItem(val);
+          this.changeWorkLineTypeList(val2);
         }
       });
     },
@@ -1716,12 +1729,11 @@ export default {
           this.geItemList(); //项目
           this.getWorkSortList(); //工序
 
-          this.getWorkTypeListEdit(this.formEditData.work_type);
-          this.changeWorkLineTypeList(this.formEditData.line_type);
-          this.formEditData.line_type = data.data.line_type.toString();
-          console.log(
-            "LLL：" + this.workLineTypeList + "_" + this.formEditData.work_type
+          this.getWorkTypeListEdit(
+            this.formEditData.work_type,
+            this.formEditData.line_type
           );
+          this.formEditData.line_type = data.data.line_type.toString();
           this.formEditData.date = this.formData.date;
           if (data.data.out_reco == "0") {
             this.formEditData.out_reco = "";
@@ -1845,15 +1857,16 @@ export default {
             return false;
           }
           let start =
-            this.formEditData.start_flag * 1000 +
-            parseInt(this.formEditData.start_length);
+            this.formEditData.true_start_flag * 1000 +
+            parseInt(this.formEditData.true_start_length);
           let end =
-            this.formEditData.end_flag * 1000 +
-            parseInt(this.formEditData.end_length);
-          // if (start < this.lineTypeStartTotal || end > this.lineTypeEndTotal) {
-          //   this.$message.error("请输入" + this.lineTypeDes);
-          //   return;
-          // }
+            this.formEditData.true_end_flag * 1000 +
+            parseInt(this.formEditData.true_end_length);
+          console.log("dd:" + this.lineTypeStartTotal);
+          if (start < this.lineTypeStartTotal || end > this.lineTypeEndTotal) {
+            this.$message.error("请输入" + this.lineTypeDes);
+            return;
+          }
           if (end < start) {
             this.$message.error({
               duration: 5000,
