@@ -151,6 +151,7 @@ let offsetX = 100;
 let offsetXLine = 88;
 let scrollGapX = 0;
 let scrollStartx = 0;
+let applyClickXY = [];
 export default {
   data() {
     return {
@@ -1146,10 +1147,10 @@ export default {
         }
       }
       //绘制请点
-      let clickXY = [];
+
       function drawAxesApply(applyListJson) {
-        let json1 = applyListJson;
-        let json = [
+        let json = applyListJson;
+        let json1 = [
           {
             line_type: 1,
             number: "A1-2-007-1",
@@ -1183,7 +1184,6 @@ export default {
             end_total: 16410
           }
         ];
-        console.log("applyListJson" + applyListJson);
 
         for (let i = 0; i < json.length; i++) {
           let start =
@@ -1229,7 +1229,7 @@ export default {
                 54
               );
             };
-            clickXY.push({
+            applyClickXY.push({
               x: centerX + 52,
               y: axis_applay.y - 60,
               w: 60,
@@ -1260,9 +1260,9 @@ export default {
                 54
               );
             };
-            clickXY.push({
-              x: centerX + 32,
-              y: axis_applay_two.y - 60,
+            applyClickXY.push({
+              x: centerX + 42,
+              y: axis_applay_two.y - 70,
               w: 60,
               h: 54,
               i: json[i]
@@ -1272,58 +1272,54 @@ export default {
           //
         }
 
-        let applyClickXY = [];
-
-        applyClickXY.push(clickXY);
-        console.log(applyClickXY);
-      }
-      canvas.addEventListener("dblclick", function(e) {
-        var x = event.pageX - canvas.getBoundingClientRect().left;
-        var y = event.pageY - canvas.getBoundingClientRect().top;
-    //    debugger;
-        console.log(clickXY);
-        let myxx = clickXY;
-        let nums = 0;
-        for (let item of myxx) {
-          nums++;
-          if (nums == 1) {
-            if (
-              x >= item.x &&
-              x <= item.x + item.w &&
-              y >= item.y &&
-              y <= item.y + item.h
-            ) {
-              let infos = item.i;
-
-              that
-                .$confirm(
-                  "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>作业编号：</span>" +
-                    infos.number +
-                    "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>作业令号</span>：" +
-                    infos.command_num +
-                    "</p>" +
-                    "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>开始时间：</span>" +
-                    infos.start_time +
-                    "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>结束时间：</span>" +
-                    infos.end_time +
-                    "</p>" +
-                    "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>施工区间：</span>" +
-                    infos.work_area +
-                    "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>施工内容：</span>" +
-                    infos.description +
-                    "</p>",
-                  {
-                    distinguishCancelAndClose: true,
-                    dangerouslyUseHTMLString: true,
-                    showCancelButton: false,
-                    showConfirmButton: false
-                  }
-                )
-                .catch(() => {});
+        canvas.addEventListener(
+          "dblclick",
+          function(event) {
+            var x = event.pageX - canvas.getBoundingClientRect().left;
+            var y = event.pageY - canvas.getBoundingClientRect().top;
+            console.log("X：" + x + "_" + y);
+            //    debugger;
+            console.log(applyClickXY);
+            for (let item of applyClickXY) {
+              if (
+                x >= item.x &&
+                x <= item.x + item.w &&
+                y >= item.y &&
+                y <= item.y + item.h
+              ) {
+                let infos = item.i;
+                that
+                  .$confirm(
+                    "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>作业编号：</span>" +
+                      infos.number +
+                      "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>作业令号</span>：" +
+                      infos.command_num +
+                      "</p>" +
+                      "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>开始时间：</span>" +
+                      infos.start_time +
+                      "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>结束时间：</span>" +
+                      infos.end_time +
+                      "</p>" +
+                      "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>施工区间：</span>" +
+                      infos.work_area +
+                      "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>施工内容：</span>" +
+                      infos.description +
+                      "</p>",
+                    {
+                      distinguishCancelAndClose: true,
+                      dangerouslyUseHTMLString: true,
+                      showCancelButton: false,
+                      showConfirmButton: false
+                    }
+                  )
+                  .catch(() => {});
+                break;
+              }
             }
-          }
-        }
-      });
+          },
+          false
+        );
+      }
       function getEventPosition(ev) {
         var x, y;
         if (ev.layerX || ev.layerX == 0) {
@@ -1686,6 +1682,7 @@ export default {
         this.cartableShowText = "隐藏机车列表信息";
       }
     }
+
     //
   },
   mounted() {
