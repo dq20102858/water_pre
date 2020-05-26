@@ -1146,8 +1146,8 @@ export default {
       }
       //绘制请点
       function drawAxesApply(applyListJson) {
-        let json= applyListJson;
-        let json1 = [
+        let json1 = applyListJson;
+        let json = [
           {
             line_type: 1,
             number: "A1-2-007-1",
@@ -1228,8 +1228,8 @@ export default {
               );
             };
             clickXY.push({
-              x: centerX + 62,
-              y: axis_applay.y - 60,
+              x: centerX +52,
+              y: axis_applay.y-60,
               w: 60,
               h: 54,
               i: json[i]
@@ -1259,8 +1259,8 @@ export default {
               );
             };
             clickXY.push({
-              x: centerX + 62,
-              y: axis_applay_two.y - 60,
+              x: centerX + 32,
+              y: axis_applay_two.y-60,
               w: 60,
               h: 54,
               i: json[i]

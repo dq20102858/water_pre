@@ -69,6 +69,10 @@ const constantRouterMap = [
       {
         path: '/process',
         component: () => import('@/views/set/process')
+      },
+      {
+        path: '/video',
+        component: () => import('@/views/set/video')
       }
     ]
   },

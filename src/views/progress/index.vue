@@ -155,7 +155,7 @@ export default {
           let codes = "DK" + json[i].start_flag + " +" + json[i].start_length;
           cansText.fillStyle = "#5f88f9";
           cansText.font = "12px  Microsoft Yahei";
-          if (endLineX < 300) {
+          if (endLineX < 400) {
             cansText.fillTextVertical(codes, startLineX - 1, 156);
           } else {
             cansText.fillTextVertical(codes, startLineX + 15, 156);
