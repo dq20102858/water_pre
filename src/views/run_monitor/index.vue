@@ -958,7 +958,7 @@ export default {
             trigger: "blur"
           },
           {
-            pattern: /^(|[1-9]\d{0,3})?$/,
+            pattern: /^(|[0-9]\d{0,3})?$/,
             message: "请输入正数字",
             trigger: "blur"
           }
@@ -970,7 +970,7 @@ export default {
             trigger: "blur"
           },
           {
-            pattern: /^(|[1-9]\d{0,3})?$/,
+            pattern: /^(|[0-9]\d{0,3})?$/,
             message: "请输入正数字",
             trigger: "blur"
           }
@@ -982,7 +982,7 @@ export default {
             trigger: "blur"
           },
           {
-            pattern: /^(|[1-9]\d{0,3})?$/,
+           pattern: /^(|[0-9]\d{0,3})?$/,
             message: "请输入正数字",
             trigger: "blur"
           }
@@ -994,7 +994,7 @@ export default {
             trigger: "blur"
           },
           {
-            pattern: /^(|[1-9]\d{0,3})?$/,
+            pattern: /^(|[0-9]\d{0,3})?$/,
             message: "请输入正数字",
             trigger: "blur"
           }
@@ -1054,22 +1054,12 @@ export default {
             required: true,
             message: "请输入公里",
             trigger: "blur"
-          },
-          {
-            pattern: /^(|[1-9]\d{0,3})?$/,
-            message: "请输入正数字",
-            trigger: "blur"
           }
         ],
         start_length: [
           {
             required: true,
             message: "请输入米",
-            trigger: "blur"
-          },
-          {
-            pattern: /^(|[1-9]\d{0,3})?$/,
-            message: "请输入正数字",
             trigger: "blur"
           }
         ],
@@ -1078,22 +1068,12 @@ export default {
             required: true,
             message: " 请输入公里",
             trigger: "blur"
-          },
-          {
-            pattern: /^(|[1-9]\d{0,3})?$/,
-            message: "请输入正数字",
-            trigger: "blur"
           }
         ],
         end_length: [
           {
             required: true,
             message: "请输入米",
-            trigger: "blur"
-          },
-          {
-            pattern: /^(|[1-9]\d{0,3})?$/,
-            message: "请输入正数字",
             trigger: "blur"
           }
         ],
@@ -1102,11 +1082,6 @@ export default {
             required: true,
             message: "请选择开始时间",
             trigger: "change"
-          },
-          {
-            pattern: /^(|[1-9]\d{0,3})?$/,
-            message: "请输入正数字",
-            trigger: "blur"
           }
         ],
         true_end_time: [
@@ -1161,28 +1136,28 @@ export default {
         ],
         true_start_flag: [
           {
-            pattern: /^(|[1-9]\d{0,3})?$/,
+            pattern: /^(|[0-9]\d{0,3})?$/,
             message: "请输入正数字",
             trigger: "blur"
           }
         ],
         true_start_length: [
           {
-            pattern: /^(|[1-9]\d{0,3})?$/,
+            pattern: /^(|[0-9]\d{0,3})?$/,
             message: "请输入正数字",
             trigger: "blur"
           }
         ],
         true_end_flag: [
           {
-            pattern: /^(|[1-9]\d{0,3})?$/,
+            pattern: /^(|[0-9]\d{0,3})?$/,
             message: "请输入正数字",
             trigger: "blur"
           }
         ],
         true_end_length: [
           {
-            pattern: /^(|[1-9]\d{0,3})?$/,
+            pattern: /^(|[0-9]\d{0,3})?$/,
             message: "请输入正数字",
             trigger: "blur"
           }
@@ -1849,7 +1824,7 @@ export default {
           }
 
           this.formEditData.status =
-            this.formEditData.status == 1 ? true : false;
+            this.formEditData.status == 2 ? true : false;
           if (this.formEditData.status) {
             this.reasonShow = false;
           }

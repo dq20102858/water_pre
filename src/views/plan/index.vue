@@ -30,7 +30,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="计划类型">
+            <el-form-item label="计划类型" style="display:none">
               <el-select v-model="searchForm.type" placeholder="请选择日班计划类型" clearable>
                 <el-option label="有车施工计划" :value="1"></el-option>
                 <el-option label="无车施工计划" :value="2"></el-option>
@@ -337,7 +337,7 @@
               </td>
             </tr>
             <tr>
-              <td colspan="4">
+              <td colspan="4" v-show="dataListItem.status==1">
                 <b>未完成原因：</b>
                 {{dataListItem.reason}}
               </td>
