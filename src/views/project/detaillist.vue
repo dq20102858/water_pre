@@ -7,7 +7,7 @@
         </li>
         <el-menu-item index="project">作业列表</el-menu-item>
         <el-menu-item index="schedule">计划日程</el-menu-item>
-        <el-menu-item index="detaillist"  @click="detailPageFirst">详情列表</el-menu-item>
+        <el-menu-item index="detaillist" @click="detailPageFirst">详情列表</el-menu-item>
         <el-menu-item index="chartdata">图表数据</el-menu-item>
       </el-menu>
     </div>
@@ -192,18 +192,70 @@
                   <div class="el-form-item__error">{{lineTypeDes}}</div>
                 </el-form-item>
                 <el-form-item label="计划里程：" prop="start_flag" class="el-form-item-dks">
-                  <el-input class="pinput" v-model="historyData.start_flag" placeholder="公里" maxlength="3"><template slot="prepend">DK</template></el-input><b>+</b>
-                  <el-input class="pinput" v-model="historyData.start_length" placeholder="米" maxlength="3"></el-input>
+                  <el-input
+                    class="pinput"
+                    v-model="historyData.start_flag"
+                    placeholder="公里"
+                    maxlength="3"
+                  >
+                    <template slot="prepend">DK</template>
+                  </el-input>
+                  <b>+</b>
+                  <el-input
+                    class="pinput"
+                    v-model="historyData.start_length"
+                    placeholder="米"
+                    maxlength="3"
+                  ></el-input>
                   <em>~</em>
-                  <el-input class="pinput" v-model="historyData.end_flag" placeholder="公里" maxlength="3"><template slot="prepend">DK</template></el-input><b>+</b>
-                  <el-input class="pinput" v-model="historyData.end_length" placeholder="米" maxlength="3"></el-input>
+                  <el-input
+                    class="pinput"
+                    v-model="historyData.end_flag"
+                    placeholder="公里"
+                    maxlength="3"
+                  >
+                    <template slot="prepend">DK</template>
+                  </el-input>
+                  <b>+</b>
+                  <el-input
+                    class="pinput"
+                    v-model="historyData.end_length"
+                    placeholder="米"
+                    maxlength="3"
+                  ></el-input>
                 </el-form-item>
                 <el-form-item label="实际里程：" prop="t_start_flag" class="el-form-item-dks">
-                  <el-input class="pinput" v-model="historyData.t_start_flag" placeholder="公里" maxlength="3"><template slot="prepend">DK</template></el-input><b>+</b>
-                  <el-input class="pinput" v-model="historyData.t_start_length" placeholder="米" maxlength="3"></el-input>
+                  <el-input
+                    class="pinput"
+                    v-model="historyData.t_start_flag"
+                    placeholder="公里"
+                    maxlength="3"
+                  >
+                    <template slot="prepend">DK</template>
+                  </el-input>
+                  <b>+</b>
+                  <el-input
+                    class="pinput"
+                    v-model="historyData.t_start_length"
+                    placeholder="米"
+                    maxlength="3"
+                  ></el-input>
                   <em>~</em>
-                  <el-input class="pinput" v-model="historyData.t_end_flag" placeholder="公里" maxlength="3"><template slot="prepend">DK</template></el-input><b>+</b>
-                  <el-input class="pinput" v-model="historyData.t_end_length" placeholder="米" maxlength="3"></el-input>
+                  <el-input
+                    class="pinput"
+                    v-model="historyData.t_end_flag"
+                    placeholder="公里"
+                    maxlength="3"
+                  >
+                    <template slot="prepend">DK</template>
+                  </el-input>
+                  <b>+</b>
+                  <el-input
+                    class="pinput"
+                    v-model="historyData.t_end_length"
+                    placeholder="米"
+                    maxlength="3"
+                  ></el-input>
                 </el-form-item>
               </div>
 
@@ -434,6 +486,7 @@ export default {
           let t_end =
             this.historyData.t_end_flag * 1000 +
             parseInt(this.historyData.t_end_length);
+
           if (this.addShow == true) {
             if (
               start < this.lineTypeStartTotal ||
@@ -447,6 +500,10 @@ export default {
             this.$message.error("输入的计划结束里程不能小于开始里程");
             return;
           }
+          if (end > this.lineTypeEndTotal) {
+            this.$message.error("计划里程已超出 " + this.lineTypeDes);
+            return;
+          }
           if (t_start < start) {
             this.$message.error("输入的实际开始里程不能小于计划开始里程");
             return;
@@ -455,6 +512,11 @@ export default {
             this.$message.error("输入的实际结束里程不能小于实际开始里程");
             return;
           }
+          if (t_end > this.lineTypeEndTotal) {
+            this.$message.error("实际里程已超出 " + this.lineTypeDes);
+            return;
+          }
+
           this.request({
             url: "/project/addOrEditPlan",
             method: "post",
@@ -495,6 +557,9 @@ export default {
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
+          this.getWorkList();
+          this.changeWorkListItem(data.data.pro_id);
+          this.changeWorkLineTypeList(data.data.line_type);
           this.historyData = data.data;
           this.historyData.is_finish = this.historyData.is_finish.toString();
           if (data.data.plan_num > 0) {
@@ -609,8 +674,20 @@ export default {
   line-height: 36px;
   text-align: center;
 }
-.el-form-item-dks .el-input-group__prepend{padding: 0 10px; border:1px #9db9fa solid;border-right: 0;color: #3655A5;font-weight: 700;}
-.el-form-item-dks .errorss .el-form-item__error {padding-left: 12px;}
-.el-form-item-dks  b{padding: 0 0 0 5px;}
-.el-form-item-dks  em{font-weight: 700;}
+.el-form-item-dks .el-input-group__prepend {
+  padding: 0 10px;
+  border: 1px #9db9fa solid;
+  border-right: 0;
+  color: #3655a5;
+  font-weight: 700;
+}
+.el-form-item-dks .errorss .el-form-item__error {
+  padding-left: 12px;
+}
+.el-form-item-dks b {
+  padding: 0 0 0 5px;
+}
+.el-form-item-dks em {
+  font-weight: 700;
+}
 </style>

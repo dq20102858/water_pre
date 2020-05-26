@@ -236,7 +236,8 @@ export default {
           status: "离线",
           createtime: "2020-05-10 15:44:34"
         }
-      ]
+      ],
+      applyClickXY: []
     };
   },
   updated() {
@@ -1145,6 +1146,7 @@ export default {
         }
       }
       //绘制请点
+      let clickXY = [];
       function drawAxesApply(applyListJson) {
         let json1 = applyListJson;
         let json = [
@@ -1182,7 +1184,7 @@ export default {
           }
         ];
         console.log("applyListJson" + applyListJson);
-        let clickXY = [];
+
         for (let i = 0; i < json.length; i++) {
           let start =
             parseInt(json[i].start_flag) * 1000 +
@@ -1228,8 +1230,8 @@ export default {
               );
             };
             clickXY.push({
-              x: centerX +52,
-              y: axis_applay.y-60,
+              x: centerX + 52,
+              y: axis_applay.y - 60,
               w: 60,
               h: 54,
               i: json[i]
@@ -1260,7 +1262,7 @@ export default {
             };
             clickXY.push({
               x: centerX + 32,
-              y: axis_applay_two.y-60,
+              y: axis_applay_two.y - 60,
               w: 60,
               h: 54,
               i: json[i]
@@ -1269,11 +1271,22 @@ export default {
           context.stroke();
           //
         }
-        canvas.addEventListener("dblclick", function(e) {
-          var x = event.pageX - canvas.getBoundingClientRect().left;
-          var y = event.pageY - canvas.getBoundingClientRect().top;
-          console.log(clickXY);
-          for (let item of clickXY) {
+
+        let applyClickXY = [];
+
+        applyClickXY.push(clickXY);
+        console.log(applyClickXY);
+      }
+      canvas.addEventListener("dblclick", function(e) {
+        var x = event.pageX - canvas.getBoundingClientRect().left;
+        var y = event.pageY - canvas.getBoundingClientRect().top;
+    //    debugger;
+        console.log(clickXY);
+        let myxx = clickXY;
+        let nums = 0;
+        for (let item of myxx) {
+          nums++;
+          if (nums == 1) {
             if (
               x >= item.x &&
               x <= item.x + item.w &&
@@ -1309,8 +1322,8 @@ export default {
                 .catch(() => {});
             }
           }
-        });
-      }
+        }
+      });
       function getEventPosition(ev) {
         var x, y;
         if (ev.layerX || ev.layerX == 0) {

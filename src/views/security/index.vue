@@ -909,10 +909,10 @@ export default {
   width: 100%;
 }
 #security .el-textarea__inner {
-  height: 130px;
+  height: 140px;
 }
 #security .textarea1 .el-textarea__inner {
-  height: 70px;
+  height: 80px;
 }
 #security .el-form-item-inline .el-input--medium {
   display: inline-block;

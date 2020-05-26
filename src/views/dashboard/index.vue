@@ -14,9 +14,6 @@
             <video
               :id="'myVideo'+item.id"
               class="video-js vjs-default-skin vjs-big-play-centered vjs-fluid"
-              preload="auto"
-              autoplay
-              controls
               ref="myVideo"
             >
               <source :src="item.url" type="rtmp/flv" />
