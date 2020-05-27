@@ -19,6 +19,38 @@
   </div>
 </template>
 <script>
+let canvas;
+let context;
+let axis_Height = "650";
+//标尺起点
+let axis_LeftLine = {
+  x: 30,
+  y: axis_Height - 400
+};
+let axis_LeftLine_Two = {
+  x: 30,
+  y: axis_Height - 280
+};
+//出入场线
+let axis_OutLine = {
+  x: 30,
+  y: axis_Height - 160
+};
+let axis_OutLine_Two = {
+  x: 30,
+  y: axis_Height - 50
+};
+
+let axis_Applay = {
+  x: 30,
+  y: axis_Height - 450
+};
+let axis_Applay_two = {
+  x: 30,
+  y: axis_Height - 330
+};
+let offsetX = 30;
+let applyClickXY = [];
 export default {
   data() {
     return {
@@ -84,64 +116,10 @@ export default {
           //请点
           this.applyList = data.data.apply_lists;
           //施工进度
-          let jsonWork = [
-            {
-              name: "\u91cc\u7a0b\u4f5c\u4e1a0519",
-              list: [
-                {
-                  id: 184,
-                  pro_id: 114,
-                  pro_name: "\u91cc\u7a0b\u4f5c\u4e1a0519",
-                  line_type: 1,
-                  start_flag: "1",
-                  start_length: "100",
-                  end_flag: "1",
-                  end_length: "804",
-                  line: "\u5de6\u7ebf"
-                },
-                {
-                  id: 183,
-                  pro_id: 114,
-                  pro_name: "\u91cc\u7a0b\u4f5c\u4e1a0519",
-                  line_type: 1,
-                  start_flag: "6",
-                  start_length: "736",
-                  end_flag: "8",
-                  end_length: "694",
-                  line: "\u5de6\u7ebf"
-                },
-                {
-                  id: 184,
-                  pro_id: 114,
-                  pro_name: "\u91cc\u7a0b\u4f5c\u4e1a0519",
-                  line_type: 2,
-                  start_flag: "4",
-                  start_length: "232",
-                  end_flag: "5",
-                  end_length: "245",
-                  line: "\u5de6\u7ebf"
-                },
-                {
-                  id: 183,
-                  pro_id: 114,
-                  pro_name: "\u91cc\u7a0b\u4f5c\u4e1a0519",
-                  line_type: 2,
-                  start_flag: "6",
-                  start_length: "736",
-                  end_flag: "8",
-                  end_length: "694",
-                  line: "\u5de6\u7ebf"
-                }
-              ]
-            }
-          ];
           if (data.data.project.length > 0) {
             this.progressList = data.data.project;
             this.progressCheckValue = data.data.project[0]["name"];
             this.progressListItem = data.data.project[0].list;
-            // this.progressList = jsonWork;
-            // this.progressCheckValue = jsonWork[0]["name"];
-            // this.progressListItem = jsonWork[0].list;
           }
           this.initCanvas();
           //
@@ -152,44 +130,14 @@ export default {
     initCanvas() {
       let clientWidth = this.$refs.proWrapper.clientWidth;
       let canvasWidth = clientWidth - 90;
-      this.cwidth = canvasWidth-30;
+      this.cwidth = canvasWidth - 30;
       let lineTypeBetwentMileage =
         this.lineTypeMaxMileage - this.lineTypeMinMileage;
       let lineTypeTotalMileage =
         this.lineTypeMaxMileage + this.lineTypeMinMileage;
-      this.every = (parseInt( this.cwidth) / lineTypeBetwentMileage).toFixed(5);
+      this.every = (parseInt(this.cwidth) / lineTypeBetwentMileage).toFixed(5);
       console.log("canvasWidth：" + this.cwidth + "_" + this.every);
 
-      //请点标尺起点
-      let axis_Height = "650";
-      //左右线标尺起点
-      let axis_LeftLine = {
-        x: 30,
-        y: axis_Height - 400
-      };
-      let axis_LeftLine_Two = {
-        x: 30,
-        y: axis_Height - 280
-      };
-      //出入场线
-      let axis_OutLine = {
-        x: 30,
-        y: axis_Height - 160
-      };
-      let axis_OutLine_Two = {
-        x: 30,
-        y: axis_Height - 50
-      };
-
-      let axis_Applay = {
-        x: 30,
-        y: axis_Height - 450
-      };
-      let axis_Applay_two = {
-        x: 30,
-        y: axis_Height - 330
-      };
-      let offsetX = 30;
       let lineTypeMinMileage = this.lineTypeMinMileage;
       let every = this.every; //每米长度等于px
       console.log("every：" + every);
@@ -197,7 +145,7 @@ export default {
       const canvas = this.$refs.canvasStation;
       let context = canvas.getContext("2d");
       canvas.width = canvasWidth;
- console.log("lineTypeMinMileage："+lineTypeMinMileage);
+      console.log("lineTypeMinMileage：" + lineTypeMinMileage);
       //左右线
       function drawAxesLine(lineJson) {
         // lineJson=[
@@ -324,6 +272,7 @@ export default {
             if (startLineX == 0) {
               startLineX = axis_LeftLine.x;
             }
+            console.log("startLineX：" + startLineX);
             // 计算当前站点的x轴
             context.drawImage(
               img,
@@ -360,13 +309,6 @@ export default {
       function drawAxesCar(jsonData) {
         context.beginPath();
         let jsonCar = [
-          {
-            id: 1,
-            name: "ZY01",
-            start_flag: 0,
-            start_length: 500,
-            line_type: 1
-          },
           {
             id: 1,
             name: "ZY01",
@@ -545,52 +487,37 @@ export default {
         let json1 = [
           {
             line_type: 1,
-            number: "A4-2-007-1",
+            number: "A1-2-007-1",
             command_num: "(2020)\u5b57\u7b2c04.21-007-2",
             description: "\u98ce\u98ce\u5149\u5149",
-            work_area: "DK0+300\u81f3DK1+804",
+            work_area: "DK0+600\u81f3DK1+804",
             start_time: "2020-04-28 00:00:00",
             end_time: "2020-04-28 23:59:59",
             start_flag: "0",
-            start_length: "300",
+            start_length: "600",
             end_flag: "1",
             end_length: "804",
-            type: "A4",
-            start_total: 14600,
-            end_total: 26410
+            type: "A1",
+            start_total: 600,
+            end_total: 10604
           },
           {
             line_type: 1,
             number: "A4-2-007-1",
             command_num: "(2020)\u5b57\u7b2c04.21-007-2",
             description: "\u98ce\u98ce\u5149\u5149",
-            work_area: "DK14+130\u81f3DK42+410",
+            work_area: "DK4+232\u81f3DK5+245",
             start_time: "2020-04-28 00:00:00",
             end_time: "2020-04-28 23:59:59",
-            start_flag: "1",
-            start_length: "804",
-            end_flag: "4",
-            end_length: "232",
+            start_flag: "4",
+            start_length: "232",
+            end_flag: "5",
+            end_length: "245",
             type: "A4",
-            start_total: 14600,
-            end_total: 26410
+            start_total: 40232,
+            end_total: 50245
           },
-          {
-            line_type: 1,
-            number: "A3-2-007-1",
-            command_num: "(2020)\u5b57\u7b2c04.21-007-2",
-            description: "\u98ce\u98ce\u5149\u5149",
-            work_area: "DK14+160\u81f3DK21+370",
-            start_time: "2020-04-28 00:00:00",
-            end_time: "2020-04-28 23:59:59",
-            start_flag: "6",
-            start_length: "736",
-            end_flag: "9",
-            end_length: "808",
-            type: "A3",
-            start_total: 14600,
-            end_total: 21370
-          },
+
           {
             line_type: 2,
             number: "A3-2-007-1",
@@ -608,7 +535,7 @@ export default {
             end_total: 21370
           }
         ];
-        let clickXYApplyList = [];
+        //  let clickXYApplyList = [];
         for (let i = 0; i < json.length; i++) {
           let start =
             parseInt(json[i].start_flag) * 1000 +
@@ -619,25 +546,30 @@ export default {
             "YDK" + json[i].start_flag + " +" + json[i].start_length;
           let dkend = "YDK" + json[i].end_flag + " +" + json[i].end_length;
           let startX = (start - lineTypeMinMileage) * every;
-          console.log("startX："+startX);
-          if (startX== 0) {
-            startX = axis_LeftLine.x;
-          }
+              if (parseInt(json[i].start_flag)  == 0) {
+             startX =startX+axis_LeftLine.x;
+           }
           let endX = (end - lineTypeMinMileage) * every;
           let centerX = (endX + startX) / 2; //开始结束平均值
+       
+        //  startX=startX+axis_LeftLine.x;
+          console.log("startX：" + startX);
+
           let desc = json[i].type;
           context.lineWidth = 2;
-          if (json[i].type == "A1") {
-            context.fillStyle = "#1AE642";
-            context.strokeStyle = "#1AE642";
-          } else if (json[i].type == "A2") {
-          } else if (json[i].type == "A3") {
-            context.fillStyle = "#ff0000";
-            context.strokeStyle = "#ff0000";
-          } else if (json[i].type == "A4") {
-            context.fillStyle = "#ffff00";
-            context.strokeStyle = "#ffff00";
-          }
+          context.fillStyle = "#ffff00";
+          context.strokeStyle = "#ffff00";
+          // if (json[i].type == "A1") {
+          //   context.fillStyle = "#1AE642";
+          //   context.strokeStyle = "#1AE642";
+          // } else if (json[i].type == "A2") {
+          // } else if (json[i].type == "A3") {
+          //   context.fillStyle = "#ff0000";
+          //   context.strokeStyle = "#ff0000";
+          // } else if (json[i].type == "A4") {
+          //   context.fillStyle = "#ffff00";
+          //   context.strokeStyle = "#ffff00";
+          // }
           context.beginPath();
           if (json[i].line_type == 1) {
             //画水平直线
@@ -646,7 +578,7 @@ export default {
             context.moveTo(startX, axis_Applay.y);
             context.lineTo(endX + 1, axis_Applay.y);
             //文字
-            clickXYApplyList.push({
+            applyClickXY.push({
               x: centerX - 32,
               y: axis_Applay.y - 30,
               w: 60,
@@ -665,7 +597,7 @@ export default {
             context.moveTo(startX, axis_Applay_two.y);
             context.lineTo(endX + 1, axis_Applay_two.y);
             //文字
-            clickXYApplyList.push({
+            applyClickXY.push({
               x: centerX - 32,
               y: axis_Applay_two.y - 30,
               w: 60,
@@ -687,51 +619,50 @@ export default {
           context.stroke();
           //
         }
-        canvas.addEventListener(
-          "dblclick",
-          function(event) {
-            var x = event.pageX - canvas.getBoundingClientRect().left;
-            var y = event.pageY - canvas.getBoundingClientRect().top;
-            console.log("clickXY：" + JSON.stringify(clickXYApplyList));
-            for (let item of clickXYApplyList) {
-              if (
-                x >= item.x &&
-                x <= item.x + item.w &&
-                y >= item.y &&
-                y <= item.y + item.h
-              ) {
-                let infos = item.i;
-                that
-                  .$confirm(
-                    "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>作业编号：</span>" +
-                      infos.number +
-                      "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>作业令号</span>：" +
-                      infos.command_num +
-                      "</p>" +
-                      "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>开始时间：</span>" +
-                      infos.start_time +
-                      "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>结束时间：</span>" +
-                      infos.end_time +
-                      "</p>" +
-                      "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>施工区间：</span>" +
-                      infos.work_area +
-                      "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>施工内容：</span>" +
-                      infos.description +
-                      "</p>",
-                    {
-                      distinguishCancelAndClose: true,
-                      dangerouslyUseHTMLString: true,
-                      showCancelButton: false,
-                      showConfirmButton: false
-                    }
-                  )
-                  .catch(() => {});
-                break;
-              }
+        canvas.onclick = function(event) {
+          // canvas.addEventListener(
+          //   "dblclick",
+          //   function(event) {
+          var x = event.pageX - canvas.getBoundingClientRect().left;
+          var y = event.pageY - canvas.getBoundingClientRect().top;
+          console.log("clickXY：" + JSON.stringify(applyClickXY));
+          for (let item of applyClickXY) {
+            if (
+              x >= item.x &&
+              x <= item.x + item.w &&
+              y >= item.y &&
+              y <= item.y + item.h
+            ) {
+              let infos = item.i;
+              that
+                .$confirm(
+                  "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>作业编号：</span>" +
+                    infos.number +
+                    "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>作业令号</span>：" +
+                    infos.command_num +
+                    "</p>" +
+                    "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>开始时间：</span>" +
+                    infos.start_time +
+                    "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>结束时间：</span>" +
+                    infos.end_time +
+                    "</p>" +
+                    "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>施工区间：</span>" +
+                    infos.work_area +
+                    "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>施工内容：</span>" +
+                    infos.description +
+                    "</p>",
+                  {
+                    distinguishCancelAndClose: true,
+                    dangerouslyUseHTMLString: true,
+                    showCancelButton: false,
+                    showConfirmButton: false
+                  }
+                )
+                .catch(() => {});
+              break;
             }
-          },
-          false
-        );
+          }
+        };
       }
       //绘制施工进度
       function drawProgressAxis(sprogressListJson) {

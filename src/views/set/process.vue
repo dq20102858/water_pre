@@ -28,7 +28,11 @@
             </div>
             <div class="app-table">
               <el-table :data="dataItemList">
-                <el-table-column label="编号" prop="id"></el-table-column>
+               <el-table-column label="序号">
+              <template slot-scope="scope">
+                <span>{{scope.$index+ 1}}</span>
+              </template>
+            </el-table-column>
                 <el-table-column prop="name" label="名称"></el-table-column>
                 <el-table-column label="操作" width="68">
                   <template slot-scope="scope">
@@ -53,7 +57,11 @@
             </div>
             <div class="app-table">
               <el-table :data="dataWorkSortList">
-                <el-table-column label="编号" prop="id"></el-table-column>
+               <el-table-column label="序号">
+              <template slot-scope="scope">
+             <span>{{scope.$index+ 1}}</span>
+              </template>
+            </el-table-column>
                 <el-table-column prop="name" label="名称"></el-table-column>
                 <el-table-column label="操作" width="68">
                   <template slot-scope="scope">

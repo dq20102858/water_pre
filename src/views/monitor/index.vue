@@ -186,7 +186,6 @@ export default {
       progressListItem: [],
       progressCheckValue: 0,
       applyList: [],
-      applyClickXYList: [],
       lineTypeList: [],
       every: 0.5,
       minKM: 0,
@@ -238,7 +237,6 @@ export default {
           createtime: "2020-05-10 15:44:34"
         }
       ],
-      applyClickXY: []
     };
   },
   updated() {
@@ -1153,38 +1151,69 @@ export default {
         let json1 = [
           {
             line_type: 1,
-            number: "A1-2-007-1",
+            number: "A4-2-007-1",
+            command_num: "(2020)\u5b57\u7b2c04.21-007-2",
+            description: "\u98ce\u98ce\u5149\u5149",
+            work_area: "DK0+300\u81f3DK1+804",
+            start_time: "2020-04-28 00:00:00",
+            end_time: "2020-04-28 23:59:59",
+            start_flag: "0",
+            start_length: "300",
+            end_flag: "1",
+            end_length: "804",
+            type: "A4",
+            start_total: 14600,
+            end_total: 26410
+          },
+          {
+            line_type: 1,
+            number: "A4-2-007-1",
             command_num: "(2020)\u5b57\u7b2c04.21-007-2",
             description: "\u98ce\u98ce\u5149\u5149",
             work_area: "DK14+130\u81f3DK42+410",
             start_time: "2020-04-28 00:00:00",
             end_time: "2020-04-28 23:59:59",
-            start_flag: "0",
-            start_length: "600",
-            end_flag: "1",
-            end_length: "800",
-            type: "A1",
+            start_flag: "1",
+            start_length: "804",
+            end_flag: "4",
+            end_length: "232",
+            type: "A4",
             start_total: 14600,
-            end_total: 16410
+            end_total: 26410
+          },
+          {
+            line_type: 1,
+            number: "A3-2-007-1",
+            command_num: "(2020)\u5b57\u7b2c04.21-007-2",
+            description: "\u98ce\u98ce\u5149\u5149",
+            work_area: "DK14+160\u81f3DK21+370",
+            start_time: "2020-04-28 00:00:00",
+            end_time: "2020-04-28 23:59:59",
+            start_flag: "6",
+            start_length: "736",
+            end_flag: "9",
+            end_length: "808",
+            type: "A3",
+            start_total: 14600,
+            end_total: 21370
           },
           {
             line_type: 2,
             number: "A3-2-007-1",
             command_num: "(2020)\u5b57\u7b2c04.21-007-2",
             description: "\u98ce\u98ce\u5149\u5149",
-            work_area: "DK14+130\u81f3DK42+410",
+            work_area: "DK14+160\u81f3DK21+370",
             start_time: "2020-04-28 00:00:00",
             end_time: "2020-04-28 23:59:59",
-            start_flag: "0",
-            start_length: "300",
-            end_flag: "1",
-            end_length: "500",
+            start_flag: "6",
+            start_length: "736",
+            end_flag: "9",
+            end_length: "808",
             type: "A3",
             start_total: 14600,
-            end_total: 16410
+            end_total: 21370
           }
         ];
-
         for (let i = 0; i < json.length; i++) {
           let start =
             parseInt(json[i].start_flag) * 1000 +
@@ -1271,67 +1300,50 @@ export default {
           context.stroke();
           //
         }
-
-        canvas.addEventListener(
-          "dblclick",
-          function(event) {
-            var x = event.pageX - canvas.getBoundingClientRect().left;
-            var y = event.pageY - canvas.getBoundingClientRect().top;
-            console.log("X：" + x + "_" + y);
-            //    debugger;
-            console.log(applyClickXY);
-            for (let item of applyClickXY) {
-              if (
-                x >= item.x &&
-                x <= item.x + item.w &&
-                y >= item.y &&
-                y <= item.y + item.h
-              ) {
-                let infos = item.i;
-                that
-                  .$confirm(
-                    "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>作业编号：</span>" +
-                      infos.number +
-                      "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>作业令号</span>：" +
-                      infos.command_num +
-                      "</p>" +
-                      "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>开始时间：</span>" +
-                      infos.start_time +
-                      "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>结束时间：</span>" +
-                      infos.end_time +
-                      "</p>" +
-                      "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>施工区间：</span>" +
-                      infos.work_area +
-                      "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>施工内容：</span>" +
-                      infos.description +
-                      "</p>",
-                    {
-                      distinguishCancelAndClose: true,
-                      dangerouslyUseHTMLString: true,
-                      showCancelButton: false,
-                      showConfirmButton: false
-                    }
-                  )
-                  .catch(() => {});
-                break;
-              }
-            }
-          },
-          false
-        );
       }
-      function getEventPosition(ev) {
-        var x, y;
-        if (ev.layerX || ev.layerX == 0) {
-          x = ev.layerX;
-          y = ev.layerY;
-        } else if (ev.offsetX || ev.offsetX == 0) {
-          // Opera
-          x = ev.offsetX;
-          y = ev.offsetY;
+      canvas.onclick = function(event) {
+        var x = event.pageX - canvas.getBoundingClientRect().left;
+        var y = event.pageY - canvas.getBoundingClientRect().top;
+        console.log("X：" + x + "_" + y);
+        //    debugger;
+        console.log(applyClickXY);
+        for (let item of applyClickXY) {
+          if (
+            x >= item.x &&
+            x <= item.x + item.w &&
+            y >= item.y &&
+            y <= item.y + item.h
+          ) {
+            let infos = item.i;
+            that
+              .$confirm(
+                "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>作业编号：</span>" +
+                  infos.number +
+                  "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>作业令号</span>：" +
+                  infos.command_num +
+                  "</p>" +
+                  "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>开始时间：</span>" +
+                  infos.start_time +
+                  "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>结束时间：</span>" +
+                  infos.end_time +
+                  "</p>" +
+                  "<p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>施工区间：</span>" +
+                  infos.work_area +
+                  "</p><p style='color:#4b6eca;padding-left:20px'><span style='color:#1d397a'>施工内容：</span>" +
+                  infos.description +
+                  "</p>",
+                {
+                  distinguishCancelAndClose: true,
+                  dangerouslyUseHTMLString: true,
+                  showCancelButton: false,
+                  showConfirmButton: false
+                }
+              )
+              .catch(() => {});
+            break;
+          }
         }
-        return { x: x, y: y };
-      }
+      };
       //车定位
       function drawAxesCar(jsonData) {
         let jsonCar = [
@@ -1569,9 +1581,9 @@ export default {
         drawSlopeAxis(this.slopeList);
       }
       //作业
-      if (this.applyList.length > 0) {
-        drawAxesApply(this.applyList);
-      }
+      // if (this.applyList.length > 0) {
+      drawAxesApply(this.applyList);
+      // }
       //道岔
       if (this.daocCheckValue) {
         drawDaocha();

@@ -951,7 +951,7 @@ export default {
             trigger: "change"
           }
         ],
-       start_flag: [
+        start_flag: [
           {
             required: true,
             message: "请输入公里",
@@ -982,7 +982,7 @@ export default {
             trigger: "blur"
           },
           {
-           pattern: /^(|[0-9]\d{0,3})?$/,
+            pattern: /^(|[0-9]\d{0,3})?$/,
             message: "请输入正数字",
             trigger: "blur"
           }
@@ -1713,7 +1713,6 @@ export default {
               this.formData.number = "";
               this.formData.start_time = "";
               this.formData.end_time = "";
-
               this.$message({
                 type: "success",
                 message: "保存成功！"
@@ -1857,7 +1856,7 @@ export default {
           //     data.data.true_end_length == null
           //       ? parseFloat(data.data.end_length)
           //       : parseFloat(data.data.true_end_length)),
-          console.log(this.formEditData);
+          //le.log(this.formEditData);
         }
       });
     },
@@ -1905,7 +1904,7 @@ export default {
       this.$refs["refFormEditRules"].validate(valid => {
         if (valid) {
           let data = this.formEditData;
-          let dataa = data.end_time;
+          this.formEditData.date = this.formData.date;
 
           if (+this.formEditData.end_time < +this.formEditData.start_time) {
             this.$message.error("施工开始时间不能大于结束时间");
@@ -1917,7 +1916,7 @@ export default {
           let end =
             this.formEditData.true_end_flag * 1000 +
             parseInt(this.formEditData.true_end_length);
-          console.log("dd:" + this.lineTypeStartTotal);
+          //  console.log("dd:" + this.lineTypeStartTotal);
           if (start < this.lineTypeStartTotal || end > this.lineTypeEndTotal) {
             this.$message.error("请输入" + this.lineTypeDes);
             return;
@@ -1929,15 +1928,6 @@ export default {
             });
             return;
           }
-
-          // if (new Date(data.end_time) < new Date(data.start_time)) {
-          //   this.$message.error("施工开始时间不能大于结束时间");
-          //   return false;
-          // }
-          // if (new Date(data.true_end_time) < new Date(data.true_start_time)) {
-          //   this.$message.error("实际施工开始时间不能大于结束时间");
-          //   return false;
-          // }
           this.request({
             url: "/dayplan/updateDayTrueplan",
             method: "post",
@@ -2187,5 +2177,4 @@ export default {
 .lengtherror .el-form-item__error {
   padding-left: 20px;
 }
-
 </style>

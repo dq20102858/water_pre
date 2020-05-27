@@ -23,7 +23,11 @@
         </div>
         <div class="app-table">
           <el-table :data="dataList">
-            <el-table-column prop="id" label="序号"></el-table-column>
+             <el-table-column label="序号">
+              <template slot-scope="scope">
+                <span>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
+              </template>
+            </el-table-column>
             <el-table-column prop="name" label="名称"></el-table-column>
             <el-table-column prop="description" label="详情" show-overflow-tooltip></el-table-column>
             <el-table-column prop="company" label="公司名称"></el-table-column>

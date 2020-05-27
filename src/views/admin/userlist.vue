@@ -286,8 +286,8 @@ export default {
           },
           {
             min: 2,
-            max: 14,
-            message: "请输入姓名长度在2到14个字符",
+            max:10,
+            message: "请输入姓名长度在2到10个字符",
             trigger: "blur"
           },
           {

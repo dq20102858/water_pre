@@ -8,7 +8,7 @@
       </el-menu>
     </div>
     <div class="app-page">
-      <el-row :gutter="20">
+      <el-row :gutter="20" class="videolist">
         <el-col :span="6" v-for="(item,i) in videoList" :key="i">
           <div class="grid-content">
             <video
@@ -22,8 +22,8 @@
             <!-- <video :id="'myVideo'+item.id" class="video-js" ref="myVideo">
               <source :src="item.url" type="rtmp/flv" />
             </video>-->
+            <div class="grid-title">{{item.name}}</div>
           </div>
-          <div class="grid-title">{{item.name}}</div>
         </el-col>
       </el-row>
     </div>
@@ -98,9 +98,15 @@ export default {
   overflow: hidden;
 }
 .videolist .grid-content {
-  background: #000;
+ background: #fff;
+  border: 1px #3655a5 solid;
   border-radius: 6px;
   padding: 2px;
+}
+.videolist .grid-title {
+ color: #1d397a;
+  font-size: 16px;
+  padding:10px 8px 8px 8px;
 }
 .videolist .el-row {
   margin-bottom: 20px;
