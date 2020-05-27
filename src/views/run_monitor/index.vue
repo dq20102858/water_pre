@@ -810,7 +810,7 @@
             </el-form-item>
           </div>
           <div class="el-form-item-block dateinput">
-            <el-form-item label="完成数量(公里)：" label-width="120px" prop="finish_num">
+            <el-form-item label="完成长度(公里)：" label-width="120px" prop="finish_num">
               <el-input
                 v-model="formEditData.finish_num"
                 autocomplete="off"
@@ -2187,4 +2187,5 @@ export default {
 .lengtherror .el-form-item__error {
   padding-left: 20px;
 }
+
 </style>

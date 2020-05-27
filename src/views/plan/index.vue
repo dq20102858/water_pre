@@ -101,7 +101,7 @@
             <el-table-column prop="status" label="完成情况">
               <template slot-scope="scope">
                 <span class="statuse1" v-if="scope.row.status==1">未完成</span>
-                <span class="statuse2" v-if="scope.row.status==2">已完成</span>
+                <span class="statuse02" v-if="scope.row.status==2">已完成</span>
               </template>
             </el-table-column>
             <el-table-column label="操作" width="120">
@@ -561,5 +561,9 @@ export default {
   display: inline-block;
   width: 90px;
   text-align: right;
+}
+
+.statuse02 {
+  color: #029b02;
 }
 </style>
