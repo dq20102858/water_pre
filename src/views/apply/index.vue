@@ -107,7 +107,7 @@
             <el-table-column prop="number" label="作业编号"></el-table-column>
             <el-table-column prop="command_num" label="作业令号"></el-table-column>
             <el-table-column prop="description" label="作业内容" show-overflow-tooltip></el-table-column>
-            <el-table-column prop="status" label="当前状态">
+            <el-table-column prop="status" label="当前状态" width="80"  align="center">
               <template slot-scope="scope">
                 <span class="statuse1" v-if="scope.row.status=='未批复'">未批复</span>
                 <span class="statuse2" v-if="scope.row.status=='同意'">同意</span>
@@ -117,9 +117,9 @@
                 <span class="statuse1" v-if="scope.row.status=='注销'">注销</span>
               </template>
             </el-table-column>
-            <el-table-column prop="next_status" label="下一步状态"></el-table-column>
+            <el-table-column prop="next_status" label="下一步状态" width="100"  align="center"></el-table-column>
             <el-table-column prop="company" label="公司简称" show-overflow-tooltip></el-table-column>
-            <el-table-column prop="create_time" label="创建时间"></el-table-column>
+            <el-table-column prop="create_time" label="创建时间"  width="150"></el-table-column>
             <el-table-column label="操作" width="125">
               <template slot-scope="scope">
                 <div class="app-operation">

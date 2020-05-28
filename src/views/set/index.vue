@@ -36,7 +36,7 @@
         </div>
         <div class="app-table">
           <el-table :data="dataList">
-            <el-table-column label="序号">
+            <el-table-column label="序号" width="80">
               <template slot-scope="scope">
                 <span>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
               </template>
@@ -56,15 +56,14 @@
               </template>
             </el-table-column>
             <el-table-column prop="line" label="线别"></el-table-column>
-            <!-- <el-table-column prop="company" label="公司"></el-table-column> -->
-            <el-table-column prop="create_time" label="创建时间">
-              <template slot-scope="scope">
+            <el-table-column prop="create_time" label="创建时间" width="160">
+              <!-- <template slot-scope="scope">
                 <span class="time-warp">{{scope.row.create_time}}</span>
-              </template>
+              </template> -->
             </el-table-column>
-            <el-table-column prop="update_time" label="修改时间">
+            <el-table-column prop="update_time" label="修改时间" width="160">
               <template slot-scope="scope">
-                <span class="time-warp">{{timestampToTime(scope.row.update_time)}}</span>
+                <span>{{timestampToTime(scope.row.update_time)}}</span>
               </template>
             </el-table-column>
             <el-table-column label="操作" width="120">

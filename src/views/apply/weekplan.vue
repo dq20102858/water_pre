@@ -118,8 +118,8 @@
                     </div>
                   </div>
                   <div class="grid-box">
-                    <p>申报人员：{{item.apply}}</p>
-                    <p>申报单位：{{item.company}}</p>
+                    <p class="gnames">申报人员：{{item.apply}}</p>
+                    <p class="gcompany">申报单位：{{item.company}}</p>
                     <p>申报时间：{{item.start_time}} ~ {{item.end_time}}</p>
                     <p>
                       <b @click="goDetail(item.id)">查看周计划</b>
@@ -505,14 +505,26 @@ export default {
 }
 #app-weekplan .el-col {
   border-radius: 4px;
+  min-width: 200px;
 }
-.grid-content {
+#app-weekplan .grid-content {
   border-radius: 4px;
   min-height: 36px;
   background: #fff;
   margin-bottom: 20px;
+  min-width: 200px;
 }
-.grid-content .grid-title {
+#app-weekplan .gnames {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#app-weekplan .gcompany {
+  max-height: 55px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#app-weekplan .grid-content .grid-title {
   color: #fff;
   background: #3655a5;
   font-size: 16px;
@@ -523,29 +535,30 @@ export default {
   text-align: left;
   font-weight: 700;
 }
-.grid-content .grid-title .tright {
+#app-weekplan .grid-content .grid-title .tright {
   float: right;
   padding-right: 10px;
 }
-.grid-content .grid-title .tright .el-tag {
+#app-weekplan .grid-content .grid-title .tright .el-tag {
   background: none !important;
   padding: 0 10px;
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
 }
-.grid-content .grid-box {
+#app-weekplan .grid-content .grid-box {
   padding: 20px;
   border: 1px #3655a5 solid;
   border-radius: 0 0 6px 6px;
   overflow: hidden;
 }
-.grid-content .grid-box p {
+#app-weekplan .grid-content .grid-box p {
   color: #4b6eca;
   line-height: 28px;
   font-size: 16px;
+  margin-bottom: 5px;
 }
-.grid-content .grid-box b {
+#app-weekplan .grid-content .grid-box b {
   text-align: center;
   display: block;
   border: 1px #4b6eca solid;
@@ -555,7 +568,7 @@ export default {
   width: 120px;
   margin: 10px auto 0 auto;
 }
-.grid-content .grid-box:hover {
+#app-weekplan .grid-content .grid-box:hover {
   background: #fafafa;
   box-shadow: 1px 2px 10px 0 rgba(54, 85, 222, 0.3);
   cursor: pointer;
