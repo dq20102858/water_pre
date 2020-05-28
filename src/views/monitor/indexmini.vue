@@ -546,13 +546,13 @@ export default {
             "YDK" + json[i].start_flag + " +" + json[i].start_length;
           let dkend = "YDK" + json[i].end_flag + " +" + json[i].end_length;
           let startX = (start - lineTypeMinMileage) * every;
-              if (parseInt(json[i].start_flag)  == 0) {
-             startX =startX+axis_LeftLine.x;
-           }
+          if (parseInt(json[i].start_flag) == 0) {
+            startX = startX + axis_LeftLine.x;
+          }
           let endX = (end - lineTypeMinMileage) * every;
           let centerX = (endX + startX) / 2; //开始结束平均值
-       
-        //  startX=startX+axis_LeftLine.x;
+
+          //  startX=startX+axis_LeftLine.x;
           console.log("startX：" + startX);
 
           let desc = json[i].type;
@@ -579,7 +579,7 @@ export default {
             context.lineTo(endX + 1, axis_Applay.y);
             //文字
             applyClickXY.push({
-              x: centerX - 32,
+              x: centerX - 29,
               y: axis_Applay.y - 30,
               w: 60,
               h: 54,
@@ -588,7 +588,7 @@ export default {
             let img = new Image();
             img.src = require("@/assets/image/" + desc + ".png");
             img.onload = function() {
-              context.drawImage(img, centerX - 32, axis_Applay.y - 56, 60, 54);
+              context.drawImage(img, centerX - 29, axis_Applay.y - 56, 60, 54);
             };
           } else if (json[i].line_type == 2) {
             //画水平直线
@@ -598,7 +598,7 @@ export default {
             context.lineTo(endX + 1, axis_Applay_two.y);
             //文字
             applyClickXY.push({
-              x: centerX - 32,
+              x: centerX - 29,
               y: axis_Applay_two.y - 30,
               w: 60,
               h: 54,
@@ -609,7 +609,7 @@ export default {
             img.onload = function() {
               context.drawImage(
                 img,
-                centerX - 32,
+                centerX - 29,
                 axis_Applay_two.y - 56,
                 60,
                 54
@@ -619,7 +619,7 @@ export default {
           context.stroke();
           //
         }
-        canvas.onclick = function(event) {
+        canvas.mouseover = function(event) {
           // canvas.addEventListener(
           //   "dblclick",
           //   function(event) {
@@ -811,7 +811,9 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   background: #081c33;
   padding-bottom: 30px;
 }
-
+#canvasStation {
+  background: #081c33;
+}
 .station {
   margin: 30px 30px 0px 30px;
   position: relative;

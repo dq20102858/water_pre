@@ -1252,7 +1252,7 @@ export default {
             img.onload = function() {
               context.drawImage(
                 img,
-                centerX + offsetX - 32,
+                centerX + offsetX - 30,
                 axis_applay.y - 56,
                 60,
                 54
@@ -1283,7 +1283,7 @@ export default {
             img.onload = function() {
               context.drawImage(
                 img,
-                centerX + offsetX - 32,
+                centerX + offsetX - 30,
                 axis_applay_two.y - 56,
                 60,
                 54
