@@ -38,6 +38,16 @@
                     ></el-option>
                   </el-select>
                 </el-form-item>
+                    <el-form-item label="状态">
+              <el-select v-model="searchForm.status" placeholder="请选择状态" clearable>
+                <el-option
+                  v-for="item in statusList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
                 <el-form-item class="form-so">
                   <label class="el-form-item__label"></label>
                   <el-button
@@ -46,6 +56,7 @@
                     @click="getWeekList"
                     type="primary"
                   >查询</el-button>
+                     <el-button size="small" plain @click="resetSerach">重置</el-button>
                 </el-form-item>
               </el-form>
             </div>
@@ -79,17 +90,6 @@
                             </li>
                           </ul>
                         </div>
-                        <!-- <el-steps direction="vertical" :active="1">
-                            <el-step
-                              style="flex-basis:auto"
-                              v-for="item in logDataList"
-                              :key="item.id"
-                              :title="item.create_time+'              '+ item.remark"
-                              :description="item.reason"
-                              icon="el-icon-s-promotion"
-                            ></el-step>
-                        </el-steps>-->
-
                         <el-tag
                           class="statuse1"
                           slot="reference"
@@ -101,7 +101,7 @@
                           slot="reference"
                           title="点击查看更多"
                           v-if="item.status==2"
-                        >审核通过</el-tag>
+                        >通过</el-tag>
                         <el-tag
                           class="statuse3"
                           slot="reference"
@@ -339,6 +339,11 @@ export default {
         depart_id: "",
         time_range: []
       },
+       statusList: [
+        { id: 5, name: "审核中" },
+        { id: 2, name: "通过" },
+        { id: 3, name: "拒绝" }
+      ],
       logDataList: [],
       workId: 0,
       dialogVisible: false,
@@ -376,13 +381,15 @@ export default {
       let page = this.page_cur;
       let depart_id = this.searchForm.depart_id;
       let time_range = this.searchForm.time_range;
+      let status=this.searchForm.status;
       this.request({
         url: "apply/getWeekLists",
         method: "get",
         params: {
           page,
           depart_id,
-          time_range
+          time_range,
+          status
         }
       }).then(res => {
         let data = res.data;
@@ -405,6 +412,14 @@ export default {
     toLastPage() {
       this.page_cur = this.page_total;
       this.pageChange(this.page_total);
+    },
+       resetSerach() {
+      this.searchForm = {
+        time_range: "",
+        depart_id: "",
+        status: "",
+      };
+      this.getWeekList();
     },
     goDetail(id) {
       this.isParent = false;

@@ -52,6 +52,16 @@
                 clearable
               ></el-date-picker>
             </el-form-item>
+            <el-form-item label="状态">
+              <el-select v-model="searchForm.status" placeholder="请选择状态" clearable>
+                <el-option
+                  v-for="item in statusList"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
+            </el-form-item>
             <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
               <el-button
@@ -380,6 +390,10 @@ export default {
           }
         }
       },
+      statusList: [
+        { id: 1, name: "未完成" },
+        { id: 2, name: "已完成" }
+      ],
       stationList: [],
       end_station: [],
       dataList: [],
@@ -415,6 +429,7 @@ export default {
       let type = this.searchForm.type;
       let start_time = this.searchForm.start_time;
       let end_time = this.searchForm.end_time;
+      let status = this.searchForm.status;
       this.request({
         url: "/dayplan/getDayplanLists",
         method: "get",
@@ -424,7 +439,8 @@ export default {
           end_station,
           type,
           start_time,
-          end_time
+          end_time,
+          status
         }
       }).then(res => {
         let data = res.data;
@@ -458,7 +474,8 @@ export default {
         end_station: "",
         type: "",
         start_time: "",
-        end_time: ""
+        end_time: "",
+        status: ""
       };
       this.page_cur = 1;
       this.getDataList();
