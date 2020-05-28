@@ -90,7 +90,7 @@
               <el-date-picker
                 v-model="searchForm.start_time"
                 :picker-options="pickerOptionsStart"
-                type="date"
+                type="datetime"
                 clearable
               ></el-date-picker>
             </el-form-item>
@@ -98,7 +98,7 @@
               <el-date-picker
                 v-model="searchForm.end_time"
                 :picker-options="pickerOptionsEnd"
-                type="date"
+                type="datetime"
                 clearable
               ></el-date-picker>
             </el-form-item>

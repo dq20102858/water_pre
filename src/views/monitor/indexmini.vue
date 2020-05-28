@@ -622,9 +622,6 @@ export default {
           //
         }
         canvas.onclick = function(event) {
-          // canvas.addEventListener(
-          //   "dblclick",
-          //   function(event) {
           var x = event.pageX - canvas.getBoundingClientRect().left;
           var y = event.pageY - canvas.getBoundingClientRect().top;
           console.log("clickXY：" + JSON.stringify(applyClickXY));

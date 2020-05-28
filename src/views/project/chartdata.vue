@@ -61,21 +61,21 @@
                   </li>
                   <li>
                     <p>剩余工程量</p>
-                    <h3 class="p3">{{echartDataList.leftTotal}}</h3>
+                    <h3 class="p3">{{echartDataList.leftTotal}} <em>{{echartDataList.unit}}</em></h3>
                   </li>
                 </ul>
                 <ul class="twoitem">
                   <li>
                     <p>年累完成</p>
-                    <h3>{{echartDataList.yearTotal}}</h3>
+                    <h3>{{echartDataList.yearTotal}} <em>{{echartDataList.unit}}</em></h3>
                   </li>
                   <li>
                     <p>月累完成</p>
-                    <h3>{{echartDataList.monthTotal}}</h3>
+                    <h3>{{echartDataList.monthTotal}} <em>{{echartDataList.unit}}</em></h3>
                   </li>
                   <li>
                     <p>开累完成</p>
-                    <h3>{{echartDataList.workTotal}}</h3>
+                    <h3>{{echartDataList.workTotal}} <em>{{echartDataList.unit}}</em></h3>
                   </li>
                 </ul>
               </div>
@@ -431,6 +431,7 @@ export default {
   display: flex;
   justify-content: space-between;
 }
+
 .second-content .twoitem li {
   width: 30%;
   text-align: center;
@@ -444,6 +445,9 @@ export default {
   color: #333;
   font-size: 20px;
   text-align: center;
+}.second-content .twoitem h3 em {
+  font-size: 15px;
+  font-style: normal;
 }
 .chartbox {
   width: 100%;
