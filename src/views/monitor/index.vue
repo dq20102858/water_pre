@@ -1300,8 +1300,8 @@ export default {
               );
             };
             applyClickXY.push({
-              x: centerX + 42,
-              y: axis_applay_two.y - 70,
+              x: centerX +65,
+              y: axis_applay_two.y - 65,
               w: 60,
               h: 54,
               i: json[i]

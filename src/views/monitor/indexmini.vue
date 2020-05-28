@@ -601,7 +601,7 @@ export default {
             //文字
             applyClickXY.push({
               x: centerX - 29,
-              y: axis_Applay_two.y - 30,
+              y: axis_Applay_two.y - 55,
               w: 60,
               h: 54,
               i: json[i]

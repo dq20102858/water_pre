@@ -11,7 +11,7 @@
       <div class="app-page-container">
         <div class="app-page-peple">
           <div class="title">{{projectName}}<span>当日人数：{{dataInfo.oneline_num}}人</span><span>在线人数：{{dataInfo.all_num}}人</span> </div>
-          <table>
+          <!-- <table>
             <thead>
               <th>公司名称</th>
               <th>在线人数</th>
@@ -30,7 +30,7 @@
                 <td></td>
               </tr>
             </tbody>
-          </table>
+          </table> -->
         </div>
         <div class="app-table">
           <h3 class="aptitle">当日在线人员列表</h3>
@@ -107,28 +107,15 @@ export default {
       page_size: 20,
       page_total: 0,
       dataList: [],
-      dataInfo: [],
-      getLocomotiveList: []
+      dataInfo: []
     };
   },
   created() {
-    this.getLocomotiveLists();
     this.getDataList();
     this.projectName=  localStorage.getItem("projectName");
   },
   methods: {
-    //选择机车
-    getLocomotiveLists() {
-      this.request({
-        url: "dispatch/getLocomotiveLists",
-        method: "get"
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          this.getLocomotiveList = data.data;
-        }
-      });
-    },
+   
     getDataList() {
       let page = this.page_cur;
       this.request({
