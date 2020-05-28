@@ -26,7 +26,7 @@
             <el-table-column type="index" label="序号" align="center"></el-table-column>
             <el-table-column prop="name" label="公司名称" align="center"></el-table-column>
             <el-table-column prop="description" label="公司详情" align="center" show-overflow-tooltip></el-table-column>
-            <el-table-column prop="color_tag" label="标签颜色" align="center"></el-table-column>
+            <!-- <el-table-column prop="color_tag" label="标签颜色" align="center"></el-table-column> -->
             <el-table-column prop="create_time" label="创建时间" align="center"></el-table-column>
             <el-table-column prop="update_time" label="修改时间" align="center"></el-table-column>
             <el-table-column label="操作" width="120">
@@ -81,7 +81,7 @@
                 show-word-limit
               ></el-input>
             </el-form-item>
-            <el-form-item label="标签颜色：">
+            <el-form-item label="标签颜色：" style="display:none">
               <el-select v-model="companyData.color">
                 <el-option label="默认" :value="0"></el-option>
                 <el-option label="红色" :value="1"></el-option>
