@@ -236,7 +236,7 @@ export default {
           status: "离线",
           createtime: "2020-05-10 15:44:34"
         }
-      ],
+      ]
     };
   },
   updated() {
@@ -1230,10 +1230,20 @@ export default {
           let dkend = "DK" + json[i].end_flag + " +" + json[i].end_length;
 
           context.lineWidth = 2;
-          context.fillStyle = "#ffff00";
-          context.strokeStyle = "#ffff00";
+          if (json[i].type == "A1") {
+            context.fillStyle = "#f14e0e";
+            context.strokeStyle = "#f14e0e";
+          } else if (json[i].type == "A2") {
+            context.fillStyle = "#fd7510";
+            context.strokeStyle = "#fd7510";
+          } else if (json[i].type == "A3") {
+            context.fillStyle = "#fda328";
+            context.strokeStyle = "#fda328";
+          } else if (json[i].type == "A4") {
+            context.fillStyle = "#f2c136";
+            context.strokeStyle = "#f2c136";
+          }
           context.beginPath();
-
           if (json[i].line_type == 1) {
             let startX = (start - leftLineMinMileage) * everys;
             let endX = (end - leftLineMinMileage) * everys;
@@ -1304,9 +1314,9 @@ export default {
       canvas.onclick = function(event) {
         var x = event.pageX - canvas.getBoundingClientRect().left;
         var y = event.pageY - canvas.getBoundingClientRect().top;
-        console.log("X：" + x + "_" + y);
+        //console.log("X：" + x + "_" + y);
         //    debugger;
-        console.log(applyClickXY);
+        //console.log(applyClickXY);
         for (let item of applyClickXY) {
           if (
             x >= item.x &&

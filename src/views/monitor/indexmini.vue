@@ -557,19 +557,21 @@ export default {
 
           let desc = json[i].type;
           context.lineWidth = 2;
-          context.fillStyle = "#ffff00";
-          context.strokeStyle = "#ffff00";
-          // if (json[i].type == "A1") {
-          //   context.fillStyle = "#1AE642";
-          //   context.strokeStyle = "#1AE642";
-          // } else if (json[i].type == "A2") {
-          // } else if (json[i].type == "A3") {
-          //   context.fillStyle = "#ff0000";
-          //   context.strokeStyle = "#ff0000";
-          // } else if (json[i].type == "A4") {
-          //   context.fillStyle = "#ffff00";
-          //   context.strokeStyle = "#ffff00";
-          // }
+         //context.fillStyle = "#ffff00";
+         // context.strokeStyle = "#ffff00";
+          if (json[i].type == "A1") {
+            context.fillStyle = "#f14e0e";
+            context.strokeStyle = "#f14e0e";
+          } else if (json[i].type == "A2") {
+  context.fillStyle = "#fd7510";
+            context.strokeStyle = "#fd7510";
+          } else if (json[i].type == "A3") {
+            context.fillStyle = "#fda328";
+            context.strokeStyle = "#fda328";
+          } else if (json[i].type == "A4") {
+            context.fillStyle = "#f2c136";
+            context.strokeStyle = "#f2c136";
+          }
           context.beginPath();
           if (json[i].line_type == 1) {
             //画水平直线
@@ -619,7 +621,7 @@ export default {
           context.stroke();
           //
         }
-        canvas.mouseover = function(event) {
+        canvas.onclick = function(event) {
           // canvas.addEventListener(
           //   "dblclick",
           //   function(event) {
