@@ -276,7 +276,7 @@ export default {
           this.scrollwidth = document.documentElement.clientWidth - 510;
           this.scrollwidthTwo =
             (this.leftLineMaxMileage - this.leftLineMinMileage) * everys + 150;
-          console.log(this.scrollwidth);
+         // console.log(this.scrollwidth);
           //请点
           this.applyList = data.data.apply_lists;
           //桥 隧道等
@@ -1269,8 +1269,8 @@ export default {
               );
             };
             applyClickXY.push({
-              x: centerX + 52,
-              y: axis_applay.y - 60,
+              x: centerX + 70,
+              y: axis_applay.y - 55,
               w: 60,
               h: 54,
               i: json[i]
@@ -1300,12 +1300,13 @@ export default {
               );
             };
             applyClickXY.push({
-              x: centerX +65,
-              y: axis_applay_two.y - 65,
+              x: centerX +70,
+              y: axis_applay_two.y - 55,
               w: 60,
               h: 54,
               i: json[i]
             });
+         
           }
           context.stroke();
           //
@@ -1669,14 +1670,14 @@ export default {
           //判断是否点击鼠标左键
           gapX = event.clientX;
           startx = document.querySelector(".group-canvas").scrollLeft; // document.documentElement.scrollLeft; // scroll的初始位置
-          console.log(
-            "a：" +
-              event.clientX +
-              "_" +
-              document.documentElement.scrollLeft +
-              "_" +
-              event.screenX
-          );
+          // console.log(
+          //   "a：" +
+          //     event.clientX +
+          //     "_" +
+          //     document.documentElement.scrollLeft +
+          //     "_" +
+          //     event.screenX
+          // );
           //movemove事件必须绑定到$(document)上，鼠标移动是在整个屏幕上的 此处的$(document)可以改为obj
           document.addEventListener("mousemove", move);
           document.addEventListener("mouseup", stop);

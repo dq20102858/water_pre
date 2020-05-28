@@ -557,13 +557,13 @@ export default {
 
           let desc = json[i].type;
           context.lineWidth = 2;
-         //context.fillStyle = "#ffff00";
-         // context.strokeStyle = "#ffff00";
+          //context.fillStyle = "#ffff00";
+          // context.strokeStyle = "#ffff00";
           if (json[i].type == "A1") {
             context.fillStyle = "#f14e0e";
             context.strokeStyle = "#f14e0e";
           } else if (json[i].type == "A2") {
-  context.fillStyle = "#fd7510";
+            context.fillStyle = "#fd7510";
             context.strokeStyle = "#fd7510";
           } else if (json[i].type == "A3") {
             context.fillStyle = "#fda328";
@@ -580,13 +580,15 @@ export default {
             context.moveTo(startX, axis_Applay.y);
             context.lineTo(endX + 1, axis_Applay.y);
             //文字
+            //context.fillRect(centerX - 29, axis_Applay.y - 55, 60, 54);
             applyClickXY.push({
               x: centerX - 29,
-              y: axis_Applay.y - 30,
+              y: axis_Applay.y - 55,
               w: 60,
               h: 54,
               i: json[i]
             });
+
             let img = new Image();
             img.src = require("@/assets/image/" + desc + ".png");
             img.onload = function() {
@@ -624,14 +626,16 @@ export default {
         canvas.onclick = function(event) {
           var x = event.pageX - canvas.getBoundingClientRect().left;
           var y = event.pageY - canvas.getBoundingClientRect().top;
+
+         console.log("X：" + x + "_" + y);
           //console.log("clickXY：" + JSON.stringify(applyClickXY));
           for (let item of applyClickXY) {
-            if (
-              x >= item.x &&
-              x <= item.x + item.w &&
-              y >= item.y &&
-              y <= item.y + item.h
-            ) {
+             if (
+            x >= item.x &&
+            x <= item.x + item.w &&
+            y >= item.y &&
+            y <= item.y + item.h
+          ) {
               let infos = item.i;
               that
                 .$confirm(
