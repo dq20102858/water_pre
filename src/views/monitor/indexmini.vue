@@ -624,7 +624,7 @@ export default {
         canvas.onclick = function(event) {
           var x = event.pageX - canvas.getBoundingClientRect().left;
           var y = event.pageY - canvas.getBoundingClientRect().top;
-          console.log("clickXY：" + JSON.stringify(applyClickXY));
+          //console.log("clickXY：" + JSON.stringify(applyClickXY));
           for (let item of applyClickXY) {
             if (
               x >= item.x &&
