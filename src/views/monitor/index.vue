@@ -1316,7 +1316,7 @@ export default {
         var x = event.pageX - canvas.getBoundingClientRect().left;
         var y = event.pageY - canvas.getBoundingClientRect().top;
         //console.log("X：" + x + "_" + y);
-        //    debugger;
+        // debugger;
         //console.log(applyClickXY);
         for (let item of applyClickXY) {
           if (

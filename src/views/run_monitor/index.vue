@@ -1171,7 +1171,7 @@ export default {
       select_line_type: [],
       select_type_plan: true,
       select_type_now: true,
-      select_loco_type: [],
+      select_loco_type: [1, 2, 3, 4],
       departLists: [],
       itemLists: [],
       workSortLists: [],
@@ -1903,9 +1903,8 @@ export default {
     updateDayTrueplan() {
       this.$refs["refFormEditRules"].validate(valid => {
         if (valid) {
-          let data = this.formEditData;
           this.formEditData.date = this.formData.date;
-
+          let data = this.formEditData;
           if (+this.formEditData.end_time < +this.formEditData.start_time) {
             this.$message.error("施工开始时间不能大于结束时间");
             return false;
