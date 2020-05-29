@@ -75,15 +75,19 @@
         </div>
         <div class="app-table">
           <el-table :data="userList">
-            <el-table-column type="index" label="序号" align="center"></el-table-column>
-            <el-table-column prop="user_name" label="用户名" align="center"></el-table-column>
-            <el-table-column prop="name" label="姓名" align="center"></el-table-column>
-            <el-table-column prop="company" label="公司" align="center"></el-table-column>
-            <el-table-column prop="depart" label="部门" align="center"></el-table-column>
-            <el-table-column prop="post" label="职位" align="center"></el-table-column>
-            <el-table-column prop="email" label="邮箱" align="center"></el-table-column>
-            <el-table-column prop="phone" label="电话" align="center"></el-table-column>
-            <!-- <el-table-column prop="dispatch_desc" label="调度信息" align="center"></el-table-column> -->
+            <el-table-column label="序号"  width="100">
+              <template slot-scope="scope">
+                <span>{{scope.$index+(userPage_cur - 1) * userPage_size + 1}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column prop="user_name" label="用户名"></el-table-column>
+            <el-table-column prop="name" label="姓名"></el-table-column>
+            <el-table-column prop="company" label="公司"></el-table-column>
+            <el-table-column prop="depart" label="部门"></el-table-column>
+            <el-table-column prop="post" label="职位"></el-table-column>
+            <el-table-column prop="email" label="邮箱"></el-table-column>
+            <el-table-column prop="phone" label="电话"></el-table-column>
+            <!-- <el-table-column prop="dispatch_desc" label="调度信息"></el-table-column> -->
             <el-table-column label="操作" width="120">
               <template slot-scope="scope">
                 <div class="app-operation">

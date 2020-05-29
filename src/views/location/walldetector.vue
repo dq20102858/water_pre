@@ -33,7 +33,7 @@
         </div>
         <div class="app-table">
           <el-table :data="dataList">
-            <el-table-column prop="id" label="序号">
+            <el-table-column prop="id" label="序号" width="100">
               <template slot-scope="scope">
                 <span>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
               </template>

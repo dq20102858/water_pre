@@ -6,7 +6,7 @@
           <img :src="require('@/assets/image/icon-peple.png')" />人员管理
         </li>
         <el-menu-item index="admin">公司列表</el-menu-item>
-        <el-menu-item index="departlist"  @click="departFirstPage">部门列表</el-menu-item>
+        <el-menu-item index="departlist" @click="departFirstPage">部门列表</el-menu-item>
         <el-menu-item index="postlist">职位列表</el-menu-item>
         <el-menu-item index="userlist">人员列表</el-menu-item>
       </el-menu>
@@ -42,18 +42,22 @@
         </div>
         <div class="app-table">
           <el-table :data="departLists" ref="multipleTable">
-            <el-table-column type="index" label="序号" align="center"></el-table-column>
-            <el-table-column prop="company" label="公司名称" align="center"></el-table-column>
-            <el-table-column prop="name" label="部门名称" align="center"></el-table-column>
-            <el-table-column label="是否属于施工队" align="center">
+            <el-table-column label="序号" width="100">
+              <template slot-scope="scope">
+                <span>{{scope.$index+(departPage_cur - 1) * departPage_size + 1}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column prop="company" label="公司名称"></el-table-column>
+            <el-table-column prop="name" label="部门名称"></el-table-column>
+            <el-table-column label="是否属于施工队"  width="160">
               <template slot-scope="scope">
                 <el-tag v-if="scope.row.is_work_team === 0">否</el-tag>
                 <el-tag v-else type="success">是</el-tag>
               </template>
             </el-table-column>
-            <el-table-column prop="description" label="部门详情" width="200" align="center"></el-table-column>
-            <el-table-column prop="create_time" label="创建时间" width="200" align="center"></el-table-column>
-            <el-table-column prop="update_time" label="修改时间" width="200" align="center"></el-table-column>
+            <el-table-column prop="description" label="部门详情" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="create_time" label="创建时间" width="160"></el-table-column>
+            <el-table-column prop="update_time" label="修改时间" width="160"></el-table-column>
             <el-table-column label="操作" width="120">
               <template slot-scope="scope">
                 <div class="app-operation">

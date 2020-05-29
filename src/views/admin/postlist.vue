@@ -58,13 +58,17 @@
         </div>
         <div class="app-table">
           <el-table :data="postLists" ref="multipleTable">
-            <el-table-column type="index" label="序号" align="center"></el-table-column>
-            <el-table-column prop="company" label="公司名称" align="center"></el-table-column>
-            <el-table-column prop="depart" label="部门名称" align="center"></el-table-column>
-            <el-table-column prop="name" label="职位名称" align="center"></el-table-column>
-            <el-table-column prop="description" label="职位详情" align="center"></el-table-column>
-            <el-table-column prop="create_time" label="创建时间" align="center"></el-table-column>
-            <el-table-column prop="update_time" label="修改时间" align="center"></el-table-column>
+          <el-table-column label="序号"  width="100">
+              <template slot-scope="scope">
+                <span>{{scope.$index+(postPage_cur - 1) * postPage_size + 1}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column prop="company" label="公司名称"></el-table-column>
+            <el-table-column prop="depart" label="部门名称"></el-table-column>
+            <el-table-column prop="name" label="职位名称"></el-table-column>
+            <el-table-column prop="description" label="职位详情" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="create_time" label="创建时间"></el-table-column>
+            <el-table-column prop="update_time" label="修改时间"></el-table-column>
             <el-table-column label="操作" width="120">
               <template slot-scope="scope">
                 <div class="app-operation">

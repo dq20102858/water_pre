@@ -23,12 +23,16 @@
         </div>
         <div class="app-table">
           <el-table :data="companyLists">
-            <el-table-column type="index" label="序号" align="center"></el-table-column>
-            <el-table-column prop="name" label="公司名称" align="center"></el-table-column>
-            <el-table-column prop="description" label="公司详情" align="center" show-overflow-tooltip></el-table-column>
-            <!-- <el-table-column prop="color_tag" label="标签颜色" align="center"></el-table-column> -->
-            <el-table-column prop="create_time" label="创建时间" align="center"></el-table-column>
-            <el-table-column prop="update_time" label="修改时间" align="center"></el-table-column>
+            <el-table-column label="序号" width="100">
+              <template slot-scope="scope">
+                <span>{{scope.$index+(companyPage_cur - 1) * companyPage_size + 1}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column prop="name" label="公司名称"></el-table-column>
+            <el-table-column prop="description" label="公司详情" show-overflow-tooltip></el-table-column>
+            <!-- <el-table-column prop="color_tag" label="标签颜色"></el-table-column> -->
+            <el-table-column prop="create_time" label="创建时间"></el-table-column>
+            <el-table-column prop="update_time" label="修改时间"></el-table-column>
             <el-table-column label="操作" width="120">
               <template slot-scope="scope">
                 <div class="app-operation">
