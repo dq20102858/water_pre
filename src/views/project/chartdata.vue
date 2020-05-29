@@ -250,8 +250,7 @@ export default {
               data: data.data.x
             },
             yAxis: {
-              type: "value",
-              max: yMaxNum + 1
+              type: "value"
             },
             series: [
               {
