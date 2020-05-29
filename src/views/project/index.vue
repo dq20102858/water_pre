@@ -18,17 +18,17 @@
             <el-button type="primary" icon="el-icon-plus" @click="openAddWork">添加作业</el-button>
           </div>
           <el-table :data="workLists" ref="multipleTable">
-            <el-table-column prop="sort" label="作业顺序" align="center"></el-table-column>
-            <el-table-column prop="name" label="作业名称" align="center"></el-table-column>
-            <!-- <el-table-column prop="type" label="类型" align="center">
+            <el-table-column prop="sort" label="作业顺序" width="100"></el-table-column>
+            <el-table-column prop="name" label="作业名称"></el-table-column>
+            <!-- <el-table-column prop="type" label="类型">
             <template slot-scope="scope">
               <span v-if="scope.row.type==1">里程</span>
               <span v-else>计数</span>
             </template>
             </el-table-column>-->
-            <el-table-column prop="start_time" label="计划开始时间" align="center"></el-table-column>
-            <el-table-column prop="end_time" label="计划结束时间" align="center"></el-table-column>
-            <el-table-column prop="total" label="设计总量" align="center">
+            <el-table-column prop="start_time" label="计划开始时间"></el-table-column>
+            <el-table-column prop="end_time" label="计划结束时间"></el-table-column>
+            <el-table-column prop="total" label="设计总量">
               <template slot-scope="scope">{{scope.row.total}}({{scope.row.unit}})</template>
             </el-table-column>
             <el-table-column label="操作" width="180px">

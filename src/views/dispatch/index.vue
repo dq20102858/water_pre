@@ -92,7 +92,7 @@
       <div class="app-table">
         <el-table :data="dataList">
           <el-table-column prop="number" label="命令号"></el-table-column>
-          <el-table-column prop="loco" label="受令机车"></el-table-column>
+          <el-table-column prop="loco" label="受令机车" width="80"></el-table-column>
           <el-table-column prop="master" label="受令车长"></el-table-column>
           <el-table-column prop="driver" label="受令司机"></el-table-column>
           <el-table-column prop="location" label="受令处所"></el-table-column>

@@ -76,28 +76,34 @@
           </div>
           <div class="app-table">
             <el-table :data="detailListPages" ref="multipleTable">
-              <el-table-column type="index" label="序号" align="center"></el-table-column>
-              <el-table-column prop="pro_name" label="作业名称" align="center"></el-table-column>
-              <el-table-column label="计划完成" align="center">
+    <el-table-column label="序号"  width="100">
+              <template slot-scope="scope">
+                <span>{{scope.$index+(detailPage - 1) * detailPageSize + 1}}</span>
+              </template>
+            </el-table-column>
+
+         
+              <el-table-column prop="pro_name" label="作业名称"></el-table-column>
+              <el-table-column label="计划完成">
                 <template slot-scope="scope">
                   <span v-if="scope.row.plan_num>0">{{scope.row.plan_num}}</span>
                   <span v-else>{{scope.row.plan_tip}}</span>
                 </template>
               </el-table-column>
-              <el-table-column label="实际完成" align="center">
+              <el-table-column label="实际完成">
                 <template slot-scope="scope">
                   <span v-if="scope.row.plan_num>0">{{scope.row.true_num}}</span>
                   <span v-else>{{scope.row.true_tip}}</span>
                 </template>
               </el-table-column>
-              <el-table-column label="状态" align="center">
+              <el-table-column label="状态" width="100">
                 <template slot-scope="scope">
                   <span v-if="scope.row.is_finish == 1">已完成</span>
                   <span v-else>未完成</span>
                 </template>
               </el-table-column>
-              <el-table-column prop="remark" label="备注" align="center" show-overflow-tooltip></el-table-column>
-              <el-table-column prop="plan_date" label="日期" align="center"></el-table-column>
+              <el-table-column prop="remark" label="备注" show-overflow-tooltip></el-table-column>
+              <el-table-column prop="plan_date" label="日期"></el-table-column>
               <el-table-column label="操作" width="120">
                 <template slot-scope="scope">
                   <div class="app-operation">
