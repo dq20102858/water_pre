@@ -197,8 +197,8 @@ export default {
       enterLineMaxMileage: 0,
       outLineMinMileage: 0,
       outLineMaxMileage: 0,
-      cartableShowText: "显示机车列表信息",
-      cartableShow: false,
+      cartableShowText: "隐藏机车列表信息",
+      cartableShow: true,
       cartableData: [
         {
           id: 1,
