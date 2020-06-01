@@ -38,16 +38,16 @@
                     ></el-option>
                   </el-select>
                 </el-form-item>
-                    <el-form-item label="状态">
-              <el-select v-model="searchForm.status" placeholder="请选择状态" clearable>
-                <el-option
-                  v-for="item in statusList"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                ></el-option>
-              </el-select>
-            </el-form-item>
+                <el-form-item label="状态">
+                  <el-select v-model="searchForm.status" placeholder="请选择状态" clearable>
+                    <el-option
+                      v-for="item in statusList"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
                 <el-form-item class="form-so">
                   <label class="el-form-item__label"></label>
                   <el-button
@@ -56,7 +56,7 @@
                     @click="getWeekList"
                     type="primary"
                   >查询</el-button>
-                     <el-button size="small" plain @click="resetSerach">重置</el-button>
+                  <el-button size="small" plain @click="resetSerach">重置</el-button>
                 </el-form-item>
               </el-form>
             </div>
@@ -339,7 +339,7 @@ export default {
         depart_id: "",
         time_range: []
       },
-       statusList: [
+      statusList: [
         { id: 5, name: "审核中" },
         { id: 2, name: "通过" },
         { id: 3, name: "拒绝" }
@@ -381,7 +381,7 @@ export default {
       let page = this.page_cur;
       let depart_id = this.searchForm.depart_id;
       let time_range = this.searchForm.time_range;
-      let status=this.searchForm.status;
+      let status = this.searchForm.status;
       this.request({
         url: "apply/getWeekLists",
         method: "get",
@@ -413,11 +413,11 @@ export default {
       this.page_cur = this.page_total;
       this.pageChange(this.page_total);
     },
-       resetSerach() {
+    resetSerach() {
       this.searchForm = {
         time_range: "",
         depart_id: "",
-        status: "",
+        status: ""
       };
       this.getWeekList();
     },
@@ -490,7 +490,7 @@ export default {
           return t.getMonth() + 1 + "月第 1周";
         } else {
           let weeks = 1 + Math.ceil((date1 - fisrtWeekend) / 7);
-          return t.getMonth() + 1 + "月第" + weeks + "周";
+          return t.getMonth() + 1 + "月第 " + weeks + "周";
         }
       } else {
         throw "getFormatDate - error : 你的参数不是日期类型，也不是为空";
