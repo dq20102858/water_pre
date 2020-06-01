@@ -47,7 +47,7 @@
                 {{scope.row.start_flag}} + {{scope.row.start_length}}
               </template>-->
             </el-table-column>
-            <el-table-column prop="line" label="线别"></el-table-column>
+            <el-table-column prop="line_type" label="线别"></el-table-column>
             <el-table-column prop="number" label="定位设备编号"></el-table-column>
             <el-table-column prop="company" label="公司"></el-table-column>
             <el-table-column prop="create_time" label="入场时间"></el-table-column>
