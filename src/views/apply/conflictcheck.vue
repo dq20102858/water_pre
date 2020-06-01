@@ -81,7 +81,12 @@
           <el-button class="btn-defult" size="mini" @click="goDetail(checkId1,checktype1)">查看</el-button>
           <span v-if="status1 !=2 && status1!=3">
             <el-button class="btn-red" size="mini" @click="ApplyClick(checkId1,3)">拒绝</el-button>
-            <el-button class="btn-blue" size="mini" @click="ApplyClick(checkId1,2)"  v-if="status2 !=2">同意</el-button>
+            <el-button
+              class="btn-blue"
+              size="mini"
+              @click="ApplyClick(checkId1,2)"
+              v-if="status2 !=2"
+            >同意</el-button>
           </span>
         </div>
         <div class="operation">
@@ -92,8 +97,13 @@
           </strong>
           <el-button class="btn-defult" size="mini" @click="goDetail(checkId2,checktype2)">查看</el-button>
           <span v-if="status2 !=2 && status2!=3">
-            <el-button class="btn-red" size="mini" @click="ApplyClick(checkId2,3)">拒绝</el-button>
-            <el-button class="btn-blue" size="mini" @click="ApplyClick(checkId2,2)"   v-if="status1 !=2">同意</el-button>
+            <el-button class="btn-red" size="mini" @click="ApplyClickTwo(checkId2,3)">拒绝</el-button>
+            <el-button
+              class="btn-blue"
+              size="mini"
+              @click="ApplyClickTwo(checkId2,2)"
+              v-if="status1 !=2"
+            >同意</el-button>
           </span>
         </div>
       </div>
@@ -165,6 +175,50 @@ export default {
             type: "success",
             message: "恭喜您，操作成功"
           });
+          if (status == 2) {
+            this.request({
+              url: "/apply/changeStatus",
+              method: "POST",
+              data: { id: this.checkId2, status: 3 }
+            }).then(res => {
+              let data = res.data;
+              if (data.status == 1) {
+              }
+            });
+          }
+          this.dialogVisible = false;
+          this.getconflictCheck();
+        } else {
+          // this.$message({
+          //   type: "success",
+          //   message: "审批失败"
+          // });
+        }
+      });
+    },
+    ApplyClickTwo(id, status) {
+      this.request({
+        url: "/apply/changeStatus",
+        method: "POST",
+        data: { id: id, status: status }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.$message({
+            type: "success",
+            message: "恭喜您，操作成功"
+          });
+          if (status == 2) {
+            this.request({
+              url: "/apply/changeStatus",
+              method: "POST",
+              data: { id: this.checkId1, status: 3 }
+            }).then(res => {
+              let data = res.data;
+              if (data.status == 1) {
+              }
+            });
+          }
           this.dialogVisible = false;
           this.getconflictCheck();
         } else {

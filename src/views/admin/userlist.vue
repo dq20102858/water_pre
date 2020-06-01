@@ -23,7 +23,7 @@
                 v-model="userSearch.user_name"
                 autocomplete="off"
                 placeholder="请输入姓名"
-                maxlength="30"
+                maxlength="30"  clearable
               ></el-input>
             </el-form-item>
             <el-form-item label="公司">
