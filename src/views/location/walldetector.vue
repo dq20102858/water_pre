@@ -6,7 +6,7 @@
           <img :src="require('@/assets/image/icon-location.png')" />定位管理
         </li>
         <el-menu-item index="location">人员定位统计</el-menu-item>
-        <el-menu-item index="walldetector" @click="toFirstPage">墙壁探测器</el-menu-item>
+        <el-menu-item index="walldetector" @click="resetSerach">墙壁探测器</el-menu-item>
         <el-menu-item index="cardetector">车载探测器</el-menu-item>
         <el-menu-item index="locationbind">定位从设备</el-menu-item>
         <el-menu-item index="device">机具</el-menu-item>
@@ -349,6 +349,11 @@ export default {
       this.pageChange(this.page_total);
     },
     searchEvent() {
+      this.page_cur = 1;
+      this.getDataList();
+    },
+     resetSerach() {
+      this.numberSearch ="";
       this.page_cur = 1;
       this.getDataList();
     },

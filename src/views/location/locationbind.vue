@@ -8,7 +8,7 @@
         <el-menu-item index="location">人员定位统计</el-menu-item>
         <el-menu-item index="walldetector">墙壁探测器</el-menu-item>
         <el-menu-item index="cardetector">车载探测器</el-menu-item>
-        <el-menu-item index="locationbind" @click="pageToFirst">定位从设备</el-menu-item>
+        <el-menu-item index="locationbind" @click="resetSerach">定位从设备</el-menu-item>
         <el-menu-item index="device">机具</el-menu-item>
       </el-menu>
     </div>

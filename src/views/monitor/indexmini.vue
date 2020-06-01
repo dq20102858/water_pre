@@ -129,8 +129,8 @@ export default {
 
     initCanvas() {
       let clientWidth = this.$refs.proWrapper.clientWidth;
-      let canvasWidth = clientWidth - 90;
-      this.cwidth = canvasWidth - 30;
+      let canvasWidth = clientWidth - 60;
+      this.cwidth = canvasWidth;
       let lineTypeBetwentMileage =
         this.lineTypeMaxMileage - this.lineTypeMinMileage;
       let lineTypeTotalMileage =
@@ -312,8 +312,8 @@ export default {
           {
             id: 1,
             name: "ZY01",
-            start_flag: 5,
-            start_length: 245,
+            start_flag: 0,
+            start_length: 257,
             line_type: 1
           },
 

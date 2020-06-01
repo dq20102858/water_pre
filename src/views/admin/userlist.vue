@@ -75,7 +75,7 @@
         </div>
         <div class="app-table">
           <el-table :data="userList">
-            <el-table-column label="序号"  width="100">
+            <el-table-column label="序号" width="100">
               <template slot-scope="scope">
                 <span>{{scope.$index+(userPage_cur - 1) * userPage_size + 1}}</span>
               </template>
@@ -290,7 +290,7 @@ export default {
           },
           {
             min: 2,
-            max:10,
+            max: 10,
             message: "请输入姓名长度在2到10个字符",
             trigger: "blur"
           },
