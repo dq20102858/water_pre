@@ -413,7 +413,7 @@
         :rules="formEditRules"
         ref="refFormEditRules"
       >
-        <el-form-item label="日班计划：" label-width="130px">
+        <el-form-item label="日班计划：" label-width="110px">
           <el-select v-model="formEditData.number" @change="selectPlanNumbers">
             <el-option
               v-for="item in planNumbersList"

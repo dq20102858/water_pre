@@ -345,9 +345,9 @@ export default {
                 parseInt(jsonCar[i].start_flag) * 1000 +
                 parseInt(jsonCar[i].start_length);
               let startLineX = (total - lineTypeMinMileage) * every;
-              // if (jsonCar[i].start_flag == 0) {
-              //   startLineX = axis_LeftLine.x;
-              // }
+              if (jsonCar[i].start_flag == 0) {
+                startLineX = axis_LeftLine.x;
+              }
               context.drawImage(
                 imgcar,
                 startLineX,
