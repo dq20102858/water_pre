@@ -470,7 +470,7 @@ export default {
           // }
           let url = "/user/addUser";
           let baseid = this.userData.id;
-          console.log("this.userData.id：" + this.userData.id);
+          //console.log("this.userData.id：" + this.userData.id);
           if (typeof baseid != "undefined") {
             url = "/user/editUser";
 
@@ -716,6 +716,7 @@ export default {
   display: inline-block;
 }
 .dialog-users .el-form-item-block {
+
   display: block;
 }
 .dialog-users .el-form-item-inliness .el-checkbox-group {
