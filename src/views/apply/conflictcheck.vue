@@ -22,7 +22,7 @@
         </div>
         <div class="app-table">
           <el-table :data="checkList">
-            <el-table-column prop="company1" label="公司名称"></el-table-column>
+         
             <el-table-column prop="number1" label="作业编号">
               <template slot-scope="scope">
                 <span
@@ -30,11 +30,12 @@
                   title="点击查看详情"
                   @click="goDetail(scope.row.id1,scope.row.type1)"
                 >{{scope.row.number1}}</span>
-                <span style="color:#029b02;font-size:12px;" v-if="scope.row.status1 ==2">已同意</span>
-                <span style="color:#ff5c75;font-size:12px;" v-if="scope.row.status1 ==3">已拒绝</span>
+                <span style="color:#029b02;font-size:12px;" v-if="scope.row.status1 ==2">[已同意]</span>
+                <span style="color:#ff5c75;font-size:12px;" v-if="scope.row.status1 ==3">[已拒绝]</span>
               </template>
             </el-table-column>
-            <el-table-column prop="company2" label="公司名称"></el-table-column>
+               <el-table-column prop="company1" label="公司名称"></el-table-column>
+           
             <el-table-column prop="number2" label="作业编号">
               <template slot-scope="scope">
                 <span
@@ -42,16 +43,16 @@
                   title="点击查看详情"
                   @click="goDetail(scope.row.id2,scope.row.type2)"
                 >{{scope.row.number2}}</span>
-
-                <span style="color:#029b02;font-size:12px;" v-if="scope.row.status2 ==2">已同意</span>
-                <span style="color:#ff5c75;font-size:12px;" v-if="scope.row.status2 ==3">已拒绝</span>
+                <span style="color:#029b02;font-size:12px;" v-if="scope.row.status2 ==2">[已同意]</span>
+                <span style="color:#ff5c75;font-size:12px;" v-if="scope.row.status2 ==3">[已拒绝]</span>
               </template>
             </el-table-column>
+             <el-table-column prop="company2" label="公司名称"></el-table-column>
             <el-table-column prop="txt" label="操作" width="88">
               <template slot-scope="scope">
                 <div class="app-operation">
                   <el-button
-                    class="btn-red"
+                    class="btn-blue"
                     size="mini"
                     @click="goApply(scope.row.id1,scope.row.id2,scope.row.number1,scope.row.number2,scope.row.type1,scope.row.type2,scope.row.status1,scope.row.status2)"
                   >冲突处理</el-button>
