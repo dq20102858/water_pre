@@ -491,7 +491,7 @@ export default {
         } else {
           let weeks = 1 + Math.ceil((date1 - fisrtWeekend) / 7);
           return t.getMonth() + 1 + "月第 " + weeks + "周";
-        }
+        } 
       } else {
         throw "getFormatDate - error : 你的参数不是日期类型，也不是为空";
       }

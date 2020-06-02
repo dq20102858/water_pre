@@ -16,9 +16,9 @@
       <div class="app-page-container">
         <div class="conftop">
           <h3>冲突检测</h3>
-          <span>
+          <!-- <span>
             <em></em>已批准
-          </span>
+          </span> -->
         </div>
         <div class="app-table">
           <el-table :data="checkList">
