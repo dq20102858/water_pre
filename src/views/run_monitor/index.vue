@@ -1317,6 +1317,7 @@ export default {
           for (let k in lineTypeData) {
             seriesData.push({
               type: "line",
+              symbol: 'none',
               itemStyle: { normal: { color: lineTypeData[k].color } },
               data: lineTypeData[k].lists
             });
