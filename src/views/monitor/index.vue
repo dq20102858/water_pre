@@ -1933,7 +1933,10 @@ export default {
   padding-right: 14px;
 }
 .progresslist .el-radio__label {
-  color: #fff;
+  color: #fff; 
+}
+.progresslist .el-radio{
+margin-bottom:10px;
 }
 .suofang {
   padding: 30px 0 10px 30px;

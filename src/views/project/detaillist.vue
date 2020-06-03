@@ -81,18 +81,16 @@
                 <span>{{scope.$index+(detailPage - 1) * detailPageSize + 1}}</span>
               </template>
             </el-table-column>
-
-         
               <el-table-column prop="pro_name" label="作业名称"></el-table-column>
               <el-table-column label="计划完成">
                 <template slot-scope="scope">
-                  <span v-if="scope.row.plan_num>0">{{scope.row.plan_num}}</span>
+                  <span v-if="scope.row.type==2">{{scope.row.plan_num}}</span>
                   <span v-else>{{scope.row.plan_tip}}</span>
                 </template>
               </el-table-column>
               <el-table-column label="实际完成">
                 <template slot-scope="scope">
-                  <span v-if="scope.row.plan_num>0">{{scope.row.true_num}}</span>
+                  <span v-if="scope.row.type==2">{{scope.row.true_num}}</span>
                   <span v-else>{{scope.row.true_tip}}</span>
                 </template>
               </el-table-column>
