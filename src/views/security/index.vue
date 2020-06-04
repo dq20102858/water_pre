@@ -226,17 +226,15 @@
               </el-select>
             </el-form-item>
             <el-form-item label="安全事件标题：" prop="title">
-              <el-input v-model="formData.title" maxlength="30" show-word-limit></el-input>
+              <el-input v-model="formData.title"></el-input>
             </el-form-item>
             <el-form-item label="安全事件地址：" prop="address" class="textarea1">
-              <el-input type="textarea" v-model="formData.address" maxlength="100" show-word-limit></el-input>
+              <el-input type="textarea" v-model="formData.address"></el-input>
             </el-form-item>
             <el-form-item label="安全事件描述：" prop="description">
               <el-input
                 type="textarea"
                 v-model="formData.description"
-                maxlength="255"
-                show-word-limit
               ></el-input>
             </el-form-item>
             <el-form-item label="相关图片：">
