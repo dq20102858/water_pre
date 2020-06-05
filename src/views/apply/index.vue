@@ -17,7 +17,7 @@
       <div class="app-page-container">
         <div class="app-page-select">
           <el-form :model="searchForm" :inline="true">
-            <el-form-item class="form-add-item">
+            <!-- <el-form-item class="form-add-item">
               <el-dropdown placement="bottom-start" @command="addHandleCommand">
                 <el-button size="small" icon="el-icon-plus" type="primary">新增清点</el-button>
                 <el-dropdown-menu slot="dropdown" style="width:110px;">
@@ -27,7 +27,7 @@
                   <el-dropdown-item command="A4">A4</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
-            </el-form-item>
+            </el-form-item> -->
             <el-form-item label="公司">
               <el-select v-model="searchForm.depart_id" placeholder="请选择公司" clearable>
                 <el-option
