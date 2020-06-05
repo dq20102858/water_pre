@@ -113,7 +113,7 @@ export default {
               data: typeData[k].lists
             });
           }
-          // console.log("projectData：" + JSON.stringify(seriesData));
+        console.log("projectData：" + JSON.stringify(seriesData));
           //时间
           let dayArr = [];
           let tday = resdata.data.x;

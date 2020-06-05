@@ -30,9 +30,9 @@
         <div class="chartmain">
           <div id="main" style="height:500px;width:100%;"></div>
         </div>
-        <!-- <div class="sidebox">
-        <h3>显示控制</h3>-->
-        <!-- <div class="chklist chlone">
+        <div class="sidebox">
+          <!-- <h3>显示控制</h3> -->
+          <div class="chklist chlone">
             <el-checkbox-group v-model="select_line_type" @change="selectLineTypeChart">
               <el-checkbox
                 v-for="item in lineTypeList"
@@ -50,13 +50,13 @@
                 :label="item.id"
               >实际{{item.name}}</el-checkbox>
             </el-checkbox-group>
-        </div>-->
-        <!-- <div class="chklist chltwo">
+          </div>
+          <!-- <div class="chklist chltwo">
             <el-checkbox-group v-model="select_loco_type" @change="selectLocoTypeChart">
               <el-checkbox v-for="item in locoList" :key="item.id" :label="item.id">{{item.name}}</el-checkbox>
             </el-checkbox-group>
-          </div>
-        </div>-->
+          </div>-->
+        </div>
       </div>
     </div>
     <el-dialog
@@ -1218,9 +1218,9 @@ export default {
           //myChart
           var myChart = this.$echarts.init(document.getElementById("main"));
           myChart.clear();
-          // myChart.getDom().style.width = "2000px";
+          myChart.getDom().style.width = "2000px";
           myChart.getDom().style.height =
-            document.body.clientHeight - 180 + "px";
+            document.body.clientHeight - 260 + "px";
           //站点=============
           this.mark_line = [];
           resdata.data.stations.map(item => {
@@ -1273,7 +1273,73 @@ export default {
             }
           });
           //划线  计划线 实际线
-          let planDataJson = resdata.data.plan;
+          //let dataTypeArr = resdata.data.plan;
+          let planDataJson = [
+            {
+              id: 128,
+              start_time: "2020-06-03 18:00:00",
+              end_time: "2020-06-04 23:00:00",
+              true_start_time: "2020-06-03 20:00:00",
+              true_end_time: "2020-06-04 22:00:00",
+              start_flag: "6.00",
+              start_length: "257.00",
+              end_flag: "9.00",
+              end_length: "232.00",
+              true_start_flag: 4,
+              true_start_length: 444,
+              true_end_flag: 9,
+              true_end_length: 999,
+              line_type: 1
+            },
+            {
+              id: 127,
+              start_time: "2020-06-04 00:00:00",
+              end_time: "2020-06-05 00:00:00",
+              true_start_time: "2020-06-05 00:00:00",
+              true_end_time: "2020-06-06 00:00:00",
+              start_flag: "0.00",
+              start_length: "257.00",
+              end_flag: "4.00",
+              end_length: "232.00",
+              true_start_flag: 2,
+              true_start_length: 100,
+              true_end_flag: 6,
+              true_end_length: 100,
+              line_type: 2
+            },
+            {
+              id: 126,
+              start_time: "2020-06-04 09:52:20",
+              end_time: "2020-06-04 16:52:00",
+              true_start_time: "2020-06-04 09:55:21",
+              true_end_time: "2020-06-05 00:00:00",
+              start_flag: "5.00",
+              start_length: "249.00",
+              end_flag: "5.00",
+              end_length: "800.00",
+              true_start_flag: 5,
+              true_start_length: 249,
+              true_end_flag: 5,
+              true_end_length: 600,
+              line_type: 1
+            },
+            {
+              id: 125,
+              start_time: "2020-06-03 09:31:00",
+              end_time: "2020-06-03 11:00:12",
+              true_start_time: "2020-06-03 09:10:14",
+              true_end_time: "2020-06-03 11:09:30",
+              start_flag: "0.00",
+              start_length: "257.00",
+              end_flag: "1.00",
+              end_length: "804.00",
+              true_start_flag: 0,
+              true_start_length: 300,
+              true_end_flag: 1,
+              true_end_length: 900,
+              line_type: 1
+            }
+          ];
           let planLineData = [];
           let nameA = "";
           let colorA = "";
@@ -1319,7 +1385,72 @@ export default {
             });
           }
           //实际线
-          let trueDataJson = resdata.data.true;
+          let trueDataJson = [
+            {
+              id: 128,
+              start_time: "2020-06-03 18:00:00",
+              end_time: "2020-06-04 23:00:00",
+              true_start_time: "2020-06-03 20:00:00",
+              true_end_time: "2020-06-04 22:00:00",
+              start_flag: "6.00",
+              start_length: "257.00",
+              end_flag: "9.00",
+              end_length: "232.00",
+              true_start_flag: 4,
+              true_start_length: 444,
+              true_end_flag: 9,
+              true_end_length: 999,
+              line_type: 1
+            },
+            {
+              id: 127,
+              start_time: "2020-06-04 00:00:00",
+              end_time: "2020-06-05 00:00:00",
+              true_start_time: "2020-06-05 00:00:00",
+              true_end_time: "2020-06-06 00:00:00",
+              start_flag: "0.00",
+              start_length: "257.00",
+              end_flag: "4.00",
+              end_length: "232.00",
+              true_start_flag: 2,
+              true_start_length: 100,
+              true_end_flag: 6,
+              true_end_length: 100,
+              line_type: 2
+            },
+            {
+              id: 126,
+              start_time: "2020-06-04 09:52:20",
+              end_time: "2020-06-04 16:52:00",
+              true_start_time: "2020-06-04 09:55:21",
+              true_end_time: "2020-06-05 00:00:00",
+              start_flag: "5.00",
+              start_length: "249.00",
+              end_flag: "5.00",
+              end_length: "800.00",
+              true_start_flag: 5,
+              true_start_length: 249,
+              true_end_flag: 5,
+              true_end_length: 600,
+              line_type: 1
+            },
+            {
+              id: 125,
+              start_time: "2020-06-03 09:31:00",
+              end_time: "2020-06-03 11:00:12",
+              true_start_time: "2020-06-03 09:10:14",
+              true_end_time: "2020-06-03 11:09:30",
+              start_flag: "0.00",
+              start_length: "257.00",
+              end_flag: "1.00",
+              end_length: "804.00",
+              true_start_flag: 0,
+              true_start_length: 300,
+              true_end_flag: 1,
+              true_end_length: 900,
+              line_type: 1
+            }
+          ];
           let trueLineData = [];
           let nameB = "";
           let colorB = "";
@@ -1366,9 +1497,9 @@ export default {
               data: trueLineData[k].lists
             });
           }
-          //  console.log("seriesLineData" + JSON.stringify(planLineData));
-          //   console.log("seriesLineData" + JSON.stringify(trueLineData));
-          //    console.log("seriesLineData" + JSON.stringify(seriesData));
+          console.log("seriesLineData" + JSON.stringify(planLineData));
+          console.log("seriesLineData" + JSON.stringify(trueLineData));
+          console.log("seriesLineData" + JSON.stringify(seriesData));
           //时间
           let dataMin = new Date(
             this.todayValue.getTime() - 24 * 60 * 60 * 1000
@@ -1396,7 +1527,7 @@ export default {
               }
             },
             legend: {
-              selectorPosition: "start",
+       // left: center,  
               icon: "roundRect",
               itemGap: 20,
               top: 30,
@@ -1407,14 +1538,14 @@ export default {
               data: this.lineTypeNameArr
             },
             grid: {
-              top: "105px",
+              top: "75px",
               left: "180px",
               right: "20px",
               bottom: "50px"
             },
             xAxis: {
               type: "time",
-              position: "top",
+              position: "bottom",
               min: dataMin,
               max: dataMax,
               maxInterval: 3600 * 0.1 * 1000,
@@ -1426,11 +1557,6 @@ export default {
                   if (index % 6 == 0) {
                     return months + "\n" + hours;
                   }
-                }
-              },
-              axisLine: {
-                lineStyle: {
-                  color: "#ddd"
                 }
               },
               splitLine: {
@@ -1448,23 +1574,6 @@ export default {
               min: minLineNum,
               max: maxLineNum
             },
-            dataZoom: [
-              {
-                startValue: "2020-06-04"
-              },
-              {
-                type: "inside"
-              }
-            ],
-            dataZoom: {
-              type: "slider",
-              show: true,
-              filterMode: "none",
-              zoomLock: true,
-              start: 0,
-              end: 50
-            },
-
             // dataZoom: [
             //   {
             //     show: true,
@@ -2090,6 +2199,7 @@ export default {
 
 .chartmain {
   width: 100%;
+  overflow-x: scroll;
 }
 /*sidebox */
 .sidebox {

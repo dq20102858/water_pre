@@ -337,7 +337,7 @@
               </td>
               <td>
                 <b>完成长度：</b>
-                {{dataListItem.nums}} 公里
+                {{dataListItem.finish_num}} 公里
               </td>
             </tr>
             <tr>

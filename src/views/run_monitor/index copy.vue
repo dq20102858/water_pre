@@ -30,9 +30,9 @@
         <div class="chartmain">
           <div id="main" style="height:500px;width:100%;"></div>
         </div>
-        <!-- <div class="sidebox">
-        <h3>显示控制</h3>-->
-        <!-- <div class="chklist chlone">
+        <div class="sidebox">
+          <!-- <h3>显示控制</h3> -->
+          <div class="chklist chlone">
             <el-checkbox-group v-model="select_line_type" @change="selectLineTypeChart">
               <el-checkbox
                 v-for="item in lineTypeList"
@@ -50,13 +50,13 @@
                 :label="item.id"
               >实际{{item.name}}</el-checkbox>
             </el-checkbox-group>
-        </div>-->
-        <!-- <div class="chklist chltwo">
+          </div>
+          <!-- <div class="chklist chltwo">
             <el-checkbox-group v-model="select_loco_type" @change="selectLocoTypeChart">
               <el-checkbox v-for="item in locoList" :key="item.id" :label="item.id">{{item.name}}</el-checkbox>
             </el-checkbox-group>
-          </div>
-        </div>-->
+          </div>-->
+        </div>
       </div>
     </div>
     <el-dialog
@@ -889,8 +889,7 @@ export default {
     return {
       mark_line: [],
       project_kind_name: [],
-      kcolorA: ["#467aff", "#674ea7", "yellow", "#467aff"],
-      kcolorB: ["green", "red", "red", "green"],
+      kcolor: ["red", "green", "yellow", "#467aff", "#44ddb5", "#c245d3"],
       todayValue: new Date(),
       todayPreValue: "",
       todayNextValue: "",
@@ -1179,7 +1178,6 @@ export default {
       select_line_type_truth: [],
       select_type_plan: true,
       select_type_now: true,
-      lineTypeNameArr: [],
       select_loco_type: [1, 2, 3, 4],
       departLists: [],
       itemLists: [],
@@ -1206,7 +1204,7 @@ export default {
       let start_time = this.getNextDate(this.todayValue, -1, "-");
       let end_time = this.getNextDate(this.todayValue, 1, "-");
       let line_type = this.select_line_type.toString();
-      let type = this.select_line_type.toString();
+      let type = 1;
       let loco_type = this.select_loco_type.toString();
       this.request({
         url: "/dayplan/getLineDatas",
@@ -1218,9 +1216,9 @@ export default {
           //myChart
           var myChart = this.$echarts.init(document.getElementById("main"));
           myChart.clear();
-          // myChart.getDom().style.width = "2000px";
+          myChart.getDom().style.width = "2000px";
           myChart.getDom().style.height =
-            document.body.clientHeight - 180 + "px";
+            document.body.clientHeight - 260 + "px";
           //站点=============
           this.mark_line = [];
           resdata.data.stations.map(item => {
@@ -1273,13 +1271,79 @@ export default {
             }
           });
           //划线  计划线 实际线
-          let planDataJson = resdata.data.plan;
-          let planLineData = [];
-          let nameA = "";
-          let colorA = "";
-          planDataJson.forEach((item, index) => {
+          //let dataTypeArr = resdata.data.plan;
+          let dataTypeArr = [
+            {
+              id: 128,
+              start_time: "2020-06-03 18:00:00",
+              end_time: "2020-06-04 23:00:00",
+              true_start_time: "2020-06-03 20:00:00",
+              true_end_time: "2020-06-04 22:00:00",
+              start_flag: "6.00",
+              start_length: "257.00",
+              end_flag: "9.00",
+              end_length: "232.00",
+              true_start_flag: 4,
+              true_start_length: 444,
+              true_end_flag: 9,
+              true_end_length: 999,
+              line_type: 1
+            },
+            {
+              id: 127,
+              start_time: "2020-06-04 00:00:00",
+              end_time: "2020-06-05 00:00:00",
+              true_start_time: "2020-06-05 00:00:00",
+              true_end_time: "2020-06-06 00:00:00",
+              start_flag: "0.00",
+              start_length: "257.00",
+              end_flag: "4.00",
+              end_length: "232.00",
+              true_start_flag: 2,
+              true_start_length: 100,
+              true_end_flag: 6,
+              true_end_length: 100,
+              line_type: 2
+            },
+            {
+              id: 126,
+              start_time: "2020-06-04 09:52:20",
+              end_time: "2020-06-04 16:52:00",
+              true_start_time: "2020-06-04 09:55:21",
+              true_end_time: "2020-06-05 00:00:00",
+              start_flag: "5.00",
+              start_length: "249.00",
+              end_flag: "5.00",
+              end_length: "800.00",
+              true_start_flag: 5,
+              true_start_length: 249,
+              true_end_flag: 5,
+              true_end_length: 600,
+              line_type: 1
+            },
+            {
+              id: 125,
+              start_time: "2020-06-03 09:31:00",
+              end_time: "2020-06-03 11:00:12",
+              true_start_time: "2020-06-03 09:10:14",
+              true_end_time: "2020-06-03 11:09:30",
+              start_flag: "0.00",
+              start_length: "257.00",
+              end_flag: "1.00",
+              end_length: "804.00",
+              true_start_flag: 0,
+              true_start_length: 300,
+              true_end_flag: 1,
+              true_end_length: 900,
+              line_type: 1
+            }
+          ];
+          let lineTypeData = [];
+          dataTypeArr.forEach((item, index) => {
             let start_flag_list = [];
             let end_flag_list = [];
+            let true_start_flag_list = [];
+            let true_end_flag_list = [];
             start_flag_list.push(
               item.start_time,
               parseFloat(item.start_flag) + parseFloat(item.start_length / 1000)
@@ -1288,87 +1352,50 @@ export default {
               item.end_time,
               parseFloat(item.end_flag) + parseFloat(item.end_length / 1000)
             );
-            //   if (this.select_type_plan) {
-            let colors = "#ff6600";
-            if (item.line_type == 1) {
-              nameA = "计划左线";
-              colorA = this.kcolorA[0];
-            } else if (item.line_type == 2) {
-              nameA = "计划右线";
-              colorA = this.kcolorA[1];
-            } else if (item.line_type == 3) {
-              nameA = "计划入场线";
-              colorA = this.kcolorA[2];
-            } else {
-              nameA = "计划出场线";
-              colorA = this.kcolorA[3];
+            if (this.select_type_plan) {
+              let colors = "#ff6600";
+              if (item.line_type == 1) {
+                colors = "#0000ff";
+              } else if (item.line_type == 2) {
+                colors = "#ff6600";
+              } else if (item.line_type == 3) {
+                colors = "#9900ff";
+              } else {
+                colors = "#660033";
+              }
+              lineTypeData.push({
+                color: colors,
+                lists: [start_flag_list, end_flag_list]
+              });
             }
-            planLineData.push({
-              names: nameA,
-              color: colorA,
-              lists: [start_flag_list, end_flag_list]
-            });
+            // if (item.true_start_time != "") {
+            //   true_start_flag_list.push(
+            //     item.true_start_time,
+            //     parseFloat(item.true_start_flag) +
+            //       parseFloat(item.true_start_length / 1000)
+            //   );
+            //   true_end_flag_list.push(
+            //     item.true_end_time,
+            //     parseFloat(item.true_end_flag) +
+            //       parseFloat(item.true_end_length / 1000)
+            //   );
+            //   if (this.select_type_now) {
+            //     lineTypeData.push({
+            //       color: "#2dca2d",
+            //       lists: [true_start_flag_list, true_end_flag_list]
+            //     });
+            //   }
+            // }
           });
-          for (let k in planLineData) {
+          for (let k in lineTypeData) {
             seriesData.push({
-              name: planLineData[k].names,
               type: "line",
               symbol: "none",
-              itemStyle: { normal: { color: planLineData[k].color } },
-              data: planLineData[k].lists
+              itemStyle: { normal: { color: lineTypeData[k].color } },
+              data: lineTypeData[k].lists
             });
           }
-          //实际线
-          let trueDataJson = resdata.data.true;
-          let trueLineData = [];
-          let nameB = "";
-          let colorB = "";
-          trueDataJson.forEach((item, index) => {
-            let start_flag_list = [];
-            let end_flag_list = [];
-            start_flag_list.push(
-              item.true_start_time,
-              parseFloat(item.true_start_flag) +
-                parseFloat(item.true_start_length / 1000)
-            );
-            end_flag_list.push(
-              item.true_end_time,
-              parseFloat(item.true_end_flag) +
-                parseFloat(item.true_end_length / 1000)
-            );
-            //   if (this.select_type_plan) {
-            let colors = "#ff6600";
-            if (item.line_type == 1) {
-              nameB = "实际左线";
-              colorB = this.kcolorB[0];
-            } else if (item.line_type == 2) {
-              nameB = "实际右线";
-              colorB = this.kcolorB[1];
-            } else if (item.line_type == 3) {
-              nameB = "实际入场线";
-              colorB = this.kcolorB[2];
-            } else {
-              nameB = "实际出场线";
-              colorB = this.kcolorB[3];
-            }
-            trueLineData.push({
-              names: nameB,
-              color: colorB,
-              lists: [start_flag_list, end_flag_list]
-            });
-          });
-          for (let k in trueLineData) {
-            seriesData.push({
-              name: trueLineData[k].names,
-              type: "line",
-              symbol: "none",
-              itemStyle: { normal: { color: trueLineData[k].color } },
-              data: trueLineData[k].lists
-            });
-          }
-          //  console.log("seriesLineData" + JSON.stringify(planLineData));
-          //   console.log("seriesLineData" + JSON.stringify(trueLineData));
-          //    console.log("seriesLineData" + JSON.stringify(seriesData));
+          //console.log("seriesLineData" + JSON.stringify(seriesData));
           //时间
           let dataMin = new Date(
             this.todayValue.getTime() - 24 * 60 * 60 * 1000
@@ -1395,26 +1422,15 @@ export default {
                 }
               }
             },
-            legend: {
-              selectorPosition: "start",
-              icon: "roundRect",
-              itemGap: 20,
-              top: 30,
-              textStyle: {
-                color: "#333",
-                fontSize: 14
-              },
-              data: this.lineTypeNameArr
-            },
             grid: {
-              top: "105px",
+              top: "25px",
               left: "180px",
               right: "20px",
               bottom: "50px"
             },
             xAxis: {
               type: "time",
-              position: "top",
+              position: "bottom",
               min: dataMin,
               max: dataMax,
               maxInterval: 3600 * 0.1 * 1000,
@@ -1426,11 +1442,6 @@ export default {
                   if (index % 6 == 0) {
                     return months + "\n" + hours;
                   }
-                }
-              },
-              axisLine: {
-                lineStyle: {
-                  color: "#ddd"
                 }
               },
               splitLine: {
@@ -1448,23 +1459,6 @@ export default {
               min: minLineNum,
               max: maxLineNum
             },
-            dataZoom: [
-              {
-                startValue: "2020-06-04"
-              },
-              {
-                type: "inside"
-              }
-            ],
-            dataZoom: {
-              type: "slider",
-              show: true,
-              filterMode: "none",
-              zoomLock: true,
-              start: 0,
-              end: 50
-            },
-
             // dataZoom: [
             //   {
             //     show: true,
@@ -1552,10 +1546,7 @@ export default {
           this.lineTypeList = data.data;
           this.lineTypeList.map(item => {
             this.select_line_type.push(item.id);
-            this.lineTypeNameArr.push("计划" + item.name);
-            this.lineTypeNameArr.push("实际" + item.name);
           });
-
           this.getChart();
           this.$set(this.formData, "out_line_type", this.lineTypeList[0]["id"]);
           this.$set(
@@ -2090,6 +2081,7 @@ export default {
 
 .chartmain {
   width: 100%;
+  overflow-x: scroll;
 }
 /*sidebox */
 .sidebox {

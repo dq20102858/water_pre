@@ -145,7 +145,7 @@ export default {
           }
         ],
         description: [
-          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" }
+          { min: 2, max:30, message: "长度在2到30个字符", trigger: "blur" }
         ]
       }
     };
