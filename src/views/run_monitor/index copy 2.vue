@@ -2350,7 +2350,7 @@ export default {
   margin-bottom: 1px !important;
 }
 .dialog-monitor .dateinput input {
-  width: 180px;
+  width: 180px; 
 }
 .dialog-monitor .dateinput .el-select {
   width: 180px;

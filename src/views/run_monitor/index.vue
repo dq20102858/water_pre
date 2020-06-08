@@ -1376,7 +1376,7 @@ export default {
           let dataMax = new Date(
             this.todayValue.getTime() + 24 * 60 * 60 * 1000
           ).setHours(19);
-
+          console.log("dataMin：" + dataMin + "_" + dataMax);
           //option
           var option = {
             textStyle: {
@@ -1423,8 +1423,10 @@ export default {
                   let date = new Date(val);
                   let months = date.getMonth() + 1 + "/" + date.getDate();
                   let hours = date.getHours() + ":00";
-                  if (index % 6 == 0) {
-                    return months + "\n" + hours;
+                  if (index > 3) {
+                    if (index % 6 == 0) {
+                      return months + "\n" + hours;
+                    }
                   }
                 }
               },
@@ -1456,14 +1458,18 @@ export default {
                 type: "inside"
               }
             ],
-            dataZoom: {
-              type: "slider",
-              show: true,
-              filterMode: "none",
-              zoomLock: true,
-              start: 0,
-              end: 50
-            },
+            dataZoom: [
+              {
+                type: "slider",
+                show: true,
+                realtime: true,
+                filterMode: "none",
+                zoomOnMouseWheel: false,
+                zoomLock: true,
+                start: 0,
+                end: 50
+              }
+            ],
 
             // dataZoom: [
             //   {
