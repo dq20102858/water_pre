@@ -13,9 +13,13 @@
         <span class="no-redirect">{{item.meta.title}}</span> 
         </router-link>
         <span v-else style="cursor:text;">{{item.meta.title}}</span>
-      </el-breadcrumb-item> -->
+      </el-breadcrumb-item>-->
     </el-breadcrumb>
     <div class="right-menu">
+      <router-link v-show="isShow" class="applylink" to="weekplanapply">
+        <i class="el-icon-message"></i>
+      </router-link>
+
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
         <div class="avatar-wrapper">
           <!-- <img class="user-avatar" :src="avatar" /> -->
@@ -36,10 +40,11 @@
 import { mapGetters } from "vuex";
 import Hamburger from "@/components/Hamburger";
 export default {
-  name:'Navbar',
+  name: "Navbar",
   data() {
     return {
       levelList: null,
+      isShow: false
     };
   },
   components: {
@@ -60,6 +65,18 @@ export default {
     getBreadcrumb() {
       let matched = this.$route.matched;
       this.levelList = matched;
+
+      this.request({
+        url: "/apply/getApplyLogs",
+        method: "get"
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          if (data.data.length > 0) {
+            this.isShow = true;
+          }
+        }
+      });
     },
     toggleSideBar() {
       this.$store.dispatch("toggleSideBar");
@@ -197,5 +214,19 @@ export default {
     font-weight: bold;
   }
 }
+.applylink {
+  color: #f1403c;
+  margin-right: 20px;
+  font-size: 14px;
+}
+.applylink i {
+  font-size: 16px;
 
+}
+.applylink:visited {
+  color: #f1403c;
+}
+.applylink:hover {
+  color: #f00;
+}
 </style>

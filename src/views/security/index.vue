@@ -93,7 +93,8 @@
         </div>
         <div class="app-table">
           <el-table :data="dataList" :empty-text="dataListEmptyText">
-            <el-table-column prop="id" label="序号"></el-table-column>
+            <el-table-column prop="id" label="序号" width="100"></el-table-column>
+            <el-table-column prop="company" label="公司"></el-table-column>
             <el-table-column prop="title" label="事件名称"></el-table-column>
             <el-table-column prop="address" label="事件地址" show-overflow-tooltip></el-table-column>
             <el-table-column prop="type" label="事件类型">
@@ -152,9 +153,9 @@
           <div class="security-title">施工问题详情</div>
           <div class="app-page-container">
             <div class="steps-info">
-            <div style="overflow:hidden">
-              <h3>{{eventTitle}}</h3>
-              {{eventDesc}}
+              <div style="overflow:hidden">
+                <h3>{{eventTitle}}</h3>
+                {{eventDesc}}
               </div>
               <div class="imgs">
                 <el-image
@@ -232,10 +233,7 @@
               <el-input type="textarea" v-model="formData.address"></el-input>
             </el-form-item>
             <el-form-item label="安全事件描述：" prop="description">
-              <el-input
-                type="textarea"
-                v-model="formData.description"
-              ></el-input>
+              <el-input type="textarea" v-model="formData.description"></el-input>
             </el-form-item>
             <el-form-item label="相关图片：">
               <p style="color:#3655a5">最多可以上传5张图片，支持格式 jpg png gif，大小不能超过 2MB。</p>
@@ -953,7 +951,11 @@ export default {
   border-radius: 6px;
   border: 1px #f9f9f9 solid;
 }
-.steps-info .imgs  .el-image__inner--center{left: 0;top: 0;transform:translate(0%, 0%)}
+.steps-info .imgs .el-image__inner--center {
+  left: 0;
+  top: 0;
+  transform: translate(0%, 0%);
+}
 .steps-info .el-icon-circle-close {
   color: #fff;
 }
