@@ -11,6 +11,7 @@
         </el-submenu>
         <el-menu-item>
           <router-link :to="{name:'weekplan'}">周计划</router-link>
+            <el-menu-item index="weekplanapply">权限审批</el-menu-item>
         </el-menu-item>
       </el-menu>
     </div>

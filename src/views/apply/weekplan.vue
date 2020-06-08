@@ -10,6 +10,7 @@
           <el-menu-item index="conflictcheck">冲突检测</el-menu-item>
         </el-submenu>
         <el-menu-item class="is-active" @click="refpage">周计划</el-menu-item>
+          <el-menu-item index="weekplanapply">权限审批</el-menu-item>
       </el-menu>
     </div>
     <div class="app-page">

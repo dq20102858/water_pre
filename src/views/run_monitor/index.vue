@@ -1372,11 +1372,11 @@ export default {
           //时间
           let dataMin = new Date(
             this.todayValue.getTime() - 24 * 60 * 60 * 1000
-          ).setHours(17);
+          ).setHours(18, 0, 0, 0);
           let dataMax = new Date(
             this.todayValue.getTime() + 24 * 60 * 60 * 1000
-          ).setHours(19);
-          console.log("dataMin：" + dataMin + "_" + dataMax);
+          ).setHours(18, 0, 0, 0);
+          console.log("dataMin：" +  new Date(dataMin) + "_" +  new Date(dataMax));
           //option
           var option = {
             textStyle: {
@@ -1423,11 +1423,9 @@ export default {
                   let date = new Date(val);
                   let months = date.getMonth() + 1 + "/" + date.getDate();
                   let hours = date.getHours() + ":00";
-                  if (index > 3) {
-                    if (index % 6 == 0) {
+                  if (index % 6 == 0) {
                       return months + "\n" + hours;
                     }
-                  }
                 }
               },
               axisLine: {

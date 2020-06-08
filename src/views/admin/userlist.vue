@@ -23,13 +23,15 @@
                 v-model="userSearch.user_name"
                 autocomplete="off"
                 placeholder="请输入姓名"
-                maxlength="30"  clearable
+                maxlength="30"
+                clearable
               ></el-input>
             </el-form-item>
             <el-form-item label="公司">
               <el-select
                 v-model="userSearch.company_id"
                 @change="getDepartLists($event)"
+                @clear="getDepartListsClear"
                 placeholder="请选择公司"
                 clearable
               >
@@ -45,6 +47,7 @@
               <el-select
                 v-model="userSearch.depart_id"
                 @change="getPostLists($event)"
+                @clear="getPostListsClear"
                 placeholder="请选择部门"
                 clearable
               >
@@ -581,6 +584,13 @@ export default {
         }
       });
     },
+    getDepartListsClear() {
+      alert("123");
+      //this.$set(this.userSearch, "depart_id", "");
+      // this.$set(this.userSearch, "post_id", "");
+      this.getDepartLists(-1);
+      this.getPostLists(-1);
+    },
     getPostLists(val) {
       this.$set(this.userData, "post_id", "");
       this.$set(this.userSearch, "post_id", "");
@@ -594,6 +604,9 @@ export default {
           this.postSelectList = data.data;
         }
       });
+    },
+    getPostListsClear() {
+      this.getPostLists(-1);
     },
     getDepartListEdit(val) {
       this.request({
@@ -716,7 +729,6 @@ export default {
   display: inline-block;
 }
 .dialog-users .el-form-item-block {
-
   display: block;
 }
 .dialog-users .el-form-item-inliness .el-checkbox-group {

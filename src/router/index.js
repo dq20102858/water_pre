@@ -186,6 +186,7 @@ export const asyncRouterMap = {
   '/views/apply/daychart': () => import('@/views/apply/daychart'),//日班图表
   '/views/apply/conflictcheck': () => import('@/views/apply/conflictcheck'),//冲突检测
   '/views/apply/weekplan': () => import('@/views/apply/weekplan'),//周计划
+  '/views/apply/weekplanapply': () => import('@/views/apply/weekplanapply'),//周计划l审核历史
 
   '/views/location/walldetector': () => import('@/views/location/walldetector'),//墙壁探测器
   '/views/location/cardetector': () => import('@/views/location/cardetector'),//车载探测器
