@@ -87,7 +87,7 @@
             <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
               <el-button size="small" icon="el-icon-search" @click="pageSearch" type="primary">查询</el-button>
-              <el-button size="small" plain @click="resetSerach">重置</el-button>
+              <el-button size="small" plain @click="resetSerach">刷新</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -100,7 +100,12 @@
             <el-table-column prop="type" label="事件类型">
               <template slot-scope="scope">{{scope.row.type==1?"人员提交":"机车提交"}}</template>
             </el-table-column>
-            <el-table-column prop="danger_determine_name" label="隐患判定"></el-table-column>
+            <el-table-column prop="danger_determine_name" label="隐患判定">
+              <template slot-scope="scope">
+                <span v-if="scope.row.danger_determine_name==''">未判定</span>
+                <span v-else>{{scope.row.danger_determine_name}}</span>
+              </template>
+            </el-table-column>
             <el-table-column prop="status" label="状态">
               <template slot-scope="scope">
                 <span v-if="scope.row.status==1">新事件</span>
@@ -471,18 +476,11 @@ export default {
   },
   methods: {
     defaultDate() {
-      // let dateA = new Date();
-      // let dateB = new Date(dateA);
-      // dateB.setDate(dateA.getDate() - 7);
-      // let start =dateB.getFullYear() +"-" + (dateB.getMonth() + 1) +"-" +dateB.getDate();
-      // let end =dateA - 7*24*60*60*1000;
-
       let currentDate = new Date();
       let endTime = currentDate.setHours(23, 59, 59, 999);
       let starTime = new Date(
         currentDate.setDate(currentDate.getDate() - 7)
       ).setHours(0, 0, 0, 999);
-
       this.$set(this.searchForm, "start_time", new Date(starTime));
       this.$set(this.searchForm, "end_time", new Date(endTime));
     },
@@ -535,16 +533,8 @@ export default {
       this.goDetail(0);
     },
     resetSerach() {
-      (this.searchForm = {
-        type: 1,
-        danger_type: "",
-        danger_determine: "",
-        loco_id: "",
-        start_location: "",
-        end_location: "",
-        time_range: []
-      }),
-        (this.page_cur = 1);
+      this.defaultDate();
+      this.page_cur = 1;
       this.getDataList();
       this.goDetail(0);
     },
