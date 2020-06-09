@@ -224,7 +224,7 @@
                 </el-radio-group>
               </el-form-item>
               <el-form-item label="用户职责：" class="checkbox-group" v-show="userData.sys_role==3">
-                <el-checkbox-group v-model="userData.menus">
+                <el-checkbox-group v-model="userData.menus" @change="selectUuserMenu">
                   <el-checkbox
                     v-for="item in userMenuList"
                     :key="item.id"
@@ -468,12 +468,26 @@ export default {
       this.$refs["userRulesForm"].validate(valid => {
         if (valid) {
           let data = this.userData;
+
+          let menuArr = data.menus;
+          console.log(menuArr);
+          let sg = menuArr.indexOf("9");
+          let gcs = menuArr.indexOf("14");
+          // if(data.menus)
+          console.log("menuArr：" + sg + "_" + gcs);
+          if (parseInt(sg) + parseInt(gcs) >= 1) {
+            this.$message({
+              type: "error",
+              message: "施工队长和总工程师不能同时选择"
+            });
+            return false;
+          }
           // if (this.userData.avatar == null) {
           //   this.userData.avatar = "/static/avatar.jpg";
           // }
           let url = "/user/addUser";
           let baseid = this.userData.id;
-          //console.log("this.userData.id：" + this.userData.id);
+
           if (typeof baseid != "undefined") {
             url = "/user/editUser";
 
@@ -653,6 +667,11 @@ export default {
           this.userMenuList = data.data;
         }
       });
+    },
+    selectUuserMenu(val) {
+      //alert(val);
+      if (val == 14) {
+      }
     },
     //上传图片
     uploadExceed() {
