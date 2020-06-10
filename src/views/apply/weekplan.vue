@@ -10,7 +10,7 @@
           <el-menu-item index="conflictcheck">冲突检测</el-menu-item>
         </el-submenu>
         <el-menu-item class="is-active" @click="refpage">周计划</el-menu-item>
-          <el-menu-item index="weekplanapply">权限审批</el-menu-item>
+        <el-menu-item index="weekplanapply">权限审批</el-menu-item>
       </el-menu>
     </div>
     <div class="app-page">
@@ -177,25 +177,25 @@
             <span class="itembtn">
               <el-button size="small" type="primary" @click="goBack">返回</el-button>
               <span v-if="sys_role==1">
-              <el-button   v-if="weekdailyList.flag==1"
-                size="small"
-                type="primary"
-                @click="applyInfo()"
-          
-              >审核</el-button>
-              </span> 
+                <el-button
+                  v-if="weekdailyList.flag==1"
+                  size="small"
+                  type="primary"
+                  @click="applyInfo(weekdailyList.create_time)"
+                >审核</el-button>
+              </span>
               <el-button size="small" class="redbtn" v-print="printObj">打印</el-button>
             </span>
           </div>
           <div class="wmain">
             <div class="app-table">
               <el-table :data="weekdailyList.lists">
-                <el-table-column prop="work_time" label="日期">
+                <el-table-column prop="work_time" label="日期"  width="130">
                   <template slot-scope="scope">
                     <span>{{scope.row.work_time | formatDate}}</span>
                   </template>
                 </el-table-column>
-                <el-table-column prop="type" label="作业类别"></el-table-column>
+                <el-table-column prop="type" label="作业类别" width="80"></el-table-column>
                 <el-table-column prop="detail_time" min-width="60" label="作业时间"></el-table-column>
                 <el-table-column prop="description" label="作业内容"></el-table-column>
                 <el-table-column prop="area" label="作业区域"></el-table-column>
@@ -221,14 +221,6 @@
           </div>
           <div class="wfoot">
             <span>注：监理需对此项施工或运输的相关条件（如材料设备已到位，边界条件已满足等），进行确认。</span>
-            <!-- <span class="fr">
-              <span>
-                <b>主管领导：</b>暂无
-              </span>
-              <span>
-                <b>总监：</b>暂无
-              </span>
-            </span>-->
           </div>
         </div>
         <div id="printWeek">
@@ -356,8 +348,8 @@ export default {
       dialogStatus: 1
     };
   },
-    computed: {
-    ...mapGetters(["sys_role","roles"])
+  computed: {
+    ...mapGetters(["sys_role", "roles"])
   },
   mounted() {
     document
@@ -450,9 +442,27 @@ export default {
     dateFormat(cellValue) {
       return ""; // this.formatDate(cellValue)
     },
-    applyInfo() {
-      this.dialogVisible = true;
-      this.dialogRemak = "";
+    applyInfo(dates) {
+      var myDate = new Date(dates);
+      myDate.setDate(
+        myDate.getDay() == 0
+          ? myDate.getDate() - 6
+          : myDate.getDate() - (myDate.getDay() - 1)
+      );
+      var nextmon = myDate.setDate(myDate.getDate() + 7); //+7代表下一个周一
+      let dateNow = new Date();
+      let nextweek = new Date(nextmon);
+      // console.log(dateNow);
+      // console.log(nextweek);
+      if (dateNow > nextweek) {
+        this.$message({
+          type: "error",
+          message: "当前周计划已过期"
+        });
+      } else {
+        this.dialogVisible = true;
+        this.dialogRemak = "";
+      }
     },
     applyEvent() {
       let wid = this.weekid;
@@ -499,7 +509,7 @@ export default {
         } else {
           let weeks = 1 + Math.ceil((date1 - fisrtWeekend) / 7);
           return t.getMonth() + 1 + "月第 " + weeks + "周";
-        } 
+        }
       } else {
         throw "getFormatDate - error : 你的参数不是日期类型，也不是为空";
       }
@@ -517,6 +527,23 @@ export default {
           //this.logDataList = data.data.toString();
         }
       });
+    },
+    getNextWeekOne() {
+      //获取当前日期的后七天
+      var myDate = new Date("2020-06-14 18:25:09");
+      myDate.setDate(
+        myDate.getDay() == 0
+          ? myDate.getDate() - 6
+          : myDate.getDate() - (myDate.getDay() - 1)
+      );
+      var nextmon = myDate.setDate(myDate.getDate() + 7); //+7代表下一个周一
+      let dateNow = new Date();
+      let nextweek = new Date(nextmon);
+      // console.log(dateNow);
+      // console.log(nextweek);
+      if (dateNow > nextweek) {
+        console.log("guoqi");
+      }
     }
     //end
   }
