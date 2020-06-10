@@ -25,7 +25,7 @@
             </el-table-column>
             <el-table-column prop="company" label="申请单位"></el-table-column>
             <el-table-column prop="title" label="申请人"></el-table-column>
-            <el-table-column prop="remark" label="审批建议"></el-table-column>
+            <el-table-column prop="remark" label="审批建议" show-overflow-tooltip></el-table-column>
             <el-table-column prop="status" label="状态">
               <template slot-scope="scope">
                 <span v-if="scope.row.status==1">待审核</span>
@@ -38,8 +38,11 @@
             <el-table-column prop="create_time" label="申请时间"></el-table-column>
             <el-table-column label="操作" width="70">
               <template slot-scope="scope">
+
                 <div class="app-operation" v-if="scope.row.status==1">
+                   <span v-if="sys_role==1">
                   <el-button class="btn-blue" size="mini" @click="applyInfo(scope.row.id)">审核</el-button>
+                   </span>
                 </div>
               </template>
             </el-table-column>
@@ -98,8 +101,8 @@
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
-  name: "weekplan",
   data() {
     return {
       projectName: "",
@@ -113,6 +116,9 @@ export default {
       dialogRemak: "",
       dialogStatus: 2
     };
+  },
+    computed: {
+    ...mapGetters(["sys_role","roles"])
   },
   created() {
     this.projectName = localStorage.getItem("projectName");
