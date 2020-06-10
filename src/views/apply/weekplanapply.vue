@@ -23,8 +23,8 @@
                 <span>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
               </template>
             </el-table-column>
-            <el-table-column prop="company" label="公司"></el-table-column>
-            <el-table-column prop="title" label="当前"></el-table-column>
+            <el-table-column prop="company" label="申请单位"></el-table-column>
+            <el-table-column prop="title" label="申请人"></el-table-column>
             <el-table-column prop="remark" label="审批建议"></el-table-column>
             <el-table-column prop="status" label="状态">
               <template slot-scope="scope">
@@ -35,7 +35,7 @@
                 <span v-if="scope.row.status==5">审核中</span>
               </template>
             </el-table-column>
-            <el-table-column prop="create_time" label="审批时间"></el-table-column>
+            <el-table-column prop="create_time" label="申请时间"></el-table-column>
             <el-table-column label="操作" width="70">
               <template slot-scope="scope">
                 <div class="app-operation" v-if="scope.row.status==1">

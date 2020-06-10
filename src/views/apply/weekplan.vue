@@ -15,6 +15,7 @@
     </div>
     <div class="app-page">
       <div class="app-page-container">
+        <!-- ({{roles}} {{sys_role}}) -->
         <div v-if="isParent">
           <div class="app-page-container-other">
             <div class="app-page-select" style="margin:10px 0">
@@ -175,12 +176,14 @@
             </span>
             <span class="itembtn">
               <el-button size="small" type="primary" @click="goBack">返回</el-button>
-              <el-button
+              <span v-if="sys_role==1">
+              <el-button   v-if="weekdailyList.flag==1"
                 size="small"
                 type="primary"
                 @click="applyInfo()"
-                v-if="weekdailyList.flag==1"
+          
               >审核</el-button>
+              </span> 
               <el-button size="small" class="redbtn" v-print="printObj">打印</el-button>
             </span>
           </div>
@@ -316,6 +319,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "weekplan",
   data() {
@@ -351,6 +355,9 @@ export default {
       dialogRemak: "",
       dialogStatus: 1
     };
+  },
+    computed: {
+    ...mapGetters(["sys_role","roles"])
   },
   mounted() {
     document

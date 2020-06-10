@@ -17,6 +17,7 @@ const user = {
     avatar: '',
     introduction: '',
     roles: [],
+    sys_role: '',
     setting: {
       articlePlatform: []
     },
@@ -47,6 +48,9 @@ const user = {
     },
     SET_ROLES: (state, roles) => {
       state.roles = roles
+    },
+    SET_SYS_ROLE: (state, sys_role) => {
+      state.sys_role = sys_role
     },
     SET_SYSTEMS: (state, system) => {
       state.system = system
@@ -95,6 +99,7 @@ const user = {
             commit('SET_NAME', data.name)
             commit('SET_AVATAR', data.avatar)
             commit('SET_INTRODUCTION', data.introduction)
+            commit('SET_SYS_ROLE', data.sys_role)
             resolve(response)
           })
           .catch(error => {
@@ -153,6 +158,7 @@ const user = {
           commit('SET_NAME', data.name)
           commit('SET_AVATAR', data.avatar)
           commit('SET_INTRODUCTION', data.introduction)
+          commit('SET_SYS_ROLE', data.sys_role)
           resolve()
         })
       })
@@ -169,6 +175,7 @@ const user = {
             commit('SET_NAME', data.name)
             commit('SET_AVATAR', data.avatar)
             commit('SET_INTRODUCTION', data.introduction)
+            commit('SET_SYS_ROLE', data.sys_role)
             dispatch('GenerateRoutes', data) // 动态修改权限后 重绘侧边菜单
             resolve()
           }
