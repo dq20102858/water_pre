@@ -227,7 +227,7 @@ export default {
           },
           {
             pattern: /^\d{1,3}$/,
-            message: "请输入1-3位正整数",
+            message: "输入1-3位整数",
             trigger: "blur"
           }
         ],
@@ -239,7 +239,7 @@ export default {
           },
           {
             pattern: /^\d{1,3}$/,
-            message: "请输入1-3位正整数",
+            message: "输入1-3位整数",
             trigger: "blur"
           }
         ],
@@ -251,7 +251,7 @@ export default {
           },
           {
             pattern: /^\d{1,3}$/,
-            message: "请输入1-3位正整数",
+            message: "输入1-3位整数",
             trigger: "blur"
           }
         ],
@@ -263,7 +263,7 @@ export default {
           },
           {
             pattern: /^\d{1,3}$/,
-            message: "请输入1-3位正整数",
+            message: "输入1-3位整数",
             trigger: "blur"
           }
         ]
