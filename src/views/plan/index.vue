@@ -313,17 +313,7 @@
                 <b>结束时间：</b>
                 {{dataListItem.true_end_time}}
               </td>
-              <td>
-                <b>记录人：</b>
-                {{dataListItem.record}}
-              </td>
-              <td>
-                <b>记录时间：</b>
-                {{dataListItem.back_line}}
-              </td>
-            </tr>
-            <tr>
-              <td>
+               <td>
                 <b>开始里程：</b>
                 <span
                   v-if="dataListItem.true_start_flag!=null"
@@ -335,9 +325,19 @@
                   v-if="dataListItem.true_end_flag!=null"
                 >DK{{parseFloat(dataListItem.true_end_flag)}}+{{parseFloat(dataListItem.true_end_length)}}</span>
               </td>
+            </tr>
+            <tr>
               <td>
                 <b>完成长度：</b>
                 {{dataListItem.finish_num}} 公里
+              </td>
+               <td>
+                <b>记录人：</b>
+                {{dataListItem.record}}
+              </td>
+                 <td>
+                <b>时间：</b>
+                {{dataListItem.update_time|formatDateTamp}}
               </td>
             </tr>
             <tr>

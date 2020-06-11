@@ -176,21 +176,19 @@
             </span>
             <span class="itembtn">
               <el-button size="small" type="primary" @click="goBack">返回</el-button>
-              <span v-if="sys_role==1">
-                <el-button
-                  v-if="weekdailyList.flag==1"
-                  size="small"
-                  type="primary"
-                  @click="applyInfo(weekdailyList.create_time)"
-                >审核</el-button>
-              </span>
+              <el-button
+                v-if="weekdailyList.flag==1"
+                size="small"
+                type="primary"
+                @click="applyInfo(weekdailyList.create_time)"
+              >审核</el-button>
               <el-button size="small" class="redbtn" v-print="printObj">打印</el-button>
             </span>
           </div>
           <div class="wmain">
             <div class="app-table">
               <el-table :data="weekdailyList.lists">
-                <el-table-column prop="work_time" label="日期"  width="130">
+                <el-table-column prop="work_time" label="日期" width="130">
                   <template slot-scope="scope">
                     <span>{{scope.row.work_time | formatDate}}</span>
                   </template>
@@ -213,7 +211,7 @@
                     <div class="app-operation">
                       <el-button class="btn-blue" size="mini">已转换</el-button>
                       <el-button class="btn-blue" size="mini">报表</el-button>
-                    </div>
+                    </div>-
                   </template>
                 </el-table-column>-->
               </el-table>
@@ -269,13 +267,15 @@
           </div>
           <div class="printbom">
             <p>注：监理需对此项施工或运输的相关条件（如材料设备已到位，边界条件已满足等），进行确认。</p>
-            <!-- <p>
-              <span>主管领导：暂无</span>
-              <span>总监：暂无</span>
-
-
-
-            </p>-->
+          </div>
+          <div class="status-print">
+            <div class="infotitle">审批记录</div>
+            <ul>
+              <li v-for="item in logDataList" :key="item.id">
+                <h3>{{item.create_time+' '+ item.remark}}</h3>
+                <p>{{item.reason}}</p>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -311,7 +311,6 @@
   </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
 export default {
   name: "weekplan",
   data() {
@@ -347,9 +346,6 @@ export default {
       dialogRemak: "",
       dialogStatus: 1
     };
-  },
-  computed: {
-    ...mapGetters(["sys_role", "roles"])
   },
   mounted() {
     document
@@ -435,6 +431,7 @@ export default {
           this.weekid = id;
         }
       });
+      this.getLogList(id);
     },
     goBack() {
       this.isParent = true;
@@ -790,6 +787,31 @@ export default {
   top: -0.2px !important;
   margin-left: -6px;
   border-bottom-color: #9db9fa !important;
+}
+/** */
+.status-print {
+  margin-top: 20px;
+}
+.status-print li {
+ 
+  word-break: break-all;
+  color: #3655a5;
+  line-height: 24px;
+  margin-bottom: 20px;
+}
+.status-print h3 {
+  color: #3655a5;
+   font-size: 15px;
+}
+.stat
+.status-print p {
+  color: #4b6eca;
+}
+.status-print .infotitle {
+  font-size: 19px;
+  font-weight: 700;
+  color: #1d397a;
+  margin-bottom: 10px;
 }
 /** */
 .layui-timeline {

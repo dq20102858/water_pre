@@ -13,7 +13,6 @@
         <el-menu-item index="weekplanapply" class="is-active">权限审批</el-menu-item>
       </el-menu>
     </div>
-
     <div class="app-page">
       <div class="app-page-container">
         <div class="app-table">

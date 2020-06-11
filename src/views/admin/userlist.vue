@@ -583,44 +583,52 @@ export default {
       });
     },
     getDepartLists(val) {
-      this.$set(this.userData, "depart_id", "");
-      this.$set(this.userData, "post_id", "");
-      this.$set(this.userSearch, "depart_id", "");
-      this.$set(this.userSearch, "post_id", "");
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: val, type: 2 }
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          this.departSelectList = data.data;
-        }
-      });
+      // debugger;
+      if (this.userSearch.company_id != "") {
+        this.$set(this.userData, "depart_id", "");
+        this.$set(this.userData, "post_id", "");
+        this.$set(this.userSearch, "depart_id", "");
+        this.$set(this.userSearch, "post_id", "");
+        this.request({
+          url: "/company/getDepartLists",
+          method: "get",
+          params: { pid: val, type: 2 }
+        }).then(response => {
+          let data = response.data;
+          if (data.status == 1) {
+            this.departSelectList = data.data;
+          }
+        });
+      } else {
+        this.userSearch.depart_id = "";
+        this.departSelectList = [];
+      }
     },
     getDepartListsClear() {
-      alert("123");
-      //this.$set(this.userSearch, "depart_id", "");
-      // this.$set(this.userSearch, "post_id", "");
-      this.getDepartLists(-1);
       this.getPostLists(-1);
     },
     getPostLists(val) {
-      this.$set(this.userData, "post_id", "");
-      this.$set(this.userSearch, "post_id", "");
-      this.request({
-        url: "/company/getDepartLists",
-        method: "get",
-        params: { pid: val, type: 3 }
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          this.postSelectList = data.data;
-        }
-      });
+      if (this.userSearch.depart_id != "") {
+        this.$set(this.userData, "post_id", "");
+        this.$set(this.userSearch, "post_id", "");
+        this.request({
+          url: "/company/getDepartLists",
+          method: "get",
+          params: { pid: val, type: 3 }
+        }).then(response => {
+          let data = response.data;
+          if (data.status == 1) {
+            this.postSelectList = data.data;
+          }
+        });
+      } else {
+        this.userSearch.post_id = "";
+        this.postSelectList = [];
+      }
     },
     getPostListsClear() {
       this.getPostLists(-1);
+      this.postSelectList = [];
     },
     getDepartListEdit(val) {
       this.request({
