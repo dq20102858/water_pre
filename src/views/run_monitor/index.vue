@@ -2071,9 +2071,6 @@ export default {
 };
 </script>
 <style>
-* {
-  touch-action: pan-y;
-}
 .maintitle {
   text-align: center;
   font-size: 20px;
