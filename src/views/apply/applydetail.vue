@@ -56,12 +56,6 @@
                       联系电话：
                       <span class="clblue">{{dataInfo.phone}}</span>
                     </div>
-                    <div v-for="item in dataInfo.holder" :key="item.id">
-                      持证人：
-                      <span style="width:40%;display:inline-block" class="clblue">{{item.name}}</span>
-                      联系电话：
-                      <span class="clblue">{{item.phone}}</span>
-                    </div>
                     <div>
                       负责人：
                       <span
@@ -70,6 +64,18 @@
                       >{{dataInfo.p_in_charge}}</span>
                       联系电话：
                       <span class="clblue">{{dataInfo.p_in_charge_phone}}</span>
+                    </div>
+                    <div v-for="item in dataInfo.holder" :key="item.id">
+                      持证人：
+                      <span style="width:40%;display:inline-block" class="clblue">{{item.name}}</span>
+                      联系电话：
+                      <span class="clblue">{{item.phone}}</span>
+                    </div>
+                    <div v-for="item in dataInfo.worker" :key="item.id">
+                      施工人：
+                      <span style="width:40%;display:inline-block" class="clblue">{{item.name}}</span>
+                      联系电话：
+                      <span class="clblue">{{item.phone}}</span>
                     </div>
                   </td>
                   <td>
