@@ -177,6 +177,7 @@
             <span class="itembtn">
               <el-button size="small" type="primary" @click="goBack">返回</el-button>
               <el-button
+                v-show="iShowApplyBtn"
                 v-if="weekdailyList.flag==1"
                 size="small"
                 type="primary"
@@ -344,7 +345,8 @@ export default {
       workId: 0,
       dialogVisible: false,
       dialogRemak: "",
-      dialogStatus: 1
+      dialogStatus: 1,
+      iShowApplyBtn: false
     };
   },
   mounted() {
@@ -452,10 +454,8 @@ export default {
       // console.log(dateNow);
       // console.log(nextweek);
       if (dateNow > nextweek) {
-        this.$message({
-          type: "error",
-          message: "当前周计划已过期"
-        });
+        this.isShowApplyBtn = true;
+        console.log("当前周计划已过期");
       } else {
         this.dialogVisible = true;
         this.dialogRemak = "";
@@ -525,23 +525,7 @@ export default {
         }
       });
     },
-    getNextWeekOne() {
-      //获取当前日期的后七天
-      var myDate = new Date("2020-06-14 18:25:09");
-      myDate.setDate(
-        myDate.getDay() == 0
-          ? myDate.getDate() - 6
-          : myDate.getDate() - (myDate.getDay() - 1)
-      );
-      var nextmon = myDate.setDate(myDate.getDate() + 7); //+7代表下一个周一
-      let dateNow = new Date();
-      let nextweek = new Date(nextmon);
-      // console.log(dateNow);
-      // console.log(nextweek);
-      if (dateNow > nextweek) {
-        console.log("guoqi");
-      }
-    }
+   
     //end
   }
 };
@@ -793,7 +777,6 @@ export default {
   margin-top: 20px;
 }
 .status-print li {
- 
   word-break: break-all;
   color: #3655a5;
   line-height: 24px;
@@ -801,10 +784,9 @@ export default {
 }
 .status-print h3 {
   color: #3655a5;
-   font-size: 15px;
+  font-size: 15px;
 }
-.stat
-.status-print p {
+.stat .status-print p {
   color: #4b6eca;
 }
 .status-print .infotitle {

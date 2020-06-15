@@ -280,8 +280,8 @@ export default {
             trigger: "blur"
           },
           {
-            pattern: /^[\u4e00-\u9fa5A-Za-z0-9\_]*$/,
-            message: "用户名只能是汉字、字母、数字及下划线",
+            pattern: /^[A-Za-z0-9]*$/,
+            message: "用户名只能是字母、数字",
             trigger: "blur"
           }
         ],
