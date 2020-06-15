@@ -1,10 +1,10 @@
 <template>
   <div id="planlist">
-    <div class="el-menu-top">
+    <!-- <div class="el-menu-top">
       <el-menu router mode="horizontal">
-        <li class="ptitle">施工生产调度指挥管理系统</li>
+        <li class="ptitle">施工计划</li>
       </el-menu>
-    </div>
+    </div> -->
 
     <div class="app-page">
       <div class="app-page-container">
