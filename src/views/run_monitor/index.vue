@@ -1427,7 +1427,7 @@ export default {
                   let hours = date.getHours() + ":00";
                   //  index = index + 1;
                   if (index % 6 == 1) {
-                    return months + "\n" + hours;
+                    return hours + "\n" + months;
                   }
                 }
               },
@@ -1989,6 +1989,7 @@ export default {
       });
     },
     formStatus() {
+    console.log(this.formEditData.status);
       this.reasonShow = !this.reasonShow;
     },
     updateDayTrueplan() {
