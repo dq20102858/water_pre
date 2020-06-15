@@ -16,9 +16,11 @@
       </el-breadcrumb-item>-->
     </el-breadcrumb>
     <div class="right-menu">
-      <router-link v-show="isShow" class="applylink" to="weekplanapply">
-        <i class="el-icon-message"></i>
-      </router-link>
+      <span v-if="sys_role==1">
+        <router-link v-show="isShow" class="applylink" to="weekplanapply">
+          <i class="el-icon-message"></i>
+        </router-link>
+      </span>
 
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
         <div class="avatar-wrapper">
@@ -51,7 +53,7 @@ export default {
     Hamburger
   },
   computed: {
-    ...mapGetters(["sidebar", "name", "avatar", "roles", "system"])
+    ...mapGetters(["sidebar", "name", "avatar", "roles", "sys_role", "system"])
   },
   watch: {
     $route() {
@@ -221,7 +223,6 @@ export default {
 }
 .applylink i {
   font-size: 16px;
-
 }
 .applylink:visited {
   color: #f1403c;

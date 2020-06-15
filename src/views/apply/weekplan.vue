@@ -797,7 +797,7 @@ export default {
   word-break: break-all;
   color: #3655a5;
   line-height: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .status-print h3 {
   color: #3655a5;
