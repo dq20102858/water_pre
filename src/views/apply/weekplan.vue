@@ -524,8 +524,7 @@ export default {
           //this.logDataList = data.data.toString();
         }
       });
-    },
-   
+    }
     //end
   }
 };

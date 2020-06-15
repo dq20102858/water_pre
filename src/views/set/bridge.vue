@@ -15,7 +15,7 @@
       </el-menu>
       <!-- <div @click="goDetail()">to apple</div> -->
     </div>
-    <div class="app-page">
+    <div class="app-page"`````````>
       <div class="app-page-container">
         <div class="app-page-select">
           <el-form :inline="true">
