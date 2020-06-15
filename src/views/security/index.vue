@@ -87,7 +87,7 @@
             <el-form-item class="form-so">
               <label class="el-form-item__label"></label>
               <el-button size="small" icon="el-icon-search" @click="pageSearch" type="primary">查询</el-button>
-              <el-button size="small" plain @click="resetSerach">刷新</el-button>
+              <el-button size="small" plain @click="resetSerach">重置</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -494,7 +494,6 @@ export default {
       // let start_location = this.searchForm.start_location;
       // let end_location = this.searchForm.end_location;
       let start_time = this.searchForm.start_time;
-      console.log(start_time);
       let end_time = this.searchForm.end_time;
       this.request({
         url: "/security/getSecurityPages",
@@ -533,7 +532,8 @@ export default {
       this.goDetail(0);
     },
     resetSerach() {
-      this.defaultDate();
+      this.searchForm.start_time = "";
+      this.searchForm.end_time = "";
       this.page_cur = 1;
       this.getDataList();
       this.goDetail(0);
@@ -1093,5 +1093,4 @@ export default {
   width: auto !important;
   height: auto !important;
 }
-
 </style>
