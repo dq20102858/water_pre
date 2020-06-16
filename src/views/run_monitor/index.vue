@@ -1203,8 +1203,8 @@ export default {
       this.formData.date = this.todayValue;
       this.todayPreValue = this.getNextDate(this.todayValue, -1);
       this.todayNextValue = this.getNextDate(this.todayValue, 1);
-      let start_time = this.getNextDate(this.todayValue, -1, "-");
-      let end_time = this.getNextDate(this.todayValue, 1, "-");
+      let start_time = this.getNextDate(this.todayValue, -1, "-")+" 18:00:00";
+      let end_time = this.getNextDate(this.todayValue, 1, "-")+" 18:00:00";
       let line_type = this.select_line_type.toString();
       let type = this.select_line_type.toString();
       let loco_type = this.select_loco_type.toString();
