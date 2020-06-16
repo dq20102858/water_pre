@@ -177,7 +177,7 @@
             <span class="itembtn">
               <el-button size="small" type="primary" @click="goBack">返回</el-button>
               <el-button
-                v-show="iShowApplyBtn"
+                v-show="showApplyBtn"
                 v-if="weekdailyList.flag==1"
                 size="small"
                 type="primary"
@@ -347,7 +347,7 @@ export default {
       dialogVisible: false,
       dialogRemak: "",
       dialogStatus: 1,
-      iShowApplyBtn: false
+      showApplyBtn: true
     };
   },
   computed: {
@@ -435,6 +435,24 @@ export default {
         if (data.status == 1) {
           this.weekdailyList = data.data;
           this.weekid = id;
+          //
+          var myDate = new Date(data.data.create_time);
+          myDate.setDate(
+            myDate.getDay() == 0
+              ? myDate.getDate() - 6
+              : myDate.getDate() - (myDate.getDay() - 1)
+          );
+          var nextmon = myDate.setDate(myDate.getDate() + 7); //+7代表下一个周一
+          let dateNow = new Date();
+          let nextweek = new Date(nextmon);
+          // console.log(dateNow);
+          // console.log(nextweek);
+          if (dateNow > nextweek) {
+            this.showApplyBtn = false;
+            console.log("当前周计划已过期");
+          } else {
+            this.showApplyBtn = true;
+          }
         }
       });
       this.getLogList(id);
@@ -446,24 +464,8 @@ export default {
       return ""; // this.formatDate(cellValue)
     },
     applyInfo(dates) {
-      var myDate = new Date(dates);
-      myDate.setDate(
-        myDate.getDay() == 0
-          ? myDate.getDate() - 6
-          : myDate.getDate() - (myDate.getDay() - 1)
-      );
-      var nextmon = myDate.setDate(myDate.getDate() + 7); //+7代表下一个周一
-      let dateNow = new Date();
-      let nextweek = new Date(nextmon);
-      // console.log(dateNow);
-      // console.log(nextweek);
-      if (dateNow > nextweek) {
-        this.isShowApplyBtn = true;
-        console.log("当前周计划已过期");
-      } else {
-        this.dialogVisible = true;
-        this.dialogRemak = "";
-      }
+      this.dialogVisible = true;
+      this.dialogRemak = "";
     },
     applyEvent() {
       let wid = this.weekid;
