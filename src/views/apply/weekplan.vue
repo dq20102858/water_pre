@@ -527,7 +527,6 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.logDataList = data.data;
-          //this.logDataList = data.data.toString();
         }
       });
     }

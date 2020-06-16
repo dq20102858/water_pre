@@ -1913,11 +1913,16 @@ export default {
             this.formEditData.work_id = "";
           }
 
-          this.formEditData.status =
-            this.formEditData.status == 2 ? true : false;
-          if (this.formEditData.status) {
+          // this.formEditData.status =
+          //   this.formEditData.status == 2 ? true : false;
+          if (data.data.status == 2) {
+            this.formEditData.status = true;
             this.reasonShow = false;
+          } else {
+            this.formEditData.status = false;
+            this.reasonShow = true;
           }
+
           //
           // (this.formEditData.record_id =
           //   data.data.record_id == null
@@ -1989,7 +1994,7 @@ export default {
       });
     },
     formStatus() {
-    console.log(this.formEditData.status);
+      console.log(this.formEditData.status);
       this.reasonShow = !this.reasonShow;
     },
     updateDayTrueplan() {
@@ -2040,7 +2045,7 @@ export default {
         }
       });
     },
-    
+
     //多选操作
     selectDatePicker(value) {
       this.todayValue = value;
