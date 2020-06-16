@@ -323,7 +323,7 @@ export default {
 .dialog-msg .el-textarea__inner {
   border: 1px #9db9fa solid;
   color: #4b6eca;
-  height: 160px;
+  height: 200px;
 }
 .dialog-msg .el-textarea {
   width: 100% !important;

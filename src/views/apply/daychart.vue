@@ -12,7 +12,6 @@
         <el-menu-item>
           <router-link :to="{name:'weekplan'}">周计划</router-link>
         </el-menu-item>
-          <el-menu-item index="weekplanapply">权限审批</el-menu-item>
       </el-menu>
     </div>
     <div class="app-page-chart">

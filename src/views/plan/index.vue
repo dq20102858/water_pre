@@ -147,7 +147,7 @@
       </div>
     </div>
     <el-dialog
-      width="980px"
+      width="1000px"
       :close-on-click-modal="false"
       class="dialog-planinfo"
       :title="this.dialogTitle"
