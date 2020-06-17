@@ -2,7 +2,9 @@
   <div id="app-week-apply">
     <div class="el-menu-top">
       <el-menu router mode="horizontal">
-        <li class="ptitle">{{projectName}}</li>
+         <li class="ptitle">
+          <img :src="require('@/assets/image/m_apply_on.png')" />施工请点
+        </li>
         <el-submenu index="1">
           <template slot="title">日班计划</template>
           <el-menu-item index="daychart">日班图表</el-menu-item>
@@ -105,7 +107,6 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      projectName: "",
       page_cur: 1,
       pageTotal: 0,
       page_size: 20,
@@ -121,7 +122,6 @@ export default {
     ...mapGetters(["sys_role", "roles"])
   },
   created() {
-    this.projectName = localStorage.getItem("projectName");
     this.getPageList();
   },
   methods: {

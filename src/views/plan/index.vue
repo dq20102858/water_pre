@@ -1,11 +1,12 @@
 <template>
   <div id="planlist">
-    <!-- <div class="el-menu-top">
-      <el-menu router mode="horizontal">
-        <li class="ptitle">施工计划</li>
+     <div class="el-menu-top">
+      <el-menu mode="horizontal">
+        <li class="ptitle">
+          <img :src="require('@/assets/image/m_plan_on.png')" />施工计划
+        </li>
       </el-menu>
-    </div> -->
-
+    </div>
     <div class="app-page">
       <div class="app-page-container">
         <div class="app-page-select">

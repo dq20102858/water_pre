@@ -3,10 +3,9 @@
     <div class="el-menu-top">
       <el-menu mode="horizontal">
         <li class="ptitle">
-          <img :src="require('@/assets/image/icon-peple.png')" />消息
+          <img :src="require('@/assets/image/icon-peple.png')" />消息管理
         </li>
       </el-menu>
-      <!-- <div @click="goDetail()">to apple</div> -->
     </div>
     <div class="app-page">
       <div class="app-page-container">

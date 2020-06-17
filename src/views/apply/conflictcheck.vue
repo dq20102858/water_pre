@@ -2,7 +2,9 @@
   <div id="app-apply">
     <div class="el-menu-top">
       <el-menu router mode="horizontal" default-active="conflictcheck">
-        <li class="ptitle">{{projectName}}</li>
+          <li class="ptitle">
+          <img :src="require('@/assets/image/m_apply_on.png')" />施工请点
+        </li>
         <el-submenu index="1" class="is-active">
           <template slot="title">日班计划</template>
           <el-menu-item index="daychart">日班图表</el-menu-item>
@@ -120,7 +122,6 @@ export default {
   name: "conflictcheck",
   data() {
     return {
-      projectName: "",
       checkId1: 0,
       checkId2: 0,
       checkNumber1: 0,
@@ -142,7 +143,6 @@ export default {
       .classList.add("is-active");
   },
   created() {
-    this.projectName = localStorage.getItem("projectName");
     this.getconflictCheck();
   },
   methods: {
@@ -240,7 +240,7 @@ export default {
       if (type == "A1" || type == "A2") {
         laytitle = "轨行区及施工作业许可证";
       } else {
-        laytitle = this.projectName + "进场作业许可证";
+        laytitle ="进场作业许可证";
       }
       this.$layer.iframe({
         area: ["85%", "90%"],

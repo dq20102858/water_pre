@@ -2,7 +2,9 @@
   <div id="app-apply">
     <div class="el-menu-top">
       <el-menu router mode="horizontal">
-        <li class="ptitle">{{projectName}}</li>
+         <li class="ptitle">
+          <img :src="require('@/assets/image/m_apply_on.png')" />施工请点
+        </li>
         <el-submenu index="1" class="is-active">
           <template slot="title">日班计划</template>
           <el-menu-item index="daychart">日班图表</el-menu-item>
@@ -490,7 +492,6 @@ import detailForm from "./applydetail.vue";
 export default {
   data() {
     return {
-      projectName: "",
       page_cur: 1,
       pageTotal: 0,
       page_size: 20,
@@ -598,26 +599,12 @@ export default {
     ...mapGetters(["sys_role", "roles"])
   },
   created() {
-    this.getProjectName();
     this.getDataList();
     this.getCompanyList();
     this.getLineType(); //线别
     this.getStationList(); //车站
   },
   methods: {
-    getProjectName() {
-      this.request({
-        url: "/common/getItemDetail",
-        method: "get"
-      }).then(res => {
-        let data = res.data;
-        if (data.status == 1) {
-          this.projectName = data.data.name;
-          localStorage.setItem("projectName", data.data.name);
-        }
-      });
-    },
-
     getDataList() {
       let page = this.page_cur;
       let depart_id = this.searchForm.depart_id;

@@ -2,7 +2,9 @@
   <div id="app-weekplan">
     <div class="el-menu-top">
       <el-menu router default-active="weekplan" mode="horizontal">
-        <li class="ptitle">{{projectName}}</li>
+        <li class="ptitle">
+          <img :src="require('@/assets/image/m_apply_on.png')" />施工请点
+        </li>
         <el-submenu index="1">
           <template slot="title" style="font-size:16px;">日班计划</template>
           <el-menu-item index="daychart">日班图表</el-menu-item>
@@ -323,7 +325,6 @@ export default {
         extraCss: "",
         extraHead: '<meta http-equiv="Content-Language"content="zh-cn"/>'
       },
-      projectName: "",
       isParent: true,
       page_cur: 1,
       pageTotal: 0,
@@ -359,7 +360,6 @@ export default {
       .classList.add("is-active");
   },
   created() {
-    this.projectName = localStorage.getItem("projectName");
     this.getCompanyList();
     this.getWeekList();
   },
