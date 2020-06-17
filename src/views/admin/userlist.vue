@@ -468,7 +468,9 @@ export default {
       this.$refs["userRulesForm"].validate(valid => {
         if (valid) {
           let data = this.userData;
-
+          if (data.sys_role > 1) {
+            data.menus = [];
+          }
           let menuArr = data.menus;
           console.log(menuArr);
           let sg = menuArr.indexOf("9");

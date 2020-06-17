@@ -232,16 +232,22 @@
             >
               <div class="onebox">
                 <div class="item">
-                  <label class="labels">作业编号</label>
+                  <label class="labels">作业编号：</label>
                   <span class="input">{{ dataInfo.number}}</span>
-                  <label class="labels">作业令号</label>
+                  <label class="labels">作业令号：</label>
                   <span class="input">{{ dataInfo.command_num}}</span>
                 </div>
                 <div class="item">
-                  <label class="labels">兹申请允许持证人（主站）</label>
+                  <label class="labels">兹申请允许持证人（主站）：</label>
                   <span class="input">{{ dataInfo.main_apply_user}}</span>
-                  <label class="labels">辅站及负责人</label>
+                  <label class="labels">辅站及负责人：</label>
                   <span class="input">{{ dataInfo.sub_apply_user}}</span>
+                </div>
+                <div class="item" v-for="item in dataInfo.worker" :key="item.id">
+                  <label class="labels">施工人：</label>
+                  <span class="input">{{item.name}}</span>
+                  <label class="labels">联系电话：</label>
+                  <span class="input">{{item.phone}}</span>
                 </div>
                 <div class="item">
                   <label class="labels">单位：</label>
@@ -519,7 +525,6 @@ export default {
 }
 .app-apply-detail .input {
   height: 36px;
-  border: 1px #9db9fa solid;
   color: #4b6eca;
   border-radius: 4px;
   line-height: 36px;

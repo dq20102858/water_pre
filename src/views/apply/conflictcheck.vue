@@ -10,6 +10,7 @@
           <el-menu-item index="conflictcheck">冲突检测</el-menu-item>
         </el-submenu>
         <el-menu-item index="weekplan">周计划</el-menu-item>
+       <el-menu-item index="weekplanapply" v-if="sys_role==1">权限审批</el-menu-item>
       </el-menu>
     </div>
     <div class="app-page">
@@ -113,6 +114,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import detailForm from "./applydetail.vue";
 export default {
   name: "conflictcheck",
@@ -130,6 +132,9 @@ export default {
       dialogVisible: false,
       checkList: []
     };
+  },
+   computed: {
+    ...mapGetters(["sys_role", "roles"])
   },
   mounted() {
     document

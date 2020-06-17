@@ -12,6 +12,7 @@
         <el-menu-item>
           <router-link :to="{name:'weekplan'}">周计划</router-link>
         </el-menu-item>
+        <el-menu-item index="weekplanapply" v-if="sys_role==1">权限审批</el-menu-item>
       </el-menu>
     </div>
     <div class="app-page-chart">
@@ -22,6 +23,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "daychart",
   data() {
@@ -31,6 +33,9 @@ export default {
       project_kind_name: [],
       kcolor: ["red", "green", "yellow", "#467aff", "#44ddb5", "#c245d3"]
     };
+  },
+   computed: {
+    ...mapGetters(["sys_role", "roles"])
   },
   mounted() {
     document
