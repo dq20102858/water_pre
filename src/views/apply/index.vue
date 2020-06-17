@@ -112,7 +112,7 @@
             </el-form-item>
           </el-form>
         </div>
-        <div class="page-count">找到{{pageTotal}}条相关作业令</div>
+        <!-- <div class="page-count">找到{{pageTotal}}条相关作业令</div> -->
         <!-- end search -->
         <div class="app-table">
           <el-table :data="dataList">
@@ -130,6 +130,7 @@
                 <span class="statuse1" v-if="scope.row.status=='注销'">注销</span>
               </template>
             </el-table-column>
+
             <el-table-column prop="next_status" label="下一步状态" width="100" align="center"></el-table-column>
             <el-table-column prop="create_time" label="创建时间" width="150"></el-table-column>
             <el-table-column label="操作" width="125">
