@@ -280,8 +280,8 @@ export default {
             trigger: "blur"
           },
           {
-            pattern: /^[A-Za-z0-9]*$/,
-            message: "用户名只能是字母、数字",
+            pattern: /^[A-Za-z0-9\_]*$/,
+            message: "用户名只能是字母、数字及下划线",
             trigger: "blur"
           }
         ],
@@ -606,25 +606,22 @@ export default {
     },
     getDepartListsClear() {
       this.getPostLists(-1);
+      this.userSearch.post_id = "";
+      this.postSelectList = [];
     },
     getPostLists(val) {
-      if (this.userSearch.depart_id != "") {
-        this.$set(this.userData, "post_id", "");
-        this.$set(this.userSearch, "post_id", "");
-        this.request({
-          url: "/company/getDepartLists",
-          method: "get",
-          params: { pid: val, type: 3 }
-        }).then(response => {
-          let data = response.data;
-          if (data.status == 1) {
-            this.postSelectList = data.data;
-          }
-        });
-      } else {
-        this.userSearch.post_id = "";
-        this.postSelectList = [];
-      }
+      this.$set(this.userData, "post_id", "");
+      this.$set(this.userSearch, "post_id", "");
+      this.request({
+        url: "/company/getDepartLists",
+        method: "get",
+        params: { pid: val, type: 3 }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.postSelectList = data.data;
+        }
+      });
     },
     getPostListsClear() {
       this.getPostLists(-1);

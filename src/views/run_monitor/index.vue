@@ -235,7 +235,7 @@
         </fieldset>
         <!---2 -->
         <fieldset v-if="formData.plan_type!=2">
-          <legend>施工信息</legend>
+          <legend>计划施工信息</legend>
           <div class="el-form-item-block">
             <el-form-item label="开始时间：" label-width="100px" prop="start_time">
               <el-date-picker
@@ -586,7 +586,7 @@
         </fieldset>
         <!---2 -->
         <fieldset v-if="formEditData.plan_type!=2">
-          <legend>施工信息</legend>
+          <legend>计划施工信息</legend>
           <div class="el-form-item-block">
             <el-form-item label="开始时间：" label-width="100px" prop="start_time">
               <el-date-picker
@@ -1924,34 +1924,31 @@ export default {
           }
 
           //
-          // (this.formEditData.record_id =
-          //   data.data.record_id == null
-          //     ? this.formEditData.record_id
-          //     : data.data.record_id),
-          //   (this.formEditData.true_start_time =
-          //     data.data.true_start_time == ""
-          //       ? data.data.start_time
-          //       : data.data.true_start_time),
-          //   (this.formEditData.true_end_time =
-          //     data.data.true_end_time == ""
-          //       ? data.data.end_time
-          //       : data.data.true_end_time),
-          //   (this.formEditData.true_start_flag =
-          //     data.data.true_start_flag == null
-          //       ? parseFloat(data.data.start_flag)
-          //       : parseFloat(data.data.true_start_flag)),
-          //   (this.formEditData.true_start_length =
-          //     data.data.true_start_length == null
-          //       ? parseFloat(data.data.start_length)
-          //       : parseFloat(data.data.true_start_length)),
-          //   (this.formEditData.true_end_flag =
-          //     data.data.true_end_flag == null
-          //       ? parseFloat(data.data.end_flag)
-          //       : parseFloat(data.data.true_end_flag)),
-          //   (this.formEditData.true_end_length =
-          //     data.data.true_end_length == null
-          //       ? parseFloat(data.data.end_length)
-          //       : parseFloat(data.data.true_end_length)),
+          (this.formEditData.record_id = data.data.record_id == null ? this.formEditData.record_id  : data.data.record_id);
+            (this.formEditData.true_start_time =
+              data.data.true_start_time == ""
+                ? data.data.start_time
+                : data.data.true_start_time);
+            (this.formEditData.true_end_time =
+              data.data.true_end_time == ""
+                ? data.data.end_time
+                : data.data.true_end_time);
+            (this.formEditData.true_start_flag =
+              data.data.true_start_flag == null
+                ? parseFloat(data.data.start_flag)
+                : parseFloat(data.data.true_start_flag));
+            (this.formEditData.true_start_length =
+              data.data.true_start_length == null
+                ? parseFloat(data.data.start_length)
+                : parseFloat(data.data.true_start_length));
+            (this.formEditData.true_end_flag =
+              data.data.true_end_flag == null
+                ? parseFloat(data.data.end_flag)
+                : parseFloat(data.data.true_end_flag));
+            (this.formEditData.true_end_length =
+              data.data.true_end_length == null
+                ? parseFloat(data.data.end_length)
+                : parseFloat(data.data.true_end_length));
           //le.log(this.formEditData);
         }
       });
