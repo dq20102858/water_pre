@@ -15,7 +15,6 @@
               <el-form-item>
                 <el-button
                   type="primary"
-                  class="btn-red-addedit"
                   style="width:145px;"
                   icon="el-icon-plus"
                   @click="addInfo"
