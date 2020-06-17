@@ -359,7 +359,7 @@ export default {
     },
     //
     addDialogInfo() {
-      this.diaLogTitle = "添加墙壁探测器信息";
+      this.diaLogTitle = "添加信号基站信息";
       this.diaLogFormVisible = true;
       this.detectorData = {
         depart_id: "",
@@ -420,7 +420,7 @@ export default {
       });
     },
     goEdit(id) {
-      this.diaLogTitle = "修改墙壁探测器信息";
+      this.diaLogTitle = "修改信号基站信息";
       this.diaLogFormVisible = true;
       this.$nextTick(() => {
         this.$refs["detectorForm"].clearValidate();
