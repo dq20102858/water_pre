@@ -680,7 +680,7 @@ export default {
           let startX = (start - lineTypeMinMileage) * every;
           let endX = (end - lineTypeMinMileage) * every;
           if (json[i].start_flag == 0) {
-            startX = axis_LeftLine.x;
+            startX = axis_LeftLine.x-1;
           }
           // 计算当前站点的x轴坐标
 
