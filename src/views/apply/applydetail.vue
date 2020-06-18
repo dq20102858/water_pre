@@ -72,8 +72,10 @@
                       <span class="clblue">{{item.phone}}</span>
                     </div>
                     <div v-for="item in dataInfo.worker" :key="item.id">
-                      施工人：<span style="width:40%;display:inline-block" class="clblue">{{item.name}}</span>
-                      联系电话：<span class="clblue">{{item.phone}}</span>
+                      施工人：
+                      <span style="width:40%;display:inline-block" class="clblue">{{item.name}}</span>
+                      联系电话：
+                      <span class="clblue">{{item.phone}}</span>
                     </div>
                   </td>
                   <td>
@@ -236,11 +238,17 @@
                   <label class="labels">辅站及负责人：</label>
                   <span class="input">{{ dataInfo.sub_apply_user}}</span>
                 </div>
-                <div class="item" v-for="item in dataInfo.worker" :key="item.id">
-                  <label class="labels">施工人：</label>
-                  <span class="input">{{item.name}}</span>
-                  <label class="labels">联系电话：</label>
-                  <span class="input">{{item.phone}}</span>
+                <div class="items">
+                  <div class="p" v-for="item in dataInfo.worker" :key="item.id">
+                    <span class="labels">
+                      施工人：
+                      <em>{{item.name}}</em>
+                    </span>
+                    <span class="inputs">
+                      联系电话：
+                      <em>{{item.phone}}</em>
+                    </span>
+                  </div>
                 </div>
                 <div class="item">
                   <label class="labels">单位：</label>
@@ -558,6 +566,34 @@ export default {
   font-size: 13px;
   margin-right: 10px;
   font-style: normal;
+}
+.app-apply-detail .items {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 15px;
+}
+.app-apply-detail .items .labels {
+  color: #1d397a;
+  margin: 0 15px 0 15px;
+  display: inline-block;
+  width: 30%;
+}
+.app-apply-detail .items .inputs {
+  height: 36px;
+  color: #1d397a;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 0 12px;
+}
+.app-apply-detail .items em {
+  color: #4b6eca;
+  font-style: normal;
+}
+.app-apply-detail .items .p {
+  width: 50%;
+  float: left;
+  height: 36px;
+  line-height: 36px;
 }
 .app-apply-detail .conn {
   display: block;
