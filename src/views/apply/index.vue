@@ -698,7 +698,7 @@ export default {
       if (type == "A1" || type == "A2") {
         laytitle = "轨行区及施工作业许可证";
       } else {
-        laytitle = this.projectName + "进场作业许可证";
+        laytitle = "进场作业许可证";
       }
       this.$layer.iframe({
         area: ["80%", "90%"],

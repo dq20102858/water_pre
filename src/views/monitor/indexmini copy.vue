@@ -1,11 +1,11 @@
 <template>
-  <div id="minprogress" ref="proWrapper" :style="conheight">
-    <div class="minprogress">
+  <div id="progress" ref="proWrapper" :style="conheight">
+    <div class="progress">
       <div style="display:bolock;padding-top:15px;padding-left:15px;">
         <router-link to="/monitor/" class="rlink" style="color:#fff">返回</router-link>
       </div>
-      <div class="station">
-        <canvas id="canvasStation" height="650" ref="canvasStation">
+      <div class="mstation">
+        <canvas id="canvas" height="650" ref="canvas">
           <p>您的系统不支持此程序!</p>
         </canvas>
       </div>
@@ -24,31 +24,32 @@ let context;
 let axis_Height = "650";
 //标尺起点
 let axis_LeftLine = {
-  x: 30,
+  x: 0,
   y: axis_Height - 400
 };
 let axis_LeftLine_Two = {
-  x: 30,
+  x: 0,
   y: axis_Height - 280
 };
 //出入场线
 let axis_OutLine = {
-  x: 30,
+  x: 0,
   y: axis_Height - 160
 };
 let axis_OutLine_Two = {
-  x: 30,
+  x: 0,
   y: axis_Height - 50
 };
 
 let axis_Applay = {
-  x: 30,
+  x: 0,
   y: axis_Height - 450
 };
 let axis_Applay_two = {
-  x: 30,
+  x: 0,
   y: axis_Height - 330
 };
+let offsetX = 30;
 let applyClickXY = [];
 export default {
   data() {
@@ -141,7 +142,7 @@ export default {
       let every = this.every; //每米长度等于px
       // console.log("every：" + every);
 
-      const canvas = this.$refs.canvasStation;
+      const canvas = this.$refs.canvas;
       let context = canvas.getContext("2d");
       canvas.width = canvasWidth;
       //console.log("lineTypeMinMileage：" + lineTypeMinMileage);
@@ -214,12 +215,12 @@ export default {
           if (lineJson[i].id == 1) {
             context.moveTo(axis_LeftLine.x, axis_LeftLine.y);
             context.lineTo(canvasWidth, axis_LeftLine.y);
-            context.fillText(tfrom, 30, axis_LeftLine.y + 25);
+            context.fillText(tfrom, 0, axis_LeftLine.y + 25);
             context.fillText(tend, canvasWidth - 75, axis_LeftLine.y + 25);
           } else if (lineJson[i].id == 2) {
             context.moveTo(axis_LeftLine.x, axis_LeftLine_Two.y);
             context.lineTo(canvasWidth, axis_LeftLine_Two.y);
-            context.fillText(tfrom, 30, axis_LeftLine_Two.y + 25);
+            context.fillText(tfrom, 0, axis_LeftLine_Two.y + 25);
             context.fillText(tend, canvasWidth - 75, axis_LeftLine_Two.y + 25);
           } else if (lineJson[i].id == 3) {
             let startZB = (starttotal - lineTypeMinMileage) * every;
@@ -284,10 +285,14 @@ export default {
             context.font = "18px Microsoft Yahei";
             context.fillStyle = "#fff";
             let origin = json[i].name.split("");
+            let py = 8;
+            if (startLineX == 0) {
+              py = 0;
+            }
             for (let x = 0; x < origin.length; x++) {
               context.fillText(
                 origin[x],
-                startLineX - 8,
+                startLineX - py,
                 axis_LeftLine.y - 85 - origin.length * 20 + 20 * x
               );
             }
@@ -311,7 +316,7 @@ export default {
           {
             id: 1,
             name: "ZY01",
-            start_flag: 0,
+            start_flag: 1,
             start_length: 257,
             line_type: 1
           },
@@ -670,7 +675,7 @@ export default {
       function drawProgressAxis(sprogressListJson) {
         let json = sprogressListJson;
         console.log(sprogressListJson);
-        let json1 = [
+        let json2 = [
           {
             id: 233,
             pro_id: 110,
@@ -684,44 +689,42 @@ export default {
           }
         ];
         for (let i = 0; i < json.length; i++) {
-          if (json[i].start_flag != null) {
-            let start =
-              parseInt(json[i].start_flag) * 1000 +
-              parseInt(json[i].start_length);
-            let end =
-              parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
-
-            let startX = axis_LeftLine.x + (start - lineTypeMinMileage) * every;
-            let endX = axis_LeftLine.x + (end - lineTypeMinMileage) * every;
-            // console.log(
-            //   "startX：" + startX + " endX：" + endX + "_" + lineTypeMinMileage
-            // );
-            context.lineWidth = 10;
-            context.strokeStyle = "#27DB07";
-            context.beginPath();
-            if (json[i].line_type == 1) {
-              context.moveTo(startX, axis_LeftLine.y);
-              context.lineTo(endX + 1, axis_LeftLine.y);
-            } else if (json[i].line_type == 2) {
-              context.moveTo(startX, axis_LeftLine_Two.y);
-              context.lineTo(endX + 1, axis_LeftLine_Two.y);
-            } else if (json[i].line_type == 3) {
-              if (start == 0) {
-                startX = 0;
-                endX = end * everys;
-              }
-              context.moveTo(startX, axis_OutLine.y);
-              context.lineTo(endX + 1, axis_OutLine.y);
-            } else if (json[i].line_type == 4) {
-              if (start == 0) {
-                startX = 0;
-                endX = end * everys;
-              }
-              context.moveTo(startX, axis_OutLine_Two.y);
-              context.lineTo(endX + 1, axis_OutLine_Two.y);
+          let start =
+            parseInt(json[i].start_flag) * 1000 +
+            parseInt(json[i].start_length);
+          let end =
+            parseInt(json[i].end_flag) * 1000 + parseInt(json[i].end_length);
+          let startX = (start - lineTypeMinMileage) * every;
+          let endX = (end - lineTypeMinMileage) * every;
+          // 计算当前站点的x轴坐标
+          console.log(
+            "startX：" + startX + " endX：" + endX + "_" + lineTypeMinMileage
+          );
+          context.lineWidth = 10;
+          context.strokeStyle = "#27DB07";
+          context.beginPath();
+          if (json[i].line_type == 1) {
+            context.moveTo(startX, axis_LeftLine.y);
+            context.lineTo(endX + 1, axis_LeftLine.y);
+          } else if (json[i].line_type == 2) {
+            context.moveTo(startX, axis_LeftLine_Two.y);
+            context.lineTo(endX + 1, axis_LeftLine_Two.y);
+          } else if (json[i].line_type == 3) {
+            if (start == 0) {
+              startX = 0;
+              endX = end * everys;
             }
-            context.stroke();
+            context.moveTo(startX, axis_OutLine.y);
+            context.lineTo(endX + 1, axis_OutLine.y);
+          } else if (json[i].line_type == 4) {
+            if (start == 0) {
+              startX = 0;
+              endX = end * everys;
+            }
+            context.moveTo(startX, axis_OutLine_Two.y);
+            context.lineTo(endX + 1, axis_OutLine_Two.y);
           }
+          context.stroke();
           //
         }
       }
@@ -816,40 +819,41 @@ CanvasRenderingContext2D.prototype.fillTextVertical = function(text, x, y) {
   font-size: 24px;
   text-align: center;
 }
-#minprogress {
+#progress {
   position: absolute;
   width: 100%;
   height: 100%;
   background: #081c33;
 }
-.minprogress {
+.progress {
   background: #081c33;
   padding-bottom: 30px;
 }
-.minprogress #canvasStation {
+#canvas {
   background: #081c33;
 }
-.minprogress .station {
-  margin: 30px 30px 0px 15px;
+.mstation {
+  margin: 30px 30px 0px 30px;
   position: relative;
   z-index: 999;
 }
 
-.minprogress .progresslist {
+.progresslist {
   padding-top: 20px;
   padding-left: 30px;
   color: #fff;
 }
-.minprogress .progresslist .namess {
+.progresslist .namess {
   padding-bottom: 10px;
   display: inline-block;
   padding-right: 14px;
 }
-.minprogress .progresslist .el-radio__label {
+.progresslist .el-radio__label {
   color: #fff;
 }
 .clear {
   clear: both;
 }
+/* //#27DB07 */
 </style>
 

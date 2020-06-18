@@ -72,10 +72,8 @@
                       <span class="clblue">{{item.phone}}</span>
                     </div>
                     <div v-for="item in dataInfo.worker" :key="item.id">
-                      施工人：
-                      <span style="width:40%;display:inline-block" class="clblue">{{item.name}}</span>
-                      联系电话：
-                      <span class="clblue">{{item.phone}}</span>
+                      施工人：<span style="width:40%;display:inline-block" class="clblue">{{item.name}}</span>
+                      联系电话：<span class="clblue">{{item.phone}}</span>
                     </div>
                   </td>
                   <td>
