@@ -217,7 +217,7 @@
                 </el-upload>
               </el-form-item>
               <el-form-item label="用户角色：" prop="sys_role">
-                <el-radio-group v-model="userData.sys_role">
+                <el-radio-group v-model="userData.sys_role" @change="changeSysrole($event)">
                   <el-radio :label="3">普通用户</el-radio>
                   <el-radio :label="1">管理员</el-radio>
                   <el-radio :label="2">业主方</el-radio>
@@ -464,35 +464,29 @@ export default {
         this.$refs["userRulesForm"].clearValidate();
       });
     },
+    changeSysrole(val) {
+      if (val == 3) {
+        this.userData.menus= [];
+      }
+    },
     addUser() {
       this.$refs["userRulesForm"].validate(valid => {
         if (valid) {
           let data = this.userData;
-          if (data.sys_role > 1) {
-            data.menus = [];
-          }
           let menuArr = data.menus;
           console.log(menuArr);
-          let sg = menuArr.indexOf("9");
-          let gcs = menuArr.indexOf("14");
-          // if(data.menus)
-          console.log("menuArr：" + sg + "_" + gcs);
-          if (parseInt(sg) + parseInt(gcs) >= 1) {
+          if (menuArr.includes("9") && menuArr.includes("14")) {
             this.$message({
               type: "error",
               message: "施工队长和总工程师不能同时选择"
             });
             return false;
           }
-          // if (this.userData.avatar == null) {
-          //   this.userData.avatar = "/static/avatar.jpg";
-          // }
           let url = "/user/addUser";
           let baseid = this.userData.id;
 
           if (typeof baseid != "undefined") {
             url = "/user/editUser";
-
             let pwdEdit = this.userData.passwordEdit;
             if (pwdEdit != "" && typeof pwdEdit != "undefined") {
               this.userData.password = pwdEdit;
