@@ -701,7 +701,7 @@ export default {
         laytitle = this.projectName + "进场作业许可证";
       }
       this.$layer.iframe({
-        area: ["85%", "90%"],
+        area: ["80%", "90%"],
         title: laytitle,
         shadeClose: false,
         scrollbar: false,

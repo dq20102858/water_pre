@@ -158,27 +158,22 @@
                       <tr>
                         <th>车辆类型</th>
                         <th>车号</th>
-                        <th>装载重量</th>
                       </tr>
                       <tbody v-for="areas in dataInfo.area_or_car" :key="areas.id">
                         <tr v-for="item in areas.car_use" :key="item.id">
                           <td>{{item.car_type}}</td>
                           <td>{{item.car_number}}</td>
-                          <td>{{item.car_weight}}</td>
                         </tr>
                       </tbody>
                       <tr>
                         <td></td>
                         <td></td>
-                        <td></td>
                       </tr>
                       <tr>
                         <td></td>
                         <td></td>
-                        <td></td>
                       </tr>
                       <tr>
-                        <td></td>
                         <td></td>
                         <td></td>
                       </tr>
