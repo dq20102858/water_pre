@@ -71,10 +71,9 @@
                       </p>
                     </div>
                     <div v-for="item in dataInfo.holder" :key="item.id">
-                      <p class="contact">
+                      <p class="contact"  style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
                         持证人：
                         <span
-                          style="width:40%;display:inline-block"
                           class="clblue"
                         >{{item.name}}</span>
                       </p>
@@ -84,11 +83,10 @@
                       </p>
                     </div>
                     <div v-for="item in dataInfo.worker" :key="item.id">
-                      <p class="contact">
-                        施工人：
+                         <p class="contact"  style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
+                       施工人：
                         <span
-                          style="width:40%;display:inline-block"
-                          class="clblue"
+                           class="clblue"
                         >{{item.name}}</span>
                       </p>
                       <p class="contact">
@@ -104,7 +102,7 @@
                 </tr>
                 <tr>
                   <td class="auto-style">
-                    <b>工作地点 （上/下行线）：</b>
+                    <b>工作地点 <br>上/下行线：</b>
                   </td>
                   <td colspan="4" style="padding:0;">
                     <table class="innertable">
@@ -244,118 +242,155 @@
               color="#ff5c75"
               size="large"
             >
-              <div class="onebox">
-                <div class="item">
-                  <label class="labels">作业编号：</label>
-                  <span class="inputs">{{ dataInfo.number}}</span>
-                  <label class="labels">作业令号：</label>
-                  <span class="inputs">{{ dataInfo.command_num}}</span>
-                </div>
-                <div class="item">
-                  <label class="labels">兹申请允许持证人（主站）：</label>
-                  <span class="inputs">{{ dataInfo.main_apply_user}}</span>
-                  <label class="labels">辅站及负责人：</label>
-                  <span class="inputs">{{ dataInfo.sub_apply_user}}</span>
-                </div>
-                <div class="item">
-                  <label class="labels">单位名称：</label>
-                  <span class="inputs" style="width:550px;">{{ dataInfo.company}}</span>
-                </div>
-                <div class="item">
-                  <label class="labels">联系电话：</label>
-                  <span class="inputs">{{ dataInfo.phone}}</span>
-                  <label class="labels">带领 ( {{dataInfo.worker_num}} ) 人进行以下工作：</label>
-                </div>
+              <div class="items">
+                <table class="atable">
+                  <tr>
+                    <td style="width:140px">
+                      <label class="labels">作业编号：</label>
+                    </td>
+                    <td>
+                      <label class="inputs">{{ dataInfo.number}}</label>
+                    </td>
+                    <td style="width:140px">
+                      <label class="labels">作业令号：</label>
+                    </td>
+                    <td>
+                      <label class="inputs">{{ dataInfo.command_num}}</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="labels">
+                        兹申请允许
+                        <br />持证人（主站）：
+                      </label>
+                    </td>
+                    <td>
+                      <label class="inputs">{{ dataInfo.main_apply_user}}</label>
+                    </td>
+                    <td>
+                      <label class="labels">辅站及负责人：</label>
+                    </td>
+                    <td>
+                      <label class="inputs">{{ dataInfo.sub_apply_user}}</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="labels">单位名称：</label>
+                    </td>
+                    <td colspan="3">
+                      <label class="inputs">{{ dataInfo.company}}</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="labels">联系电话：</label>
+                    </td>
+                    <td colspan="3">
+                      <label class="inputs">{{ dataInfo.phone}}</label>
+                      <label class="inputs">带领 ( {{dataInfo.worker_num}} ) 人进行以下工作</label>
+                    </td>
+                  </tr>
 
-                <div class="phones" v-for="item in dataInfo.worker" :key="item.id">
-                  <span class="labela">
-                    施工人员：
-                    <em>{{item.name}}</em>
-                  </span>
-                  <span class="labelb">
-                    联系电话：
-                    <em>{{item.phone}}</em>
-                  </span>
-                </div>
-                <div class="items">
-                  <table class="atable">
-                    <tr>
-                      <td valign="top">
-                        <label class="label">A区域/车辆：</label>
-                      </td>
-                      <td>
-                        <div class="conn">
-                          <div
-                            style="margin-bottom: 10px;"
-                            v-for="areas in dataInfo.area_or_car"
-                            :key="areas.id"
-                          >
-                            <p>
-                              <em>{{areas.start_station_name}} - {{areas.end_station_name}} 区间 {{areas.line_type_name}} ( DK{{areas.start_flag}} + {{areas.start_length}} - DK{{areas.end_flag}} + {{areas.end_length}} )</em>
-                            </p>
-                            <p>
-                              <i>开始时间：{{areas.start_time}}</i>
-                              <i>结束时间：{{areas.end_time}}</i>
-                            </p>
-                          </div>
+                  <tr v-for="item in dataInfo.worker" :key="item.id">
+                    <td>
+                      <label class="labels">施工人员：</label>
+                    </td>
+                    <td>
+                      <label class="inputs">{{item.name}}</label>
+                    </td>
+                    <td>
+                      <label class="labels">联系电话：</label>
+                    </td>
+                    <td>
+                      <label class="inputs">{{item.phone}}</label>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td valign="top">
+                      <label class="labels">A区域/车辆：</label>
+                    </td>
+                    <td colspan="3">
+                      <div class="conn">
+                        <div
+                          style="margin-bottom: 10px;"
+                          v-for="areas in dataInfo.area_or_car"
+                          :key="areas.id"
+                        >
+                          <p>
+                            <em>{{areas.start_station_name}} - {{areas.end_station_name}} 区间 {{areas.line_type_name}} ( DK{{areas.start_flag}} + {{areas.start_length}} - DK{{areas.end_flag}} + {{areas.end_length}} )</em>
+                          </p>
+                          <p>
+                            <i>开始时间：{{areas.start_time}}</i>
+                            <i>结束时间：{{areas.end_time}}</i>
+                          </p>
                         </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td valign="top">
-                        <label class="label">B工作内容：</label>
-                      </td>
-                      <td>
-                        <div class="conn">{{funIsEmpty(dataInfo.description)}}</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td valign="top">
-                        <label class="label">
-                          C安全措施
-                          <br />及注意事项：
-                        </label>
-                      </td>
-                      <td>
-                        <div class="conn">{{funIsEmpty(dataInfo.attention)}}</div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <div class="item">
-                  <ul class="scheck">
-                    <li>
-                      是否需要动车：
-                      <b v-if="dataInfo.is_need_car==0">否</b>
-                      <b v-if="dataInfo.is_need_car==1">是</b>
-                    </li>
-                    <li>
-                      是否需要动火：
-                      <b v-if="dataInfo.is_need_fire==0">否</b>
-                      <b v-if="dataInfo.is_need_fire==1">是</b>
-                    </li>
-                    <li>
-                      是否需要帮助：
-                      <b v-if="dataInfo.is_need_help==0">否</b>
-                      <b v-if="dataInfo.is_need_help==1">是</b>
-                    </li>
-                    <li>
-                      是否需要断电：
-                      <b v-if="dataInfo.is_need_break_ele==0">否</b>
-                      <b v-if="dataInfo.is_need_break_ele==1">是</b>
-                    </li>
-                  </ul>
-                </div>
-                <div
-                  class="itemconn"
-                >本单位及本人谨此声明：愿意在规定时间内完成上述工作，并确保本人属下员工遵守上述安全措施，同时本人或本人属 下员工不会试图损坏其它单位的设备，在其它区域或车辆上工作。</div>
-                <div class="singn">
-                  <span class="pull-left">
-                    工点负责人（签名）
-                    <b>{{dataInfo.p_in_charge}}</b>
-                  </span>
-                  <span class="pull-right">{{dataInfo.create_time}}</span>
-                </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top">
+                      <label class="labels">B工作内容：</label>
+                    </td>
+                    <td colspan="3">
+                      <div class="conn">{{funIsEmpty(dataInfo.description)}}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top">
+                      <label class="labels">
+                        C安全措施
+                        <br />及注意事项：
+                      </label>
+                    </td>
+                    <td colspan="3">
+                      <div class="conn">{{funIsEmpty(dataInfo.attention)}}</div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="4">
+                      <ul class="scheck">
+                        <li>
+                          是否需要动车：
+                          <b v-if="dataInfo.is_need_car==0">否</b>
+                          <b v-if="dataInfo.is_need_car==1">是</b>
+                        </li>
+                        <li>
+                          是否需要动火：
+                          <b v-if="dataInfo.is_need_fire==0">否</b>
+                          <b v-if="dataInfo.is_need_fire==1">是</b>
+                        </li>
+                        <li>
+                          是否需要帮助：
+                          <b v-if="dataInfo.is_need_help==0">否</b>
+                          <b v-if="dataInfo.is_need_help==1">是</b>
+                        </li>
+                        <li>
+                          是否需要断电：
+                          <b v-if="dataInfo.is_need_break_ele==0">否</b>
+                          <b v-if="dataInfo.is_need_break_ele==1">是</b>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="4">
+                      <div
+                        class="itemconn"
+                      >本单位及本人谨此声明：愿意在规定时间内完成上述工作，并确保本人属下员工遵守上述安全措施，同时本人或本人属 下员工不会试图损坏其它单位的设备，在其它区域或车辆上工作。</div>
+                      <div class="singn">
+                        <span class="pull-left">
+                          工点负责人（签名）
+                          <b>{{dataInfo.p_in_charge}}</b>
+                        </span>
+                        <span class="pull-right">{{dataInfo.create_time}}</span>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
               </div>
             </el-timeline-item>
             <el-timeline-item
@@ -365,7 +400,7 @@
               color="#ff5c75"
               size="large"
             >
-              <div class="onebox">
+              <div class="item">
                 <div class="itemconn">兹审批此许可证生效，或按红笔修改的执行。</div>
                 <div class="singn">
                   <span class="pull-left">
@@ -377,13 +412,14 @@
               </div>
             </el-timeline-item>
             <el-timeline-item
+              class="el-timeline-item-line"
               timestamp="销点"
               placement="top"
               type="warning "
               color="#ff5c75"
               size="large"
             >
-              <div class="onebox">
+              <div class="item">
                 <div
                   class="itemconn"
                 >本人谨此声明：⑴ 此进场作业许可证所述工作现已完成，本人及属下员工已经撤离，安全措施已经撤除，并已被告知在轨道区域/车辆上工作已不再安全。⑵ 完成情况及所有故障/损坏已经书面呈报。</div>
@@ -397,13 +433,14 @@
               </div>
             </el-timeline-item>
             <el-timeline-item
+              class="el-timeline-item-line"
               timestamp="注销"
               placement="top"
               type="warning "
               color="#ff5c75"
               size="large"
             >
-              <div class="onebox">
+              <div class="item">
                 <div class="itemconn">此许可证已经原批准人或联合办公室经理同意注销。</div>
                 <div class="singn">
                   <span class="pull-left">
@@ -507,23 +544,15 @@ export default {
   undefined {
     display: none;
   }
-
-  #printMe .onebox {
-    padding: 0;
+  #printMe .el-timeline-item-line {
+    border-top: 1px #9db9fa solid;
+    padding-top: 20px;
   }
   #printMe .el-timeline-item__wrapper {
     padding-left: 0;
   }
-  #printMe .labels {
-    padding-left: 0;
-  }
-  #printMe .atable {
-    margin-left: -7px;
-  }
-  #printMe .atable td {
-    border: 0;
-  }
-  #printMe  .contact {
+
+  #printMe .contact {
     display: block;
     width: 100%;
   }
@@ -577,15 +606,6 @@ export default {
 .app-apply-detail .el-form-item__label {
   color: #1d397a;
 }
-.app-apply-detail .el-form-item .input {
-  width: 280px;
-  text-align: left;
-}
-
-.app-apply-detail .onebox {
-  padding: 0 30px;
-  font-size: 15px;
-}
 .app-apply-detail .el-timeline-item__timestamp {
   color: #1d397a;
   font-size: 16px;
@@ -594,36 +614,19 @@ export default {
 .app-apply-detail .el-timeline-item__wrapper {
   padding-left: 20px;
 }
-.app-apply-detail .el-timeline-item {
-  margin-bottom: 20px;
-}
 .app-apply-detail .item {
   overflow: hidden;
-  padding-bottom: 15px;
 }
-.app-apply-detail .item .labels {
+.app-apply-detail .labels {
   color: #1d397a;
   display: inline-block;
 }
-.app-apply-detail .item .inputs {
+.app-apply-detail .inputs {
   color: #4b6eca;
   border-radius: 4px;
+  display: inline-block;
+}
 
-  display: inline-block;
-  padding: 0 12px;
-}
-.app-apply-detail .item em {
-  display: block;
-  color: #4b6eca;
-  font-style: normal;
-}
-.app-apply-detail .item i {
-  display: inline-block;
-  color: #1d397a;
-  font-size: 13px;
-  margin-right: 10px;
-  font-style: normal;
-}
 .app-apply-detail .items {
   display: block;
 }
@@ -631,28 +634,8 @@ export default {
   color: #4b6eca;
   font-style: normal;
 }
-.app-apply-detail .phones {
-  width: 50%;
-  float: left;
-  height: 36px;
-  line-height: 36px;
-}
-.app-apply-detail .phones em {
-  color: #4b6eca;
-  font-style: normal;
-}
-.app-apply-detail .phones .labela {
-  color: #1d397a;
-  display: inline-block;
-  width: 49%;
-}
-.app-apply-detail .phones .labelb {
-  color: #1d397a;
-  display: inline-block;
-}
 .app-apply-detail .scheck {
-  margin-top: 15px;
-  margin-bottom: 5px;
+  overflow: hidden;
 }
 .app-apply-detail .scheck li {
   display: inline-block;
@@ -662,20 +645,6 @@ export default {
 .app-apply-detail .scheck b {
   font-size: 16px;
 }
-.app-apply-detail .atable {
-  margin-left: -4px;
-}
-.app-apply-detail .atable .label {
-  color: #1d397a;
-  display: inline-block;
-}
-.app-apply-detail .atable .input {
-  height: 36px;
-  color: #1d397a;
-  border-radius: 4px;
-  display: inline-block;
-  padding: 0 12px;
-}
 .app-apply-detail .atable .conn {
   display: block;
   line-height: 24px;
@@ -684,11 +653,19 @@ export default {
   margin-bottom: 10px;
   color: #4b6eca;
 }
-.app-apply-detail .atable em {
+.atable {
+  border-collapse: collapse;
+  width: 100%;
+}
+.atable td {
+  border: 1px solid #9db9fa;
+  padding: 10px;
+}
+.atable em {
   font-style: normal;
   color: #1d397a;
 }
-.app-apply-detail .atable i {
+.atable i {
   font-style: normal;
 }
 .app-apply-detail .itemconn {
@@ -725,7 +702,7 @@ export default {
 }
 
 .vtable .auto-style {
-  width: 190px;
+  width: 120px;
   word-wrap: break-word;
   word-break: break-all;
   white-space: nowrap;
