@@ -12,29 +12,26 @@
             <table>
               <tbody>
                 <tr>
-                  <td class="auto-style" rowspan="2">
+                  <td class="auto-style">
                     <b>作业编号：</b>
                   </td>
-                  <td class="auto-style2 clblue" rowspan="2">{{ dataInfo.number}}</td>
-                  <td class="clblue" rowspan="2">施工单位:{{dataInfo.company}}</td>
-                  <td>
-                    是否需要动车：
-                    <b v-if="dataInfo.is_need_car==0">否</b>
-                    <b v-if="dataInfo.is_need_car==1">是</b>
-                  </td>
-                  <td>
-                    是否需要动火：
-                    <b v-if="dataInfo.is_need_fire==0">否</b>
-                    <b v-if="dataInfo.is_need_fire==1">是</b>
-                  </td>
+                  <td colspan="3" class="clblue">{{ dataInfo.number}}</td>
                 </tr>
                 <tr>
                   <td>
+                    <b>作业令号：</b>
+                  </td>
+                  <td class="clblue">{{dataInfo.command_num}}</td>
+                  <td colspan="2">
+                    是否需要动车：
+                    <b v-if="dataInfo.is_need_car==0">否</b>
+                    <b v-if="dataInfo.is_need_car==1" style="margin-right:30px;">是</b>
+                    是否需要动火：
+                    <b v-if="dataInfo.is_need_fire==0">否</b>
+                    <b v-if="dataInfo.is_need_fire==1" style="margin-right:30px;">是</b>
                     是否需要帮助：
                     <b v-if="dataInfo.is_need_help==0">否</b>
-                    <b v-if="dataInfo.is_need_help==1">是</b>
-                  </td>
-                  <td>
+                    <b v-if="dataInfo.is_need_help==1" style="margin-right:30px;">是</b>
                     是否需要断电：
                     <b v-if="dataInfo.is_need_break_ele==0">否</b>
                     <b v-if="dataInfo.is_need_break_ele==1">是</b>
@@ -42,74 +39,74 @@
                 </tr>
                 <tr>
                   <td class="auto-style">
-                    <b>作业令号：</b>
-                  </td>
-                  <td class="clblue">{{dataInfo.command_num}}</td>
-                  <td colspan="2">
-                    <!--  -->
-                    <div>
-                      <p class="contact">
-                        联系人：
-                        <span
-                          style="width:40%;display:inline-block"
-                          class="clblue"
-                        >{{dataInfo.contact}}</span>
-                      </p>
-                      <p class="contact">
-                        联系电话：
-                        <span class="clblue">{{dataInfo.phone}}</span>
-                      </p>
-                    </div>
-                    <div>
-                      <p class="contact">
-                        负责人：
-                        <span class="clblue">{{dataInfo.p_in_charge}}</span>
-                      </p>
-                      <p class="contact">
-                        联系电话：
-                        <span class="clblue">{{dataInfo.p_in_charge_phone}}</span>
-                      </p>
-                    </div>
-                    <div v-for="item in dataInfo.holder" :key="item.id">
-                      <p class="contact"  style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
-                        持证人：
-                        <span
-                          class="clblue"
-                        >{{item.name}}</span>
-                      </p>
-                      <p class="contact">
-                        联系电话：
-                        <span class="clblue">{{item.phone}}</span>
-                      </p>
-                    </div>
-                    <div v-for="item in dataInfo.worker" :key="item.id">
-                         <p class="contact"  style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
-                       施工人：
-                        <span
-                           class="clblue"
-                        >{{item.name}}</span>
-                      </p>
-                      <p class="contact">
-                        联系电话：
-                        <span class="clblue">{{item.phone}}</span>
-                      </p>
-                    </div>
+                    <b>施工单位：</b>
                   </td>
                   <td>
-                    人数：
-                    <span class="clblue">{{dataInfo.worker_num}}人</span>
+                    <span class="clblue">{{dataInfo.company}}</span>
+                  </td>
+                  <td colspan="2">
+                    <table class="petable">
+                      <tr>
+                        <td>联系人：</td>
+                        <td>
+                          <span class="clblue">{{dataInfo.contact}}</span>
+                        </td>
+                        <td>联系电话：</td>
+                        <td>
+                          <span class="clblue">{{dataInfo.phone}}</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="width:70px ;">负责人：</td>
+                        <td>
+                          <span class="clblue">{{dataInfo.p_in_charge}}</span>
+                        </td>
+                        <td style="width:70px ;">联系电话：</td>
+                        <td>
+                          <span class="clblue">{{dataInfo.p_in_charge_phone}}</span>
+                        </td>
+                      </tr>
+                      <tr v-for="(item,index) in dataInfo.holder" :key="item.id">
+                        <td>持证人：</td>
+                        <td>
+                          <label class="clblue">{{item.name}}</label>
+                        </td>
+                        <td>联系电话：</td>
+                        <td>
+                          <label class="clblue">{{item.phone}}</label>
+                        </td>
+                      </tr>
+
+                      <tr v-for="(item,index) in dataInfo.worker" :key="item.id">
+                        <td>施工人：</td>
+                        <td>
+                          <label class="clblue">{{item.name}}</label>
+                        </td>
+                        <td>联系电话：</td>
+                        <td>
+                          <label class="clblue">{{item.phone}}</label>
+                        </td>
+                      </tr>
+                    </table>
+                    <p>
+                      <span style="padding-right:10px;">总人数：</span>
+                      <span class="clblue">{{dataInfo.worker_num}}人</span>
+                    </p>
                   </td>
                 </tr>
                 <tr>
                   <td class="auto-style">
-                    <b>工作地点 <br>上/下行线：</b>
+                    <b>
+                      工作地点
+                      <br />上/下行线：
+                    </b>
                   </td>
-                  <td colspan="4" style="padding:0;">
+                  <td colspan="3" style="padding:0;">
                     <table class="innertable">
                       <tr>
                         <th>由</th>
                         <th>至</th>
-                        <th style="width:120px;">线别</th>
+                        <th style="width:70px;">线别</th>
                         <th>列车编组</th>
                         <th>工作时间</th>
                       </tr>
@@ -124,26 +121,35 @@
                             :key="item.id"
                           >{{item.car_type}}</span>
                         </td>
-                        <td>{{areas.start_time}} ~ {{areas.end_time}}</td>
+                        <td><p>{{areas.start_time}}</p><p>{{areas.end_time}}</p></td>
                       </tr>
                       <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td></td>
+                        <td  style="width:200px;"></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                       </tr>
+                    </table>
+                  </td>
+                </tr>
+                   <tr>
+                  <td class="auto-style">
+                    <b>车辆：</b>
+                  </td>
+                  <td colspan="3" style="padding:0;">
+                    <table class="innertable">
                       <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <th>类型</th>
+                        <th>车号</th>
+                      </tr>
+                      <tbody v-for="areas in dataInfo.area_or_car" :key="areas.id">
+                        <tr v-for="item in areas.car_use" :key="item.id">
+                          <td style="width:200px;">{{item.car_type}}</td>
+                          <td>{{item.car_number}}</td>
+                        </tr>
+                      </tbody>
+                      <tr>
                         <td></td>
                         <td></td>
                       </tr>
@@ -154,7 +160,7 @@
                   <td class="auto-style">
                     <b>计划运行路径：</b>
                   </td>
-                  <td colspan="4">
+                  <td colspan="3">
                     <div class="textoverflow clblue">{{dataInfo.plan_route}}</div>
                   </td>
                 </tr>
@@ -162,46 +168,16 @@
                   <td class="auto-style">
                     <b>工作内容：</b>
                   </td>
-                  <td colspan="4">
+                  <td colspan="3">
                     <div class="textoverflow clblue">{{dataInfo.description}}</div>
                   </td>
                 </tr>
-                <tr>
-                  <td class="auto-style">
-                    <b>车辆：</b>
-                  </td>
-                  <td colspan="4" style="padding:0;">
-                    <table class="innertable">
-                      <tr>
-                        <th>车辆类型</th>
-                        <th>车号</th>
-                      </tr>
-                      <tbody v-for="areas in dataInfo.area_or_car" :key="areas.id">
-                        <tr v-for="item in areas.car_use" :key="item.id">
-                          <td>{{item.car_type}}</td>
-                          <td>{{item.car_number}}</td>
-                        </tr>
-                      </tbody>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
+             
                 <tr>
                   <td class="auto-style">
                     <b>保护措施：</b>
                   </td>
-                  <td colspan="4">
+                  <td colspan="3">
                     <div class="textoverflow clblue">{{funIsEmpty(dataInfo.attention)}}</div>
                   </td>
                 </tr>
@@ -209,25 +185,60 @@
                   <td class="auto-style">
                     <b>其他信息</b>
                   </td>
-                  <td colspan="2">
+                  <td colspan="3">
                     <div class="textoverflow clblue">{{funIsEmpty(dataInfo.other)}}</div>
                   </td>
-                  <td colspan="2">监理确认并签字：{{dataInfo.supervisor}}</td>
                 </tr>
 
                 <tr>
-                  <td colspan="2" rowspan="2">
-                    <b>承运人签名（章）：</b>
-                    {{dataInfo.carrier}}
+                  <td>
+                    <b>监理确认签字：</b>
                   </td>
-                  <td style="width:200px;">审批人：{{dataInfo.approver}}</td>
-                  <td style="width:200px;">销点人:{{dataInfo.logout}}</td>
-                  <td style="width:200px;">注销人：{{dataInfo.logoff}}</td>
+                  <td style="width:200px;">
+                    <span class="clblue">{{dataInfo.supervisor}}</span>
+                  </td>
+                  <td colspan="2">
+                    <b>承运人签名（章）：</b>
+                    <span class="clblue">{{dataInfo.carrier}}</span>
+                  </td>
                 </tr>
                 <tr>
-                  <td>审批时间：{{dataInfo.approve_time}}</td>
-                  <td>销点时间：{{dataInfo.logout_time}}</td>
-                  <td>注销时间：{{dataInfo.logoff_time}}</td>
+                  <td>
+                    <b>审批人：</b>
+                  </td>
+                  <td>
+                    <span class="clblue">{{dataInfo.approver}}</span>
+                  </td>
+                  <td colspan="2">
+                    <b>审批时间：</b>
+
+                    <span class="clblue">{{dataInfo.approve_time}}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <b>销点人：</b>
+                  </td>
+                  <td>
+                    <span class="clblue">{{dataInfo.logout}}</span>
+                  </td>
+                  <td colspan="2">
+                    <b>销点时间：</b>
+
+                    <span class="clblue">{{dataInfo.logout_time}}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <b>注销人：</b>
+                  </td>
+                  <td>
+                    <span class="clblue">{{dataInfo.logoff}}</span>
+                  </td>
+                  <td colspan="2">
+                    <b>注销时间：</b>
+                    <span class="clblue">{{dataInfo.logoff_time}}</span>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -292,9 +303,8 @@
                       <label class="inputs">带领 ( {{dataInfo.worker_num}} ) 人进行以下工作</label>
                     </td>
                   </tr>
-
-                  <tr v-for="item in dataInfo.worker" :key="item.id">
-                    <td>
+                  <tr v-for="(item,index) in dataInfo.worker" :key="item.id">
+                    <td v-if="index==0" :rowspan="dataInfo.worker.length" valign="top">
                       <label class="labels">施工人员：</label>
                     </td>
                     <td>
@@ -551,10 +561,13 @@ export default {
   #printMe .el-timeline-item__wrapper {
     padding-left: 0;
   }
-
   #printMe .contact {
     display: block;
     width: 100%;
+  }
+  #printMe .petable td {
+    border: 0;
+    padding: 0;
   }
 }
 
@@ -651,6 +664,10 @@ export default {
   word-break: break-all;
   color: #4b6eca;
 }
+.vtable table td .petable td {
+  border: 0;
+  padding: 0;
+}
 .atable {
   border-collapse: collapse;
   width: 100%;
@@ -697,7 +714,7 @@ export default {
 .vtable table td {
   border: 1px solid #9db9fa;
   line-height: 30px;
-  padding: 10px;
+  padding: 2px 10px;
 }
 
 .vtable .auto-style {
@@ -730,6 +747,8 @@ export default {
 }
 .innertable th {
   color: #111;
+  text-align: left;
+  padding-left: 10px;
   border-left: 1px #9db9fa solid;
   border-bottom: 1px #9db9fa solid;
 }
@@ -737,9 +756,8 @@ export default {
   border-top: 0 !important;
   border-right: 0 !important;
   padding: 0 10px !important;
-  height: 40px;
-  text-align: center;
   color: #444;
+  height: 35px;
 }
 
 .contact {
