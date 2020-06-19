@@ -287,7 +287,6 @@
                 v-for="item in dangerDetermineList"
                 :key="item.id"
                 :label="item.id"
-                border
               >{{item.name}}</el-radio>
             </el-radio-group>
           </el-form-item>
@@ -1089,6 +1088,7 @@ export default {
 .my-radio .el-radio {
   margin-right: 15px !important;
 }
+.my-radio label{margin-bottom: 15px;}
 .el-image-viewer__canvas img {
   width: auto !important;
   height: auto !important;

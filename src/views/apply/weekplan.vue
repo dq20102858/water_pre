@@ -232,53 +232,74 @@
             <span>电话：{{weekdailyList.phone}}</span>
           </div>
           <div class="printcenter">
-            <div class="items" v-for="item in weekdailyList.lists" :key="item.id">
-              <div class="infotitle">{{item.work_time | formatDate}}</div>
-              <div class="info">
-                <b>作业类别</b>
-                {{item.type}}
-              </div>
-              <div class="info">
-                <b>作业时间</b>
-                {{item.detail_time}}
-              </div>
-              <div class="info">
-                <b>作业内容</b>
-                {{item.description}}
-              </div>
-              <div class="info">
-                <b>作业区域</b>
-                {{item.area}}
-              </div>
-              <div class="info">
-                <b>编组上行端</b>
-                {{item.up_part}}
-              </div>
-              <div class="info">
-                <b>装车地</b>
-                {{item.location}}
-              </div>
-              <div class="info">
-                <b>防护措施及要求</b>
-                {{item.attention}}
-              </div>
-              <div class="info">
-                <b>备注</b>
-                {{item.remark}}
-              </div>
-            </div>
+            <table class="items" v-for="item in weekdailyList.lists" :key="item.id">
+              <tr>
+                <td colspan="2">
+                  <div class="infotitle">{{item.work_time | formatDate}}</div>
+                </td>
+              </tr>
+              <tr>
+                <td class="info">
+                  <b>作业类别</b>
+                </td>
+                <td>{{item.type}}</td>
+              </tr>
+              <tr>
+                <td class="info">
+                  <b>作业时间</b>
+                </td>
+                <td>{{item.detail_time}}</td>
+              </tr>
+              <tr>
+                <td class="info">
+                  <b>作业内容</b>
+                </td>
+                <td>{{item.description}}</td>
+              </tr>
+              <tr>
+                <td class="info">
+                  <b>作业区域</b>
+                </td>
+                <td>{{item.area}}</td>
+              </tr>
+              <tr>
+                <td class="info">
+                  <b>编组上行端</b>
+                </td>
+                <td>{{item.up_part}}</td>
+              </tr>
+              <tr>
+                <td class="info">
+                  <b>装车地</b>
+                </td>
+                <td>{{item.location}}</td>
+              </tr>
+              <tr>
+                <td class="info">
+                  <b>防护措施及要求</b>
+                </td>
+                <td>{{item.attention}}</td>
+              </tr>
+              <tr>
+                <td class="info">
+                  <b>备注</b>
+                </td>
+                <td>{{item.remark}}</td>
+              </tr>
+            </table>
           </div>
           <div class="printbom">
             <p>注：监理需对此项施工或运输的相关条件（如材料设备已到位，边界条件已满足等），进行确认。</p>
           </div>
           <div class="status-print">
             <div class="infotitle">审批记录</div>
-            <ul>
-              <li v-for="item in logDataList" :key="item.id">
-                <h3>{{item.create_time+' '+ item.remark}}</h3>
-                <p>{{item.reason}}</p>
-              </li>
-            </ul>
+            <table>
+              <tr  v-for="item in logDataList" :key="item.id">
+                <td> <h3>{{item.create_time+' '+ item.remark}}</h3>
+                <p>{{item.reason}}</p></td>
+              </tr>
+            </table>
+           
           </div>
         </div>
       </div>
@@ -673,7 +694,7 @@ export default {
   line-height: 31px;
 }
 .printcenter .items {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   color: #1d397a;
 }
 .printcenter .items b {
@@ -717,6 +738,9 @@ export default {
   }
   undefined {
     display: none;
+  }
+  #printWeek .info {
+    width: 90px;
   }
 }
 .wtop .redbtn {
@@ -780,17 +804,11 @@ export default {
 .status-print {
   margin-top: 20px;
 }
-.status-print li {
-  word-break: break-all;
-  color: #3655a5;
-  line-height: 24px;
-  margin-bottom: 15px;
-}
 .status-print h3 {
   color: #3655a5;
   font-size: 15px;
 }
-.stat .status-print p {
+.status-print p {
   color: #4b6eca;
 }
 .status-print .infotitle {

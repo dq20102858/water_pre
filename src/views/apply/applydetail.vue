@@ -48,34 +48,53 @@
                   <td colspan="2">
                     <!--  -->
                     <div>
-                      联系人：
-                      <span
-                        style="width:40%;display:inline-block"
-                        class="clblue"
-                      >{{dataInfo.contact}}</span>
-                      联系电话：
-                      <span class="clblue">{{dataInfo.phone}}</span>
+                      <p class="contact">
+                        联系人：
+                        <span
+                          style="width:40%;display:inline-block"
+                          class="clblue"
+                        >{{dataInfo.contact}}</span>
+                      </p>
+                      <p class="contact">
+                        联系电话：
+                        <span class="clblue">{{dataInfo.phone}}</span>
+                      </p>
                     </div>
                     <div>
-                      负责人：
-                      <span
-                        style="width:40%;display:inline-block;overflow: hidden;white-space: nowrap; vertical-align: middle;"
-                        class="clblue"
-                      >{{dataInfo.p_in_charge}}</span>
-                      联系电话：
-                      <span class="clblue">{{dataInfo.p_in_charge_phone}}</span>
+                      <p class="contact">
+                        负责人：
+                        <span class="clblue">{{dataInfo.p_in_charge}}</span>
+                      </p>
+                      <p class="contact">
+                        联系电话：
+                        <span class="clblue">{{dataInfo.p_in_charge_phone}}</span>
+                      </p>
                     </div>
                     <div v-for="item in dataInfo.holder" :key="item.id">
-                      持证人：
-                      <span style="width:40%;display:inline-block" class="clblue">{{item.name}}</span>
-                      联系电话：
-                      <span class="clblue">{{item.phone}}</span>
+                      <p class="contact">
+                        持证人：
+                        <span
+                          style="width:40%;display:inline-block"
+                          class="clblue"
+                        >{{item.name}}</span>
+                      </p>
+                      <p class="contact">
+                        联系电话：
+                        <span class="clblue">{{item.phone}}</span>
+                      </p>
                     </div>
                     <div v-for="item in dataInfo.worker" :key="item.id">
-                      施工人：
-                      <span style="width:40%;display:inline-block" class="clblue">{{item.name}}</span>
-                      联系电话：
-                      <span class="clblue">{{item.phone}}</span>
+                      <p class="contact">
+                        施工人：
+                        <span
+                          style="width:40%;display:inline-block"
+                          class="clblue"
+                        >{{item.name}}</span>
+                      </p>
+                      <p class="contact">
+                        联系电话：
+                        <span class="clblue">{{item.phone}}</span>
+                      </p>
                     </div>
                   </td>
                   <td>
@@ -228,66 +247,80 @@
               <div class="onebox">
                 <div class="item">
                   <label class="labels">作业编号：</label>
-                  <span class="input">{{ dataInfo.number}}</span>
+                  <span class="inputs">{{ dataInfo.number}}</span>
                   <label class="labels">作业令号：</label>
-                  <span class="input">{{ dataInfo.command_num}}</span>
+                  <span class="inputs">{{ dataInfo.command_num}}</span>
                 </div>
                 <div class="item">
                   <label class="labels">兹申请允许持证人（主站）：</label>
-                  <span class="input">{{ dataInfo.main_apply_user}}</span>
+                  <span class="inputs">{{ dataInfo.main_apply_user}}</span>
                   <label class="labels">辅站及负责人：</label>
-                  <span class="input">{{ dataInfo.sub_apply_user}}</span>
-                </div>
-                <div class="items">
-                  <div class="p" v-for="item in dataInfo.worker" :key="item.id">
-                    <span class="labels">
-                      施工人：
-                      <em>{{item.name}}</em>
-                    </span>
-                    <span class="inputs">
-                      联系电话：
-                      <em>{{item.phone}}</em>
-                    </span>
-                  </div>
+                  <span class="inputs">{{ dataInfo.sub_apply_user}}</span>
                 </div>
                 <div class="item">
-                  <label class="labels">单位：</label>
-                  <span class="input" style="width:550px;">{{ dataInfo.company}}</span>
+                  <label class="labels">单位名称：</label>
+                  <span class="inputs" style="width:550px;">{{ dataInfo.company}}</span>
                 </div>
                 <div class="item">
                   <label class="labels">联系电话：</label>
-                  <span class="input" style="width:250px;">{{ dataInfo.phone}}</span>
+                  <span class="inputs">{{ dataInfo.phone}}</span>
                   <label class="labels">带领 ( {{dataInfo.worker_num}} ) 人进行以下工作：</label>
                 </div>
-                <div class="item">
-                  <label class="labels">A区域/车辆：</label>
-                  <div class="conn">
-                    <div v-for="areas in dataInfo.area_or_car" :key="areas.id">
-                      <p>
-                        <em>{{areas.start_station_name}} - {{areas.end_station_name}} 区间 {{areas.line_type_name}} ( DK{{areas.start_flag}} + {{areas.start_length}} - DK{{areas.end_flag}} + {{areas.end_length}} )</em>
-                      </p>
-                      <p>
-                        <i>开始时间：{{areas.start_time}}</i>
-                        <i>结束时间：{{areas.end_time}}</i>
-                      </p>
-                    </div>
-                    <!-- <div>
-                  <em>长江南路站 - 长江南路站 区间 左线 ( DK38 + 940 - DK38 + 940 )</em>
-                  <i>开始时间：2019-12-29 07:00:00 结束时间：2019-12-29 20:00:00</i>
-                    </div>-->
-                  </div>
+
+                <div class="phones" v-for="item in dataInfo.worker" :key="item.id">
+                  <span class="labela">
+                    施工人员：
+                    <em>{{item.name}}</em>
+                  </span>
+                  <span class="labelb">
+                    联系电话：
+                    <em>{{item.phone}}</em>
+                  </span>
                 </div>
-                <div class="item">
-                  <label class="labels">B工作内容：</label>
-                  <div class="conn">
-                    <em>{{funIsEmpty(dataInfo.description)}}</em>
-                  </div>
-                </div>
-                <div class="item">
-                  <label class="labels">C安全措施及注意事项：</label>
-                  <div class="conn">
-                    <em>{{funIsEmpty(dataInfo.attention)}}</em>
-                  </div>
+                <div class="items">
+                  <table class="atable">
+                    <tr>
+                      <td valign="top">
+                        <label class="label">A区域/车辆：</label>
+                      </td>
+                      <td>
+                        <div class="conn">
+                          <div
+                            style="margin-bottom: 10px;"
+                            v-for="areas in dataInfo.area_or_car"
+                            :key="areas.id"
+                          >
+                            <p>
+                              <em>{{areas.start_station_name}} - {{areas.end_station_name}} 区间 {{areas.line_type_name}} ( DK{{areas.start_flag}} + {{areas.start_length}} - DK{{areas.end_flag}} + {{areas.end_length}} )</em>
+                            </p>
+                            <p>
+                              <i>开始时间：{{areas.start_time}}</i>
+                              <i>结束时间：{{areas.end_time}}</i>
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td valign="top">
+                        <label class="label">B工作内容：</label>
+                      </td>
+                      <td>
+                        <div class="conn">{{funIsEmpty(dataInfo.description)}}</div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td valign="top">
+                        <label class="label">
+                          C安全措施
+                          <br />及注意事项：
+                        </label>
+                      </td>
+                      <td>
+                        <div class="conn">{{funIsEmpty(dataInfo.attention)}}</div>
+                      </td>
+                    </tr>
+                  </table>
                 </div>
                 <div class="item">
                   <ul class="scheck">
@@ -315,7 +348,6 @@
                 </div>
                 <div
                   class="itemconn"
-                  style="margin-bottom:30px;"
                 >本单位及本人谨此声明：愿意在规定时间内完成上述工作，并确保本人属下员工遵守上述安全措施，同时本人或本人属 下员工不会试图损坏其它单位的设备，在其它区域或车辆上工作。</div>
                 <div class="singn">
                   <span class="pull-left">
@@ -335,7 +367,7 @@
             >
               <div class="onebox">
                 <div class="itemconn">兹审批此许可证生效，或按红笔修改的执行。</div>
-                <div class="singn lines">
+                <div class="singn">
                   <span class="pull-left">
                     审批负责人（签名）
                     <b>{{dataInfo.approver}}</b>
@@ -355,7 +387,7 @@
                 <div
                   class="itemconn"
                 >本人谨此声明：⑴ 此进场作业许可证所述工作现已完成，本人及属下员工已经撤离，安全措施已经撤除，并已被告知在轨道区域/车辆上工作已不再安全。⑵ 完成情况及所有故障/损坏已经书面呈报。</div>
-                <div class="singn lines">
+                <div class="singn">
                   <span class="pull-left">
                     销点负责人（签名）
                     <b>{{dataInfo.logout}}</b>
@@ -373,7 +405,7 @@
             >
               <div class="onebox">
                 <div class="itemconn">此许可证已经原批准人或联合办公室经理同意注销。</div>
-                <div class="singn lines">
+                <div class="singn">
                   <span class="pull-left">
                     注销负责人（签名）
                     <b>{{dataInfo.logoff}}</b>
@@ -464,14 +496,36 @@ export default {
   }
   #printMe table td {
     border: 1px solid #9db9fa;
-    line-height: 30px;
     padding: 10px;
   }
   #printMe .p {
     width: 100%;
   }
+  #printMe .el-timeline-item__tail {
+    display: none;
+  }
   undefined {
     display: none;
+  }
+
+  #printMe .onebox {
+    padding: 0;
+  }
+  #printMe .el-timeline-item__wrapper {
+    padding-left: 0;
+  }
+  #printMe .labels {
+    padding-left: 0;
+  }
+  #printMe .atable {
+    margin-left: -7px;
+  }
+  #printMe .atable td {
+    border: 0;
+  }
+  #printMe  .contact {
+    display: block;
+    width: 100%;
   }
 }
 
@@ -527,17 +581,9 @@ export default {
   width: 280px;
   text-align: left;
 }
-.app-apply-detail .input {
-  height: 36px;
-  color: #4b6eca;
-  border-radius: 4px;
-  line-height: 36px;
-  display: inline-block;
-  padding: 0 12px;
-}
+
 .app-apply-detail .onebox {
   padding: 0 30px;
-  margin-bottom: 60px;
   font-size: 15px;
 }
 .app-apply-detail .el-timeline-item__timestamp {
@@ -548,15 +594,23 @@ export default {
 .app-apply-detail .el-timeline-item__wrapper {
   padding-left: 20px;
 }
-.app-apply-detail .item {
+.app-apply-detail .el-timeline-item {
   margin-bottom: 20px;
+}
+.app-apply-detail .item {
   overflow: hidden;
+  padding-bottom: 15px;
 }
 .app-apply-detail .item .labels {
   color: #1d397a;
-  margin: 0 15px 0 15px;
-  min-width: 75px;
   display: inline-block;
+}
+.app-apply-detail .item .inputs {
+  color: #4b6eca;
+  border-radius: 4px;
+
+  display: inline-block;
+  padding: 0 12px;
 }
 .app-apply-detail .item em {
   display: block;
@@ -572,41 +626,33 @@ export default {
 }
 .app-apply-detail .items {
   display: block;
-  overflow: hidden;
-  padding-bottom: 15px;
-}
-.app-apply-detail .items .labels {
-  color: #1d397a;
-  margin: 0 15px 0 15px;
-  display: inline-block;
-  width: 30%;
-}
-.app-apply-detail .items .inputs {
-  height: 36px;
-  color: #1d397a;
-  border-radius: 4px;
-  display: inline-block;
-  padding: 0 12px;
 }
 .app-apply-detail .items em {
   color: #4b6eca;
   font-style: normal;
 }
-.app-apply-detail .items .p {
+.app-apply-detail .phones {
   width: 50%;
   float: left;
   height: 36px;
   line-height: 36px;
 }
-.app-apply-detail .conn {
-  display: block;
-  padding-left: 110px;
-  line-height: 24px;
-  word-wrap: break-word;
-  word-break: break-all;
+.app-apply-detail .phones em {
+  color: #4b6eca;
+  font-style: normal;
+}
+.app-apply-detail .phones .labela {
+  color: #1d397a;
+  display: inline-block;
+  width: 49%;
+}
+.app-apply-detail .phones .labelb {
+  color: #1d397a;
+  display: inline-block;
 }
 .app-apply-detail .scheck {
-  margin-left: 15px;
+  margin-top: 15px;
+  margin-bottom: 5px;
 }
 .app-apply-detail .scheck li {
   display: inline-block;
@@ -616,14 +662,41 @@ export default {
 .app-apply-detail .scheck b {
   font-size: 16px;
 }
+.app-apply-detail .atable {
+  margin-left: -4px;
+}
+.app-apply-detail .atable .label {
+  color: #1d397a;
+  display: inline-block;
+}
+.app-apply-detail .atable .input {
+  height: 36px;
+  color: #1d397a;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 0 12px;
+}
+.app-apply-detail .atable .conn {
+  display: block;
+  line-height: 24px;
+  word-wrap: break-word;
+  word-break: break-all;
+  margin-bottom: 10px;
+  color: #4b6eca;
+}
+.app-apply-detail .atable em {
+  font-style: normal;
+  color: #1d397a;
+}
+.app-apply-detail .atable i {
+  font-style: normal;
+}
 .app-apply-detail .itemconn {
   color: #1d397a;
-  margin-left: 15px;
   line-height: 24px;
 }
 .app-apply-detail .singn {
   color: #1d397a;
-  margin: 20px 0 20px 15px;
   line-height: 24px;
 }
 .app-apply-detail .lines {
@@ -691,5 +764,10 @@ export default {
   height: 40px;
   text-align: center;
   color: #444;
+}
+
+.contact {
+  float: left;
+  width: 50%;
 }
 </style>
