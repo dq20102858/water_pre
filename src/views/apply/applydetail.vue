@@ -620,6 +620,7 @@ export default {
 .app-apply-detail .labels {
   color: #1d397a;
   display: inline-block;
+  line-height: 22px;
 }
 .app-apply-detail .inputs {
   color: #4b6eca;
@@ -646,16 +647,14 @@ export default {
   font-size: 16px;
 }
 .app-apply-detail .atable .conn {
-  display: block;
-  line-height: 24px;
   word-wrap: break-word;
   word-break: break-all;
-  margin-bottom: 10px;
   color: #4b6eca;
 }
 .atable {
   border-collapse: collapse;
   width: 100%;
+  margin-top: 15px;
 }
 .atable td {
   border: 1px solid #9db9fa;
