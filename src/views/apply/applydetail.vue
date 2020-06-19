@@ -467,6 +467,9 @@ export default {
     line-height: 30px;
     padding: 10px;
   }
+  #printMe .p {
+    width: 100%;
+  }
   undefined {
     display: none;
   }
