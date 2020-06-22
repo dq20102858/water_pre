@@ -1782,7 +1782,7 @@ export default {
           let dateB = new Date(data.end_time).getTime();
           let timeSpan = dateB - dateA;
           let hours = Math.floor(timeSpan / 1000 / 60 / 60);
-          console.log(parseFloat(hours));
+          //console.log(parseFloat(hours));
           if (hours > 48) {
             this.$message.error("计划施工开始时间和结束时间不能超过48小时");
             return false;
@@ -2007,7 +2007,7 @@ export default {
       });
     },
     formStatus() {
-      console.log(this.formEditData.status);
+      //console.log(this.formEditData.status);
       this.reasonShow = !this.reasonShow;
     },
     updateDayTrueplan() {
@@ -2020,7 +2020,7 @@ export default {
           let dateB = new Date(data.true_end_time).getTime();
           let timeSpan = dateB - dateA;
           let hours = Math.floor(timeSpan / 1000 / 60 / 60);
-          console.log(parseFloat(hours));
+          //console.log(parseFloat(hours));
           if (hours > 48) {
             this.$message.error("实际开始时间和结束时间不能超过48小时");
             return false;
