@@ -590,6 +590,7 @@
           <div class="el-form-item-block">
             <el-form-item label="开始时间：" label-width="100px" prop="start_time">
               <el-date-picker
+                disabled
                 v-model="formEditData.start_time"
                 type="datetime"
                 format="yyyy-MM-dd HH:mm"
@@ -598,6 +599,7 @@
             </el-form-item>
             <el-form-item label="结束时间：" prop="end_time">
               <el-date-picker
+                disabled
                 v-model="formEditData.end_time"
                 type="datetime"
                 format="yyyy-MM-dd HH:mm"
@@ -1203,8 +1205,8 @@ export default {
       this.formData.date = this.todayValue;
       this.todayPreValue = this.getNextDate(this.todayValue, -1);
       this.todayNextValue = this.getNextDate(this.todayValue, 1);
-      let start_time = this.getNextDate(this.todayValue, -1, "-")+" 18:00:00";
-      let end_time = this.getNextDate(this.todayValue, 1, "-")+" 18:00:00";
+      let start_time = this.getNextDate(this.todayValue, -1, "-") + " 18:00:00";
+      let end_time = this.getNextDate(this.todayValue, 1, "-") + " 18:00:00";
       let line_type = this.select_line_type.toString();
       let type = this.select_line_type.toString();
       let loco_type = this.select_loco_type.toString();
@@ -1772,9 +1774,20 @@ export default {
         if (valid) {
           let data = this.formData;
           if (+this.formData.end_time < +this.formData.start_time) {
-            this.$message.error("施工开始时间不能大于结束时间");
+            this.$message.error("计划施工开始时间不能大于结束时间");
             return false;
           }
+
+          let dateA = new Date(data.start_time).getTime();
+          let dateB = new Date(data.end_time).getTime();
+          let timeSpan = dateB - dateA;
+          let hours = Math.floor(timeSpan / 1000 / 60 / 60);
+          console.log(parseFloat(hours));
+          if (hours > 48) {
+            this.$message.error("计划施工开始时间和结束时间不能超过48小时");
+            return false;
+          }
+
           let start =
             this.formData.start_flag * 1000 +
             parseInt(this.formData.start_length);
@@ -1924,31 +1937,34 @@ export default {
           }
 
           //
-          (this.formEditData.record_id = data.data.record_id == null ? this.formEditData.record_id  : data.data.record_id);
-            (this.formEditData.true_start_time =
-              data.data.true_start_time == ""
-                ? data.data.start_time
-                : data.data.true_start_time);
-            (this.formEditData.true_end_time =
-              data.data.true_end_time == ""
-                ? data.data.end_time
-                : data.data.true_end_time);
-            (this.formEditData.true_start_flag =
-              data.data.true_start_flag == null
-                ? parseFloat(data.data.start_flag)
-                : parseFloat(data.data.true_start_flag));
-            (this.formEditData.true_start_length =
-              data.data.true_start_length == null
-                ? parseFloat(data.data.start_length)
-                : parseFloat(data.data.true_start_length));
-            (this.formEditData.true_end_flag =
-              data.data.true_end_flag == null
-                ? parseFloat(data.data.end_flag)
-                : parseFloat(data.data.true_end_flag));
-            (this.formEditData.true_end_length =
-              data.data.true_end_length == null
-                ? parseFloat(data.data.end_length)
-                : parseFloat(data.data.true_end_length));
+          this.formEditData.record_id =
+            data.data.record_id == null
+              ? this.formEditData.record_id
+              : data.data.record_id;
+          this.formEditData.true_start_time =
+            data.data.true_start_time == ""
+              ? data.data.start_time
+              : data.data.true_start_time;
+          this.formEditData.true_end_time =
+            data.data.true_end_time == ""
+              ? data.data.end_time
+              : data.data.true_end_time;
+          this.formEditData.true_start_flag =
+            data.data.true_start_flag == null
+              ? parseFloat(data.data.start_flag)
+              : parseFloat(data.data.true_start_flag);
+          this.formEditData.true_start_length =
+            data.data.true_start_length == null
+              ? parseFloat(data.data.start_length)
+              : parseFloat(data.data.true_start_length);
+          this.formEditData.true_end_flag =
+            data.data.true_end_flag == null
+              ? parseFloat(data.data.end_flag)
+              : parseFloat(data.data.true_end_flag);
+          this.formEditData.true_end_length =
+            data.data.true_end_length == null
+              ? parseFloat(data.data.end_length)
+              : parseFloat(data.data.true_end_length);
           //le.log(this.formEditData);
         }
       });
@@ -1999,10 +2015,17 @@ export default {
         if (valid) {
           this.formEditData.date = this.formData.date;
           let data = this.formEditData;
-          if (+this.formEditData.end_time < +this.formEditData.start_time) {
-            this.$message.error("施工开始时间不能大于结束时间");
+
+          let dateA = new Date(data.true_start_time).getTime();
+          let dateB = new Date(data.true_end_time).getTime();
+          let timeSpan = dateB - dateA;
+          let hours = Math.floor(timeSpan / 1000 / 60 / 60);
+          console.log(parseFloat(hours));
+          if (hours > 48) {
+            this.$message.error("实际开始时间和结束时间不能超过48小时");
             return false;
           }
+
           let start =
             this.formEditData.true_start_flag * 1000 +
             parseInt(this.formEditData.true_start_length);
