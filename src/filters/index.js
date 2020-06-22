@@ -11,6 +11,19 @@ export function formatDate(val) {
   day = day < 10 ? "0" + day : day;
   return year + "年" + month + "月" + day + "日";
 }
+//格式化时间
+export function formatGetDate(val) {
+  if (typeof val === 'string') {
+    val = val.replace(/-/g, '/')
+  }
+  var date = new Date(val);
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  month = month < 10 ? "0" + month : month;
+  var day = date.getDate();
+  day = day < 10 ? "0" + day : day;
+  return year + "-" + month + "-" + day;
+}
 //格式化时间戳
 export function formatDateTamp (time, type) {
   var timestamp = time

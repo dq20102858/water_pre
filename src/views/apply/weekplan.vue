@@ -294,12 +294,13 @@
           <div class="status-print">
             <div class="infotitle">审批记录</div>
             <table>
-              <tr  v-for="item in logDataList" :key="item.id">
-                <td> <h3>{{item.create_time+' '+ item.remark}}</h3>
-                <p>{{item.reason}}</p></td>
+              <tr v-for="item in logDataList" :key="item.id">
+                <td>
+                  <h3>{{item.create_time+' '+ item.remark}}</h3>
+                  <p>{{item.reason}}</p>
+                </td>
               </tr>
             </table>
-           
           </div>
         </div>
       </div>
@@ -464,11 +465,9 @@ export default {
               : myDate.getDate() - (myDate.getDay() - 1)
           );
           var nextmon = myDate.setDate(myDate.getDate() + 7); //+7代表下一个周一
-          let dateNow = new Date();
-          let nextweek = new Date(nextmon);
-          // console.log(dateNow);
-          // console.log(nextweek);
-          if (dateNow > nextweek) {
+          let dateNow = this.$options.filters.formatGetDate(new Date());
+          let nextweek = this.$options.filters.formatGetDate(new Date(nextmon));
+          if (nextweek >= dateNow) {
             this.showApplyBtn = false;
             console.log("当前周计划已过期");
           } else {
