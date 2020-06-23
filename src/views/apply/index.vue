@@ -2,7 +2,7 @@
   <div id="app-apply">
     <div class="el-menu-top">
       <el-menu router mode="horizontal">
-         <li class="ptitle">
+        <li class="ptitle">
           <img :src="require('@/assets/image/m_apply_on.png')" />施工请点
         </li>
         <el-submenu index="1" class="is-active">
@@ -12,7 +12,7 @@
           <el-menu-item index="conflictcheck">冲突检测</el-menu-item>
         </el-submenu>
         <el-menu-item index="weekplan">周计划</el-menu-item>
-       <el-menu-item index="weekplanapply" v-if="sys_role==1">权限审批</el-menu-item>
+        <el-menu-item index="weekplanapply" v-if="sys_role==1">权限审批</el-menu-item>
       </el-menu>
     </div>
 
@@ -30,7 +30,7 @@
                   <el-dropdown-item command="A4">A4</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
-            </el-form-item> -->
+            </el-form-item>-->
             <el-form-item label="公司">
               <el-select v-model="searchForm.depart_id" placeholder="请选择公司" clearable>
                 <el-option
@@ -121,7 +121,7 @@
             <el-table-column prop="number" label="作业编号"></el-table-column>
             <el-table-column prop="command_num" label="作业令号"></el-table-column>
             <el-table-column prop="description" label="作业内容" show-overflow-tooltip></el-table-column>
-               <el-table-column prop="company" label="公司简称" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="company" label="公司简称" show-overflow-tooltip></el-table-column>
             <el-table-column prop="status" label="当前状态" width="80" align="center">
               <template slot-scope="scope">
                 <span class="statuse1" v-if="scope.row.status=='未批复'">未批复</span>
@@ -492,6 +492,7 @@ import detailForm from "./applydetail.vue";
 export default {
   data() {
     return {
+      projectName: "",
       page_cur: 1,
       pageTotal: 0,
       page_size: 20,
@@ -595,16 +596,29 @@ export default {
       }
     };
   },
-   computed: {
+  computed: {
     ...mapGetters(["sys_role", "roles"])
   },
   created() {
+    this.getProjectName();
     this.getDataList();
     this.getCompanyList();
     this.getLineType(); //线别
     this.getStationList(); //车站
   },
   methods: {
+    getProjectName() {
+      this.request({
+        url: "/common/getItemDetail",
+        method: "get"
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.projectName = data.data.name;
+          localStorage.setItem("projectName", data.data.name);
+        }
+      });
+    },
     getDataList() {
       let page = this.page_cur;
       let depart_id = this.searchForm.depart_id;
@@ -696,9 +710,9 @@ export default {
     goDetail(id, type) {
       let laytitle = "";
       if (type == "A1" || type == "A2") {
-        laytitle = "轨行区及施工作业许可证";
+        laytitle = this.projectName + "轨行区及施工作业许可证";
       } else {
-        laytitle = "进场作业许可证";
+        laytitle = this.projectName + "进场作业许可证";
       }
       this.$layer.iframe({
         area: ["70%", "90%"],

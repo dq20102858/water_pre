@@ -300,7 +300,7 @@
                     </td>
                     <td colspan="3">
                       <label class="inputs">{{ dataInfo.phone}}</label>
-                      <label class="inputs">带领 ( {{dataInfo.worker_num}} ) 人进行以下工作</label>
+                      <label class="inputs" style="padding-left:40px">带领 ( {{dataInfo.worker_num}} ) 人进行以下工作</label>
                     </td>
                   </tr>
                   <tr v-for="(item,index) in dataInfo.worker" :key="item.id">
