@@ -1821,6 +1821,7 @@ export default {
                 message: "保存成功！"
               });
               this.getChart();
+              
             }
           });
         }

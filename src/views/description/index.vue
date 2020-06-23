@@ -7,6 +7,7 @@
         </div>
         <div class="descpconn">
           <div class="desctitle">{{descData.name}}</div>
+          
           <div class="content">{{descData.description}}</div>
         </div>
       </div>
