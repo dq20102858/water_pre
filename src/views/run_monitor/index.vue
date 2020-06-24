@@ -1226,7 +1226,7 @@ export default {
       this.todayPreValue = this.getNextDate(this.todayValue, -1);
       this.todayNextValue = this.getNextDate(this.todayValue, 1);
       let start_time = this.getNextDate(this.todayValue, -1, "-") + " 00:00:00";
-      let end_time = this.getNextDate(this.todayValue, 1, "-") + " 00:00:00";
+      let end_time = this.getNextDate(this.todayValue, 1, "-") + " 23:59:59";
       let line_type = this.select_line_type.toString();
       let type = this.select_line_type.toString();
       let loco_type = this.select_loco_type.toString();
@@ -1240,7 +1240,6 @@ export default {
           //myChart
           var myChart = this.$echarts.init(document.getElementById("main"));
           myChart.clear();
-          // myChart.getDom().style.width = "2000px";
           myChart.getDom().style.height =
             document.body.clientHeight - 180 + "px";
           //站点=============
@@ -1870,8 +1869,8 @@ export default {
     },
     getPlanNumbers() {
       let todayNum = this.todayValue;
-      let start_time = this.getNextDate(todayNum, -1, "-") + "T18:00:00.000Z"; //前一天
-      let end_time = this.getNextDate(todayNum, 1, "-") + "T18:00:00.000Z"; //后一天
+      let start_time = this.getNextDate(todayNum, -1, "-") + " 00:00:00"; //前一天
+      let end_time = this.getNextDate(todayNum, 1, "-") + " 23:59:59"; //后一天
 
       this.request({
         url: "/dayplan/getPlanNumbers",
