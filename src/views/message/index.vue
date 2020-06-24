@@ -174,6 +174,11 @@ export default {
             trigger: "blur"
           },
           { min: 2, max: 200, message: "长度在2到200个字符", trigger: "blur" },
+          {
+            pattern: /\s\S+|S+\s|\S/,
+            message: "内容不能全部是空格",
+            trigger: "blur"
+          }
         ]
       },
       page_cur: 1,

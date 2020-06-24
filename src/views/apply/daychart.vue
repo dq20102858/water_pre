@@ -2,7 +2,7 @@
   <div id="app-apply-chart">
     <div class="el-menu-top">
       <el-menu router default-active="daychart" mode="horizontal">
-    <li class="ptitle">
+        <li class="ptitle">
           <img :src="require('@/assets/image/m_apply_on.png')" />施工请点
         </li>
         <el-submenu index="1">
@@ -35,7 +35,7 @@ export default {
       kcolor: ["red", "green", "yellow", "#467aff", "#44ddb5", "#c245d3"]
     };
   },
-   computed: {
+  computed: {
     ...mapGetters(["sys_role", "roles"])
   },
   mounted() {
@@ -65,13 +65,13 @@ export default {
           let minLineNum = Math.min.apply(
             Math,
             this.mark_line.map(function(item) {
-              return parseInt(item.yAxis - 2);
+              return parseInt(item.yAxis - 1);
             })
           );
           let maxLineNum = Math.max.apply(
             Math,
             this.mark_line.map(function(item) {
-              return parseInt(item.yAxis + 2);
+              return parseInt(item.yAxis + 1);
             })
           );
           //A1 A2 A3 A4
@@ -117,15 +117,25 @@ export default {
               data: typeData[k].lists
             });
           }
-        console.log("projectData：" + JSON.stringify(seriesData));
+          console.log("projectData：" + JSON.stringify(seriesData));
           //时间
           let dayArr = [];
           let tday = resdata.data.x;
           for (var i in tday) {
             dayArr.push(i);
           }
-          let dataMin = dayArr.shift();
-          let dataMax = dayArr.pop();
+          let dataMinA = new Date(dayArr.shift());
+          let dataMaxA = new Date(dayArr.pop());
+
+          let dataMin = new Date(dataMinA.getTime()).setHours(0, 0, 0, 0);
+          let dataMax = new Date(dataMaxA.getTime()).setHours(23, 59, 59, 0);
+
+          // dataMin = dataMin);
+          //  dataMax = new Date(dataMax);
+          console.log(dataMin + "_" + dataMax);
+          // let dateTime = new Date(dayArr.pop()).getDate() + 1;
+
+          //           alert(dateTime);
           //option
           var option = {
             textStyle: {
@@ -148,10 +158,10 @@ export default {
             },
             xAxis: {
               type: "time",
+              position: "top",
               min: dataMin,
               max: dataMax,
-              minInterval: 3600 * 12 * 1000,
-              maxInterval: 3600 * 24 * 1000,
+              maxInterval: 3600 * 12 * 1000,
               splitLine: {
                 show: true,
                 lineStyle: {
@@ -186,43 +196,43 @@ export default {
                 }
               }
             },
-            dataZoom: [
-              {
-                type: "slider",
-                filterMode: "weakFilter",
-                show: true,
-                zoomLock: true,
-                xAxisIndex: [0],
-                top: 24,
-                textStyle: {
-                  color: "#fff"
-                },
-                borderColor: "#2B2B2B",
-                handleSize: "75%",
-                fillerColor: "#202f40"
-              },
-              {
-                type: "slider",
-                filterMode: "weakFilter",
-                show: true,
-                yAxisIndex: [0],
-                left: "96%",
-                textStyle: {
-                  color: "#fff"
-                },
-                borderColor: "#2B2B2B",
-                handleSize: "75%",
-                fillerColor: "#202f40"
-              },
-              {
-                type: "inside",
-                xAxisIndex: [0]
-              },
-              {
-                type: "inside",
-                yAxisIndex: [0]
-              }
-            ],
+            // dataZoom: [
+            //   {
+            //     type: "slider",
+            //     filterMode: "weakFilter",
+            //     show: true,
+            //     zoomLock: true,
+            //     xAxisIndex: [0],
+            //     top: 24,
+            //     textStyle: {
+            //       color: "#fff"
+            //     },
+            //     borderColor: "#2B2B2B",
+            //     handleSize: "75%",
+            //     fillerColor: "#202f40"
+            //   },
+            //   {
+            //     type: "slider",
+            //     filterMode: "weakFilter",
+            //     show: true,
+            //     yAxisIndex: [0],
+            //     left: "96%",
+            //     textStyle: {
+            //       color: "#fff"
+            //     },
+            //     borderColor: "#2B2B2B",
+            //     handleSize: "75%",
+            //     fillerColor: "#202f40"
+            //   },
+            //   {
+            //     type: "inside",
+            //     xAxisIndex: [0]
+            //   },
+            //   {
+            //     type: "inside",
+            //     yAxisIndex: [0]
+            //   }
+            // ],
             series: seriesData,
             color: ["#fff"],
             animation: false
