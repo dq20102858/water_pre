@@ -1,15 +1,15 @@
 <template>
   <div id="app-monitor-chart">
-    <div class="maintitle">{{todayPreValue}} 18时 -— {{todayNextValue}} 18时轨行区作业分布图</div>
+    <div class="maintitle">{{todayPreValue}} — {{todayNextValue}} 轨行区作业分布图</div>
 
     <div class="app-page">
       <div class="app-page-container">
         <div class="app-page-adds">
           <div class="btnitem">
-            <el-button @click="planAdd" type="primary" plain>编制日班计划图</el-button>
+            <el-button @click="planAddDiaLog" type="primary" plain>编制日班计划图</el-button>
           </div>
           <div class="btnitem">
-            <el-button @click="planEdit" type="primary " plain>编制日班实际图</el-button>
+            <el-button @click="planEditDiaLog" type="primary " plain>编制日班实际图</el-button>
           </div>
           <div class="btnitem">
             <el-button @click="refreshPage" type="primary" plain>刷新</el-button>
@@ -243,6 +243,7 @@
                 type="datetime"
                 format="yyyy-MM-dd HH:mm"
                 placeholder="选择时间"
+                :picker-options="pickerTime"
               ></el-date-picker>
             </el-form-item>
             <el-form-item label="结束时间：" prop="end_time">
@@ -251,6 +252,7 @@
                 type="datetime"
                 format="yyyy-MM-dd HH:mm"
                 placeholder="选择时间"
+                :picker-options="pickerTime"
               ></el-date-picker>
             </el-form-item>
             <el-form-item label="施工作业队：" label-width="100px">
@@ -401,7 +403,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="diaLogFormVisible = false">关闭</el-button>
-        <el-button type="primary" @click="addDayPlanDialog()">确定</el-button>
+        <el-button type="primary" @click="planAddData()">确定</el-button>
       </div>
     </el-dialog>
     <!-- bj -->
@@ -762,6 +764,7 @@
                 type="datetime"
                 format="yyyy-MM-dd HH:mm"
                 placeholder="选择时间"
+                :picker-options="pickerTime"
               ></el-date-picker>
             </el-form-item>
             <el-form-item label="实际结束时间：" prop="true_end_time">
@@ -770,6 +773,7 @@
                 type="datetime"
                 format="yyyy-MM-dd HH:mm"
                 placeholder="选择时间"
+                :picker-options="pickerTime"
               ></el-date-picker>
             </el-form-item>
           </div>
@@ -858,7 +862,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="diaLogFormEditVisible = false">关闭</el-button>
-        <el-button type="primary" @click="updateDayTrueplan()">确定</el-button>
+        <el-button type="primary" @click="planEditUpdate()">确定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -889,6 +893,20 @@ export default {
       }
     };
     return {
+      pickerTime: {
+        disabledDate: time => {
+          let dataMin = new Date(
+            this.todayValue.getTime() - 24 * 60 * 60 * 1000
+          ).setHours(0, 0, 0, 0);
+          let dataMax = new Date(
+            this.todayValue.getTime() + 24 * 60 * 60 * 1000
+          ).setHours(0, 0, 0, 0);
+          const day1 = 366 * 24 * 3600 * 1000;
+          let maxTime = dataMax;
+          let minTime = dataMin;
+          return time.getTime() > maxTime || time.getTime() < minTime;
+        }
+      },
       mark_line: [],
       project_kind_name: [],
       kcolorA: ["#467aff", "#674ea7", "yellow", "#467aff"],
@@ -896,6 +914,8 @@ export default {
       todayValue: new Date(),
       todayPreValue: "",
       todayNextValue: "",
+      todayPreValueTime: "",
+      todayNextValueTime: "",
       diaLogFormVisible: false,
       diaLogTitle: "计划图",
       formData: {
@@ -1205,8 +1225,8 @@ export default {
       this.formData.date = this.todayValue;
       this.todayPreValue = this.getNextDate(this.todayValue, -1);
       this.todayNextValue = this.getNextDate(this.todayValue, 1);
-      let start_time = this.getNextDate(this.todayValue, -1, "-") + " 18:00:00";
-      let end_time = this.getNextDate(this.todayValue, 1, "-") + " 18:00:00";
+      let start_time = this.getNextDate(this.todayValue, -1, "-") + " 00:00:00";
+      let end_time = this.getNextDate(this.todayValue, 1, "-") + " 00:00:00";
       let line_type = this.select_line_type.toString();
       let type = this.select_line_type.toString();
       let loco_type = this.select_loco_type.toString();
@@ -1374,13 +1394,14 @@ export default {
           //时间
           let dataMin = new Date(
             this.todayValue.getTime() - 24 * 60 * 60 * 1000
-          ).setHours(17, 50, 0, 0);
+          ).setHours(0, 0, 0, 0);
           let dataMax = new Date(
             this.todayValue.getTime() + 24 * 60 * 60 * 1000
-          ).setHours(18, 20, 0, 0);
+          ).setHours(0, 30, 0, 0);
           console.log(
             "dataMin：" + new Date(dataMin) + "_" + new Date(dataMax)
           );
+
           //option
           var option = {
             textStyle: {
@@ -1427,7 +1448,10 @@ export default {
                   let date = new Date(val);
                   let months = date.getMonth() + 1 + "/" + date.getDate();
                   let hours = date.getHours() + ":00";
-                  //  index = index + 1;
+                  if (index > 0) {
+                    months = months + "    ";
+                    hours = hours + "    ";
+                  }
                   if (index % 6 == 1) {
                     return hours + "\n" + months;
                   }
@@ -1757,7 +1781,7 @@ export default {
         }
       });
     },
-    planAdd() {
+    planAddDiaLog() {
       this.diaLogTitle = "计划图";
       this.diaLogFormVisible = true;
       this.formData.line_type = "";
@@ -1769,7 +1793,7 @@ export default {
       this.geItemList(); //项目
       this.getWorkSortList(); //工序
     },
-    addDayPlanDialog() {
+    planAddData() {
       this.$refs["formRules"].validate(valid => {
         if (valid) {
           let data = this.formData;
@@ -1778,15 +1802,15 @@ export default {
             return false;
           }
 
-          let dateA = new Date(data.start_time).getTime();
-          let dateB = new Date(data.end_time).getTime();
-          let timeSpan = dateB - dateA;
-          let hours = Math.floor(timeSpan / 1000 / 60 / 60);
-          //console.log(parseFloat(hours));
-          if (hours > 48) {
-            this.$message.error("计划施工开始时间和结束时间不能超过48小时");
-            return false;
-          }
+          // let dateA = new Date(data.start_time).getTime();
+          // let dateB = new Date(data.end_time).getTime();
+          // let timeSpan = dateB - dateA;
+          // let hours = Math.floor(timeSpan / 1000 / 60 / 60);
+          // //console.log(parseFloat(hours));
+          // if (hours > 48) {
+          //   this.$message.error("计划施工开始时间和结束时间不能超过48小时");
+          //   return false;
+          // }
 
           let start =
             this.formData.start_flag * 1000 +
@@ -1821,7 +1845,6 @@ export default {
                 message: "保存成功！"
               });
               this.getChart();
-              
             }
           });
         }
@@ -1970,7 +1993,7 @@ export default {
         }
       });
     },
-    planEdit() {
+    planEditDiaLog() {
       let todayNum = this.todayValue;
       let start_time = this.getNextDate(todayNum, -1, "-") + "T18:00:00.000Z"; //前一天
       let end_time = this.getNextDate(todayNum, 1, "-") + "T18:00:00.000Z"; //后一天
@@ -1987,45 +2010,44 @@ export default {
           if (data.data.length > 0) {
             this.diaLogTitleEdit = "日班实际图";
             this.diaLogFormEditVisible = true;
-
             this.planNumbersList = data.data;
             if (this.numberId == 0) {
               this.numberId = this.planNumbersList[0]["id"];
             }
             this.getPlanDetail(this.numberId);
-            // this.getPlanNumbers(); //日班计划列表
             this.getUserLists(); //记录人
           } else {
             this.$alert("<strong>当天没有计划！</strong>", "提示信息", {
               dangerouslyUseHTMLString: true
             });
-            // this.$message({
-            //   type: "warning",
-            //   message: "当天没有计划！"
-            // });
           }
         }
       });
     },
-    formStatus() {
-      //console.log(this.formEditData.status);
-      this.reasonShow = !this.reasonShow;
-    },
-    updateDayTrueplan() {
+
+    planEditUpdate() {
       this.$refs["refFormEditRules"].validate(valid => {
         if (valid) {
           this.formEditData.date = this.formData.date;
           let data = this.formEditData;
 
-          let dateA = new Date(data.true_start_time).getTime();
-          let dateB = new Date(data.true_end_time).getTime();
-          let timeSpan = dateB - dateA;
-          let hours = Math.floor(timeSpan / 1000 / 60 / 60);
-          //console.log(parseFloat(hours));
-          if (hours > 48) {
-            this.$message.error("实际开始时间和结束时间不能超过48小时");
-            return false;
-          }
+          //         if (+data.true_start_time < +data.true_start_time) {
+          //           this.$message.error("实际开始时间不能大于结束时间");
+          //           return false;
+          //         }
+          // if (+data.true_end_time < +data.true_start_time) {
+          //           this.$message.error("实际开始时间不能大于结束时间");
+          //           return false;
+          //         }
+          // let dateA = new Date(data.true_start_time).getTime();
+          // let dateB = new Date(data.true_end_time).getTime();
+          // let timeSpan = dateB - dateA;
+          // let hours = Math.floor(timeSpan / 1000 / 60 / 60);
+          // //console.log(parseFloat(hours));
+          // if (hours > 48) {
+          //   this.$message.error("实际开始时间和结束时间不能超过48小时");
+          //   return false;
+          // }
 
           let start =
             this.formEditData.true_start_flag * 1000 +
@@ -2046,7 +2068,7 @@ export default {
           //   return;
           // }
           this.request({
-            url: "/dayplan/updateDayTrueplan",
+            url: "/dayplan/planEditUpdate",
             method: "post",
             data
           }).then(response => {
@@ -2066,7 +2088,10 @@ export default {
         }
       });
     },
-
+    formStatus() {
+      //console.log(this.formEditData.status);
+      this.reasonShow = !this.reasonShow;
+    },
     //多选操作
     selectDatePicker(value) {
       this.todayValue = value;
