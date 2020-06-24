@@ -1994,8 +1994,8 @@ export default {
     },
     planEditDiaLog() {
       let todayNum = this.todayValue;
-      let start_time = this.getNextDate(todayNum, -1, "-") + "T18:00:00.000Z"; //前一天
-      let end_time = this.getNextDate(todayNum, 1, "-") + "T18:00:00.000Z"; //后一天
+      let start_time = this.getNextDate(todayNum, -1, "-") + " 00:00:00"; //前一天
+      let end_time = this.getNextDate(todayNum, 1, "-") + " 23:59:59"; //后一天
       this.request({
         url: "/dayplan/getPlanNumbers",
         method: "get",
