@@ -465,13 +465,17 @@ export default {
               : myDate.getDate() - (myDate.getDay() - 1)
           );
           var nextmon = myDate.setDate(myDate.getDate() + 7); //+7代表下一个周一
-          let dateNow = this.$options.filters.formatGetDate(new Date());
           let nextweek = this.$options.filters.formatGetDate(new Date(nextmon));
-          if (nextweek >= dateNow) {
-            this.showApplyBtn = false;
-            console.log("当前周计划已过期");
-          } else {
+          let dateNow = this.$options.filters.formatGetDate(new Date());
+
+          console.log(dateNow + "   " + nextweek);
+
+          if (dateNow <= nextweek) {
             this.showApplyBtn = true;
+            console.log("当前周计划进行中");
+          } else {
+            this.showApplyBtn = false;
+             console.log("当前周计划已过期");
           }
         }
       });
