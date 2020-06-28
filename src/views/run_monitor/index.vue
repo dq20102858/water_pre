@@ -2072,7 +2072,7 @@ export default {
           //   return;
           // }
           this.request({
-            url: "/dayplan/planEditUpdate",
+            url: "/dayplan/updateDayTrueplan",
             method: "post",
             data
           }).then(response => {
