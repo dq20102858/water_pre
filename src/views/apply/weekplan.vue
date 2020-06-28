@@ -470,7 +470,7 @@ export default {
 
           console.log(dateNow + "   " + nextweek);
 
-          if (dateNow <= nextweek) {
+          if (dateNow < nextweek) {
             this.showApplyBtn = true;
             console.log("当前周计划进行中");
           } else {
