@@ -1305,6 +1305,7 @@ export default {
               item.start_time,
               parseFloat(item.start_flag) + parseFloat(item.start_length / 1000)
             );
+            
             end_flag_list.push(
               item.end_time,
               parseFloat(item.end_flag) + parseFloat(item.end_length / 1000)
