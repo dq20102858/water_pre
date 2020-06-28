@@ -1397,7 +1397,7 @@ export default {
           ).setHours(0, 0, 0, 0);
           let dataMax = new Date(
             this.todayValue.getTime() + 24 * 60 * 60 * 1000
-          ).setHours(0, 30, 0, 0);
+          ).setHours(23, 59, 59, 0);
           console.log(
             "dataMin：" + new Date(dataMin) + "_" + new Date(dataMax)
           );
@@ -1455,6 +1455,10 @@ export default {
                   if (index % 6 == 1) {
                     return hours + "\n" + months;
                   }
+                    if (index == 216) {
+                    return "23:59    " + "\n" + months;
+                  }
+                 
                 }
               },
               axisLine: {
