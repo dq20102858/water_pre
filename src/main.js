@@ -32,7 +32,6 @@ Vue.prototype.$video = Video
 Vue.prototype.$layer = layer(Vue);
 
 // 
-Vue.prototype.authorityCode = authorityCode
 Vue.use(Element, {
   size: 'medium'
 })
