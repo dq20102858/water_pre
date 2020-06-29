@@ -2021,7 +2021,7 @@ export default {
             this.getPlanDetail(this.numberId);
             this.getUserLists(); //记录人
           } else {
-            this.$alert("<strong>当天没有计划！</strong>", "提示信息", {
+            this.$alert("<strong>当前没有计划！</strong>", "提示信息", {
               dangerouslyUseHTMLString: true
             });
           }
