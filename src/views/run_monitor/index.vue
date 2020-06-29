@@ -1305,7 +1305,7 @@ export default {
               item.start_time,
               parseFloat(item.start_flag) + parseFloat(item.start_length / 1000)
             );
-            
+
             end_flag_list.push(
               item.end_time,
               parseFloat(item.end_flag) + parseFloat(item.end_length / 1000)
@@ -1455,10 +1455,9 @@ export default {
                   if (index % 6 == 1) {
                     return hours + "\n" + months;
                   }
-                    if (index == 216) {
+                  if (index == 216) {
                     return "23:59    " + "\n" + months;
                   }
-                 
                 }
               },
               axisLine: {
@@ -1556,6 +1555,7 @@ export default {
         this.todayValue.getTime() + 24 * 60 * 60 * 1000
       );
       this.getChart();
+      this.formEditData = {};
     },
     //from
     getLocomotiveLists() {
@@ -1908,6 +1908,7 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.formEditData = data.data;
+          this.getMasterList(); //车长
           this.getdriverList(); //司机
           this.getStationList(); //车站
 
@@ -1998,6 +1999,7 @@ export default {
       });
     },
     planEditDiaLog() {
+      this.planNumbersList = [];
       let todayNum = this.todayValue;
       let start_time = this.getNextDate(todayNum, -1, "-") + " 00:00:00"; //前一天
       let end_time = this.getNextDate(todayNum, 1, "-") + " 23:59:59"; //后一天
@@ -2015,9 +2017,7 @@ export default {
             this.diaLogTitleEdit = "日班实际图";
             this.diaLogFormEditVisible = true;
             this.planNumbersList = data.data;
-            if (this.numberId == 0) {
-              this.numberId = this.planNumbersList[0]["id"];
-            }
+            this.numberId = this.planNumbersList[0]["id"];
             this.getPlanDetail(this.numberId);
             this.getUserLists(); //记录人
           } else {
