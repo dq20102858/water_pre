@@ -95,16 +95,23 @@
       </div>
       <div class="cartablebox">
         <div @click="showCarList" class="cartitle">{{cartableShowText}}</div>
-        <el-table :data="cartableData" v-show="cartableShow">
+        <el-table :data="locationRealtime" v-show="cartableShow">
           <el-table-column prop="id" label="编号" width="60"></el-table-column>
           <el-table-column prop="name" label="列车名称" width="80"></el-table-column>
-          <el-table-column prop="speed" label="当前速度" width="100"></el-table-column>
-          <el-table-column prop="address" label="当前位置" width="100"></el-table-column>
-          <el-table-column prop="linetype" label="线别" width="100"></el-table-column>
-          <el-table-column prop="status" label="状态" width="100"></el-table-column>
+          <el-table-column label="当前速度" width="100"></el-table-column>
+          <el-table-column label="当前位置" width="100">
+            <template slot-scope="scope">DK{{scope.row.start_flag}} + {{scope.row.start_length}}</template>
+          </el-table-column>
+          <el-table-column prop="line_type_desc" label="线别" width="100"></el-table-column>
+          <el-table-column prop="is_online" label="状态" width="100">
+            <template slot-scope="scope">
+              <span class="statused" v-if="scope.row.is_online=='1'">在线</span>
+              <span class="statused" v-if="scope.row.is_online=='0'">离线</span>
+            </template>
+          </el-table-column>
           <el-table-column prop label="司机"></el-table-column>
           <el-table-column prop label="车长"></el-table-column>
-          <el-table-column prop="createtime" label="最后更新时间"></el-table-column>
+          <el-table-column prop="create_time" label="最后更新时间"></el-table-column>
           <el-table-column></el-table-column>
         </el-table>
       </div>
@@ -199,44 +206,7 @@ export default {
       outLineMaxMileage: 0,
       cartableShowText: "隐藏机车列表信息",
       cartableShow: true,
-      cartableData: [
-        {
-          id: 1,
-          name: "ZY01",
-          speed: "0km/h",
-          address: "Dk1+300",
-          linetype: "左线",
-          status: "离线",
-          createtime: "2020-05-10 15:44:34"
-        },
-        {
-          id: 2,
-          name: "ZY02",
-          speed: "0km/h",
-          address: "Dk1+300",
-          linetype: "左线",
-          status: "离线",
-          createtime: "2020-05-10 15:44:34"
-        },
-        {
-          id: 3,
-          name: "ZY03",
-          speed: "0km/h",
-          address: "Dk1+300",
-          linetype: "左线",
-          status: "离线",
-          createtime: "2020-05-10 15:44:34"
-        },
-        {
-          id: 4,
-          name: "ZY04",
-          speed: "0km/h",
-          address: "Dk1+300",
-          linetype: "左线",
-          status: "离线",
-          createtime: "2020-05-10 15:44:34"
-        }
-      ]
+      locationRealtime: []
     };
   },
   updated() {
@@ -244,6 +214,7 @@ export default {
   },
   created() {
     this.getProjectProcessMap();
+    this.getLocationRealtime();
   },
   methods: {
     getProjectProcessMap() {
@@ -276,7 +247,7 @@ export default {
           this.scrollwidth = document.documentElement.clientWidth - 510;
           this.scrollwidthTwo =
             (this.leftLineMaxMileage - this.leftLineMinMileage) * everys + 150;
-         // console.log(this.scrollwidth);
+          // console.log(this.scrollwidth);
           //请点
           this.applyList = data.data.apply_lists;
           //桥 隧道等
@@ -1300,13 +1271,12 @@ export default {
               );
             };
             applyClickXY.push({
-              x: centerX +70,
+              x: centerX + 70,
               y: axis_applay_two.y - 55,
               w: 60,
               h: 54,
               i: json[i]
             });
-         
           }
           context.stroke();
           //
@@ -1704,6 +1674,17 @@ export default {
         this.cartableShow = true;
         this.cartableShowText = "隐藏机车列表信息";
       }
+    },
+    getLocationRealtime() {
+      this.request({
+        url: "/monitor/getLocationRealtime",
+        method: "get"
+      }).then(response => {
+        var data = response.data;
+        if (data.status == 1) {
+          this.locationRealtime = data.data;
+        }
+      });
     }
 
     //
@@ -1933,10 +1914,10 @@ export default {
   padding-right: 14px;
 }
 .progresslist .el-radio__label {
-  color: #fff; 
+  color: #fff;
 }
-.progresslist .el-radio{
-margin-bottom:10px;
+.progresslist .el-radio {
+  margin-bottom: 10px;
 }
 .suofang {
   padding: 30px 0 10px 30px;

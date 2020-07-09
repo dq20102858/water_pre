@@ -32,7 +32,7 @@
                 <span v-if="scope.row.status==1">待审核</span>
                 <span v-if="scope.row.status==2">通过</span>
                 <span v-if="scope.row.status==3">拒绝</span>
-                <span v-if="scope.row.status==4"></span>
+                <span v-if="scope.row.status==4">已过期</span>
                 <span v-if="scope.row.status==5">审核中</span>
               </template>
             </el-table-column>

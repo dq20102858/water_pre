@@ -2122,6 +2122,7 @@ export default {
       //alert(this.select_line_type);
       this.getChart();
     }
+   
     //
   }
 };

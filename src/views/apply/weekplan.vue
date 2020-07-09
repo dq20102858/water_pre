@@ -363,7 +363,8 @@ export default {
       statusList: [
         { id: 5, name: "审核中" },
         { id: 2, name: "通过" },
-        { id: 3, name: "拒绝" }
+        { id: 3, name: "拒绝" },
+        { id: 4, name: "已过期" }
       ],
       logDataList: [],
       workId: 0,
@@ -475,7 +476,7 @@ export default {
             console.log("当前周计划进行中");
           } else {
             this.showApplyBtn = false;
-             console.log("当前周计划已过期");
+            console.log("当前周计划已过期");
           }
         }
       });
