@@ -12,11 +12,8 @@
           :id="'menu_'+item.children[0].path"
           :class="{'is_active':isActive}"
         >
-          <em v-if="item.children[0].path !=''">
+          <em>
             <img :src="require('@/assets/image/m_'+item.children[0].path+'.png')" />
-          </em>
-           <em v-else>
-            <img :src="require('@/assets/image/m_detault.png')" />
           </em>
           <span
             v-if="item.children[0].meta&&item.children[0].meta.title"
@@ -27,6 +24,7 @@
     </template>
   </div>
 </template>
+
 <script>
 export default {
   name: "SidebarItem",
