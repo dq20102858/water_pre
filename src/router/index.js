@@ -6,17 +6,6 @@ Vue.use(Router)
 
 const constantRouterMap = [
   {
-    path: '/redirect',
-    component: Layout,
-    hidden: true,
-    children: [
-      {
-        path: '/redirect/:path*',
-        component: () => import('@/views/redirect/index')
-      }
-    ]
-  },
-  {
     path: '/login',
     component: () => import('@/views/login/index'),
     hidden: true
@@ -28,33 +17,72 @@ const constantRouterMap = [
   },
   {
     path: '/404',
-    component: () => import('@/views/errorPage/404'),
+    component: () => import('@/views/ErrorPage/404'),
     hidden: true
   },
   {
     path: '/401',
-    component: () => import('@/views/errorPage/401'),
+    component: () => import('@/views/ErrorPage/401'),
     hidden: true
   },
   {
-    path: '/redirect',
+    path: '/SiteManage',
     component: Layout,
     hidden: true,
     children: [
       {
-        path: '/redirect',
-        component: () => import('@/views/redirect/index')
+        path: '/SiteManage',
+        component: () => import('@/views/SiteManage/index')
       }
     ]
-  },
-  {
-    path: '/dashboard',
+  },{
+    path: '/DeviceManage',
     component: Layout,
     hidden: true,
     children: [
       {
-        path: '/dashboard',
-        component: () => import('@/views/dashboard/index')
+        path: '/DeviceManage',
+        component: () => import('@/views/DeviceManage/index')
+      }
+    ]
+  },{
+    path: '/OperationManage',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/OperationManage',
+        component: () => import('@/views/OperationManage/index')
+      }
+    ]
+  },{
+    path: '/DispatchManage',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/DispatchManage',
+        component: () => import('@/views/DispatchManage/index')
+      }
+    ]
+  },{
+    path: '/WarningManage',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/WarningManage',
+        component: () => import('@/views/WarningManage/index')
+      }
+    ]
+  },{
+    path: '/SiteManage',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/SiteManage',
+        component: () => import('@/views/SiteManage/index')
       }
     ]
   }

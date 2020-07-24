@@ -50,7 +50,6 @@ import { loginByUsername } from "@/api/login/login";
 export default {
   name: "login",
   data() {
- 
     return {
       loginForm: {
         username: "",

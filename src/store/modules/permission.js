@@ -47,7 +47,7 @@ function mapAsyncRouter(map, routes) {
       tmp.meta.noCache = route.noCache===0?false:true;
     }
     if (route.moduleUrl === '') {
-      tmp.redirect = 'dashboard'
+      tmp.redirect = 'SiteManage'
     }
     res.push(tmp)
   })
