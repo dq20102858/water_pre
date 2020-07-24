@@ -1,15 +1,13 @@
 <template>
     <div class="app-wrapper" :class="classObj">
-        <sidebar class="sidebar-container"></sidebar>
         <div class="main-container">
-            <navbar :msg="msg"></navbar>
-            <!-- <tags-view></tags-view> -->
-            <app-main></app-main>
+            <page-navbar :msg="msg"></page-navbar>
+            <page-main></page-main>
         </div>
     </div>
 </template>
 <script>
-    import { Navbar, Sidebar, AppMain } from "./components";
+    import { PageNavbar, PageMain } from "./components";
     // import ResizeMixin from "./mixin/ResizeHandler";
     export default {
       data() {
@@ -18,13 +16,13 @@
         }
       },
       components: {
-        Navbar,
-        Sidebar,
-        AppMain
+        PageNavbar,
+        PageMain
       },
       // mixins: [ResizeMixin],
       computed: {
         sidebar() {
+          console.log(this.$store.state.app);
           return this.$store.state.app.sidebar;
         },
         device() {
@@ -32,16 +30,13 @@
         },
         classObj() {
           return {
-            hideSidebar: !this.sidebar.opened,
             withoutAnimation: this.sidebar.withoutAnimation,
             mobile: this.device === "mobile"
           };
         }
       },
       methods: {
-        handleClickOutside() {
-          this.$store.dispatch("closeSideBar", { withoutAnimation: false });
-        }
+      
       }
     };
 </script>

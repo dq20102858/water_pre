@@ -1,3 +1,3 @@
-export { default as Navbar } from './Navbar'
-export { default as Sidebar } from './Sidebar/index.vue'
-export { default as AppMain } from './AppMain'
+export { default as PageNavbar } from './PageNavbar'
+export { default as PageSidebar } from './PageSidebar.vue'
+export { default as PageMain } from './PageMain'
