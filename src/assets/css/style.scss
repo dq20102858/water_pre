@@ -1,0 +1,302 @@
+//公共样式
+#pagination{
+    float:right;
+    margin: 15px;
+  }
+
+  #searchForm{
+    width: 100%;
+    float:left;
+    padding:20px;
+  }
+  #searchForm .search-label{
+    color:#3e3434a1;
+    font-size:14px;
+  }
+ 
+  .el-date-editor .el-range-separator{
+    width:15%
+  }
+
+  #searchForm .search-input{
+      width:200px;
+  }
+  #searchForm .search-select{
+
+    width:120px;
+  }
+
+   .keywords{
+    width:300px;
+  }
+//接单 页面样式
+#collect-form  .el-collapse-item__header{
+    font-size:16px;
+    padding: 0 20px;
+  }
+  #collect-form  .el-collapse-item__content{
+    margin:10px;
+  }
+  #collect-form .name {
+    margin-right:30px;
+  }
+  #collect-form  .el-input,.el-textarea{
+    width:300px;
+  }
+ #collect-form .el-textarea__inner{
+    height:100px
+  }
+ 
+#collect-form  .submit-btn{
+    margin-top:10px
+  }
+  #consult-form .el-input,#consult-form  .el-textarea,#consult-form  .el-select{
+    width:100%;
+  }
+  #consult-form  .price_range{
+    width:200px
+  } 
+  #consult-form  .activity-select,#consult-form  .activity-select .el-input{
+    width:200px
+  } 
+  //需求单详情
+
+  .el-collapse-item__header{
+	font-size:16px;
+	padding: 0 20px;
+}
+
+.require-status-list{
+	width:80%;
+	margin:auto;
+}
+#processList{
+	margin-top:30px;
+	line-height:30px;
+	list-style:none;
+	overflow:auto;
+}
+#processList li {
+	line-height:30px;
+	overflow: auto;
+}
+#processList li  span{
+	padding :5px;	
+	color: #000000;
+	border-radius: 3px;
+	display: inline-block;
+    float: left;
+    text-align:center
+}
+#processList li .create_time{
+	width:33%;
+	background:#646f75
+}
+#processList li .user_name{
+	width:33%;
+	background:#3b542e	
+}
+
+#processList li .content{
+	width:50%;
+	// height:40px;
+	cursor:pointer;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	// white-space: nowrap;
+}
+
+#remarkForm {
+	
+	width:500px;
+	margin:50px 0px;
+}
+#user-info{
+    margin: 0 auto;
+    width: 80%;
+}
+#user-info .line-show{
+	width:500px;
+}
+.tip {
+    display: inline-block;
+	text-align:right;
+	font-size:14px;
+	margin:0px 10px;
+	width:74px;
+    color:#000000;
+    font-weight:200
+}
+.show-detail{
+	font-size:14px;
+	margin-left:14px;
+}
+#collect-form .el-input{
+	width:300px;
+}
+.price_range{
+	width:100px;
+}
+.other{
+	width:300px
+}
+.sub-button{
+	margin-left:50px;
+}
+.require-info{
+    width:80%;
+    margin:20px auto;
+}
+
+//定制单列表页面
+
+.customizedLists-tab{
+    width: 100%;
+  }
+  .router-link{
+    font-size :14px;
+    color:#ffffff;  
+    padding:15px;
+  }
+ .router-link a{
+    width:30px;
+    height:20px;
+    background:#409EFF;
+    padding:5px 10px;
+    border-radius:2px;
+  }
+  
+//定制单详情页样式
+#customized-wrap{
+    width: 100%;
+
+}
+#customized-wrap .customized-wrap-show
+{
+    width:940px;
+    margin: 20px auto;
+} 
+#customized-wrap .g-line{
+    border-bottom: 1px solid #cccccc;
+   
+}
+#customized-wrap .g-line .clear{
+    clear: both;
+}
+#customized-wrap .title-line{
+    float: left;
+    width: 450px;
+}
+
+#customized-wrap .input-rentail{
+
+   width:500px;
+}
+.el-popover{
+
+    width: 1000px;
+    position: absolute ;
+    top: 120px!important;
+    left:25%!important
+}
+#rental-list-filiter{
+    border-bottom: 1px dashed  #efeded
+}
+#rental-list-filiter .filiter-line{
+    padding: 0px 20px;
+
+}
+#rental-list-filiter .filiter-label{
+    display: block;
+    float: left;
+    width: 80px;
+
+} 
+
+#rental-list-filiter .el-checkbox-group{
+   
+    margin: 0px 50px;
+}
+#rental-list-filiter .el-checkbox__label{
+    width: 50px!important;
+}
+#rental-list-filiter .el-radio{
+    margin: 5px 0px;
+    width: 100px;
+    display: block;
+    float: left;
+}
+#rental-list-filiter  .el-radio-group{
+    width: 700px;
+}
+#dialog-pagination {
+    margin: 15px 0px;
+    text-align: right;
+}
+
+#dialog-footer{
+    margin: 25px 0px;
+    text-align: center;
+}
+
+#send-btn{
+    text-align: center;
+    margin: 20px 0px;
+}
+
+#require_log{
+
+    width: 80%;
+    margin: 30px auto;
+    display: block;
+    border-top: 1px solid #cccccc;
+    padding: 10px 0px;
+}
+#require_log .title{
+    display: block;
+    float: left;
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: #3b542e
+}
+
+#user_detail{
+
+    width: 80%;
+    margin: 30px auto;
+    display: block;
+    border-top: 1px solid #cccccc;
+    padding-top: 30px
+}
+.user_collect{
+    margin-left: 10%  
+}
+#collect-form  .price_range{
+    width:100px
+  } 
+
+#self-selected .el-collapse-item__header{
+    color: red;
+}
+
+// // 列表样式重置
+// .el-table th, .el-table tr {
+//     text-align: center;
+// }
+#wrap-individual{
+    padding: 0 20px;
+}
+
+
+.line{
+    width: 92%;
+    height: 5px;
+    border-top: 1px dashed #C0C0C0	;
+    border-bottom: 1px dashed #C0C0C0	;
+    margin: 40px auto;
+  }
+
+.bold label{
+    font-weight: bold;
+    color: #FF4500;
+}

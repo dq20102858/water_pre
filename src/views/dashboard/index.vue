@@ -1,6 +1,6 @@
 <template>
   <div id="message">
-    <div class="el-menu-top">
+    <div class="el-menu-topc">
       <el-menu mode="horizontal">
         <li class="ptitle">
           <img :src="require('@/assets/image/icon-peple.png')" />消息管理

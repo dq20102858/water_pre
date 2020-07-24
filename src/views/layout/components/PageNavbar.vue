@@ -1,8 +1,18 @@
 <template>
-  <el-menu class="navbar" mode="horizontal">
-    <page-hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></page-hamburger>
-    <el-breadcrumb class="app-breadcrumb" separator-class="el-icon-arrow-right">
-    </el-breadcrumb>
+  <div class="net-navbar" mode="horizontal">
+    <div class="el-menu-top">
+      <el-menu router default-active="location" mode="horizontal">
+        <li class="logos">
+          <img :src="require('@/assets/image/logo.png')" />某某某公司智能污水处理站监控系统
+        </li>
+        <el-menu-item index="location"><img class="iconss" :src="require('@/assets/image/m_device.png')" />站点分布</el-menu-item>
+        <el-menu-item index="walldetector"><img class="iconss" :src="require('@/assets/image/m_device.png')" />设备状态</el-menu-item>
+        <el-menu-item index="cardetector"><img class="iconss" :src="require('@/assets/image/m_device.png')" />运维记录</el-menu-item>
+        <el-menu-item index="locationbind"><img class="iconss" :src="require('@/assets/image/m_device.png')" />运维派单</el-menu-item>
+        <el-menu-item index="device"> <img class="iconss" :src="require('@/assets/image/m_device.png')" />告警列表</el-menu-item>
+        <el-menu-item index="device"> <img class="iconss" :src="require('@/assets/image/m_set.png')" />设置</el-menu-item>
+      </el-menu>
+    </div>
     <div class="right-menu">
       <span v-if="sys_role==1">
         <router-link v-show="isShow" class="applylink" to="weekplanapply">
@@ -24,22 +34,20 @@
         </el-dropdown-menu>
       </el-dropdown>
     </div>
-  </el-menu>
+  </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
-import PageHamburger from "./PageHamburger";
 export default {
   name: "PageNavbar",
   data() {
     return {
+      activeIndex: "1",
       levelList: null,
       isShow: false
     };
   },
-  components: {
-    PageHamburger
-  },
+  components: {},
   computed: {
     ...mapGetters(["sidebar", "name", "avatar", "roles", "sys_role", "system"])
   },
@@ -85,38 +93,7 @@ export default {
 };
 </script>
 <style rel="stylesheet/scss" lang="scss">
-.app-breadcrumb.el-breadcrumb {
-  display: inline-block;
-  font-size: 14px;
-  line-height: 50px;
-  margin-left: 10px;
-  .no-redirect {
-    color: #97a8be;
-    cursor: text;
-  }
-}
-.navbar {
-  height: 50px;
-  line-height: 50px;
-  border-radius: 0px !important;
-  .hamburger-container {
-    line-height: 58px;
-    height: 50px;
-    float: left;
-    padding: 0 10px;
-  }
-  .breadcrumb-container {
-    float: left;
-  }
-  .errLog-container {
-    display: inline-block;
-    vertical-align: top;
-    position: relative;
-    .el-icon-bell {
-      margin-top: 12px;
-      margin-right: 20px;
-    }
-  }
+
   .right-menu {
     float: right;
     height: 100%;
@@ -203,19 +180,4 @@ export default {
     border-radius: 20px;
     font-weight: bold;
   }
-}
-.applylink {
-  color: #f1403c;
-  margin-right: 20px;
-  font-size: 14px;
-}
-.applylink i {
-  font-size: 16px;
-}
-.applylink:visited {
-  color: #f1403c;
-}
-.applylink:hover {
-  color: #f00;
-}
 </style>
