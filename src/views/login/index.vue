@@ -8,6 +8,9 @@
       <div class="title-container">
         <img :src="require('@/assets/image/logo.png')" />
       </div>
+      <div class="corpname">
+        某某某公司智能污水处理站监控系统
+      </div>
       <el-form autocomplete="off" :model="loginForm" :rules="loginRules" ref="loginForm">
         <el-form-item prop="username">
           <el-input
@@ -152,12 +155,13 @@ export default {
   position: absolute;
   left: 0;
   right: 0;
-  width: 360px;
+  width: 550px;
   padding: 35px 50px 30px 50px;
   margin: 200px auto;
   background: #fff;
   border-radius: 12px;
 }
+.login-container  .corpname{text-align: center; font-size: 28px;font-weight: 700; color: #777; margin-bottom: 30px;}
 .login-container .title-container {
   text-align: center;
   margin-bottom: 35px;
@@ -170,7 +174,7 @@ export default {
   margin-bottom: 30px;
 }
 .login-container .el-input-group__prepend {
-  border: 1px #4b6eca solid;
+  border: 1px #338ff6 solid;
   background: #fff;
   padding: 0 5px;
   border-right: 0;
@@ -186,9 +190,9 @@ export default {
   background: #fff !important;
   border: 6px;
   padding: 0 5px 0 1px;
-  color: #4b6eca;
+  color: #338ff6;
   height: 45px;
-  border: 1px #4b6eca solid;
+  border: 1px #338ff6 solid;
   border-left: 0;
 }
 .login-container input:-webkit-autofill {
@@ -198,11 +202,11 @@ export default {
   padding-top: 5px;
 }
 .login-container .el-button:hover {
-background: #4b6eca;
-border-color:#4b6eca;
+background: #338ff6;
+border-color:#338ff6;
 }
 .login-container .el-button:focus {
-background: #4b6eca;
-border-color:#4b6eca;
+background: #338ff6;
+border-color:#338ff6;
 }
 </style>

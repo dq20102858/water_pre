@@ -326,7 +326,7 @@ export default {
 <style>
 .dialog-msg .el-textarea__inner {
   border: 1px #9db9fa solid;
-  color: #4b6eca;
+  color: #338ff6;
   height: 200px;
 }
 .dialog-msg .el-textarea {

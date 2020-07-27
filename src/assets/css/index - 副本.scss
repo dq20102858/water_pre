@@ -18,12 +18,12 @@ html {height: 100%;box-sizing: border-box;}
 .app-pages{margin: 15px;}
 .app-nowarp{white-space: nowrap;text-overflow: initial}
 .app-nowarp .cell{white-space: nowrap;text-overflow: initial;}
-.el-button--primary{background: #4b6eca;border-color:#4b6eca}
+.el-button--primary{background: #338ff6;border-color:#338ff6}
 .pull-left{float: left;}
 .pull-right{float: right;}
 .text-right{text-align: right}
 .blank{height:5px;clear: both;}
- .el-button:focus {background: #4b6eca;border-color:#4b6eca;}
+ .el-button:focus {background: #338ff6;border-color:#338ff6;}
 /* hideSidebar */
 #app .sidebar-container{z-index: 500;}
 #app .hideSidebar  #app-menu-items .el-tooltip{padding:0 5px!important;}
@@ -38,10 +38,10 @@ html {height: 100%;box-sizing: border-box;}
 .app-page-select .el-button  span{font-size:14px!important;}
 .btn-red-addedit {background: #ff5c75;border-color: #ff5c75;margin-right: 20px;}
 .btn-red-addedit:hover, .btn-red-addedit:focus{background: #fe3a58;border-color: #fe3a58;}
-.el-serach {float: right;border: 2px #4b6eca solid; border-radius: 3px;}
+.el-serach {float: right;border: 2px #338ff6 solid; border-radius: 3px;}
 .el-serach .el-input {width: 178px;}
-.el-serach .el-input__inner {background: none;border: none;color: #4b6eca;width: 178px;}
-.el-serach .el-button {background: #4b6eca;color: #fff;}
+.el-serach .el-input__inner {background: none;border: none;color: #338ff6;width: 178px;}
+.el-serach .el-button {background: #338ff6;color: #fff;}
 /* table css */
 .app-table .el-table-column--selection .cell{padding-left: 17px;}
 .app-table .el-table__header-wrapper{background: #3655a5;border-radius: 6px 6px 0 0;padding: 0 0;}
@@ -54,7 +54,7 @@ html {height: 100%;box-sizing: border-box;}
 .app-table .time-warp-lens .cell{display: inline-block; white-space: nowrap;word-break: keep-all;text-overflow: ellipsis}
 
 .app-operation{white-space: nowrap; text-align: right;}
-.app-operation .btn-blue{ border: 1px #4b6eca solid;color: #1d397a}
+.app-operation .btn-blue{ border: 1px #338ff6 solid;color: #1d397a}
 .app-operation .btn-red{border: 1px #ff5c75 solid;color: #ff5c75}
 .app-operation .btn-green{border: 1px #26a80f solid;color: #26a80f}
 .app-operation .el-button{margin-left: 0!important;margin-right: 5px;padding: 7px 10px;background: none}
@@ -64,11 +64,11 @@ html {height: 100%;box-sizing: border-box;}
 /*el-form */
 .el-form-custom .el-form-item{margin-bottom: 25px;}
 .el-form-custom .el-form-item__label{color: #1d397a;}
-.el-form-custom .el-input__inner{border: 1px #9db9fa solid!important;color: #4b6eca!important;}
+.el-form-custom .el-input__inner{border: 1px #9db9fa solid!important;color: #338ff6!important;}
 .el-form-custom .el-form-item__error {padding-top: 5px;}
-.el-form-custom .el-radio__label{color: #4b6eca;}
-.el-form-custom .el-checkbox__label{color: #4b6eca;}
-.el-form-custom .el-textarea__inner{border: 1px #9db9fa solid;color: #4b6eca;}
+.el-form-custom .el-radio__label{color: #338ff6;}
+.el-form-custom .el-checkbox__label{color: #338ff6;}
+.el-form-custom .el-textarea__inner{border: 1px #9db9fa solid;color: #338ff6;}
 .el-form-custom  .el-input__count .el-input__count-inner{background: none;}
 .el-form-custom  input::-webkit-input-placeholder {color: #b9b8b8;}
 .el-form-custom  input:-moz-placeholder { color: #b9b8b8;}
@@ -85,8 +85,8 @@ html {height: 100%;box-sizing: border-box;}
 .el-form-item-dk .errorss .el-form-item__error {padding-left: 12px;}
 
 .app-dialog-form .el-form-item__label {color: #1d397a;}
-.app-dialog-form .el-input input {border: 1px #9db9fa solid;color: #4b6eca}
-.app-dialog-form .el-textarea__inner {border: 1px #9db9fa solid;color: #4b6eca;}
+.app-dialog-form .el-input input {border: 1px #9db9fa solid;color: #338ff6}
+.app-dialog-form .el-textarea__inner {border: 1px #9db9fa solid;color: #338ff6;}
 /*pagination */
 .app-pagination{text-align: right;margin-top: 20px;}
 .app-pagination .el-pagination {border-radius: 4px;overflow: hidden; display: inline-block;padding: 0; border: 1px solid #3655A5;}
@@ -127,7 +127,7 @@ html {height: 100%;box-sizing: border-box;}
 .el-message-box-new  .el-message-box__content{padding:30px 20px;}
 .el-message-box-new  .el-message-box__btns{ text-align: center;}
 .el-message-box-new  .el-message-box__btns  .el-button{padding: 9px 20px;font-size: 14px;border-radius: 4px;}
-.el-message-box-new   .el-button--primary{background: #4b6eca!important;border-color: #4b6eca;}
+.el-message-box-new   .el-button--primary{background: #338ff6!important;border-color: #338ff6;}
 /* layer */
 .vl-notify-mask { background-color: #000;opacity: .5;}
 .vl-notify .vl-notice-title{height: 49px!important;line-height:50px!important;border-radius:6px 6px 0 0; background: #3655a5!important;text-align: center;}
@@ -142,9 +142,9 @@ html {height: 100%;box-sizing: border-box;}
 .el-menu-top li {color: #1d397a;font-size: 16px;}
 .el-menu-top .ptitle {outline:none;float: left;min-width: 120px; line-height: 61px;padding-left: 24px;padding-right: 60px;font-weight: 700;font-size: 18px;}
 .el-menu-top .ptitle img {width: 18px;margin-right: 5px;display: inline-block;vertical-align: text-top;}
-.el-menu-top1 .el-menu-item:hover{height: 61px; background-color: #4b6eca!important;border: none;color: #fff!important}
-.el-menu-top .is-active {height: 61px; background-color: #4b6eca!important;border: none!important;color: #fff!important}
-.el-menu-top .is-active .el-submenu__title:hover {background-color:#4b6eca!important;}
-.el-menu-top .is-active .el-submenu__title{font-size: 16px; height: 61px; background-color: #4b6eca;color: #fff!important;border: none!important;}
+.el-menu-top1 .el-menu-item:hover{height: 61px; background-color: #338ff6!important;border: none;color: #fff!important}
+.el-menu-top .is-active {height: 61px; background-color: #338ff6!important;border: none!important;color: #fff!important}
+.el-menu-top .is-active .el-submenu__title:hover {background-color:#338ff6!important;}
+.el-menu-top .is-active .el-submenu__title{font-size: 16px; height: 61px; background-color: #338ff6;color: #fff!important;border: none!important;}
 .el-menu-top .is-active .el-submenu__title i{color: #fff}
 .el-menu-top .el-submenu__title{font-size: 16px!important}
