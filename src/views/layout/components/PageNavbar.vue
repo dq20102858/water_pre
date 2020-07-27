@@ -13,7 +13,7 @@
         <el-menu-item index="SetManage"> <img class="iconss" :src="require('@/assets/image/m_set.png')" />设置</el-menu-item>
       </el-menu>
     </div>
-    <div class="right-menu">
+    <div class="right-menu" style="display:none">
       <span v-if="sys_role==1">
         <router-link v-show="isShow" class="applylink" to="weekplanapply">
           <i class="el-icon-message"></i>

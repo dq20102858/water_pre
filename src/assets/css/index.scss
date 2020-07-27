@@ -9,7 +9,7 @@ body {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
-background: #E7EEFF; height: 100%; width: 100%; font-size: 14px;margin: 0;padding: 0; }
+background: #fff; height: 100%; width: 100%; font-size: 14px;margin: 0;padding: 0; }
 label { font-weight: 400;}
 p,div,h1,h2,h3,h4,ul,li,span{margin: 0;padding: 0;}
 ul,li{list-style-type: none}
@@ -27,14 +27,15 @@ html {height: 100%;box-sizing: border-box;}
 .pull-right{float: right;}
 .text-right{text-align: right}
 .blank{height:5px;clear: both;}
+.ptopz{padding-top: 0!important;}
  .el-button:focus {background: #338ff6;border-color:#338ff6;}
 /* hideSidebar */
 #app .sidebar-container{z-index: 500;}
 #app .hideSidebar  #app-menu-items .el-tooltip{padding:0 5px!important;}
 /* bg */
 .app-body-black{background: #000; }
-.app-page{padding: 20px;}
-.app-page-container{border-radius: 6px;padding: 20px; background: #fff;}
+.app-page{border-radius: 6px;padding: 20px; background: #fff;}
+.app-page-container{border-radius: 6px;padding: 0; background: #fff;}
 .app-page-select{display: block;}
 .app-page-select .form-add-item{margin-right: 40px;}
 .app-page-select .el-range-separator{padding: 0;}
@@ -140,10 +141,10 @@ html {height: 100%;box-sizing: border-box;}
 .vl-notify .icon-remove {position: absolute;right: 13px!important;font-size: 14px;text-shadow: 0 1px 0 hsla(0,0%,100%,.5);top: 13px!important;color: #fff!important;background: #1d397a;border-radius: 100%; height: 22px;width: 22px; line-height: 22px;}
 .vl-notify .icon-remove:hover{background: #fff;color:#1d397a!important }
 /* el-menu-top */
-.net-navbar {height: 100px;line-height: 100px;border-radius: 0px !important;background-image: linear-gradient( to right,  #1d397a, #338ff6, #3b5cae,  #338ff6);}
+.net-navbar {min-width: 1120px; height: 100px;line-height: 100px;border-radius: 0px !important;background-image: linear-gradient( to right,  #1d397a, #338ff6, #3b5cae,  #338ff6);}
 .el-menu-top {text-align: center;   float: left;height: 100px;}
 .el-menu-top  .el-menu{background: none;}
-.el-menu-top  .el-menu--horizontal{border-bottom: 1px #1d397a solid }
+.el-menu-top  .el-menu--horizontal{overflow: hidden;border: none;}
 .el-menu-top  .el-menu--horizontal .logos {float: left;min-width: 120px; color:#fff; line-height: 100px;padding-left:20px;padding-right: 60px;font-weight: 700;font-size: 24px;}
 .el-menu-top  .el-menu--horizontal .logos img {width: 60px;margin-right: 20px;display: inline-block;vertical-align: middle;}
 .el-menu-top  .el-menu--horizontal .el-menu-item{height: 100px!important; float: left;background: none;color:#fff; font-size: 17px;font-weight: 700;padding:0 30px; line-height: 40px;}

@@ -35,7 +35,7 @@ const constantRouterMap = [
         component: () => import('@/views/SiteManage/index')
       }
     ]
-  },{
+  }, {
     path: '/DeviceManage',
     component: Layout,
     hidden: true,
@@ -45,7 +45,7 @@ const constantRouterMap = [
         component: () => import('@/views/DeviceManage/index')
       }
     ]
-  },{
+  }, {
     path: '/OperationManage',
     component: Layout,
     hidden: true,
@@ -55,7 +55,7 @@ const constantRouterMap = [
         component: () => import('@/views/OperationManage/index')
       }
     ]
-  },{
+  }, {
     path: '/DispatchManage',
     component: Layout,
     hidden: true,
@@ -65,7 +65,7 @@ const constantRouterMap = [
         component: () => import('@/views/DispatchManage/index')
       }
     ]
-  },{
+  }, {
     path: '/WarningManage',
     component: Layout,
     hidden: true,
@@ -75,14 +75,26 @@ const constantRouterMap = [
         component: () => import('@/views/WarningManage/index')
       }
     ]
-  },{
-    path: '/SetManage',
+  }, {
+    path: '/setmanage',
     component: Layout,
     hidden: true,
     children: [
       {
-        path: '/SetManage',
-        component: () => import('@/views/SetManage/index')
+        path: '/setmanage',
+        component: () => import('@/views/setmanage/index')
+      },
+      {
+        path: '/setmanage/users',
+        component: () => import('@/views/setmanage/users')
+      },
+      {
+        path: '/setmanage/site',
+        component: () => import('@/views/setmanage/site')
+      },
+      {
+        path: '/setmanage/warning',
+        component: () => import('@/views/setmanage/warning')
       }
     ]
   }

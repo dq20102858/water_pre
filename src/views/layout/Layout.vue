@@ -1,9 +1,7 @@
 <template>
     <div class="app-wrapper" :class="classObj">
-        <div class="main-container">
             <page-navbar :msg="msg"></page-navbar>
             <page-main></page-main>
-        </div>
     </div>
 </template>
 <script>
