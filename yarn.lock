@@ -3117,7 +3117,7 @@ home-or-tmp@^2.0.0:
 
 hoopy@^0.1.4:
   version "0.1.4"
-  resolved "https://registry.yarnpkg.com/hoopy/-/hoopy-0.1.4.tgz#609207d661100033a9a9402ad3dea677381c1b1d"
+  resolved "https://registry.yarnpkg.com/hoopy/-/hoopy-0.1.4.tgz#609207d66190003a9a9402ad3dea677381c1b1d"
 
 hosted-git-info@^2.1.4:
   version "2.8.2"

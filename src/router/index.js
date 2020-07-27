@@ -76,13 +76,13 @@ const constantRouterMap = [
       }
     ]
   },{
-    path: '/SiteManage',
+    path: '/SetManage',
     component: Layout,
     hidden: true,
     children: [
       {
-        path: '/SiteManage',
-        component: () => import('@/views/SiteManage/index')
+        path: '/SetManage',
+        component: () => import('@/views/SetManage/index')
       }
     ]
   }

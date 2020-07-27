@@ -9,7 +9,7 @@
         <img :src="require('@/assets/image/logo.png')" />
       </div>
       <div class="corpname">
-        某某某公司智能污水处理站监控系统
+        某公司智能污水处理站监控系统
       </div>
       <el-form autocomplete="off" :model="loginForm" :rules="loginRules" ref="loginForm">
         <el-form-item prop="username">
@@ -155,7 +155,7 @@ export default {
   position: absolute;
   left: 0;
   right: 0;
-  width: 550px;
+  width: 500px;
   padding: 35px 50px 30px 50px;
   margin: 200px auto;
   background: #fff;
@@ -171,7 +171,7 @@ export default {
   width: 88px;
 }
 .login-container .el-form-item {
-  margin-bottom: 30px;
+  margin-bottom:40px;
 }
 .login-container .el-input-group__prepend {
   border: 1px #338ff6 solid;
@@ -201,6 +201,7 @@ export default {
 .login-container .el-form-item__error {
   padding-top: 5px;
 }
+.login-container .el-button{font-size: 18px;}
 .login-container .el-button:hover {
 background: #338ff6;
 border-color:#338ff6;
