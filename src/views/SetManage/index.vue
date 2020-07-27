@@ -25,12 +25,12 @@
         <div class="app-page-select">
           <el-form :inline="true">
             <el-form-item>
-              <el-button type="primary" icon="el-icon-plus" @click="goAdd">添加消息</el-button>
+              <h3 class="ttitles">人员列表</h3>
             </el-form-item>
-            <!-- <div class="el-serach">
-              <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable></el-input>
-              <el-button @click="searchEvent">查询</el-button>
-            </div>-->
+            <div class="el-serach noborder">
+              <!-- <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable></el-input> -->
+              <el-button  @click="goAdd">添加</el-button>
+            </div>
           </el-form>
         </div>
         <div class="app-table">
@@ -38,18 +38,20 @@
             <el-table-column label="序号" width="80px">
               <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
             </el-table-column>
-            <el-table-column prop="title" label="消息主题"></el-table-column>
-            <el-table-column prop="send_user" label="值班调度人"></el-table-column>
-            <el-table-column prop="recept_type" label="发送对象">
+            <el-table-column prop="title" label="用户名"></el-table-column>
+            <el-table-column prop="send_user" label="姓名"></el-table-column>
+            <el-table-column prop="recept_type" label="职位">
               <template slot-scope="scope">
                 <span v-html="getArrText(scope.row.recept_type)"></span>
               </template>
             </el-table-column>
+               <el-table-column prop="send_user" label="手机号"></el-table-column>
             <el-table-column prop="create_time" label="发布时间"></el-table-column>
-            <el-table-column label="操作" width="65">
+            <el-table-column label="操作" width="130">
               <template slot-scope="scope">
                 <div class="app-operation">
-                  <el-button class="btn-blue" size="mini" @click="goDetail(scope.row)">详情</el-button>
+                  <el-button class="btn-edit" size="mini" @click="goDetail(scope.row)">编辑</el-button>
+                  <el-button class="btn-del" size="mini" @click="goDetail(scope.row)">删除</el-button>
                 </div>
               </template>
             </el-table-column>
@@ -82,7 +84,7 @@
           :title="this.diaLogTitle"
           :visible.sync="diaLogFormVisible"
         >
-          <el-form class="el-form-custom" :model="formData" :rules="formRules" ref="formRulesRef">
+          <el-form class="el-form-custom" :model="formData" :rules="formRules" ref="formRulesRef"  label-width="110px">
             <el-form-item label="消息主题：" prop="title">
               <el-input v-model="formData.title" autocomplete="off" maxlength="20" show-word-limit></el-input>
             </el-form-item>
@@ -201,6 +203,11 @@ export default {
       page_total: 0,
       dataList: []
     };
+  },
+   mounted() {
+    document
+      .querySelector(".el-menu-top #setmanage")
+      .classList.add("is-active");
   },
   created() {
     this.getDataList();
@@ -341,18 +348,5 @@ export default {
 .app-set-page {
   padding: 20px;
 }
-.left-menu{
-  background: #e2e8f2;
-}
-.left-menu h5 {
-  background: #71a7f4;
-  color: #fff;
-  margin: 0;
-  padding: 15px;
-}
-.left-menu .el-menu a{text-decoration: none; color: #333;}
-.left-menu .el-menu{ background: none;}
 
-.left-menu .el-menu-item.is-active {background: #fff;color: #333;}
-.left-menu .el-menu-item.is-active a{color: #333;}
 </style>

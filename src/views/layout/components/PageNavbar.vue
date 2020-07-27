@@ -3,14 +3,14 @@
     <div class="el-menu-top">
       <el-menu router default-active="SiteManage" mode="horizontal">
         <li class="logos">
-          <img :src="require('@/assets/image/logo.png')" />某某某公司智能污水处理站监控系统
+          <img :src="require('@/assets/image/logo.png')" />某公司智能污水系统
         </li>
-        <el-menu-item index="SiteManage"><img class="iconss" :src="require('@/assets/image/m_device.png')" />站点分布</el-menu-item>
-        <el-menu-item index="DeviceManage"><img class="iconss" :src="require('@/assets/image/m_device.png')" />设备状态</el-menu-item>
-        <el-menu-item index="OperationManage"><img class="iconss" :src="require('@/assets/image/m_device.png')" />运维记录</el-menu-item>
-        <el-menu-item index="DispatchManage"><img class="iconss" :src="require('@/assets/image/m_device.png')" />运维派单</el-menu-item>
-        <el-menu-item index="WarningManage"> <img class="iconss" :src="require('@/assets/image/m_device.png')" />告警列表</el-menu-item>
-        <el-menu-item index="SetManage"> <img class="iconss" :src="require('@/assets/image/m_set.png')" />设置</el-menu-item>
+        <el-menu-item index="/sitemanage"><img class="iconss" :src="require('@/assets/image/m_device.png')" />站点分布</el-menu-item>
+        <el-menu-item index="/devicemanage"><img class="iconss" :src="require('@/assets/image/m_device.png')" />设备状态</el-menu-item>
+        <el-menu-item index="/operationmanage"><img class="iconss" :src="require('@/assets/image/m_device.png')" />运维记录</el-menu-item>
+        <el-menu-item index="/dispatchmanage"><img class="iconss" :src="require('@/assets/image/m_device.png')" />运维派单</el-menu-item>
+        <el-menu-item index="/warningmanage"> <img class="iconss" :src="require('@/assets/image/m_device.png')" />告警列表</el-menu-item>
+        <el-menu-item id="setmanage" index="/setmanage"> <img class="iconss" :src="require('@/assets/image/m_set.png')" />设置</el-menu-item>
       </el-menu>
     </div>
     <div class="right-menu" style="display:none">

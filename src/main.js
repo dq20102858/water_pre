@@ -9,15 +9,15 @@ import router from './router/index'
 import store from './store'
 import './permission' // permission control
 import * as filters from './filters' // global filters
-import eventBus from './utils/eventBus'
+
 import authorityCode from './authorityCode'
-import 'default-passive-events'
+// import 'default-passive-events'
 // import echarts from 'echarts'
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts
 
 // import BaiduMap
-import BaiduMap from 'vue-baidu-map'
+
 import Print from 'vue-print-nb'//调用浏览器打印插件
 Vue.use(Print);
 
@@ -30,14 +30,17 @@ Vue.prototype.$video = Video
  import layer from 'vue-layer'
  import 'vue-layer/lib/vue-layer.css';
 Vue.prototype.$layer = layer(Vue);
-
 // 
 Vue.use(Element, {
   size: 'medium'
 })
+//
+import BaiduMap from 'vue-baidu-map'
 Vue.use(BaiduMap, {
-  ak: 'FHrkORZnT5ZfiEWpGwCkOlw1BnsF7IWq'
+  ak: 'GsTerPPU46fUXlt09K8840K0HxTvKIIa'
 })
+//
+import eventBus from './utils/eventBus'
 Vue.use(eventBus)
 // Vue.use(VueQuillEditor)
 // register global utility filters.
