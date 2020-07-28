@@ -118,7 +118,7 @@ export default {
             .dispatch("LoginByUsername", this.loginForm)
             .then(() => {
               this.loading = false;
-              this.$router.push({ path: "/" });
+              this.$router.push({ path: "/sitemanage" });
             })
             .catch(() => {
               this.loading = false;
