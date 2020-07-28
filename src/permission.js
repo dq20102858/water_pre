@@ -33,6 +33,7 @@ router.beforeEach((to, from, next) => {
             // 拉取user_info
             const access = res.data.access // note: roles must be a array! such as: ['editor','develop']
             const roles = res.data.roles // note: roles must be a array! such as: ['editor','develop']
+            next({ path: '/sitemanage' })
             store.dispatch('GenerateRoutes', { access, roles }).then(() => {
               // 根据roles权限生成可访问的路由表
               router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表

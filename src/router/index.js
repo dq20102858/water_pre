@@ -118,6 +118,4 @@ export default new Router({
 })
 
 //路由组件注册
-export const asyncRouterMap = {
-
-}
+export const asyncRouterMap = []
