@@ -75,7 +75,7 @@
     </el-row>
 
     <el-dialog
-      width="580px"
+      width="680px"
       class="dialog-users"
       :title="this.diaLogTitle"
       :close-on-click-modal="false"
