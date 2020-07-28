@@ -6,7 +6,11 @@ webpackJsonp([12],{
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
+<<<<<<< HEAD
+// CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.5.0@vue-loader/lib/selector.js?type=script&index=0!./src/views/login/authredirect.vue
+=======
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/login/authredirect.vue
+>>>>>>> 1ac6313ad3a73f5c578280eae6ce0510a53561ea
 
 /* harmony default export */ var authredirect = ({
   name: "authredirect",
@@ -17,7 +21,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   }
 });
 // CONCATENATED MODULE: ./src/views/login/authredirect.vue
+<<<<<<< HEAD
+var normalizeComponent = __webpack_require__("/Xao")
+=======
 var normalizeComponent = __webpack_require__("VU/8")
+>>>>>>> 1ac6313ad3a73f5c578280eae6ce0510a53561ea
 /* script */
 
 /* template */

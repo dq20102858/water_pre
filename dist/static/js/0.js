@@ -1,5 +1,7 @@
 webpackJsonp([0],{
 
+<<<<<<< HEAD
+=======
 /***/ "3Hcm":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14,6 +16,7 @@ var update = __webpack_require__("rjj0")("82644cf0", content, true);
 
 /***/ }),
 
+>>>>>>> 1ac6313ad3a73f5c578280eae6ce0510a53561ea
 /***/ "6wsJ":
 /***/ (function(module, exports) {
 
@@ -21,6 +24,8 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABX
 
 /***/ }),
 
+<<<<<<< HEAD
+=======
 /***/ "Adp8":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -36,6 +41,7 @@ exports.push([module.i, "\n.login-container {\r\n  position: fixed;\r\n  height:
 
 /***/ }),
 
+>>>>>>> 1ac6313ad3a73f5c578280eae6ce0510a53561ea
 /***/ "T+/8":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -45,7 +51,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // EXTERNAL MODULE: ./src/api/login/login.js + 1 modules
 var login = __webpack_require__("owW+");
 
+<<<<<<< HEAD
+// CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.5.0@vue-loader/lib/selector.js?type=script&index=0!./src/views/login/index.vue
+=======
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/views/login/index.vue
+>>>>>>> 1ac6313ad3a73f5c578280eae6ce0510a53561ea
 //
 //
 //
@@ -174,16 +184,26 @@ var login = __webpack_require__("owW+");
     }
   }
 });
+<<<<<<< HEAD
+// CONCATENATED MODULE: ./node_modules/_vue-loader@13.5.0@vue-loader/lib/template-compiler?{"id":"data-v-d31eed76","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/_vue-loader@13.5.0@vue-loader/lib/selector.js?type=template&index=0!./src/views/login/index.vue
+=======
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-d31eed76","hasScoped":false,"transformToRequire":{"video":["src","poster"],"source":"src","img":"src","image":"xlink:href"},"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/views/login/index.vue
+>>>>>>> 1ac6313ad3a73f5c578280eae6ce0510a53561ea
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"login-container"},[_c('div',{staticClass:"mod-new-reg-bg",style:({backgroundImage:'url('+__webpack_require__("ZoK1")+')'})}),_vm._v(" "),_c('div',{staticClass:"login-form"},[_c('div',{staticClass:"title-container"},[_c('img',{attrs:{"src":__webpack_require__("KItN")}})]),_vm._v(" "),_c('div',{staticClass:"corpname"},[_vm._v("\n      某公司智能污水处理站监控系统\n    ")]),_vm._v(" "),_c('el-form',{ref:"loginForm",attrs:{"autocomplete":"off","model":_vm.loginForm,"rules":_vm.loginRules}},[_c('el-form-item',{attrs:{"prop":"username"}},[_c('el-input',{attrs:{"placeholder":"用户名","autocomplete":"new-password","clearable":""},model:{value:(_vm.loginForm.username),callback:function ($$v) {_vm.$set(_vm.loginForm, "username", $$v)},expression:"loginForm.username"}},[_c('template',{slot:"prepend"},[_c('img',{attrs:{"src":__webpack_require__("6wsJ")}})])],2)],1),_vm._v(" "),_c('el-form-item',{attrs:{"prop":"password"}},[_c('el-input',{attrs:{"type":"password","placeholder":"登录密码","autocomplete":"new-password","clearable":""},model:{value:(_vm.loginForm.password),callback:function ($$v) {_vm.$set(_vm.loginForm, "password", $$v)},expression:"loginForm.password"}},[_c('template',{slot:"prepend"},[_c('img',{attrs:{"src":__webpack_require__("YAVh")}})])],2)],1),_vm._v(" "),_c('el-button',{staticStyle:{"width":"100%","margin-bottom":"30px","padding":"15px"},attrs:{"type":"primary","loading":_vm.loading},nativeOn:{"click":function($event){$event.preventDefault();_vm.handleLogin($event)}}},[_vm._v("登录")])],1)],1)])}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ var selectortype_template_index_0_src_views_login = (esExports);
 // CONCATENATED MODULE: ./src/views/login/index.vue
 function injectStyle (ssrContext) {
+<<<<<<< HEAD
+  __webpack_require__("utFX")
+}
+var normalizeComponent = __webpack_require__("/Xao")
+=======
   __webpack_require__("3Hcm")
 }
 var normalizeComponent = __webpack_require__("VU/8")
+>>>>>>> 1ac6313ad3a73f5c578280eae6ce0510a53561ea
 /* script */
 
 /* template */
@@ -222,6 +242,38 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABX
 
 module.exports = __webpack_require__.p + "static/img/icon-login-bg.86836b3.png";
 
+<<<<<<< HEAD
+/***/ }),
+
+/***/ "f1uN":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("BkJT")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.login-container {\r\n  position: fixed;\r\n  height: 100%;\r\n  width: 100%;\r\n  background-color: #2d3a4b;\n}\n.mod-new-reg-bg {\r\n  position: fixed;\r\n  left: 0;\r\n  right: 0;\r\n  top: 0;\r\n  bottom: 0;\r\n  background-size: cover;\r\n  background: none\\9;\r\n  *background: 0 0;\n}\n.login-container .login-form {\r\n  position: absolute;\r\n  left: 0;\r\n  right: 0;\r\n  width: 500px;\r\n  padding: 35px 50px 30px 50px;\r\n  margin: 200px auto;\r\n  background: #fff;\r\n  border-radius: 12px;\n}\n.login-container  .corpname{text-align: center; font-size: 28px;font-weight: 700; color: #777; margin-bottom: 30px;\n}\n.login-container .title-container {\r\n  text-align: center;\r\n  margin-bottom: 35px;\n}\n.login-container .title-container img {\r\n  margin: 0 auto;\r\n  width: 88px;\n}\n.login-container .el-form-item {\r\n  margin-bottom:40px;\n}\n.login-container .el-input-group__prepend {\r\n  border: 1px #338ff6 solid;\r\n  background: #fff;\r\n  padding: 0 5px;\r\n  border-right: 0;\n}\n.login-container .el-input-group__prepend img {\r\n  width: 32px;\n}\n.login-container .is-error .el-input-group__prepend {\r\n  border: 1px #f56c6c solid;\r\n  border-right: 0;\n}\n.login-container .el-input__inner {\r\n  background: #fff !important;\r\n  border: 6px;\r\n  padding: 0 5px 0 1px;\r\n  color: #338ff6;\r\n  height: 45px;\r\n  border: 1px #338ff6 solid;\r\n  border-left: 0;\n}\n.login-container input:-webkit-autofill {\r\n  -webkit-box-shadow: 0 0 0px 1000px white inset !important;\r\n          box-shadow: 0 0 0px 1000px white inset !important;\n}\n.login-container .el-form-item__error {\r\n  padding-top: 5px;\n}\n.login-container .el-button{font-size: 18px;\n}\n.login-container .el-button:hover {\r\nbackground: #338ff6;\r\nborder-color:#338ff6;\n}\n.login-container .el-button:focus {\r\nbackground: #338ff6;\r\nborder-color:#338ff6;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "utFX":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("f1uN");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("8bSs")("2f22a082", content, true);
+
+=======
+>>>>>>> 1ac6313ad3a73f5c578280eae6ce0510a53561ea
 /***/ })
 
 });
