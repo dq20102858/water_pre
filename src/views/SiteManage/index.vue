@@ -1,5 +1,5 @@
 <template>
-  <div id="message">
+  <div id="message" style="display:none">
     <div class="el-menu-topc">
       <el-menu mode="horizontal">
         <li class="ptitle">
@@ -189,7 +189,7 @@ export default {
     };
   },
   created() {
-    this.getDataList();
+    //this.getDataList();
   },
   methods: {
     getDataList() {
