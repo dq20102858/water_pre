@@ -85,16 +85,27 @@ const constantRouterMap = [
         component: () => import('@/views/setmanage/index')
       },
       {
-        path: '/setmanage/users',
-        component: () => import('@/views/setmanage/users')
-      },
-      {
         path: '/setmanage/site',
         component: () => import('@/views/setmanage/site')
       },
       {
         path: '/setmanage/warning',
         component: () => import('@/views/setmanage/warning')
+      }
+    ]
+  },
+  {
+    path: '/demo',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/demo',
+        component: () => import('@/views/demo/index')
+      },
+      {
+        path: '/demo/map',
+        component: () => import('@/views/demo/map')
       }
     ]
   }

@@ -1,15 +1,12 @@
 <template>
   <div class="app-set-page">
     <el-row :gutter="20" class="grid-menu">
-      <el-col :xs="8" :sm="8" :md="8" :lg="3" :xl="3">
+      <el-col :xs="8" :sm="8" :md="3" :lg="3" :xl="3">
         <div class="left-menu">
           <h5>设置</h5>
           <el-menu router>
             <el-menu-item>
               <router-link to="/setmanage">用户设置</router-link>
-            </el-menu-item>
-            <el-menu-item>
-              <router-link to="/setmanage/users">人员设置</router-link>
             </el-menu-item>
             <el-menu-item class="is-active">
               <router-link to="/setmanage/site">站点设置</router-link>
@@ -20,7 +17,7 @@
           </el-menu>
         </div>
       </el-col>
-      <el-col :xs="16" :sm="16" :md="16" :lg="21" :xl="21">
+      <el-col :xs="16" :sm="16" :md="21" :lg="21" :xl="21">
         <div class="app-page-container ptopz">
           <div class="app-page-select">
             <el-form :inline="true">
@@ -29,7 +26,7 @@
               </el-form-item>
               <div class="el-serach noborder">
                 <!-- <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable></el-input> -->
-                <el-button @click="goAdd">添加</el-button>
+                <el-button @click="addShowDialog">添加</el-button>
               </div>
             </el-form>
           </div>
@@ -38,19 +35,19 @@
               <el-table-column label="序号" width="80px">
                 <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
               </el-table-column>
-              <el-table-column prop="title" label="站点名"></el-table-column>
-              <el-table-column prop="send_user" label="所在位置"></el-table-column>
-              <el-table-column prop="recept_type" label="日均排污量">
+              <el-table-column prop="name" label="站点名"></el-table-column>
+              <el-table-column prop="address" label="所在位置"></el-table-column>
+              <el-table-column prop="number" label="日均排污量">
                 <template slot-scope="scope">
-                  <span v-html="getArrText(scope.row.recept_type)"></span>
+                  <span v-html="scope.row.number">吨</span>
                 </template>
               </el-table-column>
-              <el-table-column prop="send_user" label="入网时间"></el-table-column>
+              <el-table-column prop="create_time" label="入网时间"></el-table-column>
               <el-table-column label="操作" width="130">
                 <template slot-scope="scope">
                   <div class="app-operation">
-                    <el-button class="btn-edit" size="mini" @click="goDetail(scope.row)">编辑</el-button>
-                    <el-button class="btn-del" size="mini" @click="goDetail(scope.row)">删除</el-button>
+                    <el-button class="btn-edit" size="mini" @click="editEvent(scope.row.id)">编辑</el-button>
+                    <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
                   </div>
                 </template>
               </el-table-column>
@@ -79,7 +76,7 @@
           <el-dialog
             width="780px"
             :close-on-click-modal="false"
-            class="dialog-msg"
+            class="dialog-station"
             :title="this.diaLogTitle"
             :visible.sync="diaLogFormVisible"
           >
@@ -90,20 +87,28 @@
               ref="formRulesRef"
               label-width="110px"
             >
-              <el-form-item label="站点名称：" prop="title">
-                <el-input v-model="keyword" :keyword="keyword"></el-input>
+              <el-form-item label="站点名称：" prop="name">
+                <el-input v-model="formData.name"></el-input>
               </el-form-item>
-                <el-form-item label="日均排污量：" prop="title">
-                <el-input
-                  v-model="formData.title"
-                  autocomplete="off"
-                  maxlength="20"
-                  show-word-limit
-                ></el-input>
+              <el-form-item label="所属父级：" prop="pid">
+                <el-select v-model="formData.pid">
+                  <el-option
+                    v-for="item in this.fatherStationList"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id"
+                  ></el-option>
+                </el-select>
               </el-form-item>
-
-              <el-form-item label="站点地址：" prop="title">
-                <el-input v-model="keyword"></el-input>
+              <el-form-item label="日均排污量：" prop="number">
+                <el-input placeholder="请输入日均排污量" v-model="formData.number">
+                  <template slot="append">吨</template>
+                </el-input>
+              </el-form-item>
+              <el-form-item label="站点地址：" prop="address">
+                <el-input v-model="formData.address" placeholder="请输入地址  支持手动在地图标注位置"></el-input>
+              </el-form-item>
+              <el-form-item>
                 <div class="baiduMap">
                   <baidu-map
                     　　class="bm-view"
@@ -116,66 +121,31 @@
                     　　@moveend="syncCenterAndZoom"
                     　　@zoomend="syncCenterAndZoom"
                   >
-                    <bm-view style="width: 100%; height:400px;"></bm-view>
+                    <bm-view style="width: 100%; height:360px;"></bm-view>
                     <bm-marker
                       　　　:position="{ lng: centerStr.lng, lat: centerStr.lat }"
                       　　　:dragging="true"
                       　　　animation="BMAP_ANIMATION_BOUNCE"
                     ></bm-marker>
                     <bm-local-search
-                      :keyword="keyword"
+                      :keyword="formData.address"
                       :auto-viewport="true"
                       style="width:0px;height:0px;overflow: hidden;"
                     ></bm-local-search>
                   </baidu-map>
                 </div>
               </el-form-item>
-              <!-- <el-form-item label="经度">
+              <el-form-item label="经度" style="display:none">
                 <el-input :value.sync="centerStr.lng"></el-input>
               </el-form-item>
-              <el-form-item label="纬度">
+              <el-form-item label="纬度" style="display:none">
                 <el-input :value.sync="centerStr.lat"></el-input>
-              </el-form-item> -->
+              </el-form-item>
               <div class="blank"></div>
             </el-form>
             <div slot="footer" class="dialog-footer">
               <el-button @click="diaLogFormVisible = false">关闭</el-button>
-              <el-button type="primary" @click="addEventDialog()">确定</el-button>
-            </div>
-          </el-dialog>
-          <el-dialog
-            width="980px"
-            :close-on-click-modal="false"
-            class="dialog-msg"
-            title="消息详情"
-            :visible.sync="diaLogShowFormVisible"
-          >
-            <el-form class="el-form-custom" :model="formDataShow">
-              <el-form-item label="消息主题：">
-                <el-input v-model="formDataShow.title" autocomplete="off" readonly></el-input>
-              </el-form-item>
-              <el-form-item label="发送对象：" prop="recept_type">
-                <el-checkbox-group v-model="formDataShow.recept_type">
-                  <el-checkbox :label="1">施工队长</el-checkbox>
-                  <el-checkbox :label="2">施工人员</el-checkbox>
-                  <el-checkbox :label="3">行车</el-checkbox>
-                </el-checkbox-group>
-              </el-form-item>
-              <el-form-item label="消息内容：">
-                <el-input
-                  v-model="formDataShow.description"
-                  autocomplete="off"
-                  type="textarea"
-                  readonly
-                ></el-input>
-              </el-form-item>
-              <el-form-item label="发送时间：">
-                <el-input v-model="formDataShow.create_time" autocomplete="off" readonly></el-input>
-              </el-form-item>
-              <div class="blank"></div>
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-              <el-button @click="diaLogShowFormVisible = false">关闭</el-button>
+              <el-button type="primary" @click="addEvent()">确定</el-button>
             </div>
           </el-dialog>
         </div>
@@ -185,7 +155,6 @@
 </template>
 <script>
 import { BaiduMap, BmView, BmLocalSearch, BmMarker } from "vue-baidu-map";
-
 export default {
   components: {
     BaiduMap,
@@ -195,24 +164,19 @@ export default {
   },
   data() {
     return {
-      keyword: "",
       centerStr: {
         lng: "",
         lat: ""
       },
-
       diaLogFormVisible: false,
-      diaLogTitle: "发送消息",
-      diaLogShowFormVisible: false,
-      formDataShow: {},
-      formData: {
-        recept_type: []
-      },
+      diaLogTitle: "添加站点",
+      diaLogEdit: false,
+      formData: {},
       formRules: {
-        title: [
+        name: [
           {
             required: true,
-            message: "请输入消息主题2~20个字符",
+            message: "请输入名称2~20个字符",
             trigger: "blur"
           },
           { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
@@ -222,10 +186,29 @@ export default {
             trigger: "blur"
           }
         ],
-        recept_type: [
+        address: [
           {
             required: true,
-            message: "请选择发送对象",
+            message: "请输入地址",
+            trigger: "blur"
+          }
+        ],
+        number: [
+          {
+            required: true,
+            message: "请输入日均排污量",
+            trigger: "blur"
+          },
+          {
+            pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
+            message: "请输入1-3位正数字并可保留两位小数点",
+            trigger: "blur"
+          }
+        ],
+        pid: [
+          {
+            required: true,
+            message: "请选择所属父级",
             trigger: "change"
           }
         ],
@@ -247,7 +230,8 @@ export default {
       page_data_total: 0,
       page_size: 20,
       page_total: 0,
-      dataList: []
+      dataList: [],
+      fatherStationList: []
     };
   },
   mounted() {
@@ -263,7 +247,7 @@ export default {
       let page = this.page_cur;
       // let recept_type = "我们";
       this.request({
-        url: "/message/getMessagePages",
+        url: "/station/getStationPages",
         method: "get",
         params: {
           page
@@ -295,27 +279,44 @@ export default {
       this.page_cur = 1;
       this.getDataList();
     },
-
-    goAdd() {
-      this.diaLogTitle = "发送消息";
+    getFatherStationList() {
+      this.request({
+        url: "/station/getFatherStationLists",
+        method: "get"
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.fatherStationList = data.data;
+        }
+      });
+    },
+    addShowDialog() {
+      this.getFatherStationList();
+      this.diaLogTitle = "添加站点";
       this.diaLogFormVisible = true;
+      this.diaLogEdit = false;
       this.$nextTick(() => {
         this.$refs["formRulesRef"].clearValidate();
       });
       this.formData = {
-        title: "",
-        description: "",
-        recept_type: []
+        // title: "",
+        // description: "",
+        // recept_type: []
       };
     },
-    addEventDialog() {
+    addEvent() {
       const that = this;
       this.$refs["formRulesRef"].validate(valid => {
         if (valid) {
-          //this.formData.recept_type=JSON.stringify(that.formData.recept_type);
           let data = that.formData;
+          data.map = this.centerStr.lng + "," + this.centerStr.lat;
+          let url = "/station/addStation";
+          let baseid = this.formData.id;
+          if (typeof baseid != "undefined") {
+            url = "/station/editStation";
+          }
           this.request({
-            url: "/message/addMessage",
+            url: url,
             method: "post",
             data
           }).then(response => {
@@ -335,16 +336,33 @@ export default {
         }
       });
     },
-    goDetail(rows) {
-      this.diaLogShowFormVisible = true;
-      this.formDataShow.title = rows.title;
-      this.formDataShow.create_time = rows.create_time;
-      let arr = JSON.parse("[" + rows.recept_type + "]");
-      this.formDataShow.recept_type = arr;
-      this.formDataShow.description = rows.description;
-      console.log(rows + "-" + arr);
+    editEvent(id) {
+      this.getFatherStationList();
+      this.diaLogFormVisible = true;
+      this.diaLogEdit = true;
+      this.diaLogTitle = "编辑站点";
+      this.$nextTick(() => {
+        this.$refs["formRulesRef"].clearValidate();
+      });
+      this.request({
+        url: "/station/getStation",
+        method: "get",
+        params: { id: id }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.formData = data.data;
+          console.log(data.data.lng + "_" + data.data.lat);
+          this.centerStr = {
+            lng: "",
+            lat: ""
+          };
+          this.$set(this.centerStr, "lat", data.data.lat);
+          this.$set(this.centerStr, "lng", data.data.lng);
+        }
+      });
     },
-    goDel(id) {
+    deleteEvent(id) {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -353,7 +371,7 @@ export default {
       })
         .then(() => {
           this.request({
-            url: "/search/deleteStation",
+            url: "/station/delStation",
             method: "post",
             data: { id: id }
           }).then(res => {
@@ -372,28 +390,34 @@ export default {
     getClickInfo(e) {
       this.centerStr.lng = e.point.lng;
       this.centerStr.lat = e.point.lat;
-
-     
     },
     syncCenterAndZoom(e) {
       const { lng, lat } = e.target.getCenter();
-      this.centerStr.lng = lng;
-      this.centerStr.lat = lat;
+      if (this.diaLogEdit == true) {
+        this.centerStr.lng = this.formData.lng;
+        this.centerStr.lat = this.formData.lat;
+      } else {
+        this.centerStr.lng = lng;
+        this.centerStr.lat = lat;
+      }
       this.zoom = e.target.getZoom();
-
-       console.log(this.centerStr.lng+"_"+ this.centerStr.lat);
+     // console.log(this.centerStr.lng + "__A__" + this.centerStr.lat);
     }
     //
   }
 };
 </script>
 <style>
-* { touch-action: pan-y; }
+* {
+  touch-action: pan-y;
+}
 .app-set-page {
   padding: 20px;
 }
-
-.baiduMap {
+.dialog-station .el-select {
+  width: 100%;
+}
+.dialog-station .baiduMap {
   margin-top: 5px;
   padding: 5px;
   border-radius: 3px;
