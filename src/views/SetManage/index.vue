@@ -1,7 +1,7 @@
 <template>
   <div class="app-set-page">
     <el-row :gutter="20" class="grid-menu">
-      <el-col :xs="8" :sm="8" :md="3" :lg="3" :xl="3">
+      <el-col :xs="8" :sm="4" :md="3" :lg="3" :xl="3">
         <div class="left-menu">
           <h5>设置</h5>
           <el-menu router class="el-menu-vertical-demo">
@@ -17,7 +17,7 @@
           </el-menu>
         </div>
       </el-col>
-      <el-col :xs="16" :sm="16" :md="21" :lg="21" :xl="21">
+      <el-col :xs="16" :sm="20" :md="21" :lg="21" :xl="21">
         <div class="app-page-container ptopz">
           <div class="app-page-select">
             <el-form :inline="true">
@@ -417,38 +417,6 @@ export default {
 .app-set-page {
   padding: 20px;
 }
-/* .dialog-users .el-textarea {
-  width: 100% !important;
-}
-.dialog-users .el-form-item__label {
-  width: 110px;
-}
-.dialog-users .newitem {
-  width: 350px;
-}
-.dialog-users .newitem .el-input--medium {
-  width: 240px;
-}
-.dialog-users .el-input--medium {
-  width: 100%;
-}
-.dialog-users .el-select {
-  width: 185px;
-}
-
-.dialog-users .el-form-item-block {
-  display: block;
-}
-
-.dialog-users .checkbox-group .el-form-item__label {
-  float: left;
-}
-.dialog-users .checkbox-group .el-form-item__content {
-  display: initial !important;
-}
-.dialog-users .checkbox-group .el-checkbox-group {
-  margin-left: 110px;
-} */
 .dialog-users .el-select {
   width: 100%;
 }

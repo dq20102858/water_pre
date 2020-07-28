@@ -1,93 +1,174 @@
 <template>
-  <div style="padding:30px">
-    <div class="baiduMap">
-      <el-form :label-width="100">
-        <el-form-item label="经度">
-          <el-input v-model="keyword"></el-input>
-        </el-form-item>
-      </el-form>
-      <baidu-map
-        　　class="bm-view"
-        　　ak="GsTerPPU46fUXlt09K8840K0HxTvKIIa"
-        　　center="江苏省"
-        　　:zoom="12"
-        　　:scroll-wheel-zoom="true"
-        　　@click="getClickInfo"
-        　　@moving="syncCenterAndZoom"
-        　　@moveend="syncCenterAndZoom"
-        　　@zoomend="syncCenterAndZoom"
-      >
-        <bm-view style="width: 100%; height:500px;"></bm-view>
-        <bm-marker
-          　　　:position="{ lng: centerStr.lng, lat: centerStr.lat }"
-          　　　:dragging="true"
-          　　　animation="BMAP_ANIMATION_BOUNCE"
-        ></bm-marker>
-        <bm-local-search
-          :keyword="keyword"
-          :auto-viewport="true"
-          style="width:0px;height:0px;overflow: hidden;"
-        ></bm-local-search>
-      </baidu-map>
-      <el-form :model="centerStr" :label-width="100">
-        <el-form-item label="经度">
-          <el-input :value.sync="centerStr.lng"></el-input>
-        </el-form-item>
-        <el-form-item label="纬度">
-          <el-input :value.sync="centerStr.lat"></el-input>
-        </el-form-item>
-     
-      </el-form>
-    </div>
+  <div class="app-set-page">
+    <el-row :gutter="20" class="grid-menu">
+      <el-col :xs="8" :sm="8" :md="3" :lg="3" :xl="3">
+        <div class="left-menu">
+          <h5>设置</h5>
+          <el-menu router class="el-menu-vertical-demo">
+            <el-menu-item>
+              <router-link to="/setmanage">人员设置</router-link>
+            </el-menu-item>
+            <el-menu-item>
+              <router-link to="/setmanage/site">站点设置</router-link>
+            </el-menu-item>
+            <el-menu-item class="is-active">
+              <router-link to="/setmanage/warning">告警设置</router-link>
+            </el-menu-item>
+          </el-menu>
+        </div>
+      </el-col>
+      <el-col :xs="16" :sm="16" :md="21" :lg="21" :xl="21">
+        <div class="app-page-container ptopz">
+          <div class="app-page-select">
+            <el-form :inline="true">
+              <el-form-item>
+                <h3 class="ttitles">告警设置</h3>
+              </el-form-item>
+            </el-form>
+          </div>
+          <div class="add-from">
+            <el-form
+              :model="formData"
+              class="el-form-custom"
+              :rules="formRules"
+              ref="formRulesRef"
+              label-width="110px"
+            >
+              <div class>
+                <el-form-item label="PH：" prop="ph">
+                  <el-input v-model="formData.ph" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="DO：" prop="do">
+                  <el-input v-model="formData.do" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="电导绿：" prop="conductivity">
+                  <el-input v-model="formData.conductivity" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="液位：" prop="level">
+                  <el-input v-model="formData.level" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item>
+                  <el-button type="primary" @click="addEventDialog">确定</el-button>
+                </el-form-item>
+              </div>
+            </el-form>
+          </div>
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
- 
-　　　　
 <script>
-//地图组件---按需引入
-import {
-  BaiduMap,
-  BmControl,
-  BmView,
-  BmAutoComplete,
-  BmLocalSearch,
-  BmMarker
-} from "vue-baidu-map";
-
 export default {
-  components: {
-    BaiduMap,
-    BmControl,
-    BmView,
-    BmAutoComplete,
-    BmLocalSearch,
-    BmMarker
-  },
   data() {
     return {
-      keyword: "",
-      mapStyle: {
-        width: "100%",
-        height: this.mapHeight + "px"
-      },
-      centerStr: {
-        lng: "",
-        lat: ""
+      formData: {},
+      formRules: {
+        ph: [
+          {
+            required: true,
+            message: "请输入PH",
+            trigger: "blur"
+          },
+          {
+            pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
+            message: "请输入1-3位正数字并可保留两位小数点",
+            trigger: "blur"
+          }
+        ],
+        do: [
+          {
+            required: true,
+            message: "请输入DO",
+            trigger: "blur"
+          },
+          {
+            pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
+            message: "请输入1-3位正数字并可保留两位小数点",
+            trigger: "blur"
+          }
+        ],
+        conductivity: [
+          {
+            required: true,
+            message: "请输入电导绿",
+            trigger: "blur"
+          },
+          {
+            pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
+            message: "请输入1-3位正数字并可保留两位小数点",
+            trigger: "blur"
+          }
+        ],
+        level: [
+          {
+            required: true,
+            message: "请输入液位",
+            trigger: "blur"
+          },
+          {
+            pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
+            message: "请输入1-3位正数字并可保留两位小数点",
+            trigger: "blur"
+          }
+        ]
       }
     };
   },
+  mounted() {
+    document
+      .querySelector(".el-menu-top #setmanage")
+      .classList.add("is-active");
+  },
+  created() {
+    this.getSetDetail();
+  },
   methods: {
-    getClickInfo(e) {
-      this.centerStr.lng = e.point.lng;
-      this.centerStr.lat = e.point.lat;
+    addEventDialog() {
+      const that = this;
+      this.$refs["formRulesRef"].validate(valid => {
+        if (valid) {
+          let data = that.formData;
+          this.request({
+            url: "/set/addOrUpdateSet",
+            method: "post",
+            data
+          }).then(response => {
+            var data = response.data;
+            if (data.status == 1) {
+              this.getSetDetail();
+              this.$message({
+                type: "success",
+                message: "保存成功！"
+              });
+            }
+          });
+        } else {
+          console.log("操作失败！");
+          return false;
+        }
+      });
     },
-    syncCenterAndZoom(e) {
-      const { lng, lat } = e.target.getCenter();
-      this.centerStr.lng = lng;
-      this.centerStr.lat = lat;
-      this.zoom = e.target.getZoom();
+    getSetDetail() {
+      this.request({
+        url: "/set/getSetDetail",
+        method: "get"
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.formData = data.data;
+        }
+      });
     }
+    //
   }
 };
 </script>
-　
+<style>
+.app-set-page {
+  padding: 20px;
+}
+.add-from {
+  width: 400px;
+}
+</style>
