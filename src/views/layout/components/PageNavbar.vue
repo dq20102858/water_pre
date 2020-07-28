@@ -57,28 +57,28 @@ export default {
     }
   },
   created() {
-    this.getBreadcrumb();
+   // this.getBreadcrumb();
   },
   methods: {
-    getBreadcrumb() {
-      let matched = this.$route.matched;
-      this.levelList = matched;
+    // getBreadcrumb() {
+    //   let matched = this.$route.matched;
+    //   this.levelList = matched;
 
-      this.request({
-        url: "/apply/getApplyLogs",
-        method: "get"
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          if (data.data.length > 0) {
-            this.isShow = true;
-          }
-        }
-      });
-    },
-    toggleSideBar() {
-      this.$store.dispatch("toggleSideBar");
-    },
+    //   this.request({
+    //     url: "/apply/getApplyLogs",
+    //     method: "get"
+    //   }).then(response => {
+    //     let data = response.data;
+    //     if (data.status == 1) {
+    //       if (data.data.length > 0) {
+    //         this.isShow = true;
+    //       }
+    //     }
+    //   });
+    // },
+    // toggleSideBar() {
+    //   this.$store.dispatch("toggleSideBar");
+    // },
     logout() {
       this.$store.dispatch("LogOut").then(() => {
         location.reload(); // In order to re-instantiate the vue-router object to avoid bugs

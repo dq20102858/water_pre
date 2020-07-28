@@ -38,15 +38,11 @@
             <el-table-column label="序号" width="80px">
               <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
             </el-table-column>
-            <el-table-column prop="title" label="用户名"></el-table-column>
-            <el-table-column prop="send_user" label="姓名"></el-table-column>
-            <el-table-column prop="recept_type" label="职位">
-              <template slot-scope="scope">
-                <span v-html="getArrText(scope.row.recept_type)"></span>
-              </template>
-            </el-table-column>
-               <el-table-column prop="send_user" label="手机号"></el-table-column>
-            <el-table-column prop="create_time" label="发布时间"></el-table-column>
+            <el-table-column prop="name" label="用户名"></el-table-column>
+            <el-table-column prop="name" label="姓名"></el-table-column>
+            <el-table-column prop="role" label="职位"></el-table-column>
+               <el-table-column prop="phone" label="手机号"></el-table-column>
+            <el-table-column prop="phone" label="发布时间"></el-table-column>
             <el-table-column label="操作" width="130">
               <template slot-scope="scope">
                 <div class="app-operation">
@@ -77,40 +73,127 @@
             </el-pagination>
           </div>
         </div>
-        <el-dialog
-          width="700px"
-          :close-on-click-modal="false"
-          class="dialog-msg"
+     
+       <el-dialog
+          width="780px"
+          class="dialog-users"
           :title="this.diaLogTitle"
+          :close-on-click-modal="false"
           :visible.sync="diaLogFormVisible"
         >
-          <el-form class="el-form-custom" :model="formData" :rules="formRules" ref="formRulesRef"  label-width="110px">
-            <el-form-item label="消息主题：" prop="title">
-              <el-input v-model="formData.title" autocomplete="off" maxlength="20" show-word-limit></el-input>
-            </el-form-item>
-            <el-form-item label="发送对象：" prop="recept_type">
-              <el-checkbox-group v-model="formData.recept_type">
-                <el-checkbox :label="1">施工队长</el-checkbox>
-                <el-checkbox :label="2">施工人员</el-checkbox>
-                <el-checkbox :label="3">行车</el-checkbox>
-              </el-checkbox-group>
-            </el-form-item>
-            <el-form-item label="消息内容：" prop="description">
-              <el-input
-                v-model="formData.description"
-                autocomplete="off"
-                type="textarea"
-                maxlength="200"
-                show-word-limit
-              ></el-input>
-            </el-form-item>
-            <div class="blank"></div>
+          <el-form
+            :inline="true"
+            :model="userData"
+            class="el-form-custom"
+            :rules="userAddRules"
+            ref="userRulesForm"
+          >
+            <div class="el-form-item-inlinessddd">
+              <el-form-item
+                class="newitem"
+                label="用户名："
+                prop="user_name"
+                v-if="this.userDialogTitle=='添加人员信息'"
+              >
+                <el-input v-model="userData.user_name" show-word-limit></el-input>
+              </el-form-item>
+              <el-form-item class="newitem" label="姓名：" prop="name">
+                <el-input v-model="userData.name" autocomplete="off"></el-input>
+              </el-form-item>
+              <el-form-item class="newitem" label="公司名称：" prop="company_id">
+                <el-select v-model="userData.company_id" @change="getDepartLists($event)">
+                  <el-option
+                    v-for="item in this.companySelectList"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item
+                class="newitem"
+                label="密码："
+                prop="password"
+                v-if="this.userDialogTitle=='添加人员信息'"
+              >
+                <el-input v-model="userData.password" autocomplete="off"></el-input>
+              </el-form-item>
+              <el-form-item
+                class="newitem"
+                label="密码："
+                prop="passwordEdit"
+                v-if="this.userDialogTitle=='修改人员信息'"
+              >
+                <el-input v-model="userData.passwordEdit" autocomplete="off" placeholder="不修改密码请留空"></el-input>
+              </el-form-item>
+
+              <el-form-item class="newitem" label="部门名称：" prop="depart_id">
+                <el-select v-model="userData.depart_id" @change="getPostLists($event)">
+                  <el-option
+                    v-for="item in this.departSelectList"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item class="newitem" label="邮箱：" prop="email">
+                <el-input v-model="userData.email" autocomplete="off"></el-input>
+              </el-form-item>
+
+              <el-form-item class="newitem" label="职位名称：" prop="post_id">
+                <el-select v-model="userData.post_id">
+                  <el-option
+                    v-for="item in this.postSelectList"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item class="newitem" label="手机号码：" prop="phone">
+                <el-input v-model="userData.phone" autocomplete="off"></el-input>
+              </el-form-item>
+              <el-form-item label="头像上传：" style="width:100%;">
+                <el-upload
+                  ref="uploadfive"
+                  class="avatar-uploader"
+                  :action="uploadAction"
+                  :auto-upload="true"
+                  :on-exceed="uploadExceed"
+                  :before-upload="uploadBefore"
+                  :on-success="uploadSuccess"
+                  :show-file-list="false"
+                >
+                  <img v-if="userData.avatar" :src="userData.avatar" class="avatar" />
+                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
+              </el-form-item>
+              <el-form-item label="用户角色：" prop="sys_role">
+                <el-radio-group v-model="userData.sys_role" @change="changeSysrole($event)">
+                  <el-radio :label="3">普通用户</el-radio>
+                  <el-radio :label="1">管理员</el-radio>
+                  <el-radio :label="2">业主方</el-radio>
+                </el-radio-group>
+              </el-form-item>
+              <el-form-item label="用户职责：" class="checkbox-group" v-show="userData.sys_role==3">
+                <el-checkbox-group v-model="userData.menus" @change="selectUuserMenu">
+                  <el-checkbox
+                    v-for="item in userMenuList"
+                    :key="item.id"
+                    :label="item.id+''"
+                  >{{item.name}}</el-checkbox>
+                </el-checkbox-group>
+              </el-form-item>
+            </div>
           </el-form>
           <div slot="footer" class="dialog-footer">
-            <el-button @click="diaLogFormVisible = false">关闭</el-button>
-            <el-button type="primary" @click="addEventDialog()">确定</el-button>
+            <el-button @click="userDialogVisible = false">取 消</el-button>
+            <el-button type="primary" @click="addUser">确 定</el-button>
           </div>
         </el-dialog>
+
+
         <el-dialog
           width="700px"
           :close-on-click-modal="false"
@@ -215,9 +298,8 @@ export default {
   methods: {
     getDataList() {
       let page = this.page_cur;
-      // let recept_type = "我们";
       this.request({
-        url: "/message/getMessagePages",
+        url: "/user/getUserPages",
         method: "get",
         params: {
           page
