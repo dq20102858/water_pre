@@ -51,14 +51,14 @@ export default {
   computed: {
     ...mapGetters(["sidebar", "name", "avatar", "roles", "sys_role", "system"])
   },
-  watch: {
-    $route() {
-      this.getBreadcrumb();
-    }
-  },
-  created() {
-   // this.getBreadcrumb();
-  },
+  // watch: {
+  //   $route() {
+  //     this.getBreadcrumb();
+  //   }
+  // },
+  // created() {
+  //  // this.getBreadcrumb();
+  // },
   methods: {
     // getBreadcrumb() {
     //   let matched = this.$route.matched;
