@@ -34,7 +34,7 @@
               ref="formRulesRef"
               label-width="110px"
             >
-              <div class>
+              <div>
                 <el-form-item label="PH：" prop="ph">
                   <el-input v-model="formData.ph" autocomplete="off"></el-input>
                 </el-form-item>
@@ -115,11 +115,7 @@ export default {
       }
     };
   },
-  mounted() {
-    document
-      .querySelector(".el-menu-top #setmanage")
-      .classList.add("is-active");
-  },
+
   created() {
     this.getSetDetail();
   },

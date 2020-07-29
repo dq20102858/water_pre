@@ -234,11 +234,6 @@ export default {
       fatherStationList: []
     };
   },
-  mounted() {
-    document
-      .querySelector(".el-menu-top #setmanage")
-      .classList.add("is-active");
-  },
   created() {
     this.getDataList();
   },

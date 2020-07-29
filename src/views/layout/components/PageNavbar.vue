@@ -1,38 +1,72 @@
 <template>
   <div class="net-navbar" mode="horizontal">
     <div class="el-menu-top">
-      <el-menu router default-active="SiteManage" mode="horizontal">
+      <el-menu router mode="horizontal">
         <li class="logos">
           <img class="logo" :src="require('@/assets/image/logo.png')" />
           <div class="gname">
             <h3>某公司智能污水系统</h3>
-            <h4>欢迎您，{{name}}  <span title="退出系统"  @click="logout"><i class="el-icon-switch-button"></i>退出系统</span></h4>
+            <h4>
+              欢迎您，{{name}}
+              <span title="退出系统" @click="logout">
+                <i class="el-icon-switch-button"></i>退出系统
+              </span>
+            </h4>
           </div>
         </li>
-        <el-menu-item index="/sitemanage">
+        <el-menu-item
+          id="sitemanage"
+          index="/sitemanage"
+          @click="activeMenuClick"
+          :class="activeMenu=='sitemanage'?'is-active':''"
+        >
           <img class="iconss" :src="require('@/assets/image/m_zhandian.png')" />站点分布
         </el-menu-item>
-        <el-menu-item index="/devicemanage">
+        <el-menu-item
+          index="/devicemanage"
+          @click="activeMenuClick"
+          :class="activeMenu=='devicemanage'?'is-active':''"
+        >
           <img class="iconss" :src="require('@/assets/image/m_shebeizhuangtai.png')" />设备状态
         </el-menu-item>
-        <el-menu-item index="/operationmanage">
+        <el-menu-item
+          index="/operationmanage"
+          @click="activeMenuClick"
+          :class="activeMenu=='operationmanage'?'is-active':''"
+        >
           <img class="iconss" :src="require('@/assets/image/m_jilu.png')" />运维记录
         </el-menu-item>
-        <el-menu-item index="/dispatchmanage">
+        <el-menu-item
+          index="/dispatchmanage"
+          @click="activeMenuClick"
+          :class="activeMenu=='dispatchmanage'?'is-active':''"
+        >
           <img class="iconss" :src="require('@/assets/image/m_jilu.png')" />运维派单
         </el-menu-item>
-        <el-menu-item index="/warningmanage">
+        <el-menu-item
+          index="/warningmanage"
+          @click="activeMenuClick"
+          :class="activeMenu=='warningmanage'?'is-active':''"
+        >
           <img class="iconss" :src="require('@/assets/image/m_jilu.png')" />告警列表
         </el-menu-item>
-        <el-menu-item index="/warningmanage">
+        <el-menu-item
+          index="/recordmanage"
+          @click="activeMenuClick"
+          :class="activeMenu=='recordmanage'?'is-active':''"
+        >
           <img class="iconss" :src="require('@/assets/image/m_kaopin.png')" />打卡记录
         </el-menu-item>
-        <el-menu-item id="setmanage" index="/setmanage">
+        <el-menu-item
+          index="/setmanage"
+          @click="activeMenuClick"
+          :class="activeMenu=='setmanage'?'is-active':''"
+        >
           <img class="iconss" :src="require('@/assets/image/m_kaopin.png')" />设置
         </el-menu-item>
         <!-- <el-menu-item @click="logout">
           <img class="iconss" :src="require('@/assets/image/m_kaopin.png')" />退出
-        </el-menu-item> -->
+        </el-menu-item>-->
       </el-menu>
     </div>
   </div>
@@ -43,24 +77,27 @@ export default {
   name: "PageNavbar",
   data() {
     return {
-      activeIndex: "1",
-      levelList: null,
-      isShow: false
+      activeMenu: "sitemanage"
     };
   },
-  components: {},
   computed: {
     ...mapGetters(["sidebar", "name", "avatar", "roles", "sys_role", "system"])
   },
-  // watch: {
-  //   $route() {
-  //     this.getBreadcrumb();
-  //   }
-  // },
-  // created() {
-  //  // this.getBreadcrumb();
-  // },
+
+  mounted() {
+    this.activeMenu = this.$route.name;
+  },
+  watch: {
+    $route() {
+      this.activeMenu = this.$route.name;
+    }
+  },
+  created() {},
   methods: {
+    activeMenuClick() {
+      this.activeMenu = this.$route.name;
+      this.reload();
+    },
     // getBreadcrumb() {
     //   let matched = this.$route.matched;
     //   this.levelList = matched;
@@ -93,11 +130,6 @@ export default {
           });
         })
         .catch(() => {});
-    },
-    handleCommand(system) {
-      this.$store.dispatch("ChangeSystem", system).then(() => {
-        location.href = "/";
-      });
     }
   }
 };

@@ -44,10 +44,10 @@ html {height: 100%;box-sizing: border-box;}
 .el-menu-top .logos .gname span{float:right; background: #409eff;color: #fff;padding:4px  3px;border-radius: 3px;font-size: 12px;cursor: pointer;}
 .el-menu-top .el-menu--horizontal{overflow: hidden;border: none;}
 .el-menu-top .el-menu--horizontal .el-menu-item{height: 100px!important; float: left;background: none;color:#fff; font-size: 16px;font-weight: 400;padding:0 30px; line-height: 40px;}
-.el-menu-top  .el-menu--horizontal .el-menu-item:hover{color:#fff; background-color:#294FB4!important;}
-.el-menu-top .is-active {background-color: #294FB4!important;border: none!important;color: #fff!important;}
-.el-menu-top .is-active .el-submenu__title:hover {background-color:#294FB4!important;}
-.el-menu-top  .iconss{ height:  30px;display: block;margin: 0 auto;margin-top:20px;}
+.el-menu-top .el-menu--horizontal .el-menu-item:hover{color:#fff; background-color:#294FB4!important;}
+.el-menu-top .el-menu--horizontal .el-menu-item.is-active {background-color: #294FB4!important;color: #fff!important;border-bottom: 0px solid #294FB4;}
+.el-menu-top .el-menu--horizontal .el-menu-item.is-active .el-submenu__title:hover {background-color:#294FB4!important;}
+.el-menu-top .iconss{ height:  30px;display: block;margin: 0 auto;margin-top:20px;}
 /* bg */
 .app-body-black{background: #000; }
 .app-page{border-radius: 6px;padding: 20px; background: #fff;}

@@ -88,7 +88,7 @@
         ref="formRulesRef"
         label-width="110px"
       >
-        <div class>
+        <div>
           <el-form-item label="用户名：" prop="username">
             <el-input v-model="formData.username" autocomplete="off"></el-input>
           </el-form-item>
@@ -237,11 +237,6 @@ export default {
       page_total: 0,
       dataList: []
     };
-  },
-  mounted() {
-    document
-      .querySelector(".el-menu-top #setmanage")
-      .classList.add("is-active");
   },
   created() {
     this.getDataList();

@@ -26,70 +26,89 @@ const constantRouterMap = [
     hidden: true
   },
   {
-    path: '/SiteManage',
+    path: '/sitemanage',
     component: Layout,
     hidden: true,
     children: [
       {
-        path: '/SiteManage',
+        path: '/sitemanage',
+        name:'sitemanage',
         component: () => import('@/views/SiteManage/index')
       }
     ]
   }, {
-    path: '/DeviceManage',
+    path: '/devicemanage',
     component: Layout,
     hidden: true,
     children: [
       {
-        path: '/DeviceManage',
+        path: '/devicemanage',
+        name:'devicemanage',
         component: () => import('@/views/DeviceManage/index')
       }
     ]
   }, {
-    path: '/OperationManage',
+    path: '/operationmanage',
     component: Layout,
     hidden: true,
     children: [
       {
-        path: '/OperationManage',
+        path: '/operationmanage',
+        name:'operationmanage',
         component: () => import('@/views/OperationManage/index')
       }
     ]
   }, {
-    path: '/DispatchManage',
+    path: '/dispatchmanage',
     component: Layout,
     hidden: true,
     children: [
       {
-        path: '/DispatchManage',
+        path: '/dispatchmanage',
+        name:'dispatchmanage',
         component: () => import('@/views/DispatchManage/index')
       }
     ]
   }, {
-    path: '/WarningManage',
+    path: '/warningmanage',
     component: Layout,
     hidden: true,
     children: [
       {
-        path: '/WarningManage',
+        path: '/warningmanage',
+        name:'warningmanage',
         component: () => import('@/views/WarningManage/index')
       }
     ]
-  }, {
+  },  {
+    path: '/recordmanage',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/recordmanage',
+        name:'recordmanage',
+        component: () => import('@/views/RecordManage/index')
+      }
+    ]
+  },{
     path: '/setmanage',
     component: Layout,
     hidden: true,
     children: [
       {
         path: '/setmanage',
+        name:'setmanage',
         component: () => import('@/views/setmanage/index')
       },
       {
         path: '/setmanage/site',
+        name:'setmanage',
         component: () => import('@/views/setmanage/site')
       },
       {
         path: '/setmanage/warning',
+        name:'setmanage',
         component: () => import('@/views/setmanage/warning')
       }
     ]
