@@ -32,7 +32,7 @@ const constantRouterMap = [
     children: [
       {
         path: '/sitemanage',
-        name:'sitemanage',
+        name: 'sitemanage',
         component: () => import('@/views/SiteManage/index')
       }
     ]
@@ -43,8 +43,13 @@ const constantRouterMap = [
     children: [
       {
         path: '/devicemanage',
-        name:'devicemanage',
+        name: 'devicemanage',
         component: () => import('@/views/DeviceManage/index')
+      },
+      {
+        path: '/devicemanage/detail',
+        name: 'devicemanage-detail',
+        component: () => import('@/views/DeviceManage/detail')
       }
     ]
   }, {
@@ -54,7 +59,7 @@ const constantRouterMap = [
     children: [
       {
         path: '/operationmanage',
-        name:'operationmanage',
+        name: 'operationmanage',
         component: () => import('@/views/OperationManage/index')
       }
     ]
@@ -65,7 +70,7 @@ const constantRouterMap = [
     children: [
       {
         path: '/dispatchmanage',
-        name:'dispatchmanage',
+        name: 'dispatchmanage',
         component: () => import('@/views/DispatchManage/index')
       }
     ]
@@ -76,39 +81,39 @@ const constantRouterMap = [
     children: [
       {
         path: '/warningmanage',
-        name:'warningmanage',
+        name: 'warningmanage',
         component: () => import('@/views/WarningManage/index')
       }
     ]
-  },  {
+  }, {
     path: '/recordmanage',
     component: Layout,
     hidden: true,
     children: [
       {
         path: '/recordmanage',
-        name:'recordmanage',
+        name: 'recordmanage',
         component: () => import('@/views/RecordManage/index')
       }
     ]
-  },{
+  }, {
     path: '/setmanage',
     component: Layout,
     hidden: true,
     children: [
       {
         path: '/setmanage',
-        name:'setmanage',
+        name: 'setmanage',
         component: () => import('@/views/setmanage/index')
       },
       {
         path: '/setmanage/site',
-        name:'setmanage',
+        name: 'setmanage-site',
         component: () => import('@/views/setmanage/site')
       },
       {
         path: '/setmanage/warning',
-        name:'setmanage',
+        name: 'setmanage-warning',
         component: () => import('@/views/setmanage/warning')
       }
     ]

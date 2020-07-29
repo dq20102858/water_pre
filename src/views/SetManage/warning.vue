@@ -115,7 +115,10 @@ export default {
       }
     };
   },
-
+  mounted() {
+    //document.querySelector("#setmanage").classList.add("is-active");
+    //localStorage.setItem("activeMenu", "setmanage");
+  },
   created() {
     this.getSetDetail();
   },

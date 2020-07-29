@@ -234,6 +234,9 @@ export default {
       fatherStationList: []
     };
   },
+   mounted() {
+  //document.querySelector("#setmanage").classList.add("is-active");
+  },
   created() {
     this.getDataList();
   },

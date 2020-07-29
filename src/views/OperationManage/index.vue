@@ -8,6 +8,9 @@ export default {
       showDialog: false
     };
   },
+    mounted() {
+    localStorage.setItem("activeMenu", "operationmanage");
+  },
   created() {},
   methods: {}
 };

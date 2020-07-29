@@ -1,7 +1,7 @@
 <template>
   <div class="net-navbar" mode="horizontal">
     <div class="el-menu-top">
-      <el-menu router mode="horizontal">
+      <ul class="el-menu--horizontal el-menu">
         <li class="logos">
           <img class="logo" :src="require('@/assets/image/logo.png')" />
           <div class="gname">
@@ -14,60 +14,21 @@
             </h4>
           </div>
         </li>
-        <el-menu-item
-          id="sitemanage"
-          index="/sitemanage"
-          @click="activeMenuClick"
-          :class="activeMenu=='sitemanage'?'is-active':''"
+        <li
+          v-for="(item,index)  in menuList"
+          @click="routerLink(index,item.path)"
+          :key="item.id"
+          class="el-menu-item"
+          :class="isSelect === item.path ? 'is_active' : ''"
+          :id="item.path"
         >
-          <img class="iconss" :src="require('@/assets/image/m_zhandian.png')" />站点分布
-        </el-menu-item>
-        <el-menu-item
-          index="/devicemanage"
-          @click="activeMenuClick"
-          :class="activeMenu=='devicemanage'?'is-active':''"
-        >
-          <img class="iconss" :src="require('@/assets/image/m_shebeizhuangtai.png')" />设备状态
-        </el-menu-item>
-        <el-menu-item
-          index="/operationmanage"
-          @click="activeMenuClick"
-          :class="activeMenu=='operationmanage'?'is-active':''"
-        >
-          <img class="iconss" :src="require('@/assets/image/m_jilu.png')" />运维记录
-        </el-menu-item>
-        <el-menu-item
-          index="/dispatchmanage"
-          @click="activeMenuClick"
-          :class="activeMenu=='dispatchmanage'?'is-active':''"
-        >
-          <img class="iconss" :src="require('@/assets/image/m_jilu.png')" />运维派单
-        </el-menu-item>
-        <el-menu-item
-          index="/warningmanage"
-          @click="activeMenuClick"
-          :class="activeMenu=='warningmanage'?'is-active':''"
-        >
-          <img class="iconss" :src="require('@/assets/image/m_jilu.png')" />告警列表
-        </el-menu-item>
-        <el-menu-item
-          index="/recordmanage"
-          @click="activeMenuClick"
-          :class="activeMenu=='recordmanage'?'is-active':''"
-        >
-          <img class="iconss" :src="require('@/assets/image/m_kaopin.png')" />打卡记录
-        </el-menu-item>
-        <el-menu-item
-          index="/setmanage"
-          @click="activeMenuClick"
-          :class="activeMenu=='setmanage'?'is-active':''"
-        >
-          <img class="iconss" :src="require('@/assets/image/m_kaopin.png')" />设置
-        </el-menu-item>
-        <!-- <el-menu-item @click="logout">
-          <img class="iconss" :src="require('@/assets/image/m_kaopin.png')" />退出
-        </el-menu-item>-->
-      </el-menu>
+          <img class="iconss" :src="item.img" />
+          {{item.name}}
+        </li>
+        <li class="el-menu-item" @click="logout">
+          <img class="iconss" :src="require('@/assets/image/m_logout.png')" />退出
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -77,46 +38,61 @@ export default {
   name: "PageNavbar",
   data() {
     return {
-      activeMenu: "sitemanage"
+      isSelect: "",
+      activeMenu: "sitemanage",
+      menuList: [
+        {
+          name: "站点概览",
+          path: "/sitemanage",
+          img: require("@/assets/image/m_zhandian.png")
+        },
+        {
+          name: "设备状态",
+          path: "/devicemanage",
+          img: require("@/assets/image/m_shebeizhuangtai.png")
+        },
+        {
+          name: "运维记录",
+          path: "/operationmanage",
+          img: require("@/assets/image/m_jilu.png")
+        },
+        {
+          name: "运维派单",
+          path: "/dispatchmanage",
+          img: require("@/assets/image/m_jilu.png")
+        },
+        {
+          name: "告警列表",
+          path: "/warningmanage",
+          img: require("@/assets/image/m_jilu.png")
+        },
+        {
+          name: "打卡记录",
+          path: "/recordmanage",
+          img: require("@/assets/image/m_daka.png")
+        },
+        {
+          name: "设置",
+          path: "/setmanage",
+          img: require("@/assets/image/m_set.png")
+        }
+      ]
     };
   },
   computed: {
-    ...mapGetters(["sidebar", "name", "avatar", "roles", "sys_role", "system"])
+    ...mapGetters(["name", "avatar", "roles", "sys_role", "system"])
   },
-
   mounted() {
-    this.activeMenu = this.$route.name;
+    this.isSelect = sessionStorage.getItem("isSelect");
   },
-  watch: {
-    $route() {
-      this.activeMenu = this.$route.name;
-    }
-  },
-  created() {},
   methods: {
-    activeMenuClick() {
-      this.activeMenu = this.$route.name;
-      this.reload();
+    routerLink(index, path) {
+      this.isSelect = path;
+      console.log(path);
+      // 路由跳转
+      this.$router.push(path);
+      sessionStorage.setItem("isSelect", this.isSelect);
     },
-    // getBreadcrumb() {
-    //   let matched = this.$route.matched;
-    //   this.levelList = matched;
-
-    //   this.request({
-    //     url: "/apply/getApplyLogs",
-    //     method: "get"
-    //   }).then(response => {
-    //     let data = response.data;
-    //     if (data.status == 1) {
-    //       if (data.data.length > 0) {
-    //         this.isShow = true;
-    //       }
-    //     }
-    //   });
-    // },
-    // toggleSideBar() {
-    //   this.$store.dispatch("toggleSideBar");
-    // },
     logout() {
       this.$confirm("您确定要退出当前系统？", "提示", {
         confirmButtonText: "确定",

@@ -1,115 +1,54 @@
 <template>
   <div class="app-device-page">
-    <el-row :gutter="20" class="grid-menu">
-      <el-col :xs="8" :sm="4" :md="3" :lg="3" :xl="3">
-        <div class="left-menu">
-          <h5>设置</h5>
-          <el-menu router class="el-menu-vertical-demo">
-            <el-menu-item class="is-active">
-              <router-link to="/setmanage">人员设置</router-link>
-            </el-menu-item>
-            <el-menu-item>
-              <router-link to="/setmanage/site">站点设置</router-link>
-            </el-menu-item>
-            <el-menu-item>
-              <router-link to="/setmanage/warning">告警设置</router-link>
-            </el-menu-item>
-          </el-menu>
-        </div>
-      </el-col>
-      <el-col :xs="16" :sm="20" :md="21" :lg="21" :xl="21">
-        <div class="app-page-container ptopz">
-          <div class="app-page-select">
-            <el-form :inline="true">
-              <el-form-item class="el-search-item">
-                <!-- <el-select v-model="searchForm.type"  placeholder="请选择">
-                    <el-option label="全部" :value="0"></el-option>
-                    <el-option label="风机" :value="1"></el-option>
-                    <el-option label="水泵" :value="2"></el-option>
-                </el-select>-->
-                <el-input placeholder="请输入内容" v-model="searchKeyword" class="input-with-select">
-                  <el-select v-model="searchType" slot="append" placeholder="请选择">
-                    <el-option label="全部" value="0"></el-option>
-                    <el-option label="风机" value="1"></el-option>
-                    <el-option label="水泵" value="2"></el-option>
-                  </el-select>
-                </el-input>
-              </el-form-item>
-              <div class="el-serach noborder">
-                <el-button @click="showDialog">添加</el-button>
-              </div>
-            </el-form>
-          </div>
-
+    <div class="device-top">
+<div class="deleft">
+设备详情
+</div>
+<div class="deleft">
+设备详情
+</div>
+    </div>
           <div class="devicelist">
-            <el-row :gutter="20" v-if="dataList.length>0">
-              <el-col :span="8" v-for="item in dataList" :key="item.id">
-                <div class="grid" @click="detailEvent(item.id)">
-                  <div class="grid-title">
-                    {{item.name}}
-                    <span>{{item.model}}</span>
+                <div class="grid-title">
+                  {{item.name}}
+                  <span>{{item.model}}</span>
+                </div>
+                <div class="grid-content">
+                  <div class="grid-img">
+                    <img
+                      src="https://ipengtai.huanqiu.com/2020/0522/892e0f0f-7e47-49c6-a48c-69fad2096900.jpg"
+                    />
                   </div>
-                  <div class="grid-content">
-                    <div class="grid-img">
-                      <img
-                        src="https://ipengtai.huanqiu.com/2020/0522/892e0f0f-7e47-49c6-a48c-69fad2096900.jpg"
-                      />
-                    </div>
-                    <div class="grid-info">
-                      <p>
-                        设备编号：
-                        <em>{{item.number}}</em>
-                      </p>
-                      <p>
-                        设备状态：
-                        <em>{{item.work_status}}</em>
-                      </p>
-                      <p>
-                        运行时长：
-                        <em>{{item.days}}天</em>
-                      </p>
-                      <p>
-                        最近维保时间：
-                        <em>{{item.latest_time|formatDate}}</em>
-                      </p>
-                      <p>
-                        设备位置：
-                        <em>{{item.address}}</em>
-                      </p>
-                      <p>
-                        设备品牌：
-                        <em>{{item.brand}}</em>
-                      </p>
-                    </div>
+                  <div class="grid-info">
+                    <p>
+                      设备编号：
+                      <em>{{item.number}}</em>
+                    </p>
+                    <p>
+                      设备状态：
+                      <em>{{item.work_status}}</em>
+                    </p>
+                    <p>
+                      运行时长：
+                      <em>{{item.days}}天</em>
+                    </p>
+                    <p>
+                      最近维保时间：
+                      <em>{{item.latest_time|formatDate}}</em>
+                    </p>
+                    <p>
+                      设备位置：
+                      <em>{{item.address}}</em>
+                    </p>
+                    <p>
+                      设备品牌：
+                      <em>{{item.brand}}</em>
+                    </p>
                   </div>
                 </div>
-              </el-col>
-            </el-row>
-            <div class="app-pagination">
-              <el-pagination
-                class="pagination"
-                v-if="dataList.length !== 0"
-                layout="slot,prev, pager, next,slot,total"
-                :page-size="this.page_size"
-                :current-page="this.page_cur"
-                :total="this.page_data_total"
-                @current-change="pageChange"
-                prev-text="上一页"
-                next-text="下一页"
-              >
-                <button @click="pageToFirst" type="button" class="btn-first">
-                  <span>首页</span>
-                </button>
-                <button @click="pageToLast" type="button" class="btn-last">
-                  <span>尾页</span>
-                </button>
-              </el-pagination>
             </div>
-          </div>
-        </div>
-      </el-col>
-    </el-row>
-
+      
+       
     <el-dialog
       width="734px"
       class="dialog-device"
@@ -322,11 +261,7 @@ export default {
           }
         ]
       },
-      page_cur: 1,
-      page_data_total: 0,
-      page_size: 20,
-      page_total: 0,
-      dataList: [],
+      id:this.$route.params.id,
       stationList: [],
       stationOptions: [],
       stationOptionsProps: {
@@ -338,23 +273,18 @@ export default {
       searchKeyword: ""
     };
   },
-  mounted() {
-    // document
-    //   .querySelector(".el-menu li")
-    //   .classList.remove("is-active");
-    // document.querySelector("#devicemanage").classList.add("is-active");
-  },
+
   created() {
-    this.getDataList();
+    this.getDeviceDetail();
   },
   methods: {
-    getDataList() {
-      let page = this.page_cur;
+    getDeviceDetail() {
+      let id = this.id;
       this.request({
-        url: "/device/getDevicePages",
+        url: "/device/getDeviceDetail",
         method: "get",
         params: {
-          page
+          id
         }
       }).then(res => {
         let data = res.data;
@@ -367,19 +297,7 @@ export default {
         }
       });
     },
-    pageChange(value) {
-      this.page_cur = value;
-      this.getDataList();
-    },
-    pageToFirst() {
-      this.page_cur = 1;
-      this.getDataList();
-    },
-    pageToLast() {
-      this.page_cur = this.page_total;
-      this.getDataList();
-    },
-
+ 
     getStationList() {
       this.request({
         url: "/station/getStationLists",
@@ -436,16 +354,6 @@ export default {
         } else {
           console.log("操作失败！");
           return false;
-        }
-      });
-    },
-
-    detailEvent(id) {
-      alert(id);
-      this.$router.push({
-        path: "/devicemanage/detail",
-        query: {
-          id: id
         }
       });
     },

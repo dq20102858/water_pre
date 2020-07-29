@@ -8,9 +8,7 @@
       <div class="title-container">
         <img :src="require('@/assets/image/logo.png')" />
       </div>
-      <div class="corpname">
-        某公司智能污水处理站监控系统
-      </div>
+      <div class="corpname">某公司智能污水处理站监控系统</div>
       <el-form autocomplete="off" :model="loginForm" :rules="loginRules" ref="loginForm">
         <el-form-item prop="username">
           <el-input
@@ -58,7 +56,7 @@ export default {
         username: "",
         password: ""
       },
-     
+
       loginRules: {
         username: [
           {
@@ -66,7 +64,7 @@ export default {
             message: "请输入用户名",
             trigger: "blur"
           },
-         {
+          {
             pattern: /^[\u4e00-\u9fa5A-Za-z0-9\_]*$/,
             message: "请输入正确的用户名",
             trigger: "blur"
@@ -93,9 +91,9 @@ export default {
   },
   created() {},
   methods: {
-     handleLoginBlur(id,val){
-             this.disabled = !this.disabled
-     },
+    handleLoginBlur(id, val) {
+      this.disabled = !this.disabled;
+    },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
@@ -119,6 +117,7 @@ export default {
             .then(() => {
               this.loading = false;
               this.$router.push({ path: "/sitemanage" });
+              localStorage.setItem("activeMenu", "sitemanage");
             })
             .catch(() => {
               this.loading = false;
@@ -161,7 +160,13 @@ export default {
   background: #fff;
   border-radius: 12px;
 }
-.login-container  .corpname{text-align: center; font-size: 28px;font-weight: 700; color: #777; margin-bottom: 30px;}
+.login-container .corpname {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #777;
+  margin-bottom: 30px;
+}
 .login-container .title-container {
   text-align: center;
   margin-bottom: 35px;
@@ -171,7 +176,7 @@ export default {
   width: 88px;
 }
 .login-container .el-form-item {
-  margin-bottom:40px;
+  margin-bottom: 40px;
 }
 .login-container .el-input-group__prepend {
   border: 1px #338ff6 solid;
@@ -201,13 +206,15 @@ export default {
 .login-container .el-form-item__error {
   padding-top: 5px;
 }
-.login-container .el-button{font-size: 18px;}
+.login-container .el-button {
+  font-size: 18px;
+}
 .login-container .el-button:hover {
-background: #338ff6;
-border-color:#338ff6;
+  background: #338ff6;
+  border-color: #338ff6;
 }
 .login-container .el-button:focus {
-background: #338ff6;
-border-color:#338ff6;
+  background: #338ff6;
+  border-color: #338ff6;
 }
 </style>

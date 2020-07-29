@@ -238,6 +238,9 @@ export default {
       dataList: []
     };
   },
+   mounted() {
+   //document.querySelector("#setmanage").classList.add("is_active");
+  },
   created() {
     this.getDataList();
   },

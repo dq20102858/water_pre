@@ -15,7 +15,7 @@ p,div,h1,h2,h3,h4,ul,li,span{margin: 0;padding: 0;}
 ul,li{list-style-type: none}
 html {height: 100%;box-sizing: border-box;}
 *,*:before,*:after {box-sizing: inherit;}
-
+em,i{font-style: normal;}
 #app {height: 100%;}
  .el-tooltip__popper{ max-width:50%;line-height: 22px; }
 .app-wrapper{height: 100%;}
@@ -45,8 +45,8 @@ html {height: 100%;box-sizing: border-box;}
 .el-menu-top .el-menu--horizontal{overflow: hidden;border: none;}
 .el-menu-top .el-menu--horizontal .el-menu-item{height: 100px!important; float: left;background: none;color:#fff; font-size: 16px;font-weight: 400;padding:0 30px; line-height: 40px;}
 .el-menu-top .el-menu--horizontal .el-menu-item:hover{color:#fff; background-color:#294FB4!important;}
-.el-menu-top .el-menu--horizontal .el-menu-item.is-active {background-color: #294FB4!important;color: #fff!important;border-bottom: 0px solid #294FB4;}
-.el-menu-top .el-menu--horizontal .el-menu-item.is-active .el-submenu__title:hover {background-color:#294FB4!important;}
+.el-menu-top .el-menu--horizontal .el-menu-item.is_active {background-color: #294FB4!important;color: #fff!important;border-bottom: 0px solid #294FB4;}
+.el-menu-top .el-menu--horizontal .el-menu-item.is_active .el-submenu__title:hover {background-color:#294FB4!important;}
 .el-menu-top .iconss{ height:  30px;display: block;margin: 0 auto;margin-top:20px;}
 /* bg */
 .app-body-black{background: #000; }
