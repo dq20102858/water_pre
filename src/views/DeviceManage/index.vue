@@ -5,7 +5,7 @@
         <div class="left-menu">
           <h5>设置</h5>
           <el-menu router class="el-menu-vertical-demo">
-            <el-menu-item class="is-active">
+            <!-- <el-menu-item class="is-active">
               <router-link to="/setmanage">人员设置</router-link>
             </el-menu-item>
             <el-menu-item>
@@ -13,7 +13,7 @@
             </el-menu-item>
             <el-menu-item>
               <router-link to="/setmanage/warning">告警设置</router-link>
-            </el-menu-item>
+            </el-menu-item> -->
           </el-menu>
         </div>
       </el-col>
@@ -337,12 +337,6 @@ export default {
       searchType: "0",
       searchKeyword: ""
     };
-  },
-  mounted() {
-    // document
-    //   .querySelector(".el-menu li")
-    //   .classList.remove("is-active");
-    // document.querySelector("#devicemanage").classList.add("is-active");
   },
   created() {
     this.getDataList();

@@ -25,9 +25,9 @@
           <img class="iconss" :src="item.img" />
           {{item.name}}
         </li>
-        <li class="el-menu-item" @click="logout">
-          <img class="iconss" :src="require('@/assets/image/m_logout.png')" />退出
-        </li>
+        <!-- <li class="el-menu-item" @click="logout">
+          <img class="iconss" :src="require('@/assets/image/m_logout.png')" />退出系统
+        </li> -->
       </ul>
     </div>
   </div>
@@ -72,7 +72,7 @@ export default {
           img: require("@/assets/image/m_daka.png")
         },
         {
-          name: "设置",
+          name: "系统设置",
           path: "/setmanage",
           img: require("@/assets/image/m_set.png")
         }
