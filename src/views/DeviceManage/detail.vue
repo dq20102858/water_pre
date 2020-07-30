@@ -1,54 +1,104 @@
 <template>
-  <div class="app-device-page">
+  <div class="app-device-page-detail">
     <div class="device-top">
-<div class="deleft">
-设备详情
-</div>
-<div class="deleft">
-设备详情
-</div>
+      <div class="deleft">
+        <b>设备详情</b>
+        <el-button
+          type="primary"
+          style="background: #00ADFF;border: none;"
+          size="mini"
+          round
+          @click="editEvent"
+        >修改</el-button>
+        <el-button
+          type="primary"
+          style="background: #00ADFF;border: none;"
+          size="mini"
+          round
+          @click="deleteEvent"
+        >删除</el-button>
+        <el-button
+          type="primary"
+          style="background: #00ADFF;border: none;"
+          size="mini"
+          round
+          @click="back"
+        >返回</el-button>
+      </div>
+      <div class="deright">
+        运行天数： {{dataInfoList.name}}
+        <span>{{dataInfoList.create_time|formatDateTamp('date')}}</span>
+      </div>
     </div>
-          <div class="devicelist">
-                <div class="grid-title">
-                  {{item.name}}
-                  <span>{{item.model}}</span>
-                </div>
-                <div class="grid-content">
-                  <div class="grid-img">
-                    <img
-                      src="https://ipengtai.huanqiu.com/2020/0522/892e0f0f-7e47-49c6-a48c-69fad2096900.jpg"
-                    />
-                  </div>
-                  <div class="grid-info">
-                    <p>
-                      设备编号：
-                      <em>{{item.number}}</em>
-                    </p>
-                    <p>
-                      设备状态：
-                      <em>{{item.work_status}}</em>
-                    </p>
-                    <p>
-                      运行时长：
-                      <em>{{item.days}}天</em>
-                    </p>
-                    <p>
-                      最近维保时间：
-                      <em>{{item.latest_time|formatDate}}</em>
-                    </p>
-                    <p>
-                      设备位置：
-                      <em>{{item.address}}</em>
-                    </p>
-                    <p>
-                      设备品牌：
-                      <em>{{item.brand}}</em>
-                    </p>
-                  </div>
-                </div>
-            </div>
-      
-       
+    <div class="devicedetail">
+      <div class="grid-content">
+        <div class="grid-img">
+          <img :src="dataInfoList.img" />
+        </div>
+        <div class="grid-info">
+          <p>
+            设备名称：
+            <em>{{dataInfoList.name}}</em>
+          </p>
+          <p>
+            设备品牌：
+            <em>{{dataInfoList.brand}}</em>
+          </p>
+          <p>
+            今天能耗：
+            <em>度</em>
+          </p>
+          <p>
+            运行时长：
+            <em>{{dataInfoList.days}}天</em>
+          </p>
+          <p>
+            设备编号：
+            <em>{{dataInfoList.number}}</em>
+          </p>
+          <p>
+            设备状态：
+            <em>{{dataInfoList.work_status}}</em>
+          </p>
+          <p>
+            累积能耗：
+            <em>度</em>
+          </p>
+          <p>
+            最近维保时间：
+            <em>{{dataInfoList.latest_time|formatGetDate}}</em>
+          </p>
+          <p>
+            设备型号：
+            <em>{{dataInfoList.model}}</em>
+          </p>
+          <p>
+            采购人：
+            <em>{{dataInfoList.purchaser}}</em>
+          </p>
+          <p>
+            投入时间：
+            <em>{{dataInfoList.create_time|formatDateTamp('date')}}</em>
+          </p>
+          <p>
+            保质期：
+            <em>{{dataInfoList.warranty_time|formatGetDate}}</em>
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-content-chart">
+        <div class="chart-title">
+          <div class="titleleft">
+            <b>电流统计</b>
+            <em>单位：安培</em>
+          </div>
+          <div class="titleright"></div>
+        </div>
+        <div class="chart-main"></div>
+      </div>
+    </div>
+
     <el-dialog
       width="734px"
       class="dialog-device"
@@ -72,7 +122,6 @@
               v-model="formData.sid"
               :options="stationOptions"
               :props="stationOptionsProps"
-              @change="handleChange"
             ></el-cascader>
           </el-form-item>
           <el-form-item label="设备类型：" prop="type">
@@ -100,7 +149,9 @@
           <el-form-item label="质保期：" prop="warranty_time">
             <el-date-picker v-model="formData.warranty_time" type="date" placeholder="选择日期"></el-date-picker>
           </el-form-item>
-
+          <el-form-item label="采购人：" prop="purchaser">
+            <el-input v-model="formData.purchaser" autocomplete="off"></el-input>
+          </el-form-item>
           <el-form-item label="运行状态：" prop="work_status">
             <el-select v-model="formData.work_status" placeholder="请选择运行状态">
               <el-option label="正常" :value="1"></el-option>
@@ -139,7 +190,6 @@ export default {
       diaLogTitle: "添加人员信息",
       uploadAction: this.hostURL + "/upload/uploadFile",
       formData: {},
-      passwordOrg: "",
       formRules: {
         name: [
           {
@@ -213,6 +263,24 @@ export default {
             trigger: "blur"
           }
         ],
+        purchaser: [
+          {
+            required: true,
+            message: "请输入采购人",
+            trigger: "blur"
+          },
+          {
+            min: 2,
+            max: 10,
+            message: "请输入长度在2到10个字符",
+            trigger: "blur"
+          },
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
+          }
+        ],
         days: [
           {
             required: true,
@@ -261,43 +329,40 @@ export default {
           }
         ]
       },
-      id:this.$route.params.id,
-      stationList: [],
+      dataInfoList: [],
       stationOptions: [],
       stationOptionsProps: {
         value: "id",
         label: "name",
         children: "child"
-      },
-      searchType: "0",
-      searchKeyword: ""
+      }
     };
   },
 
   created() {
+    this.getStationList();
     this.getDeviceDetail();
   },
   methods: {
+    back() {
+      this.$router.go(-1);
+    },
     getDeviceDetail() {
-      let id = this.id;
       this.request({
         url: "/device/getDeviceDetail",
         method: "get",
-        params: {
-          id
-        }
+        params: { id: this.$route.query.id }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
-          this.dataList = data.data.data;
-          this.page_cur = parseInt(data.data.current_page);
-          this.page_total = data.data.last_page;
-          this.page_data_total = data.data.total;
-          this.page_size = data.data.per_page;
+          this.dataInfoList = data.data;
+
+          //   let farherId = this.getStationParentsById(data.data.sid);
+          //  console.log(farherId);
+          // this.dataInfoList.sid=[3,7];
         }
       });
     },
- 
     getStationList() {
       this.request({
         url: "/station/getStationLists",
@@ -305,46 +370,38 @@ export default {
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
-          this.stationList = data.data;
           this.stationOptions = data.data;
         }
       });
     },
-    handleChange(value) {
-      console.log(value);
-    },
-    showDialog() {
-      this.getStationList();
-      this.diaLogTitle = "添加信息";
-      this.diaLogFormVisible = true;
-      this.$nextTick(() => {
-        this.$refs["formRulesRef"].clearValidate();
+    getStationParentsById(childid) {
+      var fartherId;
+      var list = this.stationOptions;
+      this.stationOptions.forEach(element => {
+        element.child.forEach(e => {
+          if (e.id == childid) {
+            fartherId = element.id;
+          }
+        });
       });
-      this.formData = {
-        // title: "",
-        // description: "",
-        // recept_type: []
-      };
+      return [fartherId, childid];
     },
+
     addEvent() {
       const that = this;
       this.$refs["formRulesRef"].validate(valid => {
         if (valid) {
           let data = that.formData;
-          let url = "/device/addDevice";
-          let baseid = this.formData.id;
-          if (typeof baseid != "undefined") {
-            url = "/device/editDevice";
-          }
+          data.sid = that.formData.sid[1];
           this.request({
-            url: url,
+            url: "/device/editDevice",
             method: "post",
             data
           }).then(response => {
             var data = response.data;
             if (data.status == 1) {
               this.diaLogFormVisible = false;
-              this.getDataList();
+              this.getDeviceDetail();
               this.$message({
                 type: "success",
                 message: "保存成功！"
@@ -357,24 +414,11 @@ export default {
         }
       });
     },
-    editEvent(id) {
+    editEvent() {
       this.diaLogFormVisible = true;
-      this.diaLogTitle = "修改人员信息";
-      this.$nextTick(() => {
-        this.$refs["formRulesRef"].clearValidate();
-      });
-      this.request({
-        url: "/user/getUserDetail",
-        method: "get",
-        params: { id: id }
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          this.formData = data.data;
-          //console.log(this.userData.menus);
-          this.passwordOrg = data.data.password;
-        }
-      });
+      this.diaLogTitle = "修改信息";
+      this.formData = this.dataInfoList;
+      this.formData.sid = this.getStationParentsById(this.dataInfoList.sid);
     },
     deleteEvent(id) {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
@@ -385,9 +429,9 @@ export default {
       })
         .then(() => {
           this.request({
-            url: "/user/delUser",
+            url: "/device/deleteDevice",
             method: "post",
-            data: { id: id }
+            data: { id: this.$route.query.id }
           }).then(res => {
             let data = res.data;
             if (data.status == 1) {
@@ -395,7 +439,7 @@ export default {
                 type: "success",
                 message: "删除成功！"
               });
-              this.getDataList();
+              this.back();
             }
           });
         })
@@ -444,8 +488,28 @@ export default {
 };
 </script>
 <style>
-.app-device-page {
+.app-device-page-detail {
   padding: 20px;
+}
+.device-top {
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.device-top .deleft {
+  float: left;
+}
+.device-top .deleft b {
+  font-weight: 400;
+  font-size: 18px;
+  margin-right: 20px;
+}
+.device-top .deright {
+  float: right;
+  color: #666;
+  font-size: 14px;
+}
+.device-top .deright span {
+  padding-left: 20px;
 }
 .el-search-item .el-select .el-input {
   width: 100px;
@@ -455,57 +519,73 @@ export default {
 .el-search-item .el-select .el-input .el-select__caret {
   color: #fff;
 }
-.devicelist .el-row {
+.devicedetail .el-row {
   margin-bottom: 20px;
 }
-.devicelist .el-col {
+.devicedetail .el-col {
   border-radius: 4px;
   min-width: 200px;
 }
-.devicelist .grid-content {
-  padding: 20px;
+.devicedetail .grid-content {
+  padding: 40px 0px 30px 50px;
   background: #fff;
-  margin-bottom: 20px;
-  min-width: 200px;
-  background: #eef3ff;
+  border-radius: 6px;
   overflow: hidden;
+  box-shadow: 5px 1px 15px rgba(222, 222, 222, 0.9);
 }
-.devicelist .grid-title {
-  color: #fff;
-  background: #3a91f1;
-  font-size: 16px;
-  height: 40px;
-  line-height: 40px;
-  border-radius: 3px 3px 0 0;
-  padding-left: 20px;
-  text-align: left;
-  font-weight: 700;
-}
-.devicelist .grid-img {
+.devicedetail .grid-img {
   float: left;
   width: 100px;
   height: 150px;
-  margin-right: 20px;
+  margin-right: 40px;
   border-radius: 100%;
 }
-.devicelist .grid-img img {
-  margin-top: 25px;
+.devicedetail .grid-img img {
+  margin-top: 15px;
   float: left;
   width: 100px;
   height: 100px;
   border-radius: 100%;
 }
-.devicelist .grid-info p {
-  display: block;
-  padding-bottom: 10px;
+.devicedetail .grid-info p {
+  color: #333;
+  display: inline-block;
+  width: 21%;
+  padding-top: 20px;
+  font-size: 16px;
+}
+.devicedetail .grid-info p em {
   color: #666;
 }
-.devicelist .gcompany {
-  max-height: 55px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+.grid-content-chart {
+  border-radius: 6px;
+  margin-top: 30px;
+  background: #fff;
 
+  box-shadow: 5px 1px 15px rgba(222, 222, 222, 0.9);
+}
+.chart-title {
+  background: #4093ed;
+  border-radius: 6px 6px 0 0;
+  padding: 12px 15px;
+  color: #fff;
+  overflow: hidden;
+}
+.chart-title .titleleft {
+  float: left;
+}
+.chart-title .titleright {
+  float: right;
+}
+.chart-title b {
+  font-size: 16px;
+  margin-right: 20px;
+  font-weight: 400;
+}
+.chart-main {
+  min-height: 400px;
+}
+/**/
 .dialog-device .el-select {
   width: 100%;
 }

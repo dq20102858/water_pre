@@ -1,34 +1,53 @@
 <template>
   <div class="app-device-page">
     <el-row :gutter="20" class="grid-menu">
-      <el-col :xs="8" :sm="4" :md="3" :lg="3" :xl="3">
-        <div class="left-menu">
-          <h5>设置</h5>
+      <el-col :xs="8" :sm="3" :md="3" :lg="3" :xl="3">
+        <div class="left-menu-area">
+          <div class="input-so">
+            <el-input
+              placeholder="请输入内容"
+              prefix-icon="el-icon-search"
+              v-model="searchVillageName"
+              @input="searchVillageNameEvent"
+              clearable
+            ></el-input>
+          </div>
           <el-menu router class="el-menu-vertical-demo">
-            <!-- <el-menu-item class="is-active">
-              <router-link to="/setmanage">人员设置</router-link>
+            <el-menu-item
+              :class="searchVillageId === 0 ? 'active' : ''"
+              @click="searchVillageEvent(0)"
+            >
+              <span>全部</span>
             </el-menu-item>
-            <el-menu-item>
-              <router-link to="/setmanage/site">站点设置</router-link>
+            <el-menu-item
+              v-for="item in childStation"
+              :key="item.id"
+              :class="searchVillageId === item.id ? 'active' : ''"
+              @click="searchVillageEvent(item.id)"
+            >
+              <span>{{item.name}}</span>
             </el-menu-item>
-            <el-menu-item>
-              <router-link to="/setmanage/warning">告警设置</router-link>
-            </el-menu-item> -->
           </el-menu>
         </div>
       </el-col>
-      <el-col :xs="16" :sm="20" :md="21" :lg="21" :xl="21">
-        <div class="app-page-container ptopz">
-          <div class="app-page-select">
+      <el-col :xs="16" :sm="21" :md="21" :lg="21" :xl="21">
+        <div class="app-page-container" style="padding:20px">
+          <div class="app-page-select" style="padding: 0 10px">
             <el-form :inline="true">
               <el-form-item class="el-search-item">
-                <!-- <el-select v-model="searchForm.type"  placeholder="请选择">
-                    <el-option label="全部" :value="0"></el-option>
-                    <el-option label="风机" :value="1"></el-option>
-                    <el-option label="水泵" :value="2"></el-option>
-                </el-select>-->
-                <el-input placeholder="请输入内容" v-model="searchKeyword" class="input-with-select">
-                  <el-select v-model="searchType" slot="append" placeholder="请选择">
+                <el-input
+                  placeholder="请输入设备编号"
+                  @input="searchKeywordEvent"
+                  v-model="searchKeyword"
+                  class="input-with-select"
+                  clearable
+                >
+                  <el-select
+                    v-model="searchType"
+                    slot="append"
+                    placeholder="请选择"
+                    @change="searchTypeEvent"
+                  >
                     <el-option label="全部" value="0"></el-option>
                     <el-option label="风机" value="1"></el-option>
                     <el-option label="水泵" value="2"></el-option>
@@ -44,16 +63,14 @@
           <div class="devicelist">
             <el-row :gutter="20" v-if="dataList.length>0">
               <el-col :span="8" v-for="item in dataList" :key="item.id">
-                <div class="grid" @click="detailEvent(item.id)">
+                <div class="grid" @click="detailEvent(item.id)" title="点击查看详情">
                   <div class="grid-title">
                     {{item.name}}
                     <span>{{item.model}}</span>
                   </div>
                   <div class="grid-content">
                     <div class="grid-img">
-                      <img
-                        src="https://ipengtai.huanqiu.com/2020/0522/892e0f0f-7e47-49c6-a48c-69fad2096900.jpg"
-                      />
+                      <img :src="item.img" />
                     </div>
                     <div class="grid-info">
                       <p>
@@ -83,6 +100,7 @@
                     </div>
                   </div>
                 </div>
+                <div class="nodata" v-if="dataList.length == 0">暂无数据</div>
               </el-col>
             </el-row>
             <div class="app-pagination">
@@ -161,7 +179,9 @@
           <el-form-item label="质保期：" prop="warranty_time">
             <el-date-picker v-model="formData.warranty_time" type="date" placeholder="选择日期"></el-date-picker>
           </el-form-item>
-
+          <el-form-item label="采购人：" prop="purchaser">
+            <el-input v-model="formData.purchaser" autocomplete="off"></el-input>
+          </el-form-item>
           <el-form-item label="运行状态：" prop="work_status">
             <el-select v-model="formData.work_status" placeholder="请选择运行状态">
               <el-option label="正常" :value="1"></el-option>
@@ -169,7 +189,7 @@
             </el-select>
           </el-form-item>
         </div>
-        <el-form-item label="封面图片：" style="width:100%;">
+        <el-form-item label="封面图片：" style="width:100%;" prop="img">
           <el-upload
             ref="uploadfive"
             class="avatar-uploader"
@@ -200,7 +220,6 @@ export default {
       diaLogTitle: "添加人员信息",
       uploadAction: this.hostURL + "/upload/uploadFile",
       formData: {},
-      passwordOrg: "",
       formRules: {
         name: [
           {
@@ -264,8 +283,26 @@ export default {
           },
           {
             min: 2,
-            max: 20,
-            message: "请输入长度在2到20个字符",
+            max: 10,
+            message: "请输入长度在2到10个字符",
+            trigger: "blur"
+          },
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
+          }
+        ],
+        purchaser: [
+          {
+            required: true,
+            message: "请输入采购人",
+            trigger: "blur"
+          },
+          {
+            min: 2,
+            max: 10,
+            message: "请输入长度在2到10个字符",
             trigger: "blur"
           },
           {
@@ -320,6 +357,13 @@ export default {
             message: "请选择运行状态",
             trigger: "change"
           }
+        ],
+        img: [
+          {
+            required: true,
+            message: "请选择图片",
+            trigger: "change"
+          }
         ]
       },
       page_cur: 1,
@@ -327,29 +371,33 @@ export default {
       page_size: 20,
       page_total: 0,
       dataList: [],
-      stationList: [],
+      childStation: [],
       stationOptions: [],
       stationOptionsProps: {
         value: "id",
         label: "name",
         children: "child"
       },
+      searchVillageName: "",
+      searchVillageId: 0,
       searchType: "0",
       searchKeyword: ""
     };
   },
   created() {
+    this.getChildStationList();
     this.getDataList();
   },
   methods: {
     getDataList() {
       let page = this.page_cur;
+      let keyword = this.searchKeyword;
+      let type = this.searchType;
+      let sid = this.searchVillageId;
       this.request({
         url: "/device/getDevicePages",
         method: "get",
-        params: {
-          page
-        }
+        params: { keyword, type, sid, page }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
@@ -373,7 +421,37 @@ export default {
       this.page_cur = this.page_total;
       this.getDataList();
     },
-
+    searchVillageEvent(val) {
+      this.page_cur = 1;
+      this.searchVillageId = val;
+      this.getDataList();
+    },
+    searchKeywordEvent() {
+      this.page_cur = 1;
+      this.getDataList();
+    },
+    searchTypeEvent(val) {
+      this.page_cur = 1;
+      this.searchType = val;
+      console.log(val);
+      this.getDataList();
+    },
+    searchVillageNameEvent() {
+      this.getChildStationList();
+    },
+    getChildStationList() {
+      let name = this.searchVillageName;
+      this.request({
+        url: "/station/getChildStationLists",
+        method: "get",
+        params: { name }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.childStation = data.data;
+        }
+      });
+    },
     getStationList() {
       this.request({
         url: "/station/getStationLists",
@@ -381,7 +459,6 @@ export default {
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
-          this.stationList = data.data;
           this.stationOptions = data.data;
         }
       });
@@ -407,13 +484,9 @@ export default {
       this.$refs["formRulesRef"].validate(valid => {
         if (valid) {
           let data = that.formData;
-          let url = "/device/addDevice";
-          let baseid = this.formData.id;
-          if (typeof baseid != "undefined") {
-            url = "/device/editDevice";
-          }
+          data.sid = that.formData.sid[1];
           this.request({
-            url: url,
+            url: "/device/addDevice",
             method: "post",
             data
           }).then(response => {
@@ -433,59 +506,13 @@ export default {
         }
       });
     },
-
     detailEvent(id) {
-      alert(id);
       this.$router.push({
         path: "/devicemanage/detail",
         query: {
           id: id
         }
       });
-    },
-    editEvent(id) {
-      this.diaLogFormVisible = true;
-      this.diaLogTitle = "修改人员信息";
-      this.$nextTick(() => {
-        this.$refs["formRulesRef"].clearValidate();
-      });
-      this.request({
-        url: "/user/getUserDetail",
-        method: "get",
-        params: { id: id }
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          this.formData = data.data;
-          //console.log(this.userData.menus);
-          this.passwordOrg = data.data.password;
-        }
-      });
-    },
-    deleteEvent(id) {
-      this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
-        customClass: "el-message-box-new"
-      })
-        .then(() => {
-          this.request({
-            url: "/user/delUser",
-            method: "post",
-            data: { id: id }
-          }).then(res => {
-            let data = res.data;
-            if (data.status == 1) {
-              this.$message({
-                type: "success",
-                message: "删除成功！"
-              });
-              this.getDataList();
-            }
-          });
-        })
-        .catch(() => {});
     },
     //上传图片
     uploadExceed() {
@@ -531,10 +558,11 @@ export default {
 </script>
 <style>
 .app-device-page {
-  padding: 20px;
+  overflow: hidden;
 }
 .el-search-item .el-select .el-input {
-  width: 100px;
+  width: 80px;
+  text-align: center;
   background: #2b8cf9;
   color: #fff;
 }
@@ -547,6 +575,10 @@ export default {
 .devicelist .el-col {
   border-radius: 4px;
   min-width: 200px;
+}
+.devicelist .grid {
+  cursor: pointer;
+  margin: 10px 10px 30px 10px;
 }
 .devicelist .grid-content {
   padding: 20px;
@@ -565,7 +597,10 @@ export default {
   border-radius: 3px 3px 0 0;
   padding-left: 20px;
   text-align: left;
-  font-weight: 700;
+}
+.devicelist .grid-title span {
+  float: right;
+  padding-right: 20px;
 }
 .devicelist .grid-img {
   float: left;

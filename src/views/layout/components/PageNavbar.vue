@@ -18,8 +18,7 @@
           v-for="(item,index)  in menuList"
           @click="routerLink(index,item.path)"
           :key="item.id"
-          class="el-menu-item"
-          :class="isSelect === item.path ? 'is_active' : ''"
+          :class="isSelect === item.path ? 'el-menu-item is_active' : 'el-menu-item'"
           :id="item.path"
         >
           <img class="iconss" :src="item.img" />

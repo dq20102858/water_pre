@@ -178,6 +178,14 @@ em,i{font-style: normal;}
 .left-menu .el-menu-item.is-active {background: #fff;color: #333;}
 .left-menu .el-menu-item.is-active a{color: #333;}
 
+.left-menu-area {background: #428bf1;height: 100vh;}
+.left-menu-area .el-menu {background: none;border: none;}
+.left-menu-area .el-menu-item {background: none;color: #fff;height: 39px;line-height: 39px;white-space: nowrap;overflow: hidden;}
+.left-menu-area .el-menu-item  span{display: block; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;}
+.left-menu-area .el-menu-item:hover {background: #e5e8f2;color: #4688f1;font-weight: 700;}
+.left-menu-area .el-menu-item.active {background: #e5e8f2;color: #4688f1;font-weight: 700;}
+.left-menu-area .input-so {padding: 10px;}
+
 @media screen and (max-width: 1200px) {
     .el-menu-top    .el-menu--horizontal .el-menu-item {padding: 0 15px;
     }
