@@ -616,14 +616,14 @@ export default {
   width: 100px;
   height: 150px;
   margin-right: 20px;
-  border-radius: 100%;
+  border-radius: 6px;
 }
 .devicelist .grid-img img {
   margin-top: 25px;
   float: left;
   width: 100px;
   height: 100px;
-  border-radius: 100%;
+  border-radius: 6px;
 }
 .devicelist .grid-info p {
   display: block;
