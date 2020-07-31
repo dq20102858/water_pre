@@ -1,5 +1,5 @@
 <template>
-  <div class="login-container">运维</div>
+  <div class="login-container">打卡</div>
 </template>
 <script>
 export default {

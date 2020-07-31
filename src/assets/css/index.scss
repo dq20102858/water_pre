@@ -81,9 +81,12 @@ em,i{font-style: normal;}
 .app-operation .btn-edit:hover{ background: #EF964B;}
 .app-operation .btn-del{color: #fff;background: #ec5454;}
 .app-operation .btn-del:hover{background: #d44444;}
+.app-operation .btn-print{color: #fff;background: #009BFF;}
+.app-operation .btn-print:hover{background: #3AAAFF;}
 .app-operation .btn-green{border: 1px #26a80f solid;color: #26a80f}
 .app-operation .el-button[disabled]{color: #999;border: 1px #999 solid;}
 .app-operation .el-button:last-child{margin-right:0}
+
 /*el-form */
 .el-form-custom .el-form-item{margin-bottom: 25px;}
 .el-form-custom .el-form-item__label{color: #1d397a;}

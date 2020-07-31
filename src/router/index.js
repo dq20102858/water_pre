@@ -53,14 +53,14 @@ const constantRouterMap = [
       }
     ]
   }, {
-    path: '/operationmanage',
+    path: '/sttendancemanage',
     component: Layout,
     hidden: true,
     children: [
       {
-        path: '/operationmanage',
-        name: 'operationmanage',
-        component: () => import('@/views/OperationManage/index')
+        path: '/attendancemanage',
+        name: 'attendancemanage',
+        component: () => import('@/views/AttendanceManage/index')
       }
     ]
   }, {
@@ -94,6 +94,16 @@ const constantRouterMap = [
         path: '/recordmanage',
         name: 'recordmanage',
         component: () => import('@/views/RecordManage/index')
+      },
+      {
+        path: '/recordmanage/operation',
+        name: 'recordmanage-operation',
+        component: () => import('@/views/RecordManage/operation')
+      },
+      {
+        path: '/recordmanage/samplinglist',
+        name: 'recordmanage-samplinglist',
+        component: () => import('@/views/RecordManage/samplinglist')
       }
     ]
   }, {

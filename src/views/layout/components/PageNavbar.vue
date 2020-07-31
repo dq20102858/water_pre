@@ -52,7 +52,7 @@ export default {
         },
         {
           name: "运维记录",
-          path: "/operationmanage",
+          path: "/recordmanage",
           img: require("@/assets/image/m_jilu.png")
         },
         {
@@ -67,7 +67,7 @@ export default {
         },
         {
           name: "打卡记录",
-          path: "/recordmanage",
+          path: "/attendancemanage",
           img: require("@/assets/image/m_daka.png")
         },
         {

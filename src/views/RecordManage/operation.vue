@@ -32,77 +32,48 @@
       </el-col>
       <el-col :xs="16" :sm="21" :md="21" :lg="21" :xl="21">
         <div class="app-page-container" style="padding:20px">
-          <div class="app-page-select" style="padding: 0 10px">
+          <div class="app-page-select">
             <el-form :inline="true">
-              <el-form-item class="el-search-item">
-                <el-input
-                  placeholder="请输入设备编号"
-                  @input="searchKeywordEvent"
-                  v-model="searchKeyword"
-                  class="input-with-select"
-                  clearable
-                >
-                  <el-select
-                    v-model="searchType"
-                    slot="append"
-                    placeholder="请选择"
-                    @change="searchTypeEvent"
-                  >
-                    <el-option label="全部" value="0"></el-option>
-                    <el-option label="风机" value="1"></el-option>
-                    <el-option label="水泵" value="2"></el-option>
-                  </el-select>
-                </el-input>
+              <el-form-item class="el-form-item">
+                <el-button type="primary">全部</el-button>
               </el-form-item>
-              <div class="el-serach noborder">
-                <el-button @click="showDialog">添加</el-button>
-              </div>
+              <el-form-item class="el-form-item el-search-items">
+                <el-select v-model="searchType" @change="searchTypeEvent">
+                  <el-option label="维护记录" value="1"></el-option>
+                  <el-option label="运行记录" value="2"></el-option>
+                  <el-option label="采样化验单" value="3"></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item class="el-form-item">
+                <el-button type="primary">导入</el-button>
+              </el-form-item>
             </el-form>
           </div>
-
-          <div class="devicelist">
-            <el-row :gutter="20" v-if="dataList.length>0">
-              <el-col :span="8" v-for="item in dataList" :key="item.id">
-                <div class="grid" @click="detailEvent(item.id)" title="点击查看详情">
-                  <div class="grid-title">
-                    {{item.name}}
-                    <span>{{item.model}}</span>
+          <div class="app-table">
+            <el-table :data="dataList">
+              <el-table-column label="序号" width="80px">
+                <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
+              </el-table-column>
+              <el-table-column prop="create_time" label="记录时间"></el-table-column>
+              <el-table-column prop="electricity" label="电表读数（KWH）"></el-table-column>
+              <el-table-column prop="electricity_sum" label="累计读数">
+                <!-- <template slot-scope="scope">
+                  <span v-html="scope.row.number">吨</span>
+                </template>-->
+              </el-table-column>
+              <el-table-column prop="exception" label="异常情况"></el-table-column>
+              <el-table-column prop="user" label="巡查人员"></el-table-column>
+              <el-table-column prop="phone" label="联系电话"></el-table-column>
+              <el-table-column label="操作" width="190">
+                <template slot-scope="scope">
+                  <div class="app-operation">
+                    <el-button class="btn-print" size="mini" @click="printEvent(scope.row.id)">打印</el-button>
+                    <el-button class="btn-edit" size="mini" @click="detailEvent(scope.row.id)">详情</el-button>
+                    <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
                   </div>
-                  <div class="grid-content">
-                    <div class="grid-img">
-                      <img :src="item.img" />
-                    </div>
-                    <div class="grid-info">
-                      <p>
-                        设备编号：
-                        <em>{{item.number}}</em>
-                      </p>
-                      <p>
-                        设备状态：
-                        <em>{{item.work_status}}</em>
-                      </p>
-                      <p>
-                        运行时长：
-                        <em>{{item.days}}天</em>
-                      </p>
-                      <p>
-                        最近维保时间：
-                        <em>{{item.latest_time|formatDate}}</em>
-                      </p>
-                      <p>
-                        设备位置：
-                        <em>{{item.address}}</em>
-                      </p>
-                      <p>
-                        设备品牌：
-                        <em>{{item.brand}}</em>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="nodata" v-if="dataList.length == 0">暂无数据</div>
-              </el-col>
-            </el-row>
+                </template>
+              </el-table-column>
+            </el-table>
             <div class="app-pagination">
               <el-pagination
                 class="pagination"
@@ -135,15 +106,9 @@
       :close-on-click-modal="false"
       :visible.sync="diaLogFormVisible"
     >
-      <el-form
-        :model="formData"
-        class="el-form-custom"
-        :rules="formRules"
-        ref="formRulesRef"
-        label-width="120px"
-      >
-        <el-form-item label="设备名称：" prop="name">
-          <el-input v-model="formData.name" autocomplete="off"></el-input>
+      <el-form :model="formData" class="el-form-custom" label-width="120px">
+        <el-form-item label="设备名称：">
+          <el-input v-model="formData.station_name" autocomplete="off"></el-input>
         </el-form-item>
         <div class="el-form-item-inline">
           <el-form-item label="所属站点：" prop="sid">
@@ -207,165 +172,39 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="diaLogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="addEvent">确 定</el-button>
+        <el-button type="primary">确 定</el-button>
       </div>
     </el-dialog>
+    <button v-print="printObj" id="printBtn"></button>
+    <div id="printRecord">
+      <div class="printtop">
+        <h3>{{formData.user}}</h3>
+        <span>申报时间： {{formData.electricity_sum}}</span>
+        <span>申报人： {{formData.user}}</span>
+        <span>电话：{{formData.user}}</span>
+      </div>
+
+      <div class="printbom">
+        <p>注：监理需对此项施工或运输的相关条件（如材料设备已到位，边界条件已满足等），进行确认。</p>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
+      printRecord: false,
+      printObj: {
+        id: "#printRecord",
+        popTitle: " ",
+        extraCss: "",
+        extraHead: '<meta http-equiv="Content-Language"content="zh-cn"/>'
+      },
       diaLogFormVisible: false,
-      diaLogTitle: "添加人员信息",
+      diaLogTitle: "添加信息",
       uploadAction: this.hostURL + "/upload/uploadFile",
       formData: {},
-      formRules: {
-        name: [
-          {
-            required: true,
-            message: "请输入设备名称",
-            trigger: "blur"
-          },
-          {
-            min: 2,
-            max: 20,
-            message: "请输入长度在2到20个字符",
-            trigger: "blur"
-          },
-          {
-            pattern: /(^\S+).*(\S+$)/,
-            message: "开始和结尾不能有空格",
-            trigger: "blur"
-          }
-        ],
-        number: [
-          {
-            required: true,
-            message: "请输入设备编号",
-            trigger: "blur"
-          },
-          {
-            min: 2,
-            max: 20,
-            message: "请输入长度在2到20个字符",
-            trigger: "blur"
-          },
-          {
-            pattern: /(^\S+).*(\S+$)/,
-            message: "开始和结尾不能有空格",
-            trigger: "blur"
-          }
-        ],
-        model: [
-          {
-            required: true,
-            message: "请输入设备型号",
-            trigger: "blur"
-          },
-          {
-            min: 2,
-            max: 20,
-            message: "请输入长度在2到20个字符",
-            trigger: "blur"
-          },
-          {
-            pattern: /(^\S+).*(\S+$)/,
-            message: "开始和结尾不能有空格",
-            trigger: "blur"
-          }
-        ],
-        brand: [
-          {
-            required: true,
-            message: "请输入设备品牌",
-            trigger: "blur"
-          },
-          {
-            min: 2,
-            max: 10,
-            message: "请输入长度在2到10个字符",
-            trigger: "blur"
-          },
-          {
-            pattern: /(^\S+).*(\S+$)/,
-            message: "开始和结尾不能有空格",
-            trigger: "blur"
-          }
-        ],
-        purchaser: [
-          {
-            required: true,
-            message: "请输入采购人",
-            trigger: "blur"
-          },
-          {
-            min: 2,
-            max: 10,
-            message: "请输入长度在2到10个字符",
-            trigger: "blur"
-          },
-          {
-            pattern: /(^\S+).*(\S+$)/,
-            message: "开始和结尾不能有空格",
-            trigger: "blur"
-          }
-        ],
-        days: [
-          {
-            required: true,
-            message: "请输入运行时长",
-            trigger: "blur"
-          },
-          {
-            pattern: /^\d{1,5}$/,
-            message: "请输入1-5位正整数",
-            trigger: "blur"
-          }
-        ],
-        sid: [
-          {
-            required: true,
-            message: "请选择站点",
-            trigger: "change"
-          }
-        ],
-        type: [
-          {
-            required: true,
-            message: "请选择设备类型",
-            trigger: "change"
-          }
-        ],
-        latest_time: [
-          {
-            required: true,
-            message: "请选择维护时间",
-            trigger: "change"
-          }
-        ],
-        warranty_time: [
-          {
-            required: true,
-            message: "请选择质保期",
-            trigger: "change"
-          }
-        ],
-        work_status: [
-          {
-            required: true,
-            message: "请选择运行状态",
-            trigger: "change"
-          }
-        ],
-        img: [
-          {
-            required: true,
-            message: "请选择图片",
-            trigger: "change"
-          }
-        ]
-      },
       page_cur: 1,
       page_data_total: 0,
       page_size: 20,
@@ -380,8 +219,7 @@ export default {
       },
       searchVillageName: "",
       searchVillageId: 0,
-      searchType: "0",
-      searchKeyword: ""
+      searchType: "2"
     };
   },
   created() {
@@ -391,13 +229,12 @@ export default {
   methods: {
     getDataList() {
       let page = this.page_cur;
-      let keyword = this.searchKeyword;
       let type = this.searchType;
       let sid = this.searchVillageId;
       this.request({
-        url: "/device/getDevicePages",
+        url: "/record/getRecordRepairPages",
         method: "get",
-        params: { keyword, type, sid, page }
+        params: { type, sid, page }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
@@ -431,10 +268,13 @@ export default {
       this.getDataList();
     },
     searchTypeEvent(val) {
-      this.page_cur = 1;
-      this.searchType = val;
-      console.log(val);
-      this.getDataList();
+      if (val == 2) {
+        this.$router.push("/recordmanage/operation");
+      } else if (val == 3) {
+        this.$router.push("/recordmanage/samplinglist");
+      } else {
+        this.$router.push("/recordmanage");
+      }
     },
     searchVillageNameEvent() {
       this.getChildStationList();
@@ -466,53 +306,59 @@ export default {
     handleChange(value) {
       console.log(value);
     },
-    showDialog() {
-      this.getStationList();
-      this.diaLogTitle = "添加信息";
-      this.diaLogFormVisible = true;
-      this.$nextTick(() => {
-        this.$refs["formRulesRef"].clearValidate();
-      });
-      this.formData = {
-        // title: "",
-        // description: "",
-        // recept_type: []
-      };
-    },
-    addEvent() {
-      const that = this;
-      this.$refs["formRulesRef"].validate(valid => {
-        if (valid) {
-          let data = that.formData;
-          data.sid = that.formData.sid[1];
-          this.request({
-            url: "/device/addDevice",
-            method: "post",
-            data
-          }).then(response => {
-            var data = response.data;
-            if (data.status == 1) {
-              this.diaLogFormVisible = false;
-              this.getDataList();
-              this.$message({
-                type: "success",
-                message: "保存成功！"
-              });
-            }
-          });
-        } else {
-          console.log("操作失败！");
-          return false;
+    printEvent(id) {
+      this.request({
+        url: "record/getRecordDetail",
+        method: "get",
+        params: { id: id, type: parseInt(this.searchType) }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.formData = data.data;
+          document.getElementById("printBtn").click();
+
+          //  this.printRecord = true;
         }
       });
     },
     detailEvent(id) {
-      this.$router.push({
-        path: "/devicemanage/detail",
-        query: {
-          id: id
+      this.diaLogTitle = "查看信息";
+      this.diaLogFormVisible = true;
+      this.request({
+        url: "record/getRecordDetail",
+        method: "get",
+        params: { id: id, type: parseInt(this.searchType) }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.formData = data.data;
         }
       });
+    },
+    deleteEvent(id) {
+      this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/record/delRecord",
+            method: "post",
+            data: { id: id, type: parseInt(this.searchType) }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "删除成功！"
+              });
+              this.getDataList();
+            }
+          });
+        })
+        .catch(() => {});
     },
     //上传图片
     uploadExceed() {
@@ -560,71 +406,18 @@ export default {
 .app-device-page {
   overflow: hidden;
 }
-.el-search-item .el-select .el-input {
-  width: 80px;
-  text-align: center;
-  background: #2b8cf9;
-  color: #fff;border-radius: 0 4px 4px 0;
-}
-.el-search-item .el-select .el-input .el-select__caret {
-  color: #fff;
-}
-.devicelist .el-row {
-  margin-bottom: 20px;
-}
-.devicelist .el-col {
+.el-search-items .el-select .el-input {
+  width: 120px;
   border-radius: 4px;
-  min-width: 200px;
 }
-.devicelist .grid {
-  cursor: pointer;
-  margin: 10px 10px 30px 10px;
-}
-.devicelist .grid-content {
-  padding: 20px;
-  background: #fff;
-  margin-bottom: 20px;
-  min-width: 200px;
-  background: #eef3ff;
-  overflow: hidden;
-}
-.devicelist .grid-title {
+.el-search-items .el-select .el-input__inner {
+  background: #2b8cf9;
   color: #fff;
-  background: #3a91f1;
-  font-size: 16px;
-  height: 40px;
-  line-height: 40px;
-  border-radius: 3px 3px 0 0;
-  padding-left: 20px;
-  text-align: left;
+  text-align: center;
+  border: 0;
 }
-.devicelist .grid-title span {
-  float: right;
-  padding-right: 20px;
-}
-.devicelist .grid-img {
-  float: left;
-  width: 100px;
-  height: 150px;
-  margin-right: 20px;
-  border-radius: 100%;
-}
-.devicelist .grid-img img {
-  margin-top: 25px;
-  float: left;
-  width: 100px;
-  height: 100px;
-  border-radius: 100%;
-}
-.devicelist .grid-info p {
-  display: block;
-  padding-bottom: 10px;
-  color: #666;
-}
-.devicelist .gcompany {
-  max-height: 55px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.el-search-items .el-select .el-input .el-select__caret {
+  color: #fff;
 }
 
 .dialog-device .el-select {
@@ -667,5 +460,32 @@ export default {
   width: 178px;
   height: 178px;
   display: block;
+}
+/*print*/
+#printBtn {
+  display: none;
+}
+#printRecord {
+  display: none;
+}
+@media print {
+  #printRecord {
+    display: block;
+  }
+  #printRecord table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  #printRecord table td {
+    border: 1px solid #9db9fa;
+    line-height: 30px;
+    padding: 10px;
+  }
+  undefined {
+    display: none;
+  }
+  #printRecord .info {
+    width: 90px;
+  }
 }
 </style>
