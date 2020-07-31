@@ -87,7 +87,7 @@
                       </p>
                       <p>
                         最近维保时间：
-                        <em>{{item.latest_time|formatDate}}</em>
+                        <em>{{item.latest_time|formatGetDate}}</em>
                       </p>
                       <p>
                         设备位置：
@@ -169,15 +169,17 @@
           <el-form-item label="设备品牌：" prop="brand">
             <el-input v-model="formData.brand" autocomplete="off"></el-input>
           </el-form-item>
-
           <el-form-item label="运行时长：" prop="days">
             <el-input v-model="formData.days" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="最新维护时间：" prop="latest_time">
-            <el-date-picker v-model="formData.latest_time" type="date" placeholder="选择日期"></el-date-picker>
+          <el-form-item label=" 投入时间：" prop="warranty_time">
+            <el-date-picker v-model="formData.warranty_time" type="date" placeholder="选择日期"></el-date-picker>
           </el-form-item>
           <el-form-item label="质保期：" prop="warranty_time">
             <el-date-picker v-model="formData.warranty_time" type="date" placeholder="选择日期"></el-date-picker>
+          </el-form-item>
+          <el-form-item label="最新维护时间：" prop="latest_time">
+            <el-date-picker v-model="formData.latest_time" type="date" placeholder="选择日期"></el-date-picker>
           </el-form-item>
           <el-form-item label="采购人：" prop="purchaser">
             <el-input v-model="formData.purchaser" autocomplete="off"></el-input>
@@ -564,7 +566,8 @@ export default {
   width: 80px;
   text-align: center;
   background: #2b8cf9;
-  color: #fff;border-radius: 0 4px 4px 0;
+  color: #fff;
+  border-radius: 0 4px 4px 0;
 }
 .el-search-item .el-select .el-input .el-select__caret {
   color: #fff;

@@ -58,7 +58,7 @@
           </p>
           <p>
             设备状态：
-            <em>{{dataInfoList.work_status}}</em>
+            <em>{{dataInfoList.work_status==1?"正常":"异常"}}</em>
           </p>
           <p>
             累积能耗：
@@ -139,15 +139,17 @@
           <el-form-item label="设备品牌：" prop="brand">
             <el-input v-model="formData.brand" autocomplete="off"></el-input>
           </el-form-item>
-
           <el-form-item label="运行时长：" prop="days">
             <el-input v-model="formData.days" autocomplete="off"></el-input>
           </el-form-item>
+          <el-form-item label="投入时间：" prop="create_time">
+            <el-date-picker v-model="formData.create_time" type="date" placeholder="选择日期"></el-date-picker>
+          </el-form-item>
+           <el-form-item label="质保期：" prop="warranty_time">
+            <el-date-picker v-model="formData.warranty_time" type="date" placeholder="选择日期"></el-date-picker>
+          </el-form-item>
           <el-form-item label="最新维护时间：" prop="latest_time">
             <el-date-picker v-model="formData.latest_time" type="date" placeholder="选择日期"></el-date-picker>
-          </el-form-item>
-          <el-form-item label="质保期：" prop="warranty_time">
-            <el-date-picker v-model="formData.warranty_time" type="date" placeholder="选择日期"></el-date-picker>
           </el-form-item>
           <el-form-item label="采购人：" prop="purchaser">
             <el-input v-model="formData.purchaser" autocomplete="off"></el-input>
@@ -304,6 +306,13 @@ export default {
           {
             required: true,
             message: "请选择设备类型",
+            trigger: "change"
+          }
+        ],
+        create_time: [
+          {
+            required: true,
+            message: "请选择投入时间",
             trigger: "change"
           }
         ],

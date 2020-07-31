@@ -179,13 +179,9 @@
     <div id="printRecord">
       <div class="printtop">
         <h3>{{formData.user}}</h3>
-        <span>申报时间： {{formData.electricity_sum}}</span>
-        <span>申报人： {{formData.user}}</span>
-        <span>电话：{{formData.user}}</span>
       </div>
-
       <div class="printbom">
-        <p>注：监理需对此项施工或运输的相关条件（如材料设备已到位，边界条件已满足等），进行确认。</p>
+        <p>注。</p>
       </div>
     </div>
   </div>

@@ -26,7 +26,7 @@
         </li>
         <!-- <li class="el-menu-item" @click="logout">
           <img class="iconss" :src="require('@/assets/image/m_logout.png')" />退出系统
-        </li> -->
+        </li>-->
       </ul>
     </div>
   </div>
@@ -58,12 +58,12 @@ export default {
         {
           name: "运维派单",
           path: "/dispatchmanage",
-          img: require("@/assets/image/m_jilu.png")
+          img: require("@/assets/image/m_paidan.png")
         },
         {
           name: "告警列表",
           path: "/warningmanage",
-          img: require("@/assets/image/m_jilu.png")
+          img: require("@/assets/image/m_alert.png")
         },
         {
           name: "打卡记录",
