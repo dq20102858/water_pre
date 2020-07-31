@@ -64,16 +64,26 @@
               <el-table-column prop="reason" label="告警原因" v-if="this.searchType!=3"></el-table-column>
               <el-table-column prop="create_time" label="告警时间"></el-table-column>
               <el-table-column prop="address" label="发声位置"></el-table-column>
-              <el-table-column prop="is_repair" label="是否修复" v-if="this.searchType!=3"></el-table-column>
-              <el-table-column label="操作" width="120">
+              <el-table-column prop="is_repair" label="是否修复" v-if="this.searchType!=3">
+                <template slot-scope="scope">
+                  <span v-if="scope.row.is_repair==1">是</span>
+                  <span v-else>
+                    <el-button class="btn-sele"  @click="repairEvent(scope.row.id,1)">是</el-button>
+                  <el-button class="btn-sele mar5"  @click="repairEvent(scope.row.id,0)">否 </el-button>
+                  </span>
+                </template>
+              </el-table-column>
+              <el-table-column label="操作"  v-if="this.searchType==3" width="150">
                 <template slot-scope="scope">
                   <div class="app-operation">
-                    <el-button
-                      class="btn-del"
-                      size="mini"
-                      @click="videoEvent(scope.row.id)"
-                      v-if="this.searchType==3"
-                    >查看视频</el-button>
+                    <a  class="btn-edit" target="_blank" :href="scope.row.video_url">查看视频</a>
+                    <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
+                  </div>
+                </template>
+              </el-table-column>
+                 <el-table-column label="操作"  v-if="this.searchType !=3"  width="70">
+                <template slot-scope="scope">
+                  <div class="app-operation">
                     <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
                   </div>
                 </template>
@@ -184,6 +194,23 @@ export default {
           this.childStation = data.data;
         }
       });
+    },  
+    repairEvent(id,flag) {
+     
+          this.request({
+            url: "/alert/isRepair",
+            method: "post",
+            data: { id: id, type: this.searchType,is_repair:flag }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+                this.getDataList();
+              this.$message({
+                type: "success",
+                message: "设置成功！"
+              });
+            }
+          });
     },
     deleteEvent(id) {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
@@ -200,11 +227,12 @@ export default {
           }).then(res => {
             let data = res.data;
             if (data.status == 1) {
+                this.getDataList();
               this.$message({
                 type: "success",
                 message: "删除成功！"
               });
-              this.back();
+             
             }
           });
         })
