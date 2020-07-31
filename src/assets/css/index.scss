@@ -63,7 +63,7 @@ em,i{font-style: normal;}
 .el-serach.noborder{border: none;}
 .el-serach .el-input {width: 178px;}
 .el-serach .el-input__inner {background: none;border: none;color: #338ff6;width: 178px;}
-.el-serach .el-button {background: #338ff6;color: #fff;}
+.el-serach .el-button {background: #338ff6;border: 1px #338ff6 solid; color: #fff;}
 /* table css */
 .app-table .el-table-column--selection .cell{padding-left: 17px;}
 .app-table .el-table__header-wrapper{background: #4093ED;border-radius: 3px 3px 0 0;padding: 0 0;}
@@ -187,8 +187,8 @@ em,i{font-style: normal;}
 .left-menu-area .el-menu {background: none;border: none;}
 .left-menu-area .el-menu-item {background: none;color: #fff;height: 39px;line-height: 39px;white-space: nowrap;overflow: hidden;}
 .left-menu-area .el-menu-item  span{display: block; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;}
-.left-menu-area .el-menu-item:hover {background: #e5e8f2;color: #4688f1;font-weight: 700;}
-.left-menu-area .el-menu-item.active {background: #e5e8f2;color: #4688f1;font-weight: 700;}
+.left-menu-area .el-menu-item:hover {background:#2377fc;color: #fff;}
+.left-menu-area .el-menu-item.active {background: #fff;color: #4688f1;}
 .left-menu-area .input-so {padding: 10px;}
 
 @media screen and (max-width: 1200px) {

@@ -43,7 +43,7 @@
                   clearable
                 ></el-input>
               </el-form-item>
-              <el-form-item class="el-form-item el-search-items">
+              <el-form-item class="el-form-item el-search-item-org">
                 <el-select v-model="searchStatus" @change="searchStatusEvent">
                   <el-option label="全部" value="0"></el-option>
                   <el-option label="已完成" value="2"></el-option>
@@ -79,7 +79,7 @@
               <el-table-column prop="status" label="状态">
                 <template slot-scope="scope">
                   <span v-if="scope.row.status==2">已完成</span>
-                  <span v-else>未完成</span>
+                  <span style="color:#999" v-else>未完成</span>
                 </template>
               </el-table-column>
               <el-table-column prop="type" label="维保事项">
@@ -97,7 +97,7 @@
               <el-table-column label="操作" width="190">
                 <template slot-scope="scope">
                   <div class="app-operation">
-                    <el-button class="btn-apply" size="mini" @click="printEvent(scope.row.id)">审批</el-button>
+                    <el-button class="btn-apply" size="mini" @click="applyEvent(scope.row.id)">审批</el-button>
                     <el-button class="btn-edit" size="mini" @click="detailEvent(scope.row.id)">详情</el-button>
                     <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
                   </div>
@@ -131,35 +131,46 @@
 
     <el-dialog
       width="734px"
-      class="dialog-device"
-      :model="formData"
-      :rules="formRules"
-      ref="formRulesRef"
+      class="dialog-dispatch"
       :title="this.diaLogTitle"
       :close-on-click-modal="false"
       :visible.sync="diaLogFormVisible"
     >
-      <el-form :model="formData" class="el-form-custom" label-width="120px">
-        <div class="el-form-item-inline">
+      <el-form
+        :model="formData"
+        :rules="formRules"
+        ref="formRulesRef"
+        class="el-form-custom"
+        label-width="120px"
+      >
+        <div class="el-form-item-inlines">
           <el-form-item label="站点名：" prop="sid">
             <el-cascader
               v-model="formData.sid"
               :options="stationOptions"
               :props="stationOptionsProps"
-              @change="handleChange"
             ></el-cascader>
           </el-form-item>
           <el-form-item label="指派人：" prop="assigner_id">
-            <el-select v-model="formData.assigner_id" placeholder="请选择设备类型">
-              <el-option label="风机" :value="1"></el-option>
-              <el-option label="水泵" :value="2"></el-option>
+            <el-select
+              v-model="formData.assigner_id"
+              filterable
+              placeholder="请选择 或搜索"
+              @change="userChange($event)"
+            >
+              <el-option
+                v-for="item in userList"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id"
+              ></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="职位：" prop="role">
-            <el-input v-model="formData.role" autocomplete="off" readonly></el-input>
+          <el-form-item label="职位：">
+            <el-input v-model="formData.role" autocomplete="off" disabled></el-input>
           </el-form-item>
-          <el-form-item label="手机号：" prop="mobile">
-            <el-input v-model="formData.mobile" autocomplete="off" readonly></el-input>
+          <el-form-item label="手机号：">
+            <el-input v-model="formData.phone" autocomplete="off" disabled></el-input>
           </el-form-item>
           <el-form-item label="派单事项：" prop="type">
             <el-select v-model="formData.type" placeholder="请选择设备类型">
@@ -173,12 +184,51 @@
           </el-form-item>
         </div>
         <el-form-item label="维修内容：" prop="content">
-          <el-input type="textarea" v-model="formData.content"></el-input>
+          <el-input type="textarea" v-model="formData.content" rows="5"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="diaLogFormVisible = false">取 消</el-button>
-        <el-button type="primary">确 定</el-button>
+        <el-button type="primary" @click="addEvent">确 定</el-button>
+      </div>
+    </el-dialog>
+
+    <el-dialog
+      width="734px"
+      class="dialog-dispatch"
+      title="派单详情"
+      :close-on-click-modal="false"
+      :visible.sync="diaLogFormDetailVisible"
+    >
+      <el-form :model="formData" class="el-form-custom" label-width="120px">
+        <div class="el-form-item-detail">
+          <el-form-item label="站点名：">
+            <div class="disp-info">{{formData.station_name}}</div>
+          </el-form-item>
+          <el-form-item label="指派人：">
+            <div class="disp-info">{{formData.assigner}}</div>
+          </el-form-item>
+          <el-form-item label="职位：">
+            <div class="disp-info">{{formData.role}}</div>
+          </el-form-item>
+          <el-form-item label="手机号：">
+            <div class="disp-info">{{formData.phone}}</div>
+          </el-form-item>
+          <el-form-item label="派单事项：">
+            <div class="disp-info" v-if="formData.type==1">设备维修</div>
+            <div class="disp-info" v-if="formData.type==2">例行维保</div>
+            <div class="disp-info" v-if="formData.type==3">运行检查</div>
+          </el-form-item>
+          <el-form-item label="指派时间：">
+            <div class="disp-info">{{formData.assign_time}}</div>
+          </el-form-item>
+        </div>
+        <el-form-item label="维修内容：">
+          <div class="disp-info">{{formData.content}}</div>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="diaLogFormDetailVisible=false">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -189,7 +239,7 @@ export default {
     return {
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
-      uploadAction: this.hostURL + "/upload/uploadFile",
+      diaLogFormDetailVisible: false,
       formData: {},
       formRules: {
         sid: [
@@ -221,7 +271,7 @@ export default {
           }
         ],
         content: [
-          { min: 2, max: 20, message: "长度在2到200个字符", trigger: "blur" }
+          { min: 2, max: 200, message: "长度在2到200个字符", trigger: "blur" }
         ]
       },
       page_cur: 1,
@@ -229,6 +279,7 @@ export default {
       page_size: 20,
       page_total: 0,
       dataList: [],
+      userList: [],
       childStation: [],
       stationOptions: [],
       stationOptionsProps: {
@@ -325,12 +376,29 @@ export default {
         }
       });
     },
-    handleChange(value) {
-      console.log(value);
+    getUsersList() {
+      this.request({
+        url: "/assign/getUsersLists",
+        method: "get"
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.userList = data.data;
+        }
+      });
+    },
+    userChange(e) {
+      this.userList.forEach(ele => {
+        if (ele.id == e) {
+          this.formData.role = ele.role_id==1?"管理员":"维保人员";
+          this.formData.phone = ele.phone;
+        }
+      });
     },
     //添加编辑
     addShowDialog() {
       this.getStationList();
+      this.getUsersList();
       this.diaLogFormVisible = true;
       this.diaLogTitle = "发起派单";
       this.$nextTick(() => {
@@ -356,6 +424,7 @@ export default {
             var data = response.data;
             if (data.status == 1) {
               this.diaLogFormVisible = false;
+              this.searchType = this.formData.type.toString();
               this.getDataList();
               this.$message({
                 type: "success",
@@ -369,34 +438,43 @@ export default {
         }
       });
     },
-    printEvent(id) {
+    detailEvent(id) {
+      this.diaLogFormDetailVisible = true;
       this.request({
-        url: "record/getRecordDetail",
+        url: "/assign/getAssignDetail",
         method: "get",
-        params: { id: id, type: parseInt(this.searchType) }
+        params: { id: id }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
           this.formData = data.data;
-          document.getElementById("printBtn").click();
-
-          //  this.printRecord = true;
         }
       });
     },
-    detailEvent(id) {
-      this.diaLogTitle = "查看信息";
-      this.diaLogFormVisible = true;
-      this.request({
-        url: "record/getRecordDetail",
-        method: "get",
-        params: { id: id, type: parseInt(this.searchType) }
-      }).then(res => {
-        let data = res.data;
-        if (data.status == 1) {
-          this.formData = data.data;
-        }
-      });
+    applyEvent(id) {
+      this.$confirm("请确认派单是否完成？", "提示", {
+        confirmButtonText: "已完成",
+        cancelButtonText: "未完成",
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/assign/checkAssign",
+            method: "post",
+            data: { id: id, status: 2 }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              // this.$message({
+              //   type: "success",
+              //   message: "删除成功！"
+              // });
+              this.getDataList();
+            }
+          });
+        })
+        .catch(() => {});
     },
     deleteEvent(id) {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
@@ -407,7 +485,7 @@ export default {
       })
         .then(() => {
           this.request({
-            url: "/record/delRecord",
+            url: "/assign/deleteAssign",
             method: "post",
             data: { id: id, type: parseInt(this.searchType) }
           }).then(res => {
@@ -422,44 +500,6 @@ export default {
           });
         })
         .catch(() => {});
-    },
-    //上传图片
-    uploadExceed() {
-      this.$message({
-        type: "warning",
-        message: `最多可以上传1张图片`
-      });
-    },
-    uploadSuccess(res, file) {
-      console.log("图上传成功", res);
-      this.$set(this.formData, "img", res.data.url);
-    },
-    uploadBefore(file) {
-      var filename = file.name.substring(file.name.lastIndexOf(".") + 1);
-      const extension =
-        filename === "GIF" ||
-        filename === "gif" ||
-        filename === "jpeg" ||
-        filename === "jpg" ||
-        filename === "JPG" ||
-        filename === "png" ||
-        filename === "PNG";
-      const isLtM = file.size / 1024 / 1024 < 2;
-      if (!extension) {
-        this.$message({
-          message: "上传图片只能是 jpg  png  gif 格式",
-          type: "error"
-        });
-        return false;
-      }
-      if (!isLtM) {
-        this.$message({
-          message: "上传图片大小不能超过 2MB",
-          type: "error"
-        });
-        return false;
-      }
-      return extension || isLtM;
     }
     //
   }
@@ -469,6 +509,20 @@ export default {
 .app-device-page {
   overflow: hidden;
 }
+.el-search-item-org .el-select .el-input {
+  width: 80px;
+  border-radius: 4px;
+}
+.el-search-item-org .el-select .el-input__inner {
+  background: #f45e23;
+  color: #fff;
+  text-align: center;
+  border: 0;
+}
+.el-search-item-org .el-select .el-input .el-select__caret {
+  color: #fff;
+}
+
 .el-search-items .el-select .el-input {
   width: 120px;
   border-radius: 4px;
@@ -483,72 +537,30 @@ export default {
   color: #fff;
 }
 
-.dialog-device .el-select {
+.dialog-dispatch .el-select {
   width: 100%;
 }
-.dialog-device .el-form-item-inline {
+.dialog-dispatch .el-form-item-inline {
   display: inline-block;
 }
-.dialog-device .el-form-item-inline .el-form-item {
+.dialog-dispatch .el-form-item-inline .el-form-item {
   display: inline-block;
 }
-.dialog-device .el-form-item-block {
+.dialog-dispatch .el-form-item-block {
   display: block;
 }
-.dialog-device .el-form-item-inline .el-checkbox-group {
+.dialog-dispatch .el-form-item-inline .el-checkbox-group {
   margin-left: 110px;
 }
-.dialog-device .el-form-item-inline .el-input__inner {
+.dialog-dispatch .el-form-item-inline .el-input__inner {
   width: 220px;
 }
-.avatar-uploader .el-upload {
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
+
+.el-form-item-detail .el-form-item {
+  margin-bottom: 5px;
 }
-.avatar-uploader .el-upload:hover {
-  border-color: #409eff;
-}
-.avatar-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
-  width: 178px;
-  height: 178px;
-  line-height: 178px;
-  text-align: center;
-}
-.avatar {
-  width: 178px;
-  height: 178px;
-  display: block;
-}
-/*print*/
-#printBtn {
-  display: none;
-}
-#printRecord {
-  display: none;
-}
-@media print {
-  #printRecord {
-    display: block;
-  }
-  #printRecord table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  #printRecord table td {
-    border: 1px solid #9db9fa;
-    line-height: 30px;
-    padding: 10px;
-  }
-  undefined {
-    display: none;
-  }
-  #printRecord .info {
-    width: 90px;
-  }
+.el-form-item-detail .disp-info {
+  line-height: 28px;
+  margin-top: 5px;
 }
 </style>

@@ -142,8 +142,8 @@
           <el-form-item label="运行时长：" prop="days">
             <el-input v-model="formData.days" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="投入时间：" prop="create_time">
-            <el-date-picker v-model="formData.create_time" type="date" placeholder="选择日期"></el-date-picker>
+          <el-form-item label="投入时间：" prop="use_time">
+            <el-date-picker v-model="formData.use_time" type="date" placeholder="选择日期"></el-date-picker>
           </el-form-item>
            <el-form-item label="质保期：" prop="warranty_time">
             <el-date-picker v-model="formData.warranty_time" type="date" placeholder="选择日期"></el-date-picker>
@@ -309,7 +309,7 @@ export default {
             trigger: "change"
           }
         ],
-        create_time: [
+        use_time: [
           {
             required: true,
             message: "请选择投入时间",

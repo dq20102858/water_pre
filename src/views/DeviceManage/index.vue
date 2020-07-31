@@ -90,12 +90,12 @@
                         <em>{{item.latest_time|formatGetDate}}</em>
                       </p>
                       <p>
-                        设备位置：
-                        <em>{{item.address}}</em>
-                      </p>
-                      <p>
                         设备品牌：
                         <em>{{item.brand}}</em>
+                      </p>
+                      <p>
+                        设备位置：
+                        <em :title="item.address">{{item.address}}</em>
                       </p>
                     </div>
                   </div>
@@ -172,8 +172,8 @@
           <el-form-item label="运行时长：" prop="days">
             <el-input v-model="formData.days" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label=" 投入时间：" prop="warranty_time">
-            <el-date-picker v-model="formData.warranty_time" type="date" placeholder="选择日期"></el-date-picker>
+          <el-form-item label=" 投入时间：" prop="use_time">
+            <el-date-picker v-model="formData.use_time" type="date" placeholder="选择日期"></el-date-picker>
           </el-form-item>
           <el-form-item label="质保期：" prop="warranty_time">
             <el-date-picker v-model="formData.warranty_time" type="date" placeholder="选择日期"></el-date-picker>
@@ -336,6 +336,13 @@ export default {
           {
             required: true,
             message: "请选择设备类型",
+            trigger: "change"
+          }
+        ],
+        use_time: [
+          {
+            required: true,
+            message: "请选择投入时间",
             trigger: "change"
           }
         ],
@@ -577,7 +584,6 @@ export default {
 }
 .devicelist .el-col {
   border-radius: 4px;
-  min-width: 200px;
 }
 .devicelist .grid {
   cursor: pointer;
@@ -587,9 +593,9 @@ export default {
   padding: 20px;
   background: #fff;
   margin-bottom: 20px;
-  min-width: 200px;
   background: #eef3ff;
   overflow: hidden;
+  min-height:170px;
 }
 .devicelist .grid-title {
   color: #fff;
@@ -622,12 +628,15 @@ export default {
 .devicelist .grid-info p {
   display: block;
   padding-bottom: 10px;
-  color: #666;
-}
-.devicelist .gcompany {
-  max-height: 55px;
+  color: #666;  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.devicelist .grid-info p em {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 22px;  
+
 }
 
 .dialog-device .el-select {
