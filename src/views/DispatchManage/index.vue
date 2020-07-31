@@ -563,4 +563,5 @@ export default {
   line-height: 28px;
   margin-top: 5px;
 }
+.dd{display: inline-block;overflow-y: auto;}
 </style>
