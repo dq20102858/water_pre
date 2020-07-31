@@ -4,9 +4,8 @@
       <el-col :xs="8" :sm="3" :md="3" :lg="3" :xl="3">
         <div class="left-menu-area">
           <div class="input-so">
-            <el-input
+            <el-input prefix-icon="el-icon-search"
               placeholder="请输入内容"
-              prefix-icon="el-icon-search"
               v-model="searchVillageName"
               @input="searchVillageNameEvent"
               clearable
@@ -31,11 +30,11 @@
         </div>
       </el-col>
       <el-col :xs="16" :sm="21" :md="21" :lg="21" :xl="21">
-        <div class="app-page-container" style="padding:20px">
+        <div class="app-page-container">
           <div class="app-page-select">
             <el-form :inline="true">
               <el-form-item class="el-form-item">
-                <el-input
+                <el-input  prefix-icon="el-icon-search"
                   placeholder="请输入处理站名称"
                   @input="searchKeywordEvent"
                   v-model="searchKeyword"

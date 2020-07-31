@@ -2,11 +2,11 @@
   <div class="app-set-page">
     <el-row :gutter="20" class="grid-menu">
       <el-col :xs="8" :sm="4" :md="3" :lg="3" :xl="3">
-        <div class="left-menu">
-          <h5>设置</h5>
+        <div class="left-menu-area">
+          <h5 class="atitle">系统设置</h5>
           <el-menu router class="el-menu-vertical-demo">
-            <el-menu-item class="is-active">
-              <router-link to="/setmanage">人员设置</router-link>
+            <el-menu-item class="active">
+              <router-link to="/setmanage">人员管理</router-link>
             </el-menu-item>
             <el-menu-item>
               <router-link to="/setmanage/site">站点设置</router-link>
@@ -18,11 +18,17 @@
         </div>
       </el-col>
       <el-col :xs="16" :sm="20" :md="21" :lg="21" :xl="21">
-        <div class="app-page-container ptopz">
+        <div class="app-page-container"  style="padding:20px">
           <div class="app-page-select">
             <el-form :inline="true">
-              <el-form-item>
-                <h3 class="ttitles">人员列表</h3>
+              <el-form-item class="el-form-item">
+                <el-input prefix-icon="el-icon-search"
+                  placeholder="请输入人员姓名"
+                  @input="searchKeywordEvent"
+                  v-model="searchKeyword"
+                  class="input-with-select"
+                  clearable
+                ></el-input>
               </el-form-item>
               <div class="el-serach noborder">
                 <!-- <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable></el-input> -->
@@ -142,7 +148,7 @@ export default {
       diaLogTitle: "添加人员信息",
       uploadAction: this.hostURL + "/upload/uploadFile",
       formData: {},
-       passwordOrg: "",
+      passwordOrg: "",
       formRules: {
         username: [
           {
@@ -235,11 +241,12 @@ export default {
       page_data_total: 0,
       page_size: 20,
       page_total: 0,
-      dataList: []
+      dataList: [],
+      searchKeyword: ""
     };
   },
-   mounted() {
-   //document.querySelector("#setmanage").classList.add("is_active");
+  mounted() {
+    //document.querySelector("#setmanage").classList.add("is_active");
   },
   created() {
     this.getDataList();
@@ -247,11 +254,13 @@ export default {
   methods: {
     getDataList() {
       let page = this.page_cur;
+      let name = this.searchKeyword;
       this.request({
         url: "/user/getUserPages",
         method: "get",
         params: {
-          page
+          page,
+          name
         }
       }).then(res => {
         let data = res.data;
@@ -274,6 +283,10 @@ export default {
     },
     pageToLast() {
       this.page_cur = this.page_total;
+      this.getDataList();
+    },
+    searchKeywordEvent() {
+      this.page_cur = 1;
       this.getDataList();
     },
     addShowDialog() {
@@ -378,7 +391,7 @@ export default {
     },
     uploadSuccess(res, file) {
       console.log("图上传成功", res);
-     this.$set(this.formData, "avatar", res.data.url);
+      this.$set(this.formData, "avatar", res.data.url);
     },
     uploadBefore(file) {
       var filename = file.name.substring(file.name.lastIndexOf(".") + 1);
@@ -396,7 +409,7 @@ export default {
           message: "上传图片只能是 jpg  png  gif 格式",
           type: "error"
         });
-        return false; 
+        return false;
       }
       if (!isLtM) {
         this.$message({
@@ -413,7 +426,7 @@ export default {
 </script>
 <style>
 .app-set-page {
-  padding: 20px;
+ overflow: hidden;
 }
 .dialog-users .el-select {
   width: 100%;

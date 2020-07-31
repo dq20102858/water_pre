@@ -26,7 +26,7 @@
         >返回</el-button>
       </div>
       <div class="deright">
-        运行天数： {{dataInfoList.name}}
+        运行天数：{{useDay}} 天
         <span>{{dataInfoList.create_time|formatDateTamp('date')}}</span>
       </div>
     </div>
@@ -78,7 +78,7 @@
           </p>
           <p>
             投入时间：
-            <em>{{dataInfoList.create_time|formatDateTamp('date')}}</em>
+            <em>{{dataInfoList.use_time|formatGetDate}}</em>
           </p>
           <p>
             保质期：
@@ -145,7 +145,7 @@
           <el-form-item label="投入时间：" prop="use_time">
             <el-date-picker v-model="formData.use_time" type="date" placeholder="选择日期"></el-date-picker>
           </el-form-item>
-           <el-form-item label="质保期：" prop="warranty_time">
+          <el-form-item label="质保期：" prop="warranty_time">
             <el-date-picker v-model="formData.warranty_time" type="date" placeholder="选择日期"></el-date-picker>
           </el-form-item>
           <el-form-item label="最新维护时间：" prop="latest_time">
@@ -344,7 +344,8 @@ export default {
         value: "id",
         label: "name",
         children: "child"
-      }
+      },
+      useDay: ""
     };
   },
 
@@ -365,10 +366,10 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.dataInfoList = data.data;
-
-          //   let farherId = this.getStationParentsById(data.data.sid);
-          //  console.log(farherId);
-          // this.dataInfoList.sid=[3,7];
+          this.useDay = this.$options.filters["dateDifference"](
+            data.data.use_time,
+            new Date()
+          );
         }
       });
     },

@@ -1,14 +1,14 @@
 <template>
   <div class="app-set-page">
     <el-row :gutter="20" class="grid-menu">
-      <el-col :xs="8" :sm="8" :md="3" :lg="3" :xl="3">
-        <div class="left-menu">
-          <h5>设置</h5>
+      <el-col :xs="8" :sm="4" :md="3" :lg="3" :xl="3">
+        <div class="left-menu-area">
+          <h5 class="atitle">系统设置</h5>
           <el-menu router>
             <el-menu-item>
-              <router-link to="/setmanage">用户设置</router-link>
+              <router-link to="/setmanage">人员管理</router-link>
             </el-menu-item>
-            <el-menu-item class="is-active">
+            <el-menu-item class="active">
               <router-link to="/setmanage/site">站点设置</router-link>
             </el-menu-item>
             <el-menu-item>
@@ -17,15 +17,20 @@
           </el-menu>
         </div>
       </el-col>
-      <el-col :xs="16" :sm="16" :md="21" :lg="21" :xl="21">
+      <el-col :xs="16" :sm="20" :md="21" :lg="21" :xl="21">
         <div class="app-page-container ptopz">
           <div class="app-page-select">
             <el-form :inline="true">
-              <el-form-item>
-                <h3 class="ttitles">站点列表</h3>
+              <el-form-item class="el-form-item">
+                <el-input prefix-icon="el-icon-search"
+                  placeholder="请输入站点名"
+                  @input="searchKeywordEvent"
+                  v-model="searchKeyword"
+                  class="input-with-select"
+                  clearable
+                ></el-input>
               </el-form-item>
               <div class="el-serach noborder">
-                <!-- <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable></el-input> -->
                 <el-button @click="addShowDialog">添加</el-button>
               </div>
             </el-form>
@@ -36,7 +41,7 @@
                 <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
               </el-table-column>
               <el-table-column prop="name" label="站点名"></el-table-column>
-              <el-table-column prop="address" label="所在位置"></el-table-column>
+              <el-table-column prop="address" label="所在位置" show-overflow-tooltip></el-table-column>
               <el-table-column prop="number" label="日均排污量">
                 <template slot-scope="scope">
                   <span v-html="scope.row.number">吨</span>
@@ -231,24 +236,24 @@ export default {
       page_size: 20,
       page_total: 0,
       dataList: [],
-      fatherStationList: []
+      fatherStationList: [],
+      searchKeyword: ""
     };
   },
-   mounted() {
-  //document.querySelector("#setmanage").classList.add("is-active");
-  },
+
   created() {
     this.getDataList();
   },
   methods: {
     getDataList() {
       let page = this.page_cur;
-      // let recept_type = "我们";
+      let name = this.searchKeyword;
       this.request({
         url: "/station/getStationPages",
         method: "get",
         params: {
-          page
+          page,
+          name
         }
       }).then(res => {
         let data = res.data;
@@ -273,7 +278,7 @@ export default {
       this.page_cur = this.page_total;
       this.getDataList();
     },
-    searchEvent() {
+    searchKeywordEvent() {
       this.page_cur = 1;
       this.getDataList();
     },
@@ -399,18 +404,15 @@ export default {
         this.centerStr.lat = lat;
       }
       this.zoom = e.target.getZoom();
-     // console.log(this.centerStr.lng + "__A__" + this.centerStr.lat);
+      // console.log(this.centerStr.lng + "__A__" + this.centerStr.lat);
     }
     //
   }
 };
 </script>
 <style>
-* {
-  touch-action: pan-y;
-}
 .app-set-page {
-  padding: 20px;
+overflow: hidden;
 }
 .dialog-station .el-select {
   width: 100%;

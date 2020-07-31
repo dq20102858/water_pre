@@ -31,7 +31,7 @@
         </div>
       </el-col>
       <el-col :xs="16" :sm="21" :md="21" :lg="21" :xl="21">
-        <div class="app-page-container" style="padding:20px">
+        <div class="app-page-container">
           <div class="app-page-select">
             <el-form :inline="true">
               <el-form-item class="el-form-item">

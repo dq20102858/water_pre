@@ -6,7 +6,7 @@
           <div class="input-so">
             <el-input
               placeholder="请输入内容"
-              prefix-icon="el-icon-search"
+             prefix-icon="el-icon-search"
               v-model="searchVillageName"
               @input="searchVillageNameEvent"
               clearable
@@ -31,11 +31,11 @@
         </div>
       </el-col>
       <el-col :xs="16" :sm="21" :md="21" :lg="21" :xl="21">
-        <div class="app-page-container" style="padding:20px">
+        <div class="app-page-container">
           <div class="app-page-select" style="padding: 0 10px">
             <el-form :inline="true">
-              <el-form-item class="el-search-item">
-                <el-input
+              <el-form-item class="el-search-item-blee">
+                <el-input prefix-icon="el-icon-search"
                   placeholder="请输入设备编号"
                   @input="searchKeywordEvent"
                   v-model="searchKeyword"
@@ -569,15 +569,18 @@ export default {
 .app-device-page {
   overflow: hidden;
 }
-.el-search-item .el-select .el-input {
+.el-search-item-blee .el-select .el-input {
   width: 80px;
   text-align: center;
   background: #2b8cf9;
   color: #fff;
   border-radius: 0 4px 4px 0;
 }
-.el-search-item .el-select .el-input .el-select__caret {
+.el-search-item-blee .el-select .el-input .el-select__caret {
   color: #fff;
+}
+.el-search-item-blee  .el-select  .el-input__inner {
+    padding-left:15px;
 }
 .devicelist .el-row {
   margin-bottom: 20px;

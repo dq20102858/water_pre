@@ -49,9 +49,8 @@ em,i{font-style: normal;}
 .el-menu-top .el-menu--horizontal .el-menu-item.is_active .el-submenu__title:hover {background-color:#294FB4!important;}
 .el-menu-top .iconss{ height:  30px;display: block;margin: 0 auto;margin-top:20px;}
 /* bg */
-.app-body-black{background: #000; }
-.app-page{border-radius: 6px;padding: 20px; background: #fff;}
-.app-page-container{border-radius: 6px;padding: 0; background: #fff;}
+.app-page{ background: #fff;}
+.app-page-container{border-radius: 6px;padding: 20px; background: #fff;}
 .app-page-select{display: block;}
 .app-page-select .form-add-item{margin-right: 40px;}
 .app-page-select .el-range-separator{padding: 0;}
@@ -174,15 +173,7 @@ em,i{font-style: normal;}
 .el-menu-topc .el-menu-item:hover{height: 61px; background-color: #338ff6!important;border: none;color: #fff!important}
 .el-menu-topc .is-active {height: 61px; background-color: #338ff6!important;border: none!important;color: #fff!important}
 
-/* set */
-.left-menu{background: #e2e8f2;border-radius: 3px ;}
-.left-menu h5 {background: #71a7f4;border-radius: 3px 3px 0 0;color: #fff;margin: 0;padding: 15px;font-size: 16px;}
-.left-menu .el-menu {border: 1px #ddd solid;}
-.left-menu .el-menu a{text-decoration: none; color: #333;display: block;}
-.left-menu .el-menu{ background: none;}
-.left-menu .el-menu-item.is-active {background: #fff;color: #333;}
-.left-menu .el-menu-item.is-active a{color: #333;}
-
+/* left-menu-area */
 .left-menu-area {background: #428bf1;height: 100vh;}
 .left-menu-area .el-menu {background: none;border: none;}
 .left-menu-area .el-menu-item {background: none;color: #fff;height: 39px;line-height: 39px;white-space: nowrap;overflow: hidden;}
@@ -190,7 +181,9 @@ em,i{font-style: normal;}
 .left-menu-area .el-menu-item:hover {background:#2377fc;color: #fff;}
 .left-menu-area .el-menu-item.active {background: #fff;color: #4688f1;}
 .left-menu-area .input-so {padding: 10px;}
-
+.left-menu-area .atitle{padding: 20px 10px; margin: 0;font-size: 16px;color: #fff;}
+.left-menu-area .el-menu-item a{display: block; text-decoration: none; color:#fff}
+.left-menu-area .el-menu-item.active a{text-decoration: none; color:#4688f1}
 @media screen and (max-width: 1200px) {
     .el-menu-top    .el-menu--horizontal .el-menu-item {padding: 0 15px;
     }
