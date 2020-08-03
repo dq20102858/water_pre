@@ -45,7 +45,7 @@
                 </el-select>
               </el-form-item>
               <el-form-item class="el-form-item">
-                <el-button type="primary">导入</el-button>
+                <el-button type="primary" @click="expectExcel">导入</el-button>
               </el-form-item>
             </el-form>
           </div>
@@ -100,90 +100,181 @@
     </el-row>
 
     <el-dialog
-      width="734px"
-      class="dialog-device"
+      width="780px"
       :title="this.diaLogTitle"
       :close-on-click-modal="false"
       :visible.sync="diaLogFormVisible"
     >
-      <el-form :model="formData" class="el-form-custom" label-width="120px">
-        <el-form-item label="设备名称：">
-          <el-input v-model="formData.station_name" autocomplete="off"></el-input>
-        </el-form-item>
+      <el-form class="dialog-form-opera" :model="formData" label-width="100px">
         <div class="el-form-item-inline">
-          <el-form-item label="所属站点：" prop="sid">
-            <el-cascader
-              v-model="formData.sid"
-              :options="stationOptions"
-              :props="stationOptionsProps"
-              @change="handleChange"
-            ></el-cascader>
+          <el-form-item label="地址：">
+            <div class="sampinfo">{{formData.station_name}}</div>
           </el-form-item>
-          <el-form-item label="设备类型：" prop="type">
-            <el-select v-model="formData.type" placeholder="请选择设备类型">
-              <el-option label="风机" :value="1"></el-option>
-              <el-option label="水泵" :value="2"></el-option>
-            </el-select>
+          <el-form-item label="记录日期：">
+            <div class="sampinfo">{{formData.create_time}} &nbsp;</div>
           </el-form-item>
-          <el-form-item label="设备编号：" prop="number">
-            <el-input v-model="formData.number" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="设备型号：" prop="model">
-            <el-input v-model="formData.model" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="设备品牌：" prop="brand">
-            <el-input v-model="formData.brand" autocomplete="off"></el-input>
-          </el-form-item>
-
-          <el-form-item label="运行时长：" prop="days">
-            <el-input v-model="formData.days" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="最新维护时间：" prop="latest_time">
-            <el-date-picker v-model="formData.latest_time" type="date" placeholder="选择日期"></el-date-picker>
-          </el-form-item>
-          <el-form-item label="质保期：" prop="warranty_time">
-            <el-date-picker v-model="formData.warranty_time" type="date" placeholder="选择日期"></el-date-picker>
-          </el-form-item>
-          <el-form-item label="采购人：" prop="purchaser">
-            <el-input v-model="formData.purchaser" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="运行状态：" prop="work_status">
-            <el-select v-model="formData.work_status" placeholder="请选择运行状态">
-              <el-option label="正常" :value="1"></el-option>
-              <el-option label="异常" :value="2"></el-option>
-            </el-select>
+          <el-form-item label="巡查人：">
+            <div class="sampinfo">{{formData.user}}</div>
           </el-form-item>
         </div>
-        <el-form-item label="封面图片：" style="width:100%;" prop="img">
+        <div class="samptitle">设备运行状况</div>
+        <div class="el-form-item-inline">
+          <el-form-item label="风机：">
+            <el-checkbox v-model="formData.fan==1?true:false" label="正常" disabled></el-checkbox>
+            <el-checkbox v-model="formData.fan==2?true:false" label="异常" disabled></el-checkbox>
+          </el-form-item>
+          <el-form-item label="各水泵：" class="el-form-item-mar">
+            <el-checkbox v-model="formData.water_pump==1?true:false" label="正常" disabled></el-checkbox>
+            <el-checkbox v-model="formData.water_pump==2?true:false" label="异常" disabled></el-checkbox>
+          </el-form-item>
+          <el-form-item label="紫外消毒机：">
+            <el-checkbox v-model="formData.disinfect==1?true:false" label="正常" disabled></el-checkbox>
+            <el-checkbox v-model="formData.disinfect==2?true:false" label="异常" disabled></el-checkbox>
+          </el-form-item>
+          <el-form-item label="电控柜：" class="el-form-item-mar">
+            <el-checkbox v-model="formData.cabinet==1?true:false" label="正常" disabled></el-checkbox>
+            <el-checkbox v-model="formData.cabinet==2?true:false" label="异常" disabled></el-checkbox>
+          </el-form-item>
+          <el-form-item label="湿地情况：">
+            <el-checkbox v-model="formData.wetland==1?true:false" label="正常" disabled></el-checkbox>
+            <el-checkbox v-model="formData.wetland==2?true:false" label="异常" disabled></el-checkbox>
+          </el-form-item>
+        </div>
+        <div class="samptitle">主要处理单元</div>
+        <div class="el-form-item-inline">
+          <el-form-item label="预处理：">
+            <el-checkbox v-model="formData.pretreatment==1?true:false" label="正常" disabled></el-checkbox>
+            <el-checkbox v-model="formData.pretreatment==2?true:false" label="异常" disabled></el-checkbox>
+          </el-form-item>
+          <el-form-item label="生化处理：" class="el-form-item-mar">
+            <el-checkbox v-model="formData.biochemistry==1?true:false" label="正常" disabled></el-checkbox>
+            <el-checkbox v-model="formData.biochemistry==2?true:false" label="异常" disabled></el-checkbox>
+          </el-form-item>
+          <el-form-item label="沉淀情况：">
+            <el-checkbox v-model="formData.precipitate==1?true:false" label="正常" disabled></el-checkbox>
+            <el-checkbox v-model="formData.precipitate==2?true:false" label="异常" disabled></el-checkbox>
+          </el-form-item>
+          <el-form-item label="出水情况：" class="el-form-item-mar">
+            <el-checkbox v-model="formData.out_water==1?true:false" label="正常" disabled></el-checkbox>
+            <el-checkbox v-model="formData.out_water==2?true:false" label="异常" disabled></el-checkbox>
+          </el-form-item>
+        </div>
+        <el-form-item label="异常情况：">
+          <div class="sampinfos" style="width:100%;">{{formData.exception}}</div>
+        </el-form-item>
+        <div class="el-form-item-inline">
+          <el-form-item label="电表读数：">
+            <div class="sampinfo">{{formData.electricity}} &nbsp;</div>
+          </el-form-item>
+          <el-form-item label="累积读数：">
+            <div class="sampinfo">{{formData.electricity_sum}}</div>
+          </el-form-item>
+        </div>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="diaLogFormVisible = false">确 定</el-button>
+      </div>
+    </el-dialog>
+
+    <el-dialog
+      width="380px"
+      class="dialog-form-opera"
+      title="导入数据"
+      :close-on-click-modal="false"
+      :visible.sync="diaLogFormExcelVisible"
+    >
+      <el-form>
+        <el-form-item style="text-align: center;padding-top:20px">
           <el-upload
-            ref="uploadfive"
-            class="avatar-uploader"
+            class="upload-demo"
             :action="uploadAction"
-            :auto-upload="true"
-            :on-exceed="uploadExceed"
             :before-upload="uploadBefore"
             :on-success="uploadSuccess"
             :show-file-list="false"
+            :data="uploadData"
+            accept=".xls"
           >
-            <img v-if="formData.img" :src="formData.img" class="avatar" title="选择图片" />
-            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            <el-button type="primary" plain>选择模板文件</el-button>
+            <div slot="tip" class="el-upload__tip">
+              请上传模板格式文件，且不超过2MB
+              <a
+                style="text-decoration: none;color:#4093ED"
+                target="_blank"
+                :href="uploadTemp"
+              >下载模板</a>
+            </div>
           </el-upload>
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="diaLogFormVisible = false">取 消</el-button>
-        <el-button type="primary">确 定</el-button>
-      </div>
     </el-dialog>
     <button v-print="printObj" id="printBtn"></button>
-    <div id="printRecord">
-      <div class="printtop">
-        <h3>{{formData.user}}</h3>
+    <el-form class="dialog-form-opera" id="printRecord" :model="formData" label-width="100px">
+    <h3 class="printTitles">污水处理站运行记录表</h3>
+      <div class="el-form-item-inline">
+        <el-form-item label="地址：">
+          <div class="sampinfo">{{formData.station_name}}</div>
+        </el-form-item>
+        <el-form-item label="记录日期：">
+          <div class="sampinfo">{{formData.create_time}} &nbsp;</div>
+        </el-form-item>
+        <el-form-item label="巡查人：">
+          <div class="sampinfo">{{formData.user}}</div>
+        </el-form-item>
       </div>
-      <div class="printbom">
-        <p>注。</p>
+      <div class="samptitle">设备运行状况</div>
+      <div class="el-form-item-inline">
+        <el-form-item label="风机：">
+          <el-checkbox v-model="formData.fan==1?true:false" label="正常" disabled></el-checkbox>
+          <el-checkbox v-model="formData.fan==2?true:false" label="异常" disabled></el-checkbox>
+        </el-form-item>
+        <el-form-item label="各水泵：" class="el-form-item-mar">
+          <el-checkbox v-model="formData.water_pump==1?true:false" label="正常" disabled></el-checkbox>
+          <el-checkbox v-model="formData.water_pump==2?true:false" label="异常" disabled></el-checkbox>
+        </el-form-item>
+        <el-form-item label="紫外消毒机：">
+          <el-checkbox v-model="formData.disinfect==1?true:false" label="正常" disabled></el-checkbox>
+          <el-checkbox v-model="formData.disinfect==2?true:false" label="异常" disabled></el-checkbox>
+        </el-form-item>
+        <el-form-item label="电控柜：" class="el-form-item-mar">
+          <el-checkbox v-model="formData.cabinet==1?true:false" label="正常" disabled></el-checkbox>
+          <el-checkbox v-model="formData.cabinet==2?true:false" label="异常" disabled></el-checkbox>
+        </el-form-item>
+        <el-form-item label="湿地情况：">
+          <el-checkbox v-model="formData.wetland==1?true:false" label="正常" disabled></el-checkbox>
+          <el-checkbox v-model="formData.wetland==2?true:false" label="异常" disabled></el-checkbox>
+        </el-form-item>
       </div>
-    </div>
+      <div class="samptitle">主要处理单元</div>
+      <div class="el-form-item-inline">
+        <el-form-item label="预处理：">
+          <el-checkbox v-model="formData.pretreatment==1?true:false" label="正常" disabled></el-checkbox>
+          <el-checkbox v-model="formData.pretreatment==2?true:false" label="异常" disabled></el-checkbox>
+        </el-form-item>
+        <el-form-item label="生化处理：" class="el-form-item-mar">
+          <el-checkbox v-model="formData.biochemistry==1?true:false" label="正常" disabled></el-checkbox>
+          <el-checkbox v-model="formData.biochemistry==2?true:false" label="异常" disabled></el-checkbox>
+        </el-form-item>
+        <el-form-item label="沉淀情况：">
+          <el-checkbox v-model="formData.precipitate==1?true:false" label="正常" disabled></el-checkbox>
+          <el-checkbox v-model="formData.precipitate==2?true:false" label="异常" disabled></el-checkbox>
+        </el-form-item>
+        <el-form-item label="出水情况：" class="el-form-item-mar">
+          <el-checkbox v-model="formData.out_water==1?true:false" label="正常" disabled></el-checkbox>
+          <el-checkbox v-model="formData.out_water==2?true:false" label="异常" disabled></el-checkbox>
+        </el-form-item>
+      </div>
+      <el-form-item label="异常情况：">
+        <div class="sampinfos" style="width:100%;">{{formData.exception}}</div>
+      </el-form-item>
+      <div class="el-form-item-inline">
+        <el-form-item label="电表读数：">
+          <div class="sampinfo">{{formData.electricity}} &nbsp;</div>
+        </el-form-item>
+        <el-form-item label="累积读数：">
+          <div class="sampinfo">{{formData.electricity_sum}}</div>
+        </el-form-item>
+      </div>
+    </el-form>
   </div>
 </template>
 <script>
@@ -197,9 +288,12 @@ export default {
         extraCss: "",
         extraHead: '<meta http-equiv="Content-Language"content="zh-cn"/>'
       },
+      diaLogFormExcelVisible: false,
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
-      uploadAction: this.hostURL + "/upload/uploadFile",
+      uploadAction: this.hostURL + "/record/importRecord",
+      uploadTemp: this.hostURL + "/downloads/2.xls",
+      uploadData: { type: 2 },
       formData: {},
       page_cur: 1,
       page_data_total: 0,
@@ -302,28 +396,29 @@ export default {
     handleChange(value) {
       console.log(value);
     },
+
     printEvent(id) {
       this.request({
-        url: "record/getRecordDetail",
+        url: "/record/getRecordDetail",
         method: "get",
-        params: { id: id, type: parseInt(this.searchType) }
+        params: { id: id, type: 2 }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
+          // this.diaLogFormVisible = true;
           this.formData = data.data;
           document.getElementById("printBtn").click();
-
-          //  this.printRecord = true;
+          //    this.diaLogFormVisible = false;
         }
       });
     },
     detailEvent(id) {
-      this.diaLogTitle = "查看信息";
+      this.diaLogTitle = "污水处理站运行记录表";
       this.diaLogFormVisible = true;
       this.request({
-        url: "record/getRecordDetail",
+        url: "/record/getRecordDetail",
         method: "get",
-        params: { id: id, type: parseInt(this.searchType) }
+        params: { id: id, type: 2 }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
@@ -342,7 +437,7 @@ export default {
           this.request({
             url: "/record/delRecord",
             method: "post",
-            data: { id: id, type: parseInt(this.searchType) }
+            data: { id: id, type: 2 }
           }).then(res => {
             let data = res.data;
             if (data.status == 1) {
@@ -356,38 +451,40 @@ export default {
         })
         .catch(() => {});
     },
-    //上传图片
-    uploadExceed() {
-      this.$message({
-        type: "warning",
-        message: `最多可以上传1张图片`
-      });
+    //上传
+    expectExcel() {
+      this.diaLogFormExcelVisible = true;
     },
     uploadSuccess(res, file) {
       console.log("图上传成功", res);
-      this.$set(this.formData, "img", res.data.url);
+      if (res.status == 1) {
+        this.getDataList();
+        this.$message({
+          type: "success",
+          message: "导入成功！"
+        });
+        this.diaLogFormExcelVisible = false;
+      } else {
+        this.$message({
+          message: "导入失败！",
+          type: "error"
+        });
+      }
     },
     uploadBefore(file) {
       var filename = file.name.substring(file.name.lastIndexOf(".") + 1);
-      const extension =
-        filename === "GIF" ||
-        filename === "gif" ||
-        filename === "jpeg" ||
-        filename === "jpg" ||
-        filename === "JPG" ||
-        filename === "png" ||
-        filename === "PNG";
+      const extension = filename === "xls";
       const isLtM = file.size / 1024 / 1024 < 2;
       if (!extension) {
         this.$message({
-          message: "上传图片只能是 jpg  png  gif 格式",
+          message: "上传文件只能是xls格式",
           type: "error"
         });
         return false;
       }
       if (!isLtM) {
         this.$message({
-          message: "上传图片大小不能超过 2MB",
+          message: "上传文件不能超过 2MB",
           type: "error"
         });
         return false;
@@ -416,72 +513,69 @@ export default {
   color: #fff;
 }
 
-.dialog-device .el-select {
+.dialog-form-opera .el-select {
   width: 100%;
 }
-.dialog-device .el-form-item-inline {
+.dialog-form-opera .el-form-item-inline {
   display: inline-block;
 }
-.dialog-device .el-form-item-inline .el-form-item {
+.dialog-form-opera .el-form-item-inline .el-form-item {
   display: inline-block;
+  margin-bottom: 0px;
 }
-.dialog-device .el-form-item-block {
+.dialog-form-opera .el-form-item-inline .el-form-item-mar {
+  margin-left: 100px;
+}
+.dialog-form-opera .el-form-item-block {
   display: block;
 }
-.dialog-device .el-form-item-inline .el-checkbox-group {
-  margin-left: 110px;
-}
-.dialog-device .el-form-item-inline .el-input__inner {
+.dialog-form-opera .el-form-item-inline .el-input__inner {
   width: 220px;
 }
-.avatar-uploader .el-upload {
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
+
+.sampde .el-form-item__label {
+  padding: 0;
 }
-.avatar-uploader .el-upload:hover {
-  border-color: #409eff;
-}
-.avatar-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
-  width: 178px;
-  height: 178px;
-  line-height: 178px;
+.dialog-form-opera .samptitle {
+  font-size: 16px;
   text-align: center;
+  color: #338ff6;
+  margin-bottom: 30px;
+  margin-top: 20px;
 }
-.avatar {
-  width: 178px;
-  height: 178px;
-  display: block;
+.dialog-form-opera .sampinfo {
+  display: inline-block;
+  min-width: 100px;
+  margin-right: 20px;
+  color: #338ff6;
+  overflow: hidden;
+  height: 30px;
 }
-/*print*/
-#printBtn {
-  display: none;
+.dialog-form-opera .sampinfos {
+  overflow: hidden;
+  display: inline-block;
+  min-width: 58px;
+  line-height: 28px;
+  border-bottom: 1px #ddd solid;
 }
-#printRecord {
-  display: none;
+.dialog-form-opera
+  .el-checkbox__input.is-disabled.is-checked
+  .el-checkbox__inner::after {
+  border-color: #338ff6;
 }
-@media print {
-  #printRecord {
-    display: block;
-  }
-  #printRecord table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  #printRecord table td {
-    border: 1px solid #9db9fa;
-    line-height: 30px;
-    padding: 10px;
-  }
-  undefined {
-    display: none;
-  }
-  #printRecord .info {
-    width: 90px;
-  }
+.dialog-form-opera
+  .el-checkbox__input.is-disabled.is-checked
+  .el-checkbox__inner {
+  background-color: #f2f6fc;
+  border-color: #338ff6;
+}
+.dialog-form-opera .el-checkbox__input.is-disabled .el-checkbox__inner {
+  background-color: #edf2fc;
+  border-color: #338ff6;
+  cursor: not-allowed;
+}
+.dialog-form-opera .el-checkbox__input.is-disabled + span.el-checkbox__label {
+  color: #333;
+  cursor: not-allowed;
 }
 </style>

@@ -5,7 +5,7 @@
         <li class="logos">
           <img class="logo" :src="require('@/assets/image/logo.png')" />
           <div class="gname">
-            <h3>某公司智能污水系统</h3>
+            <h3>智能污水站处理系统</h3>
             <h4>
               欢迎您，{{name}}
               <span title="退出系统" @click="logout">

@@ -45,7 +45,7 @@
                 </el-select>
               </el-form-item>
               <el-form-item class="el-form-item">
-                <el-button type="primary">导入</el-button>
+                <el-button type="primary" @click="expectExcel">导入</el-button>
               </el-form-item>
             </el-form>
           </div>
@@ -55,15 +55,29 @@
                 <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
               </el-table-column>
               <el-table-column prop="name" label="维保日期"></el-table-column>
-              <el-table-column prop="address" label="维保站点"></el-table-column>
-              <el-table-column prop="number" label="是否有问题">
+              <el-table-column prop="station_name" label="维保站点"></el-table-column>
+              <el-table-column prop="is_problem" label="是否有问题">
                 <template slot-scope="scope">
-                  <span v-html="scope.row.number">吨</span>
+                  <el-popover placement="right" trigger="hover" popper-class="isok-popover">
+                    <span class="btn-sele" @click="problemEvent(scope.row.id,1)">是</span>
+                    <span class="btn-sele" @click="problemEvent(scope.row.id,0)">否</span>
+                    <span class="btn-sele-no" v-if="scope.row.is_problem==1" slot="reference">是</span>
+                    <span class="btn-sele-no" v-if="scope.row.is_problem==0" slot="reference">否</span>
+                  </el-popover>
                 </template>
               </el-table-column>
-              <el-table-column prop="create_time" label="是否已处理"></el-table-column>
-              <el-table-column prop="create_time" label="运维人员"></el-table-column>
-              <el-table-column prop="create_time" label="联系电话"></el-table-column>
+              <el-table-column prop="is_handle" label="是否已处理">
+                <template slot-scope="scope">
+                  <el-popover placement="right" trigger="hover" popper-class="isok-popover">
+                    <span class="btn-sele" @click="handleEvent(scope.row.id,1)">是</span>
+                    <span class="btn-sele" @click="handleEvent(scope.row.id,0)">否</span>
+                    <span class="btn-sele-no" v-if="scope.row.is_handle==1" slot="reference">是</span>
+                    <span class="btn-sele-no" v-if="scope.row.is_handle==0" slot="reference">否</span>
+                  </el-popover>
+                </template>
+              </el-table-column>
+              <el-table-column prop="user" label="运维人员"></el-table-column>
+              <el-table-column prop="phone" label="联系电话"></el-table-column>
               <el-table-column label="操作" width="190">
                 <template slot-scope="scope">
                   <div class="app-operation">
@@ -100,91 +114,214 @@
     </el-row>
 
     <el-dialog
-      width="734px"
-      class="dialog-device"
+      width="780px"
       :title="this.diaLogTitle"
       :close-on-click-modal="false"
       :visible.sync="diaLogFormVisible"
     >
-      <el-form
-        :model="formData"
-        class="el-form-custom"
-        :rules="formRules"
-        ref="formRulesRef"
-        label-width="120px"
-      >
-        <el-form-item label="设备名称：" prop="name">
-          <el-input v-model="formData.name" autocomplete="off"></el-input>
-        </el-form-item>
+      <el-form class="dialog-form-records" :model="formData" label-width="100px">
         <div class="el-form-item-inline">
-          <el-form-item label="所属站点：" prop="sid">
-            <el-cascader
-              v-model="formData.sid"
-              :options="stationOptions"
-              :props="stationOptionsProps"
-              @change="handleChange"
-            ></el-cascader>
+          <el-form-item label="地址：">
+            <div class="sampinfo">{{formData.station_name}}</div>
           </el-form-item>
-          <el-form-item label="设备类型：" prop="type">
-            <el-select v-model="formData.type" placeholder="请选择设备类型">
-              <el-option label="风机" :value="1"></el-option>
-              <el-option label="水泵" :value="2"></el-option>
-            </el-select>
+          <el-form-item label="维护日期：">
+            <div class="sampinfo">{{formData.create_time}} &nbsp;</div>
           </el-form-item>
-          <el-form-item label="设备编号：" prop="number">
-            <el-input v-model="formData.number" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="设备型号：" prop="model">
-            <el-input v-model="formData.model" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="设备品牌：" prop="brand">
-            <el-input v-model="formData.brand" autocomplete="off"></el-input>
-          </el-form-item>
-
-          <el-form-item label="运行时长：" prop="days">
-            <el-input v-model="formData.days" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="最新维护时间：" prop="latest_time">
-            <el-date-picker v-model="formData.latest_time" type="date" placeholder="选择日期"></el-date-picker>
-          </el-form-item>
-          <el-form-item label="质保期：" prop="warranty_time">
-            <el-date-picker v-model="formData.warranty_time" type="date" placeholder="选择日期"></el-date-picker>
-          </el-form-item>
-          <el-form-item label="采购人：" prop="purchaser">
-            <el-input v-model="formData.purchaser" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="运行状态：" prop="work_status">
-            <el-select v-model="formData.work_status" placeholder="请选择运行状态">
-              <el-option label="正常" :value="1"></el-option>
-              <el-option label="异常" :value="2"></el-option>
-            </el-select>
+          <el-form-item label="维护人：">
+            <div class="sampinfo">{{formData.user}}</div>
           </el-form-item>
         </div>
-        <el-form-item label="封面图片：" style="width:100%;" prop="img">
+        <div class="samptitle">设备巡检内容、情况、及处理情况说明</div>
+        <div class="el-form-item-inline">
+          <el-form-item label="1.维护预备：">
+            <el-checkbox-group v-model="formData.prepare" class="checkGroup">
+              <el-checkbox
+                v-for="item in prepareList"
+                :label="item.id+''"
+                :key="item.id"
+                disabled
+              >{{item.value}}</el-checkbox>
+            </el-checkbox-group>
+          </el-form-item>
+        </div>
+        <div class="el-form-item-inline">
+          <el-form-item label="2.系统检查：" class="el-form-item-mar">
+            <el-checkbox-group v-model="formData.sys_check" class="checkGroup">
+              <el-checkbox
+                v-for="item in sysCheckList"
+                :label="item.id+''"
+                :key="item.id"
+                disabled
+              >{{item.value}}</el-checkbox>
+            </el-checkbox-group>
+          </el-form-item>
+        </div>
+        <div class="el-form-item-inline">
+          <el-form-item label="3.仪器检查：">
+            <el-checkbox-group v-model="formData.device_check" class="checkGroup">
+              <el-checkbox
+                v-for="item in deviceCheckkList"
+                :label="item.id+''"
+                :key="item.id"
+                disabled
+              >{{item.value}}</el-checkbox>
+            </el-checkbox-group>
+          </el-form-item>
+        </div>
+        <div class="el-form-item-inline">
+          <el-form-item label="4.周期维护：" class="el-form-item-mar">
+            <el-checkbox-group v-model="formData.period_check" class="checkGroup">
+              <el-checkbox
+                v-for="item in periodCheck"
+                :label="item.id+''"
+                :key="item.id"
+                disabled
+              >{{item.value}}</el-checkbox>
+            </el-checkbox-group>
+          </el-form-item>
+        </div>
+        <div class="samptitles">5.其他情况</div>
+        <el-form-item label="异常情况：">
+          <div class="sampinfos" style="width:100%;">{{formData.exception}}</div>
+        </el-form-item>
+        <el-form-item label="更换耗材：">
+          <div class="sampinfos" style="width:100%;">{{formData.remark}}</div>
+        </el-form-item>
+        <el-form-item label="更换耗材：">
+          <div class="sampinfos" style="width:100%;">{{formData.replace_material}}</div>
+        </el-form-item>
+        <div class="el-form-item-inline">
+          <el-form-item label="离站时间：">
+            <div class="sampinfo">{{formData.leave_time}} &nbsp;</div>
+          </el-form-item>
+          <el-form-item label="服务耗时：">
+            <div class="sampinfo">{{formData.keep_time}}</div>
+          </el-form-item>
+          <el-form-item label="维护人员：">
+            <div class="sampinfo">{{formData.user}}</div>
+          </el-form-item>
+        </div>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="diaLogFormVisible = false">确 定</el-button>
+      </div>
+    </el-dialog>
+    <el-dialog
+      width="380px"
+      class="dialog-excel"
+      title="导入数据"
+      :close-on-click-modal="false"
+      :visible.sync="diaLogFormExcelVisible"
+    >
+      <el-form>
+        <el-form-item style="text-align: center;padding-top:20px">
           <el-upload
-            ref="uploadfive"
-            class="avatar-uploader"
+            class="upload-demo"
             :action="uploadAction"
-            :auto-upload="true"
-            :on-exceed="uploadExceed"
             :before-upload="uploadBefore"
             :on-success="uploadSuccess"
             :show-file-list="false"
+            :data="uploadData"
+            accept=".xls"
           >
-            <img v-if="formData.img" :src="formData.img" class="avatar" title="选择图片" />
-            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            <el-button type="primary" plain>选择模板文件</el-button>
+            <div slot="tip" class="el-upload__tip">
+              请上传模板格式文件，且不超过2MB
+              <a
+                style="text-decoration: none;color:#4093ED"
+                target="_blank"
+                :href="uploadTemp"
+              >下载模板</a>
+            </div>
           </el-upload>
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="diaLogFormVisible = false">取 消</el-button>
-        <el-button type="primary">确 定</el-button>
-      </div>
     </el-dialog>
     <button v-print="printObj" id="printBtn"></button>
-    <div id="printRecord">
-      <div class="printtop">1234</div>
-    </div>
+    <el-form class="dialog-form-records" id="printRecord" :model="formData" label-width="100px">
+      <h3 class="printTitles">污水处理站维护记录表</h3>
+      <div class="el-form-item-inline">
+        <el-form-item label="地址：">
+          <div class="sampinfo">{{formData.station_name}}</div>
+        </el-form-item>
+        <el-form-item label="维护日期：">
+          <div class="sampinfo">{{formData.create_time}} &nbsp;</div>
+        </el-form-item>
+        <el-form-item label="维护人：">
+          <div class="sampinfo">{{formData.user}}</div>
+        </el-form-item>
+      </div>
+      <div class="samptitle">设备巡检内容、情况、及处理情况说明</div>
+      <div class="el-form-item-inline">
+        <el-form-item label="1.维护预备：">
+          <el-checkbox-group v-model="formData.prepare" class="checkGroup">
+            <el-checkbox
+              v-for="item in prepareList"
+              :label="item.id+''"
+              :key="item.id"
+              disabled
+            >{{item.value}}</el-checkbox>
+          </el-checkbox-group>
+        </el-form-item>
+      </div>
+      <div class="el-form-item-inline">
+        <el-form-item label="2.系统检查：" class="el-form-item-mar">
+          <el-checkbox-group v-model="formData.sys_check" class="checkGroup">
+            <el-checkbox
+              v-for="item in sysCheckList"
+              :label="item.id+''"
+              :key="item.id"
+              disabled
+            >{{item.value}}</el-checkbox>
+          </el-checkbox-group>
+        </el-form-item>
+      </div>
+      <div class="el-form-item-inline">
+        <el-form-item label="3.仪器检查：">
+          <el-checkbox-group v-model="formData.device_check" class="checkGroup">
+            <el-checkbox
+              v-for="item in deviceCheckkList"
+              :label="item.id+''"
+              :key="item.id"
+              disabled
+            >{{item.value}}</el-checkbox>
+          </el-checkbox-group>
+        </el-form-item>
+      </div>
+      <div class="el-form-item-inline">
+        <el-form-item label="4.周期维护：" class="el-form-item-mar">
+          <el-checkbox-group v-model="formData.period_check" class="checkGroup">
+            <el-checkbox
+              v-for="item in periodCheck"
+              :label="item.id+''"
+              :key="item.id"
+              disabled
+            >{{item.value}}</el-checkbox>
+          </el-checkbox-group>
+        </el-form-item>
+      </div>
+      <div class="samptitles">5.其他情况</div>
+      <el-form-item label="异常情况：">
+        <div class="sampinfos" style="width:100%;">{{formData.exception}}</div>
+      </el-form-item>
+      <el-form-item label="更换耗材：">
+        <div class="sampinfos" style="width:100%;">{{formData.remark}}</div>
+      </el-form-item>
+      <el-form-item label="更换耗材：">
+        <div class="sampinfos" style="width:100%;">{{formData.replace_material}}</div>
+      </el-form-item>
+      <div class="el-form-item-inline">
+        <el-form-item label="离站时间：">
+          <div class="sampinfo">{{formData.leave_time}} &nbsp;</div>
+        </el-form-item>
+        <el-form-item label="服务耗时：">
+          <div class="sampinfo">{{formData.keep_time}}</div>
+        </el-form-item>
+        <el-form-item label="维护人员：">
+          <div class="sampinfo">{{formData.user}}</div>
+        </el-form-item>
+      </div>
+    </el-form>
   </div>
 </template>
 <script>
@@ -197,9 +334,13 @@ export default {
         extraCss: "",
         extraHead: '<meta http-equiv="Content-Language"content="zh-cn"/>'
       },
+      printRecordShow: false,
+      diaLogFormExcelVisible: false,
       diaLogFormVisible: false,
-      diaLogTitle: "添加人员信息",
-      uploadAction: this.hostURL + "/upload/uploadFile",
+      diaLogTitle: "",
+      uploadTemp: this.hostURL + "/downloads/3.xls",
+      uploadAction: this.hostURL + "/record/importRecord",
+      uploadData: { type: 1 },
       formData: {},
       page_cur: 1,
       page_data_total: 0,
@@ -216,11 +357,16 @@ export default {
       searchVillageName: "",
       searchVillageId: 0,
       searchType: "1",
-      searchKeyword: ""
+      searchKeyword: "",
+      prepareList: [],
+      sysCheckList: [],
+      deviceCheckkList: [],
+      periodCheck: []
     };
   },
   created() {
     this.getChildStationList();
+    this.getConfig();
     this.getDataList();
   },
   methods: {
@@ -300,63 +446,140 @@ export default {
         }
       });
     },
-    handleChange(value) {
-      console.log(value);
-    },
-    showDialog() {
-      this.getStationList();
-      this.diaLogTitle = "添加信息";
-      this.diaLogFormVisible = true;
-      this.$nextTick(() => {
-        this.$refs["formRulesRef"].clearValidate();
-      });
-      this.formData = {
-        // title: "",
-        // description: "",
-        // recept_type: []
-      };
-    },
-
-    detailEvent(id) {
-      this.$router.push({
-        path: "/devicemanage/detail",
-        query: {
-          id: id
+    getConfig() {
+      this.request({
+        url: "/record/getConfig",
+        method: "get"
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.prepareList = data.data.prepare; //维护预备
+          this.sysCheckList = data.data.sys_check; //系统检查
+          this.deviceCheckkList = data.data.device_check; //仪器检查
+          this.periodCheck = data.data.period_check; //周期维护
         }
       });
     },
-    //上传图片
-    uploadExceed() {
-      this.$message({
-        type: "warning",
-        message: `最多可以上传1张图片`
+    printEvent(id) {
+      this.request({
+        url: "/record/getRecordDetail",
+        method: "get",
+        params: { id: id, type: 1 }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.formData = data.data;
+          document.getElementById("printBtn").click();
+        }
       });
+    },
+    detailEvent(id) {
+      this.diaLogTitle = "污水处理站维护记录表";
+      this.diaLogFormVisible = true;
+      this.request({
+        url: "/record/getRecordDetail",
+        method: "get",
+        params: { id: id, type: 1 }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.formData = data.data;
+          // this.formData.period_check=data.data.period_check).replace (/"/g,'');
+          // console.log( this.formData.period_check);
+        }
+      });
+    },
+    deleteEvent(id) {
+      this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/record/delRecord",
+            method: "post",
+            data: { id: id, type: 1 }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.$message({
+                type: "success",
+                message: "删除成功！"
+              });
+              this.getDataList();
+            }
+          });
+        })
+        .catch(() => {});
+    },
+    problemEvent(id, flag) {
+      this.request({
+        url: "/record/changeProblem",
+        method: "post",
+        data: { id: id, is_problem: flag }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.getDataList();
+          this.$message({
+            type: "success",
+            message: "设置成功！"
+          });
+        }
+      });
+    },
+    handleEvent(id, flag) {
+      this.request({
+        url: "/record/changehandle",
+        method: "post",
+        data: { id: id, is_handle: flag }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.getDataList();
+          this.$message({
+            type: "success",
+            message: "设置成功！"
+          });
+        }
+      });
+    },
+    //上传
+    expectExcel() {
+      this.diaLogFormExcelVisible = true;
     },
     uploadSuccess(res, file) {
       console.log("图上传成功", res);
-      this.$set(this.formData, "img", res.data.url);
+      if (res.status == 1) {
+        this.getDataList();
+        this.$message({
+          type: "success",
+          message: "导入成功！"
+        });
+        this.diaLogFormExcelVisible = false;
+      } else {
+        this.$message({
+          message: "导入失败！",
+          type: "error"
+        });
+      }
     },
     uploadBefore(file) {
       var filename = file.name.substring(file.name.lastIndexOf(".") + 1);
-      const extension =
-        filename === "GIF" ||
-        filename === "gif" ||
-        filename === "jpeg" ||
-        filename === "jpg" ||
-        filename === "JPG" ||
-        filename === "png" ||
-        filename === "PNG";
+      const extension = filename === "xls";
       const isLtM = file.size / 1024 / 1024 < 2;
       if (!extension) {
         this.$message({
-          message: "上传图片只能是 jpg  png  gif 格式",
+          message: "上传文件只能是xls格式",
           type: "error"
         });
         return false;
       }
       if (!isLtM) {
         this.$message({
-          message: "上传图片大小不能超过 2MB",
+          message: "上传文件不能超过 2MB",
           type: "error"
         });
         return false;
@@ -385,73 +608,74 @@ export default {
   color: #fff;
 }
 
-.dialog-device .el-select {
+.dialog-form-records .el-select {
   width: 100%;
 }
-.dialog-device .el-form-item-inline {
+.dialog-form-records .el-form-item-inline {
   display: inline-block;
 }
-.dialog-device .el-form-item-inline .el-form-item {
+.dialog-form-records .el-form-item-inline .el-form-item {
   display: inline-block;
+  margin-bottom: 0px;
 }
-.dialog-device .el-form-item-block {
+.dialog-form-records .el-form-item-block {
   display: block;
 }
-.dialog-device .el-form-item-inline .el-checkbox-group {
-  margin-left: 110px;
-}
-.dialog-device .el-form-item-inline .el-input__inner {
+.dialog-form-records .el-form-item-inline .el-input__inner {
   width: 220px;
 }
-.avatar-uploader .el-upload {
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-.avatar-uploader .el-upload:hover {
-  border-color: #409eff;
-}
-.avatar-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
-  width: 178px;
-  height: 178px;
-  line-height: 178px;
+
+.dialog-form-records .samptitle {
+  font-size: 16px;
   text-align: center;
+  color: #338ff6;
+  margin-bottom: 30px;
+  margin-top: 20px;
 }
-.avatar {
-  width: 178px;
-  height: 178px;
-  display: block;
+.dialog-form-records .samptitles {
+  font-size: 14px;
+  padding-left: 8px;
+  margin-bottom: 30px;
+}
+.dialog-form-records .sampinfo {
+  display: inline-block;
+  min-width: 100px;
+  margin-right: 20px;
+  color: #338ff6;
+  overflow: hidden;
+  height: 30px;
+}
+.dialog-form-records .sampinfos {
+  overflow: hidden;
+  display: inline-block;
+  min-width: 58px;
+  line-height: 28px;
+  border-bottom: 1px #ddd solid;
+}
+.dialog-form-records
+  .el-checkbox__input.is-disabled.is-checked
+  .el-checkbox__inner::after {
+  border-color: #338ff6;
+}
+.dialog-opera .el-checkbox__input.is-disabled.is-checked .el-checkbox__inner {
+  background-color: #f2f6fc;
+  border-color: #338ff6;
+}
+.dialog-form-records .el-checkbox__input.is-disabled .el-checkbox__inner {
+  background-color: #edf2fc;
+  border-color: #338ff6;
+  cursor: not-allowed;
+}
+.dialog-form-records .el-checkbox__input.is-disabled + span.el-checkbox__label {
+  color: #333;
+  cursor: not-allowed;
 }
 
-/*print*/
-#printBtn {
-  display: none;
+.isok-popover {
+  min-width: 70px;
+  padding: 5px;
 }
-#printRecord {
-  display: none;
-}
-@media print {
-  #printRecord {
-    display: block;
-  }
-  #printRecord table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  #printRecord table td {
-    border: 1px solid #9db9fa;
-    line-height: 30px;
-    padding: 10px;
-  }
-  undefined {
-    display: none;
-  }
-  #printRecord .info {
-    width: 90px;
-  }
+.isok-popover span {
+  cursor: pointer;
 }
 </style>

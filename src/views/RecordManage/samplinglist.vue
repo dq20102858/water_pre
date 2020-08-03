@@ -45,7 +45,7 @@
                 </el-select>
               </el-form-item>
               <el-form-item class="el-form-item">
-                <el-button type="primary">导入</el-button>
+                <el-button type="primary" @click="expectExcel">导入</el-button>
               </el-form-item>
             </el-form>
           </div>
@@ -73,7 +73,7 @@
               <el-table-column label="操作" width="190">
                 <template slot-scope="scope">
                   <div class="app-operation">
-                    <el-button class="btn-print" size="mini" @click="editEvent(scope.row.id)">打印</el-button>
+                    <el-button class="btn-print" size="mini" @click="printEvent(scope.row.id)">打印</el-button>
                     <el-button class="btn-edit" size="mini" @click="detailEvent(scope.row.id)">详情</el-button>
                     <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
                   </div>
@@ -107,20 +107,19 @@
 
     <el-dialog
       width="780px"
-      class="dialog-sampl"
       :title="this.diaLogTitle"
       :close-on-click-modal="false"
       :visible.sync="diaLogFormVisible"
     >
-      <el-form :model="formData" class="sampde" label-width="80px">
+      <el-form class="dialog-form-samp" :model="formData" label-width="80px">
         <div class="el-form-item-inline">
-          <el-form-item label="地址：" label-width="120px">
+          <el-form-item label="地址：" label-width="100px">
             <div class="sampinfo">{{formData.station_name}}</div>
           </el-form-item>
-          <el-form-item label="记录日期：" label-width="120px">
+          <el-form-item label="记录日期：" label-width="100px">
             <div class="sampinfo">{{formData.create_time}} &nbsp;</div>
           </el-form-item>
-          <el-form-item label="采样化验人：" label-width="120px">
+          <el-form-item label="采样化验人：" label-width="100px">
             <div class="sampinfo">{{formData.user}}</div>
           </el-form-item>
         </div>
@@ -165,10 +164,88 @@
         <el-button type="primary" @click="diaLogFormVisible = false">确 定</el-button>
       </div>
     </el-dialog>
+    <el-dialog
+      width="380px"
+      class="dialog-excel"
+      title="导入数据"
+      :close-on-click-modal="false"
+      :visible.sync="diaLogFormExcelVisible"
+    >
+      <el-form>
+        <el-form-item style="text-align: center;padding-top:20px">
+          <el-upload
+            class="upload-demo"
+            :action="uploadAction"
+            :before-upload="uploadBefore"
+            :on-success="uploadSuccess"
+            :show-file-list="false"
+            :data="uploadData"
+            accept=".xls"
+          >
+            <el-button type="primary" plain>选择模板文件</el-button>
+            <div slot="tip" class="el-upload__tip">
+              请上传模板格式文件，且不超过2MB
+              <a
+                style="text-decoration: none;color:#4093ED"
+                target="_blank"
+                :href="uploadTemp"
+              >下载模板</a>
+            </div>
+          </el-upload>
+        </el-form-item>
+      </el-form>
+    </el-dialog>
     <button v-print="printObj" id="printBtn"></button>
-    <div id="printRecord">
-      <div class="printtop">1234</div>
-    </div>
+    <el-form id="printRecord" class="dialog-form-samp" :model="formData" label-width="80px">
+       <h3 class="printTitles">污水处理采样化验单表</h3>
+      <div class="el-form-item-inline">
+        <el-form-item label="地址：" label-width="100px">
+          <div class="sampinfo">{{formData.station_name}}</div>
+        </el-form-item>
+        <el-form-item label="记录日期：" label-width="100px">
+          <div class="sampinfo">{{formData.create_time}} &nbsp;</div>
+        </el-form-item>
+        <el-form-item label="采样化验人：" label-width="100px">
+          <div class="sampinfo">{{formData.user}}</div>
+        </el-form-item>
+      </div>
+      <div class="samptitle">进水</div>
+      <div class="el-form-item-inline">
+        <el-form-item label="PH：">
+          <div class="sampinfos">{{formData.in_ph}}</div>
+        </el-form-item>
+        <el-form-item label="COD：">
+          <div class="sampinfos">{{formData.in_cod}}</div>
+        </el-form-item>
+        <el-form-item label="NH3-N：">
+          <div class="sampinfos">{{formData.in_nh3}}</div>
+        </el-form-item>
+        <el-form-item label="TP：">
+          <div class="sampinfos">{{formData.in_tp}}</div>
+        </el-form-item>
+        <el-form-item label="TN：">
+          <div class="sampinfos">{{formData.in_tn}}</div>
+        </el-form-item>
+      </div>
+      <div class="samptitle">出水</div>
+      <div class="el-form-item-inline">
+        <el-form-item label="PH：">
+          <div class="sampinfos">{{formData.out_ph}}</div>
+        </el-form-item>
+        <el-form-item label="COD：">
+          <div class="sampinfos">{{formData.out_cod}}</div>
+        </el-form-item>
+        <el-form-item label="NH3-N：">
+          <div class="sampinfos">{{formData.out_nh3}}</div>
+        </el-form-item>
+        <el-form-item label="TP：">
+          <div class="sampinfos">{{formData.out_tp}}</div>
+        </el-form-item>
+        <el-form-item label="TN：">
+          <div class="sampinfos">{{formData.out_tn}}</div>
+        </el-form-item>
+      </div>
+    </el-form>
   </div>
 </template>
 <script>
@@ -181,9 +258,13 @@ export default {
         extraCss: "",
         extraHead: '<meta http-equiv="Content-Language"content="zh-cn"/>'
       },
+      diaLogFormExcelVisible: false,
       diaLogFormVisible: false,
-      diaLogTitle: "添加人员信息",
-      uploadAction: this.hostURL + "/upload/uploadFile",
+      diaLogTitle: "",
+
+      uploadAction: this.hostURL + "/record/importRecord",
+      uploadTemp: this.hostURL + "/downloads/1.xls",
+      uploadData: { type: 3 },
       formData: {},
       page_cur: 1,
       page_data_total: 0,
@@ -291,22 +372,21 @@ export default {
       });
     },
 
-    showDialog() {
-      this.getStationList();
-      this.diaLogTitle = "添加信息";
-      this.diaLogFormVisible = true;
-      this.$nextTick(() => {
-        this.$refs["formRulesRef"].clearValidate();
+    printEvent(id) {
+      this.request({
+        url: "/record/getRecordDetail",
+        method: "get",
+        params: { id: id, type: 3 }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.formData = data.data;
+          document.getElementById("printBtn").click();
+        }
       });
-      this.formData = {
-        // title: "",
-        // description: "",
-        // recept_type: []
-      };
     },
-
     detailEvent(id) {
-      this.diaLogTitle = "采样化验单详情";
+      this.diaLogTitle = "污水处理采样化验单表";
       this.diaLogFormVisible = true;
       this.request({
         url: "/record/getRecordDetail",
@@ -344,38 +424,40 @@ export default {
         })
         .catch(() => {});
     },
-    //上传图片
-    uploadExceed() {
-      this.$message({
-        type: "warning",
-        message: `最多可以上传1张图片`
-      });
+    //上传
+    expectExcel() {
+      this.diaLogFormExcelVisible = true;
     },
     uploadSuccess(res, file) {
       console.log("图上传成功", res);
-      this.$set(this.formData, "img", res.data.url);
+      if (res.status == 1) {
+        this.getDataList();
+        this.$message({
+          type: "success",
+          message: "导入成功！"
+        });
+        this.diaLogFormExcelVisible = false;
+      } else {
+        this.$message({
+          message: "导入失败！",
+          type: "error"
+        });
+      }
     },
     uploadBefore(file) {
       var filename = file.name.substring(file.name.lastIndexOf(".") + 1);
-      const extension =
-        filename === "GIF" ||
-        filename === "gif" ||
-        filename === "jpeg" ||
-        filename === "jpg" ||
-        filename === "JPG" ||
-        filename === "png" ||
-        filename === "PNG";
+      const extension = filename === "xls";
       const isLtM = file.size / 1024 / 1024 < 2;
       if (!extension) {
         this.$message({
-          message: "上传图片只能是 jpg  png  gif 格式",
+          message: "上传文件只能是xls格式",
           type: "error"
         });
         return false;
       }
       if (!isLtM) {
         this.$message({
-          message: "上传图片大小不能超过 2MB",
+          message: "上传文件不能超过 2MB",
           type: "error"
         });
         return false;
@@ -415,51 +497,51 @@ export default {
   color: #fff;
 }
 
-.dialog-sampl .el-select {
+.dialog-form-samp .el-select {
   width: 100%;
 }
-.dialog-sampl .el-form-item-inline {
+.dialog-form-samp .el-form-item-inline {
   display: inline-block;
 }
-.dialog-sampl .el-form-item-inline .el-form-item {
+.dialog-form-samp .el-form-item-inline .el-form-item {
   display: inline-block;
+  margin-bottom: 0;
 }
-.dialog-sampl .el-form-item-block {
+.dialog-form-samp .el-form-item-block {
   display: block;
 }
-.dialog-sampl .el-form-item-inline .el-checkbox-group {
-  margin-left: 110px;
-}
-.dialog-sampl .el-form-item-inline .el-input__inner {
+.dialog-form-samp .el-form-item-inline .el-input__inner {
   width: 220px;
 }
 
 .sampde .el-form-item__label {
   padding: 0;
 }
-.samptitle {
+.dialog-form-samp .samptitle {
   font-size: 16px;
   text-align: center;
   color: #338ff6;
   margin-bottom: 30px;
+  margin-top: 20px;
 }
-.sampinfo {
+.dialog-form-samp .sampinfo {
   display: inline-block;
   min-width: 100px;
   margin-right: 20px;
   color: #338ff6;
   overflow: hidden;
+  height: 30px;
 }
-.sampinfos {
+.dialog-form-samp .sampinfos {
   overflow: hidden;
   display: inline-block;
   min-width: 58px;
   border-bottom: 1px #ddd solid;
+  height: 30px;
+  text-align: center;
 }
 /*print*/
-#printBtn {
-  display: none;
-}
+#printBtn,
 #printRecord {
   display: none;
 }
@@ -467,20 +549,8 @@ export default {
   #printRecord {
     display: block;
   }
-  #printRecord table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  #printRecord table td {
-    border: 1px solid #9db9fa;
-    line-height: 30px;
-    padding: 10px;
-  }
   undefined {
     display: none;
-  }
-  #printRecord .info {
-    width: 90px;
   }
 }
 </style>

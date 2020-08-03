@@ -66,8 +66,13 @@
               <el-table-column prop="address" label="发声位置"></el-table-column>
               <el-table-column prop="is_repair" label="是否修复" v-if="this.searchType!=3">
                 <template slot-scope="scope">
-                  <span v-if="scope.row.is_repair==1">是</span>
-                  <span v-else>
+                  <el-popover placement="right" trigger="hover" popper-class="isok-popover">
+                    <span class="btn-sele" @click="repairEvent(scope.row.id,1)">是</span>
+                    <span class="btn-sele" @click="repairEvent(scope.row.id,0)">否</span>
+                    <span class="btn-sele-no" v-if="scope.row.is_repair==1" slot="reference">是</span>
+                    <span class="btn-sele-no" v-if="scope.row.is_repair==0" slot="reference">否</span>
+                  </el-popover>
+                  <span v-if="scope.row.is_repair==null">
                     <el-button class="btn-sele" @click="repairEvent(scope.row.id,1)">是</el-button>
                     <el-button class="btn-sele mar5" @click="repairEvent(scope.row.id,0)">否</el-button>
                   </span>
