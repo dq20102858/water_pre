@@ -68,20 +68,20 @@
                 <template slot-scope="scope">
                   <span v-if="scope.row.is_repair==1">是</span>
                   <span v-else>
-                    <el-button class="btn-sele"  @click="repairEvent(scope.row.id,1)">是</el-button>
-                  <el-button class="btn-sele mar5"  @click="repairEvent(scope.row.id,0)">否 </el-button>
+                    <el-button class="btn-sele" @click="repairEvent(scope.row.id,1)">是</el-button>
+                    <el-button class="btn-sele mar5" @click="repairEvent(scope.row.id,0)">否</el-button>
                   </span>
                 </template>
               </el-table-column>
-              <el-table-column label="操作"  v-if="this.searchType==3" width="150">
+              <el-table-column label="操作" v-if="this.searchType==3" width="150">
                 <template slot-scope="scope">
                   <div class="app-operation">
-                    <a  class="btn-edit" target="_blank" :href="scope.row.video_url">查看视频</a>
+                    <a class="btn-edit" target="_blank" :href="scope.row.video_url">查看视频</a>
                     <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
                   </div>
                 </template>
               </el-table-column>
-                 <el-table-column label="操作"  v-if="this.searchType !=3"  width="70">
+              <el-table-column label="操作" v-if="this.searchType !=3" width="70">
                 <template slot-scope="scope">
                   <div class="app-operation">
                     <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
@@ -194,23 +194,22 @@ export default {
           this.childStation = data.data;
         }
       });
-    },  
-    repairEvent(id,flag) {
-     
-          this.request({
-            url: "/alert/isRepair",
-            method: "post",
-            data: { id: id, type: this.searchType,is_repair:flag }
-          }).then(res => {
-            let data = res.data;
-            if (data.status == 1) {
-                this.getDataList();
-              this.$message({
-                type: "success",
-                message: "设置成功！"
-              });
-            }
+    },
+    repairEvent(id, flag) {
+      this.request({
+        url: "/alert/isRepair",
+        method: "post",
+        data: { id: id, type: this.searchType, is_repair: flag }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.getDataList();
+          this.$message({
+            type: "success",
+            message: "设置成功！"
           });
+        }
+      });
     },
     deleteEvent(id) {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
@@ -227,12 +226,11 @@ export default {
           }).then(res => {
             let data = res.data;
             if (data.status == 1) {
-                this.getDataList();
+              this.getDataList();
               this.$message({
                 type: "success",
                 message: "删除成功！"
               });
-             
             }
           });
         })
@@ -258,5 +256,8 @@ export default {
 }
 .el-search-items .el-select .el-input .el-select__caret {
   color: #fff;
+}
+.samplinglist .el-table tr th {
+  text-align: center;
 }
 </style>

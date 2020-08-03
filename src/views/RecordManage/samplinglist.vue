@@ -50,31 +50,31 @@
             </el-form>
           </div>
           <div class="app-table">
-            <el-table :data="dataList">
-              <el-table-column label="序号" width="80px">
+            <el-table :data="dataList" class="samplinglist">
+              <el-table-column align="center" label="序号" width="80px">
                 <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
               </el-table-column>
-              <el-table-column prop="name" label="维保日期"></el-table-column>
-              <el-table-column prop="address" label="维保站点"></el-table-column>
-              <el-table-column label="进 水">
-                <el-table-column prop="province" label="PH"></el-table-column>
-                <el-table-column prop="city" label="COD"></el-table-column>
-                <el-table-column prop="address" label="NH3-N"></el-table-column>
-                <el-table-column prop="zip" label="TP"></el-table-column>
-                <el-table-column prop="zip" label="TN"></el-table-column>
+              <el-table-column align="center" prop="update_time" label="维保日期"></el-table-column>
+              <el-table-column align="center" prop="station_name" label="维保站点"></el-table-column>
+              <el-table-column label="进 水" align="center">
+                <el-table-column align="center" prop="in_ph" label="PH"></el-table-column>
+                <el-table-column align="center" prop="in_cod" label="COD"></el-table-column>
+                <el-table-column align="center" prop="in_nh3" label="NH3-N"></el-table-column>
+                <el-table-column align="center" prop="in_tp" label="TP"></el-table-column>
+                <el-table-column align="center" prop="in_tn" label="TN"></el-table-column>
               </el-table-column>
-              <el-table-column label="出 水" style="text-align: center;">
-                <el-table-column prop="province" label="PH"></el-table-column>
-                <el-table-column prop="city" label="COD"></el-table-column>
-                <el-table-column prop="address" label="NH3-N"></el-table-column>
-                <el-table-column prop="zip" label="TP"></el-table-column>
-                <el-table-column prop="zip" label="TN"></el-table-column>
+              <el-table-column label="出 水">
+                <el-table-column align="center" prop="out_ph" label="PH"></el-table-column>
+                <el-table-column align="center" prop="out_cod" label="COD"></el-table-column>
+                <el-table-column align="center" prop="out_nh3" label="NH3-N"></el-table-column>
+                <el-table-column align="center" prop="out_tp" label="TP"></el-table-column>
+                <el-table-column align="center" prop="out_tn" label="TN"></el-table-column>
               </el-table-column>
               <el-table-column label="操作" width="190">
                 <template slot-scope="scope">
                   <div class="app-operation">
                     <el-button class="btn-print" size="mini" @click="editEvent(scope.row.id)">打印</el-button>
-                    <el-button class="btn-edit" size="mini" @click="editEvent(scope.row.id)">编辑</el-button>
+                    <el-button class="btn-edit" size="mini" @click="detailEvent(scope.row.id)">详情</el-button>
                     <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
                   </div>
                 </template>
@@ -106,85 +106,63 @@
     </el-row>
 
     <el-dialog
-      width="734px"
-      class="dialog-device"
+      width="780px"
+      class="dialog-sampl"
       :title="this.diaLogTitle"
       :close-on-click-modal="false"
       :visible.sync="diaLogFormVisible"
     >
-      <el-form
-        :model="formData"
-        class="el-form-custom"
-        :rules="formRules"
-        ref="formRulesRef"
-        label-width="120px"
-      >
-        <el-form-item label="设备名称：" prop="name">
-          <el-input v-model="formData.name" autocomplete="off"></el-input>
-        </el-form-item>
+      <el-form :model="formData" class="sampde" label-width="80px">
         <div class="el-form-item-inline">
-          <el-form-item label="所属站点：" prop="sid">
-            <el-cascader
-              v-model="formData.sid"
-              :options="stationOptions"
-              :props="stationOptionsProps"
-              @change="handleChange"
-            ></el-cascader>
+          <el-form-item label="地址：" label-width="120px">
+            <div class="sampinfo">{{formData.station_name}}</div>
           </el-form-item>
-          <el-form-item label="设备类型：" prop="type">
-            <el-select v-model="formData.type" placeholder="请选择设备类型">
-              <el-option label="风机" :value="1"></el-option>
-              <el-option label="水泵" :value="2"></el-option>
-            </el-select>
+          <el-form-item label="记录日期：" label-width="120px">
+            <div class="sampinfo">{{formData.create_time}} &nbsp;</div>
           </el-form-item>
-          <el-form-item label="设备编号：" prop="number">
-            <el-input v-model="formData.number" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="设备型号：" prop="model">
-            <el-input v-model="formData.model" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="设备品牌：" prop="brand">
-            <el-input v-model="formData.brand" autocomplete="off"></el-input>
-          </el-form-item>
-
-          <el-form-item label="运行时长：" prop="days">
-            <el-input v-model="formData.days" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="最新维护时间：" prop="latest_time">
-            <el-date-picker v-model="formData.latest_time" type="date" placeholder="选择日期"></el-date-picker>
-          </el-form-item>
-          <el-form-item label="质保期：" prop="warranty_time">
-            <el-date-picker v-model="formData.warranty_time" type="date" placeholder="选择日期"></el-date-picker>
-          </el-form-item>
-          <el-form-item label="采购人：" prop="purchaser">
-            <el-input v-model="formData.purchaser" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="运行状态：" prop="work_status">
-            <el-select v-model="formData.work_status" placeholder="请选择运行状态">
-              <el-option label="正常" :value="1"></el-option>
-              <el-option label="异常" :value="2"></el-option>
-            </el-select>
+          <el-form-item label="采样化验人：" label-width="120px">
+            <div class="sampinfo">{{formData.user}}</div>
           </el-form-item>
         </div>
-        <el-form-item label="封面图片：" style="width:100%;" prop="img">
-          <el-upload
-            ref="uploadfive"
-            class="avatar-uploader"
-            :action="uploadAction"
-            :auto-upload="true"
-            :on-exceed="uploadExceed"
-            :before-upload="uploadBefore"
-            :on-success="uploadSuccess"
-            :show-file-list="false"
-          >
-            <img v-if="formData.img" :src="formData.img" class="avatar" title="选择图片" />
-            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-          </el-upload>
-        </el-form-item>
+        <div class="samptitle">进水</div>
+        <div class="el-form-item-inline">
+          <el-form-item label="PH：">
+            <div class="sampinfos">{{formData.in_ph}}</div>
+          </el-form-item>
+          <el-form-item label="COD：">
+            <div class="sampinfos">{{formData.in_cod}}</div>
+          </el-form-item>
+          <el-form-item label="NH3-N：">
+            <div class="sampinfos">{{formData.in_nh3}}</div>
+          </el-form-item>
+          <el-form-item label="TP：">
+            <div class="sampinfos">{{formData.in_tp}}</div>
+          </el-form-item>
+          <el-form-item label="TN：">
+            <div class="sampinfos">{{formData.in_tn}}</div>
+          </el-form-item>
+        </div>
+        <div class="samptitle">出水</div>
+        <div class="el-form-item-inline">
+          <el-form-item label="PH：">
+            <div class="sampinfos">{{formData.out_ph}}</div>
+          </el-form-item>
+          <el-form-item label="COD：">
+            <div class="sampinfos">{{formData.out_cod}}</div>
+          </el-form-item>
+          <el-form-item label="NH3-N：">
+            <div class="sampinfos">{{formData.out_nh3}}</div>
+          </el-form-item>
+          <el-form-item label="TP：">
+            <div class="sampinfos">{{formData.out_tp}}</div>
+          </el-form-item>
+          <el-form-item label="TN：">
+            <div class="sampinfos">{{formData.out_tn}}</div>
+          </el-form-item>
+        </div>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="diaLogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="addEvent">确 定</el-button>
+        <el-button type="primary" @click="diaLogFormVisible = false">确 定</el-button>
       </div>
     </el-dialog>
     <button v-print="printObj" id="printBtn"></button>
@@ -279,6 +257,15 @@ export default {
     searchVillageNameEvent() {
       this.getChildStationList();
     },
+    searchTypeEvent(val) {
+      if (val == 2) {
+        this.$router.push("/recordmanage/operation");
+      } else if (val == 3) {
+        this.$router.push("/recordmanage/samplinglist");
+      } else {
+        this.$router.push("/recordmanage");
+      }
+    },
     getChildStationList() {
       let name = this.searchVillageName;
       this.request({
@@ -303,9 +290,7 @@ export default {
         }
       });
     },
-    handleChange(value) {
-      console.log(value);
-    },
+
     showDialog() {
       this.getStationList();
       this.diaLogTitle = "添加信息";
@@ -321,12 +306,43 @@ export default {
     },
 
     detailEvent(id) {
-      this.$router.push({
-        path: "/devicemanage/detail",
-        query: {
-          id: id
+      this.diaLogTitle = "采样化验单详情";
+      this.diaLogFormVisible = true;
+      this.request({
+        url: "/record/getRecordDetail",
+        method: "get",
+        params: { id: id, type: 3 }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.formData = data.data;
         }
       });
+    },
+    deleteEvent(id) {
+      this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+        customClass: "el-message-box-new"
+      })
+        .then(() => {
+          this.request({
+            url: "/record/delRecord",
+            method: "post",
+            data: { id: id, type: 3 }
+          }).then(res => {
+            let data = res.data;
+            if (data.status == 1) {
+              this.getDataList();
+              this.$message({
+                type: "success",
+                message: "删除成功！"
+              });
+            }
+          });
+        })
+        .catch(() => {});
     },
     //上传图片
     uploadExceed() {
@@ -380,7 +396,11 @@ export default {
 .app-samplinglist-page .el-table--border th {
   border: 0;
 }
-.app-samplinglist-page .el-table tr th{text-align: center; padding-top: 5px; padding-bottom: 5px;}
+.app-samplinglist-page .el-table tr th {
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 .el-search-items .el-select .el-input {
   width: 120px;
   border-radius: 4px;
@@ -395,48 +415,47 @@ export default {
   color: #fff;
 }
 
-.dialog-device .el-select {
+.dialog-sampl .el-select {
   width: 100%;
 }
-.dialog-device .el-form-item-inline {
+.dialog-sampl .el-form-item-inline {
   display: inline-block;
 }
-.dialog-device .el-form-item-inline .el-form-item {
+.dialog-sampl .el-form-item-inline .el-form-item {
   display: inline-block;
 }
-.dialog-device .el-form-item-block {
+.dialog-sampl .el-form-item-block {
   display: block;
 }
-.dialog-device .el-form-item-inline .el-checkbox-group {
+.dialog-sampl .el-form-item-inline .el-checkbox-group {
   margin-left: 110px;
 }
-.dialog-device .el-form-item-inline .el-input__inner {
+.dialog-sampl .el-form-item-inline .el-input__inner {
   width: 220px;
 }
-.avatar-uploader .el-upload {
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
+
+.sampde .el-form-item__label {
+  padding: 0;
+}
+.samptitle {
+  font-size: 16px;
+  text-align: center;
+  color: #338ff6;
+  margin-bottom: 30px;
+}
+.sampinfo {
+  display: inline-block;
+  min-width: 100px;
+  margin-right: 20px;
+  color: #338ff6;
   overflow: hidden;
 }
-.avatar-uploader .el-upload:hover {
-  border-color: #409eff;
+.sampinfos {
+  overflow: hidden;
+  display: inline-block;
+  min-width: 58px;
+  border-bottom: 1px #ddd solid;
 }
-.avatar-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
-  width: 178px;
-  height: 178px;
-  line-height: 178px;
-  text-align: center;
-}
-.avatar {
-  width: 178px;
-  height: 178px;
-  display: block;
-}
-
 /*print*/
 #printBtn {
   display: none;
