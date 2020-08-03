@@ -90,7 +90,7 @@
               </el-table-column>
               <el-table-column label="指派时间">
                 <template slot-scope="scope">
-                  <span>{{scope.row.assign_time|formatGetDate}}</span>
+                  <span>{{scope.row.create_time|formatDateTamp}}</span>
                 </template>
               </el-table-column>
               <el-table-column label="操作" width="190">
@@ -178,9 +178,9 @@
               <el-option label="运行检查" :value="3"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="指派时间：" prop="assign_time">
+          <!-- <el-form-item label="指派时间：" prop="assign_time">
             <el-date-picker v-model="formData.assign_time" type="date" placeholder="选择日期"></el-date-picker>
-          </el-form-item>
+          </el-form-item> -->
         </div>
         <el-form-item label="维修内容：" prop="content">
           <el-input type="textarea" v-model="formData.content" rows="5"></el-input>
@@ -219,7 +219,7 @@
             <div class="disp-info" v-if="formData.type==3">运行检查</div>
           </el-form-item>
           <el-form-item label="指派时间：">
-            <div class="disp-info">{{formData.assign_time}}</div>
+            <div class="disp-info">{{formData.create_time|formatDateTamp}}</div>
           </el-form-item>
         </div>
         <el-form-item label="维修内容：">
@@ -259,13 +259,6 @@ export default {
           {
             required: true,
             message: "请选择派单事项",
-            trigger: "change"
-          }
-        ],
-        assign_time: [
-          {
-            required: true,
-            message: "请选择指派时间",
             trigger: "change"
           }
         ],
