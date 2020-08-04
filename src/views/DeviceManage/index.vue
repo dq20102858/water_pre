@@ -1,133 +1,131 @@
 <template>
   <div class="app-device-page">
-    <el-row :gutter="20" class="grid-menu">
-      <el-col :xs="8" :sm="3" :md="3" :lg="3" :xl="3">
-        <div class="left-menu-area">
-          <div class="input-so">
-            <el-input
-              placeholder="请输入内容"
-             prefix-icon="el-icon-search"
-              v-model="searchVillageName"
-              @input="searchVillageNameEvent"
-              clearable
-            ></el-input>
-          </div>
-          <el-menu router class="el-menu-vertical-demo">
-            <el-menu-item
-              :class="searchVillageId === 0 ? 'active' : ''"
-              @click="searchVillageEvent(0)"
-            >
-              <span>全部</span>
-            </el-menu-item>
-            <el-menu-item
-              v-for="item in childStation"
-              :key="item.id"
-              :class="searchVillageId === item.id ? 'active' : ''"
-              @click="searchVillageEvent(item.id)"
-            >
-              <span>{{item.name}}</span>
-            </el-menu-item>
-          </el-menu>
+    <div class="app-rows-left">
+      <div class="left-menu-area">
+        <div class="input-so">
+          <el-input
+            placeholder="请输入内容"
+            prefix-icon="el-icon-search"
+            v-model="searchVillageName"
+            @input="searchVillageNameEvent"
+            clearable
+          ></el-input>
         </div>
-      </el-col>
-      <el-col :xs="16" :sm="21" :md="21" :lg="21" :xl="21">
-        <div class="app-page-container">
-          <div class="app-page-select" style="padding: 0 10px">
-            <el-form :inline="true">
-              <el-form-item class="el-search-item-blee">
-                <el-input prefix-icon="el-icon-search"
-                  placeholder="请输入设备编号"
-                  @input="searchKeywordEvent"
-                  v-model="searchKeyword"
-                  class="input-with-select"
-                  clearable
+        <el-menu router class="el-menu-vertical-demo">
+          <el-menu-item
+            :class="searchVillageId === 0 ? 'active' : ''"
+            @click="searchVillageEvent(0)"
+          >
+            <span>全部</span>
+          </el-menu-item>
+          <el-menu-item
+            v-for="item in childStation"
+            :key="item.id"
+            :class="searchVillageId === item.id ? 'active' : ''"
+            @click="searchVillageEvent(item.id)"
+          >
+            <span>{{item.name}}</span>
+          </el-menu-item>
+        </el-menu>
+      </div>
+    </div>
+    <div class="app-rows-right">
+      <div class="app-page-container">
+        <div class="app-page-select" style="padding: 0 10px">
+          <el-form :inline="true">
+            <el-form-item class="el-search-item-blee">
+              <el-input
+                prefix-icon="el-icon-search"
+                placeholder="请输入设备编号"
+                @input="searchKeywordEvent"
+                v-model="searchKeyword"
+                class="input-with-select"
+                clearable
+              >
+                <el-select
+                  v-model="searchType"
+                  slot="append"
+                  placeholder="请选择"
+                  @change="searchTypeEvent"
                 >
-                  <el-select
-                    v-model="searchType"
-                    slot="append"
-                    placeholder="请选择"
-                    @change="searchTypeEvent"
-                  >
-                    <el-option label="全部" value="0"></el-option>
-                    <el-option label="风机" value="1"></el-option>
-                    <el-option label="水泵" value="2"></el-option>
-                  </el-select>
-                </el-input>
-              </el-form-item>
-              <div class="el-serach noborder">
-                <el-button @click="showDialog">添加</el-button>
-              </div>
-            </el-form>
-          </div>
+                  <el-option label="全部" value="0"></el-option>
+                  <el-option label="风机" value="1"></el-option>
+                  <el-option label="水泵" value="2"></el-option>
+                </el-select>
+              </el-input>
+            </el-form-item>
+            <div class="el-serach noborder">
+              <el-button @click="showDialog">添加</el-button>
+            </div>
+          </el-form>
+        </div>
 
-          <div class="devicelist">
-            <el-row :gutter="20" v-if="dataList.length>0">
-              <el-col :span="8" v-for="item in dataList" :key="item.id">
-                <div class="grid" @click="detailEvent(item.id)" title="点击查看详情">
-                  <div class="grid-title">
-                    {{item.name}}
-                    <span>{{item.model}}</span>
+        <div class="devicelist">
+          <el-row :gutter="20" v-if="dataList.length>0">
+            <el-col :span="8" v-for="item in dataList" :key="item.id">
+              <div class="grid" @click="detailEvent(item.id)" title="点击查看详情">
+                <div class="grid-title">
+                  {{item.name}}
+                  <span>{{item.model}}</span>
+                </div>
+                <div class="grid-content">
+                  <div class="grid-img">
+                    <img :src="item.img" />
                   </div>
-                  <div class="grid-content">
-                    <div class="grid-img">
-                      <img :src="item.img" />
-                    </div>
-                    <div class="grid-info">
-                      <p>
-                        设备编号：
-                        <em>{{item.number}}</em>
-                      </p>
-                      <p>
-                        设备状态：
-                        <em>{{item.work_status}}</em>
-                      </p>
-                      <p>
-                        运行时长：
-                        <em>{{item.days}}天</em>
-                      </p>
-                      <p>
-                        最近维保时间：
-                        <em>{{item.latest_time|formatGetDate}}</em>
-                      </p>
-                      <p>
-                        设备品牌：
-                        <em>{{item.brand}}</em>
-                      </p>
-                      <p>
-                        设备位置：
-                        <em :title="item.address">{{item.address}}</em>
-                      </p>
-                    </div>
+                  <div class="grid-info">
+                    <p>
+                      设备编号：
+                      <em>{{item.number}}</em>
+                    </p>
+                    <p>
+                      设备状态：
+                      <em>{{item.work_status}}</em>
+                    </p>
+                    <p>
+                      运行时长：
+                      <em>{{item.days}}天</em>
+                    </p>
+                    <p>
+                      最近维保时间：
+                      <em>{{item.latest_time|formatGetDate}}</em>
+                    </p>
+                    <p>
+                      设备品牌：
+                      <em>{{item.brand}}</em>
+                    </p>
+                    <p>
+                      设备位置：
+                      <em :title="item.address">{{item.address}}</em>
+                    </p>
                   </div>
                 </div>
-                <div class="nodata" v-if="dataList.length == 0">暂无数据</div>
-              </el-col>
-            </el-row>
-            <div class="app-pagination">
-              <el-pagination
-                class="pagination"
-                v-if="dataList.length !== 0"
-                layout="slot,prev, pager, next,slot,total"
-                :page-size="this.page_size"
-                :current-page="this.page_cur"
-                :total="this.page_data_total"
-                @current-change="pageChange"
-                prev-text="上一页"
-                next-text="下一页"
-              >
-                <button @click="pageToFirst" type="button" class="btn-first">
-                  <span>首页</span>
-                </button>
-                <button @click="pageToLast" type="button" class="btn-last">
-                  <span>尾页</span>
-                </button>
-              </el-pagination>
-            </div>
+              </div>
+              <div class="nodata" v-if="dataList.length == 0">暂无数据</div>
+            </el-col>
+          </el-row>
+          <div class="app-pagination">
+            <el-pagination
+              class="pagination"
+              v-if="dataList.length !== 0"
+              layout="slot,prev, pager, next,slot,total"
+              :page-size="this.page_size"
+              :current-page="this.page_cur"
+              :total="this.page_data_total"
+              @current-change="pageChange"
+              prev-text="上一页"
+              next-text="下一页"
+            >
+              <button @click="pageToFirst" type="button" class="btn-first">
+                <span>首页</span>
+              </button>
+              <button @click="pageToLast" type="button" class="btn-last">
+                <span>尾页</span>
+              </button>
+            </el-pagination>
           </div>
         </div>
-      </el-col>
-    </el-row>
-
+      </div>
+    </div>
     <el-dialog
       width="734px"
       class="dialog-device"
@@ -566,9 +564,6 @@ export default {
 };
 </script>
 <style>
-.app-device-page {
-  overflow: hidden;
-}
 .el-search-item-blee .el-select .el-input {
   width: 80px;
   text-align: center;
@@ -579,8 +574,8 @@ export default {
 .el-search-item-blee .el-select .el-input .el-select__caret {
   color: #fff;
 }
-.el-search-item-blee  .el-select  .el-input__inner {
-    padding-left:15px;
+.el-search-item-blee .el-select .el-input__inner {
+  padding-left: 15px;
 }
 .devicelist .el-row {
   margin-bottom: 20px;
@@ -598,7 +593,7 @@ export default {
   margin-bottom: 20px;
   background: #eef3ff;
   overflow: hidden;
-  min-height:170px;
+  min-height: 170px;
 }
 .devicelist .grid-title {
   color: #fff;
@@ -631,15 +626,15 @@ export default {
 .devicelist .grid-info p {
   display: block;
   padding-bottom: 10px;
-  color: #666;  white-space: nowrap;
+  color: #666;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .devicelist .grid-info p em {
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 22px;  
-
+  height: 22px;
 }
 
 .dialog-device .el-select {

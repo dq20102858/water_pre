@@ -1,123 +1,121 @@
 <template>
   <div class="app-device-page">
-    <el-row :gutter="20" class="grid-menu">
-      <el-col :xs="8" :sm="3" :md="3" :lg="3" :xl="3">
-        <div class="left-menu-area">
-          <div class="input-so">
-            <el-input
-              placeholder="请输入内容"
-              prefix-icon="el-icon-search"
-              v-model="searchVillageName"
-              @input="searchVillageNameEvent"
-              clearable
-            ></el-input>
-          </div>
-          <el-menu router class="el-menu-vertical-demo">
-            <el-menu-item
-              :class="searchVillageId === 0 ? 'active' : ''"
-              @click="searchVillageEvent(0)"
-            >
-              <span>全部</span>
-            </el-menu-item>
-            <el-menu-item
-              v-for="item in childStation"
-              :key="item.id"
-              :class="searchVillageId === item.id ? 'active' : ''"
-              @click="searchVillageEvent(item.id)"
-            >
-              <span>{{item.name}}</span>
-            </el-menu-item>
-          </el-menu>
+    <div class="app-page-rows-left">
+      <div class="left-menu-area">
+        <div class="input-so">
+          <el-input
+            placeholder="请输入内容"
+            prefix-icon="el-icon-search"
+            v-model="searchVillageName"
+            @input="searchVillageNameEvent"
+            clearable
+          ></el-input>
         </div>
-      </el-col>
-      <el-col :xs="16" :sm="21" :md="21" :lg="21" :xl="21">
-        <div class="app-page-container">
-          <div class="app-page-select">
-            <el-form :inline="true">
-              <el-form-item class="el-form-item el-search-items">
-                <el-select v-model="searchType" @change="searchTypeEvent">
-                  <el-option label="设备告警" value="2"></el-option>
-                  <el-option label="水质告警" value="1"></el-option>
-                  <el-option label="入侵告警" value="3"></el-option>
-                </el-select>
-              </el-form-item>
-            </el-form>
-          </div>
-          <div class="app-table">
-            <el-table :data="dataList">
-              <el-table-column label="序号" width="80px">
-                <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
-              </el-table-column>
-              <el-table-column prop="type" label="告警设备" v-if="this.searchType==2">
-                <template slot-scope="scope">
-                  <span v-if="scope.row.type==1">风机</span>
-                  <span v-else>水泵</span>
-                </template>
-              </el-table-column>
-              <el-table-column prop="type" label="水质类型" v-if="this.searchType==1">
-                <template slot-scope="scope">
-                  <span v-if="scope.row.type==1">PH</span>
-                  <span v-else-if="scope.row.type==2">DO</span>
-                  <span v-else>液位</span>
-                </template>
-              </el-table-column>
-              <el-table-column prop="reason" label="告警原因" v-if="this.searchType!=3"></el-table-column>
-              <el-table-column prop="create_time" label="告警时间"></el-table-column>
-              <el-table-column prop="address" label="发声位置"></el-table-column>
-              <el-table-column prop="is_repair" label="是否修复" v-if="this.searchType!=3">
-                <template slot-scope="scope">
-                  <el-popover placement="right" trigger="hover" popper-class="isok-popover">
-                    <span class="btn-sele" @click="repairEvent(scope.row.id,1)">是</span>
-                    <span class="btn-sele" @click="repairEvent(scope.row.id,0)">否</span>
-                    <span class="btn-sele-no" v-if="scope.row.is_repair==1" slot="reference">是</span>
-                    <span class="btn-sele-no" v-if="scope.row.is_repair==0" slot="reference">否</span>
-                  </el-popover>
-                  <span v-if="scope.row.is_repair==null">
-                    <el-button class="btn-sele" @click="repairEvent(scope.row.id,1)">是</el-button>
-                    <el-button class="btn-sele mar5" @click="repairEvent(scope.row.id,0)">否</el-button>
-                  </span>
-                </template>
-              </el-table-column>
-              <el-table-column label="操作" v-if="this.searchType==3" width="150">
-                <template slot-scope="scope">
-                  <div class="app-operation">
-                    <a class="btn-edit" target="_blank" :href="scope.row.video_url">查看视频</a>
-                    <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
-                  </div>
-                </template>
-              </el-table-column>
-              <el-table-column label="操作" v-if="this.searchType !=3" width="70">
-                <template slot-scope="scope">
-                  <div class="app-operation">
-                    <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
-                  </div>
-                </template>
-              </el-table-column>
-            </el-table>
-            <div class="app-pagination">
-              <el-pagination
-                class="pagination"
-                v-if="dataList.length !== 0"
-                layout="slot,prev, pager, next,slot,total"
-                :page-size="this.page_size"
-                :current-page="this.page_cur"
-                :total="this.page_data_total"
-                @current-change="pageChange"
-                prev-text="上一页"
-                next-text="下一页"
-              >
-                <button @click="pageToFirst" type="button" class="btn-first">
-                  <span>首页</span>
-                </button>
-                <button @click="pageToLast" type="button" class="btn-last">
-                  <span>尾页</span>
-                </button>
-              </el-pagination>
-            </div>
+        <el-menu router class="el-menu-vertical-demo">
+          <el-menu-item
+            :class="searchVillageId === 0 ? 'active' : ''"
+            @click="searchVillageEvent(0)"
+          >
+            <span>全部</span>
+          </el-menu-item>
+          <el-menu-item
+            v-for="item in childStation"
+            :key="item.id"
+            :class="searchVillageId === item.id ? 'active' : ''"
+            @click="searchVillageEvent(item.id)"
+          >
+            <span>{{item.name}}</span>
+          </el-menu-item>
+        </el-menu>
+      </div>
+    </div>
+    <div class="app-page-rows-right">
+      <div class="app-page-container">
+        <div class="app-page-select">
+          <el-form :inline="true">
+            <el-form-item class="el-form-item el-search-items">
+              <el-select v-model="searchType" @change="searchTypeEvent">
+                <el-option label="设备告警" value="2"></el-option>
+                <el-option label="水质告警" value="1"></el-option>
+                <el-option label="入侵告警" value="3"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-form>
+        </div>
+        <div class="app-table">
+          <el-table :data="dataList">
+            <el-table-column label="序号" width="80px">
+              <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
+            </el-table-column>
+            <el-table-column prop="type" label="告警设备" v-if="this.searchType==2">
+              <template slot-scope="scope">
+                <span v-if="scope.row.type==1">风机</span>
+                <span v-else>水泵</span>
+              </template>
+            </el-table-column>
+            <el-table-column prop="type" label="水质类型" v-if="this.searchType==1">
+              <template slot-scope="scope">
+                <span v-if="scope.row.type==1">PH</span>
+                <span v-else-if="scope.row.type==2">DO</span>
+                <span v-else>液位</span>
+              </template>
+            </el-table-column>
+            <el-table-column prop="reason" label="告警原因" v-if="this.searchType!=3"></el-table-column>
+            <el-table-column prop="create_time" label="告警时间"></el-table-column>
+            <el-table-column prop="address" label="发声位置"></el-table-column>
+            <el-table-column prop="is_repair" label="是否修复" v-if="this.searchType!=3">
+              <template slot-scope="scope">
+                <el-popover placement="right" trigger="hover" popper-class="isok-popover">
+                  <span class="btn-sele" @click="repairEvent(scope.row.id,1)">是</span>
+                  <span class="btn-sele" @click="repairEvent(scope.row.id,0)">否</span>
+                  <span class="btn-sele-no" v-if="scope.row.is_repair==1" slot="reference">是</span>
+                  <span class="btn-sele-no" v-if="scope.row.is_repair==0" slot="reference">否</span>
+                </el-popover>
+                <span v-if="scope.row.is_repair==null">
+                  <el-button class="btn-sele" @click="repairEvent(scope.row.id,1)">是</el-button>
+                  <el-button class="btn-sele mar5" @click="repairEvent(scope.row.id,0)">否</el-button>
+                </span>
+              </template>
+            </el-table-column>
+            <el-table-column label="操作" v-if="this.searchType==3" width="150">
+              <template slot-scope="scope">
+                <div class="app-operation">
+                  <a class="btn-edit" target="_blank" :href="scope.row.video_url">查看视频</a>
+                  <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
+                </div>
+              </template>
+            </el-table-column>
+            <el-table-column label="操作" v-if="this.searchType !=3" width="70">
+              <template slot-scope="scope">
+                <div class="app-operation">
+                  <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
+                </div>
+              </template>
+            </el-table-column>
+          </el-table>
+          <div class="app-pagination">
+            <el-pagination
+              class="pagination"
+              v-if="dataList.length !== 0"
+              layout="slot,prev, pager, next,slot,total"
+              :page-size="this.page_size"
+              :current-page="this.page_cur"
+              :total="this.page_data_total"
+              @current-change="pageChange"
+              prev-text="上一页"
+              next-text="下一页"
+            >
+              <button @click="pageToFirst" type="button" class="btn-first">
+                <span>首页</span>
+              </button>
+              <button @click="pageToLast" type="button" class="btn-last">
+                <span>尾页</span>
+              </button>
+            </el-pagination>
           </div>
         </div>
-      </el-col>
-    </el-row>
+      </div>
+    </div>
   </div>
 </template>
 <script>

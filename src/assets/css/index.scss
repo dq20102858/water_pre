@@ -168,10 +168,12 @@ a.btn-edit:hover{ background: #EF964B;}
 .el-menu-topc .el-menu-item:hover{height: 61px; background-color: #338ff6!important;border: none;color: #fff!important}
 .el-menu-topc .is-active {height: 61px; background-color: #338ff6!important;border: none!important;color: #fff!important}
 
+.app-page-rows-left{width: 180px;float: left;}
+.app-page-rows-right{ margin-left: 180px;width: calc(100vm - 180px);;}
 /* left-menu-area */
-.left-menu-area {background: #428bf1;height: 100vh;}
+.left-menu-area {background: #428bf1;  height: calc(100vh - 100px);width: 180px;}
 .left-menu-area .el-menu {background: none;border: none;}
-.left-menu-area .el-menu-item {background: none;color: #fff;height: 39px;line-height: 39px;white-space: nowrap;overflow: hidden;}
+.left-menu-area .el-menu-item {position: relative; background: none;color: #fff;height: 39px;line-height: 39px;white-space: nowrap;overflow: hidden; padding-right: 30px;}
 .left-menu-area .el-menu-item  span{display: block; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;}
 .left-menu-area .el-menu-item:hover {background:#2377fc;color: #fff;}
 .left-menu-area .el-menu-item.active {background: #fff;color: #4688f1;}
@@ -179,6 +181,8 @@ a.btn-edit:hover{ background: #EF964B;}
 .left-menu-area .atitle{padding: 20px 10px; margin: 0;font-size: 16px;color: #fff;}
 .left-menu-area .el-menu-item a{display: block; text-decoration: none; color:#fff}
 .left-menu-area .el-menu-item.active a{text-decoration: none; color:#4688f1}
+
+.left-menu-area .el-menu-item.active::after{content: ""; position: absolute;right: 10px; top:15px; width:0px;height:0px;border-width:5px 0 5px 8px;border-style:solid; border-color:transparent transparent transparent #428bf1; }
 @media screen and (max-width: 1200px) {
     .el-menu-top    .el-menu--horizontal .el-menu-item {padding: 0 15px;
     }

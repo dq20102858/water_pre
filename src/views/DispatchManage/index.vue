@@ -1,132 +1,132 @@
 <template>
   <div class="app-device-page">
-    <el-row :gutter="20" class="grid-menu">
-      <el-col :xs="8" :sm="3" :md="3" :lg="3" :xl="3">
-        <div class="left-menu-area">
-          <div class="input-so">
-            <el-input prefix-icon="el-icon-search"
-              placeholder="请输入内容"
-              v-model="searchVillageName"
-              @input="searchVillageNameEvent"
-              clearable
-            ></el-input>
-          </div>
-          <el-menu router class="el-menu-vertical-demo">
-            <el-menu-item
-              :class="searchVillageId === 0 ? 'active' : ''"
-              @click="searchVillageEvent(0)"
-            >
-              <span>全部</span>
-            </el-menu-item>
-            <el-menu-item
-              v-for="item in childStation"
-              :key="item.id"
-              :class="searchVillageId === item.id ? 'active' : ''"
-              @click="searchVillageEvent(item.id)"
-            >
-              <span>{{item.name}}</span>
-            </el-menu-item>
-          </el-menu>
+    <div class="app-page-rows-left">
+      <div class="left-menu-area">
+        <div class="input-so">
+          <el-input
+            prefix-icon="el-icon-search"
+            placeholder="请输入内容"
+            v-model="searchVillageName"
+            @input="searchVillageNameEvent"
+            clearable
+          ></el-input>
         </div>
-      </el-col>
-      <el-col :xs="16" :sm="21" :md="21" :lg="21" :xl="21">
-        <div class="app-page-container">
-          <div class="app-page-select">
-            <el-form :inline="true">
-              <el-form-item class="el-form-item">
-                <el-input  prefix-icon="el-icon-search"
-                  placeholder="请输入处理站名称"
-                  @input="searchKeywordEvent"
-                  v-model="searchKeyword"
-                  class="input-with-select"
-                  clearable
-                ></el-input>
-              </el-form-item>
-              <el-form-item class="el-form-item el-search-item-org">
-                <el-select v-model="searchStatus" @change="searchStatusEvent">
-                  <el-option label="全部" value="0"></el-option>
-                  <el-option label="已完成" value="2"></el-option>
-                  <el-option label="未完成" value="1"></el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item class="el-form-item el-search-items">
-                <el-select v-model="searchType" @change="searchTypeEvent">
-                  <el-option label="设备维修" value="1"></el-option>
-                  <el-option label="例行维保" value="2"></el-option>
-                  <el-option label="运行检查" value="3"></el-option>
-                </el-select>
-              </el-form-item>
-              <div class="el-serach noborder">
-                <!-- <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable></el-input> -->
-                <el-button @click="addShowDialog">发起派单</el-button>
-              </div>
-            </el-form>
-          </div>
-          <div class="app-table">
-            <el-table :data="dataList">
-              <el-table-column label="序号" width="80px">
-                <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
-              </el-table-column>
-              <el-table-column prop="create_time" label="维保日期">
-                <template slot-scope="scope">
-                  <span>{{scope.row.create_time|formatDateTamp}}</span>
-                </template>
-              </el-table-column>
-              <el-table-column prop="assigner" label="指派人"></el-table-column>
-              <el-table-column prop="role" label="职位"></el-table-column>
-              <el-table-column prop="phone" label="联系电话"></el-table-column>
-              <el-table-column prop="status" label="状态">
-                <template slot-scope="scope">
-                  <span v-if="scope.row.status==2">已完成</span>
-                  <span style="color:#999" v-else>未完成</span>
-                </template>
-              </el-table-column>
-              <el-table-column prop="type" label="维保事项">
-                <template slot-scope="scope">
-                  <span v-if="scope.row.type==1">设备维修</span>
-                  <span v-else-if="scope.row.type==2">例行维保</span>
-                  <span v-else>运行检查</span>
-                </template>
-              </el-table-column>
-              <el-table-column label="指派时间">
-                <template slot-scope="scope">
-                  <span>{{scope.row.create_time|formatDateTamp}}</span>
-                </template>
-              </el-table-column>
-              <el-table-column label="操作" width="190">
-                <template slot-scope="scope">
-                  <div class="app-operation">
-                    <el-button class="btn-apply" size="mini" @click="applyEvent(scope.row.id)">审批</el-button>
-                    <el-button class="btn-edit" size="mini" @click="detailEvent(scope.row.id)">详情</el-button>
-                    <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
-                  </div>
-                </template>
-              </el-table-column>
-            </el-table>
-            <div class="app-pagination">
-              <el-pagination
-                class="pagination"
-                v-if="dataList.length !== 0"
-                layout="slot,prev, pager, next,slot,total"
-                :page-size="this.page_size"
-                :current-page="this.page_cur"
-                :total="this.page_data_total"
-                @current-change="pageChange"
-                prev-text="上一页"
-                next-text="下一页"
-              >
-                <button @click="pageToFirst" type="button" class="btn-first">
-                  <span>首页</span>
-                </button>
-                <button @click="pageToLast" type="button" class="btn-last">
-                  <span>尾页</span>
-                </button>
-              </el-pagination>
+        <el-menu router class="el-menu-vertical-demo">
+          <el-menu-item
+            :class="searchVillageId === 0 ? 'active' : ''"
+            @click="searchVillageEvent(0)"
+          >
+            <span>全部</span>
+          </el-menu-item>
+          <el-menu-item
+            v-for="item in childStation"
+            :key="item.id"
+            :class="searchVillageId === item.id ? 'active' : ''"
+            @click="searchVillageEvent(item.id)"
+          >
+            <span>{{item.name}}</span>
+          </el-menu-item>
+        </el-menu>
+      </div>
+    </div>
+    <div class="app-page-rows-right">
+      <div class="app-page-container">
+        <div class="app-page-select">
+          <el-form :inline="true">
+            <el-form-item class="el-form-item">
+              <el-input
+                prefix-icon="el-icon-search"
+                placeholder="请输入处理站名称"
+                @input="searchKeywordEvent"
+                v-model="searchKeyword"
+                class="input-with-select"
+                clearable
+              ></el-input>
+            </el-form-item>
+            <el-form-item class="el-form-item el-search-item-org">
+              <el-select v-model="searchStatus" @change="searchStatusEvent">
+                <el-option label="全部" value="0"></el-option>
+                <el-option label="已完成" value="2"></el-option>
+                <el-option label="未完成" value="1"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item class="el-form-item el-search-items">
+              <el-select v-model="searchType" @change="searchTypeEvent">
+                <el-option label="设备维修" value="1"></el-option>
+                <el-option label="例行维保" value="2"></el-option>
+                <el-option label="运行检查" value="3"></el-option>
+              </el-select>
+            </el-form-item>
+            <div class="el-serach noborder">
+              <!-- <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable></el-input> -->
+              <el-button @click="addShowDialog">发起派单</el-button>
             </div>
+          </el-form>
+        </div>
+        <div class="app-table">
+          <el-table :data="dataList">
+            <el-table-column label="序号" width="80px">
+              <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
+            </el-table-column>
+            <el-table-column prop="create_time" label="维保日期">
+              <template slot-scope="scope">
+                <span>{{scope.row.create_time|formatDateTamp}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column prop="assigner" label="指派人"></el-table-column>
+            <el-table-column prop="role" label="职位"></el-table-column>
+            <el-table-column prop="phone" label="联系电话"></el-table-column>
+            <el-table-column prop="status" label="状态">
+              <template slot-scope="scope">
+                <span v-if="scope.row.status==2">已完成</span>
+                <span style="color:#999" v-else>未完成</span>
+              </template>
+            </el-table-column>
+            <el-table-column prop="type" label="维保事项">
+              <template slot-scope="scope">
+                <span v-if="scope.row.type==1">设备维修</span>
+                <span v-else-if="scope.row.type==2">例行维保</span>
+                <span v-else>运行检查</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="指派时间">
+              <template slot-scope="scope">
+                <span>{{scope.row.create_time|formatDateTamp}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="操作" width="190">
+              <template slot-scope="scope">
+                <div class="app-operation">
+                  <el-button class="btn-apply" size="mini" @click="applyEvent(scope.row.id)">审批</el-button>
+                  <el-button class="btn-edit" size="mini" @click="detailEvent(scope.row.id)">详情</el-button>
+                  <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
+                </div>
+              </template>
+            </el-table-column>
+          </el-table>
+          <div class="app-pagination">
+            <el-pagination
+              class="pagination"
+              v-if="dataList.length !== 0"
+              layout="slot,prev, pager, next,slot,total"
+              :page-size="this.page_size"
+              :current-page="this.page_cur"
+              :total="this.page_data_total"
+              @current-change="pageChange"
+              prev-text="上一页"
+              next-text="下一页"
+            >
+              <button @click="pageToFirst" type="button" class="btn-first">
+                <span>首页</span>
+              </button>
+              <button @click="pageToLast" type="button" class="btn-last">
+                <span>尾页</span>
+              </button>
+            </el-pagination>
           </div>
         </div>
-      </el-col>
-    </el-row>
+      </div>
+    </div>
 
     <el-dialog
       width="734px"
@@ -180,7 +180,7 @@
           </el-form-item>
           <!-- <el-form-item label="指派时间：" prop="assign_time">
             <el-date-picker v-model="formData.assign_time" type="date" placeholder="选择日期"></el-date-picker>
-          </el-form-item> -->
+          </el-form-item>-->
         </div>
         <el-form-item label="维修内容：" prop="content">
           <el-input type="textarea" v-model="formData.content" rows="5"></el-input>
@@ -382,7 +382,7 @@ export default {
     userChange(e) {
       this.userList.forEach(ele => {
         if (ele.id == e) {
-          this.formData.role = ele.role_id==1?"管理员":"维保人员";
+          this.formData.role = ele.role_id == 1 ? "管理员" : "维保人员";
           this.formData.phone = ele.phone;
         }
       });
@@ -555,5 +555,8 @@ export default {
   line-height: 28px;
   margin-top: 5px;
 }
-.dd{display: inline-block;overflow-y: auto;}
+.dd {
+  display: inline-block;
+  overflow-y: auto;
+}
 </style>

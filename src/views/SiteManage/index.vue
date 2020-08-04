@@ -1,7 +1,13 @@
 <template>
   <div class="baidumap">
     <div class="baidumap-so">
-      <el-input placeholder="请输入位置关键字" v-model="searchAddress" @keyup.enter.native="searchEvent" class="map-so-input" clearable>
+      <el-input
+        placeholder="请输入位置关键字"
+        v-model="searchAddress"
+        @keyup.enter.native="searchEvent"
+        class="map-so-input"
+        clearable
+      >
         <el-button slot="append" type="primary" icon="el-icon-search" @click="searchEvent"></el-button>
       </el-input>
       <!-- <el-input v-model="address" placeholder="请输入地址  支持手动在地图标注位置"></el-input> -->
@@ -35,7 +41,8 @@
           @click="markerClick(marker)"
         />
       </div>
-      <bm-local-search :keyword="address"
+      <bm-local-search
+        :keyword="address"
         :location="address"
         :auto-viewport="true"
         style="width:0px;height:0px;overflow: hidden;"
@@ -159,10 +166,12 @@ export default {
       this.center = view.center;
     },
     markerClick(e) {
-      // debugger;
       console.log(e);
-      this.$message(e.name);
       this.show = true;
+      this.$router.push({
+        path: "/sitemanage/main",
+        query: { id: e.id }
+      });
     },
     infoWindowClose() {
       this.show = false;

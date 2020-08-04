@@ -1,61 +1,59 @@
 <template>
   <div class="app-set-page">
-    <el-row :gutter="20" class="grid-menu">
-      <el-col :xs="8" :sm="4" :md="3" :lg="3" :xl="3">
-        <div class="left-menu-area">
-          <h5  class="atitle">系统设置</h5>
-          <el-menu router class="el-menu-vertical-demo">
-            <el-menu-item>
-              <router-link to="/setmanage">人员管理</router-link>
-            </el-menu-item>
-            <el-menu-item>
-              <router-link to="/setmanage/site">站点设置</router-link>
-            </el-menu-item>
-            <el-menu-item class="active">
-              <router-link to="/setmanage/warning">告警设置</router-link>
-            </el-menu-item>
-          </el-menu>
+    <div class="app-page-rows-left">
+      <div class="left-menu-area">
+        <h5 class="atitle">系统设置</h5>
+        <el-menu router class="el-menu-vertical-demo">
+          <el-menu-item>
+            <router-link to="/setmanage">人员管理</router-link>
+          </el-menu-item>
+          <el-menu-item>
+            <router-link to="/setmanage/site">站点设置</router-link>
+          </el-menu-item>
+          <el-menu-item class="active">
+            <router-link to="/setmanage/warning">告警设置</router-link>
+          </el-menu-item>
+        </el-menu>
+      </div>
+    </div>
+    <div class="app-page-rows-left">
+      <div class="app-page-container">
+        <div class="app-page-select">
+          <el-form :inline="true">
+            <el-form-item>
+              <h3 class="ttitles">告警设置</h3>
+            </el-form-item>
+          </el-form>
         </div>
-      </el-col>
-      <el-col :xs="16" :sm="20" :md="21" :lg="21" :xl="21">
-        <div class="app-page-container">
-          <div class="app-page-select">
-            <el-form :inline="true">
-              <el-form-item>
-                <h3 class="ttitles">告警设置</h3>
+        <div class="add-from">
+          <el-form
+            :model="formData"
+            class="el-form-custom"
+            :rules="formRules"
+            ref="formRulesRef"
+            label-width="110px"
+          >
+            <div>
+              <el-form-item label="PH：" prop="ph">
+                <el-input v-model="formData.ph" autocomplete="off"></el-input>
               </el-form-item>
-            </el-form>
-          </div>
-          <div class="add-from">
-            <el-form
-              :model="formData"
-              class="el-form-custom"
-              :rules="formRules"
-              ref="formRulesRef"
-              label-width="110px"
-            >
-              <div>
-                <el-form-item label="PH：" prop="ph">
-                  <el-input v-model="formData.ph" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="DO：" prop="do">
-                  <el-input v-model="formData.do" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="电导绿：" prop="conductivity">
-                  <el-input v-model="formData.conductivity" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="液位：" prop="level">
-                  <el-input v-model="formData.level" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item>
-                  <el-button type="primary" @click="addEventDialog">确定</el-button>
-                </el-form-item>
-              </div>
-            </el-form>
-          </div>
+              <el-form-item label="DO：" prop="do">
+                <el-input v-model="formData.do" autocomplete="off"></el-input>
+              </el-form-item>
+              <el-form-item label="电导绿：" prop="conductivity">
+                <el-input v-model="formData.conductivity" autocomplete="off"></el-input>
+              </el-form-item>
+              <el-form-item label="液位：" prop="level">
+                <el-input v-model="formData.level" autocomplete="off"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" @click="addEventDialog">确定</el-button>
+              </el-form-item>
+            </div>
+          </el-form>
         </div>
-      </el-col>
-    </el-row>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -161,7 +159,7 @@ export default {
 </script>
 <style>
 .app-set-page {
-overflow: hidden;
+  overflow: hidden;
 }
 .add-from {
   width: 400px;

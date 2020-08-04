@@ -1,7 +1,6 @@
 <template>
-  <div class="app-device-page">
-    <el-row :gutter="20" class="grid-menu">
-      <el-col :xs="8" :sm="3" :md="3" :lg="3" :xl="3">
+  <div class="app-page-device">
+    <div class="app-page-rows-left">
         <div class="left-menu-area">
           <div class="input-so">
             <el-input
@@ -29,9 +28,9 @@
             </el-menu-item>
           </el-menu>
         </div>
-      </el-col>
-      <el-col :xs="16" :sm="21" :md="21" :lg="21" :xl="21">
-        <div class="app-page-container">
+    </div>
+        <div class="app-page-rows-right">
+          <div class="app-page-container">
           <div class="app-page-select">
             <el-form :inline="true">
               <el-form-item class="el-form-item">
@@ -110,8 +109,7 @@
             </div>
           </div>
         </div>
-      </el-col>
-    </el-row>
+ </div>
 
     <el-dialog
       width="780px"
@@ -591,9 +589,6 @@ export default {
 };
 </script>
 <style>
-.app-device-page {
-  overflow: hidden;
-}
 .el-search-items .el-select .el-input {
   width: 120px;
   border-radius: 4px;

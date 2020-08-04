@@ -1,84 +1,83 @@
 <template>
   <div class="app-set-page">
-    <el-row :gutter="20" class="grid-menu">
-      <el-col :xs="8" :sm="4" :md="3" :lg="3" :xl="3">
-        <div class="left-menu-area">
-          <h5 class="atitle">系统设置</h5>
-          <el-menu router class="el-menu-vertical-demo">
-            <el-menu-item class="active">
-              <router-link to="/setmanage">人员管理</router-link>
-            </el-menu-item>
-            <el-menu-item>
-              <router-link to="/setmanage/site">站点设置</router-link>
-            </el-menu-item>
-            <el-menu-item>
-              <router-link to="/setmanage/warning">告警设置</router-link>
-            </el-menu-item>
-          </el-menu>
-        </div>
-      </el-col>
-      <el-col :xs="16" :sm="20" :md="21" :lg="21" :xl="21">
-        <div class="app-page-container"  style="padding:20px">
-          <div class="app-page-select">
-            <el-form :inline="true">
-              <el-form-item class="el-form-item">
-                <el-input prefix-icon="el-icon-search"
-                  placeholder="请输入人员姓名"
-                  @input="searchKeywordEvent"
-                  v-model="searchKeyword"
-                  class="input-with-select"
-                  clearable
-                ></el-input>
-              </el-form-item>
-              <div class="el-serach noborder">
-                <!-- <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable></el-input> -->
-                <el-button @click="addShowDialog">添加</el-button>
-              </div>
-            </el-form>
-          </div>
-          <div class="app-table">
-            <el-table :data="dataList">
-              <el-table-column label="序号" width="80px">
-                <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
-              </el-table-column>
-              <el-table-column prop="username" label="用户名"></el-table-column>
-              <el-table-column prop="name" label="姓名"></el-table-column>
-              <el-table-column prop="role" label="职位"></el-table-column>
-              <el-table-column prop="phone" label="手机号"></el-table-column>
-              <el-table-column prop="create_time" label="发布时间"></el-table-column>
-              <el-table-column label="操作" width="125">
-                <template slot-scope="scope">
-                  <div class="app-operation">
-                    <el-button class="btn-edit" size="mini" @click="userEditEvent(scope.row.id)">编辑</el-button>
-                    <el-button class="btn-del" size="mini" @click="userDeleteEvent(scope.row.id)">删除</el-button>
-                  </div>
-                </template>
-              </el-table-column>
-            </el-table>
-            <div class="app-pagination">
-              <el-pagination
-                class="pagination"
-                v-if="dataList.length !== 0"
-                layout="slot,prev, pager, next,slot,total"
-                :page-size="this.page_size"
-                :current-page="this.page_cur"
-                :total="this.page_data_total"
-                @current-change="pageChange"
-                prev-text="上一页"
-                next-text="下一页"
-              >
-                <button @click="pageToFirst" type="button" class="btn-first">
-                  <span>首页</span>
-                </button>
-                <button @click="pageToLast" type="button" class="btn-last">
-                  <span>尾页</span>
-                </button>
-              </el-pagination>
+    <div class="app-page-rows-left">
+      <div class="left-menu-area">
+        <h5 class="atitle">系统设置</h5>
+        <el-menu router class="el-menu-vertical-demo">
+          <el-menu-item class="active">
+            <router-link to="/setmanage">人员管理</router-link>
+          </el-menu-item>
+          <el-menu-item>
+            <router-link to="/setmanage/site">站点设置</router-link>
+          </el-menu-item>
+          <el-menu-item>
+            <router-link to="/setmanage/warning">告警设置</router-link>
+          </el-menu-item>
+        </el-menu>
+      </div>
+    </div>
+    <div class="app-page-rows-right">
+      <div class="app-page-container">
+        <div class="app-page-select">
+          <el-form :inline="true">
+            <el-form-item class="el-form-item">
+              <el-input
+                prefix-icon="el-icon-search"
+                placeholder="请输入人员姓名"
+                @input="searchKeywordEvent"
+                v-model="searchKeyword"
+                class="input-with-select"
+                clearable
+              ></el-input>
+            </el-form-item>
+            <div class="el-serach noborder">
+              <!-- <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable></el-input> -->
+              <el-button @click="addShowDialog">添加</el-button>
             </div>
+          </el-form>
+        </div>
+        <div class="app-table">
+          <el-table :data="dataList">
+            <el-table-column label="序号" width="80px">
+              <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
+            </el-table-column>
+            <el-table-column prop="username" label="用户名"></el-table-column>
+            <el-table-column prop="name" label="姓名"></el-table-column>
+            <el-table-column prop="role" label="职位"></el-table-column>
+            <el-table-column prop="phone" label="手机号"></el-table-column>
+            <el-table-column prop="create_time" label="发布时间"></el-table-column>
+            <el-table-column label="操作" width="125">
+              <template slot-scope="scope">
+                <div class="app-operation">
+                  <el-button class="btn-edit" size="mini" @click="userEditEvent(scope.row.id)">编辑</el-button>
+                  <el-button class="btn-del" size="mini" @click="userDeleteEvent(scope.row.id)">删除</el-button>
+                </div>
+              </template>
+            </el-table-column>
+          </el-table>
+          <div class="app-pagination">
+            <el-pagination
+              class="pagination"
+              v-if="dataList.length !== 0"
+              layout="slot,prev, pager, next,slot,total"
+              :page-size="this.page_size"
+              :current-page="this.page_cur"
+              :total="this.page_data_total"
+              @current-change="pageChange"
+              prev-text="上一页"
+              next-text="下一页"
+            >
+              <button @click="pageToFirst" type="button" class="btn-first">
+                <span>首页</span>
+              </button>
+              <button @click="pageToLast" type="button" class="btn-last">
+                <span>尾页</span>
+              </button>
+            </el-pagination>
           </div>
         </div>
-      </el-col>
-    </el-row>
+      </div>
+    </div>
 
     <el-dialog
       width="680px"
@@ -426,7 +425,7 @@ export default {
 </script>
 <style>
 .app-set-page {
- overflow: hidden;
+  overflow: hidden;
 }
 .dialog-users .el-select {
   width: 100%;
