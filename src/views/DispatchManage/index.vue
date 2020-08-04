@@ -502,7 +502,7 @@ export default {
   overflow: hidden;
 }
 .el-search-item-org .el-select .el-input {
-  width: 80px;
+  width: 90px;
   border-radius: 4px;
 }
 .el-search-item-org .el-select .el-input__inner {

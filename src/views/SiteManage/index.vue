@@ -1,10 +1,17 @@
 <template>
-  <div class="baiduMap">
+  <div class="baidumap">
+    <div class="baidumap-so">
+      <el-input placeholder="请输入位置关键字" v-model="searchAddress" @keyup.enter.native="searchEvent" class="map-so-input" clearable>
+        <el-button slot="append" type="primary" icon="el-icon-search" @click="searchEvent"></el-button>
+      </el-input>
+      <!-- <el-input v-model="address" placeholder="请输入地址  支持手动在地图标注位置"></el-input> -->
+    </div>
     <baidu-map
       class="bm-view"
       :center="center"
       :zoom="zoom"
       @ready="readyHandler"
+      @click="getClickInfo"
       :scroll-wheel-zoom="true"
       :mapClick="false"
       　ak="GsTerPPU46fUXlt09K8840K0HxTvKIIa"
@@ -12,7 +19,7 @@
       <!--地图类型-->
       <bm-map-type
         :map-types="['BMAP_NORMAL_MAP', 'BMAP_HYBRID_MAP']"
-        anchor="BMAP_ANCHOR_TOP_LEFT"
+        anchor="BMAP_ANCHOR_BOTTOM_RIGHT"
       ></bm-map-type>
       <!--地图缩放-->
       <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
@@ -28,20 +35,30 @@
           @click="markerClick(marker)"
         />
       </div>
+      <bm-local-search :keyword="address"
+        :location="address"
+        :auto-viewport="true"
+        style="width:0px;height:0px;overflow: hidden;"
+      ></bm-local-search>
     </baidu-map>
   </div>
 </template>
 <script>
-import BaiduMap from "vue-baidu-map/components/map/Map.vue";
-import BmNavigation from "vue-baidu-map/components/controls/Navigation.vue";
-import BmMapType from "vue-baidu-map/components/controls/MapType.vue";
-import BmMarker from "vue-baidu-map/components/overlays/Marker.vue";
-import BmInfoWindow from "vue-baidu-map/components/overlays/InfoWindow.vue";
-import BmOverlay from "vue-baidu-map/components/overlays/Overlay.vue";
-import BmLabel from "vue-baidu-map/components/overlays/Label.vue";
+import {
+  BaiduMap,
+  BmNavigation,
+  BmMapType,
+  BmMarker,
+  BmInfoWindow,
+  BmOverlay,
+  BmLocalSearch,
+  BmLabel
+} from "vue-baidu-map";
 export default {
   data() {
     return {
+      searchAddress: "",
+      address: "",
       center: { lng: 0, lat: 0 },
       zoom: 15,
       markers: []
@@ -54,7 +71,8 @@ export default {
     BmMarker,
     BmInfoWindow,
     BmOverlay,
-    BmLabel
+    BmLabel,
+    BmLocalSearch
   },
   mounted() {
     // this.getChildStationList();
@@ -148,6 +166,25 @@ export default {
     },
     infoWindowClose() {
       this.show = false;
+    },
+    getClickInfo(e) {
+      this.marker.lng = e.point.lng;
+      this.marker.lat = e.point.lat;
+    },
+    syncCenterAndZoom(e) {
+      const { lng, lat } = e.target.getCenter();
+      if (this.diaLogEdit == true) {
+        this.centerStr.lng = this.formData.lng;
+        this.centerStr.lat = this.formData.lat;
+      } else {
+        this.centerStr.lng = lng;
+        this.centerStr.lat = lat;
+      }
+      this.zoom = e.target.getZoom();
+      // console.log(this.centerStr.lng + "__A__" + this.centerStr.lat);
+    },
+    searchEvent() {
+      this.address = this.searchAddress;
     }
   },
   destroyed() {}
@@ -159,15 +196,24 @@ export default {
   width: 100%;
   height: calc(100vh - 100px);
 }
-
-.sample {
-  width: 160px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.5);
-  overflow: auto;
-  color: #000000;
-  text-align: center;
-  padding: 10px;
+.baidumap {
   position: relative;
+}
+.baidumap-so {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 99999;
+}
+.map-so-input .el-button {
+  background: #409eff;
+  border: 1px #409eff solid;
+  padding: 5px 5px 5px 10px;
+  color: #fff;
+}
+.map-so-input .el-input-group__append {
+  background: #409eff;
+  border: 1px #409eff solid;
+  color: #fff;
 }
 </style>
