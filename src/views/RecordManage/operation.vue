@@ -1,102 +1,103 @@
 <template>
   <div class="app-page-device">
-    <div class="app-page-rows-left">
-      <div class="left-menu-area">
-        <div class="input-so">
-          <el-input
-            placeholder="请输入内容"
-            prefix-icon="el-icon-search"
-            v-model="searchVillageName"
-            @input="searchVillageNameEvent"
-            clearable
-          ></el-input>
-        </div>
-        <el-menu router class="el-menu-vertical-demo">
-          <el-menu-item
-            :class="searchVillageId === 0 ? 'active' : ''"
-            @click="searchVillageEvent(0)"
-          >
-            <span>全部</span>
-          </el-menu-item>
-          <el-menu-item
-            v-for="item in childStation"
-            :key="item.id"
-            :class="searchVillageId === item.id ? 'active' : ''"
-            @click="searchVillageEvent(item.id)"
-          >
-            <span>{{item.name}}</span>
-          </el-menu-item>
-        </el-menu>
-      </div>
-    </div>
-    <div class="app-page-rows-right">
-      <div class="app-page-container">
-        <div class="app-page-select">
-          <el-form :inline="true">
-            <el-form-item class="el-form-item">
-              <el-button type="primary">全部</el-button>
-            </el-form-item>
-            <el-form-item class="el-form-item el-search-items">
-              <el-select v-model="searchType" @change="searchTypeEvent">
-                <el-option label="维护记录" value="1"></el-option>
-                <el-option label="运行记录" value="2"></el-option>
-                <el-option label="采样化验单" value="3"></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item class="el-form-item">
-              <el-button type="primary" @click="expectExcel">导入</el-button>
-            </el-form-item>
-          </el-form>
-        </div>
-        <div class="app-table">
-          <el-table :data="dataList">
-            <el-table-column label="序号" width="80px">
-              <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
-            </el-table-column>
-            <el-table-column prop="create_time" label="记录时间"></el-table-column>
-            <el-table-column prop="electricity" label="电表读数（KWH）"></el-table-column>
-            <el-table-column prop="electricity_sum" label="累计读数">
-              <!-- <template slot-scope="scope">
-                  <span v-html="scope.row.number">吨</span>
-              </template>-->
-            </el-table-column>
-            <el-table-column prop="exception" label="异常情况"></el-table-column>
-            <el-table-column prop="user" label="巡查人员"></el-table-column>
-            <el-table-column prop="phone" label="联系电话"></el-table-column>
-            <el-table-column label="操作" width="190">
-              <template slot-scope="scope">
-                <div class="app-operation">
-                  <el-button class="btn-print" size="mini" @click="printEvent(scope.row.id)">打印</el-button>
-                  <el-button class="btn-edit" size="mini" @click="detailEvent(scope.row.id)">详情</el-button>
-                  <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
-                </div>
-              </template>
-            </el-table-column>
-          </el-table>
-          <div class="app-pagination">
-            <el-pagination
-              class="pagination"
-              v-if="dataList.length !== 0"
-              layout="slot,prev, pager, next,slot,total"
-              :page-size="this.page_size"
-              :current-page="this.page_cur"
-              :total="this.page_data_total"
-              @current-change="pageChange"
-              prev-text="上一页"
-              next-text="下一页"
+    <div class="app-page-rows">
+      <div class="app-page-rows-left">
+        <div class="left-menu-area">
+          <div class="input-so">
+            <el-input
+              placeholder="请输入内容"
+              prefix-icon="el-icon-search"
+              v-model="searchVillageName"
+              @input="searchVillageNameEvent"
+              clearable
+            ></el-input>
+          </div>
+          <el-menu router class="el-menu-vertical-demo">
+            <el-menu-item
+              :class="searchVillageId === 0 ? 'active' : ''"
+              @click="searchVillageEvent(0)"
             >
-              <button @click="pageToFirst" type="button" class="btn-first">
-                <span>首页</span>
-              </button>
-              <button @click="pageToLast" type="button" class="btn-last">
-                <span>尾页</span>
-              </button>
-            </el-pagination>
+              <span>全部</span>
+            </el-menu-item>
+            <el-menu-item
+              v-for="item in childStation"
+              :key="item.id"
+              :class="searchVillageId === item.id ? 'active' : ''"
+              @click="searchVillageEvent(item.id)"
+            >
+              <span>{{item.name}}</span>
+            </el-menu-item>
+          </el-menu>
+        </div>
+      </div>
+      <div class="app-page-rows-right">
+        <div class="app-page-container">
+          <div class="app-page-select">
+            <el-form :inline="true">
+              <el-form-item class="el-form-item">
+                <el-button type="primary">全部</el-button>
+              </el-form-item>
+              <el-form-item class="el-form-item el-search-items">
+                <el-select v-model="searchType" @change="searchTypeEvent">
+                  <el-option label="维护记录" value="1"></el-option>
+                  <el-option label="运行记录" value="2"></el-option>
+                  <el-option label="采样化验单" value="3"></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item class="el-form-item">
+                <el-button type="primary" @click="expectExcel">导入</el-button>
+              </el-form-item>
+            </el-form>
+          </div>
+          <div class="app-table">
+            <el-table :data="dataList">
+              <el-table-column label="序号" width="80px">
+                <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
+              </el-table-column>
+              <el-table-column prop="create_time" label="记录时间"></el-table-column>
+              <el-table-column prop="electricity" label="电表读数（KWH）"></el-table-column>
+              <el-table-column prop="electricity_sum" label="累计读数">
+                <!-- <template slot-scope="scope">
+                  <span v-html="scope.row.number">吨</span>
+                </template>-->
+              </el-table-column>
+              <el-table-column prop="exception" label="异常情况"></el-table-column>
+              <el-table-column prop="user" label="巡查人员"></el-table-column>
+              <el-table-column prop="phone" label="联系电话"></el-table-column>
+              <el-table-column label="操作" width="190">
+                <template slot-scope="scope">
+                  <div class="app-operation">
+                    <el-button class="btn-print" size="mini" @click="printEvent(scope.row.id)">打印</el-button>
+                    <el-button class="btn-edit" size="mini" @click="detailEvent(scope.row.id)">详情</el-button>
+                    <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
+                  </div>
+                </template>
+              </el-table-column>
+            </el-table>
+            <div class="app-pagination">
+              <el-pagination
+                class="pagination"
+                v-if="dataList.length !== 0"
+                layout="slot,prev, pager, next,slot,total"
+                :page-size="this.page_size"
+                :current-page="this.page_cur"
+                :total="this.page_data_total"
+                @current-change="pageChange"
+                prev-text="上一页"
+                next-text="下一页"
+              >
+                <button @click="pageToFirst" type="button" class="btn-first">
+                  <span>首页</span>
+                </button>
+                <button @click="pageToLast" type="button" class="btn-last">
+                  <span>尾页</span>
+                </button>
+              </el-pagination>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
     <el-dialog
       width="780px"
       :title="this.diaLogTitle"
@@ -290,7 +291,7 @@ export default {
       diaLogFormVisible: false,
       diaLogTitle: "添加信息",
       uploadAction: this.hostURL + "/record/importRecord",
-      uploadTemp: this.hostURL + "/downloads/2.xls",
+      uploadTemp: this.hostURL + "/downloads/yunxing.xls",
       uploadData: { type: 2 },
       formData: {},
       page_cur: 1,

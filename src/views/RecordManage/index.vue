@@ -1,6 +1,7 @@
 <template>
   <div class="app-page-device">
-    <div class="app-page-rows-left">
+    <div class="app-page-rows">
+      <div class="app-page-rows-left">
         <div class="left-menu-area">
           <div class="input-so">
             <el-input
@@ -28,9 +29,9 @@
             </el-menu-item>
           </el-menu>
         </div>
-    </div>
-        <div class="app-page-rows-right">
-          <div class="app-page-container">
+      </div>
+      <div class="app-page-rows-right">
+        <div class="app-page-container">
           <div class="app-page-select">
             <el-form :inline="true">
               <el-form-item class="el-form-item">
@@ -109,8 +110,8 @@
             </div>
           </div>
         </div>
- </div>
-
+      </div>
+    </div>
     <el-dialog
       width="780px"
       :title="this.diaLogTitle"
@@ -336,7 +337,7 @@ export default {
       diaLogFormExcelVisible: false,
       diaLogFormVisible: false,
       diaLogTitle: "",
-      uploadTemp: this.hostURL + "/downloads/3.xls",
+      uploadTemp: this.hostURL + "/downloads/weihu.xls",
       uploadAction: this.hostURL + "/record/importRecord",
       uploadData: { type: 1 },
       formData: {},

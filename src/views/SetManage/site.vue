@@ -1,158 +1,160 @@
 <template>
   <div class="app-set-page">
-    <div class="app-page-rows-left">
-      <div class="left-menu-area">
-        <h5 class="atitle">系统设置</h5>
-        <el-menu router>
-          <el-menu-item>
-            <router-link to="/setmanage">人员管理</router-link>
-          </el-menu-item>
-          <el-menu-item class="active">
-            <router-link to="/setmanage/site">站点设置</router-link>
-          </el-menu-item>
-          <el-menu-item>
-            <router-link to="/setmanage/warning">告警设置</router-link>
-          </el-menu-item>
-        </el-menu>
+    <div class="app-page-rows">
+      <div class="app-page-rows-left">
+        <div class="left-menu-area">
+          <h5 class="atitle">系统设置</h5>
+          <el-menu router>
+            <el-menu-item>
+              <router-link to="/setmanage">人员管理</router-link>
+            </el-menu-item>
+            <el-menu-item class="active">
+              <router-link to="/setmanage/site">站点设置</router-link>
+            </el-menu-item>
+            <el-menu-item>
+              <router-link to="/setmanage/warning">告警设置</router-link>
+            </el-menu-item>
+          </el-menu>
+        </div>
       </div>
-    </div>
-    <div class="app-page-rows-left">
-      <div class="app-page-container">
-        <div class="app-page-select">
-          <el-form :inline="true">
-            <el-form-item class="el-form-item">
-              <el-input
-                prefix-icon="el-icon-search"
-                placeholder="请输入站点名"
-                @input="searchKeywordEvent"
-                v-model="searchKeyword"
-                class="input-with-select"
-                clearable
-              ></el-input>
-            </el-form-item>
-            <div class="el-serach noborder">
-              <el-button @click="addShowDialog">添加</el-button>
-            </div>
-          </el-form>
-        </div>
-        <div class="app-table">
-          <el-table :data="dataList">
-            <el-table-column label="序号" width="80px">
-              <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
-            </el-table-column>
-            <el-table-column prop="name" label="站点名"></el-table-column>
-            <el-table-column prop="address" label="所在位置" show-overflow-tooltip></el-table-column>
-            <el-table-column prop="number" label="日均排污量">
-              <template slot-scope="scope">
-                <span v-html="scope.row.number">吨</span>
-              </template>
-            </el-table-column>
-            <el-table-column prop="create_time" label="入网时间"></el-table-column>
-            <el-table-column label="操作" width="130">
-              <template slot-scope="scope">
-                <div class="app-operation">
-                  <el-button class="btn-edit" size="mini" @click="editEvent(scope.row.id)">编辑</el-button>
-                  <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
-                </div>
-              </template>
-            </el-table-column>
-          </el-table>
-          <div class="app-pagination">
-            <el-pagination
-              class="pagination"
-              v-if="dataList.length !== 0"
-              layout="slot,prev, pager, next,slot,total"
-              :page-size="this.page_size"
-              :current-page="this.page_cur"
-              :total="this.page_data_total"
-              @current-change="pageChange"
-              prev-text="上一页"
-              next-text="下一页"
-            >
-              <button @click="pageToFirst" type="button" class="btn-first">
-                <span>首页</span>
-              </button>
-              <button @click="pageToLast" type="button" class="btn-last">
-                <span>尾页</span>
-              </button>
-            </el-pagination>
-          </div>
-        </div>
-        <el-dialog
-          width="780px"
-          :close-on-click-modal="false"
-          class="dialog-station"
-          :title="this.diaLogTitle"
-          :visible.sync="diaLogFormVisible"
-        >
-          <el-form
-            class="el-form-custom"
-            :model="formData"
-            :rules="formRules"
-            ref="formRulesRef"
-            label-width="110px"
-          >
-            <el-form-item label="站点名称：" prop="name">
-              <el-input v-model="formData.name"></el-input>
-            </el-form-item>
-            <el-form-item label="所属父级：" prop="pid">
-              <el-select v-model="formData.pid">
-                <el-option
-                  v-for="item in this.fatherStationList"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
-                ></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="日均排污量：" prop="number">
-              <el-input placeholder="请输入日均排污量" v-model="formData.number">
-                <template slot="append">吨</template>
-              </el-input>
-            </el-form-item>
-            <el-form-item label="站点地址：" prop="address">
-              <el-input v-model="formData.address" placeholder="请输入地址  支持手动在地图标注位置"></el-input>
-            </el-form-item>
-            <el-form-item>
-              <div class="baiduMap">
-                <baidu-map
-                  　　class="bm-view"
-                  　　ak="GsTerPPU46fUXlt09K8840K0HxTvKIIa"
-                  　　center="江苏省"
-                  　　:zoom="12"
-                  　　:scroll-wheel-zoom="true"
-                  　　@click="getClickInfo"
-                  　　@moving="syncCenterAndZoom"
-                  　　@moveend="syncCenterAndZoom"
-                  　　@zoomend="syncCenterAndZoom"
-                >
-                  <bm-view style="width: 100%; height:360px;"></bm-view>
-                  <bm-marker
-                    　　　:position="{ lng: centerStr.lng, lat: centerStr.lat }"
-                    　　　:dragging="true"
-                    　　　animation="BMAP_ANIMATION_BOUNCE"
-                  ></bm-marker>
-                  <bm-local-search
-                    :keyword="formData.address"
-                    :auto-viewport="true"
-                    style="width:0px;height:0px;overflow: hidden;"
-                  ></bm-local-search>
-                </baidu-map>
+      <div class="app-page-rows-right">
+        <div class="app-page-container">
+          <div class="app-page-select">
+            <el-form :inline="true">
+              <el-form-item class="el-form-item">
+                <el-input
+                  prefix-icon="el-icon-search"
+                  placeholder="请输入站点名"
+                  @input="searchKeywordEvent"
+                  v-model="searchKeyword"
+                  class="input-with-select"
+                  clearable
+                ></el-input>
+              </el-form-item>
+              <div class="el-serach noborder">
+                <el-button @click="addShowDialog">添加</el-button>
               </div>
-            </el-form-item>
-            <el-form-item label="经度" style="display:none">
-              <el-input :value.sync="centerStr.lng"></el-input>
-            </el-form-item>
-            <el-form-item label="纬度" style="display:none">
-              <el-input :value.sync="centerStr.lat"></el-input>
-            </el-form-item>
-            <div class="blank"></div>
-          </el-form>
-          <div slot="footer" class="dialog-footer">
-            <el-button @click="diaLogFormVisible = false">关闭</el-button>
-            <el-button type="primary" @click="addEvent()">确定</el-button>
+            </el-form>
           </div>
-        </el-dialog>
+          <div class="app-table">
+            <el-table :data="dataList">
+              <el-table-column label="序号" width="80px">
+                <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
+              </el-table-column>
+              <el-table-column prop="name" label="站点名"></el-table-column>
+              <el-table-column prop="address" label="所在位置" show-overflow-tooltip></el-table-column>
+              <el-table-column prop="number" label="日均排污量">
+                <template slot-scope="scope">
+                  <span v-html="scope.row.number">吨</span>
+                </template>
+              </el-table-column>
+              <el-table-column prop="create_time" label="入网时间"></el-table-column>
+              <el-table-column label="操作" width="130">
+                <template slot-scope="scope">
+                  <div class="app-operation">
+                    <el-button class="btn-edit" size="mini" @click="editEvent(scope.row.id)">编辑</el-button>
+                    <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
+                  </div>
+                </template>
+              </el-table-column>
+            </el-table>
+            <div class="app-pagination">
+              <el-pagination
+                class="pagination"
+                v-if="dataList.length !== 0"
+                layout="slot,prev, pager, next,slot,total"
+                :page-size="this.page_size"
+                :current-page="this.page_cur"
+                :total="this.page_data_total"
+                @current-change="pageChange"
+                prev-text="上一页"
+                next-text="下一页"
+              >
+                <button @click="pageToFirst" type="button" class="btn-first">
+                  <span>首页</span>
+                </button>
+                <button @click="pageToLast" type="button" class="btn-last">
+                  <span>尾页</span>
+                </button>
+              </el-pagination>
+            </div>
+          </div>
+          <el-dialog
+            width="780px"
+            :close-on-click-modal="false"
+            class="dialog-station"
+            :title="this.diaLogTitle"
+            :visible.sync="diaLogFormVisible"
+          >
+            <el-form
+              class="el-form-custom"
+              :model="formData"
+              :rules="formRules"
+              ref="formRulesRef"
+              label-width="110px"
+            >
+              <el-form-item label="站点名称：" prop="name">
+                <el-input v-model="formData.name"></el-input>
+              </el-form-item>
+              <el-form-item label="所属父级：" prop="pid">
+                <el-select v-model="formData.pid">
+                  <el-option
+                    v-for="item in this.fatherStationList"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="日均排污量：" prop="number">
+                <el-input placeholder="请输入日均排污量" v-model="formData.number">
+                  <template slot="append">吨</template>
+                </el-input>
+              </el-form-item>
+              <el-form-item label="站点地址：" prop="address">
+                <el-input v-model="formData.address" placeholder="请输入地址  支持手动在地图标注位置"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <div class="baiduMap">
+                  <baidu-map
+                    　　class="bm-view"
+                    　　ak="GsTerPPU46fUXlt09K8840K0HxTvKIIa"
+                    　　center="江苏省"
+                    　　:zoom="12"
+                    　　:scroll-wheel-zoom="true"
+                    　　@click="getClickInfo"
+                    　　@moving="syncCenterAndZoom"
+                    　　@moveend="syncCenterAndZoom"
+                    　　@zoomend="syncCenterAndZoom"
+                  >
+                    <bm-view style="width: 100%; height:360px;"></bm-view>
+                    <bm-marker
+                      　　　:position="{ lng: centerStr.lng, lat: centerStr.lat }"
+                      　　　:dragging="true"
+                      　　　animation="BMAP_ANIMATION_BOUNCE"
+                    ></bm-marker>
+                    <bm-local-search
+                      :keyword="formData.address"
+                      :auto-viewport="true"
+                      style="width:0px;height:0px;overflow: hidden;"
+                    ></bm-local-search>
+                  </baidu-map>
+                </div>
+              </el-form-item>
+              <el-form-item label="经度" style="display:none">
+                <el-input :value.sync="centerStr.lng"></el-input>
+              </el-form-item>
+              <el-form-item label="纬度" style="display:none">
+                <el-input :value.sync="centerStr.lat"></el-input>
+              </el-form-item>
+              <div class="blank"></div>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="diaLogFormVisible = false">关闭</el-button>
+              <el-button type="primary" @click="addEvent()">确定</el-button>
+            </div>
+          </el-dialog>
+        </div>
       </div>
     </div>
   </div>

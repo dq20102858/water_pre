@@ -1,52 +1,50 @@
 <template>
-  <div class="app-main-page">
-    <el-row :gutter="20" class="grid-menu">
-      <el-col :xs="8" :sm="3" :md="3" :lg="3" :xl="3">
-        <div class="left-menu-area">
-          <div class="input-so">
-            <el-input
-              placeholder="请输入内容"
-              prefix-icon="el-icon-search"
-              v-model="searchVillageName"
-              @input="searchVillageNameEvent"
-              clearable
-            ></el-input>
-          </div>
-          <el-menu router class="el-menu-vertical-demo">
-            <el-menu-item
-              :class="searchVillageId === 0 ? 'active' : ''"
-              @click="searchVillageEvent(0)"
-            >
-              <span>全部</span>
-            </el-menu-item>
-            <el-menu-item
-              v-for="item in childStation"
-              :key="item.id"
-              :class="searchVillageId === item.id ? 'active' : ''"
-              @click="searchVillageEvent(item.id)"
-            >
-              <span>{{item.name}}</span>
-            </el-menu-item>
-          </el-menu>
+  <div class="app-page-main">
+    <div class="app-page-rows-left">
+      <div class="left-menu-area">
+        <div class="input-so">
+          <el-input
+            placeholder="请输入内容"
+            prefix-icon="el-icon-search"
+            v-model="searchVillageName"
+            @input="searchVillageNameEvent"
+            clearable
+          ></el-input>
         </div>
-      </el-col>
-      <el-col :xs="16" :sm="21" :md="21" :lg="21" :xl="21">
-        <div class="app-page-site">
-          <div class="app-page-select">
-            <el-form :inline="true">
-              <el-form-item class="el-form-item el-search-items">
-                <el-select v-model="searchType" @change="searchTypeEvent">
-                  <el-option label="设备告警" value="2"></el-option>
-                  <el-option label="水质告警" value="1"></el-option>
-                  <el-option label="入侵告警" value="3"></el-option>
-                </el-select>
-              </el-form-item>
-            </el-form>
-          </div>
-          <div class="app-site"></div>
+        <el-menu router class="el-menu-vertical-demo">
+          <el-menu-item
+            :class="searchVillageId === 0 ? 'active' : ''"
+            @click="searchVillageEvent(0)"
+          >
+            <span>全部</span>
+          </el-menu-item>
+          <el-menu-item
+            v-for="item in childStation"
+            :key="item.id"
+            :class="searchVillageId === item.id ? 'active' : ''"
+            @click="searchVillageEvent(item.id)"
+          >
+            <span>{{item.name}}</span>
+          </el-menu-item>
+        </el-menu>
+      </div>
+    </div>
+    <div class="app-page-rows-right">
+      <div class="app-page-site">
+        <div class="app-page-select">
+          <el-form :inline="true">
+            <el-form-item class="el-form-item el-search-items">
+              <el-select v-model="searchType" @change="searchTypeEvent">
+                <el-option label="设备告警" value="2"></el-option>
+                <el-option label="水质告警" value="1"></el-option>
+                <el-option label="入侵告警" value="3"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-form>
         </div>
-      </el-col>
-    </el-row>
+        <div class="app-site"></div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -175,10 +173,7 @@ export default {
 };
 </script>
 <style>
-.app-main-page {
-  overflow: hidden;
-}
-.app-page-site{
+.app-page-site {
   background-image: url("~@/assets/image/sitebg.png");
   background-repeat: no-repeat;
   height: calc(100vh - 100px);

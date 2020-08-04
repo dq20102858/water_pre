@@ -168,10 +168,11 @@ a.btn-edit:hover{ background: #EF964B;}
 .el-menu-topc .el-menu-item:hover{height: 61px; background-color: #338ff6!important;border: none;color: #fff!important}
 .el-menu-topc .is-active {height: 61px; background-color: #338ff6!important;border: none!important;color: #fff!important}
 
+.app-page-rows{background: #428bf1; }
 .app-page-rows-left{width: 180px;float: left;}
-.app-page-rows-right{ margin-left: 180px;width: calc(100vm - 180px);;}
+.app-page-rows-right{ margin-left: 180px;background: #fff;min-height: 500px; }
 /* left-menu-area */
-.left-menu-area {background: #428bf1;  height: calc(100vh - 100px);width: 180px;}
+.left-menu-area {background: #428bf1; width: 180px; height: calc(100vh - 100px); max-height: 100%;}
 .left-menu-area .el-menu {background: none;border: none;}
 .left-menu-area .el-menu-item {position: relative; background: none;color: #fff;height: 39px;line-height: 39px;white-space: nowrap;overflow: hidden; padding-right: 30px;}
 .left-menu-area .el-menu-item  span{display: block; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;}
