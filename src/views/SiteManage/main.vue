@@ -46,7 +46,10 @@
       <div class="app-page-site">
         <div class="main-top">
           <div class="item">
-            <span @click="waterStatisticsDetail">查看能耗分析</span> 当前控制室温度37
+            <span @click="statisticsEnergyDetail">查看能耗分析</span>
+            <span @click="statisticsWaterDetail">出水量统计</span>
+            <span @click="statisticsWaterQualityDetail">水质监测</span>
+            当前控制室温度37
           </div>
         </div>
         <div class="app-site"></div>
@@ -112,9 +115,21 @@ export default {
     chlidStationEvent() {},
     chlidNameEvent() {},
 
-    waterStatisticsDetail() {
+    statisticsEnergyDetail() {
+      this.$router.push({
+        path: "/sitemanage/statisticsenergy",
+        query: { id: this.$route.query.id }
+      });
+    },
+    statisticsWaterDetail() {
       this.$router.push({
         path: "/sitemanage/statisticswater",
+        query: { id: this.$route.query.id }
+      });
+    },
+    statisticsWaterQualityDetail() {
+      this.$router.push({
+        path: "/sitemanage/statisticswaterquality",
         query: { id: this.$route.query.id }
       });
     }
