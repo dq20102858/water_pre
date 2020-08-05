@@ -22,7 +22,7 @@
           style="background: #00ADFF;border: none;"
           size="mini"
           round
-          @click="back"
+          @click="backURL"
         >返回</el-button>
       </div>
       <div class="deright">
@@ -354,7 +354,7 @@ export default {
     this.getDeviceDetail();
   },
   methods: {
-    back() {
+    backURL() {
       this.$router.go(-1);
     },
     getDeviceDetail() {

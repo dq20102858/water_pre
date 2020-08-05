@@ -4,7 +4,7 @@
         <div class="app-page-rows-left">
         <div class="left-menu-area">
           <h5 class="atitle">系统设置</h5>
-          <el-menu router class="el-menu-vertical-demo">
+          <el-menu router>
             <el-menu-item>
               <router-link to="/setmanage">人员管理</router-link>
             </el-menu-item>

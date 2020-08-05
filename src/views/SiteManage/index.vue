@@ -68,6 +68,7 @@ export default {
       address: "",
       center: { lng: 0, lat: 0 },
       zoom: 15,
+      childStationList: [],
       markers: []
     };
   },
@@ -81,61 +82,8 @@ export default {
     BmLabel,
     BmLocalSearch
   },
-  mounted() {
-    // this.getChildStationList();
 
-    this.markers = [
-      {
-        id: 6,
-        name: "\u4e2d\u5357\u65b0\u6751",
-        lat: "31.541262",
-        lng: "120.301947"
-      },
-      {
-        id: 7,
-        name: "\u5bfa\u5934\u5bb6\u56ed",
-        lat: "31.648137",
-        lng: "120.314564"
-      },
-      {
-        id: 8,
-        name: "\u5357\u5317\u6751",
-        lat: "31.443715",
-        lng: "120.007981"
-      },
-      {
-        id: 9,
-        name: "\u65e0\u9521\u4e1c\u7ad9",
-        lat: "31.606212",
-        lng: "120.465973"
-      },
-      {
-        id: 12,
-        name: "\u7ef4\u7eb3\u9633\u5149",
-        lat: "31.675638",
-        lng: "120.305802"
-      },
-      {
-        id: 13,
-        name: "\u6c5f\u5357\u5927\u5b66",
-        lat: "32.00738",
-        lng: "120.879806"
-      },
-      {
-        id: 14,
-        name: "\u738b\u53f8\u7548\u6751",
-        lat: "29.630769",
-        lng: "115.144735"
-      },
-      {
-        id: 16,
-        name:
-          "\u6cd5\u56fd\u5927\u6982\u68b5\u8482\u5188@#\uffe5%\u2026\u2026\u2026\u2026",
-        lat: "31.686742",
-        lng: "120.304595"
-      }
-    ];
-  },
+  created() {},
   methods: {
     getChildStationList() {
       let name = this.searchVillageName;
@@ -146,9 +94,12 @@ export default {
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
-          this.markers = data.data;
+          this.childStationList = data.data;
         }
       });
+    },
+    getMarkers() {
+      this.markers = this.childStationList;
     },
 
     // draw({ el, BMap, map }) {
@@ -160,10 +111,22 @@ export default {
     // },
 
     readyHandler({ BMap, map }) {
-      // 自动获取展示的比例
-      var view = map.getViewport(eval(this.markers));
-      this.zoom = view.zoom;
-      this.center = view.center;
+      let name = this.searchVillageName;
+      this.request({
+        url: "/station/getChildStationLists",
+        method: "get",
+        params: { name }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.markers = data.data;
+          // 自动获取展示的比例
+          var view = map.getViewport(eval(this.markers));
+          this.zoom = view.zoom;
+          this.center = view.center;
+          console.log(this.markers);
+        }
+      });
     },
     markerClick(e) {
       console.log(e);
@@ -172,9 +135,6 @@ export default {
         path: "/sitemanage/main",
         query: { id: e.id }
       });
-    },
-    infoWindowClose() {
-      this.show = false;
     },
     getClickInfo(e) {
       this.marker.lng = e.point.lng;

@@ -26,18 +26,6 @@
             <div class="titleright"></div>
           </div>
           <div class="chart-main">
-            <div id="oneChart" class="echarts"></div>
-          </div>
-        </div>
-        <div class="grid-content-chart">
-          <div class="chart-title">
-            <div class="titleleft">
-              <b>电流统计</b>
-              <em>单位：安培</em>
-            </div>
-            <div class="titleright"></div>
-          </div>
-          <div class="chart-main">
             <div id="twoChart" class="echarts"></div>
           </div>
         </div>
@@ -51,14 +39,13 @@ export default {
     return {};
   },
   created() {
-    this.getOneChart(1);
-    this.getTwoChart(1);
+    this.getThirdChart(1);
   },
   methods: {
     backURL() {
       this.$router.go(-1);
     },
-    getOneChart(proId, date, proName) {
+    getThirdChart(proId, date, proName) {
       this.request({
         url: "/station/getStationLists",
         method: "get",
@@ -68,95 +55,21 @@ export default {
         if (data.status == 1) {
           //
           //
-
-          let myChart = this.$echarts.init(document.getElementById("oneChart"));
-
-          let option = {
-            title: {
-              text: "折线图-趋势图",
-              textStyle: {
-                color: "#6b8ffc",
-                fontFamily: "Microsoft YaHei",
-                fontSize: "20"
+          var labelOption = {
+            show: true,
+            rotate: 90,
+            align: "left",
+            verticalAlign: "middle",
+            position: "top",
+            distance: 10,
+            formatter: "{c}  {name|{a}}",
+            fontSize: 16,
+            rich: {
+              name: {
+                textBorderColor: "#039bff"
               }
-            },
-            tooltip: {
-              trigger: "axis"
-            },
-            toolbox: {
-              feature: {
-                saveAsImage: {}
-              }
-            },
-            grid: {
-              left: "1%",
-              right: "2%",
-              bottom: "2%",
-              top: "10%",
-              containLabel: true
-            },
-
-            xAxis: {
-              type: "category",
-              boundaryGap: false,
-              axisLine: {
-                lineStyle: {
-                  color: "#869ec6"
-                }
-              },
-              axisLabel: {
-                // interval: 0,
-                // rotate: 40,
-                textStyle: {
-                  fontFamily: "Microsoft YaHei"
-                }
-              },
-              data: [2010, 2011, 2012, 2013, 2014, 2015, 2016]
-            },
-            yAxis: {
-              type: "value",
-              axisLine: {
-                show: true,
-                lineStyle: {
-                  color: "#869ec6"
-                }
-              },
-             splitLine: {
-                show: true,
-                lineStyle: {
-                  color: "#eff4f6"
-                }
-              },
-              axisLabel: {}
-            },
-            series: [
-              {
-                data: [15, 55, 66, 88, 79, 88, 64],
-                symbolSize: 10,
-                color: "#e380bd",
-                type: "line"
-              }
-            ]
+            }
           };
-          myChart.setOption(option);
-          myChart.resize();
-          window.addEventListener("resize", function() {
-            myChart.resize();
-          });
-          //end
-        }
-      });
-    },
-    getTwoChart(proId, date, proName) {
-      this.request({
-        url: "/station/getStationLists",
-        method: "get",
-        params: { proId: proId, date: date }
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          //
-          //
           let myChart = this.$echarts.init(document.getElementById("twoChart"));
           var option = {
             backgroundColor: "#fff",
@@ -172,6 +85,11 @@ export default {
                 type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
               }
             },
+            toolbox: {
+              feature: {
+                saveAsImage: {}
+              }
+            },
             grid: {
               left: "1%",
               right: "2%",
@@ -179,12 +97,7 @@ export default {
               top: "10%",
               containLabel: true
             },
-            toolbox: {
-              feature: {
-                saveAsImage: {}
-              }
-            },
-            calculable: true,
+
             legend: {
               data: ["进水", "出水"],
               top: 12,

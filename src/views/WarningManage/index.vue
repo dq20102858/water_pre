@@ -11,7 +11,7 @@
             clearable
           ></el-input>
         </div>
-        <el-menu router class="el-menu-vertical-demo">
+        <el-menu router>
           <el-menu-item
             :class="searchVillageId === 0 ? 'active' : ''"
             @click="searchVillageEvent(0)"

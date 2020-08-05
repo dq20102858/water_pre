@@ -41,9 +41,13 @@ const constantRouterMap = [
         component: () => import('@/views/SiteManage/main')
       },
       {
-        path: '/sitemanage/waterstatistics',
-        name: 'sitemanage-waterstatistics',
-        component: () => import('@/views/SiteManage/waterStatistics')
+        path: '/sitemanage/statisticswater',
+        name: 'sitemanage-statisticswater',
+        component: () => import('@/views/SiteManage/statisticsWater')
+      }, {
+        path: '/sitemanage/statisticsenergy',
+        name: 'sitemanage-statisticsenergy',
+        component: () => import('@/views/SiteManage/statisticsEnergy')
       }
     ]
   }, {
