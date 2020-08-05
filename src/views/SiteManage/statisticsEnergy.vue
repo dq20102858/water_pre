@@ -3,7 +3,7 @@
     <div class="app-page-container">
       <div class="statistics-top">
         <div class="deleft">
-          <b>进出水量统计</b>
+          <b>能耗分析</b>
           <el-button
             type="primary"
             style="background: #00ADFF;border: none;"
@@ -17,16 +17,73 @@
         </div>
       </div>
       <div class="statistics">
+        <!-- <div class="grid-content-chart">
+          <div class="chart-title">
+            <div class="titleleft">
+              <b>液位</b>
+              <em>单位：吨</em>
+            </div>
+            <div class="titleright">
+              <el-date-picker
+                @change="oneStartTimeSelect"
+                class="seldate"
+                v-model="oneStartTime"
+                type="date"
+                placeholder="选择日期"
+              ></el-date-picker>
+              <span @click="oneSelect(1)" class="selspan" :class="oneType == 1 ? 'active':''">按日</span>
+              <span @click="oneSelect(2)" class="selspan" :class="oneType == 2 ? 'active':''">按月</span>
+              <span @click="oneSelect(3)" class="selspan" :class="oneType == 3 ? 'active':''">按年</span>
+            </div>
+          </div>
+          <div class="echarts-main">
+            <div id="oneChart" class="echarts"></div>
+          </div>
+        </div>-->
         <div class="grid-content-chart">
           <div class="chart-title">
             <div class="titleleft">
-              <b>电流统计</b>
-              <em>单位：安培</em>
+              <b>风机能耗</b>
+              <em>单位：度</em>
             </div>
-            <div class="titleright"></div>
+            <div class="titleright">
+              <el-date-picker
+                @change="twoStartTimeSelect"
+                class="seldate"
+                v-model="twoStartTime"
+                type="date"
+                placeholder="选择日期"
+              ></el-date-picker>
+              <span @click="twoSelect(1)" class="selspan" :class="twoType == 1 ? 'active':''">按日</span>
+              <span @click="twoSelect(2)" class="selspan" :class="twoType == 2 ? 'active':''">按月</span>
+              <span @click="twoSelect(3)" class="selspan" :class="twoType == 3 ? 'active':''">按年</span>
+            </div>
           </div>
-          <div class="chart-main">
-            <div id="twoChart"></div>
+          <div class="echarts-main">
+            <div id="twoChart" class="echarts"></div>
+          </div>
+        </div>
+        <div class="grid-content-chart">
+          <div class="chart-title">
+            <div class="titleleft">
+              <b>水泵能耗</b>
+              <em>单位：度</em>
+            </div>
+            <div class="titleright">
+              <el-date-picker
+                @change="threeStartTimeSelect"
+                class="seldate"
+                v-model="threeStartTime"
+                type="date"
+                placeholder="选择日期"
+              ></el-date-picker>
+              <span @click="threeSelect(1)" class="selspan" :class="threeType == 1 ? 'active':''">按日</span>
+              <span @click="threeSelect(2)" class="selspan" :class="threeType == 2 ? 'active':''">按月</span>
+              <span @click="threeSelect(3)" class="selspan" :class="threeType == 3 ? 'active':''">按年</span>
+            </div>
+          </div>
+          <div class="echarts-main">
+            <div id="threeChart" class="echarts"></div>
           </div>
         </div>
       </div>
@@ -36,109 +93,439 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      oneType: 1,
+      oneStartTime: "",
+      twoType: 1,
+      twoStartTime: "",
+      threeType: 1,
+      threeStartTime: ""
+    };
   },
   created() {
-    this.getThirdChart(1);
+    //this.getOneChart(this.oneType);
+    this.getTwoChart(this.twoType);
+    this.getThreeChart(this.threeType);
   },
   methods: {
     backURL() {
       this.$router.go(-1);
     },
-    getThirdChart(proId, date, proName) {
+    //=======1
+    oneStartTimeSelect() {
+      this.getOneChart(this.oneType);
+    },
+    oneSelect(type) {
+      this.oneType = type;
+      this.getOneChart(type);
+    },
+    getOneChart(type) {
       this.request({
-        url: "/station/getStationLists",
+        url: "/log/getLevelDatas",
         method: "get",
-        params: { proId: proId, date: date }
+        params: { type: type, start_time: this.oneStartTime }
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
-          let xData = [
-            "2020-01",
-            "2020-02",
-            "2020-03",
-            "2020-04",
-            "2020-05",
-            "2020-06",
-            "2020-07",
-            "2020-08",
-            "2020-09",
-            "2020-10",
-            "2020-11",
-            "2020-12"
-          ];
-          let yDataA = [0, 0, 0, 0, 0, 2.44, 0, 0, 0, 0, 0, 0];
-          let yDataB = [0, 0, 0, 0, 0, 3.64, 0, 0, 0, 0, 0, 0];
-          let myChart = this.$echarts.init(document.getElementById("twoChart"));
-          myChart.setOption({
-            title: {
-              text: ""
-            },
+          let dataxAxis = data.data.x;
+          let dataSeries = data.data.data;
+          // dataxAxis = [12, 13, 14, 15];
+          // dataSeries = [120, 130, 140, 150];
+
+          //
+          let myChart = this.$echarts.init(document.getElementById("oneChart"));
+          if (data.data.length == 0) {
+            myChart.showLoading({
+              text: "暂无数据",
+              color: "#fff",
+              textColor: "#8a8e91",
+              maskColor: "rgba(255, 255, 255, 0.8)"
+            });
+          }
+          var option = {
+            backgroundColor: "#fff",
             tooltip: {
-              trigger: "axis"
-            },
-            color: ["#4b6eca", "#ff5c75"],
-            legend: {
-              data: ["进水", "出水"],
-              icon: "rectangle",
-              textStyle: {
-                fontSize: 14,
-                color: "#1d397a"
+              trigger: "axis",
+              axisPointer: {
+                type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
               }
             },
-            grid: {
-              left: "1%",
-              right: "1%",
-              bottom: "1%",
-              containLabel: true
-            },
             toolbox: {
-              right: 30,
               feature: {
                 saveAsImage: {}
               }
             },
-            xAxis: [
-              {
-                type: "category",
-                axisLabel: {
-                  show: true,
-                  interval: 0,
-                  rotate: 0,
-                  textStyle: {
-                    color: "#333"
-                  }
-                },
-                data: xData
+            grid: {
+              left: "1%",
+              right: "2%",
+              bottom: "2%",
+              top: "10%",
+              containLabel: true
+            },
+
+            legend: {
+              data: ["液位"],
+              top: 12,
+              textStyle: {
+                color: ["#4093ed", "#ef964b"],
+                fontSize: 15
+              },
+              itemWidth: 32,
+              itemHeight: 15
+              // itemGap: 35
+            },
+            xAxis: {
+              type: "category",
+              data: dataxAxis,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: "#869ec6"
+                }
+              },
+              splitLine: {
+                show: true,
+                lineStyle: {
+                  color: "#eff4f6"
+                }
+              },
+              axisLabel: {
+                textStyle: {
+                  fontFamily: "Microsoft YaHei"
+                }
               }
-            ],
-            yAxis: [
-              {
-                type: "value"
-              }
-            ],
+            },
+
+            yAxis: {
+              type: "value",
+              // max: "1200",
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: "#869ec6"
+                }
+              },
+              splitLine: {
+                show: true,
+                lineStyle: {
+                  color: "#eff4f6"
+                }
+              },
+              axisLabel: {}
+            },
             series: [
               {
-                name: "计划",
+                name: "出水",
                 type: "bar",
-                data: yDataA
-              },
-              {
-                name: "实际",
-                type: "bar",
-                data: yDataB
+                barWidth: "12",
+                label: {
+                  normal: {
+                    show: true,
+                    fontSize: 12,
+                    color: "#00d7ff",
+                    position: "top"
+                  }
+                },
+                itemStyle: {
+                  normal: {
+                    color: new this.$echarts.graphic.LinearGradient(
+                      0,
+                      0,
+                      0,
+                      1,
+                      [
+                        {
+                          offset: 0,
+                          color: "#00d7ff"
+                        },
+                        {
+                          offset: 1,
+                          color: "#009bff"
+                        }
+                      ]
+                    ),
+                    barBorderRadius: [3, 3, 0, 0]
+                  }
+                },
+                data: dataSeries
               }
             ]
-          });
+          };
+          myChart.setOption(option);
           myChart.resize();
           window.addEventListener("resize", function() {
             myChart.resize();
           });
+
           //end
         }
       });
     },
+    //=======2
+    twoStartTimeSelect() {
+      this.getTwoChart(this.twoType);
+    },
+    twoSelect(type) {
+      this.twoType = type;
+      this.getTwoChart(type);
+    },
+    getTwoChart(type) {
+      this.request({
+        url: "/log/getRealtimeEnergy",
+        method: "get",
+        params: { device_type: 1, type: type, start_time: this.twoStartTime }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          let dataxAxis = data.data.x;
+          let dataSeries = data.data.result;
+          //dataxAxis = [12, 13, 14, 15];
+          //dataSeries = [120, 30, 10, 150];
 
+          //
+          let myChart = this.$echarts.init(document.getElementById("twoChart"));
+          if (data.data.length == 0) {
+            myChart.showLoading({
+              text: "暂无数据",
+              color: "#fff",
+              textColor: "#8a8e91",
+              maskColor: "rgba(255, 255, 255, 0.8)"
+            });
+          }
+          var option = {
+            backgroundColor: "#fff",
+            tooltip: {
+              trigger: "axis",
+              axisPointer: {
+                type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
+              }
+            },
+            toolbox: {
+              feature: {
+                saveAsImage: {}
+              }
+            },
+            grid: {
+              left: "1%",
+              right: "2%",
+              bottom: "2%",
+              top: "10%",
+              containLabel: true
+            },
+            legend: {
+              data: ["风机能耗"],
+              textStyle: {
+                color: ["#00D98B"],
+                fontSize: 15
+              },
+              itemWidth: 32,
+              itemHeight: 15
+            },
+            xAxis: {
+              type: "category",
+              data: dataxAxis,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: "#869ec6"
+                }
+              },
+              splitLine: {
+                show: true,
+                lineStyle: {
+                  color: "#eff4f6"
+                }
+              },
+              axisLabel: {
+                textStyle: {
+                  fontFamily: "Microsoft YaHei"
+                }
+              }
+            },
+
+            yAxis: {
+              type: "value",
+              // max: "1200",
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: "#869ec6"
+                }
+              },
+              splitLine: {
+                show: true,
+                lineStyle: {
+                  color: "#eff4f6"
+                }
+              },
+              axisLabel: {}
+            },
+            series: [
+              {
+                name: "风机能耗",
+                type: "line",
+                barWidth: "12",
+                label: {
+                  normal: {
+                    show: true,
+                    fontSize: 12,
+                    color: "#00D98B",
+                    position: "top"
+                  }
+                },
+                itemStyle: {
+                  normal: {
+                    color: "#00D98B"
+                  }
+                },
+                data: dataSeries
+              }
+            ]
+          };
+          myChart.setOption(option);
+          myChart.resize();
+          window.addEventListener("resize", function() {
+            myChart.resize();
+          });
+
+          //end
+        }
+      });
+    },
+    //=======3
+    threeStartTimeSelect() {
+      this.getThreeChart(this.threeType);
+    },
+    threeSelect(type) {
+      this.threeType = type;
+      this.getThreeChart(type);
+    },
+    getThreeChart(type) {
+      this.request({
+        url: "/log/getRealtimeEnergy",
+        method: "get",
+        params: { device_type: 2, type: type, start_time: this.twoStartTime }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          let dataxAxis = data.data.x;
+          let dataSeries = data.data.result;
+          //dataxAxis = [12, 13, 14, 15];
+          //dataSeries = [120, 130, 140, 150];
+
+          //
+          let myChart = this.$echarts.init(
+            document.getElementById("threeChart")
+          );
+          if (data.data.length == 0) {
+            myChart.showLoading({
+              text: "暂无数据",
+              color: "#fff",
+              textColor: "#8a8e91",
+              maskColor: "rgba(255, 255, 255, 0.8)"
+            });
+          }
+          var option = {
+            backgroundColor: "#fff",
+            tooltip: {
+              trigger: "axis",
+              axisPointer: {
+                type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
+              }
+            },
+            toolbox: {
+              feature: {
+                saveAsImage: {}
+              }
+            },
+            grid: {
+              left: "1%",
+              right: "2%",
+              bottom: "2%",
+              top: "10%",
+              containLabel: true
+            },
+            legend: {
+              data: ["风机能耗"],
+              textStyle: {
+                color: ["#228FFE"],
+                fontSize: 15
+              },
+              itemWidth: 32,
+              itemHeight: 15
+            },
+            xAxis: {
+              type: "category",
+              data: dataxAxis,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: "#869ec6"
+                }
+              },
+              splitLine: {
+                show: true,
+                lineStyle: {
+                  color: "#eff4f6"
+                }
+              },
+              axisLabel: {
+                textStyle: {
+                  fontFamily: "Microsoft YaHei"
+                }
+              }
+            },
+
+            yAxis: {
+              type: "value",
+              // max: "1200",
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: "#869ec6"
+                }
+              },
+              splitLine: {
+                show: true,
+                lineStyle: {
+                  color: "#eff4f6"
+                }
+              },
+              axisLabel: {}
+            },
+            series: [
+              {
+                name: "风机能耗",
+                type: "line",
+                barWidth: "12",
+                label: {
+                  normal: {
+                    show: true,
+                    fontSize: 12,
+                    color: "#228FFE",
+                    position: "top"
+                  }
+                },
+                itemStyle: {
+                  normal: {
+                    color: "#228FFE"
+                  }
+                },
+                data: dataSeries
+              }
+            ]
+          };
+          myChart.setOption(option);
+          myChart.resize();
+          window.addEventListener("resize", function() {
+            myChart.resize();
+          });
+
+          //end
+        }
+      });
+    },
+    //=======end
     getStationList() {
       this.request({
         url: "/station/getStationLists",
@@ -220,30 +607,13 @@ export default {
 
   box-shadow: 5px 1px 15px rgba(222, 222, 222, 0.9);
 }
-.chart-title {
-  background: #4093ed;
-  border-radius: 6px 6px 0 0;
-  padding: 12px 15px;
-  color: #fff;
+/**/
+.echarts-main {
+  padding: 20px;
   overflow: hidden;
 }
-.chart-title .titleleft {
-  float: left;
-}
-.chart-title .titleright {
-  float: right;
-}
-.chart-title b {
-  font-size: 16px;
-  margin-right: 20px;
-  font-weight: 400;
-}
-.chart-main {
-  min-height: 400px;
-}
-/**/
-#twoChart {
-  height: 500px;
+.echarts {
+  height: 400px;
   width: 100%;
 }
 </style>

@@ -210,10 +210,11 @@ a.btn-edit:hover{ background: #EF964B;}
 /*chart-title */
 .chart-title {background: #4093ed;border-radius: 6px 6px 0 0;padding: 12px 15px;color: #fff;overflow: hidden;}
 .chart-title .titleleft {float: left;padding-top: 4px;}
+.chart-title .titleleft  b{font-size: 18px;font-weight: 700;}
 .chart-title .titleright {float: right;}
 .chart-title .titleright .el-input {width: 150px;}
 .chart-title .titleright .el-input--medium .el-input__inner {height: 26px;line-height: 26px;width: 140px;background: #3162b7;border: 1px #3162b7 solid;color: #fff;}
 .chart-title .titleright .el-input--medium .el-input__icon {line-height: 26px;color: #fff;}
-.chart-title .titleright .selspan {padding: 3px 5px;border-radius: 3px;margin-left: 10px;}
+.chart-title .titleright .selspan { cursor: pointer; padding: 3px 5px;border-radius: 3px;margin-left: 10px;}
 .chart-title .titleright .active {background: #3162b7;}
 .chart-title b {font-size: 16px;margin-right: 20px;font-weight: 400;}

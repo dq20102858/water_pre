@@ -58,22 +58,41 @@
               <el-table-column prop="station_name" label="维保站点"></el-table-column>
               <el-table-column prop="is_problem" label="是否有问题">
                 <template slot-scope="scope">
-                  <el-popover placement="right" trigger="hover" popper-class="isok-popover">
-                    <span class="btn-sele" @click="problemEvent(scope.row.id,1)">是</span>
-                    <span class="btn-sele" @click="problemEvent(scope.row.id,0)">否</span>
-                    <span class="btn-sele-no" v-if="scope.row.is_problem==1" slot="reference">是</span>
-                    <span class="btn-sele-no" v-if="scope.row.is_problem==0" slot="reference">否</span>
-                  </el-popover>
+                  <span v-if="scope.row.is_problem==1">是</span>
+                  <span v-if="scope.row.is_problem==0">否</span>
+                  <el-switch
+                    title="设置状态"
+                    v-model="scope.row.is_problem"
+                    :active-value="1"
+                    :inactive-value="0"
+                    active-text
+                    inactive-text
+                    active-color="#383C57"
+                    @change="problemEvent($event,scope.row.id)"
+                  ></el-switch>
                 </template>
               </el-table-column>
               <el-table-column prop="is_handle" label="是否已处理">
                 <template slot-scope="scope">
-                  <el-popover placement="right" trigger="hover" popper-class="isok-popover">
+                  <span v-if="scope.row.is_handle==1">是</span>
+                  <span v-if="scope.row.is_handle==0">否</span>
+                  <el-switch
+                    title="设置状态"
+                    v-model="scope.row.is_handle"
+                    :active-value="1"
+                    :inactive-value="0"
+                    active-text
+                    inactive-text
+                    active-color="#383C57"
+                    @change="handleEvent($event,scope.row.id)"
+                  ></el-switch>
+
+                  <!-- <el-popover placement="right" trigger="hover" popper-class="isok-popover">
                     <span class="btn-sele" @click="handleEvent(scope.row.id,1)">是</span>
                     <span class="btn-sele" @click="handleEvent(scope.row.id,0)">否</span>
                     <span class="btn-sele-no" v-if="scope.row.is_handle==1" slot="reference">是</span>
                     <span class="btn-sele-no" v-if="scope.row.is_handle==0" slot="reference">否</span>
-                  </el-popover>
+                  </el-popover>-->
                 </template>
               </el-table-column>
               <el-table-column prop="user" label="运维人员"></el-table-column>
@@ -513,7 +532,7 @@ export default {
         })
         .catch(() => {});
     },
-    problemEvent(id, flag) {
+    problemEvent(flag, id) {
       this.request({
         url: "/record/changeProblem",
         method: "post",
@@ -529,7 +548,7 @@ export default {
         }
       });
     },
-    handleEvent(id, flag) {
+    handleEvent(flag, id) {
       this.request({
         url: "/record/changehandle",
         method: "post",
