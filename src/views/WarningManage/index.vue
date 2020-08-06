@@ -33,8 +33,8 @@
       <div class="app-page-container">
         <div class="app-page-select">
           <el-form :inline="true">
-            <el-form-item class="el-form-item el-search-items">
-              <el-select v-model="searchType" @change="searchTypeEvent">
+            <el-form-item class="el-form-item el-select-dorps">
+              <el-select v-model="searchType" @change="searchTypeEvent" style="width:120px">
                 <el-option label="设备告警" value="2"></el-option>
                 <el-option label="水质告警" value="1"></el-option>
                 <el-option label="入侵告警" value="3"></el-option>
@@ -250,19 +250,10 @@ export default {
 .app-device-page {
   overflow: hidden;
 }
-.el-search-items .el-select .el-input {
+/* .app-device-page .el-select-dorps .el-select .el-input {
   width: 120px;
   border-radius: 4px;
-}
-.el-search-items .el-select .el-input__inner {
-  background: #2b8cf9;
-  color: #fff;
-  text-align: center;
-  border: 0;
-}
-.el-search-items .el-select .el-input .el-select__caret {
-  color: #fff;
-}
+} */
 .samplinglist .el-table tr th {
   text-align: center;
 }

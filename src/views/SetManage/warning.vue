@@ -22,7 +22,7 @@
           <div class="app-page-select">
             <el-form :inline="true">
               <el-form-item>
-                <h3 class="ttitles">告警设置</h3>
+                <h3 class="ttitles">告警设置：设定一个最小值、一个最大值，当各项数值超过此范围时，系统发起告警</h3>
               </el-form-item>
             </el-form>
           </div>

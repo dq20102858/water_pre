@@ -44,15 +44,15 @@
                   clearable
                 ></el-input>
               </el-form-item>
-              <el-form-item class="el-form-item el-search-item-org">
-                <el-select v-model="searchStatus" @change="searchStatusEvent">
-                  <el-option label="全部" value="0"></el-option>
+              <el-form-item class="el-form-item el-select-dorps">
+                <el-select v-model="searchStatus" @change="searchStatusEvent" style="width:100px">
+                  <el-option label="全部状态" value="0"></el-option>
                   <el-option label="已完成" value="2"></el-option>
                   <el-option label="未完成" value="1"></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item class="el-form-item el-search-items">
-                <el-select v-model="searchType" @change="searchTypeEvent">
+              <el-form-item class="el-form-item el-select-dorps">
+                <el-select v-model="searchType" @change="searchTypeEvent" style="width:100px">
                   <el-option label="设备维修" value="1"></el-option>
                   <el-option label="例行维保" value="2"></el-option>
                   <el-option label="运行检查" value="3"></el-option>
@@ -499,37 +499,6 @@ export default {
 };
 </script>
 <style>
-.app-device-page {
-  overflow: hidden;
-}
-.el-search-item-org .el-select .el-input {
-  width: 90px;
-  border-radius: 4px;
-}
-.el-search-item-org .el-select .el-input__inner {
-  background: #f45e23;
-  color: #fff;
-  text-align: center;
-  border: 0;
-}
-.el-search-item-org .el-select .el-input .el-select__caret {
-  color: #fff;
-}
-
-.el-search-items .el-select .el-input {
-  width: 120px;
-  border-radius: 4px;
-}
-.el-search-items .el-select .el-input__inner {
-  background: #2b8cf9;
-  color: #fff;
-  text-align: center;
-  border: 0;
-}
-.el-search-items .el-select .el-input .el-select__caret {
-  color: #fff;
-}
-
 .dialog-dispatch .el-select {
   width: 100%;
 }

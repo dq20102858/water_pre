@@ -48,6 +48,10 @@ em,i{font-style: normal;}
 .app-page-select  .el-form-item{margin-bottom: 15px;}
 .app-page-select .el-button  span{font-size:14px!important;}
 .app-page-select .ttitles{ color:#212227;}
+.app-page-select .el-select-dorps .el-select .el-input__inner {background: #2b8cf9;color: #fff;text-align: center;border: 0;}
+.app-page-select .el-select-dorps .el-select .el-input .el-select__caret {color: #fff;}
+.app-page-select .el-select-dorps input::-webkit-input-placeholder{color: #fff;}
+.app-page-select .el-select-dorps  input:-ms-input-placeholder {color: #fff;}
 .el-serach {float: right;border: 2px #338ff6 solid; border-radius: 3px;}
 .el-serach.noborder{border: none;}
 .el-serach .el-input {width: 178px;}
@@ -182,7 +186,7 @@ a.btn-edit:hover{ background: #EF964B;}
 .left-menu-area .el-menu-item:hover {background:#2377fc;color: #fff;}
 .left-menu-area .el-menu-item.active {background: #fff;color: #4688f1;}
 .left-menu-area .input-so {padding: 10px;}
-.left-menu-area .atitle{padding: 20px 10px; margin: 0;font-size: 16px;color: #fff;}
+.left-menu-area .atitle{padding: 0 10px; margin: 0;font-size: 16px;color: #fff; height: 56px;line-height: 56px;}
 .left-menu-area .el-menu-item a{display: block; text-decoration: none; color:#fff}
 .left-menu-area .el-menu-item.active a{text-decoration: none; color:#4688f1}
 .left-menu-area .el-menu-item.active::after{content: ""; position: absolute;right: 10px; top:15px; width:0px;height:0px;border-width:5px 0 5px 8px;border-style:solid; border-color:transparent transparent transparent #428bf1; }

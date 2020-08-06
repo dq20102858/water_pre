@@ -43,7 +43,7 @@
               </el-table-column>
               <el-table-column prop="name" label="站点名"></el-table-column>
               <el-table-column prop="address" label="所在位置" show-overflow-tooltip></el-table-column>
-              <el-table-column prop="number" label="日均排污量">
+              <el-table-column prop="number" label="日均排污量（吨）">
                 <template slot-scope="scope">
                   <span v-html="scope.row.number">吨</span>
                 </template>

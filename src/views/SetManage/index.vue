@@ -31,6 +31,14 @@
                   clearable
                 ></el-input>
               </el-form-item>
+              <el-form-item class="el-form-item el-select-dorps">
+                <el-select v-model="searchRole" @change="searchRoleEvent($event)" style="width:120px;">
+                  <el-option label="管理员" value="1"></el-option>
+                  <el-option label="维修人员" value="2"></el-option>
+                  <el-option label="巡检人员" value="3"></el-option>
+                  <el-option label="分析人员" value="4"></el-option>
+                </el-select>
+              </el-form-item>
               <div class="el-serach noborder">
                 <!-- <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable></el-input> -->
                 <el-button @click="addShowDialog">添加</el-button>
@@ -46,7 +54,7 @@
               <el-table-column prop="name" label="姓名"></el-table-column>
               <el-table-column prop="role" label="职位"></el-table-column>
               <el-table-column prop="phone" label="手机号"></el-table-column>
-              <el-table-column prop="create_time" label="发布时间"></el-table-column>
+              <el-table-column prop="create_time" label="添加时间"></el-table-column>
               <el-table-column label="操作" width="125">
                 <template slot-scope="scope">
                   <div class="app-operation">
@@ -114,7 +122,9 @@
           <el-form-item label="职位：" prop="role_id">
             <el-select v-model="formData.role_id" placeholder="请选择职位">
               <el-option label="管理员" :value="1"></el-option>
-              <el-option label="维保人员" :value="2"></el-option>
+              <el-option label="维修人员" :value="2"></el-option>
+              <el-option label="巡检人员" :value="3"></el-option>
+              <el-option label="分析人员" :value="4"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="头像上传：" style="width:100%;">
@@ -243,7 +253,8 @@ export default {
       page_size: 20,
       page_total: 0,
       dataList: [],
-      searchKeyword: ""
+      searchKeyword: "",
+      searchRole: ""
     };
   },
   mounted() {
@@ -289,6 +300,9 @@ export default {
     searchKeywordEvent() {
       this.page_cur = 1;
       this.getDataList();
+    },
+    searchRoleEvent(e) {
+      console.log(e);
     },
     addShowDialog() {
       this.diaLogTitle = "添加人员信息";
@@ -426,23 +440,20 @@ export default {
 };
 </script>
 <style>
-.app-set-page {
-  overflow: hidden;
-}
 .dialog-users .el-select {
   width: 100%;
 }
-.avatar-uploader .el-upload {
+.dialog-users .avatar-uploader .el-upload {
   border: 1px dashed #d9d9d9;
   border-radius: 6px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
 }
-.avatar-uploader .el-upload:hover {
+.dialog-users .avatar-uploader .el-upload:hover {
   border-color: #409eff;
 }
-.avatar-uploader-icon {
+.dialog-users .avatar-uploader-icon {
   font-size: 28px;
   color: #8c939d;
   width: 178px;
@@ -450,7 +461,7 @@ export default {
   line-height: 178px;
   text-align: center;
 }
-.avatar {
+.dialog-users .avatar {
   width: 178px;
   height: 178px;
   display: block;
