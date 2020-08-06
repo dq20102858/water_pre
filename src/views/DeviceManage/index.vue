@@ -5,7 +5,7 @@
         <div class="left-menu-area">
           <div class="input-so">
             <el-input
-              placeholder="请输入内容"
+              placeholder="输入处理站"
               prefix-icon="el-icon-search"
               v-model="searchVillageName"
               @input="searchVillageNameEvent"
@@ -52,6 +52,8 @@
                     <el-option label="全部" value="0"></el-option>
                     <el-option label="风机" value="1"></el-option>
                     <el-option label="水泵" value="2"></el-option>
+                    <el-option label="紫外灯" value="3"></el-option>
+                    <el-option label="PLC" value="4"></el-option>
                   </el-select>
                 </el-input>
               </el-form-item>
@@ -158,6 +160,8 @@
             <el-select v-model="formData.type" placeholder="请选择设备类型">
               <el-option label="风机" :value="1"></el-option>
               <el-option label="水泵" :value="2"></el-option>
+              <el-option label="紫外灯" :value="3"></el-option>
+              <el-option label="PLC" :value="4"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="设备编号：" prop="number">
@@ -567,7 +571,7 @@ export default {
 </script>
 <style>
 .el-search-item-blee .el-select .el-input {
-  width: 80px;
+  width: 100px;
   text-align: center;
   background: #2b8cf9;
   color: #fff;

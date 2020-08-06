@@ -6,7 +6,7 @@
           <div class="input-so">
             <el-input
               prefix-icon="el-icon-search"
-              placeholder="请输入内容"
+              placeholder="输入处理站"
               v-model="searchVillageName"
               @input="searchVillageNameEvent"
               clearable

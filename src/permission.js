@@ -26,6 +26,8 @@ router.beforeEach((to, from, next) => {
       NProgress.done() // if current page is dashboard will not trigger	afterEach hook, so manually handle it
     } else {
       if (store.getters.roles.length === 0) {
+
+     
         // 判断当前用户是否已拉取完user_info信息
         store
           .dispatch('GetUserInfo')

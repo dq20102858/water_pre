@@ -40,7 +40,7 @@
             <div id="oneChart" class="echarts"></div>
           </div>
         </div>
-        <!-- <div class="grid-content-chart">
+        <div class="grid-content-chart">
           <div class="chart-title">
             <div class="titleleft">
               <b>瞬时量统计</b>
@@ -62,7 +62,7 @@
           <div class="echarts-main">
             <div id="twoChart" class="echarts"></div>
           </div>
-        </div>-->
+        </div>
       </div>
     </div>
   </div>
@@ -79,7 +79,7 @@ export default {
   },
   created() {
     this.getOneChart(this.oneType);
-    // this.getTwoChart(this.twoType);
+     this.getTwoChart(this.twoType);
   },
   methods: {
     backURL() {
@@ -355,7 +355,7 @@ export default {
     getTwoChart(type) {
       this.request({
         //url: "/log/getTotalEnterWater",
-        url: "/log/getPhDatas",
+        url: "/log/getEnterWater",
         method: "get",
         params: { type: type, start_time: this.twoStartTime }
       }).then(response => {
@@ -376,12 +376,7 @@ export default {
           }
           var option = {
             backgroundColor: "#fff",
-            title: {
-              text: "出水量统计",
-              textStyle: {
-                color: "#222"
-              }
-            },
+        
             tooltip: {
               trigger: "axis",
               axisPointer: {

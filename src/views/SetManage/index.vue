@@ -35,7 +35,7 @@
                 <el-select
                   v-model="searchRole"
                   @change="searchRoleEvent($event)"
-                  style="width:120px;"
+                  style="width:120px;"  clearable  placeholder="全部"
                 >
                   <el-option label="管理员" value="1"></el-option>
                   <el-option label="维修人员" value="2"></el-option>

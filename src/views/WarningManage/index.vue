@@ -1,10 +1,11 @@
 <template>
   <div class="app-device-page">
+    <div class="app-page-rows">
     <div class="app-page-rows-left">
       <div class="left-menu-area">
         <div class="input-so">
           <el-input
-            placeholder="请输入内容"
+            placeholder="输入处理站"
             prefix-icon="el-icon-search"
             v-model="searchVillageName"
             @input="searchVillageNameEvent"
@@ -26,7 +27,37 @@
           >
             <span>{{item.name}}</span>
           </el-menu-item>
-        </el-menu>
+          <!-- <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li><li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li><li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村</span></li>
+          <li role="menuitem" tabindex="-1" class="el-menu-item" style="padding-left: 20px;"><span>测试村13123</span></li> -->
+    </el-menu>
       </div>
     </div>
     <div class="app-page-rows-right">
@@ -129,7 +160,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div></div>
 </template>
 <script>
 export default {
@@ -193,17 +224,18 @@ export default {
       this.getDataList();
     },
     searchDataTimeEvent() {
-      if (this.searchDataTime[0] != null) {
+      if (this.searchDataTime == null) {
+        this.searchStartTime = "";
+        this.searchEndTime = "";
+        this.page_cur = 1;
+        this.getDataList();
+      } else {
         this.searchStartTime = this.searchDataTime[0];
         this.searchEndTime = this.searchDataTime[1];
         this.page_cur = 1;
         this.getDataList();
-      } else {
-        this.searchStartTime = "";
-        this.searchEndTime = "";
       }
     },
-
     searchTypeEvent(val) {
       this.type = this.searchType;
       this.getDataList();
