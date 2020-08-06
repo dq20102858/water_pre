@@ -115,9 +115,9 @@ export default {
           this.$store
             .dispatch("LoginByUsername", this.loginForm)
             .then(() => {
+              debugger
               this.loading = false;
               this.$router.push({ path: "/sitemanage" });
-              localStorage.setItem("activeMenu", "sitemanage");
             })
             .catch(() => {
               this.loading = false;
