@@ -446,7 +446,7 @@ export default {
               containLabel: true
             },
             legend: {
-              data: ["风机能耗"],
+              data: ["水泵能耗"],
               textStyle: {
                 color: ["#228FFE"],
                 fontSize: 15
@@ -495,7 +495,7 @@ export default {
             },
             series: [
               {
-                name: "风机能耗",
+                name: "水泵能耗",
                 type: "line",
                 barWidth: "12",
                 label: {

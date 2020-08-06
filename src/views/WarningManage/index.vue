@@ -40,6 +40,17 @@
                 <el-option label="入侵告警" value="3"></el-option>
               </el-select>
             </el-form-item>
+            <el-form-item class="el-form-item">
+              <el-date-picker
+                v-model="searchDataTime"
+                type="daterange"
+                start-placeholder="请选择开始日期"
+                end-placeholder="请选择结束日期"
+                range-separator="至"
+                @change="searchDataTimeEvent"
+                clearable
+              ></el-date-picker>
+            </el-form-item>
           </el-form>
         </div>
         <div class="app-table">
@@ -62,7 +73,7 @@
             </el-table-column>
             <el-table-column prop="reason" label="告警原因" v-if="this.searchType!=3"></el-table-column>
             <el-table-column prop="create_time" label="告警时间"></el-table-column>
-            <el-table-column prop="address" label="发声位置"></el-table-column>
+            <el-table-column prop="address" label="发生位置"></el-table-column>
             <el-table-column prop="is_repair" label="是否修复" v-if="this.searchType!=3">
               <template slot-scope="scope">
                 <span v-if="scope.row.is_repair==1">是</span>
@@ -132,7 +143,10 @@ export default {
       childStation: [],
       searchVillageName: "",
       searchVillageId: 0,
-      searchType: "2"
+      searchType: "2",
+      searchDataTime: "",
+      searchStartTime: "",
+      searchEndTime: ""
     };
   },
   created() {
@@ -144,10 +158,12 @@ export default {
       let page = this.page_cur;
       let type = this.searchType;
       let sid = this.searchVillageId;
+      let start_time = this.searchStartTime;
+      let end_time = this.searchEndTime;
       this.request({
         url: "/alert/getAlertPages",
         method: "get",
-        params: { type, sid, page }
+        params: { page, type, sid, start_time, end_time }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
@@ -176,10 +192,18 @@ export default {
       this.searchVillageId = val;
       this.getDataList();
     },
-    searchKeywordEvent() {
-      this.page_cur = 1;
-      this.getDataList();
+    searchDataTimeEvent() {
+      if (this.searchDataTime[0] != null) {
+        this.searchStartTime = this.searchDataTime[0];
+        this.searchEndTime = this.searchDataTime[1];
+        this.page_cur = 1;
+        this.getDataList();
+      } else {
+        this.searchStartTime = "";
+        this.searchEndTime = "";
+      }
     },
+
     searchTypeEvent(val) {
       this.type = this.searchType;
       this.getDataList();

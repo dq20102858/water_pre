@@ -43,7 +43,7 @@
                 <el-form-item label="电导绿：" prop="conductivity">
                   <el-input v-model="formData.conductivity" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="液位：" prop="level">
+                <el-form-item label="液位(厘米)：" prop="level">
                   <el-input v-model="formData.level" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item>

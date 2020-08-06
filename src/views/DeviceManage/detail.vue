@@ -46,7 +46,7 @@
           </p>
           <p>
             今天能耗：
-            <em>度</em>
+            <em>{{dataInfoList.energy}}度</em>
           </p>
           <p>
             运行时长：
@@ -62,7 +62,7 @@
           </p>
           <p>
             累积能耗：
-            <em>度</em>
+            <em>{{dataInfoList.total_energy}}度</em>
           </p>
           <p>
             最近维保时间：
