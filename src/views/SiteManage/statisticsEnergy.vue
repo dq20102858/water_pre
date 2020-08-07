@@ -17,11 +17,11 @@
         </div>
       </div>
       <div class="statistics">
-        <!-- <div class="grid-content-chart">
+        <div class="grid-content-chart">
           <div class="chart-title">
             <div class="titleleft">
-              <b>液位</b>
-              <em>单位：吨</em>
+              <b>总能耗</b>
+              <em>单位：度</em>
             </div>
             <div class="titleright">
               <el-date-picker
@@ -39,7 +39,7 @@
           <div class="echarts-main">
             <div id="oneChart" class="echarts"></div>
           </div>
-        </div>-->
+        </div>
         <div class="grid-content-chart">
           <div class="chart-title">
             <div class="titleleft">
@@ -103,7 +103,7 @@ export default {
     };
   },
   created() {
-    //this.getOneChart(this.oneType);
+    this.getOneChart(this.oneType);
     this.getTwoChart(this.twoType);
     this.getThreeChart(this.threeType);
   },
@@ -121,7 +121,7 @@ export default {
     },
     getOneChart(type) {
       this.request({
-        url: "/log/getLevelDatas",
+        url: "/log/getRealtimeEnergy",
         method: "get",
         params: { type: type, start_time: this.oneStartTime }
       }).then(response => {
@@ -142,7 +142,7 @@ export default {
               maskColor: "rgba(255, 255, 255, 0.8)"
             });
           }
-          var option = {
+            var option = {
             backgroundColor: "#fff",
             tooltip: {
               trigger: "axis",
@@ -162,17 +162,14 @@ export default {
               top: "10%",
               containLabel: true
             },
-
             legend: {
-              data: ["液位"],
-              top: 12,
+              data: ["总能耗"],
               textStyle: {
-                color: ["#4093ed", "#ef964b"],
+                color: ["#00D98B"],
                 fontSize: 15
               },
               itemWidth: 32,
               itemHeight: 15
-              // itemGap: 35
             },
             xAxis: {
               type: "category",
@@ -215,36 +212,20 @@ export default {
             },
             series: [
               {
-                name: "出水",
-                type: "bar",
+                name: "总能耗",
+                type: "line",
                 barWidth: "12",
                 label: {
                   normal: {
                     show: true,
                     fontSize: 12,
-                    color: "#00d7ff",
+                    color: "#00D98B",
                     position: "top"
                   }
                 },
                 itemStyle: {
                   normal: {
-                    color: new this.$echarts.graphic.LinearGradient(
-                      0,
-                      0,
-                      0,
-                      1,
-                      [
-                        {
-                          offset: 0,
-                          color: "#00d7ff"
-                        },
-                        {
-                          offset: 1,
-                          color: "#009bff"
-                        }
-                      ]
-                    ),
-                    barBorderRadius: [3, 3, 0, 0]
+                    color: "#00D98B"
                   }
                 },
                 data: dataSeries
@@ -446,7 +427,7 @@ export default {
               containLabel: true
             },
             legend: {
-              data: ["风机能耗"],
+              data: ["水泵能耗"],
               textStyle: {
                 color: ["#228FFE"],
                 fontSize: 15
@@ -495,7 +476,7 @@ export default {
             },
             series: [
               {
-                name: "风机能耗",
+                name: "水泵能耗",
                 type: "line",
                 barWidth: "12",
                 label: {

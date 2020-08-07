@@ -5,7 +5,7 @@
         <div class="left-menu-area">
           <div class="input-so">
             <el-input
-              placeholder="请输入内容"
+              placeholder="输入处理站"
               prefix-icon="el-icon-search"
               v-model="searchVillageName"
               @input="searchVillageNameEvent"
@@ -35,7 +35,25 @@
           <div class="app-page-select">
             <el-form :inline="true">
               <el-form-item class="el-form-item">
-                <el-button type="primary">全部</el-button>
+                <el-date-picker
+                  type="date"
+                  placeholder="选择开始日期"
+                  v-model="searchStartTime"
+                  style="width:150px"
+                  @change="searchStartTimeEvent"
+                  :picker-options="pickerStartTime"
+                ></el-date-picker>
+              </el-form-item>
+              <div class="el-form-item-line">-</div>
+              <el-form-item class="el-form-item">
+                <el-date-picker
+                  type="date"
+                  placeholder="选择结束时间"
+                  v-model="searchEndTime"
+                  style="width:150px"
+                  @change="searchEndTimeEvent"
+                  :picker-options="pickerEndTime"
+                ></el-date-picker>
               </el-form-item>
               <el-form-item class="el-form-item el-search-items">
                 <el-select v-model="searchType" @change="searchTypeEvent">
@@ -308,7 +326,23 @@ export default {
       },
       searchVillageName: "",
       searchVillageId: 0,
-      searchType: "2"
+      searchType: "2",
+           pickerStartTime: {
+        disabledDate: time => {
+          if (this.searchEndTime) {
+            return time.getTime() > new Date(this.searchEndTime).getTime();
+          }
+        }
+      },
+      pickerEndTime: {
+        disabledDate: time => {
+          if (this.searchStartTime) {
+            return time.getTime() < new Date(this.searchStartTime).getTime();
+          }
+        }
+      },
+      searchStartTime: "",
+      searchEndTime: "",
     };
   },
   created() {
@@ -320,10 +354,12 @@ export default {
       let page = this.page_cur;
       let type = this.searchType;
       let sid = this.searchVillageId;
+        let start_time = this.searchStartTime;
+      let end_time = this.searchEndTime;
       this.request({
         url: "/record/getRecordRepairPages",
         method: "get",
-        params: { type, sid, page }
+        params: { type, sid, page, start_time, end_time }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
@@ -367,6 +403,19 @@ export default {
     },
     searchVillageNameEvent() {
       this.getChildStationList();
+    },
+    searchStartTimeEvent() {
+      console.log(this.searchEndTime);
+      if (this.searchEndTime != "") {
+        this.page_cur = 1;
+        this.getDataList();
+      }
+    },
+    searchEndTimeEvent() {
+      if (this.searchStartTime != "") {
+        this.page_cur = 1;
+        this.getDataList();
+      }
     },
     getChildStationList() {
       let name = this.searchVillageName;

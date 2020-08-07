@@ -46,7 +46,7 @@
           </p>
           <p>
             今天能耗：
-            <em>度</em>
+            <em>{{dataInfoList.energy}}度</em>
           </p>
           <p>
             运行时长：
@@ -62,7 +62,7 @@
           </p>
           <p>
             累积能耗：
-            <em>度</em>
+            <em>{{dataInfoList.total_energy}}度</em>
           </p>
           <p>
             最近维保时间：
@@ -91,16 +91,29 @@
         <div class="chart-title">
           <div class="titleleft">
             <b>电流统计</b>
-            <em>单位：安培</em>
+            <em>单位：度</em>
           </div>
-          <div class="titleright"></div>
+          <div class="titleright">
+            <el-date-picker
+              @change="oneStartTimeSelect"
+              class="seldate"
+              v-model="oneStartTime"
+              type="date"
+              placeholder="选择日期"
+            ></el-date-picker>
+            <span @click="oneSelect(1)" class="selspan" :class="oneType == 1 ? 'active':''">按日</span>
+            <span @click="oneSelect(2)" class="selspan" :class="oneType == 2 ? 'active':''">按月</span>
+            <span @click="oneSelect(3)" class="selspan" :class="oneType == 3 ? 'active':''">按年</span>
+          </div>
         </div>
-        <div class="chart-main"></div>
+        <div class="echarts-main">
+          <div id="oneChart" class="echarts"></div>
+        </div>
       </div>
     </div>
 
     <el-dialog
-      width="734px"
+      width="755px"
       class="dialog-device"
       :title="this.diaLogTitle"
       :close-on-click-modal="false"
@@ -111,7 +124,7 @@
         class="el-form-custom"
         :rules="formRules"
         ref="formRulesRef"
-        label-width="120px"
+        label-width="130px"
       >
         <el-form-item label="设备名称：" prop="name">
           <el-input v-model="formData.name" autocomplete="off"></el-input>
@@ -345,13 +358,16 @@ export default {
         label: "name",
         children: "child"
       },
-      useDay: ""
+      useDay: "",
+      oneType: 1,
+      oneStartTime: ""
     };
   },
 
   created() {
     this.getStationList();
     this.getDeviceDetail();
+    this.getOneChart(this.oneType);
   },
   methods: {
     backURL() {
@@ -492,6 +508,137 @@ export default {
         return false;
       }
       return extension || isLtM;
+    },
+    //
+    //=======1
+    oneStartTimeSelect() {
+      this.getOneChart(this.oneType);
+    },
+    oneSelect(type) {
+      this.oneType = type;
+      this.getOneChart(type);
+    },
+    getOneChart(type) {
+      this.request({
+        url: "/log/getRealtimeEnergy",
+        method: "get",
+        params: { type: type, start_time: this.oneStartTime }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          let dataxAxis = data.data.x;
+          let dataSeries = data.data.data;
+          // dataxAxis = [12, 13, 14, 15];
+          // dataSeries = [120, 130, 140, 150];
+
+          //
+          let myChart = this.$echarts.init(document.getElementById("oneChart"));
+          if (data.data.length == 0) {
+            myChart.showLoading({
+              text: "暂无数据",
+              color: "#fff",
+              textColor: "#8a8e91",
+              maskColor: "rgba(255, 255, 255, 0.8)"
+            });
+          }
+          var option = {
+            backgroundColor: "#fff",
+            tooltip: {
+              trigger: "axis",
+              axisPointer: {
+                type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
+              }
+            },
+            toolbox: {
+              feature: {
+                saveAsImage: {}
+              }
+            },
+            grid: {
+              left: "1%",
+              right: "2%",
+              bottom: "2%",
+              top: "10%",
+              containLabel: true
+            },
+            legend: {
+              data: ["电流统计"],
+              textStyle: {
+                color: ["#00D98B"],
+                fontSize: 15
+              },
+              itemWidth: 32,
+              itemHeight: 15
+            },
+            xAxis: {
+              type: "category",
+              data: dataxAxis,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: "#869ec6"
+                }
+              },
+              splitLine: {
+                show: true,
+                lineStyle: {
+                  color: "#eff4f6"
+                }
+              },
+              axisLabel: {
+                textStyle: {
+                  fontFamily: "Microsoft YaHei"
+                }
+              }
+            },
+
+            yAxis: {
+              type: "value",
+              // max: "1200",
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: "#869ec6"
+                }
+              },
+              splitLine: {
+                show: true,
+                lineStyle: {
+                  color: "#eff4f6"
+                }
+              },
+              axisLabel: {}
+            },
+            series: [
+              {
+                name: "电流统计",
+                type: "line",
+                barWidth: "12",
+                label: {
+                  normal: {
+                    show: true,
+                    fontSize: 12,
+                    color: "#00D98B",
+                    position: "top"
+                  }
+                },
+                itemStyle: {
+                  normal: {
+                    color: "#00D98B"
+                  }
+                },
+                data: dataSeries
+              }
+            ]
+          };
+          myChart.setOption(option);
+          myChart.resize();
+          window.addEventListener("resize", function() {
+            myChart.resize();
+          });
+          //end
+        }
+      });
     }
     //
   }

@@ -117,7 +117,6 @@ export default {
             .then(() => {
               this.loading = false;
               this.$router.push({ path: "/sitemanage" });
-              localStorage.setItem("activeMenu", "sitemanage");
             })
             .catch(() => {
               this.loading = false;

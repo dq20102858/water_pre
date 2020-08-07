@@ -5,7 +5,7 @@
         <div class="left-menu-area">
           <div class="input-so">
             <el-input
-              placeholder="请输入内容"
+              placeholder="输入处理站"
               prefix-icon="el-icon-search"
               v-model="searchVillageName"
               @input="searchVillageNameEvent"
@@ -34,7 +34,7 @@
         <div class="app-page-container">
           <div class="app-page-select" style="padding: 0 10px">
             <el-form :inline="true">
-              <el-form-item class="el-search-item-blee">
+              <el-form-item class="el-search-item">
                 <el-input
                   prefix-icon="el-icon-search"
                   placeholder="请输入设备编号"
@@ -42,18 +42,33 @@
                   v-model="searchKeyword"
                   class="input-with-select"
                   clearable
+                ></el-input>
+              </el-form-item>
+              <el-form-item class="el-form-item el-select-dorps">
+                <el-select
+                  v-model="searchType"
+                  placeholder="请选择"
+                  @change="searchTypeEvent"
+                  style="width:120px"
                 >
-                  <el-select
-                    v-model="searchType"
-                    slot="append"
-                    placeholder="请选择"
-                    @change="searchTypeEvent"
-                  >
-                    <el-option label="全部" value="0"></el-option>
-                    <el-option label="风机" value="1"></el-option>
-                    <el-option label="水泵" value="2"></el-option>
-                  </el-select>
-                </el-input>
+                  <el-option label="全部类型" value="0"></el-option>
+                  <el-option label="风机" value="1"></el-option>
+                  <el-option label="水泵" value="2"></el-option>
+                  <el-option label="紫外灯" value="3"></el-option>
+                  <el-option label="PLC" value="4"></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item class="el-form-item el-select-dorps">
+                <el-select
+                  v-model="searchStatus"
+                  placeholder="请选择"
+                  @change="searchStatusEvent"
+                  style="width:120px"
+                >
+                  <el-option label="全部状态" value="0"></el-option>
+                  <el-option label="正常" value="1"></el-option>
+                  <el-option label="异常" value="2"></el-option>
+                </el-select>
               </el-form-item>
               <div class="el-serach noborder">
                 <el-button @click="showDialog">添加</el-button>
@@ -80,7 +95,7 @@
                       </p>
                       <p>
                         设备状态：
-                        <em>{{item.work_status}}</em>
+                        <em>{{item.work_status==1?"正常":"异常"}}</em>
                       </p>
                       <p>
                         运行时长：
@@ -129,7 +144,7 @@
       </div>
     </div>
     <el-dialog
-      width="734px"
+      width="755px"
       class="dialog-device"
       :title="this.diaLogTitle"
       :close-on-click-modal="false"
@@ -140,7 +155,7 @@
         class="el-form-custom"
         :rules="formRules"
         ref="formRulesRef"
-        label-width="120px"
+        label-width="130px"
       >
         <el-form-item label="设备名称：" prop="name">
           <el-input v-model="formData.name" autocomplete="off"></el-input>
@@ -158,6 +173,8 @@
             <el-select v-model="formData.type" placeholder="请选择设备类型">
               <el-option label="风机" :value="1"></el-option>
               <el-option label="水泵" :value="2"></el-option>
+              <el-option label="紫外灯" :value="3"></el-option>
+              <el-option label="PLC" :value="4"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="设备编号：" prop="number">
@@ -390,7 +407,8 @@ export default {
       searchVillageName: "",
       searchVillageId: 0,
       searchType: "0",
-      searchKeyword: ""
+      searchKeyword: "",
+      searchStatus: "0"
     };
   },
   created() {
@@ -403,10 +421,11 @@ export default {
       let keyword = this.searchKeyword;
       let type = this.searchType;
       let sid = this.searchVillageId;
+      let work_status = this.searchStatus;
       this.request({
         url: "/device/getDevicePages",
         method: "get",
-        params: { keyword, type, sid, page }
+        params: { page, sid, keyword, type, work_status }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
@@ -445,9 +464,14 @@ export default {
       console.log(val);
       this.getDataList();
     },
+    searchStatusEvent(val) {
+      this.searchStatus = val;
+      this.getDataList();
+    },
     searchVillageNameEvent() {
       this.getChildStationList();
     },
+
     getChildStationList() {
       let name = this.searchVillageName;
       this.request({
@@ -567,7 +591,7 @@ export default {
 </script>
 <style>
 .el-search-item-blee .el-select .el-input {
-  width: 80px;
+  width: 100px;
   text-align: center;
   background: #2b8cf9;
   color: #fff;

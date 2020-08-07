@@ -1,7 +1,7 @@
 <template>
   <div class="app-page-set-warm">
     <div class="app-page-rows">
-        <div class="app-page-rows-left">
+      <div class="app-page-rows-left">
         <div class="left-menu-area">
           <h5 class="atitle">系统设置</h5>
           <el-menu router>
@@ -34,21 +34,53 @@
               ref="formRulesRef"
               label-width="110px"
             >
-                <el-form-item label="PH：" prop="ph">
-                  <el-input v-model="formData.ph" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="DO：" prop="do">
-                  <el-input v-model="formData.do" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="电导绿：" prop="conductivity">
-                  <el-input v-model="formData.conductivity" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="液位：" prop="level">
-                  <el-input v-model="formData.level" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item>
-                  <el-button type="primary" @click="addEventDialog">确定</el-button>
-                </el-form-item>
+              <el-form-item label="PH：" required>
+                <el-col :span="11">
+                  <el-form-item prop="ph">
+                    <el-input v-model="formData.ph" autocomplete="off"></el-input>
+                  </el-form-item>
+                </el-col>
+                <el-col class="line" :span="2">-</el-col>
+                <el-col :span="11">
+                  <el-form-item prop="max_ph">
+                    <el-input v-model="formData.max_ph" autocomplete="off"></el-input>
+                  </el-form-item>
+                </el-col>
+              </el-form-item>
+
+              <el-form-item label="DO：" required>
+                <el-col :span="11">
+                  <el-form-item prop="do">
+                    <el-input v-model="formData.do" autocomplete="off"></el-input>
+                  </el-form-item>
+                </el-col>
+                <el-col class="line" :span="2">-</el-col>
+                <el-col :span="11">
+                  <el-form-item prop="max_do">
+                    <el-input v-model="formData.max_do" autocomplete="off"></el-input>
+                  </el-form-item>
+                </el-col>
+              </el-form-item>
+
+              <el-form-item label="电导绿：" required>
+                <el-col :span="11">
+                  <el-form-item prop="conductivity">
+                    <el-input v-model="formData.conductivity" autocomplete="off"></el-input>
+                  </el-form-item>
+                </el-col>
+                <el-col class="line" :span="2">-</el-col>
+                <el-col :span="11">
+                  <el-form-item prop="max_conductivity">
+                    <el-input v-model="formData.max_conductivity" autocomplete="off"></el-input>
+                  </el-form-item>
+                </el-col>
+              </el-form-item>
+              <el-form-item label="液位(厘米)：" prop="level">
+                <el-input v-model="formData.level" autocomplete="off"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" @click="addEventDialog">确定</el-button>
+              </el-form-item>
             </el-form>
           </div>
         </div>
@@ -65,36 +97,72 @@ export default {
         ph: [
           {
             required: true,
-            message: "请输入PH",
+            message: "请输入1-3位数字",
             trigger: "blur"
           },
           {
             pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
-            message: "请输入1-3位正数字并可保留两位小数点",
+            message: "请输入1-3位数字",
+            trigger: "blur"
+          }
+        ],
+        max_ph: [
+          {
+            required: true,
+            message: "请输入1-3位数字",
+            trigger: "blur"
+          },
+          {
+            pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
+            message: "请输入1-3位数字",
             trigger: "blur"
           }
         ],
         do: [
           {
             required: true,
-            message: "请输入DO",
+            message: "请输入1-3位数字",
             trigger: "blur"
           },
           {
             pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
-            message: "请输入1-3位正数字并可保留两位小数点",
+            message: "请输入1-3位数字",
+            trigger: "blur"
+          }
+        ],
+        max_do: [
+          {
+            required: true,
+            message: "请输入1-3位数字",
+            trigger: "blur"
+          },
+          {
+            pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
+            message: "请输入1-3位数字",
             trigger: "blur"
           }
         ],
         conductivity: [
           {
             required: true,
-            message: "请输入电导绿",
+            message: "请输入1-3位正数字",
             trigger: "blur"
           },
           {
             pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
-            message: "请输入1-3位正数字并可保留两位小数点",
+            message: "请输入1-3位正数字",
+            trigger: "blur"
+          }
+        ],
+        max_conductivity: [
+          {
+            required: true,
+            message: "请输入1-3位正数字",
+            trigger: "blur"
+          },
+          {
+            pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
+            message: "请输入1-3位正数字",
             trigger: "blur"
           }
         ],
@@ -159,6 +227,8 @@ export default {
 </script>
 <style>
 .add-from {
-  width: 400px; overflow: hidden;
+  width: 400px;
+  overflow: hidden;
 }
+.add-from .el-form-custom .el-form-item{ margin-bottom: 15px; }
 </style>

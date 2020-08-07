@@ -32,7 +32,11 @@
                 ></el-input>
               </el-form-item>
               <el-form-item class="el-form-item el-select-dorps">
-                <el-select v-model="searchRole" @change="searchRoleEvent($event)" style="width:120px;">
+                <el-select
+                  v-model="searchRole"
+                  @change="searchRoleEvent($event)"
+                  style="width:120px;"  clearable  placeholder="全部职位"
+                >
                   <el-option label="管理员" value="1"></el-option>
                   <el-option label="维修人员" value="2"></el-option>
                   <el-option label="巡检人员" value="3"></el-option>
@@ -267,12 +271,14 @@ export default {
     getDataList() {
       let page = this.page_cur;
       let name = this.searchKeyword;
+      let role_id = this.searchRole;
       this.request({
         url: "/user/getUserPages",
         method: "get",
         params: {
           page,
-          name
+          name,
+          role_id
         }
       }).then(res => {
         let data = res.data;
@@ -302,7 +308,8 @@ export default {
       this.getDataList();
     },
     searchRoleEvent(e) {
-      console.log(e);
+        this.page_cur = 1;
+      this.getDataList();
     },
     addShowDialog() {
       this.diaLogTitle = "添加人员信息";
