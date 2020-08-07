@@ -31,7 +31,7 @@ em,i{font-style: normal;}
 .el-menu-top .logos .gname{float: left}
 .el-menu-top .logos .gname  h3{display: block; text-align: left;font-size: 24px; padding-bottom:10px; padding-top: 2px;}
 .el-menu-top .logos .gname h4{display: block;font-size: 14px; font-weight: 400; text-align: left;}
-.el-menu-top .logos .gname span{float:right; background: #409eff;color: #fff;padding:4px  3px;border-radius: 3px;font-size: 12px;cursor: pointer;}
+.el-menu-top .logos .gname span{float:right; background: #459cf2;color: #fff;padding:4px  3px;border-radius: 3px;font-size: 12px;cursor: pointer;}
 .el-menu-top .el-menu--horizontal{overflow: hidden;border: none;}
 .el-menu-top .el-menu--horizontal .el-menu-item{height: 100px!important; float: left;background: none;color:#fff; font-size: 16px;font-weight: 400;padding:0 30px; line-height: 40px;}
 .el-menu-top .el-menu--horizontal .el-menu-item:hover{color:#fff; background-color:#294FB4!important;}
@@ -52,7 +52,7 @@ em,i{font-style: normal;}
 .app-page-select .el-select-dorps .el-select .el-input .el-select__caret {color: #fff;}
 .app-page-select .el-select-dorps input::-webkit-input-placeholder{color: #fff;}
 .app-page-select .el-select-dorps  input:-ms-input-placeholder {color: #fff;}
-.el-form-item-split{color: #999; line-height: 36px; padding-right: 8px;}
+.el-form-item-line{color: #999; line-height: 36px; padding-right: 8px;display: inline;}
 .el-serach {float: right;border: 2px #338ff6 solid; border-radius: 3px;}
 .el-serach.noborder{border: none;}
 .el-serach .el-input {width: 178px;}
@@ -76,8 +76,8 @@ em,i{font-style: normal;}
 .app-operation .btn-del:hover{background: #d44444;}
 .app-operation .btn-print{color: #fff;background: #009BFF;}
 .app-operation .btn-print:hover{background: #3AAAFF;}
-.app-operation .btn-apply{color: #fff;background: #00D98B;}
-.app-operation .btn-apply:hover{background: #00D980;}
+.app-operation .btn-apply{color: #fff;background: #29c38c;}
+.app-operation .btn-apply:hover{background: #29c38c;}
 .app-operation .btn-green{border: 1px #26a80f solid;color: #26a80f}
 .app-operation .el-button[disabled]{color: #999;border: 1px #999 solid;}
 .app-operation .el-button:last-child{margin-right:0}

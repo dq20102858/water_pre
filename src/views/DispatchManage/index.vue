@@ -44,6 +44,27 @@
                   clearable
                 ></el-input>
               </el-form-item>
+              <el-form-item class="el-form-item">
+                <el-date-picker
+                  type="date"
+                  placeholder="选择开始日期"
+                  v-model="searchStartTime"
+                  style="width:150px"
+                  @change="searchStartTimeEvent"
+                  :picker-options="pickerStartTime"
+                ></el-date-picker>
+              </el-form-item>
+              <div class="el-form-item-line">-</div>
+              <el-form-item class="el-form-item">
+                <el-date-picker
+                  type="date"
+                  placeholder="选择结束时间"
+                  v-model="searchEndTime"
+                  style="width:150px"
+                  @change="searchEndTimeEvent"
+                  :picker-options="pickerEndTime"
+                ></el-date-picker>
+              </el-form-item>
               <el-form-item class="el-form-item el-select-dorps">
                 <el-select v-model="searchStatus" @change="searchStatusEvent" style="width:100px">
                   <el-option label="全部状态" value="0"></el-option>
@@ -52,7 +73,8 @@
                 </el-select>
               </el-form-item>
               <el-form-item class="el-form-item el-select-dorps">
-                <el-select v-model="searchType" @change="searchTypeEvent" style="width:100px">
+                <el-select v-model="searchType" @change="searchTypeEvent" style="width:110px">
+                  <el-option label="全部事项" value="0"></el-option>
                   <el-option label="设备维修" value="1"></el-option>
                   <el-option label="例行维保" value="2"></el-option>
                   <el-option label="运行检查" value="3"></el-option>
@@ -69,30 +91,26 @@
               <el-table-column label="序号" width="80px">
                 <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
               </el-table-column>
-              <el-table-column prop="create_time" label="维保日期">
-                <template slot-scope="scope">
-                  <span>{{scope.row.create_time|formatDateTamp}}</span>
-                </template>
-              </el-table-column>
+              <el-table-column prop="station_name" label="维保站点"></el-table-column>
               <el-table-column prop="assigner" label="指派人"></el-table-column>
               <el-table-column prop="role" label="职位"></el-table-column>
               <el-table-column prop="phone" label="联系电话"></el-table-column>
-              <el-table-column prop="status" label="状态">
-                <template slot-scope="scope">
-                  <span v-if="scope.row.status==2">已完成</span>
-                  <span style="color:#999" v-else>未完成</span>
-                </template>
-              </el-table-column>
-              <el-table-column prop="type" label="维保事项">
+              <el-table-column prop="type" label="派单事项">
                 <template slot-scope="scope">
                   <span v-if="scope.row.type==1">设备维修</span>
                   <span v-else-if="scope.row.type==2">例行维保</span>
                   <span v-else>运行检查</span>
                 </template>
               </el-table-column>
+              <el-table-column prop="status" label="状态">
+                <template slot-scope="scope">
+                  <span v-if="scope.row.status==2">已完成</span>
+                  <span style="color:#999" v-else>未完成</span>
+                </template>
+              </el-table-column>
               <el-table-column label="指派时间">
                 <template slot-scope="scope">
-                  <span>{{scope.row.create_time|formatDateTamp}}</span>
+                  <span>{{scope.row.assign_time}}</span>
                 </template>
               </el-table-column>
               <el-table-column label="操作" width="190">
@@ -283,8 +301,24 @@ export default {
       searchVillageName: "",
       searchVillageId: 0,
       searchKeyword: "",
-      searchType: "1",
-      searchStatus: "0"
+      searchType: "0",
+      searchStatus: "0",
+      pickerStartTime: {
+        disabledDate: time => {
+          if (this.searchEndTime) {
+            return time.getTime() > new Date(this.searchEndTime).getTime();
+          }
+        }
+      },
+      pickerEndTime: {
+        disabledDate: time => {
+          if (this.searchStartTime) {
+            return time.getTime() < new Date(this.searchStartTime).getTime();
+          }
+        }
+      },
+      searchStartTime: "",
+      searchEndTime: ""
     };
   },
   created() {
@@ -298,10 +332,12 @@ export default {
       let type = this.searchType;
       let status = this.searchStatus;
       let sid = this.searchVillageId;
+      let start_time = this.searchStartTime;
+      let end_time = this.searchEndTime;
       this.request({
         url: "/assign/getAssignPages",
         method: "get",
-        params: { page, station_name, type, status, sid }
+        params: { page, station_name, type, status, sid, start_time, end_time }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
@@ -344,6 +380,19 @@ export default {
     },
     searchVillageNameEvent() {
       this.getChildStationList();
+    },
+    searchStartTimeEvent() {
+      console.log(this.searchEndTime);
+      if (this.searchEndTime != "") {
+        this.page_cur = 1;
+        this.getDataList();
+      }
+    },
+    searchEndTimeEvent() {
+      if (this.searchStartTime != "") {
+        this.page_cur = 1;
+        this.getDataList();
+      }
     },
     getChildStationList() {
       let name = this.searchVillageName;

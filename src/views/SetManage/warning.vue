@@ -230,4 +230,5 @@ export default {
   width: 400px;
   overflow: hidden;
 }
+.add-from .el-form-custom .el-form-item{ margin-bottom: 15px; }
 </style>

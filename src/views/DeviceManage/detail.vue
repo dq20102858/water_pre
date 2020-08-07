@@ -113,7 +113,7 @@
     </div>
 
     <el-dialog
-      width="734px"
+      width="755px"
       class="dialog-device"
       :title="this.diaLogTitle"
       :close-on-click-modal="false"
@@ -124,7 +124,7 @@
         class="el-form-custom"
         :rules="formRules"
         ref="formRulesRef"
-        label-width="120px"
+        label-width="130px"
       >
         <el-form-item label="设备名称：" prop="name">
           <el-input v-model="formData.name" autocomplete="off"></el-input>
