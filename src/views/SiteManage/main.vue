@@ -44,20 +44,31 @@
     </div>
     <div class="app-page-rows-rights">
       <div class="app-page-site">
-        <div class="main-top">
-          <div class="item">
-            <span @click="statisticsEnergyDetail">查看能耗分析</span>
-            <span @click="statisticsWaterDetail">出水量统计</span>
-            <span @click="statisticsWaterQualityDetail">水质监测</span>
-            当前控制室温度37
+        <div class="app-page-site-box">
+          <div class="main-top">
+            <div class="item">
+              <span @click="statisticsEnergyDetail">查看能耗分析</span>
+              <span @click="statisticsWaterDetail">出水量统计</span>
+              <span @click="statisticsWaterQualityDetail">水质监测</span>
+              当前控制室温度37
+            </div>
+          </div>
+          <div class="app-site">
+            <canvas id="line1" class="line1"></canvas>
+            <div class="wbox box1"></div>
+            <div class="wbox box2"></div>
+            <div class="wbox box3"></div>
+            <div class="wbox box4"></div>
+            <div class="wbox box5"></div>
+            <div class="wbox box6"></div>
           </div>
         </div>
-        <div class="app-site"></div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { Createline } from "../../utils/liudong.js";
 export default {
   data() {
     return {
@@ -69,8 +80,29 @@ export default {
   },
   created() {
     this.getFatherStationList();
+    this.lineDong();
   },
   methods: {
+    lineDong() {
+      var data = {
+        time: 140, //运动速度
+        mx: 0, //起点位置
+        my: 6,
+        ly: 6,
+        canvas_w: 580,
+        canvas_h: 10,
+        color: "#428bf1", //颜色
+        vx: 4,
+        vy: 0,
+        line_w: 4,
+        fx: "w",
+        width: 20, //线长
+        jiange: 8 //间隔
+      };
+          debugger
+      var res = new Createline(data);
+      res.begin("line1", data);
+    },
     getFatherStationList() {
       let name = this.chlidName;
       this.request({
@@ -140,11 +172,16 @@ export default {
 </script>
 <style>
 .app-page-site {
-  background-image: url("~@/assets/image/sitebg.png");
-  background-repeat: no-repeat;
+  background: #24284d;
   height: calc(100vh - 100px);
 }
-
+.app-page-site-box {
+  background: #24284d url("~@/assets/image/sitebg.png");
+  background-repeat: no-repeat;
+  height: 100vh;
+  min-width: 1200px;
+  overflow-x: auto;
+}
 .main-top {
   padding: 30px 30px 0 30px;
   color: #fff;
@@ -158,5 +195,49 @@ export default {
   padding: 8px 10px;
   margin-right: 30px;
   cursor: pointer;
+}
+.app-site {
+  position: relative;
+  margin: 30px;
+}
+.app-site .wbox {
+  background: url("~@/assets/image/w-box.png");
+  width: 150px;
+  height: 128px;
+  position: absolute;
+  z-index: 999;
+}
+.app-site .box1 {
+  left: 100px;
+  top: 400px;
+}
+.app-site .box2 {
+  left: 320px;
+  top: 400px;
+}
+.app-site .box3 {
+  left: 550px;
+  top: 400px;
+}
+.app-site .box4 {
+  left: 780px;
+  top: 400px;
+}
+.app-site .box5 {
+  left: 1000px;
+  top: 400px;
+}
+.app-site .line {
+  background: #163c57;
+  height: 10px;
+  position: absolute;
+}
+.app-site .line1 {
+  width: 100px;
+  left: 230px;
+  top: 460px;
+  background: #163c57;
+  height: 10px;
+  position: absolute;
 }
 </style>

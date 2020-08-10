@@ -159,6 +159,10 @@ const constantRouterMap = [
       {
         path: '/demo/map',
         component: () => import('@/views/demo/map')
+      },
+      {
+        path: '/demo/dong',
+        component: () => import('@/views/demo/dong')
       }
     ]
   }
