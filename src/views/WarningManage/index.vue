@@ -304,13 +304,6 @@ export default {
 };
 </script>
 <style>
-.app-device-page {
-  overflow: hidden;
-}
-/* .app-device-page .el-select-dorps .el-select .el-input {
-  width: 120px;
-  border-radius: 4px;
-} */
 .samplinglist .el-table tr th {
   text-align: center;
 }
