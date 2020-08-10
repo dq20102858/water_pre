@@ -40,6 +40,7 @@ export default {
   mounted() {
     this.lineDong();
   },
+  
   methods: {
     lineDong() {
       var data = {
