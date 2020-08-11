@@ -162,14 +162,21 @@
         label-width="120px"
       >
         <div class="el-form-item-inlines">
-          <el-form-item label="站点名：" prop="sid">
+          <el-form-item label="选择站点：" prop="sid">
             <el-cascader
               v-model="formData.sid"
               :options="stationOptions"
               :props="stationOptionsProps"
             ></el-cascader>
           </el-form-item>
-          <el-form-item label="指派人：" prop="assigner_id">
+          <el-form-item label="派单事项：" prop="type">
+            <el-select v-model="formData.type" placeholder="请选择设备类型">
+              <el-option label="设备维修" :value="1"></el-option>
+              <el-option label="例行维保" :value="2"></el-option>
+              <el-option label="运行检查" :value="3"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="指派人员：" prop="assigner_id">
             <el-select
               v-model="formData.assigner_id"
               filterable
@@ -184,19 +191,13 @@
               ></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="职位：">
+          <el-form-item label="人员职位：">
             <el-input v-model="formData.role" autocomplete="off" disabled></el-input>
           </el-form-item>
-          <el-form-item label="手机号：">
+          <el-form-item label="手机号码：">
             <el-input v-model="formData.phone" autocomplete="off" disabled></el-input>
           </el-form-item>
-          <el-form-item label="派单事项：" prop="type">
-            <el-select v-model="formData.type" placeholder="请选择设备类型">
-              <el-option label="设备维修" :value="1"></el-option>
-              <el-option label="例行维保" :value="2"></el-option>
-              <el-option label="运行检查" :value="3"></el-option>
-            </el-select>
-          </el-form-item>
+
           <!-- <el-form-item label="指派时间：" prop="assign_time">
             <el-date-picker v-model="formData.assign_time" type="date" placeholder="选择日期"></el-date-picker>
           </el-form-item>-->
@@ -220,16 +221,21 @@
     >
       <el-form :model="formData" class="el-form-custom" label-width="120px">
         <div class="el-form-item-detail">
-          <el-form-item label="站点名：">
+          <el-form-item label="选择站点：">
             <div class="disp-info">{{formData.station_name}}</div>
           </el-form-item>
-          <el-form-item label="指派人：">
+          <el-form-item label="派单事项：">
+            <div class="disp-info" v-if="formData.type==1">设备维修</div>
+            <div class="disp-info" v-if="formData.type==2">例行维保</div>
+            <div class="disp-info" v-if="formData.type==3">运行检查</div>
+          </el-form-item>
+          <el-form-item label="指派人员：">
             <div class="disp-info">{{formData.assigner}}</div>
           </el-form-item>
-          <el-form-item label="职位：">
+          <el-form-item label="人员职位：">
             <div class="disp-info">{{formData.role}}</div>
           </el-form-item>
-          <el-form-item label="手机号：">
+          <el-form-item label="手机号码：">
             <div class="disp-info">{{formData.phone}}</div>
           </el-form-item>
           <el-form-item label="派单事项：">

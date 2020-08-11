@@ -73,6 +73,27 @@
               </el-form-item>
               <el-form-item class="el-form-item">
                 <el-date-picker
+                  type="date"
+                  placeholder="选择开始日期"
+                  v-model="searchStartTime"
+                  style="width:150px"
+                  @change="searchStartTimeEvent"
+                  :picker-options="pickerStartTime"
+                ></el-date-picker>
+              </el-form-item>
+              <div class="el-form-item-line">-</div>
+              <el-form-item class="el-form-item">
+                <el-date-picker
+                  type="date"
+                  placeholder="选择结束时间"
+                  v-model="searchEndTime"
+                  style="width:150px"
+                  @change="searchEndTimeEvent"
+                  :picker-options="pickerEndTime"
+                ></el-date-picker>
+              </el-form-item>
+              <!-- <el-form-item class="el-form-item">
+                <el-date-picker
                   v-model="searchDataTime"
                   type="daterange"
                   start-placeholder="请选择开始日期"
@@ -81,7 +102,7 @@
                   @change="searchDataTimeEvent"
                   clearable
                 ></el-date-picker>
-              </el-form-item>
+              </el-form-item>-->
             </el-form>
           </div>
           <div class="app-table">
@@ -129,9 +150,11 @@
                   </div>
                 </template>
               </el-table-column>
-              <el-table-column label="操作" v-if="this.searchType !=3" width="70">
+              <el-table-column label="操作" v-if="this.searchType !=3" width="125">
                 <template slot-scope="scope">
                   <div class="app-operation">
+                    <el-button v-if="scope.row.status==1" class="btn-edit" size="mini">已读</el-button>
+                    <el-button v-if="scope.row.status!=1" class="btn-sele" size="mini">未读</el-button>
                     <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
                   </div>
                 </template>
@@ -176,7 +199,20 @@ export default {
       searchVillageName: "",
       searchVillageId: 0,
       searchType: "2",
-      searchDataTime: "",
+      pickerStartTime: {
+        disabledDate: time => {
+          if (this.searchEndTime) {
+            return time.getTime() > new Date(this.searchEndTime).getTime();
+          }
+        }
+      },
+      pickerEndTime: {
+        disabledDate: time => {
+          if (this.searchStartTime) {
+            return time.getTime() < new Date(this.searchStartTime).getTime();
+          }
+        }
+      },
       searchStartTime: "",
       searchEndTime: ""
     };
@@ -224,15 +260,15 @@ export default {
       this.searchVillageId = val;
       this.getDataList();
     },
-    searchDataTimeEvent() {
-      if (this.searchDataTime == null) {
-        this.searchStartTime = "";
-        this.searchEndTime = "";
+    searchStartTimeEvent() {
+      console.log(this.searchEndTime);
+      if (this.searchEndTime != "") {
         this.page_cur = 1;
         this.getDataList();
-      } else {
-        this.searchStartTime = this.searchDataTime[0];
-        this.searchEndTime = this.searchDataTime[1];
+      }
+    },
+    searchEndTimeEvent() {
+      if (this.searchStartTime != "") {
         this.page_cur = 1;
         this.getDataList();
       }

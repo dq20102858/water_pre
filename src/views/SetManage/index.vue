@@ -35,7 +35,9 @@
                 <el-select
                   v-model="searchRole"
                   @change="searchRoleEvent($event)"
-                  style="width:120px;"  clearable  placeholder="全部职位"
+                  style="width:120px;"
+                  clearable
+                  placeholder="全部职位"
                 >
                   <el-option label="管理员" value="1"></el-option>
                   <el-option label="维修人员" value="2"></el-option>
@@ -55,9 +57,9 @@
                 <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
               </el-table-column>
               <el-table-column prop="username" label="用户名"></el-table-column>
-              <el-table-column prop="name" label="姓名"></el-table-column>
-              <el-table-column prop="role" label="职位"></el-table-column>
-              <el-table-column prop="phone" label="手机号"></el-table-column>
+              <el-table-column prop="name" label="人员姓名"></el-table-column>
+              <el-table-column prop="role" label="人员职位"></el-table-column>
+              <el-table-column prop="phone" label="手机号码"></el-table-column>
               <el-table-column prop="create_time" label="添加时间"></el-table-column>
               <el-table-column label="操作" width="125">
                 <template slot-scope="scope">
@@ -107,46 +109,44 @@
         ref="formRulesRef"
         label-width="110px"
       >
-        <div>
-          <el-form-item label="用户名：" prop="username">
-            <el-input v-model="formData.username" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="姓名：" prop="name">
-            <el-input v-model="formData.name" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="密码：" prop="password" v-if="this.diaLogTitle=='添加人员信息'">
-            <el-input v-model="formData.password" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="密码：" prop="passwordEdit" v-if="this.diaLogTitle=='修改人员信息'">
-            <el-input v-model="formData.passwordEdit" autocomplete="off" placeholder="不修改密码请留空"></el-input>
-          </el-form-item>
-          <el-form-item label="手机号码：" prop="phone">
-            <el-input v-model="formData.phone" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="职位：" prop="role_id">
-            <el-select v-model="formData.role_id" placeholder="请选择职位">
-              <el-option label="管理员" :value="1"></el-option>
-              <el-option label="维修人员" :value="2"></el-option>
-              <el-option label="巡检人员" :value="3"></el-option>
-              <el-option label="分析人员" :value="4"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="头像上传：" style="width:100%;">
-            <el-upload
-              ref="uploadfive"
-              class="avatar-uploader"
-              :action="uploadAction"
-              :auto-upload="true"
-              :on-exceed="uploadExceed"
-              :before-upload="uploadBefore"
-              :on-success="uploadSuccess"
-              :show-file-list="false"
-            >
-              <img v-if="formData.avatar" :src="formData.avatar" class="avatar" title="选择图片" />
-              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-            </el-upload>
-          </el-form-item>
-        </div>
+        <el-form-item label="人员姓名：" prop="name">
+          <el-input v-model="formData.name" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="人员职位：" prop="role_id">
+          <el-select v-model="formData.role_id" placeholder="请选择职位">
+            <el-option label="管理员" :value="1"></el-option>
+            <el-option label="维修人员" :value="2"></el-option>
+            <el-option label="巡检人员" :value="3"></el-option>
+            <el-option label="分析人员" :value="4"></el-option>
+          </el-select>
+        </el-form-item>
+         <el-form-item label="手机号码：" prop="phone">
+          <el-input v-model="formData.phone" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="用户名：" prop="username">
+          <el-input v-model="formData.username" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="密码：" prop="password" v-if="this.diaLogTitle=='添加人员信息'">
+          <el-input v-model="formData.password" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="密码：" prop="passwordEdit" v-if="this.diaLogTitle=='修改人员信息'">
+          <el-input v-model="formData.passwordEdit" autocomplete="off" placeholder="不修改密码请留空"></el-input>
+        </el-form-item>
+        <el-form-item label="头像上传：" style="width:100%;">
+          <el-upload
+            ref="uploadfive"
+            class="avatar-uploader"
+            :action="uploadAction"
+            :auto-upload="true"
+            :on-exceed="uploadExceed"
+            :before-upload="uploadBefore"
+            :on-success="uploadSuccess"
+            :show-file-list="false"
+          >
+            <img v-if="formData.avatar" :src="formData.avatar" class="avatar" title="选择图片" />
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="diaLogFormVisible = false">取 消</el-button>
@@ -308,7 +308,7 @@ export default {
       this.getDataList();
     },
     searchRoleEvent(e) {
-        this.page_cur = 1;
+      this.page_cur = 1;
       this.getDataList();
     },
     addShowDialog() {
