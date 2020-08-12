@@ -209,7 +209,7 @@ export default {
   data() {
     return {
       diaLogFormVisible: false,
-      diaLogTitle: "添加人员信息",
+      diaLogTitle: "",
       uploadAction: this.hostURL + "/upload/uploadFile",
       formData: {},
       formRules: {
@@ -449,7 +449,7 @@ export default {
     },
     editEvent() {
       this.diaLogFormVisible = true;
-      this.diaLogTitle = "修改信息";
+      this.diaLogTitle = "修改设备";
       this.formData = this.dataInfoList;
       this.formData.sid = this.getStationParentsById(this.dataInfoList.sid);
     },

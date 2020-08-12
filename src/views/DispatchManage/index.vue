@@ -8,7 +8,7 @@
               prefix-icon="el-icon-search"
               placeholder="请输入处理站"
               v-model="searchVillageName"
-              @input="searchVillageNameEvent"
+              @input="searchVillageNameEvent"   maxlength="10"
               clearable
             ></el-input>
           </div>
@@ -37,7 +37,7 @@
               <el-form-item class="el-form-item">
                 <el-input
                   prefix-icon="el-icon-search"
-                  placeholder="请请输入处理站名称"
+                  placeholder="请请输入处理站名称" 
                   @input="searchKeywordEvent"
                   v-model="searchKeyword"
                   class="input-with-select"
@@ -514,10 +514,6 @@ export default {
           }).then(res => {
             let data = res.data;
             if (data.status == 1) {
-              // this.$message({
-              //   type: "success",
-              //   message: "删除成功！"
-              // });
               this.getDataList();
             }
           });
@@ -539,11 +535,16 @@ export default {
           }).then(res => {
             let data = res.data;
             if (data.status == 1) {
+              if (this.dataList.length == 1) {
+                this.page_cur = this.page_cur - 1;
+                this.getDataList();
+              } else {
+                this.getDataList();
+              }
               this.$message({
                 type: "success",
                 message: "删除成功！"
               });
-              this.getDataList();
             }
           });
         })

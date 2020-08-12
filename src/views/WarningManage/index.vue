@@ -8,7 +8,7 @@
               placeholder="请输入处理站"
               prefix-icon="el-icon-search"
               v-model="searchVillageName"
-              @input="searchVillageNameEvent"
+              @input="searchVillageNameEvent"   maxlength="10"
               clearable
             ></el-input>
           </div>
@@ -325,7 +325,12 @@ export default {
           }).then(res => {
             let data = res.data;
             if (data.status == 1) {
-              this.getDataList();
+              if (this.dataList.length == 1) {
+                this.page_cur = this.page_cur - 1;
+                this.getDataList();
+              } else {
+                this.getDataList();
+              }
               this.$message({
                 type: "success",
                 message: "删除成功！"

@@ -8,7 +8,7 @@
               placeholder=" 请输入处理站"
               prefix-icon="el-icon-search"
               v-model="searchVillageName"
-              @input="searchVillageNameEvent"
+              @input="searchVillageNameEvent"  maxlength="10"
               clearable
             ></el-input>
           </div>
@@ -239,7 +239,7 @@ export default {
   data() {
     return {
       diaLogFormVisible: false,
-      diaLogTitle: "添加人员信息",
+      diaLogTitle: "",
       uploadAction: this.hostURL + "/upload/uploadFile",
       formData: {},
       formRules: {
@@ -504,7 +504,7 @@ export default {
     },
     showDialog() {
       this.getStationList();
-      this.diaLogTitle = "添加信息";
+      this.diaLogTitle = "添加设备";
       this.diaLogFormVisible = true;
       this.$nextTick(() => {
         this.$refs["formRulesRef"].clearValidate();
@@ -651,14 +651,14 @@ export default {
   width: 120px;
   height: 180px;
   margin-right: 20px;
-  border-radius: 6px;
+  border-radius: 3px;
 }
 .devicelist .grid-img img {
   margin-top: 25px;
   float: left;
   width: 120px;
   height: 120px;
-  border-radius: 6px;
+  border-radius: 3px;
 }
 .devicelist .grid-info p {
   display: block;

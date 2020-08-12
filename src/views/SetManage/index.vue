@@ -120,7 +120,7 @@
             <el-option label="分析人员" :value="4"></el-option>
           </el-select>
         </el-form-item>
-         <el-form-item label="手机号码：" prop="phone">
+        <el-form-item label="手机号码：" prop="phone">
           <el-input v-model="formData.phone" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="用户名：" prop="username">
@@ -394,11 +394,16 @@ export default {
           }).then(res => {
             let data = res.data;
             if (data.status == 1) {
+              if (this.dataList.length == 1) {
+                this.page_cur = this.page_cur - 1;
+                this.getDataList();
+              } else {
+                this.getDataList();
+              }
               this.$message({
                 type: "success",
                 message: "删除成功！"
               });
-              this.getDataList();
             }
           });
         })

@@ -198,7 +198,7 @@ export default {
             message: "请输入地址",
             trigger: "blur"
           },
-             { min: 2, max: 50, message: "长度在2到50个字符", trigger: "blur" },
+          { min: 2, max: 50, message: "长度在2到50个字符", trigger: "blur" }
         ],
         number: [
           {
@@ -382,11 +382,16 @@ export default {
           }).then(res => {
             let data = res.data;
             if (data.status == 1) {
+              if (this.dataList.length == 1) {
+                this.page_cur = this.page_cur - 1;
+                this.getDataList();
+              } else {
+                this.getDataList();
+              }
               this.$message({
                 type: "success",
                 message: "删除成功！"
               });
-              this.getDataList();
             }
           });
         })

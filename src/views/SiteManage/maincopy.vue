@@ -7,7 +7,7 @@
             placeholder="请输入处理站"
             prefix-icon="el-icon-search"
             v-model="chlidName"
-            @input="chlidNameEvent"
+            @input="chlidNameEvent"   maxlength="10"
             clearable
           ></el-input>
         </div>

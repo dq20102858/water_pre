@@ -8,7 +8,7 @@
               placeholder="请输入处理站"
               prefix-icon="el-icon-search"
               v-model="searchVillageName"
-              @input="searchVillageNameEvent"
+              @input="searchVillageNameEvent"   maxlength="10"
               clearable
             ></el-input>
           </div>
