@@ -197,7 +197,8 @@ export default {
             required: true,
             message: "请输入地址",
             trigger: "blur"
-          }
+          },
+             { min: 2, max: 50, message: "长度在2到50个字符", trigger: "blur" },
         ],
         number: [
           {

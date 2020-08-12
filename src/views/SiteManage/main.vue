@@ -5,7 +5,7 @@
       <div class="left-menu-area">
         <div class="input-so">
           <el-input
-            placeholder="输入处理站"
+            placeholder="请输入处理站"
             prefix-icon="el-icon-search"
             v-model="chlidName"
             @input="chlidNameEvent"
@@ -171,7 +171,7 @@ export default {
     this.flowAnimations("line7", 150, 12, "w");
     this.flowAnimations("line8", 100, 12, "w");
     this.flowAnimations("line9", 300, 12, "w");
-    this.flowAnimations("line10", 80, 12, "w");
+    this.flowAnimations("line10", 60, 12, "w");
     this.flowAnimations("line11", 100, 12, "w");
     this.flowAnimations("line12", 100, 12, "w");
     this.flowAnimations("line13", 450, 12, "w");
@@ -616,7 +616,7 @@ export default {
   top: -200px;
 }
 .app-site #line10 {
-  left: 910px;
+  left: 920px;
   top: -200px;
 }
 .app-site #line11 {

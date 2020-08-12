@@ -75,8 +75,10 @@
                   </el-form-item>
                 </el-col>
               </el-form-item>
-              <el-form-item label="液位(厘米)：" prop="level">
-                <el-input v-model="formData.level" autocomplete="off"></el-input>
+              <el-form-item label="液位：" prop="level">
+                <el-input  v-model="formData.level">
+    <template slot="append">厘米</template>
+  </el-input>
               </el-form-item>
               <el-form-item>
                 <el-button type="primary" @click="addEventDialog">确定</el-button>

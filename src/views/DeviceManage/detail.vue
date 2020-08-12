@@ -36,57 +36,64 @@
           <img :src="dataInfoList.img" />
         </div>
         <div class="grid-info">
-          <p>
-            设备名称：
-            <em>{{dataInfoList.name}}</em>
-          </p>
-          <p>
-            设备品牌：
-            <em>{{dataInfoList.brand}}</em>
-          </p>
-          <p>
-            今天能耗：
-            <em>{{dataInfoList.energy}}度</em>
-          </p>
-          <p>
-            运行时长：
-            <em>{{dataInfoList.days}}天</em>
-          </p>
-          <p>
-            设备编号：
-            <em>{{dataInfoList.number}}</em>
-          </p>
-          <p>
-            设备状态：
-            <em>{{dataInfoList.work_status==1?"正常":"异常"}}</em>
-          </p>
-          <p>
-            累积能耗：
-            <em>{{dataInfoList.total_energy}}度</em>
-          </p>
-          <p>
-            最近维保时间：
-            <em>{{dataInfoList.latest_time|formatGetDate}}</em>
-          </p>
-          <p>
-            设备型号：
-            <em>{{dataInfoList.model}}</em>
-          </p>
-          <p>
-            采购人：
-            <em>{{dataInfoList.purchaser}}</em>
-          </p>
-          <p>
-            投入时间：
-            <em>{{dataInfoList.use_time|formatGetDate}}</em>
-          </p>
-          <p>
-            保质期：
-            <em>{{dataInfoList.warranty_time|formatGetDate}}</em>
-          </p>
+          <table class="infotable">
+            <tr>
+              <td>
+                <b>设备名称：</b>
+                {{dataInfoList.name}}
+              </td>
+              <td>
+                <b>设备品牌：</b>
+                {{dataInfoList.brand}}
+              </td>
+              <td>
+                <b>今天能耗：</b>
+                {{dataInfoList.energy}}度
+              </td>
+              <td>
+                <b>运行时长：</b>
+                {{dataInfoList.days}}天
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>设备编号：</b>
+                {{dataInfoList.number}}
+              </td>
+              <td>
+                <b>设备状态：</b>
+                {{dataInfoList.work_status==1?"正常":"异常"}}
+              </td>
+              <td>
+                <b>累积能耗：</b>
+                {{dataInfoList.total_energy}}度
+              </td>
+              <td>
+                <b>最近维保时间：</b>
+                {{dataInfoList.latest_time|formatGetDate}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>设备型号：</b>
+                {{dataInfoList.model}}
+              </td>
+              <td>
+                <b>采购人：</b>
+                {{dataInfoList.purchaser}}
+              </td>
+              <td>
+                <b>投入时间：</b>
+                {{dataInfoList.use_time|formatGetDate}}
+              </td>
+              <td>
+                <b>保质期：</b>
+                {{dataInfoList.warranty_time|formatGetDate}}
+              </td>
+            </tr>
+          </table>
         </div>
       </div>
-
       <div class="grid-content-chart">
         <div class="chart-title">
           <div class="titleleft">
@@ -481,6 +488,7 @@ export default {
     uploadSuccess(res, file) {
       console.log("图上传成功", res);
       this.$set(this.formData, "img", res.data.url);
+      this.$refs.formRulesRef.validateField("img");
     },
     uploadBefore(file) {
       var filename = file.name.substring(file.name.lastIndexOf(".") + 1);
@@ -692,17 +700,17 @@ export default {
 }
 .devicedetail .grid-img {
   float: left;
-  width: 100px;
+  width: 130px;
   height: 150px;
   margin-right: 40px;
-  border-radius: 100%;
+  border-radius: 3px;
 }
 .devicedetail .grid-img img {
   margin-top: 15px;
   float: left;
-  width: 100px;
-  height: 100px;
-  border-radius: 100%;
+  width: 150px;
+  height: 150px;
+  border-radius: 3px;
 }
 .devicedetail .grid-info p {
   color: #333;
@@ -713,6 +721,14 @@ export default {
 }
 .devicedetail .grid-info p em {
   color: #666;
+}
+.infotable td {
+  padding:10px  20px;
+  width: 24%;
+  font-size: 16px;
+}
+.infotable td b{
+ min-height: 40px; float: left;
 }
 .grid-content-chart {
   border-radius: 6px;
@@ -784,4 +800,6 @@ export default {
   height: 178px;
   display: block;
 }
+
+
 </style>

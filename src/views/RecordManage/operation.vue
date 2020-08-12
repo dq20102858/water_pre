@@ -5,7 +5,7 @@
         <div class="left-menu-area">
           <div class="input-so">
             <el-input
-              placeholder="输入处理站"
+              placeholder="请输入处理站"
               prefix-icon="el-icon-search"
               v-model="searchVillageName"
               @input="searchVillageNameEvent"
@@ -327,7 +327,7 @@ export default {
       searchVillageName: "",
       searchVillageId: 0,
       searchType: "2",
-           pickerStartTime: {
+      pickerStartTime: {
         disabledDate: time => {
           if (this.searchEndTime) {
             return time.getTime() > new Date(this.searchEndTime).getTime();
@@ -342,7 +342,7 @@ export default {
         }
       },
       searchStartTime: "",
-      searchEndTime: "",
+      searchEndTime: ""
     };
   },
   created() {
@@ -354,7 +354,7 @@ export default {
       let page = this.page_cur;
       let type = this.searchType;
       let sid = this.searchVillageId;
-        let start_time = this.searchStartTime;
+      let start_time = this.searchStartTime;
       let end_time = this.searchEndTime;
       this.request({
         url: "/record/getRecordRepairPages",
@@ -489,11 +489,18 @@ export default {
           }).then(res => {
             let data = res.data;
             if (data.status == 1) {
+              //
+              if (this.dataList.length == 1) {
+                this.page_cur = this.page_cur - 1;
+                this.getDataList();
+              } else {
+                this.getDataList();
+              }
               this.$message({
                 type: "success",
                 message: "删除成功！"
               });
-              this.getDataList();
+              //
             }
           });
         })

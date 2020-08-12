@@ -5,7 +5,7 @@
         <div class="left-menu-area">
           <div class="input-so">
             <el-input
-              placeholder="输入处理站"
+              placeholder="请输入处理站"
               prefix-icon="el-icon-search"
               v-model="searchVillageName"
               @input="searchVillageNameEvent"
@@ -461,7 +461,12 @@ export default {
           }).then(res => {
             let data = res.data;
             if (data.status == 1) {
-              this.getDataList();
+            if (this.dataList.length == 1) {
+                this.page_cur = this.page_cur - 1;
+                this.getDataList();
+              } else {
+                this.getDataList();
+              }
               this.$message({
                 type: "success",
                 message: "删除成功！"

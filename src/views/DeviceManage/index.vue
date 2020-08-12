@@ -5,7 +5,7 @@
         <div class="left-menu-area">
           <div class="input-so">
             <el-input
-              placeholder="输入处理站"
+              placeholder=" 请输入处理站"
               prefix-icon="el-icon-search"
               v-model="searchVillageName"
               @input="searchVillageNameEvent"
@@ -82,7 +82,6 @@
                 <div class="grid" @click="detailEvent(item.id)" title="点击查看详情">
                   <div class="grid-title">
                     {{item.name}}
-                    <span>{{item.model}}</span>
                   </div>
                   <div class="grid-content">
                     <div class="grid-img">
@@ -92,6 +91,10 @@
                       <p>
                         设备编号：
                         <em>{{item.number}}</em>
+                      </p>
+                       <p>
+                        设备型号：
+                        <em>{{item.model}}</em>
                       </p>
                       <p>
                         设备状态：
@@ -557,6 +560,7 @@ export default {
     uploadSuccess(res, file) {
       console.log("图上传成功", res);
       this.$set(this.formData, "img", res.data.url);
+      this.$refs.formRulesRef.validateField("img");
     },
     uploadBefore(file) {
       var filename = file.name.substring(file.name.lastIndexOf(".") + 1);
@@ -630,23 +634,30 @@ export default {
   border-radius: 3px 3px 0 0;
   padding-left: 20px;
   text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .devicelist .grid-title span {
   float: right;
   padding-right: 20px;
+  max-width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .devicelist .grid-img {
   float: left;
-  width: 100px;
-  height: 150px;
+  width: 120px;
+  height: 180px;
   margin-right: 20px;
   border-radius: 6px;
 }
 .devicelist .grid-img img {
   margin-top: 25px;
   float: left;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 6px;
 }
 .devicelist .grid-info p {

@@ -34,7 +34,7 @@
         <div class="app-page-container">
           <div class="app-page-select">
             <el-form :inline="true">
-                 <el-form-item class="el-form-item">
+              <el-form-item class="el-form-item">
                 <el-date-picker
                   type="date"
                   placeholder="选择开始日期"
@@ -426,7 +426,7 @@ export default {
       let page = this.page_cur;
       let type = this.searchType;
       let sid = this.searchVillageId;
-        let start_time = this.searchStartTime;
+      let start_time = this.searchStartTime;
       let end_time = this.searchEndTime;
       this.request({
         url: "/record/getRecordRepairPages",
@@ -571,11 +571,18 @@ export default {
           }).then(res => {
             let data = res.data;
             if (data.status == 1) {
+              //
+              if (this.dataList.length == 1) {
+                this.page_cur = this.page_cur - 1;
+                this.getDataList();
+              } else {
+                this.getDataList();
+              }
               this.$message({
                 type: "success",
                 message: "删除成功！"
               });
-              this.getDataList();
+              //
             }
           });
         })

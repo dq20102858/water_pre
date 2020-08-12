@@ -1,19 +1,19 @@
 <template>
   <div class="net-navbar" mode="horizontal">
     <div class="el-menu-top">
+      <div class="logos">
+        <img class="logo" :src="require('@/assets/image/logo.png')" />
+        <div class="gname">
+          <h3>某公司智能污水处理站监控系统</h3>
+          <h4>
+            欢迎您，{{name}}
+            <span title="退出系统" @click="logout">
+              <i class="el-icon-switch-button"></i>退出系统
+            </span>
+          </h4>
+        </div>
+      </div>
       <ul class="el-menu--horizontal el-menu">
-        <li class="logos">
-          <img class="logo" :src="require('@/assets/image/logo.png')" />
-          <div class="gname">
-            <h3>智能污水站处理系统</h3>
-            <h4>
-              欢迎您，{{name}}
-              <span title="退出系统" @click="logout">
-                <i class="el-icon-switch-button"></i>退出系统
-              </span>
-            </h4>
-          </div>
-        </li>
         <li
           v-for="(item,index)  in menuList"
           @click="routerLink(index,item.path)"
@@ -43,7 +43,7 @@ export default {
         {
           name: "站点概览",
           path: "/sitemanage",
-          img: require("@/assets/image/m_zhandian.png")
+          img: require("@/assets/image/m_home.png")
         },
         {
           name: "设备状态",
@@ -66,7 +66,7 @@ export default {
           img: require("@/assets/image/m_alert.png")
         },
         {
-          name: "打卡记录",
+          name: "考勤打卡",
           path: "/attendancemanage",
           img: require("@/assets/image/m_daka.png")
         },

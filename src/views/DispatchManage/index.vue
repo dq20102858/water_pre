@@ -6,7 +6,7 @@
           <div class="input-so">
             <el-input
               prefix-icon="el-icon-search"
-              placeholder="输入处理站"
+              placeholder="请输入处理站"
               v-model="searchVillageName"
               @input="searchVillageNameEvent"
               clearable
@@ -37,7 +37,7 @@
               <el-form-item class="el-form-item">
                 <el-input
                   prefix-icon="el-icon-search"
-                  placeholder="请输入处理站名称"
+                  placeholder="请请输入处理站名称"
                   @input="searchKeywordEvent"
                   v-model="searchKeyword"
                   class="input-with-select"
