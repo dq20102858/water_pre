@@ -182,13 +182,18 @@ export default {
         name: [
           {
             required: true,
-            message: "请输入名称2~20个字符",
+            message: "请输入站点名称",
             trigger: "blur"
           },
-          { min: 2, max: 20, message: "长度在2到20个字符", trigger: "blur" },
           {
-            pattern: /(^\S+).*(\S+$)/,
-            message: "开始和结尾不能有空格",
+            min: 2,
+            max: 20,
+            message: "请输入站点名称长度在2到20个字符",
+            trigger: "blur"
+          },
+          {
+            pattern: /^[\u4e00-\u9fa5A-Za-z0-9\_]*$/,
+            message: "站点名称只能是汉字、字母、数字及下划线",
             trigger: "blur"
           }
         ],

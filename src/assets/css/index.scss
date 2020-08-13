@@ -24,7 +24,7 @@ em,i{font-style: normal;}
 #app .sidebar-container{z-index: 500;}
 #app .hideSidebar  #app-menu-items .el-tooltip{padding:0 5px!important;}
 /* el-menu-top-menu */
-.net-navbar {width:100%; min-width: 1170px; height: 100px;border-radius: 0px !important;background: url(../image/m_bg.png) no-repeat right center;}
+.net-navbar {width:100%; min-width: 1170px; height: 100px;border-radius: 0px !important;background: #386cbd url(../image/m_bg.png) no-repeat right center;}
 .el-menu-top { height: 100px;}
 .el-menu-top  .el-menu{background: none;display: flex; justify-content: space-between;border: none;}
 .el-menu-top .logos {float: left;color:#fff; padding-left:15px;padding-right: 60px;font-weight: 700;padding-top: 20px;}
@@ -81,10 +81,10 @@ em,i{font-style: normal;}
 .app-operation .btn-del:hover{background: #d44444;}
 .app-operation .btn-print{color: #fff;background: #009BFF;}
 .app-operation .btn-print:hover{background: #3AAAFF;}
-.app-operation .btn-apply{color: #fff;background: #29c38c;}
-.app-operation .btn-apply:hover{background: #29c38c;}
+.app-operation .btn-apply{color: #fff;background: #09a15b;}
+.app-operation .btn-apply:hover{background: #09a15b;}
 .app-operation .btn-green{border: 1px #26a80f solid;color: #26a80f}
-.app-operation .el-button[disabled]{color: #999;border: 1px #999 solid;}
+.app-operation .el-button[disabled]{color: #999;border: 1px #ccc solid; background: #ddd;}
 .app-operation .el-button:last-child{margin-right:0}
 .btn-sele{ color: #fff;background: #383C57;padding: 3px 8px;font-size: 12px;}
 .btn-sele:hover{ background: #3AAAFF;}
@@ -225,11 +225,5 @@ a.btn-edit:hover{ background: #EF964B;}
 .chart-title .titleright .active {background: #3162b7;}
 .chart-title b {font-size: 16px;margin-right: 20px;font-weight: 400;}
 
+.nodata{text-align: center;line-height: 60px; color: #909399; background: #f9f9f9; margin: 20px;}
 
-
-
-// @media screen and (max-width: 960px) {
-//   .el-menu-top .logos{padding-right: 30px;}
-//   .el-menu-top    .el-menu--horizontal .el-menu-item {padding: 0 20px;
-//       }
-//   }

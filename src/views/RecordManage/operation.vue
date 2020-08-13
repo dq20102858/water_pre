@@ -608,6 +608,7 @@ export default {
   display: inline-block;
   min-width: 58px;
   line-height: 28px;
+  min-height: 28px;
   border-bottom: 1px #ddd solid;
 }
 .dialog-form-opera

@@ -8,7 +8,8 @@
               prefix-icon="el-icon-search"
               placeholder="请输入处理站"
               v-model="searchVillageName"
-              @input="searchVillageNameEvent"   maxlength="10"
+              @input="searchVillageNameEvent"
+              maxlength="10"
               clearable
             ></el-input>
           </div>
@@ -37,7 +38,7 @@
               <el-form-item class="el-form-item">
                 <el-input
                   prefix-icon="el-icon-search"
-                  placeholder="请请输入处理站名称" 
+                  placeholder="请请输入处理站名称"
                   @input="searchKeywordEvent"
                   v-model="searchKeyword"
                   class="input-with-select"
@@ -66,18 +67,18 @@
                 ></el-date-picker>
               </el-form-item>
               <el-form-item class="el-form-item el-select-dorps">
-                <el-select v-model="searchStatus" @change="searchStatusEvent" style="width:100px">
-                  <el-option label="全部状态" value="0"></el-option>
-                  <el-option label="已完成" value="2"></el-option>
-                  <el-option label="未完成" value="1"></el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item class="el-form-item el-select-dorps">
                 <el-select v-model="searchType" @change="searchTypeEvent" style="width:110px">
                   <el-option label="全部事项" value="0"></el-option>
                   <el-option label="设备维修" value="1"></el-option>
                   <el-option label="例行维保" value="2"></el-option>
                   <el-option label="运行检查" value="3"></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item class="el-form-item el-select-dorps">
+                <el-select v-model="searchStatus" @change="searchStatusEvent" style="width:100px">
+                  <el-option label="全部状态" value="0"></el-option>
+                  <el-option label="已完成" value="2"></el-option>
+                  <el-option label="未完成" value="1"></el-option>
                 </el-select>
               </el-form-item>
               <div class="el-serach noborder">
@@ -104,7 +105,7 @@
               </el-table-column>
               <el-table-column prop="status" label="状态">
                 <template slot-scope="scope">
-                  <span v-if="scope.row.status==2">已完成</span>
+                  <span style="color:#1ba163" v-if="scope.row.status==2">已完成</span>
                   <span style="color:#999" v-else>未完成</span>
                 </template>
               </el-table-column>
@@ -116,7 +117,8 @@
               <el-table-column label="操作" width="190">
                 <template slot-scope="scope">
                   <div class="app-operation">
-                    <el-button class="btn-apply" size="mini" @click="applyEvent(scope.row.id)">审批</el-button>
+                    <el-button class="btn-apply" size="mini" @click="applyEvent(scope.row.id)" v-if="scope.row.status==1">审批</el-button>
+                          <el-button class="btn-apply" size="mini"  v-if="scope.row.status==2" disabled>审批</el-button>
                     <el-button class="btn-edit" size="mini" @click="detailEvent(scope.row.id)">详情</el-button>
                     <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
                   </div>
@@ -244,11 +246,11 @@
             <div class="disp-info" v-if="formData.type==3">运行检查</div>
           </el-form-item>
           <el-form-item label="指派时间：">
-            <div class="disp-info">{{formData.create_time|formatDateTamp}}</div>
+            <div class="disp-info">{{formData.assign_time}}</div>
           </el-form-item>
         </div>
         <el-form-item label="维修内容：">
-          <div class="disp-info">{{formData.content}}</div>
+          <div class="disp-info">{{formData.content==""?"暂无内容":formData.content}}</div>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -288,7 +290,12 @@ export default {
           }
         ],
         content: [
-          { min: 2, max: 200, message: "长度在2到200个字符", trigger: "blur" }
+          { min: 2, max: 200, message: "长度在2到200个字符", trigger: "blur" },
+          {
+            pattern: /(^\S+).*(\S+$)/,
+            message: "开始和结尾不能有空格",
+            trigger: "blur"
+          }
         ]
       },
       page_cur: 1,
@@ -472,7 +479,7 @@ export default {
             var data = response.data;
             if (data.status == 1) {
               this.diaLogFormVisible = false;
-              this.searchType = this.formData.type.toString();
+              this.searchType = 0;
               this.getDataList();
               this.$message({
                 type: "success",

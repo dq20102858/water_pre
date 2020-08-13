@@ -8,7 +8,8 @@
               placeholder=" 请输入处理站"
               prefix-icon="el-icon-search"
               v-model="searchVillageName"
-              @input="searchVillageNameEvent"  maxlength="10"
+              @input="searchVillageNameEvent"
+              maxlength="10"
               clearable
             ></el-input>
           </div>
@@ -41,6 +42,7 @@
                   @input="searchKeywordEvent"
                   v-model="searchKeyword"
                   class="input-with-select"
+                  maxlength="10"
                   clearable
                 ></el-input>
               </el-form-item>
@@ -77,12 +79,10 @@
           </div>
 
           <div class="devicelist">
-            <el-row :gutter="20" v-if="dataList.length>0">
+            <el-row :gutter="20">
               <el-col :span="8" v-for="item in dataList" :key="item.id">
                 <div class="grid" @click="detailEvent(item.id)" title="点击查看详情">
-                  <div class="grid-title">
-                    {{item.name}}
-                  </div>
+                  <div class="grid-title">{{item.name}}</div>
                   <div class="grid-content">
                     <div class="grid-img">
                       <img :src="item.img" />
@@ -92,7 +92,7 @@
                         设备编号：
                         <em>{{item.number}}</em>
                       </p>
-                       <p>
+                      <p>
                         设备型号：
                         <em>{{item.model}}</em>
                       </p>
@@ -119,10 +119,10 @@
                     </div>
                   </div>
                 </div>
-                <div class="nodata" v-if="dataList.length == 0">暂无数据</div>
               </el-col>
+              <div class="nodata" v-if="dataList.length == 0">暂无设备</div>
             </el-row>
-            <div class="app-pagination">
+            <div class="app-pagination" style="margin-top:0;">
               <el-pagination
                 class="pagination"
                 v-if="dataList.length !== 0"
@@ -606,9 +606,6 @@ export default {
 }
 .el-search-item-blee .el-select .el-input__inner {
   padding-left: 15px;
-}
-.devicelist .el-row {
-  margin-bottom: 20px;
 }
 .devicelist .el-col {
   border-radius: 4px;

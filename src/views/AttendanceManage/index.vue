@@ -9,7 +9,7 @@ export default {
     };
   },
     mounted() {
-    localStorage.setItem("activeMenu", "operationmanage");
+ 
   },
   created() {},
   methods: {}

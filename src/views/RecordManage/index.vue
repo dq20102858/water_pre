@@ -221,10 +221,10 @@
           <div class="sampinfos" style="width:100%;">{{formData.exception}}</div>
         </el-form-item>
         <el-form-item label="更换耗材：">
-          <div class="sampinfos" style="width:100%;">{{formData.remark}}</div>
-        </el-form-item>
-        <el-form-item label="更换耗材：">
           <div class="sampinfos" style="width:100%;">{{formData.replace_material}}</div>
+        </el-form-item>
+            <el-form-item label="备注：">
+          <div class="sampinfos" style="width:100%;">{{formData.remark}}</div>
         </el-form-item>
         <div class="el-form-item-inline">
           <el-form-item label="离站时间：">
@@ -341,10 +341,10 @@
         <div class="sampinfos" style="width:100%;">{{formData.exception}}</div>
       </el-form-item>
       <el-form-item label="更换耗材：">
-        <div class="sampinfos" style="width:100%;">{{formData.remark}}</div>
-      </el-form-item>
-      <el-form-item label="更换耗材：">
         <div class="sampinfos" style="width:100%;">{{formData.replace_material}}</div>
+      </el-form-item>
+      <el-form-item label="备注">
+        <div class="sampinfos" style="width:100%;">{{formData.remark}}</div>
       </el-form-item>
       <div class="el-form-item-inline">
         <el-form-item label="离站时间：">
@@ -720,6 +720,7 @@ export default {
   overflow: hidden;
   display: inline-block;
   min-width: 58px;
+  min-height: 28px;
   line-height: 28px;
   border-bottom: 1px #ddd solid;
 }

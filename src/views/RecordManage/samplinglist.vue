@@ -72,7 +72,8 @@
               <el-table-column align="center" label="序号" width="80px">
                 <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
               </el-table-column>
-              <el-table-column align="center" prop="create_time" label="记录日期"></el-table-column>
+              <el-table-column align="center" prop="create_time" label="采样时间"></el-table-column>    
+              <el-table-column align="center" prop="station_name" label="采样站点"></el-table-column>
               <el-table-column label="进 水" align="center">
                 <el-table-column align="center" prop="in_ph" label="PH"></el-table-column>
                 <el-table-column align="center" prop="in_cod" label="COD"></el-table-column>
@@ -129,10 +130,10 @@
     >
       <el-form class="dialog-form-samp" :model="formData" label-width="80px">
         <div class="el-form-item-inline">
-          <el-form-item label="地址：" label-width="100px">
+          <el-form-item label="采样站点：" label-width="100px">
             <div class="sampinfo">{{formData.station_name}}</div>
           </el-form-item>
-          <el-form-item label="记录日期：" label-width="100px">
+          <el-form-item label="采样时间：" label-width="100px">
             <div class="sampinfo">{{formData.create_time}} &nbsp;</div>
           </el-form-item>
           <el-form-item label="采样化验人：" label-width="100px">
@@ -215,10 +216,10 @@
     <el-form id="printRecord" class="dialog-form-samp" :model="formData" label-width="80px">
       <h3 class="printTitles">污水处理采样化验单表</h3>
       <div class="el-form-item-inline">
-        <el-form-item label="地址：" label-width="100px">
+        <el-form-item label="采样站点：" label-width="100px">
           <div class="sampinfo">{{formData.station_name}}</div>
         </el-form-item>
-        <el-form-item label="记录日期：" label-width="100px">
+        <el-form-item label="采样时间：" label-width="100px">
           <div class="sampinfo">{{formData.create_time}} &nbsp;</div>
         </el-form-item>
         <el-form-item label="采样化验人：" label-width="100px">

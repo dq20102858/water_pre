@@ -25,10 +25,10 @@
           @click="backURL"
         >返回</el-button>
       </div>
-      <div class="deright">
+      <!-- <div class="deright">
         运行天数：{{useDay}} 天
         <span>{{dataInfoList.create_time|formatDateTamp('date')}}</span>
-      </div>
+      </div> -->
     </div>
     <div class="devicedetail">
       <div class="grid-content">
@@ -723,12 +723,12 @@ export default {
   color: #666;
 }
 .infotable td {
-  padding:10px  20px;
+  padding:10px ;
   width: 24%;
-  font-size: 16px;
+  font-size: 16px; color: #999;
 }
 .infotable td b{
- min-height: 40px; float: left;
+ min-height: 40px; float: left; font-weight: 400; color: #333;
 }
 .grid-content-chart {
   border-radius: 6px;

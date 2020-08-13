@@ -117,6 +117,7 @@ export default {
             .then(() => {
               this.loading = false;
               this.$router.push({ path: "/sitemanage" });
+                sessionStorage.setItem("activeMenu", "/sitemanage");
             })
             .catch(() => {
               this.loading = false;

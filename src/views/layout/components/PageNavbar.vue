@@ -18,7 +18,7 @@
           v-for="(item,index)  in menuList"
           @click="routerLink(index,item.path)"
           :key="item.id"
-          :class="isSelect === item.path ? 'el-menu-item is_active' : 'el-menu-item'"
+          :class="activeMenu === item.path ? 'el-menu-item is_active' : 'el-menu-item'"
           :id="item.path"
         >
           <img class="iconss" :src="item.img" />
@@ -37,8 +37,7 @@ export default {
   name: "PageNavbar",
   data() {
     return {
-      isSelect: "",
-      activeMenu: "sitemanage",
+      activeMenu: "",
       menuList: [
         {
           name: "站点概览",
@@ -82,15 +81,15 @@ export default {
     ...mapGetters(["name", "avatar", "roles", "sys_role", "system"])
   },
   mounted() {
-    this.isSelect = sessionStorage.getItem("isSelect");
+    this.activeMenu = sessionStorage.getItem("activeMenu");
+    console.log(this.activeMenu);
   },
   methods: {
     routerLink(index, path) {
-      this.isSelect = path;
-      console.log(path);
-      // 路由跳转
+      this.activeMenu = path;
+      console.log(path)
       this.$router.push(path);
-      sessionStorage.setItem("isSelect", this.isSelect);
+      sessionStorage.setItem("activeMenu", this.activeMenu);
     },
     logout() {
       this.$confirm("您确定要退出当前系统？", "提示", {
