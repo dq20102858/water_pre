@@ -21,6 +21,8 @@
           :class="activeMenu === item.path ? 'el-menu-item is_active' : 'el-menu-item'"
           :id="item.path"
         >
+
+          <i :class="index==4?'msgcount':''" v-if="msgCount>0 && index==4">{{msgCount}}</i>
           <img class="iconss" :src="item.img" />
           {{item.name}}
         </li>
@@ -38,6 +40,7 @@ export default {
   data() {
     return {
       activeMenu: "",
+           msgCount: 0,
       menuList: [
         {
           name: "站点概览",
@@ -84,28 +87,24 @@ export default {
     this.activeMenu = sessionStorage.getItem("activeMenu");
     console.log(this.activeMenu);
   },
+  created() {
+    this.getAlertNum();
+  },
   methods: {
-
     getAlertNum() {
       this.request({
         url: "/alert/getAlertNum",
-        method: "post",
-        data: { id: id, type: this.searchType }
+        method: "get"
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
-          this.getDataList();
-          //let msginfo = flag == 1 ? "设置已修复" : "取消已修复";
-          this.$message({
-            type: "success",
-            message: "设置成功！"
-          });
+          this.msgCount=data.data.num;
         }
       });
     },
     routerLink(index, path) {
       this.activeMenu = path;
-      console.log(path)
+      console.log(path);
       this.$router.push(path);
       sessionStorage.setItem("activeMenu", this.activeMenu);
     },
@@ -127,4 +126,5 @@ export default {
 };
 </script>
 <style>
+
 </style>

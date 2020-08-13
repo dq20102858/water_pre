@@ -479,7 +479,7 @@ export default {
             var data = response.data;
             if (data.status == 1) {
               this.diaLogFormVisible = false;
-              this.searchType = 0;
+              this.searchType = "0";
               this.getDataList();
               this.$message({
                 type: "success",
