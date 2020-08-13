@@ -85,6 +85,24 @@ export default {
     console.log(this.activeMenu);
   },
   methods: {
+
+    getAlertNum() {
+      this.request({
+        url: "/alert/getAlertNum",
+        method: "post",
+        data: { id: id, type: this.searchType }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.getDataList();
+          //let msginfo = flag == 1 ? "设置已修复" : "取消已修复";
+          this.$message({
+            type: "success",
+            message: "设置成功！"
+          });
+        }
+      });
+    },
     routerLink(index, path) {
       this.activeMenu = path;
       console.log(path)

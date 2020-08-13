@@ -395,7 +395,7 @@ export default {
             let data = res.data;
             if (data.status == 1) {
               if (this.dataList.length == 1) {
-                this.page_cur = this.page_cur - 1;
+                this.page_cur = this.page_cur < 1 ? 1 : this.page_cur - 1;
                 this.getDataList();
               } else {
                 this.getDataList();

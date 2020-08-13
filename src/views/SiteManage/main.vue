@@ -1,48 +1,49 @@
 <template>
   <div class="app-page-main">
     <div class="app-page-rows">
-       <div class="app-page-rows-lefts">
-      <div class="left-menu-area">
-        <div class="input-so">
-          <el-input
-            placeholder="请输入处理站"
-            prefix-icon="el-icon-search"
-            v-model="chlidName"
-            @input="chlidNameEvent"   maxlength="10"
-            clearable
-          ></el-input>
+      <div class="app-page-rows-lefts">
+        <div class="left-menu-area">
+          <div class="input-so">
+            <el-input
+              placeholder="请输入处理站"
+              prefix-icon="el-icon-search"
+              v-model="chlidName"
+              @input="chlidNameEvent"
+              maxlength="10"
+              clearable
+            ></el-input>
+          </div>
+          <el-menu router>
+            <el-menu-item :class="fatherId === 0 ? 'active' : ''" @click="fatherStationEvent(0)">
+              <span>全部</span>
+            </el-menu-item>
+            <el-menu-item
+              v-for="item in fatherStationList"
+              :key="item.id"
+              :class="fatherId === item.id ? 'active' : ''"
+              @click="fatherStationEvent(item.id)"
+            >
+              <span>{{item.name}}</span>
+            </el-menu-item>
+          </el-menu>
         </div>
-        <el-menu router>
-          <el-menu-item :class="fatherId === 0 ? 'active' : ''" @click="fatherStationEvent(0)">
-            <span>全部</span>
-          </el-menu-item>
-          <el-menu-item
-            v-for="item in fatherStationList"
-            :key="item.id"
-            :class="fatherId === item.id ? 'active' : ''"
-            @click="fatherStationEvent(item.id)"
-          >
-            <span>{{item.name}}</span>
-          </el-menu-item>
-        </el-menu>
-      </div>
-      <div class="left-menu-chlid">
-        <!-- <div class="el-menu-title">
+        <div class="left-menu-chlid">
+          <!-- <div class="el-menu-title">
            <i class="el-icon-location-information"></i>
          中南新村
-        </div>-->
-        <el-menu router>
-          <el-menu-item
-            v-for="item in childStationList"
-            :key="item.id"
-            :class="fatherId === item.id ? 'active' : ''"
-            @click="chlidStationEvent(item.id)"
-          >
-            <span>{{item.name}}</span>
-          </el-menu-item>
-        </el-menu>
+          </div>-->
+          <el-menu router>
+            <el-menu-item
+              v-for="item in childStationList"
+              :key="item.id"
+              :class="fatherId === item.id ? 'active' : ''"
+              @click="chlidStationEvent(item.id)"
+            >
+              <span>{{item.name}}</span>
+            </el-menu-item>
+          </el-menu>
+        </div>
       </div>
-    </div>
       <div class="app-page-rows-rights">
         <div class="app-page-site">
           <div class="app-page-site-box">
@@ -65,6 +66,12 @@
                 <canvas id="line14" class="wline"></canvas>
                 <canvas id="line15" class="wline rotate90"></canvas>
                 <canvas id="line16" class="wline rotate90"></canvas>
+                <canvas id="line17" class="wline"></canvas>
+                <canvas id="line18" class="wline"></canvas>
+                <canvas id="line19" class="wline"></canvas>
+                <canvas id="line20" class="wline rotate90"></canvas>
+                <canvas id="line21" class="wline rotate180"></canvas>
+                <canvas id="line22" class="wline rotate180"></canvas>
                 <div class="adapter1 ad1"></div>
                 <div class="adapter2 ad2"></div>
                 <div class="adapter1 ad3"></div>
@@ -74,6 +81,8 @@
                 <div class="adapter1 ad7"></div>
                 <div class="adapter2 ad8"></div>
                 <div class="adapter2 ad9"></div>
+                <div class="adapter2 ad10"></div>
+                <div class="adapter3 ad11"></div>
                 <div class="j2text">
                   <div>PH：60</div>
                   <div>PH：60</div>
@@ -125,7 +134,7 @@
                   <div class="bnames">预留池</div>
                 </div>
                 <div class="itembox7">
-                  <div class="wbox">
+                  <div class="wboxs">
                     <div class="bwater"></div>
                     <div class="ble"></div>
                   </div>
@@ -154,14 +163,14 @@ import { Createline } from "../../utils/flowAnimation.js";
 export default {
   data() {
     return {
-         fatherId: 0,
+      fatherId: 0,
       fatherStationList: [],
       childStationList: [],
       chlidName: ""
     };
   },
   mounted() {
-      this.getFatherStationList(); //
+    this.getFatherStationList(); //
     this.flowAnimations("line1", 145, 12, "w");
     this.flowAnimations("line2", 145, 12, "w");
     this.flowAnimations("line3", 100, 12, "w");
@@ -178,6 +187,12 @@ export default {
     this.flowAnimations("line14", 200, 12, "w");
     this.flowAnimations("line15", 90, 12, "w");
     this.flowAnimations("line16", 150, 12, "w");
+    this.flowAnimations("line17", 100, 12, "w");
+    this.flowAnimations("line18", 100, 12, "w");
+    this.flowAnimations("line19", 70, 12, "w");
+    this.flowAnimations("line20", 290, 12, "w");
+    this.flowAnimations("line21", 100, 12, "w");
+    this.flowAnimations("line22", 200, 12, "w");
   },
   methods: {
     flowAnimations(canvas, canvas_w, canvas_h, fx) {
@@ -486,18 +501,18 @@ export default {
 }
 .app-site .itembox6 {
   position: absolute;
-  top: 240px;
+  top: 260px;
   left: 1010px;
 }
 .app-site .itembox7 {
   position: absolute;
-  top: 240px;
-  left: 790px;
+  top: 230px;
+  left: 650px;
 }
 .app-site .itembox8 {
   position: absolute;
-  top: 240px;
-  left: 570px;
+  top: 260px;
+  left: 350px;
 }
 .app-site .itembox0 {
   position: absolute;
@@ -517,6 +532,15 @@ export default {
   background: url("~@/assets/image/site-01.png") no-repeat;
   width: 151px;
   height: 128px;
+  z-index: 999;
+  overflow: hidden;
+  position: relative;
+}
+.app-site .wboxs {
+  margin: 0 auto;
+  background: url("~@/assets/image/site-001.png") no-repeat;
+  width: 222px;
+  height: 189px;
   z-index: 999;
   overflow: hidden;
   position: relative;
@@ -643,6 +667,30 @@ export default {
   left: 1050px;
   top: -10px;
 }
+.app-site #line17 {
+  left: 705px;
+  top: 80px;
+}
+.app-site #line18 {
+  left: 925px;
+  top: 10px;
+}
+.app-site #line19 {
+  left: 1145px;
+  top: 10px;
+}
+.app-site #line20 {
+  left: 1080px;
+  top: 170px;
+}
+.app-site #line21 {
+  left: 1120px;
+  top: 330px;
+}
+.app-site #line22{
+  left: 830px;
+  top: 330px;
+}
 /* */
 .adapter1 {
   position: absolute;
@@ -703,6 +751,14 @@ export default {
 .ad9 {
   left: 1110px;
   top: -90px;
+}
+.ad10 {
+  left: 1210px;
+  top: 10px;
+}
+.ad11 {
+  left: 1210px;
+  top: 321px;
 }
 .rotate360 {
   transform: rotate(360deg);

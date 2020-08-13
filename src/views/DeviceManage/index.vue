@@ -621,6 +621,7 @@ export default {
   background: #eef3ff;
   overflow: hidden;
   min-height: 170px;
+  border-radius: 0 0 3px 3px;
 }
 .devicelist .grid-title {
   color: #fff;

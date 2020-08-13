@@ -8,7 +8,8 @@
               placeholder="请输入处理站"
               prefix-icon="el-icon-search"
               v-model="searchVillageName"
-              @input="searchVillageNameEvent"   maxlength="10"
+              @input="searchVillageNameEvent"
+              maxlength="10"
               clearable
             ></el-input>
           </div>
@@ -108,7 +109,11 @@
           <div class="app-table">
             <el-table :data="dataList">
               <el-table-column label="序号" width="80px">
-                <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
+                <template slot-scope="scope">
+                  <span
+                    :class="[scope.row.is_read==0? 'cirshow' : 'nums']"
+                  >{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
+                </template>
               </el-table-column>
               <el-table-column prop="type" label="告警设备" v-if="this.searchType==2">
                 <template slot-scope="scope">
@@ -153,8 +158,13 @@
               <el-table-column label="操作" v-if="this.searchType !=3" width="125">
                 <template slot-scope="scope">
                   <div class="app-operation">
-                    <el-button v-if="scope.row.status==1" class="btn-edit" size="mini">已读</el-button>
-                    <el-button v-if="scope.row.status!=1" class="btn-sele" size="mini">未读</el-button>
+                    <el-button v-if="scope.row.is_read==1" class="btn-gray" size="mini" disabled>已读</el-button>
+                    <el-button
+                      v-if="scope.row.is_read!=1"
+                      @click="updateRead(scope.row.id)"
+                      class="btn-print"
+                      size="mini"
+                    >未读</el-button>
                     <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
                   </div>
                 </template>
@@ -310,6 +320,23 @@ export default {
         }
       });
     },
+    updateRead(id) {
+      this.request({
+        url: "/alert/updateRead",
+        method: "post",
+        data: { id: id, type: this.searchType }
+      }).then(res => {
+        let data = res.data;
+        if (data.status == 1) {
+          this.getDataList();
+          //let msginfo = flag == 1 ? "设置已修复" : "取消已修复";
+          this.$message({
+            type: "success",
+            message: "设置成功！"
+          });
+        }
+      });
+    },
     deleteEvent(id) {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
@@ -347,5 +374,14 @@ export default {
 <style>
 .samplinglist .el-table tr th {
   text-align: center;
+}
+.samplinglist .nums {
+  padding: 3px 5px;
+}
+.samplinglist .cirshow {
+  background: #f45e23;
+  color: #fff;
+  padding: 3px 5px;
+  border-radius: 3px;
 }
 </style>
