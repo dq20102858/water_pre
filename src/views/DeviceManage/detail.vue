@@ -725,7 +725,7 @@ export default {
 .infotable td {
   padding:10px ;
   width: 24%;
-  font-size: 16px; color: #999;
+  font-size: 16px; color: #444;
 }
 .infotable td b{
  min-height: 40px; float: left; font-weight: 400; color: #333;

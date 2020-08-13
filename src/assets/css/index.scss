@@ -33,16 +33,15 @@ em,i{font-style: normal;}
 .el-menu-top .logos .gname  h3{display: block; text-align: left;font-size: 24px; padding-bottom:10px; padding-top: 2px;}
 .el-menu-top .logos .gname h4{display: block;font-size: 14px; font-weight: 400; text-align: left;}
 .el-menu-top .logos .gname span{float:right; background: #459cf2;color: #fff;padding:4px  3px;border-radius: 3px;font-size: 12px;cursor: pointer;}
-.el-menu-top .el-menu-item{position: relative;  height: 100px!important;background: none;color:#fff; font-size: 16px;font-weight: 400;padding:0 24px; line-height: 40px;}
-.el-menu-top .el-menu-item:hover{color:#fff; background-color:#294FB4!important;}
-.el-menu-top  .el-menu-item.is_active {background-color: #294FB4!important;color: #fff!important;border-bottom: 0px solid #294FB4;}
-.el-menu-top .el-menu-item.is_active .el-submenu__title:hover {background-color:#294FB4!important;}
+.el-menu-top .el-menu-item{position: relative; width: 100%; height: 100px!important; text-align: center;background: none;color:#fff; font-size: 16px;font-weight: 400;padding:0 24px; line-height: 40px;}
+.el-menu-top .el-menu-item:hover{color:#fff!important; background-color:#23449b!important;}
+.el-menu-top  .el-menu-item.is_active {background-color: #23449b!important;color: #fff!important;border-bottom: 1px solid #386cbd;}
+.el-menu-top .el-menu-item.is_active .el-submenu__title:hover {background-color:#23449b!important; color: #fff;}
 .el-menu-top .iconss{ height:  30px;display: block;margin: 0 auto;margin-top:20px;}
-.el-menu-top .el-menu-item  .msgcount {position: absolute;top:12px; left: 60px;font-size: 11px; background: #f96f6d;width: 20px;height: 20px;line-height: 20px;  text-align: center; color: #fff; border-radius: 100%;}
+.el-menu-top .el-menu-item  .msgcount {position: absolute;top:12px; font-size: 11px; background: #f96f6d;width: 20px;height: 20px;line-height: 20px;  text-align: center; color: #fff; border-radius: 100%;}
 @media screen and (max-width: 1200px) {
   .el-menu-top .logos{padding-right: 30px;}
-  .el-menu-top   .el-menu-item {padding: 0 10px;
-      }
+  .el-menu-top   .el-menu-item {padding: 0 10px;}
   }
 /* bg */
 .app-page{ background: #fff;}

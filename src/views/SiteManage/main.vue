@@ -50,6 +50,7 @@
             <div class="app-site">
               <div class="centerbox">
                 <div class="jcname">进水口</div>
+                <div class="ccname">出水口</div>
                 <canvas id="line1" class="wline"></canvas>
                 <canvas id="line2" class="wline"></canvas>
                 <canvas id="line3" class="wline rotate270"></canvas>
@@ -72,6 +73,13 @@
                 <canvas id="line20" class="wline rotate90"></canvas>
                 <canvas id="line21" class="wline rotate180"></canvas>
                 <canvas id="line22" class="wline rotate180"></canvas>
+                <canvas id="line23" class="wline rotate180"></canvas>
+                <canvas id="line24" class="wline"></canvas>
+                <canvas id="line25" class="wline rotate90"></canvas>
+                <canvas id="line26" class="wline rotate270"></canvas>
+                <canvas id="line27" class="wline rotate180"></canvas>
+                <canvas id="line28" class="wline rotate180"></canvas>
+                <canvas id="line29" class="wline rotate90"></canvas>
                 <div class="adapter1 ad1"></div>
                 <div class="adapter2 ad2"></div>
                 <div class="adapter1 ad3"></div>
@@ -83,10 +91,43 @@
                 <div class="adapter2 ad9"></div>
                 <div class="adapter2 ad10"></div>
                 <div class="adapter3 ad11"></div>
+                <div class="adapter1 ad12"></div>
+                <div class="adapter2 ad13"></div>
+                <div class="adapter3 ad14"></div>
+                <div class="adapter4 ad15"></div>
                 <div class="j2text">
                   <div>PH：60</div>
                   <div>PH：60</div>
                   <div>PH：60</div>
+                </div>
+                <div class="shbeng">
+                  <h3>抽水泵</h3>
+                  <p class="zhtai">
+                    <em>运行状态：</em>
+                    <span class="start0">运行中</span>
+                  </p>
+                </div>
+                <div class="huiliu">
+                  <h3>硝酸液回流泵</h3>
+                  <p class="zhtai">
+                    <em>运行状态：</em>
+                    <span class="start1">停止运行</span>
+                  </p>
+                </div>
+                <div class="huiliu" style="top: -115px;
+  left:830px;">
+                  <h3>淤泥回流泵</h3>
+                  <p class="zhtai">
+                    <em>运行状态：</em>
+                    <span class="start1">停止运行</span>
+                  </p>
+                </div>
+                <div class="ziwai">
+                  <h3>紫外线消毒灯光</h3>
+                  <p class="zhtai">
+                    <em>运行状态：</em>
+                    <span class="start0">运行中</span>
+                  </p>
                 </div>
                 <div class="itembox1">
                   <div class="wbox">
@@ -148,7 +189,10 @@
                   <div class="bnames">排放池</div>
                 </div>
                 <div class="itembox0">
-                  <div class="wbox0"></div>
+                  <div class="wbox0">
+                    <div class="bbans"></div>
+                    <div class="bbans"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -193,6 +237,13 @@ export default {
     this.flowAnimations("line20", 290, 12, "w");
     this.flowAnimations("line21", 100, 12, "w");
     this.flowAnimations("line22", 200, 12, "w");
+    this.flowAnimations("line23", 140, 12, "w");
+    this.flowAnimations("line24", 140, 12, "w");
+    this.flowAnimations("line25", 80, 12, "w");
+    this.flowAnimations("line26", 80, 12, "w");
+    this.flowAnimations("line27", 220, 12, "w");
+    this.flowAnimations("line28", 150, 12, "w");
+    this.flowAnimations("line29", 250, 12, "w");
   },
   methods: {
     flowAnimations(canvas, canvas_w, canvas_h, fx) {
@@ -516,7 +567,7 @@ export default {
 }
 .app-site .itembox0 {
   position: absolute;
-  top: -320px;
+  top: -330px;
   left: 1000px;
 }
 .app-site .wbox0 {
@@ -565,6 +616,14 @@ export default {
   right: 5px;
   bottom: 12px;
 }
+.app-site .wbox .bbans {
+  background: url("~@/assets/image/site-05.png") no-repeat;
+  width: 38px;
+  height: 59px;
+  position: absolute;
+  right: 5px;
+  bottom: 12px;
+}
 .app-site .bnames {
   color: #fff;
   text-align: center;
@@ -582,20 +641,93 @@ export default {
   position: absolute;
   top: 30px;
 }
+.app-site .ccname {
+  background: rgba(32, 95, 156, 0.5);
+  color: #fff;
+  width: 80px;
+  text-align: center;
+  padding: 4px 0px;
+  border-radius: 2px;
+  border: 1px #4274a5 solid;
+  position: absolute;
+  left: 150px;
+  top: 313px;
+}
 .app-site .j2text {
   position: absolute;
   top: -120px;
   left: 150px;
+  font-size: 12px;
 }
 .app-site .j2text div {
   background: rgba(32, 95, 156, 0.5);
   color: #fff;
   width: 105px;
-  padding: 2px 0px;
+  padding: 5px 0px;
   border-radius: 2px;
   border: 1px #4274a5 solid;
   margin-bottom: 10px;
   text-indent: 10px;
+}
+.shbeng {
+  position: absolute;
+  top: 80px;
+  left: 470px;
+  z-index: 9999;
+  text-align: center;
+}
+.shbeng h3 {
+  color: #fff;
+  font-weight: 400;
+  margin-bottom: 35px;
+}
+.huiliu {
+  position: absolute;
+  top: -75px;
+  left: 700px;
+  z-index: 9999;
+  text-align: center;
+}
+.huiliu h3 {
+  display: inline-block;
+  color: #fff;
+  font-weight: 400;
+  font-size: 12px;
+  margin-right: 5px;
+}
+.huiliu p {
+  display: inline-block;
+}
+.ziwai {
+  position: absolute;
+  top: 290px;
+  left: 702px;
+  z-index: 9999;
+  text-align: center;
+}
+.ziwai h3 {
+  color: #fff;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+.zhtai {
+  border: 1px #4274a5 solid;
+  color: #fff;
+  border-radius: 2px;
+  background: rgba(40, 70, 124, 0.5);
+  font-size: 12px;
+}
+.zhtai em {
+  display: inline-block;
+  padding: 3px 0 3px 6px;
+}
+.zhtai span {
+  display: inline-block;
+  background: #2377fc;
+  padding: 3px 5px;
+}
+.zhtai .start1 {
+  background: #ec450f;
 }
 /* line */
 .app-site .wline {
@@ -687,9 +819,37 @@ export default {
   left: 1120px;
   top: 330px;
 }
-.app-site #line22{
+.app-site #line22 {
   left: 830px;
-  top: 330px;
+  top: 320px;
+}
+.app-site #line23 {
+  left: 690px;
+  top: 260px;
+}
+.app-site #line24 {
+  left: 690px;
+  top: 360px;
+}
+.app-site #line25 {
+  left: 645px;
+  top: 310px;
+}
+.app-site #line26 {
+  left: 795px;
+  top: 310px;
+}
+.app-site #line27 {
+  left: 460px;
+  top: 320px;
+}
+.app-site #line28 {
+  left: 250px;
+  top: 320px;
+}
+.app-site #line29 {
+  left: 690px;
+  top: -70px;
 }
 /* */
 .adapter1 {
@@ -759,6 +919,22 @@ export default {
 .ad11 {
   left: 1210px;
   top: 321px;
+}
+.ad12 {
+  left: 680px;
+  top: 260px;
+}
+.ad13 {
+  left: 820px;
+  top: 260px;
+}
+.ad14 {
+  left: 820px;
+  top: 351px;
+}
+.ad15 {
+  left: 680px;
+  top: 351px;
 }
 .rotate360 {
   transform: rotate(360deg);

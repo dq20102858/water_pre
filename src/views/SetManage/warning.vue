@@ -62,7 +62,7 @@
                 </el-col>
               </el-form-item>
 
-              <el-form-item label="电导绿：" required>
+              <el-form-item label="电导率：" required>
                 <el-col :span="11">
                   <el-form-item prop="conductivity">
                     <el-input v-model="formData.conductivity" autocomplete="off"></el-input>
