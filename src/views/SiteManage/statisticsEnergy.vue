@@ -123,7 +123,11 @@ export default {
       this.request({
         url: "/log/getRealtimeEnergy",
         method: "get",
-        params: { type: type, start_time: this.oneStartTime }
+        params: {
+          sid: this.$route.query.id,
+          type: type,
+          start_time: this.oneStartTime
+        }
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
@@ -142,7 +146,7 @@ export default {
               maskColor: "rgba(255, 255, 255, 0.8)"
             });
           }
-            var option = {
+          var option = {
             backgroundColor: "#fff",
             tooltip: {
               trigger: "axis",
@@ -254,7 +258,12 @@ export default {
       this.request({
         url: "/log/getRealtimeEnergy",
         method: "get",
-        params: { device_type: 1, type: type, start_time: this.twoStartTime }
+        params: {
+          sid: this.$route.query.id,
+          device_type: 1,
+          type: type,
+          start_time: this.twoStartTime
+        }
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
@@ -385,7 +394,12 @@ export default {
       this.request({
         url: "/log/getRealtimeEnergy",
         method: "get",
-        params: { device_type: 2, type: type, start_time: this.twoStartTime }
+        params: {
+          sid: this.$route.query.id,
+          device_type: 2,
+          type: type,
+          start_time: this.twoStartTime
+        }
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {

@@ -49,8 +49,12 @@
           <div class="app-page-site-box">
             <div class="app-site">
               <div class="centerbox">
-                <div class="jcname">进水口</div>
-                <div class="ccname">出水口</div>
+                <div class="nenghao">
+                  <span @click="statisticsEnergyDetail">查看能耗分析</span>
+                  当前控制室温度37
+                </div>
+                <div class="jcname" @click="statisticsWaterDetail">进水口</div>
+                <div class="ccname" @click="statisticsWaterDetail">出水口</div>
                 <canvas id="line1" class="wline"></canvas>
                 <canvas id="line2" class="wline"></canvas>
                 <canvas id="line3" class="wline rotate270"></canvas>
@@ -95,10 +99,10 @@
                 <div class="adapter2 ad13"></div>
                 <div class="adapter3 ad14"></div>
                 <div class="adapter4 ad15"></div>
-                <div class="j2text">
+                <div class="j2text" @click="statisticsWaterQualityDetail">
                   <div>PH：60</div>
-                  <div>PH：60</div>
-                  <div>PH：60</div>
+                  <div>电导率：60</div>
+                  <div>液位：60</div>
                 </div>
                 <div class="shbeng">
                   <h3>抽水泵</h3>
@@ -114,12 +118,25 @@
                     <span class="start1">停止运行</span>
                   </p>
                 </div>
-                <div class="huiliu" style="top: -115px;
-  left:830px;">
+                <div class="huiliu" style="top: -115px;left:830px;">
                   <h3>淤泥回流泵</h3>
                   <p class="zhtai">
                     <em>运行状态：</em>
                     <span class="start1">停止运行</span>
+                  </p>
+                </div>
+                <div class="fengji">
+                  <h3>1#风机</h3>
+                  <p class="zhtai">
+                    <em>运行状态：</em>
+                    <span class="start0">运行中</span>
+                  </p>
+                </div>
+                <div class="fengji" style="top: -170px; left:1115px;">
+                  <h3>1#风机</h3>
+                  <p class="zhtai">
+                    <em>运行状态：</em>
+                    <span class="start1">故障中</span>
                   </p>
                 </div>
                 <div class="ziwai">
@@ -191,7 +208,7 @@
                 <div class="itembox0">
                   <div class="wbox0">
                     <div class="bbans"></div>
-                    <div class="bbans"></div>
+                    <div class="bbans" style="top:150px"></div>
                   </div>
                 </div>
               </div>
@@ -500,20 +517,7 @@ export default {
   height: 100vh;
   overflow-x: auto;
 }
-.main-top {
-  padding: 30px 30px 0 30px;
-  color: #fff;
-  font-size: 20px;
-}
-.main-top .item span {
-  background: #244177;
-  color: #fff;
-  border-radius: 2px;
-  font-size: 16px;
-  padding: 8px 10px;
-  margin-right: 30px;
-  cursor: pointer;
-}
+
 .app-site {
   position: relative;
   margin-left: 100px;
@@ -522,8 +526,23 @@ export default {
 .app-site .centerbox {
   margin-top: 400px;
   position: relative;
-
   z-index: 99;
+}
+.nenghao {
+  color: #fff;
+  font-size: 20px;
+  position: absolute;
+  top: -340px;
+  left: 10px;
+}
+.nenghao span {
+  background: #3d88f5;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 16px;
+  padding: 8px 10px;
+  margin-right: 30px;
+  cursor: pointer;
 }
 .app-site .itembox1 {
   position: absolute;
@@ -567,16 +586,8 @@ export default {
 }
 .app-site .itembox0 {
   position: absolute;
-  top: -330px;
-  left: 1000px;
-}
-.app-site .wbox0 {
-  margin: 0 auto;
-  background: url("~@/assets/image/site-03.png") no-repeat;
-  height: 229px;
-  width: 281px;
-  z-index: 999;
-  overflow: hidden;
+  top: -340px;
+  left: 1010px;
 }
 .app-site .wbox {
   margin: 0 auto;
@@ -616,13 +627,21 @@ export default {
   right: 5px;
   bottom: 12px;
 }
-.app-site .wbox .bbans {
+.app-site .wbox0 {
+  margin: 0 auto;
+  background: url("~@/assets/image/site-03.png") no-repeat;
+  width: 260px;
+  height: 220px;
+  z-index: 999;
+  overflow: hidden;
+}
+.app-site .wbox0 .bbans {
   background: url("~@/assets/image/site-05.png") no-repeat;
-  width: 38px;
-  height: 59px;
+  width: 63px;
+  height: 45px;
   position: absolute;
-  right: 5px;
-  bottom: 12px;
+  left: 50px;
+  top: 72px;
 }
 .app-site .bnames {
   color: #fff;
@@ -640,6 +659,7 @@ export default {
   border: 1px #4274a5 solid;
   position: absolute;
   top: 30px;
+  cursor: pointer;
 }
 .app-site .ccname {
   background: rgba(32, 95, 156, 0.5);
@@ -652,8 +672,10 @@ export default {
   position: absolute;
   left: 150px;
   top: 313px;
+  cursor: pointer;
 }
 .app-site .j2text {
+  cursor: pointer;
   position: absolute;
   top: -120px;
   left: 150px;
@@ -698,6 +720,19 @@ export default {
 .huiliu p {
   display: inline-block;
 }
+.fengji {
+  position: absolute;
+  top: -250px;
+  left: 1115px;
+  z-index: 9999;
+  width: 118px;
+}
+.fengji h3 {
+  color: #fff;
+  font-weight: 400;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
 .ziwai {
   position: absolute;
   top: 290px;
@@ -723,7 +758,7 @@ export default {
 }
 .zhtai span {
   display: inline-block;
-  background: #2377fc;
+  background: #3d88f5;
   padding: 3px 5px;
 }
 .zhtai .start1 {

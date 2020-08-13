@@ -123,7 +123,7 @@ export default {
       this.request({
         url: "/log/getLevelDatas",
         method: "get",
-        params: { type: type, start_time: this.oneStartTime }
+        params: { sid: this.$route.query.id, type: type, start_time: this.oneStartTime }
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
@@ -268,7 +268,7 @@ export default {
       this.request({
         url: "/log/getPhDatas",
         method: "get",
-        params: { type: type, start_time: this.twoStartTime }
+        params: { sid: this.$route.query.id, type: type, start_time: this.twoStartTime }
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
@@ -416,7 +416,7 @@ export default {
       this.request({
         url: "/log/getDoDatas",
         method: "get",
-        params: { type: type, start_time: this.threeStartTime }
+        params: {  sid: this.$route.query.id,type: type, start_time: this.threeStartTime }
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {

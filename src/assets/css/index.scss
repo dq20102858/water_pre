@@ -198,12 +198,12 @@ a.btn-edit:hover{ background: #EF964B;}
 .left-menu-area .el-menu-item.active a{text-decoration: none; color:#4688f1}
 .left-menu-area .el-menu-item.active::after{content: ""; position: absolute;right: 10px; top:15px; width:0px;height:0px;border-width:5px 0 5px 8px;border-style:solid; border-color:transparent transparent transparent #428bf1; }
 
-.left-menu-chlid{float: left;  background: #fff; width: 100px;height: calc(100vh - 100px); }
+.left-menu-chlid{float: left;  background: #E3E8F2; width: 100px;height: calc(100vh - 100px); }
 .left-menu-chlid .el-menu {background: none;border: none;}
 .left-menu-chlid .el-menu-item {position: relative; background: none;color: #333;padding-right: 10px!important; padding-left: 10px!important; height: 39px;line-height: 39px;white-space: nowrap;overflow: hidden; }
 .left-menu-chlid .el-menu-item  span{display: block; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;}
 .left-menu-chlid .el-menu-item:hover {background:#9aaeca;color: #fff;}
-.left-menu-chlid .el-menu-item.active {background: #fff;color: #9aaeca;}
+.left-menu-chlid .el-menu-item.active {background: #9aaeca;color: #333;}
 .left-menu-chlid .el-menu-item a{display: block; text-decoration: none; color:#fff}
 .left-menu-chlid .el-menu-item.active a{text-decoration: none; color:#9aaeca}
 .left-menu-chlid .el-menu-item.active::after{content: ""; position: absolute;right: 10px; top:15px; width:0px;height:0px;border-width:5px 0 5px 8px;border-style:solid; border-color:transparent transparent transparent #428bf1; }

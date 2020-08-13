@@ -79,7 +79,7 @@ export default {
   },
   created() {
     this.getOneChart(this.oneType);
-     this.getTwoChart(this.twoType);
+    this.getTwoChart(this.twoType);
   },
   methods: {
     backURL() {
@@ -98,7 +98,11 @@ export default {
         //url: "/log/getTotalEnterWater",
         url: "/log/getPhDatas",
         method: "get",
-        params: { type: type, start_time: this.oneStartTime }
+        params: {
+          sid: this.$route.query.id,
+          type: type,
+          start_time: this.oneStartTime
+        }
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
@@ -109,48 +113,48 @@ export default {
           //dataSeries = [120, 130, 140, 150];
           let myChart = this.$echarts.init(document.getElementById("oneChart"));
           if (data.data.length == 0) {
-            dataxAxis = [
-              "2020-08-01",
-              "2020-08-02",
-              "2020-08-03",
-              "2020-08-04",
-              "2020-08-05",
-              "2020-08-06",
-              "2020-08-07",
-              "2020-08-08",
-              "2020-08-09",
-              "2020-08-10",
-              "2020-08-11",
-              "2020-08-12"
-            ];
-            dataSeriesEnter = [
-              400,
-              500,
-              600,
-              700,
-              800,
-              900,
-              1000,
-              1100,
-              1200,
-              1300,
-              1400,
-              1500
-            ];
-            dataSeriesOuter = [
-              200,
-              300,
-              400,
-              500,
-              600,
-              700,
-              800,
-              900,
-              1000,
-              1100,
-              1200,
-              1300
-            ];
+            //   dataxAxis = [
+            //     "2020-08-01",
+            //     "2020-08-02",
+            //     "2020-08-03",
+            //     "2020-08-04",
+            //     "2020-08-05",
+            //     "2020-08-06",
+            //     "2020-08-07",
+            //     "2020-08-08",
+            //     "2020-08-09",
+            //     "2020-08-10",
+            //     "2020-08-11",
+            //     "2020-08-12"
+            //   ];
+            //   dataSeriesEnter = [
+            //     400,
+            //     500,
+            //     600,
+            //     700,
+            //     800,
+            //     900,
+            //     1000,
+            //     1100,
+            //     1200,
+            //     1300,
+            //     1400,
+            //     1500
+            //   ];
+            //   dataSeriesOuter = [
+            //     200,
+            //     300,
+            //     400,
+            //     500,
+            //     600,
+            //     700,
+            //     800,
+            //     900,
+            //     1000,
+            //     1100,
+            //     1200,
+            //     1300
+            //   ];
 
             myChart.showLoading({
               text: "暂无数据",
@@ -190,20 +194,7 @@ export default {
             },
             xAxis: {
               type: "category",
-              data: [
-                "2020-08-01",
-                "2020-08-02",
-                "2020-08-03",
-                "2020-08-04",
-                "2020-08-05",
-                "2020-08-06",
-                "2020-08-07",
-                "2020-08-08",
-                "2020-08-09",
-                "2020-08-10",
-                "2020-08-11",
-                "2020-08-12"
-              ],
+              data: dataxAxis,
               axisLine: {
                 lineStyle: {
                   color: "#869ec6"
@@ -269,20 +260,7 @@ export default {
                     barBorderRadius: [3, 3, 0, 0]
                   }
                 },
-                data: [
-                  400,
-                  500,
-                  600,
-                  700,
-                  800,
-                  900,
-                  1000,
-                  1100,
-                  1200,
-                  1300,
-                  1400,
-                  1500
-                ]
+                data: dataSeriesEnter
               },
               {
                 name: "出水",
@@ -317,20 +295,7 @@ export default {
                     barBorderRadius: [3, 3, 0, 0]
                   }
                 },
-                data: [
-                  200,
-                  300,
-                  400,
-                  500,
-                  600,
-                  700,
-                  800,
-                  900,
-                  1000,
-                  1100,
-                  1200,
-                  1300
-                ]
+                data: dataSeriesOuter
               }
             ]
           };
@@ -339,7 +304,6 @@ export default {
           window.addEventListener("resize", function() {
             myChart.resize();
           });
-
           //end
         }
       });
@@ -357,7 +321,11 @@ export default {
         //url: "/log/getTotalEnterWater",
         url: "/log/getEnterWater",
         method: "get",
-        params: { type: type, start_time: this.twoStartTime }
+        params: {
+          sid: this.$route.query.id,
+          type: type,
+          start_time: this.twoStartTime
+        }
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
@@ -376,7 +344,7 @@ export default {
           }
           var option = {
             backgroundColor: "#fff",
-        
+
             tooltip: {
               trigger: "axis",
               axisPointer: {
