@@ -116,9 +116,8 @@
               </el-table-column>
               <el-table-column prop="station_name" label="维保站点"></el-table-column>
               <el-table-column prop="assigner" label="指派人"></el-table-column>
-              <el-table-column prop="role" label="职位"></el-table-column>
-              <el-table-column prop="phone" label="联系电话"></el-table-column>
-              <el-table-column prop="type" label="派单事项">
+              <el-table-column prop="phone" label="手机"></el-table-column>
+              <el-table-column prop="type" label="维保事项">
                 <template slot-scope="scope">
                   <span v-if="scope.row.type==1">设备维修</span>
                   <span v-else-if="scope.row.type==2">例行维保</span>
@@ -220,13 +219,12 @@
               ></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="人员职位：">
+          <!-- <el-form-item label="人员职位：">
             <el-input v-model="formData.role" autocomplete="off" disabled></el-input>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item label="手机号码：">
             <el-input v-model="formData.phone" autocomplete="off" disabled></el-input>
           </el-form-item>
-
           <!-- <el-form-item label="指派时间：" prop="assign_time">
             <el-date-picker v-model="formData.assign_time" type="date" placeholder="选择日期"></el-date-picker>
           </el-form-item>-->
@@ -253,17 +251,12 @@
           <el-form-item label="选择站点：">
             <div class="disp-info">{{formData.station_name}}</div>
           </el-form-item>
-          <el-form-item label="派单事项：">
-            <div class="disp-info" v-if="formData.type==1">设备维修</div>
-            <div class="disp-info" v-if="formData.type==2">例行维保</div>
-            <div class="disp-info" v-if="formData.type==3">运行检查</div>
-          </el-form-item>
           <el-form-item label="指派人员：">
             <div class="disp-info">{{formData.assigner}}</div>
           </el-form-item>
-          <el-form-item label="人员职位：">
+          <!-- <el-form-item label="人员职位：">
             <div class="disp-info">{{formData.role}}</div>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item label="手机号码：">
             <div class="disp-info">{{formData.phone}}</div>
           </el-form-item>
@@ -465,16 +458,15 @@ export default {
     userChange(e) {
       this.userList.forEach(ele => {
         if (ele.id == e) {
-          if (ele.role_id == 1) {
-            this.formData.role = "管理员";
-          } else if (ele.role_id == 2) {
-            this.formData.role = "维修人员";
-          } else if (ele.role_id == 3) {
-            this.formData.role = "巡检人员";
-          } else if (ele.role_id == 4) {
-            this.formData.role = "分析人员";
-          }
-          this.formData.role = ele.role_id == 1 ? "管理员" : "维保人员";
+          // if (ele.role_id == 1) {
+          //   this.formData.role = "管理员";
+          // } else if (ele.role_id == 2) {
+          //   this.formData.role = "维修人员";
+          // } else if (ele.role_id == 3) {
+          //   this.formData.role = "巡检人员";
+          // } else if (ele.role_id == 4) {
+          //   this.formData.role = "分析人员";
+          // }
           this.formData.phone = ele.phone;
         }
       });
