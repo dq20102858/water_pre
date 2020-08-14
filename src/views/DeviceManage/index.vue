@@ -90,7 +90,7 @@
                   <el-option label="异常" value="2"></el-option>
                 </el-select>
               </el-form-item>
-                <el-form-item class="el-form-item">
+              <el-form-item class="el-form-item">
                 <el-button type="primary" @click="searchAllEvent">重置</el-button>
               </el-form-item>
               <div class="el-serach noborder">
@@ -102,11 +102,12 @@
           <div class="devicelist">
             <el-row :gutter="20">
               <el-col :span="8" v-for="item in dataList" :key="item.id">
-                <div class="grid" @click="detailEvent(item.id)" title="点击查看详情">
+                <div class="grid" title="点击查看详情">
                   <div :class="['grid-title icon'+item.type]">{{item.name}}</div>
                   <div class="grid-content">
                     <div class="grid-img">
                       <img :src="item.img" />
+                      <div @click="detailEvent(item.id)" class="viewdetail">查看详情</div>
                     </div>
                     <div class="grid-info">
                       <p>
@@ -440,7 +441,6 @@ export default {
     };
   },
   created() {
-     
     this.getFatherStationList();
     // this.getChildStationList();
     this.getDataList();
@@ -578,9 +578,9 @@ export default {
       this.searchStatus = val;
       this.getDataList();
     },
-       searchAllEvent() {
+    searchAllEvent() {
       this.page_cur = 1;
-       this.searchKeyword="";
+      this.searchKeyword = "";
       this.searchStatus = "0";
       this.searchType = "0";
       this.searchAssignerId = "0";
@@ -734,6 +734,7 @@ export default {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .devicelist .icon1 {
   background: #3a91f1 url("~@/assets/image/icon-sb1.png") no-repeat left center;
   background-size: 40px;
@@ -757,9 +758,21 @@ export default {
   margin-right: 20px;
   border-radius: 3px;
 }
+.devicelist .viewdetail {
+  display: block;
+  border-radius: 3px;
+  padding: 8px 0;
+  border: 1px #2b8cf9 solid;
+  text-align: center;
+  color: #3a91f1;
+}
+.devicelist .viewdetail:hover {
+  background: #3a91f1;
+  color: #fff;
+}
 .devicelist .grid-img img {
-  margin-top: 25px;
-  float: left;
+  margin-bottom: 15px;
+  display: block;
   width: 120px;
   height: 120px;
   border-radius: 3px;

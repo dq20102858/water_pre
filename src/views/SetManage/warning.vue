@@ -81,6 +81,7 @@
   </el-input>
               </el-form-item>
               <el-form-item>
+                <br>
                 <el-button type="primary" @click="addEventDialog">确定</el-button>
               </el-form-item>
             </el-form>
