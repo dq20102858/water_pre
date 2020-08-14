@@ -435,4 +435,5 @@ export default {
   border-radius: 3px;
   border: 1px #ddd solid;
 }
+.app-set-page .bm-view{height: 360px;}
 </style>

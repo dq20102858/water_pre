@@ -63,23 +63,18 @@ export default {
             required: true,
             message: "请输入用户名",
             trigger: "blur"
-          },
-          {
-            pattern: /^[\u4e00-\u9fa5A-Za-z0-9\_]*$/,
-            message: "请输入正确的用户名",
-            trigger: "blur"
           }
+          //,
+          // {
+          //   pattern: /^[\u4e00-\u9fa5A-Za-z0-9\_]*$/,
+          //   message: "请输入正确的用户名",
+          //   trigger: "blur"
+          // }
         ],
         password: [
           {
             required: true,
             message: "请输入密码",
-            trigger: "blur"
-          },
-          {
-            min: 2,
-            max: 14,
-            message: "请输入密码长度6到14个字符",
             trigger: "blur"
           }
         ]
@@ -117,7 +112,7 @@ export default {
             .then(() => {
               this.loading = false;
               this.$router.push({ path: "/sitemanage" });
-                sessionStorage.setItem("activeMenu", "/sitemanage");
+              sessionStorage.setItem("activeMenu", "/sitemanage");
             })
             .catch(() => {
               this.loading = false;

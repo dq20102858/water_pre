@@ -30,7 +30,7 @@
             >
               <span :title="item.name">{{item.name}}</span>
             </el-menu-item>
-         <!-- <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+            <!-- <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
        <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
        <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">end中南新村</span></li>
         <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
@@ -54,7 +54,7 @@
         <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">3中南新村</span></li>
        <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">4中南新村</span></li>
        <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">dend中南新村</span></li>
-        -->
+            -->
           </el-menu>
         </div>
         <div class="left-menu-chlid">
@@ -67,7 +67,7 @@
             >
               <span :title="item.name">{{item.name}}</span>
             </el-menu-item>
-        <!-- <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+            <!-- <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
        <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
        <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
        <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
@@ -89,11 +89,11 @@
        <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
        <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
        <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">end中南新村</span></li>
-        -->
-       </el-menu>
+            -->
+          </el-menu>
         </div>
       </div>
-      <div class="app-page-rows-rights"  ref="apprights">
+      <div class="app-page-rows-rights" ref="apprights">
         <div class="app-page-container">
           <div class="app-page-select">
             <el-form :inline="true">
@@ -173,7 +173,8 @@
               <el-table-column label="操作" v-if="this.searchType==3" width="150">
                 <template slot-scope="scope">
                   <div class="app-operation">
-                    <a class="btn-edit" target="_blank" :href="scope.row.video_url">查看视频</a>
+                    <!-- :href="scope.row.video_url" -->
+                    <a class="btn-edit" target="_blank" @click="videoEvent(scope.row.id)">查看视频</a>
                     <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
                   </div>
                 </template>
@@ -216,6 +217,23 @@
           </div>
         </div>
       </div>
+      <el-dialog
+        width="920px"
+        title="监控画面"
+        :close-on-click-modal="false"
+        :visible.sync="diaLogFormVisible"
+      >
+        <div class="videolist">
+          <div class="vitems">
+            <div class="gtitle">视屏1</div>
+            <img :src="require('@/assets/image/videos.png')" />
+          </div>
+          <div class="vitems">
+            <div class="gtitle">视屏1</div>
+            <img :src="require('@/assets/image/videos.png')" />
+          </div>
+        </div>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -249,12 +267,11 @@ export default {
         }
       },
       searchStartTime: "",
-      searchEndTime: ""
+      searchEndTime: "",
+      diaLogFormVisible: false
     };
   },
-  mounted(){
-
-  },
+  mounted() {},
   created() {
     this.getFatherStationList();
     this.getDataList();
@@ -430,6 +447,9 @@ export default {
         }
       });
     },
+    videoEvent() {
+      this.diaLogFormVisible = true;
+    },
     deleteEvent(id) {
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
@@ -476,5 +496,30 @@ export default {
   color: #fff;
   padding: 3px 5px;
   border-radius: 3px;
+}
+.videolist {
+  overflow: hidden;
+  border-radius: 3px;
+}
+.videolist .vitems {
+  width: 400px;
+  float: left;
+  margin: 0 15px 20px 15px;
+}
+.videolist .vitems img {
+  width: 100%;
+}
+.videolist .gtitle {
+  background: #4093ed;
+  color: #fff;
+  font-size: 16px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 3px 3px 0 0;
+  padding-left: 20px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 </style>
