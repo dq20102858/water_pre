@@ -49,7 +49,7 @@
           </el-menu>
         </div>
       </div>
-    
+
       <div class="app-page-rows-rights">
         <div class="app-page-container">
           <div class="app-page-select" style="padding: 0 10px">
@@ -101,7 +101,7 @@
             <el-row :gutter="20">
               <el-col :span="8" v-for="item in dataList" :key="item.id">
                 <div class="grid" @click="detailEvent(item.id)" title="点击查看详情">
-                  <div class="grid-title">{{item.name}}</div>
+                  <div :class="['grid-title icon'+item.type]">{{item.name}}</div>
                   <div class="grid-content">
                     <div class="grid-img">
                       <img :src="item.img" />
@@ -712,24 +712,31 @@ export default {
 }
 .devicelist .grid-title {
   color: #fff;
-  background: #3a91f1;
   font-size: 16px;
   height: 40px;
   line-height: 40px;
   border-radius: 3px 3px 0 0;
-  padding-left: 20px;
+  padding-left: 40px;
   text-align: left;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.devicelist .grid-title span {
-  float: right;
-  padding-right: 20px;
-  max-width: 100px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+.devicelist .icon1 {
+  background: #3a91f1 url("~@/assets/image/icon-sb1.png") no-repeat left center;
+  background-size: 40px;
+}
+.devicelist .icon2 {
+  background: #3a91f1 url("~@/assets/image/icon-sb2.png") no-repeat left center;
+  background-size: 40px;
+}
+.devicelist .icon3 {
+  background: #3a91f1 url("~@/assets/image/icon-sb4.png") no-repeat left center;
+  background-size: 40px;
+}
+.devicelist .icon4 {
+  background: #3a91f1 url("~@/assets/image/icon-sb4.png") no-repeat left center;
+  background-size: 40px;
 }
 .devicelist .grid-img {
   float: left;
