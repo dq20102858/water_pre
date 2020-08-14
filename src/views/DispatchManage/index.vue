@@ -1,49 +1,84 @@
 <template>
   <div class="app-device-page">
     <div class="app-page-rows">
-      <div class="app-page-rows-left">
+      <div class="app-page-rows-lefts">
         <div class="left-menu-area">
           <div class="input-so">
-            <el-input
+            <el-autocomplete
+              v-model="chlidStationName"
               prefix-icon="el-icon-search"
-              placeholder="请输入处理站"
-              v-model="searchVillageName"
-              @input="searchVillageNameEvent"
-              maxlength="10"
+              class="inline-input"
+              :fetch-suggestions="searchStationCallBack"
+              placeholder="请输入内容"
+              :trigger-on-focus="false"
+              @select="searchStationEvent($event)"
               clearable
-            ></el-input>
+            ></el-autocomplete>
           </div>
           <el-menu router>
             <el-menu-item
-              :class="searchVillageId === 0 ? 'active' : ''"
-              @click="searchVillageEvent(0)"
+              :class="fatherStationId === 0 ? 'active' : ''"
+              @click="fatherStationEvent(0)"
             >
               <span>全部</span>
             </el-menu-item>
             <el-menu-item
-              v-for="item in childStation"
+              v-for="item in fatherStationList"
               :key="item.id"
-              :class="searchVillageId === item.id ? 'active' : ''"
-              @click="searchVillageEvent(item.id)"
+              :class="fatherStationId === item.id ? 'active' : ''"
+              @click="fatherStationEvent(item.id)"
             >
-              <span>{{item.name}}</span>
+              <span :title="item.name">{{item.name}}</span>
+            </el-menu-item>
+          </el-menu>
+        </div>
+        <div class="left-menu-chlid">
+          <el-menu router>
+            <el-menu-item
+              v-for="item in childStationList"
+              :key="item.id"
+              :class="chlidStationId === item.id ? 'active' : ''"
+              @click="chlidStationEvent(item.id)"
+            >
+              <span :title="item.name">{{item.name}}</span>
             </el-menu-item>
           </el-menu>
         </div>
       </div>
-      <div class="app-page-rows-right">
+      <div class="app-page-rows-rights">
         <div class="app-page-container">
           <div class="app-page-select">
             <el-form :inline="true">
-              <el-form-item class="el-form-item">
-                <el-input
-                  prefix-icon="el-icon-search"
-                  placeholder="请请输入处理站名称"
-                  @input="searchKeywordEvent"
-                  v-model="searchKeyword"
-                  class="input-with-select"
-                  clearable
-                ></el-input>
+              <el-form-item class="el-form-item el-select-dorps" style="width:120px">
+                <el-select
+                  v-model="searchAssignerId"
+                  filterable
+                  placeholder="请选择 或搜索"
+                  @change="searchAssignerEvent($event)"
+                >
+                  <el-option key="0" label="全部运维人" value="0"></el-option>
+                  <el-option
+                    v-for="item in userList"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item class="el-form-item el-select-dorps">
+                <el-select v-model="searchType" @change="searchTypeEvent" style="width:110px">
+                  <el-option label="全部事项" value="0"></el-option>
+                  <el-option label="设备维修" value="1"></el-option>
+                  <el-option label="例行维保" value="2"></el-option>
+                  <el-option label="运行检查" value="3"></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item class="el-form-item el-select-dorps">
+                <el-select v-model="searchStatus" @change="searchStatusEvent" style="width:100px">
+                  <el-option label="全部状态" value="0"></el-option>
+                  <el-option label="已完成" value="2"></el-option>
+                  <el-option label="未完成" value="1"></el-option>
+                </el-select>
               </el-form-item>
               <el-form-item class="el-form-item">
                 <el-date-picker
@@ -65,21 +100,6 @@
                   @change="searchEndTimeEvent"
                   :picker-options="pickerEndTime"
                 ></el-date-picker>
-              </el-form-item>
-              <el-form-item class="el-form-item el-select-dorps">
-                <el-select v-model="searchType" @change="searchTypeEvent" style="width:110px">
-                  <el-option label="全部事项" value="0"></el-option>
-                  <el-option label="设备维修" value="1"></el-option>
-                  <el-option label="例行维保" value="2"></el-option>
-                  <el-option label="运行检查" value="3"></el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item class="el-form-item el-select-dorps">
-                <el-select v-model="searchStatus" @change="searchStatusEvent" style="width:100px">
-                  <el-option label="全部状态" value="0"></el-option>
-                  <el-option label="已完成" value="2"></el-option>
-                  <el-option label="未完成" value="1"></el-option>
-                </el-select>
               </el-form-item>
               <div class="el-serach noborder">
                 <!-- <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable></el-input> -->
@@ -117,8 +137,13 @@
               <el-table-column label="操作" width="190">
                 <template slot-scope="scope">
                   <div class="app-operation">
-                    <el-button class="btn-apply" size="mini" @click="applyEvent(scope.row.id)" v-if="scope.row.status==1">审批</el-button>
-                          <el-button class="btn-apply" size="mini"  v-if="scope.row.status==2" disabled>审批</el-button>
+                    <el-button
+                      class="btn-apply"
+                      size="mini"
+                      @click="applyEvent(scope.row.id)"
+                      v-if="scope.row.status==1"
+                    >审批</el-button>
+                    <el-button class="btn-apply" size="mini" v-if="scope.row.status==2" disabled>审批</el-button>
                     <el-button class="btn-edit" size="mini" @click="detailEvent(scope.row.id)">详情</el-button>
                     <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
                   </div>
@@ -304,16 +329,19 @@ export default {
       page_total: 0,
       dataList: [],
       userList: [],
-      childStation: [],
       stationOptions: [],
       stationOptionsProps: {
         value: "id",
         label: "name",
         children: "child"
       },
-      searchVillageName: "",
-      searchVillageId: 0,
+      fatherStationList: [],
+      childStationList: [],
+      fatherStationId: 0,
+      chlidStationId: 0,
+      chlidStationName: "",
       searchKeyword: "",
+      searchAssignerId: "0",
       searchType: "0",
       searchStatus: "0",
       pickerStartTime: {
@@ -335,22 +363,23 @@ export default {
     };
   },
   created() {
-    this.getChildStationList();
+    this.getFatherStationList();
     this.getDataList();
+    this.getUsersList();
   },
   methods: {
     getDataList() {
       let page = this.page_cur;
-      let station_name = this.searchKeyword;
       let type = this.searchType;
       let status = this.searchStatus;
-      let sid = this.searchVillageId;
+      let sid = this.chlidStationId;
+      let assigner_id = this.searchAssignerId;
       let start_time = this.searchStartTime;
       let end_time = this.searchEndTime;
       this.request({
         url: "/assign/getAssignPages",
         method: "get",
-        params: { page, station_name, type, status, sid, start_time, end_time }
+        params: { page, sid, assigner_id, type, status, start_time, end_time }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
@@ -374,13 +403,8 @@ export default {
       this.page_cur = this.page_total;
       this.getDataList();
     },
-    searchVillageEvent(val) {
-      this.page_cur = 1;
-      this.searchVillageId = val;
-      this.getDataList();
-    },
-    searchKeywordEvent() {
-      this.page_cur = 1;
+    searchAssignerEvent(item) {
+      this.searchAssignerId = item;
       this.getDataList();
     },
     searchStatusEvent(val) {
@@ -390,9 +414,6 @@ export default {
     searchTypeEvent(val) {
       this.searchType = val;
       this.getDataList();
-    },
-    searchVillageNameEvent() {
-      this.getChildStationList();
     },
     searchStartTimeEvent() {
       console.log(this.searchEndTime);
@@ -407,19 +428,7 @@ export default {
         this.getDataList();
       }
     },
-    getChildStationList() {
-      let name = this.searchVillageName;
-      this.request({
-        url: "/station/getChildStationLists",
-        method: "get",
-        params: { name }
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          this.childStation = data.data;
-        }
-      });
-    },
+
     getStationList() {
       this.request({
         url: "/station/getStationLists",
@@ -445,6 +454,15 @@ export default {
     userChange(e) {
       this.userList.forEach(ele => {
         if (ele.id == e) {
+          if (ele.role_id == 1) {
+            this.formData.role = "管理员";
+          } else if (ele.role_id == 2) {
+            this.formData.role = "维修人员";
+          } else if (ele.role_id == 3) {
+            this.formData.role = "巡检人员";
+          } else if (ele.role_id == 4) {
+            this.formData.role = "分析人员";
+          }
           this.formData.role = ele.role_id == 1 ? "管理员" : "维保人员";
           this.formData.phone = ele.phone;
         }
@@ -453,7 +471,7 @@ export default {
     //添加编辑
     addShowDialog() {
       this.getStationList();
-      this.getUsersList();
+
       this.diaLogFormVisible = true;
       this.diaLogTitle = "发起派单";
       this.$nextTick(() => {
@@ -556,8 +574,92 @@ export default {
           });
         })
         .catch(() => {});
+    },
+    //station
+    getFatherStationList() {
+      let name = this.chlidName;
+      this.request({
+        url: "/station/getStationLists",
+        method: "get",
+        params: { name }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.fatherStationList = data.data;
+          if (this.fatherStationId == 0) {
+            this.getChildStationList();
+          }
+        }
+      });
+    },
+    getChildStationList() {
+      let name = "";
+      this.request({
+        url: "/station/getChildStationLists",
+        method: "get",
+        params: { name }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          let results = data.data;
+          this.childStationList = results;
+        }
+      });
+    },
+    fatherStationEvent(val) {
+      if (val == 0) {
+        this.getChildStationList();
+        this.page_cur = 1;
+        this.chlidStationId = 0;
+        this.getDataList();
+      }
+      this.fatherStationId = val;
+      this.fatherStationList.map(ele => {
+        if (ele.id == val) {
+          this.childStationList = ele.child;
+        }
+      });
+    },
+    chlidStationEvent(val) {
+      this.page_cur = 1;
+      this.chlidStationId = val;
+      this.getDataList();
+    },
+    searchStationCallBack(queryString, cb) {
+      this.request({
+        url: "/station/getChildStationLists",
+        method: "get",
+        params: { name: queryString }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          let results = data.data;
+          let list = [];
+          if (results.length == 0) {
+            list.push({
+              id: 0,
+              value: "未查询到站名"
+            });
+          }
+          for (let item of results) {
+            list.push({
+              id: item.id,
+              value: item.name
+            });
+          }
+          console.log(list);
+          cb(list);
+        }
+      });
+    },
+    searchStationEvent(item) {
+      this.page_cur = 1;
+      this.fatherStationEvent(0);
+      this.chlidStationId = item.id;
+      this.chlidStationName = "";
+      this.getDataList();
     }
-    //
+    //end station
   }
 };
 </script>

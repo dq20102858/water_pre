@@ -28,7 +28,7 @@
       <!-- <div class="deright">
         运行天数：{{useDay}} 天
         <span>{{dataInfoList.create_time|formatDateTamp('date')}}</span>
-      </div> -->
+      </div>-->
     </div>
     <div class="devicedetail">
       <div class="grid-content">
@@ -148,6 +148,8 @@
             <el-select v-model="formData.type" placeholder="请选择设备类型">
               <el-option label="风机" :value="1"></el-option>
               <el-option label="水泵" :value="2"></el-option>
+              <el-option label="紫外灯" :value="3"></el-option>
+              <el-option label="PLC" :value="4"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="设备编号：" prop="number">
@@ -451,6 +453,9 @@ export default {
       this.diaLogFormVisible = true;
       this.diaLogTitle = "修改设备";
       this.formData = this.dataInfoList;
+      if (this.dataInfoList.sid.length == 2) {
+        this.dataInfoList.sid = this.dataInfoList.sid[1];
+      }
       this.formData.sid = this.getStationParentsById(this.dataInfoList.sid);
     },
     deleteEvent(id) {
@@ -472,7 +477,9 @@ export default {
                 type: "success",
                 message: "删除成功！"
               });
-              this.back();
+              this.$router.push({
+                path: "/devicemanage"
+              });
             }
           });
         })
@@ -723,12 +730,16 @@ export default {
   color: #666;
 }
 .infotable td {
-  padding:10px ;
+  padding: 10px;
   width: 24%;
-  font-size: 16px; color: #444;
+  font-size: 16px;
+  color: #444;
 }
-.infotable td b{
- min-height: 40px; float: left; font-weight: 400; color: #333;
+.infotable td b {
+  min-height: 40px;
+  float: left;
+  font-weight: 400;
+  color: #333;
 }
 .grid-content-chart {
   border-radius: 6px;
@@ -800,6 +811,4 @@ export default {
   height: 178px;
   display: block;
 }
-
-
 </style>

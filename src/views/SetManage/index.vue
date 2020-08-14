@@ -36,9 +36,9 @@
                   v-model="searchRole"
                   @change="searchRoleEvent($event)"
                   style="width:120px;"
-                  clearable
                   placeholder="全部职位"
                 >
+                <el-option label="全部职位" value="0"></el-option>
                   <el-option label="管理员" value="1"></el-option>
                   <el-option label="维修人员" value="2"></el-option>
                   <el-option label="巡检人员" value="3"></el-option>
