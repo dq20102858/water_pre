@@ -4,14 +4,6 @@
       <div class="app-page-rows-lefts">
         <div class="left-menu-area">
           <div class="input-so">
-            <!-- <el-input
-              placeholder="请输入处理站"
-              prefix-icon="el-icon-search"
-              v-model="chlidStationName"
-              @input="searchStationNamehEvent"
-              maxlength="10"
-              clearable
-            ></el-input>-->
             <el-autocomplete
               v-model="chlidStationName"
               prefix-icon="el-icon-search"
@@ -57,36 +49,7 @@
           </el-menu>
         </div>
       </div>
-      <!-- <div class="app-page-rows-left">
-        <div class="left-menu-area">
-          <div class="input-so">
-            <el-input
-              placeholder=" 请输入处理站"
-              prefix-icon="el-icon-search"
-              v-model="searchVillageName"
-              @input="searchVillageNameEvent"
-              maxlength="10"
-              clearable
-            ></el-input>
-          </div>
-          <el-menu router>
-            <el-menu-item
-              :class="searchVillageId === 0 ? 'active' : ''"
-              @click="searchVillageEvent(0)"
-            >
-              <span>全部</span>
-            </el-menu-item>
-            <el-menu-item
-              v-for="item in childStation"
-              :key="item.id"
-              :class="searchVillageId === item.id ? 'active' : ''"
-              @click="searchVillageEvent(item.id)"
-            >
-              <span>{{item.name}}</span>
-            </el-menu-item>
-          </el-menu>
-        </div>
-      </div>-->
+    
       <div class="app-page-rows-rights">
         <div class="app-page-container">
           <div class="app-page-select" style="padding: 0 10px">
@@ -559,6 +522,7 @@ export default {
     },
     searchStationEvent(item) {
       this.page_cur = 1;
+      this.fatherStationEvent(0);
       this.chlidStationId = item.id;
       this.chlidStationName = "";
       this.getDataList();
