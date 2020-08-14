@@ -49,27 +49,27 @@
         <div class="app-page-container">
           <div class="app-page-select">
             <el-form :inline="true">
-              <el-form-item class="el-form-item el-select-dorps" style="width:120px">
+              <el-form-item class="el-form-item el-search-items">
+                <el-select v-model="searchType" @change="searchTypeEvent">
+                  <el-option label="维护记录" value="1"></el-option>
+                  <el-option label="运行记录" value="2"></el-option>
+                  <el-option label="采样化验单" value="3"></el-option>
+                </el-select>
+              </el-form-item>
+               <el-form-item class="el-form-item el-select-dorps" style="width:120px">
                 <el-select
                   v-model="searchAssignerId"
                   filterable
-                  placeholder="全部运维人"
+                  placeholder="全部巡查人"
                   @change="searchAssignerEvent($event)"
                 >
-                  <el-option key="0" label="全部运维人" value="0"></el-option>
+                  <el-option key="0" label="全部巡查人" value="0"></el-option>
                   <el-option
                     v-for="item in userList"
                     :key="item.id"
                     :label="item.name"
                     :value="item.id"
                   ></el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item class="el-form-item el-search-items">
-                <el-select v-model="searchType" @change="searchTypeEvent">
-                  <el-option label="维护记录" value="1"></el-option>
-                  <el-option label="运行记录" value="2"></el-option>
-                  <el-option label="采样化验单" value="3"></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item class="el-form-item">

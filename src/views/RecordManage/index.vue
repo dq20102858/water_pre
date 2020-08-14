@@ -49,6 +49,13 @@
         <div class="app-page-container">
           <div class="app-page-select">
             <el-form :inline="true">
+              <el-form-item class="el-form-item el-search-items">
+                <el-select v-model="searchType" @change="searchTypeEvent">
+                  <el-option label="维护记录" value="1"></el-option>
+                  <el-option label="运行记录" value="2"></el-option>
+                  <el-option label="采样化验单" value="3"></el-option>
+                </el-select>
+              </el-form-item>
               <el-form-item class="el-form-item el-select-dorps" style="width:120px">
                 <el-select
                   v-model="searchAssignerId"
@@ -63,13 +70,6 @@
                     :label="item.name"
                     :value="item.id"
                   ></el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item class="el-form-item el-search-items">
-                <el-select v-model="searchType" @change="searchTypeEvent">
-                  <el-option label="维护记录" value="1"></el-option>
-                  <el-option label="运行记录" value="2"></el-option>
-                  <el-option label="采样化验单" value="3"></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item class="el-form-item">
@@ -138,13 +138,6 @@
                     active-color="#383C57"
                     @change="handleEvent($event,scope.row.id)"
                   ></el-switch>
-
-                  <!-- <el-popover placement="right" trigger="hover" popper-class="isok-popover">
-                    <span class="btn-sele" @click="handleEvent(scope.row.id,1)">是</span>
-                    <span class="btn-sele" @click="handleEvent(scope.row.id,0)">否</span>
-                    <span class="btn-sele-no" v-if="scope.row.is_handle==1" slot="reference">是</span>
-                    <span class="btn-sele-no" v-if="scope.row.is_handle==0" slot="reference">否</span>
-                  </el-popover>-->
                 </template>
               </el-table-column>
               <el-table-column prop="user" label="运维人员"></el-table-column>
