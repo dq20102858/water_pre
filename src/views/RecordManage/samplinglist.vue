@@ -53,22 +53,6 @@
         <div class="app-page-container">
           <div class="app-page-select">
             <el-form :inline="true">
-              <el-form-item class="el-form-item el-select-dorps" style="width:120px">
-                <el-select
-                  v-model="searchAssignerId"
-                  filterable
-                  placeholder="全部运维人"
-                  @change="searchAssignerEvent($event)"
-                >
-                  <el-option key="0" label="全部运维人" value="0"></el-option>
-                  <el-option
-                    v-for="item in userList"
-                    :key="item.id"
-                    :label="item.name"
-                    :value="item.id"
-                  ></el-option>
-                </el-select>
-              </el-form-item>
               <el-form-item class="el-form-item el-search-items">
                 <el-select v-model="searchType" @change="searchTypeEvent">
                   <el-option label="维护记录" value="1"></el-option>
@@ -338,7 +322,6 @@ export default {
       fatherStationId: 0,
       chlidStationId: 0,
       chlidStationName: "",
-      searchAssignerId: "0",
       searchType: "3",
       pickerStartTime: {
         disabledDate: time => {
@@ -360,7 +343,6 @@ export default {
   },
   created() {
     this.getFatherStationList();
-    this.getUsersList();
     this.getDataList();
   },
   methods: {
@@ -368,13 +350,12 @@ export default {
       let page = this.page_cur;
       let type = this.searchType;
       let sid = this.chlidStationId;
-      let user_id = this.searchAssignerId;
       let start_time = this.searchStartTime;
       let end_time = this.searchEndTime;
       this.request({
         url: "/record/getRecordRepairPages",
         method: "get",
-        params: { page, sid, user_id, type, start_time, end_time }
+        params: { page, sid, type, start_time, end_time }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
@@ -428,21 +409,7 @@ export default {
       this.searchEndTime = "";
       this.getDataList();
     },
-    searchAssignerEvent(item) {
-      this.searchAssignerId = item;
-      this.getDataList();
-    },
-    getUsersList() {
-      this.request({
-        url: "/assign/getUsersLists",
-        method: "get"
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          this.userList = data.data;
-        }
-      });
-    },
+
     getStationList() {
       this.request({
         url: "/station/getStationLists",
