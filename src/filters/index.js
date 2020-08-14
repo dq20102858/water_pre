@@ -13,16 +13,18 @@ export function formatDate(val) {
 }
 //格式化时间
 export function formatGetDate(val) {
-  if (typeof val === 'string') {
-    val = val.replace(/-/g, '/')
+  if (val != "") {
+    if (typeof val === 'string') {
+      val = val.replace(/-/g, '/')
+    }
+    var date = new Date(val);
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    month = month < 10 ? "0" + month : month;
+    var day = date.getDate();
+    day = day < 10 ? "0" + day : day;
+    return year + "-" + month + "-" + day;
   }
-  var date = new Date(val);
-  var year = date.getFullYear();
-  var month = date.getMonth() + 1;
-  month = month < 10 ? "0" + month : month;
-  var day = date.getDate();
-  day = day < 10 ? "0" + day : day;
-  return year + "-" + month + "-" + day;
 }
 //格式化时间戳
 export function formatDateTamp(time, type) {
@@ -50,8 +52,8 @@ export function dateDifference(sDate1, sDate2) {
   dateSpan = sDate2 - sDate1;
   dateSpan = Math.abs(dateSpan);
   iDays = Math.floor(dateSpan / (24 * 3600 * 1000));
-  if(dateSpan<0){
-    iDays=0;
- }
+  if (dateSpan < 0) {
+    iDays = 0;
+  }
   return iDays
 };

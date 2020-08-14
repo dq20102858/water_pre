@@ -94,7 +94,9 @@
               <el-table-column align="center" label="序号" width="80px">
                 <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
               </el-table-column>
-              <el-table-column align="center" prop="create_time" label="采样时间"></el-table-column>
+              <el-table-column align="center" label="采样时间">
+                <template slot-scope="scope">{{scope.row.create_time|formatGetDate}}</template>
+              </el-table-column>
               <el-table-column align="center" prop="station_name" label="采样站点"></el-table-column>
               <el-table-column label="进 水" align="center">
                 <el-table-column align="center" prop="in_ph" label="PH"></el-table-column>

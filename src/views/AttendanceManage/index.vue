@@ -95,7 +95,7 @@
                 <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
               </el-table-column>
               <el-table-column prop="user" label="考勤人"></el-table-column>
-              <el-table-column prop="start_time" label="打卡开始时"></el-table-column>
+              <el-table-column prop="start_time" label="打卡开始时间"></el-table-column>
               <el-table-column prop="end_time" label="打卡结束时间"></el-table-column>
               <el-table-column prop="address" label="打卡地点"></el-table-column>
             </el-table>

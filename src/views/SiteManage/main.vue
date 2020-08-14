@@ -351,6 +351,17 @@ export default {
 };
 </script>
 <style>
+
+
+.left-menu-chlid {
+  float: left;
+  background: #E3E8F2;
+  width: 100px;
+  height: calc(100vh - 100px);
+}
+
+/*print*/
+
 .app-page-site {
   background: #24284d;
   height: calc(100vh - 100px);

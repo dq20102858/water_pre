@@ -1,4 +1,5 @@
 <template>
+<div class="app-pages">
   <div class="baidumap">
     <div class="baidumap-so">
       <el-input
@@ -48,7 +49,7 @@
         style="width:0px;height:0px;overflow: hidden;"
       ></bm-local-search>
     </baidu-map>
-  </div>
+  </div>  </div>
 </template>
 <script>
 import {

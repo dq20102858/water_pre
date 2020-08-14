@@ -1,4 +1,5 @@
 <template>
+<div class="app-pages">
   <div class="app-device-page-detail">
     <div class="device-top">
       <div class="deleft">
@@ -204,7 +205,7 @@
         <el-button type="primary" @click="addEvent">确 定</el-button>
       </div>
     </el-dialog>
-  </div>
+  </div>  </div>
 </template>
 <script>
 export default {

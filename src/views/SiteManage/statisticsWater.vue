@@ -1,4 +1,5 @@
 <template>
+<div class="app-pages">
   <div class="app-page-statistics">
     <div class="app-page-container">
       <div class="statistics-top">
@@ -65,7 +66,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> </div>
 </template>
 <script>
 export default {

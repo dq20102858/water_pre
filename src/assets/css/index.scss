@@ -1,13 +1,14 @@
 @import './variables.scss';
-body {font-family: Microsoft YaHei,Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,  Arial, sans-serif;background: #fff; height: 100%; width: 100%; font-size: 14px;margin: 0;padding: 0; }
+body {font-family: Microsoft YaHei,Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,  Arial, sans-serif;background: #fff; width: 100%; font-size: 14px;margin: 0;padding: 0; }
 label { font-weight: 400;}
 p,div,h1,h2,h3,h4,ul,li,span{margin: 0;padding: 0;}
 ul,li{list-style-type: none}
 html {height: 100%;box-sizing: border-box;}
 *,*:before,*:after {box-sizing: inherit;}
 em,i{font-style: normal;}
-#app {height: 100%; width: 100%;}
-.app-wrapper{width: 100%;height: 100%;width:100%; min-width: 1170px; }
+.clearfix{clear: both;}
+#app {height: 100%; width: 100%; }
+
  .el-tooltip__popper{ max-width:50%;line-height: 22px;  margin: 0 auto;}
 
 .app-pages{margin: 15px;}
@@ -20,11 +21,8 @@ em,i{font-style: normal;}
 .blank{height:5px;clear: both;}
 .ptopz{padding-top: 0!important;}
  .el-button:focus {background: #338ff6;border-color:#338ff6;}
-/* hideSidebar */
-#app .sidebar-container{z-index: 500;}
-#app .hideSidebar  #app-menu-items .el-tooltip{padding:0 5px!important;}
 /* el-menu-top-menu */
-.net-navbar {width:100%; min-width: 1170px; height: 100px;border-radius: 0px !important;background: #386cbd url(../image/m_bg.png) no-repeat right center;}
+.net-navbar {width:100%;  position: fixed;width: 100%;left: 0;top: 0;z-index: 1500; height: 100px;border-radius: 0px !important;background: #386cbd url(../image/m_bg.png) no-repeat right center;}
 .el-menu-top { height: 100px;}
 .el-menu-top  .el-menu{background: none;display: flex; justify-content: space-between;border: none;}
 .el-menu-top .logos {float: left;color:#fff; padding-left:15px;padding-right: 60px;font-weight: 700;padding-top: 20px;}
@@ -40,9 +38,40 @@ em,i{font-style: normal;}
 .el-menu-top .iconss{ height:  30px;display: block;margin: 0 auto;margin-top:20px;}
 .el-menu-top .el-menu-item  .msgcount {position: absolute;top:12px; font-size: 11px; background: #f96f6d;width: 20px;height: 20px;line-height: 20px;  text-align: center; color: #fff; border-radius: 100%;}
 @media screen and (max-width: 1200px) {
+  .el-menu-top .logos .gname  h3{font-size: 18px;font-weight: 700;}
   .el-menu-top .logos{padding-right: 30px;}
   .el-menu-top   .el-menu-item {padding: 0 10px;}
   }
+.app-pages{background: #fff; height: 100%;  overflow: auto;margin-top:100px;}
+.app-page-rows{background: #fff; height: 100%;  overflow: auto;margin-top:100px;}
+.app-page-rows-lefts{width: 280px;float: left;height: 100%; position: fixed;top: 0;bottom: 0;margin-top:100px;transition: padding-top .3s; z-index: 1000;}
+.app-page-rows-rights{ margin-left: 280px;background: #fff;min-height: 500px;position: relative; z-index: 999;}
+.app-page-rows-left{width: 180px;float: left;height: calc(100vh - 100px); min-height: 100%; }
+.app-page-rows-right{ margin-left: 180px;background: #fff;min-height: 500px; }
+/* left-menu-area */
+.left-menu-area {float: left; background: #428bf1; width: 180px;}
+.left-menu-area .el-menu {background: none;border: none;height: calc(100vh - 156px); overflow-y: auto;}
+.left-menu-area .el-menu-item {position: relative; background: none;color: #fff;height: 39px;line-height: 39px;white-space: nowrap;overflow: hidden; padding-right: 30px;}
+.left-menu-area .el-menu-item  span{display: block; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;}
+.left-menu-area .el-menu-item:hover {background:#2377fc;color: #fff;}
+.left-menu-area .el-menu-item.active {background: #fff;color: #4688f1;}
+.left-menu-area .input-so {padding: 10px;}
+.left-menu-area .atitle{padding: 0 10px; margin: 0;font-size: 16px;color: #fff; height: 56px;line-height: 56px;}
+.left-menu-area .el-menu-item a{display: block; text-decoration: none; color:#fff}
+.left-menu-area .el-menu-item.active a{text-decoration: none; color:#4688f1}
+.left-menu-area .el-menu-item.active::after{content: ""; position: absolute;right: 10px; top:15px; width:0px;height:0px;border-width:5px 0 5px 8px;border-style:solid; border-color:transparent transparent transparent #428bf1; }
+
+.left-menu-chlid{float: left;  background: #E3E8F2; width: 100px;height: calc(100vh - 100px); overflow-y: auto;}
+.left-menu-chlid .el-menu {background: none;border: none;}
+.left-menu-chlid .el-menu-item {position: relative; background: none;color: #333;padding-right: 10px!important; padding-left: 10px!important; height: 39px;line-height: 39px;white-space: nowrap;overflow: hidden; }
+.left-menu-chlid .el-menu-item  span{display: block; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;}
+.left-menu-chlid .el-menu-item:hover {background:#9aaeca;color: #fff;}
+.left-menu-chlid .el-menu-item.active {background: #9aaeca;color: #333;}
+.left-menu-chlid .el-menu-item a{display: block; text-decoration: none; color:#fff}
+.left-menu-chlid .el-menu-item.active a{text-decoration: none; color:#9aaeca}
+.left-menu-chlid .el-menu-item.active::after{content: ""; position: absolute;right: 10px; top:15px; width:0px;height:0px;border-width:5px 0 5px 8px;border-style:solid; border-color:transparent transparent transparent #428bf1; }
+.left-menu-chlid .el-menu-title {font-weight: 700; background: #428bf1;height: 56px;line-height: 56px; color: #fff; }
+
 /* bg */
 .app-page{ background: #fff;}
 .app-page-container{border-radius: 6px;padding: 20px; background: #fff;}
@@ -179,35 +208,6 @@ a.btn-edit:hover{ background: #EF964B;}
 .el-menu-topc .ptitle img {width: 18px;margin-right: 5px;display: inline-block;vertical-align: text-top;}
 .el-menu-topc .el-menu-item:hover{height: 61px; background-color: #338ff6!important;border: none;color: #fff!important}
 .el-menu-topc .is-active {height: 61px; background-color: #338ff6!important;border: none!important;color: #fff!important}
-
-.app-page-rows{background: #428bf1; }
-.app-page-rows-lefts{width: 280px;float: left;}
-.app-page-rows-rights{ margin-left: 280px;background: #fff;min-height: 500px; }
-.app-page-rows-left{width: 180px;float: left;height: calc(100vh - 100px); min-height: 100%; }
-.app-page-rows-right{ margin-left: 180px;background: #fff;min-height: 500px; }
-/* left-menu-area */
-.left-menu-area {float: left; background: #428bf1; width: 180px;height: 100vh; }
-.left-menu-area .el-menu {background: none;border: none; overflow-y: auto; max-height: 98%;}
-.left-menu-area .el-menu-item {position: relative; background: none;color: #fff;height: 39px;line-height: 39px;white-space: nowrap;overflow: hidden; padding-right: 30px;}
-.left-menu-area .el-menu-item  span{display: block; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;}
-.left-menu-area .el-menu-item:hover {background:#2377fc;color: #fff;}
-.left-menu-area .el-menu-item.active {background: #fff;color: #4688f1;}
-.left-menu-area .input-so {padding: 10px;}
-.left-menu-area .atitle{padding: 0 10px; margin: 0;font-size: 16px;color: #fff; height: 56px;line-height: 56px;}
-.left-menu-area .el-menu-item a{display: block; text-decoration: none; color:#fff}
-.left-menu-area .el-menu-item.active a{text-decoration: none; color:#4688f1}
-.left-menu-area .el-menu-item.active::after{content: ""; position: absolute;right: 10px; top:15px; width:0px;height:0px;border-width:5px 0 5px 8px;border-style:solid; border-color:transparent transparent transparent #428bf1; }
-
-.left-menu-chlid{float: left;  background: #E3E8F2; width: 100px;height: calc(100vh - 100px); }
-.left-menu-chlid .el-menu {background: none;border: none;}
-.left-menu-chlid .el-menu-item {position: relative; background: none;color: #333;padding-right: 10px!important; padding-left: 10px!important; height: 39px;line-height: 39px;white-space: nowrap;overflow: hidden; }
-.left-menu-chlid .el-menu-item  span{display: block; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;}
-.left-menu-chlid .el-menu-item:hover {background:#9aaeca;color: #fff;}
-.left-menu-chlid .el-menu-item.active {background: #9aaeca;color: #333;}
-.left-menu-chlid .el-menu-item a{display: block; text-decoration: none; color:#fff}
-.left-menu-chlid .el-menu-item.active a{text-decoration: none; color:#9aaeca}
-.left-menu-chlid .el-menu-item.active::after{content: ""; position: absolute;right: 10px; top:15px; width:0px;height:0px;border-width:5px 0 5px 8px;border-style:solid; border-color:transparent transparent transparent #428bf1; }
-.left-menu-chlid .el-menu-title {font-weight: 700; background: #428bf1;height: 56px;line-height: 56px; color: #fff; }
 /*print*/
 #printBtn,#printRecord {display: none;}
 @media print {

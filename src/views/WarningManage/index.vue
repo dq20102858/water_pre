@@ -30,6 +30,31 @@
             >
               <span :title="item.name">{{item.name}}</span>
             </el-menu-item>
+         <!-- <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">end中南新村</span></li>
+        <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">end中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">end中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+        <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">end中南新村</span></li>
+        <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">1中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">2南新村</span></li>
+        <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">3中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">4中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">dend中南新村</span></li>
+        -->
           </el-menu>
         </div>
         <div class="left-menu-chlid">
@@ -42,10 +67,33 @@
             >
               <span :title="item.name">{{item.name}}</span>
             </el-menu-item>
-          </el-menu>
+        <!-- <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+        <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">中南新村</span></li>
+       <li role="menuitem" tabindex="-1" class="el-menu-item is-active" style="padding-left: 20px;"><span title="中南新村">end中南新村</span></li>
+        -->
+       </el-menu>
         </div>
       </div>
-      <div class="app-page-rows-rights">
+      <div class="app-page-rows-rights"  ref="apprights">
         <div class="app-page-container">
           <div class="app-page-select">
             <el-form :inline="true">
@@ -203,6 +251,9 @@ export default {
       searchStartTime: "",
       searchEndTime: ""
     };
+  },
+  mounted(){
+
   },
   created() {
     this.getFatherStationList();

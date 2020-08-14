@@ -106,7 +106,9 @@
               <el-table-column label="序号" width="80px">
                 <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
               </el-table-column>
-              <el-table-column prop="create_time" label="记录时间"></el-table-column>
+              <el-table-column label="记录时间">
+                  <template slot-scope="scope">{{scope.row.create_time|formatGetDate}}</template>
+              </el-table-column>
               <el-table-column prop="electricity" label="电表读数（KWH）"></el-table-column>
               <el-table-column prop="electricity_sum" label="累计读数">
                 <!-- <template slot-scope="scope">

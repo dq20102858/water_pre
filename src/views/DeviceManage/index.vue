@@ -166,6 +166,7 @@
           </div>
         </div>
       </div>
+      <div class="clearfix"></div>
     </div>
     <el-dialog
       width="755px"
@@ -439,6 +440,7 @@ export default {
     };
   },
   created() {
+     
     this.getFatherStationList();
     // this.getChildStationList();
     this.getDataList();

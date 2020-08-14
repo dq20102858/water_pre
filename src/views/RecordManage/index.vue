@@ -106,7 +106,9 @@
               <el-table-column label="序号" width="80px">
                 <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
               </el-table-column>
-              <el-table-column prop="create_time" label="维保日期"></el-table-column>
+              <el-table-column label="维保日期">
+                <template slot-scope="scope">{{scope.row.create_time|formatGetDate}}</template>
+              </el-table-column>
               <el-table-column prop="station_name" label="维保站点"></el-table-column>
               <el-table-column prop="is_problem" label="是否有问题">
                 <template slot-scope="scope">
