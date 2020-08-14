@@ -8,6 +8,13 @@
           style="background: #00ADFF;border: none;"
           size="mini"
           round
+          @click="backURL"
+        >返回</el-button>
+        <el-button
+          type="primary"
+          style="background: #00ADFF;border: none;"
+          size="mini"
+          round
           @click="editEvent"
         >修改</el-button>
         <el-button
@@ -17,13 +24,6 @@
           round
           @click="deleteEvent"
         >删除</el-button>
-        <el-button
-          type="primary"
-          style="background: #00ADFF;border: none;"
-          size="mini"
-          round
-          @click="backURL"
-        >返回</el-button>
       </div>
       <!-- <div class="deright">
         运行天数：{{useDay}} 天

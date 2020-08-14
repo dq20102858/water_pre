@@ -66,7 +66,7 @@
                 </el-select>
               </el-form-item>
               <el-form-item class="el-form-item el-select-dorps">
-                <el-select v-model="searchType" @change="searchTypeEvent" style="width:110px">
+                <el-select v-model="searchType" @change="searchTypeEvent" style="width:120px">
                   <el-option label="全部事项" value="0"></el-option>
                   <el-option label="设备维修" value="1"></el-option>
                   <el-option label="例行维保" value="2"></el-option>
@@ -74,7 +74,7 @@
                 </el-select>
               </el-form-item>
               <el-form-item class="el-form-item el-select-dorps">
-                <el-select v-model="searchStatus" @change="searchStatusEvent" style="width:100px">
+                <el-select v-model="searchStatus" @change="searchStatusEvent" style="width:120px">
                   <el-option label="全部状态" value="0"></el-option>
                   <el-option label="已完成" value="2"></el-option>
                   <el-option label="未完成" value="1"></el-option>
@@ -100,6 +100,9 @@
                   @change="searchEndTimeEvent"
                   :picker-options="pickerEndTime"
                 ></el-date-picker>
+              </el-form-item>
+              <el-form-item class="el-form-item">
+                <el-button type="primary" @click="searchAllEvent">重置</el-button>
               </el-form-item>
               <div class="el-serach noborder">
                 <el-button @click="addShowDialog">发起派单</el-button>
@@ -427,7 +430,16 @@ export default {
         this.getDataList();
       }
     },
-
+    searchAllEvent() {
+      this.page_cur = 1;
+      this.searchStatus = "0";
+      this.searchType = "0";
+      this.searchAssignerId = "0";
+      this.chlidStationId = 0;
+      this.searchStartTime = "";
+      this.searchEndTime = "";
+      this.getDataList();
+    },
     getStationList() {
       this.request({
         url: "/station/getStationLists",

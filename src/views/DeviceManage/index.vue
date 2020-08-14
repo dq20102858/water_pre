@@ -90,6 +90,9 @@
                   <el-option label="异常" value="2"></el-option>
                 </el-select>
               </el-form-item>
+                <el-form-item class="el-form-item">
+                <el-button type="primary" @click="searchAllEvent">重置</el-button>
+              </el-form-item>
               <div class="el-serach noborder">
                 <el-button @click="showDialog">添加</el-button>
               </div>
@@ -571,6 +574,15 @@ export default {
     },
     searchStatusEvent(val) {
       this.searchStatus = val;
+      this.getDataList();
+    },
+       searchAllEvent() {
+      this.page_cur = 1;
+       this.searchKeyword="";
+      this.searchStatus = "0";
+      this.searchType = "0";
+      this.searchAssignerId = "0";
+      this.chlidStationId = 0;
       this.getDataList();
     },
     getStationList() {
