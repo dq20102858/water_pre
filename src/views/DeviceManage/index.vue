@@ -49,7 +49,6 @@
           </el-menu>
         </div>
       </div>
-
       <div class="app-page-rows-rights">
         <div class="app-page-container">
           <div class="app-page-select" style="padding: 0 10px">
@@ -426,7 +425,6 @@ export default {
         label: "name",
         children: "child"
       },
-
       fatherStationList: [],
       childStationList: [],
       fatherStationId: 0,

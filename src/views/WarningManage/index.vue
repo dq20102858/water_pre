@@ -1,7 +1,7 @@
 <template>
   <div class="app-device-page">
     <div class="app-page-rows">
-          <div class="app-page-rows-lefts">
+      <div class="app-page-rows-lefts">
         <div class="left-menu-area">
           <div class="input-so">
             <el-autocomplete
@@ -33,7 +33,6 @@
           </el-menu>
         </div>
         <div class="left-menu-chlid">
-      
           <el-menu router>
             <el-menu-item
               v-for="item in childStationList"
@@ -71,7 +70,7 @@
               <el-form-item class="el-form-item">
                 <el-date-picker
                   type="date"
-                  placeholder="选择结束时间"
+                  placeholder="选择结束日期"
                   v-model="searchEndTime"
                   style="width:150px"
                   @change="searchEndTimeEvent"

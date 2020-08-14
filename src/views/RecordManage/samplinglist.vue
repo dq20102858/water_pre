@@ -1,39 +1,81 @@
 <template>
   <div class="app-page-samp">
     <div class="app-page-rows">
-      <div class="app-page-rows-left">
+      <div class="app-page-rows-lefts">
         <div class="left-menu-area">
           <div class="input-so">
-            <el-input
-              placeholder="请输入处理站"
+            <el-autocomplete
+              v-model="chlidStationName"
               prefix-icon="el-icon-search"
-              v-model="searchVillageName"
-              @input="searchVillageNameEvent"   maxlength="10"
+              class="inline-input"
+              :fetch-suggestions="searchStationCallBack"
+              placeholder="请输入内容"
+              :trigger-on-focus="false"
+              @select="searchStationEvent($event)"
               clearable
-            ></el-input>
+            ></el-autocomplete>
           </div>
           <el-menu router>
             <el-menu-item
-              :class="searchVillageId === 0 ? 'active' : ''"
-              @click="searchVillageEvent(0)"
+              :class="fatherStationId === 0 ? 'active' : ''"
+              @click="fatherStationEvent(0)"
             >
               <span>全部</span>
             </el-menu-item>
             <el-menu-item
-              v-for="item in childStation"
+              v-for="item in fatherStationList"
               :key="item.id"
-              :class="searchVillageId === item.id ? 'active' : ''"
-              @click="searchVillageEvent(item.id)"
+              :class="fatherStationId === item.id ? 'active' : ''"
+              @click="fatherStationEvent(item.id)"
             >
-              <span>{{item.name}}</span>
+              <span :title="item.name">{{item.name}}</span>
+            </el-menu-item>
+          </el-menu>
+        </div>
+        <div class="left-menu-chlid">
+          <!-- <div class="el-menu-title">
+           <i class="el-icon-location-information"></i>
+         中南新村
+          </div>-->
+          <el-menu router>
+            <el-menu-item
+              v-for="item in childStationList"
+              :key="item.id"
+              :class="chlidStationId === item.id ? 'active' : ''"
+              @click="chlidStationEvent(item.id)"
+            >
+              <span :title="item.name">{{item.name}}</span>
             </el-menu-item>
           </el-menu>
         </div>
       </div>
-      <div class="app-page-rows-right">
+      <div class="app-page-rows-rights">
         <div class="app-page-container">
           <div class="app-page-select">
             <el-form :inline="true">
+              <el-form-item class="el-form-item el-select-dorps" style="width:120px">
+                <el-select
+                  v-model="searchAssignerId"
+                  filterable
+                  placeholder="全部运维人"
+                  @change="searchAssignerEvent($event)"
+                >
+                  <el-option key="0" label="全部运维人" value="0"></el-option>
+                  <el-option
+                    v-for="item in userList"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item class="el-form-item el-search-items">
+                <el-select v-model="searchType" @change="searchTypeEvent">
+                  <el-option label="维护记录" value="1"></el-option>
+                  <el-option label="运行记录" value="2"></el-option>
+                  <el-option label="采样化验单" value="3"></el-option>
+                </el-select>
+              </el-form-item>
               <el-form-item class="el-form-item">
                 <el-date-picker
                   type="date"
@@ -48,19 +90,15 @@
               <el-form-item class="el-form-item">
                 <el-date-picker
                   type="date"
-                  placeholder="选择结束时间"
+                  placeholder="选择结束日期"
                   v-model="searchEndTime"
                   style="width:150px"
                   @change="searchEndTimeEvent"
                   :picker-options="pickerEndTime"
                 ></el-date-picker>
               </el-form-item>
-              <el-form-item class="el-form-item el-search-items">
-                <el-select v-model="searchType" @change="searchTypeEvent">
-                  <el-option label="维护记录" value="1"></el-option>
-                  <el-option label="运行记录" value="2"></el-option>
-                  <el-option label="采样化验单" value="3"></el-option>
-                </el-select>
+              <el-form-item class="el-form-item">
+                <el-button type="primary" @click="searchAllEvent">重置</el-button>
               </el-form-item>
               <el-form-item class="el-form-item">
                 <el-button type="primary" @click="expectExcel">导入</el-button>
@@ -72,7 +110,7 @@
               <el-table-column align="center" label="序号" width="80px">
                 <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
               </el-table-column>
-              <el-table-column align="center" prop="create_time" label="采样时间"></el-table-column>    
+              <el-table-column align="center" prop="create_time" label="采样时间"></el-table-column>
               <el-table-column align="center" prop="station_name" label="采样站点"></el-table-column>
               <el-table-column label="进 水" align="center">
                 <el-table-column align="center" prop="in_ph" label="PH"></el-table-column>
@@ -288,17 +326,20 @@ export default {
       page_size: 20,
       page_total: 0,
       dataList: [],
-      childStation: [],
+      userList: [],
       stationOptions: [],
       stationOptionsProps: {
         value: "id",
         label: "name",
         children: "child"
       },
-      searchVillageName: "",
-      searchVillageId: 0,
+      fatherStationList: [],
+      childStationList: [],
+      fatherStationId: 0,
+      chlidStationId: 0,
+      chlidStationName: "",
+      searchAssignerId: "0",
       searchType: "3",
-      searchKeyword: "",
       pickerStartTime: {
         disabledDate: time => {
           if (this.searchEndTime) {
@@ -318,20 +359,22 @@ export default {
     };
   },
   created() {
-    this.getChildStationList();
+    this.getFatherStationList();
+    this.getUsersList();
     this.getDataList();
   },
   methods: {
     getDataList() {
       let page = this.page_cur;
       let type = this.searchType;
-      let sid = this.searchVillageId;
+      let sid = this.chlidStationId;
+      let user_id = this.searchAssignerId;
       let start_time = this.searchStartTime;
       let end_time = this.searchEndTime;
       this.request({
         url: "/record/getRecordRepairPages",
         method: "get",
-        params: { type, sid, page, start_time, end_time }
+        params: { page, sid, user_id, type, start_time, end_time }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
@@ -355,24 +398,6 @@ export default {
       this.page_cur = this.page_total;
       this.getDataList();
     },
-    searchVillageEvent(val) {
-      this.page_cur = 1;
-      this.searchVillageId = val;
-      this.getDataList();
-    },
-    searchKeywordEvent() {
-      this.page_cur = 1;
-      this.getDataList();
-    },
-    searchTypeEvent(val) {
-      this.page_cur = 1;
-      this.searchType = val;
-      console.log(val);
-      this.getDataList();
-    },
-    searchVillageNameEvent() {
-      this.getChildStationList();
-    },
     searchTypeEvent(val) {
       if (val == 2) {
         this.$router.push("/recordmanage/operation");
@@ -395,16 +420,26 @@ export default {
         this.getDataList();
       }
     },
-    getChildStationList() {
-      let name = this.searchVillageName;
+    searchAllEvent() {
+      this.page_cur = 1;
+      this.chlidStationId = 0;
+      this.searchAssignerId = "0";
+      this.searchStartTime = "";
+      this.searchEndTime = "";
+      this.getDataList();
+    },
+    searchAssignerEvent(item) {
+      this.searchAssignerId = item;
+      this.getDataList();
+    },
+    getUsersList() {
       this.request({
-        url: "/station/getChildStationLists",
-        method: "get",
-        params: { name }
+        url: "/assign/getUsersLists",
+        method: "get"
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
-          this.childStation = data.data;
+          this.userList = data.data;
         }
       });
     },
@@ -462,7 +497,7 @@ export default {
           }).then(res => {
             let data = res.data;
             if (data.status == 1) {
-            if (this.dataList.length == 1) {
+              if (this.dataList.length == 1) {
                 this.page_cur = this.page_cur - 1;
                 this.getDataList();
               } else {
@@ -516,8 +551,92 @@ export default {
         return false;
       }
       return extension || isLtM;
+    },
+    //station
+    getFatherStationList() {
+      let name = this.chlidName;
+      this.request({
+        url: "/station/getStationLists",
+        method: "get",
+        params: { name }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.fatherStationList = data.data;
+          if (this.fatherStationId == 0) {
+            this.getChildStationList();
+          }
+        }
+      });
+    },
+    getChildStationList() {
+      let name = "";
+      this.request({
+        url: "/station/getChildStationLists",
+        method: "get",
+        params: { name }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          let results = data.data;
+          this.childStationList = results;
+        }
+      });
+    },
+    fatherStationEvent(val) {
+      if (val == 0) {
+        this.getChildStationList();
+        this.page_cur = 1;
+        this.chlidStationId = 0;
+        this.getDataList();
+      }
+      this.fatherStationId = val;
+      this.fatherStationList.map(ele => {
+        if (ele.id == val) {
+          this.childStationList = ele.child;
+        }
+      });
+    },
+    chlidStationEvent(val) {
+      this.page_cur = 1;
+      this.chlidStationId = val;
+      this.getDataList();
+    },
+    searchStationCallBack(queryString, cb) {
+      this.request({
+        url: "/station/getChildStationLists",
+        method: "get",
+        params: { name: queryString }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          let results = data.data;
+          let list = [];
+          if (results.length == 0) {
+            list.push({
+              id: 0,
+              value: "未查询到站名"
+            });
+          }
+          for (let item of results) {
+            list.push({
+              id: item.id,
+              value: item.name
+            });
+          }
+          console.log(list);
+          cb(list);
+        }
+      });
+    },
+    searchStationEvent(item) {
+      this.page_cur = 1;
+      this.fatherStationEvent(0);
+      this.chlidStationId = item.id;
+      this.chlidStationName = "";
+      this.getDataList();
     }
-    //
+    //end station
   }
 };
 </script>

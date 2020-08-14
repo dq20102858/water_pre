@@ -53,7 +53,7 @@
                 <el-select
                   v-model="searchAssignerId"
                   filterable
-                  placeholder="请选择 或搜索"
+                  placeholder="全部运维人"
                   @change="searchAssignerEvent($event)"
                 >
                   <el-option key="0" label="全部运维人" value="0"></el-option>
@@ -94,7 +94,7 @@
               <el-form-item class="el-form-item">
                 <el-date-picker
                   type="date"
-                  placeholder="选择结束时间"
+                  placeholder="选择结束日期"
                   v-model="searchEndTime"
                   style="width:150px"
                   @change="searchEndTimeEvent"
@@ -102,7 +102,6 @@
                 ></el-date-picker>
               </el-form-item>
               <div class="el-serach noborder">
-                <!-- <el-input v-model="searchName" autocomplete="off" placeholder="请输入名称查询" clearable></el-input> -->
                 <el-button @click="addShowDialog">发起派单</el-button>
               </div>
             </el-form>

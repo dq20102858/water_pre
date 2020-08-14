@@ -63,7 +63,7 @@
               <el-form-item class="el-form-item">
                 <el-date-picker
                   type="date"
-                  placeholder="选择结束时间"
+                  placeholder="选择结束日期"
                   v-model="searchEndTime"
                   style="width:150px"
                   @change="searchEndTimeEvent"
@@ -71,7 +71,7 @@
                 ></el-date-picker>
               </el-form-item>
               <el-form-item class="el-form-item">
-                <el-button type="primary" plain @click="searchAllEvent">重置</el-button>
+                <el-button type="primary"  @click="searchAllEvent">重置</el-button>
               </el-form-item>
               <el-form-item class="el-form-item" style="margin-left:30px">
                 <span
