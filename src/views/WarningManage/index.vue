@@ -181,7 +181,11 @@
                       size="mini"
                     >未读</el-button>
                     <el-button class="btn-edit" @click="videoEvent(scope.row.id)">查看视频</el-button>
-                    <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
+                    <el-button
+                      class="btn-del"
+                      size="mini"
+                      @click="deleteEvent(scope.row.id,scope.row.is_read)"
+                    >删除</el-button>
                   </div>
                 </template>
               </el-table-column>
@@ -486,8 +490,7 @@ export default {
               } else {
                 this.getDataList();
               }
-              console.log("is_read："+is_read)
-              if (is_read != 1) {
+              if (parseInt(is_read) != 1) {
                 document.querySelectorAll(".msgcount")[0].innerText =
                   parseInt(mscount) - 1;
               }
