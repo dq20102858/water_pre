@@ -9,7 +9,7 @@
               prefix-icon="el-icon-search"
               class="inline-input"
               :fetch-suggestions="searchStationCallBack"
-              placeholder="请输入内容"
+              placeholder="请输入处理站名"
               :trigger-on-focus="false"
               @select="searchStationEvent($event)"
               clearable
@@ -170,11 +170,17 @@
                   ></el-switch>
                 </template>
               </el-table-column>
-              <el-table-column label="操作" v-if="this.searchType==3" width="150">
+              <el-table-column label="操作" v-if="this.searchType==3" width="220">
                 <template slot-scope="scope">
                   <div class="app-operation">
-                    <!-- :href="scope.row.video_url" -->
-                    <a class="btn-edit" target="_blank" @click="videoEvent(scope.row.id)">查看视频</a>
+                    <el-button v-if="scope.row.is_read==1" class="btn-gray" size="mini" disabled>已读</el-button>
+                    <el-button
+                      v-if="scope.row.is_read!=1"
+                      @click="updateRead(scope.row.id)"
+                      class="btn-print"
+                      size="mini"
+                    >未读</el-button>
+                    <el-button class="btn-edit" @click="videoEvent(scope.row.id)">查看视频</el-button>
                     <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
                   </div>
                 </template>
@@ -189,7 +195,11 @@
                       class="btn-print"
                       size="mini"
                     >未读</el-button>
-                    <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
+                    <el-button
+                      class="btn-del"
+                      size="mini"
+                      @click="deleteEvent(scope.row.id,scope.row.is_read)"
+                    >删除</el-button>
                   </div>
                 </template>
               </el-table-column>
@@ -433,6 +443,7 @@ export default {
       });
     },
     updateRead(id) {
+      let mscount = document.querySelectorAll(".msgcount")[0].innerText;
       this.request({
         url: "/alert/updateRead",
         method: "post",
@@ -441,7 +452,8 @@ export default {
         let data = res.data;
         if (data.status == 1) {
           this.getDataList();
-          //let msginfo = flag == 1 ? "设置已修复" : "取消已修复";
+          document.querySelectorAll(".msgcount")[0].innerText =
+            parseInt(mscount) - 1;
           this.$message({
             type: "success",
             message: "设置成功！"
@@ -452,7 +464,8 @@ export default {
     videoEvent() {
       this.diaLogFormVisible = true;
     },
-    deleteEvent(id) {
+    deleteEvent(id, is_read) {
+      let mscount = document.querySelectorAll(".msgcount")[0].innerText;
       this.$confirm("您确定要删除？删除后不能恢复！", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -472,6 +485,11 @@ export default {
                 this.getDataList();
               } else {
                 this.getDataList();
+              }
+              console.log("is_read："+is_read)
+              if (is_read != 1) {
+                document.querySelectorAll(".msgcount")[0].innerText =
+                  parseInt(mscount) - 1;
               }
               this.$message({
                 type: "success",

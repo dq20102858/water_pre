@@ -9,7 +9,7 @@
               prefix-icon="el-icon-search"
               class="inline-input"
               :fetch-suggestions="searchStationCallBack"
-              placeholder="请输入内容"
+              placeholder="请输入处理站名"
               :trigger-on-focus="false"
               @select="searchStationEvent($event)"
               clearable

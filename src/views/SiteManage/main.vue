@@ -9,7 +9,7 @@
               prefix-icon="el-icon-search"
               class="inline-input"
               :fetch-suggestions="searchStationCallBack"
-              placeholder="请输入内容"
+              placeholder="请输入处理站名"
               :trigger-on-focus="false"
               @select="searchStationEvent($event)"
               clearable
@@ -38,9 +38,9 @@
               v-for="item in childStationList"
               :key="item.id"
               :class="chlidStationId === item.id ? 'active' : ''"
-              @click="chlidStationEvent(item.id)"
+              @click="chlidStationEvent(item)"
             >
-              <span :title="item.name">{{item.name}}</span>
+              <span :id="'span'+item.id" :title="item.name">{{item.name}}</span>
             </el-menu-item>
           </el-menu>
         </div>
@@ -52,7 +52,7 @@
               <div class="centerbox">
                 <div class="nenghao">
                   <span @click="statisticsEnergyDetail">查看能耗分析</span>
-                  当前控制室温度37
+                  当前控制室温度{{stationViewDetail.temp}}
                 </div>
                 <div class="jcname" @click="statisticsWaterDetail">进水口</div>
                 <div class="ccname" @click="statisticsWaterDetail">出水口</div>
@@ -227,9 +227,10 @@ export default {
     return {
       fatherStationList: [],
       childStationList: [],
-      fatherStationId: 0,
+      fatherStationId: this.$route.query.pid,
       chlidStationId: this.$route.query.sid,
-      chlidStationName: ""
+      chlidStationName: "",
+      stationViewDetail: []
     };
   },
   mounted() {
@@ -262,10 +263,15 @@ export default {
     this.flowAnimations("line27", 220, 12, "w");
     this.flowAnimations("line28", 150, 12, "w");
     this.flowAnimations("line29", 250, 12, "w");
+    let that = this;
+    this.timer = setInterval(function() {
+      that.getStationViewList();
+    }, 5000);
+  },
+  beforeDestroy() {
+    clearInterval(this.timer);
   },
   created() {
-    // this.chlidStationId =;
-    console.log(this.chlidStationId);
     this.getFatherStationList();
     this.getStationViewList();
   },
@@ -299,10 +305,13 @@ export default {
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
-          console.log(data.data);
+          this.stationViewDetail = data.data[0];
+          console.log(this.stationViewDetail);
+          console.log(this.stationViewDetail.temp);
         }
       });
     },
+
     statisticsEnergyDetail() {
       this.$router.push({
         path: "/sitemanage/statisticsenergy",
@@ -332,9 +341,14 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           this.fatherStationList = data.data;
-          if (this.fatherStationId == 0) {
-            this.getChildStationList();
-          }
+          let pids = this.$route.query.pid;
+          this.fatherStationList.map(ele => {
+            if (ele.id == pids) {
+              this.childStationList = ele.child;
+              this.fatherStationId = this.$route.query.pid;
+              this.chlidStationId = this.$route.query.sid;
+            }
+          });
         }
       });
     },
@@ -349,21 +363,20 @@ export default {
         if (data.status == 1) {
           let results = data.data;
           this.childStationList = results;
-          let sids = this.$route.query.sid;
-          this.chlidStationId = sids;
-          this.childStationList.map(ele => {
-            if (ele.id == sids) {
-              this.fatherStationId = ele.pid;
-              this.fatherStationEvent(ele.pid);
-            }
-          });
+
+          // this.childStationList.map(ele => {
+          //   if (ele.id == sids) {
+          //     this.fatherStationId = ele.pid;
+          //     this.fatherStationEvent(ele.pid);
+          //   }
+          // });
         }
       });
     },
     fatherStationEvent(val) {
       if (val == 0) {
+        this.fatherStationId = 0;
         this.getChildStationList();
-        //this.chlidStationId = 0;
       }
       this.fatherStationId = val;
       this.fatherStationList.map(ele => {
@@ -372,12 +385,11 @@ export default {
         }
       });
     },
-    chlidStationEvent(val) {
+    chlidStationEvent(item) {
       this.$router.push({
         path: "/sitemanage/main",
-        query: { sid: val }
+        query: { pid: item.pid, sid: item.id }
       });
-      this.chlidStationId = val;
     },
     searchStationCallBack(queryString, cb) {
       this.request({
@@ -402,18 +414,16 @@ export default {
               value: item.name
             });
           }
-          console.log(list);
+
           cb(list);
         }
       });
     },
     searchStationEvent(item) {
-      this.page_cur = 1;
-      this.fatherStationEvent(item.pid);
-      this.fatherStationId = item.pid;
-      this.chlidStationId = item.id;
-      this.chlidStationName = "";
-      this.getDataList();
+      this.$router.push({
+        path: "/sitemanage/main",
+        query: { pid: item.pid, sid: item.id }
+      });
     }
     //end station
   }

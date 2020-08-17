@@ -22,7 +22,7 @@
           :id="item.path"
         >
 
-          <i :class="index==4?'msgcount':''" v-if="msgCount>0 && index==4">{{msgCount}}</i>
+          <i id="msgCount"  ref="msgCount" :class="index==4?'msgcount':''" v-if="msgCount>0 && index==4">{{msgCount}}</i>
           <img class="iconss" :src="item.img" />
           {{item.name}}
         </li>

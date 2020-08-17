@@ -6,7 +6,7 @@
         class="inline-input"
         v-model="state2"
         :fetch-suggestions="querySearch"
-        placeholder="请输入内容"
+        placeholder="请输入处理站名"
         :trigger-on-focus="false"
         @select="handleSelect" clearable
       ></el-autocomplete>
