@@ -102,7 +102,7 @@
           <div class="devicelist">
             <el-row :gutter="20">
               <el-col :span="8" v-for="item in dataList" :key="item.id">
-                <div class="grid" title="点击查看详情">
+                <div class="grid">
                   <div :class="['grid-title icon'+item.type]">{{item.name}}</div>
                   <div class="grid-content">
                     <div class="grid-img">
@@ -135,7 +135,7 @@
                         <em>{{item.brand}}</em>
                       </p>
                       <p>
-                        设备位置：
+                        站点名称：
                         <em :title="item.address">{{item.address}}</em>
                       </p>
                     </div>
@@ -248,6 +248,7 @@
             <img v-if="formData.img" :src="formData.img" class="avatar" title="选择图片" />
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
+          <p class="gray">备注：上传图片只能是 jpg  png  gif 格式，建议 400px *400px</p>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -628,6 +629,12 @@ export default {
             var data = response.data;
             if (data.status == 1) {
               this.diaLogFormVisible = false;
+              this.page_cur = 1;
+              this.searchKeyword = "";
+              this.searchStatus = "0";
+              this.searchType = "0";
+              this.searchAssignerId = "0";
+              this.chlidStationId = 0;
               this.getDataList();
               this.$message({
                 type: "success",
@@ -710,7 +717,6 @@ export default {
   border-radius: 4px;
 }
 .devicelist .grid {
-  cursor: pointer;
   margin: 10px 10px 30px 10px;
 }
 .devicelist .grid-content {

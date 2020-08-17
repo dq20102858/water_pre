@@ -240,7 +240,7 @@
     </el-dialog>
 
     <el-dialog
-      width="734px"
+      width="600px"
       class="dialog-dispatch"
       title="派单详情"
       :close-on-click-modal="false"

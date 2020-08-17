@@ -92,6 +92,13 @@
                 {{dataInfoList.warranty_time|formatGetDate}}
               </td>
             </tr>
+               <tr>
+              <td>
+                <b>站点名称：</b>
+                {{dataInfoList.address}}
+              </td>
+             
+            </tr>
           </table>
         </div>
       </div>
