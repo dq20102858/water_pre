@@ -590,6 +590,7 @@ export default {
           for (let item of results) {
             list.push({
               id: item.id,
+              pid: item.pid,
               value: item.name
             });
           }
@@ -600,7 +601,8 @@ export default {
     },
     searchStationEvent(item) {
       this.page_cur = 1;
-      this.fatherStationEvent(0);
+      this.fatherStationEvent(item.pid);
+      this.fatherStationId = item.pid;
       this.chlidStationId = item.id;
       this.chlidStationName = "";
       this.getDataList();

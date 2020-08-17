@@ -221,7 +221,7 @@
           </el-form-item>
           <!-- <el-form-item label="人员职位：">
             <el-input v-model="formData.role" autocomplete="off" disabled></el-input>
-          </el-form-item> -->
+          </el-form-item>-->
           <el-form-item label="手机号码：">
             <el-input v-model="formData.phone" autocomplete="off" disabled></el-input>
           </el-form-item>
@@ -256,7 +256,7 @@
           </el-form-item>
           <!-- <el-form-item label="人员职位：">
             <div class="disp-info">{{formData.role}}</div>
-          </el-form-item> -->
+          </el-form-item>-->
           <el-form-item label="手机号码：">
             <div class="disp-info">{{formData.phone}}</div>
           </el-form-item>
@@ -647,6 +647,7 @@ export default {
           for (let item of results) {
             list.push({
               id: item.id,
+              pid: item.pid,
               value: item.name
             });
           }
@@ -657,7 +658,8 @@ export default {
     },
     searchStationEvent(item) {
       this.page_cur = 1;
-      this.fatherStationEvent(0);
+      this.fatherStationEvent(item.pid);
+      this.fatherStationId = item.pid;
       this.chlidStationId = item.id;
       this.chlidStationName = "";
       this.getDataList();

@@ -56,7 +56,7 @@
                   <el-option label="采样化验单" value="3"></el-option>
                 </el-select>
               </el-form-item>
-               <el-form-item class="el-form-item el-select-dorps" style="width:120px">
+              <el-form-item class="el-form-item el-select-dorps" style="width:120px">
                 <el-select
                   v-model="searchAssignerId"
                   filterable
@@ -107,7 +107,7 @@
                 <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
               </el-table-column>
               <el-table-column label="记录时间">
-                  <template slot-scope="scope">{{scope.row.create_time|formatGetDate}}</template>
+                <template slot-scope="scope">{{scope.row.create_time|formatGetDate}}</template>
               </el-table-column>
               <el-table-column prop="electricity" label="电表读数（KWH）"></el-table-column>
               <el-table-column prop="electricity_sum" label="累计读数">
@@ -365,7 +365,7 @@ export default {
       fatherStationId: 0,
       chlidStationId: 0,
       chlidStationName: "",
-      searchAssignerId:"0",
+      searchAssignerId: "0",
       searchType: "2",
       pickerStartTime: {
         disabledDate: time => {
@@ -395,13 +395,13 @@ export default {
       let page = this.page_cur;
       let type = this.searchType;
       let sid = this.chlidStationId;
-         let user_id = this.searchAssignerId;
+      let user_id = this.searchAssignerId;
       let start_time = this.searchStartTime;
       let end_time = this.searchEndTime;
       this.request({
         url: "/record/getRecordRepairPages",
         method: "get",
-        params: {  page, sid, user_id,type,start_time, end_time }
+        params: { page, sid, user_id, type, start_time, end_time }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
@@ -655,6 +655,7 @@ export default {
           for (let item of results) {
             list.push({
               id: item.id,
+              pid: item.pid,
               value: item.name
             });
           }
@@ -665,7 +666,8 @@ export default {
     },
     searchStationEvent(item) {
       this.page_cur = 1;
-      this.fatherStationEvent(0);
+      this.fatherStationEvent(item.pid);
+      this.fatherStationId = item.pid;
       this.chlidStationId = item.id;
       this.chlidStationName = "";
       this.getDataList();

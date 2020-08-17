@@ -134,7 +134,7 @@ export default {
       this.show = true;
       this.$router.push({
         path: "/sitemanage/main",
-        query: { id: e.id }
+        query: { sid: e.id }
       });
     },
     getClickInfo(e) {

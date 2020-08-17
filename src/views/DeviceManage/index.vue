@@ -248,7 +248,7 @@
             <img v-if="formData.img" :src="formData.img" class="avatar" title="选择图片" />
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
-          <p class="gray">备注：上传图片只能是 jpg  png  gif 格式，建议 400px *400px</p>
+          <p class="gray">备注：上传图片只能是 jpg png gif 格式，建议 400px *400px</p>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -482,7 +482,7 @@ export default {
       if (val == 0) {
         this.getChildStationList();
         this.page_cur = 1;
-        this.chlidStationId = 0;
+        //this.chlidStationId = 0;
         this.getDataList();
       }
       this.fatherStationId = val;
@@ -516,6 +516,7 @@ export default {
           for (let item of results) {
             list.push({
               id: item.id,
+              pid: item.pid,
               value: item.name
             });
           }
@@ -526,7 +527,8 @@ export default {
     },
     searchStationEvent(item) {
       this.page_cur = 1;
-      this.fatherStationEvent(0);
+      this.fatherStationEvent(item.pid);
+      this.fatherStationId = item.pid;
       this.chlidStationId = item.id;
       this.chlidStationName = "";
       this.getDataList();

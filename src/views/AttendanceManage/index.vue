@@ -71,7 +71,7 @@
                 ></el-date-picker>
               </el-form-item>
               <el-form-item class="el-form-item">
-                <el-button type="primary"  @click="searchAllEvent">重置</el-button>
+                <el-button type="primary" @click="searchAllEvent">重置</el-button>
               </el-form-item>
               <el-form-item class="el-form-item" style="margin-left:30px">
                 <span
@@ -232,6 +232,7 @@ export default {
           for (let item of results) {
             list.push({
               id: item.id,
+              pid: item.pid,
               value: item.name
             });
           }
@@ -242,7 +243,8 @@ export default {
     },
     searchStationEvent(item) {
       this.page_cur = 1;
-      this.fatherStationEvent(0);
+      this.fatherStationEvent(item.pid);
+      this.fatherStationId = item.pid;
       this.chlidStationId = item.id;
       this.chlidStationName = "";
       this.getDataList();
@@ -258,7 +260,7 @@ export default {
       this.request({
         url: "clock/getClockPages",
         method: "get",
-        params: { page,sid, start_time, end_time }
+        params: { page, sid, start_time, end_time }
       }).then(res => {
         let data = res.data;
         if (data.status == 1) {
@@ -305,7 +307,7 @@ export default {
       this.page_cur = 1;
       this.oneType = type;
       if (type == 1) {
-         this.searchStartTime = "";
+        this.searchStartTime = "";
         this.searchEndTime = "";
         this.fatherStationEvent(0);
       } else if (type == 2) {

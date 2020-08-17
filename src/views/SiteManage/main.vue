@@ -4,42 +4,43 @@
       <div class="app-page-rows-lefts">
         <div class="left-menu-area">
           <div class="input-so">
-            <el-input
-              placeholder="请输入处理站"
+            <el-autocomplete
+              v-model="chlidStationName"
               prefix-icon="el-icon-search"
-              v-model="chlidName"
-              @input="chlidNameEvent"
-              maxlength="10"
+              class="inline-input"
+              :fetch-suggestions="searchStationCallBack"
+              placeholder="请输入内容"
+              :trigger-on-focus="false"
+              @select="searchStationEvent($event)"
               clearable
-            ></el-input>
+            ></el-autocomplete>
           </div>
           <el-menu router>
-            <el-menu-item :class="fatherId === 0 ? 'active' : ''" @click="fatherStationEvent(0)">
+            <el-menu-item
+              :class="fatherStationId === 0 ? 'active' : ''"
+              @click="fatherStationEvent(0)"
+            >
               <span>全部</span>
             </el-menu-item>
             <el-menu-item
               v-for="item in fatherStationList"
               :key="item.id"
-              :class="fatherId === item.id ? 'active' : ''"
+              :class="fatherStationId === item.id ? 'active' : ''"
               @click="fatherStationEvent(item.id)"
             >
-              <span>{{item.name}}</span>
+              <span :title="item.name">{{item.name}}</span>
             </el-menu-item>
           </el-menu>
         </div>
         <div class="left-menu-chlid">
-          <!-- <div class="el-menu-title">
-           <i class="el-icon-location-information"></i>
-         中南新村
-          </div>-->
           <el-menu router>
             <el-menu-item
               v-for="item in childStationList"
               :key="item.id"
-              :class="fatherId === item.id ? 'active' : ''"
+              :class="chlidStationId === item.id ? 'active' : ''"
               @click="chlidStationEvent(item.id)"
             >
-              <span>{{item.name}}</span>
+              <span :title="item.name">{{item.name}}</span>
             </el-menu-item>
           </el-menu>
         </div>
@@ -224,14 +225,14 @@ import { Createline } from "../../utils/flowAnimation.js";
 export default {
   data() {
     return {
-      fatherId: 0,
       fatherStationList: [],
       childStationList: [],
-      chlidName: ""
+      fatherStationId: 0,
+      chlidStationId: this.$route.query.sid,
+      chlidStationName: ""
     };
   },
   mounted() {
-    this.getFatherStationList(); //
     this.flowAnimations("line1", 145, 12, "w");
     this.flowAnimations("line2", 145, 12, "w");
     this.flowAnimations("line3", 100, 12, "w");
@@ -262,6 +263,12 @@ export default {
     this.flowAnimations("line28", 150, 12, "w");
     this.flowAnimations("line29", 250, 12, "w");
   },
+  created() {
+    // this.chlidStationId =;
+    console.log(this.chlidStationId);
+    this.getFatherStationList();
+    this.getStationViewList();
+  },
   methods: {
     flowAnimations(canvas, canvas_w, canvas_h, fx) {
       var data = {
@@ -283,49 +290,19 @@ export default {
       var res = new Createline(data);
       res.begin(canvas, data);
     },
-    getFatherStationList() {
-      let name = this.chlidName;
+    getStationViewList() {
+      let sid = 2; //this.$route.query.sid
       this.request({
-        url: "/station/getStationLists",
+        url: "/station/getStationViewDetail",
         method: "get",
-        params: { name }
+        params: { sid }
       }).then(response => {
         let data = response.data;
         if (data.status == 1) {
-          this.fatherStationList = data.data;
-          if (this.fatherId == 0) {
-            this.getChildStationList();
-          }
+          console.log(data.data);
         }
       });
     },
-    getChildStationList() {
-      let name = this.chlidName;
-      this.request({
-        url: "/station/getChildStationLists",
-        method: "get",
-        params: { name }
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          this.childStationList = data.data;
-        }
-      });
-    },
-    fatherStationEvent(val) {
-      if (val == 0) {
-        this.getChildStationList();
-      }
-      this.fatherId = val;
-      this.fatherStationList.map(ele => {
-        if (ele.id == val) {
-          this.childStationList = ele.child;
-        }
-      });
-      console.log(this.childStationList);
-    },
-    chlidStationEvent() {},
-    chlidNameEvent() {},
 
     statisticsEnergyDetail() {
       this.$router.push({
@@ -344,18 +321,102 @@ export default {
         path: "/sitemanage/statisticswaterquality",
         query: { id: this.$route.query.id }
       });
+    },
+    //station
+    getFatherStationList() {
+      let name = this.chlidName;
+      this.request({
+        url: "/station/getStationLists",
+        method: "get",
+        params: { name }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          this.fatherStationList = data.data;
+          if (this.fatherStationId == 0) {
+            this.getChildStationList();
+          }
+        }
+      });
+    },
+    getChildStationList() {
+      let name = "";
+      this.request({
+        url: "/station/getChildStationLists",
+        method: "get",
+        params: { name }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          let results = data.data;
+          this.chlidStationId = this.$route.query.sid;
+          this.childStationList = results;
+        }
+      });
+    },
+    fatherStationEvent(val) {
+      if (val == 0) {
+        this.getChildStationList();
+        this.page_cur = 1;
+        //this.chlidStationId = 0;
+        this.getDataList();
+      }
+      this.fatherStationId = val;
+      this.fatherStationList.map(ele => {
+        if (ele.id == val) {
+          this.childStationList = ele.child;
+        }
+      });
+    },
+    chlidStationEvent(val) {
+      this.$router.push({
+        path: "/sitemanage/main",
+        query: { sid: val }
+      });
+      this.chlidStationId = val;
+    },
+    searchStationCallBack(queryString, cb) {
+      this.request({
+        url: "/station/getChildStationLists",
+        method: "get",
+        params: { name: queryString }
+      }).then(response => {
+        let data = response.data;
+        if (data.status == 1) {
+          let results = data.data;
+          let list = [];
+          if (results.length == 0) {
+            list.push({
+              id: 0,
+              value: "未查询到站名"
+            });
+          }
+          for (let item of results) {
+            list.push({
+              id: item.id,
+              value: item.name
+            });
+          }
+          console.log(list);
+          cb(list);
+        }
+      });
+    },
+    searchStationEvent(item) {
+      this.page_cur = 1;
+      this.fatherStationEvent(0);
+      this.chlidStationId = item.id;
+      this.chlidStationName = "";
+      this.getDataList();
     }
-
-    //
+    //end station
   }
 };
 </script>
 <style>
-
-
 .left-menu-chlid {
   float: left;
-  background: #E3E8F2;
+  background: #e3e8f2;
   width: 100px;
   height: calc(100vh - 100px);
 }
