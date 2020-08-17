@@ -1,6 +1,6 @@
 <template>
     <div class="app-wrapper" :class="classObj">
-            <page-navbar :msg="msg"></page-navbar>
+            <page-navbar></page-navbar>
             <page-main></page-main>
     </div>
 </template>
