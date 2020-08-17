@@ -221,7 +221,7 @@
           <el-form-item label="质保期：" prop="warranty_time">
             <el-date-picker v-model="formData.warranty_time" type="date" placeholder="选择日期"></el-date-picker>
           </el-form-item>
-          <el-form-item label="最新维护时间：" prop="latest_time">
+          <el-form-item label="最近维保时间：" prop="latest_time">
             <el-date-picker v-model="formData.latest_time" type="date" placeholder="选择日期"></el-date-picker>
           </el-form-item>
           <el-form-item label="采购人：" prop="purchaser">
@@ -393,7 +393,7 @@ export default {
         latest_time: [
           {
             required: true,
-            message: "请选择维护时间",
+            message: "请选择最近维保时间",
             trigger: "change"
           }
         ],
@@ -482,7 +482,7 @@ export default {
       if (val == 0) {
         this.getChildStationList();
         this.page_cur = 1;
-        //this.chlidStationId = 0;
+        this.chlidStationId = 0;
         this.getDataList();
       }
       this.fatherStationId = val;
@@ -752,7 +752,7 @@ export default {
   background-size: 40px;
 }
 .devicelist .icon3 {
-  background: #3a91f1 url("~@/assets/image/icon-sb4.png") no-repeat left center;
+  background: #3a91f1 url("~@/assets/image/icon-sb3.png") no-repeat left center;
   background-size: 40px;
 }
 .devicelist .icon4 {
@@ -772,7 +772,7 @@ export default {
   padding: 8px 0;
   border: 1px #2b8cf9 solid;
   text-align: center;
-  color: #3a91f1;
+  color: #3a91f1; cursor: pointer;
 }
 .devicelist .viewdetail:hover {
   background: #3a91f1;

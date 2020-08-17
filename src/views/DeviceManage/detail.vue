@@ -178,7 +178,7 @@
           <el-form-item label="质保期：" prop="warranty_time">
             <el-date-picker v-model="formData.warranty_time" type="date" placeholder="选择日期"></el-date-picker>
           </el-form-item>
-          <el-form-item label="最新维护时间：" prop="latest_time">
+          <el-form-item label="最近维保时间：" prop="latest_time">
             <el-date-picker v-model="formData.latest_time" type="date" placeholder="选择日期"></el-date-picker>
           </el-form-item>
           <el-form-item label="采购人：" prop="purchaser">
@@ -349,7 +349,7 @@ export default {
         latest_time: [
           {
             required: true,
-            message: "请选择维护时间",
+            message: "请选择最近维保时间",
             trigger: "change"
           }
         ],

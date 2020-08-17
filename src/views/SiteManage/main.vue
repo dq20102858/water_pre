@@ -303,7 +303,6 @@ export default {
         }
       });
     },
-
     statisticsEnergyDetail() {
       this.$router.push({
         path: "/sitemanage/statisticsenergy",
@@ -349,17 +348,22 @@ export default {
         let data = response.data;
         if (data.status == 1) {
           let results = data.data;
-          this.chlidStationId = this.$route.query.sid;
           this.childStationList = results;
+          let sids = this.$route.query.sid;
+          this.chlidStationId = sids;
+          this.childStationList.map(ele => {
+            if (ele.id == sids) {
+              this.fatherStationId = ele.pid;
+              this.fatherStationEvent(ele.pid);
+            }
+          });
         }
       });
     },
     fatherStationEvent(val) {
       if (val == 0) {
         this.getChildStationList();
-        this.page_cur = 1;
         //this.chlidStationId = 0;
-        this.getDataList();
       }
       this.fatherStationId = val;
       this.fatherStationList.map(ele => {
@@ -394,6 +398,7 @@ export default {
           for (let item of results) {
             list.push({
               id: item.id,
+              pid: item.pid,
               value: item.name
             });
           }
@@ -404,7 +409,8 @@ export default {
     },
     searchStationEvent(item) {
       this.page_cur = 1;
-      this.fatherStationEvent(0);
+      this.fatherStationEvent(item.pid);
+      this.fatherStationId = item.pid;
       this.chlidStationId = item.id;
       this.chlidStationName = "";
       this.getDataList();
