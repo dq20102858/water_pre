@@ -100,72 +100,72 @@ export default {
         ph: [
           {
             required: true,
-            message: "请输入1-3位数字",
+            message: "请输入1-3位正数字并可保留两位小数点",
             trigger: "blur"
           },
           {
             pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
-            message: "请输入1-3位数字",
+            message: "请输入1-3位正数字并可保留两位小数点",
             trigger: "blur"
           }
         ],
         max_ph: [
           {
             required: true,
-            message: "请输入1-3位数字",
+            message: "请输入1-3位正数字并可保留两位小数点",
             trigger: "blur"
           },
           {
             pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
-            message: "请输入1-3位数字",
+            message: "请输入1-3位正数字并可保留两位小数点",
             trigger: "blur"
           }
         ],
         do: [
           {
             required: true,
-            message: "请输入1-3位数字",
+            message: "请输入1-3位正数字并可保留两位小数点",
             trigger: "blur"
           },
           {
             pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
-            message: "请输入1-3位数字",
+            message: "请输入1-3位正数字并可保留两位小数点",
             trigger: "blur"
           }
         ],
         max_do: [
           {
             required: true,
-            message: "请输入1-3位数字",
+            message: "请输入1-3位正数字并可保留两位小数点",
             trigger: "blur"
           },
           {
             pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
-            message: "请输入1-3位数字",
+            message: "请输入1-3位正数字并可保留两位小数点",
             trigger: "blur"
           }
         ],
         conductivity: [
           {
             required: true,
-            message: "请输入1-3位正数字",
+            message: "请输入1-3位正数字并可保留两位小数点",
             trigger: "blur"
           },
           {
             pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
-            message: "请输入1-3位正数字",
+            message: "请输入1-3位正数字并可保留两位小数点",
             trigger: "blur"
           }
         ],
         max_conductivity: [
           {
             required: true,
-            message: "请输入1-3位正数字",
+            message: "请输入1-3位正数字并可保留两位小数点",
             trigger: "blur"
           },
           {
             pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
-            message: "请输入1-3位正数字",
+            message: "请输入1-3位正数字并可保留两位小数点",
             trigger: "blur"
           }
         ],
@@ -230,7 +230,7 @@ export default {
 </script>
 <style>
 .add-from {
-  width: 400px;
+  width: 600px;
   overflow: hidden;
 }
 .add-from .el-form-custom .el-form-item{ margin-bottom: 15px; }
