@@ -268,7 +268,7 @@
           <div class="sampinfo">{{formData.station_name}}</div>
         </el-form-item>
         <el-form-item label="记录日期：">
-          <div class="sampinfo">{{formData.create_time}} &nbsp;</div>
+          <div class="sampinfo">{{formData.create_time|formatGetDate}} &nbsp;</div>
         </el-form-item>
         <el-form-item label="巡查人：">
           <div class="sampinfo">{{formData.user}}</div>

@@ -88,7 +88,7 @@
                 {{dataInfoList.use_time|formatGetDate}}
               </td>
               <td>
-                <b>保质期：</b>
+                <b>质保期：</b>
                 {{dataInfoList.warranty_time|formatGetDate}}
               </td>
             </tr>

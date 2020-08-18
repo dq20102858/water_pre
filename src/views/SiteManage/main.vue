@@ -106,44 +106,44 @@
                   <div>液位：60</div>
                 </div>
                 <div class="shbeng">
-                  <h3>抽水泵</h3>
+                  <h3>排水泵</h3>
                   <p class="zhtai">
-                    <em>运行状态：</em>
+                    <em>设备状态：</em>
                     <span class="start0">运行中</span>
                   </p>
                 </div>
                 <div class="huiliu">
                   <h3>硝酸液回流泵</h3>
                   <p class="zhtai">
-                    <em>运行状态：</em>
+                    <em>设备状态：</em>
                     <span class="start1">停止运行</span>
                   </p>
                 </div>
                 <div class="huiliu" style="top: -115px;left:830px;">
                   <h3>淤泥回流泵</h3>
                   <p class="zhtai">
-                    <em>运行状态：</em>
+                    <em>设备状态：</em>
                     <span class="start1">停止运行</span>
                   </p>
                 </div>
                 <div class="fengji">
                   <h3>1#风机</h3>
                   <p class="zhtai">
-                    <em>运行状态：</em>
+                    <em>设备状态：</em>
                     <span class="start0">运行中</span>
                   </p>
                 </div>
                 <div class="fengji" style="top: -170px; left:1115px;">
-                  <h3>1#风机</h3>
+                  <h3>2#风机</h3>
                   <p class="zhtai">
-                    <em>运行状态：</em>
+                    <em>设备状态：</em>
                     <span class="start1">故障中</span>
                   </p>
                 </div>
                 <div class="ziwai">
                   <h3>紫外线消毒灯光</h3>
                   <p class="zhtai">
-                    <em>运行状态：</em>
+                    <em>设备状态：</em>
                     <span class="start0">运行中</span>
                   </p>
                 </div>

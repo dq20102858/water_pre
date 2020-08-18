@@ -132,10 +132,8 @@
               <el-table-column label="序号" width="80px">
                 <template slot-scope="scope">
                   <span
-                    v-if="scope.row.type<3"
                     :class="[scope.row.is_read!=1? 'cirshow' : 'nums']"
                   >{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
-                  <span v-else>{{scope.$index+(page_cur - 1) * page_size + 1}}</span>
                 </template>
               </el-table-column>
               <el-table-column prop="type" label="告警设备" v-if="this.searchType==2">
