@@ -109,11 +109,9 @@
               <el-table-column label="记录时间">
                 <template slot-scope="scope">{{scope.row.create_time|formatGetDate}}</template>
               </el-table-column>
+              <el-table-column prop="station_name" label="记录站点"></el-table-column>
               <el-table-column prop="electricity" label="电表读数（KWH）"></el-table-column>
               <el-table-column prop="electricity_sum" label="累计读数">
-                <!-- <template slot-scope="scope">
-                  <span v-html="scope.row.number">吨</span>
-                </template>-->
               </el-table-column>
               <el-table-column prop="exception" label="异常情况"></el-table-column>
               <el-table-column prop="user" label="巡查人员"></el-table-column>
