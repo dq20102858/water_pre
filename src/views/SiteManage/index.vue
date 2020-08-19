@@ -131,6 +131,7 @@ export default {
     },
     markerClick(e) {
       console.log(e);
+    
       this.show = true;
       this.$router.push({
         path: "/sitemanage/main",
@@ -138,8 +139,8 @@ export default {
       });
     },
     getClickInfo(e) {
-      this.marker.lng = e.point.lng;
-      this.marker.lat = e.point.lat;
+      // this.marker.lng = e.point.lng;
+      // this.marker.lat = e.point.lat;
     },
     syncCenterAndZoom(e) {
       const { lng, lat } = e.target.getCenter();

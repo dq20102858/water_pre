@@ -110,7 +110,7 @@
                 <template slot-scope="scope">{{scope.row.create_time|formatGetDate}}</template>
               </el-table-column>
               <el-table-column prop="station_name" label="维保站点"></el-table-column>
-              <el-table-column prop="is_problem" label="是否异常">
+              <el-table-column prop="is_problem" label="是否有问题">
                 <template slot-scope="scope">
                   <span v-if="scope.row.is_problem==1">是</span>
                   <span v-if="scope.row.is_problem==0">否</span>
@@ -142,7 +142,7 @@
                   ></el-switch>
                 </template>
               </el-table-column>
-              <el-table-column prop="user" label="维保人"></el-table-column>
+              <el-table-column prop="user" label="运维人员"></el-table-column>
               <el-table-column prop="phone" label="联系电话"></el-table-column>
               <el-table-column label="操作" width="190">
                 <template slot-scope="scope">
