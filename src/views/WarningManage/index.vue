@@ -139,7 +139,9 @@
               <el-table-column prop="type" label="告警设备" v-if="this.searchType==2">
                 <template slot-scope="scope">
                   <span v-if="scope.row.type==1">风机</span>
-                  <span v-else>水泵</span>
+                  <span else-if="scope.row.type==2">水泵</span>
+                  <span else-if="scope.row.type==3">紫外灯</span>
+                  <span v-else>PLC</span>
                 </template>
               </el-table-column>
               <el-table-column prop="type" label="水质类型" v-if="this.searchType==1">
