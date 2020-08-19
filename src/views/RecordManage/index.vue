@@ -142,7 +142,7 @@
                   ></el-switch>
                 </template>
               </el-table-column>
-              <el-table-column prop="user" label="运维人员"></el-table-column>
+              <el-table-column prop="user" label="维保人"></el-table-column>
               <el-table-column prop="phone" label="联系电话"></el-table-column>
               <el-table-column label="操作" width="190">
                 <template slot-scope="scope">

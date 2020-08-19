@@ -106,7 +106,7 @@
               <el-table-column label="序号" width="80px">
                 <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
               </el-table-column>
-              <el-table-column label="记录时间">
+              <el-table-column label="记录日期">
                 <template slot-scope="scope">{{scope.row.create_time|formatGetDate}}</template>
               </el-table-column>
               <el-table-column prop="station_name" label="记录站点"></el-table-column>
