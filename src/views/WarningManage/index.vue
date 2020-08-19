@@ -139,9 +139,9 @@
               <el-table-column prop="type" label="告警设备" v-if="this.searchType==2">
                 <template slot-scope="scope">
                   <span v-if="scope.row.type==1">风机</span>
-                  <span else-if="scope.row.type==2">水泵</span>
-                  <span else-if="scope.row.type==3">紫外灯</span>
-                  <span v-else>PLC</span>
+                  <span v-if="scope.row.type==2">水泵</span>
+                  <span v-if="scope.row.type==3">紫外灯</span>
+                  <span v-if="scope.row.type==4">PLC</span>
                 </template>
               </el-table-column>
               <el-table-column prop="type" label="水质类型" v-if="this.searchType==1">
@@ -515,7 +515,7 @@ export default {
   padding: 3px 5px;
 }
 .cirshow {
-  background: #f45e23;
+  background: #FF3856;
   color: #fff;
   padding: 3px 5px;
   border-radius: 3px;

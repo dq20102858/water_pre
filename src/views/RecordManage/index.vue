@@ -110,7 +110,7 @@
                 <template slot-scope="scope">{{scope.row.create_time|formatGetDate}}</template>
               </el-table-column>
               <el-table-column prop="station_name" label="维保站点"></el-table-column>
-              <el-table-column prop="is_problem" label="是否有问题">
+              <el-table-column prop="is_problem" label="是否异常">
                 <template slot-scope="scope">
                   <span v-if="scope.row.is_problem==1">是</span>
                   <span v-if="scope.row.is_problem==0">否</span>
