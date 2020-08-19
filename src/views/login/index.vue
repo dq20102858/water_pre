@@ -8,7 +8,7 @@
       <div class="title-container">
         <img :src="require('@/assets/image/logo.png')" />
       </div>
-      <div class="corpname">某公司智能污水处理站监控系统</div>
+      <div class="corpname">南通智能污水处理站监控系统</div>
       <el-form autocomplete="off" :model="loginForm" :rules="loginRules" ref="loginForm">
         <el-form-item prop="username">
           <el-input
