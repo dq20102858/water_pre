@@ -27,7 +27,7 @@
             type="password"
             v-model="loginForm.password"
             placeholder="登录密码"
-            autocomplete="new-password"
+            autocomplete="new-password" maxlength="20"
             clearable
           >
             <template slot="prepend">
