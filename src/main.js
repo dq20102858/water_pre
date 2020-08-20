@@ -3,29 +3,21 @@ import Vue from 'vue'
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import '@/assets/css/index.scss' // global css
+import '@/assets/css/style.scss' // global css
 import App from './App'
 import router from './router/index'
 import store from './store'
 import './permission' // permission control
 import * as filters from './filters' // global filters
 
-import authorityCode from './authorityCode'
-// import 'default-passive-events'
-// import echarts from 'echarts'
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts
-
-// import BaiduMap
-
 import Print from 'vue-print-nb'//调用浏览器打印插件
 Vue.use(Print);
-
 // import Video
 import Video from 'video.js'//浏览器视频插件
 import 'video.js/dist/video-js.css'
 Vue.prototype.$video = Video
-
 // import layer;
  import layer from 'vue-layer'
  import 'vue-layer/lib/vue-layer.css';
