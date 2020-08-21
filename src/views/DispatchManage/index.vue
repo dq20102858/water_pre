@@ -198,7 +198,7 @@
             ></el-cascader>
           </el-form-item>
           <el-form-item label="派单事项：" prop="type">
-            <el-select v-model="formData.type" placeholder="请选择设备类型">
+            <el-select v-model="formData.type" placeholder="请选择派单事项">
               <el-option label="设备维修" :value="1"></el-option>
               <el-option label="例行维保" :value="2"></el-option>
               <el-option label="运行检查" :value="3"></el-option>
