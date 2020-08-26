@@ -56,14 +56,14 @@
                   <el-option label="采样化验单" value="3"></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item class="el-form-item el-select-dorps" style="width:120px">
+              <el-form-item class="el-form-item el-select-dorps" style="width:150px">
                 <el-select
                   v-model="searchAssignerId"
                   filterable
-                  placeholder="全部运维人"
+                  placeholder="请选择运维人员"
                   @change="searchAssignerEvent($event)"
                 >
-                  <el-option key="0" label="全部运维人" value="0"></el-option>
+                  <el-option key="0" label="请选择运维人员" value="0"></el-option>
                   <el-option
                     v-for="item in userList"
                     :key="item.id"
@@ -106,7 +106,7 @@
               <el-table-column label="序号" width="80px">
                 <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
               </el-table-column>
-              <el-table-column label="维保日期">
+              <el-table-column label="维保日期" width="100">
                 <template slot-scope="scope">{{scope.row.create_time|formatGetDate}}</template>
               </el-table-column>
               <el-table-column prop="station_name" label="维保站点"></el-table-column>
@@ -290,8 +290,9 @@
             accept=".xls"
           >
             <el-button type="primary" plain>选择模板文件</el-button>
-            <div slot="tip" class="el-upload__tip">
-              请上传模板格式文件，且不超过2MB
+            <div slot="tip" class="el-upload__tip" style="line-height:20px;padding-top:20px">
+              <p>请按照下载的模板格式填写信息 请勿改动</p>
+              <p>否则上传可能会出现数据格式不正确的问题</p>
               <a
                 style="text-decoration: none;color:#4093ED"
                 target="_blank"

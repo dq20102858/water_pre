@@ -91,10 +91,10 @@
           </div>
           <div class="app-table">
             <el-table :data="dataList" class="samplinglist">
-              <el-table-column align="center" label="序号" width="80px">
+              <el-table-column label="序号" width="80px">
                 <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
               </el-table-column>
-              <el-table-column align="center" label="采样日期">
+              <el-table-column align="center" label="采样日期"  width="100">
                 <template slot-scope="scope">{{scope.row.create_time|formatGetDate}}</template>
               </el-table-column>
               <el-table-column align="center" prop="station_name" label="采样站点"></el-table-column>
@@ -224,8 +224,9 @@
             accept=".xls"
           >
             <el-button type="primary" plain>选择模板文件</el-button>
-            <div slot="tip" class="el-upload__tip">
-              请上传模板格式文件，且不超过2MB
+           <div slot="tip" class="el-upload__tip" style="line-height:20px;padding-top:20px">
+              <p>请按照下载的模板格式填写信息 请勿改动</p>
+              <p>否则上传可能会出现数据格式不正确的问题</p>
               <a
                 style="text-decoration: none;color:#4093ED"
                 target="_blank"

@@ -49,14 +49,21 @@
         <div class="app-page-container">
           <div class="app-page-select">
             <el-form :inline="true">
-              <el-form-item class="el-form-item el-select-dorps" style="width:120px">
+              <el-form-item class="el-form-item el-select-dorps">
+                <el-select v-model="searchStatus" @change="searchStatusEvent" style="width:150px">
+                  <el-option label="请选择派单状态" value="0"></el-option>
+                  <el-option label="已完成" value="2"></el-option>
+                  <el-option label="未完成" value="1"></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item class="el-form-item el-select-dorps" style="width:150px">
                 <el-select
                   v-model="searchAssignerId"
                   filterable
-                  placeholder="全部运维人"
+                  placeholder="请选择运维人员"
                   @change="searchAssignerEvent($event)"
                 >
-                  <el-option key="0" label="全部运维人" value="0"></el-option>
+                  <el-option key="0" label="请选择运维人员" value="0"></el-option>
                   <el-option
                     v-for="item in userList"
                     :key="item.id"
@@ -66,20 +73,14 @@
                 </el-select>
               </el-form-item>
               <el-form-item class="el-form-item el-select-dorps">
-                <el-select v-model="searchType" @change="searchTypeEvent" style="width:120px">
-                  <el-option label="全部事项" value="0"></el-option>
+                <el-select v-model="searchType" @change="searchTypeEvent" style="width:150px">
+                  <el-option label="请选择运维项目" value="0"></el-option>
                   <el-option label="设备维修" value="1"></el-option>
                   <el-option label="例行维保" value="2"></el-option>
                   <el-option label="运行检查" value="3"></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item class="el-form-item el-select-dorps">
-                <el-select v-model="searchStatus" @change="searchStatusEvent" style="width:120px">
-                  <el-option label="全部状态" value="0"></el-option>
-                  <el-option label="已完成" value="2"></el-option>
-                  <el-option label="未完成" value="1"></el-option>
-                </el-select>
-              </el-form-item>
+              
               <el-form-item class="el-form-item">
                 <el-date-picker
                   type="date"
@@ -130,10 +131,7 @@
                   <span style="color:#999" v-else>未完成</span>
                 </template>
               </el-table-column>
-              <el-table-column label="指派时间">
-                <template slot-scope="scope">
-                  <span>{{scope.row.assign_time}}</span>
-                </template>
+              <el-table-column  prop="assign_time" label="指派时间"  width="100">
               </el-table-column>
               <el-table-column label="操作" width="190">
                 <template slot-scope="scope">

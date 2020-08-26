@@ -574,10 +574,10 @@ export default {
     searchTypeEvent(val) {
       this.page_cur = 1;
       this.searchType = val;
-      console.log(val);
       this.getDataList();
     },
     searchStatusEvent(val) {
+      this.page_cur = 1;
       this.searchStatus = val;
       this.getDataList();
     },
@@ -772,7 +772,8 @@ export default {
   padding: 8px 0;
   border: 1px #2b8cf9 solid;
   text-align: center;
-  color: #3a91f1; cursor: pointer;
+  color: #3a91f1;
+  cursor: pointer;
 }
 .devicelist .viewdetail:hover {
   background: #3a91f1;
