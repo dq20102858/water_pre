@@ -190,7 +190,7 @@
         label-width="120px"
       >
         <div class="el-form-item-inlines">
-          <el-form-item label="选择站点：" prop="sid">
+          <el-form-item label="维保站点：" prop="sid">
             <el-cascader
               v-model="formData.sid"
               :options="stationOptions"
