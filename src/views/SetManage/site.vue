@@ -49,9 +49,14 @@
                 </template>
               </el-table-column>
               <el-table-column prop="create_time" label="入网时间"></el-table-column>
-              <el-table-column label="操作" width="130">
+              <el-table-column label="操作" width="200">
                 <template slot-scope="scope">
                   <div class="app-operation">
+                    <el-button
+                      class="btn-gray"
+                      size="mini"
+                      @click="qrCodeEvent(scope.row.id,scope.row.name)"
+                    >二维码</el-button>
                     <el-button class="btn-edit" size="mini" @click="editEvent(scope.row.id)">编辑</el-button>
                     <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
                   </div>
@@ -79,6 +84,7 @@
               </el-pagination>
             </div>
           </div>
+
           <el-dialog
             width="780px"
             :close-on-click-modal="false"
@@ -154,6 +160,15 @@
               <el-button type="primary" @click="addEvent()">确定</el-button>
             </div>
           </el-dialog>
+          <el-dialog
+            width="300px"
+            :close-on-click-modal="false"
+            class="dialog-qrcode"
+            title="二维码"
+            :visible.sync="diaLogQrCodeVisible"
+          >
+            <div id="qrcode" class="qrcode" ref="qrCodeUrl"></div>
+          </el-dialog>
         </div>
       </div>
     </div>
@@ -161,6 +176,7 @@
 </template>
 <script>
 import { BaiduMap, BmView, BmLocalSearch, BmMarker } from "vue-baidu-map";
+import QRCode from "qrcodejs2";
 export default {
   components: {
     BaiduMap,
@@ -177,6 +193,7 @@ export default {
       diaLogFormVisible: false,
       diaLogTitle: "添加站点",
       diaLogEdit: false,
+      diaLogQrCodeVisible: false,
       formData: {},
       formRules: {
         name: [
@@ -402,6 +419,29 @@ export default {
         })
         .catch(() => {});
     },
+    bindQRCode(text) {
+      new QRCode(this.$refs.qrCodeUrl, {
+        text: text,
+        width: 200,
+        height: 200,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.L //容错率，L/M/H
+      });
+    },
+    qrCodeEvent(id, name) {
+      this.diaLogQrCodeVisible = true;
+
+      var jdata = {
+        id: id,
+        name: name
+      };
+      let that = this;
+      setTimeout(function() {
+        that.$refs.qrCodeUrl.innerHTML = "";
+        that.bindQRCode(JSON.stringify(jdata));
+      }, 300);
+    },
     getClickInfo(e) {
       this.centerStr.lng = e.point.lng;
       this.centerStr.lat = e.point.lat;
@@ -435,5 +475,12 @@ export default {
   border-radius: 3px;
   border: 1px #ddd solid;
 }
-.app-set-page .bm-view{height: 360px;}
+.app-set-page .bm-view {
+  height: 360px;
+}
+.dialog-qrcode .qrcode {
+  width: 200px;
+  margin: 0 auto;
+  padding: 20px 0 35px 5px
+}
 </style>
