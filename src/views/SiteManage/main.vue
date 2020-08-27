@@ -448,7 +448,7 @@ export default {
   background: #24284d;
   background-repeat: no-repeat;
   height: 100vh;
-  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .app-site {
