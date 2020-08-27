@@ -92,17 +92,17 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          if (this.loginForm.username == "") {
+          if (this.loginForm.username.trim().length == "") {
             this.$message({
               type: "error",
-              message: "请输入用户名"
+              message: "请输入正确的用户名"
             });
             return false;
           }
-          if (this.loginForm.password == "") {
+          if (this.loginForm.password.trim().length  == "") {
             this.$message({
               type: "error",
-              message: "请输入密码"
+              message: "请输入正确的密码"
             });
             return false;
           }
@@ -119,7 +119,7 @@ export default {
               return false;
             });
         } else {
-          console.log("error submit!!");
+          console.log("error submit");
           return false;
         }
       });

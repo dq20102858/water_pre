@@ -158,7 +158,7 @@
             <div class="sampinfo">{{formData.station_name}}</div>
           </el-form-item>
           <el-form-item label="采样时间：" label-width="100px">
-            <div class="sampinfo">{{formData.create_time}} &nbsp;</div>
+            <div class="sampinfo">{{formData.create_time|formatGetDate}} &nbsp;</div>
           </el-form-item>
           <el-form-item label="采样化验人：" label-width="100px">
             <div class="sampinfo">{{formData.user}}</div>
@@ -225,7 +225,7 @@
           >
             <el-button type="primary" plain>选择模板文件</el-button>
            <div slot="tip" class="el-upload__tip" style="line-height:20px;padding-top:20px">
-              <p>请按照下载的模板格式填写信息 请勿改动</p>
+              <p>请按照下载的模板格式填写信息</p>
               <p>否则上传可能会出现数据格式不正确的问题</p>
               <a
                 style="text-decoration: none;color:#4093ED"

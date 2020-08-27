@@ -76,12 +76,12 @@
                 </el-col>
               </el-form-item>
               <el-form-item label="液位：" prop="level">
-                <el-input  v-model="formData.level">
-    <template slot="append">厘米</template>
-  </el-input>
+                <el-input v-model="formData.level">
+                  <template slot="append">厘米</template>
+                </el-input>
               </el-form-item>
               <el-form-item>
-                <br>
+                <br />
                 <el-button type="primary" @click="addEventDialog">确定</el-button>
               </el-form-item>
             </el-form>
@@ -193,6 +193,31 @@ export default {
       this.$refs["formRulesRef"].validate(valid => {
         if (valid) {
           let data = that.formData;
+
+          if (parseFloat(that.formData.max_ph) < parseFloat(that.formData.ph)) {
+            this.$message({
+              type: "error",
+              message: "PH值：最小值不能大于最大值"
+            });
+            return false;
+          }
+          if (parseFloat(that.formData.max_do) < parseFloat(that.formData.do)) {
+            this.$message({
+              type: "error",
+              message: "DO值：最小值不能大于最大值"
+            });
+            return false;
+          }
+          if (
+            parseFloat(that.formData.max_conductivity) <
+            parseFloat(that.formData.conductivity)
+          ) {
+            this.$message({
+              type: "error",
+              message: "电导率值：最小值不能大于最大值"
+            });
+            return false;
+          }
           this.request({
             url: "/set/addOrUpdateSet",
             method: "post",
@@ -233,5 +258,7 @@ export default {
   width: 600px;
   overflow: hidden;
 }
-.add-from .el-form-custom .el-form-item{ margin-bottom: 15px; }
+.add-from .el-form-custom .el-form-item {
+  margin-bottom: 15px;
+}
 </style>
