@@ -260,7 +260,7 @@
             <div class="sampinfo">{{formData.leave_time}} &nbsp;</div>
           </el-form-item>
           <el-form-item label="服务耗时：">
-            <div class="sampinfo">{{formData.keep_time}}</div>
+            <div class="sampinfo">{{formData.keep_time}}小时</div>
           </el-form-item>
           <el-form-item label="维护人员：">
             <div class="sampinfo">{{formData.user}}</div>
@@ -381,7 +381,7 @@
           <div class="sampinfo">{{formData.leave_time}} &nbsp;</div>
         </el-form-item>
         <el-form-item label="服务耗时：">
-          <div class="sampinfo">{{formData.keep_time}}</div>
+          <div class="sampinfo">{{formData.keep_time}}小时</div>
         </el-form-item>
         <el-form-item label="维护人员：">
           <div class="sampinfo">{{formData.user}}</div>
