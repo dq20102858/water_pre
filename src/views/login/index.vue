@@ -95,14 +95,14 @@ export default {
           if (this.loginForm.username.trim().length == "") {
             this.$message({
               type: "error",
-              message: "请输入正确的用户名"
+              message: "用户名或密码错误"
             });
             return false;
           }
           if (this.loginForm.password.trim().length  == "") {
             this.$message({
               type: "error",
-              message: "请输入正确的密码"
+              message: "用户名或密码错误"
             });
             return false;
           }
