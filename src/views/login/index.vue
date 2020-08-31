@@ -15,7 +15,7 @@
             v-model="loginForm.username"
             placeholder="用户名"
             autocomplete="new-password"
-            clearable
+            clearable  maxlength="20"
           >
             <template slot="prepend">
               <img :src="require('@/assets/image/icon-login1.png')" />

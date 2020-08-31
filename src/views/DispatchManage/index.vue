@@ -246,7 +246,7 @@
     >
       <el-form :model="formData" class="el-form-custom" label-width="120px">
         <div class="el-form-item-detail">
-          <el-form-item label="选择站点：">
+          <el-form-item label="维保站点：">
             <div class="disp-info">{{formData.station_name}}</div>
           </el-form-item>
           <el-form-item label="指派人员：">
