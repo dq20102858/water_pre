@@ -109,7 +109,7 @@
               <el-table-column label="维保日期" width="100">
                 <template slot-scope="scope">{{scope.row.create_time|formatGetDate}}</template>
               </el-table-column>
-              <el-table-column prop="station_name" label="维保站点"></el-table-column>
+              <el-table-column prop="station_name" label="站点名"></el-table-column>
               <el-table-column prop="is_problem" label="是否有问题">
                 <template slot-scope="scope">
                   <span v-if="scope.row.is_problem==1">是</span>
@@ -186,7 +186,7 @@
     >
       <el-form class="dialog-form-records" :model="formData" label-width="100px">
         <div class="el-form-item-inline">
-          <el-form-item label="地址：">
+          <el-form-item label="站点名：">
             <div class="sampinfo">{{formData.station_name}}</div>
           </el-form-item>
           <el-form-item label="维护日期：">
@@ -307,7 +307,7 @@
     <el-form class="dialog-form-records" id="printRecord" :model="formData" label-width="100px">
       <h3 class="printTitles">污水处理站维护记录表</h3>
       <div class="el-form-item-inline">
-        <el-form-item label="地址：">
+        <el-form-item label="站点名：">
           <div class="sampinfo">{{formData.station_name}}</div>
         </el-form-item>
         <el-form-item label="维护日期：">

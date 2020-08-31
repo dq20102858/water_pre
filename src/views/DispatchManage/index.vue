@@ -115,7 +115,7 @@
               <el-table-column label="序号" width="80px">
                 <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
               </el-table-column>
-              <el-table-column prop="station_name" label="维保站点"></el-table-column>
+              <el-table-column prop="station_name" label="站点名"></el-table-column>
               <el-table-column prop="assigner" label="指派人"></el-table-column>
               <el-table-column prop="phone" label="手机"></el-table-column>
               <el-table-column prop="type" label="维保事项">
@@ -188,7 +188,7 @@
         label-width="120px"
       >
         <div class="el-form-item-inlines">
-          <el-form-item label="维保站点：" prop="sid">
+          <el-form-item label="站点名：" prop="sid">
             <el-cascader
               v-model="formData.sid"
               :options="stationOptions"
@@ -246,8 +246,13 @@
     >
       <el-form :model="formData" class="el-form-custom" label-width="120px">
         <div class="el-form-item-detail">
-          <el-form-item label="维保站点：">
+          <el-form-item label="站点名：">
             <div class="disp-info">{{formData.station_name}}</div>
+          </el-form-item>
+            <el-form-item label="派单事项：">
+            <div class="disp-info" v-if="formData.type==1">设备维修</div>
+            <div class="disp-info" v-if="formData.type==2">例行维保</div>
+            <div class="disp-info" v-if="formData.type==3">运行检查</div>
           </el-form-item>
           <el-form-item label="指派人员：">
             <div class="disp-info">{{formData.assigner}}</div>
@@ -257,11 +262,6 @@
           </el-form-item>-->
           <el-form-item label="手机号码：">
             <div class="disp-info">{{formData.phone}}</div>
-          </el-form-item>
-          <el-form-item label="派单事项：">
-            <div class="disp-info" v-if="formData.type==1">设备维修</div>
-            <div class="disp-info" v-if="formData.type==2">例行维保</div>
-            <div class="disp-info" v-if="formData.type==3">运行检查</div>
           </el-form-item>
           <el-form-item label="指派时间：">
             <div class="disp-info">{{formData.assign_time}}</div>

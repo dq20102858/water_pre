@@ -113,7 +113,7 @@
               <el-table-column prop="electricity" label="电表读数（KWH）"></el-table-column>
               <el-table-column prop="electricity_sum" label="累计读数">
               </el-table-column>
-              <el-table-column prop="exception" label="异常情况"></el-table-column>
+              <el-table-column prop="exception" label="异常情况" show-overflow-tooltip></el-table-column>
               <el-table-column prop="user" label="巡查人员"></el-table-column>
               <el-table-column prop="phone" label="联系电话"></el-table-column>
               <el-table-column label="操作" width="190">
@@ -158,7 +158,7 @@
     >
       <el-form class="dialog-form-opera" :model="formData" label-width="100px">
         <div class="el-form-item-inline">
-          <el-form-item label="地址：">
+          <el-form-item label="记录站点：">
             <div class="sampinfo">{{formData.station_name}}</div>
           </el-form-item>
           <el-form-item label="记录日期：">
@@ -263,7 +263,7 @@
     <el-form class="dialog-form-opera" id="printRecord" :model="formData" label-width="100px">
       <h3 class="printTitles">污水处理站运行记录表</h3>
       <div class="el-form-item-inline">
-        <el-form-item label="地址：">
+        <el-form-item label="记录站点：">
           <div class="sampinfo">{{formData.station_name}}</div>
         </el-form-item>
         <el-form-item label="记录日期：">

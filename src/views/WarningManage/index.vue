@@ -125,6 +125,9 @@
                   :picker-options="pickerEndTime"
                 ></el-date-picker>
               </el-form-item>
+               <el-form-item class="el-form-item">
+                <el-button type="primary" @click="searchAllEvent">重置</el-button>
+              </el-form-item>
             </el-form>
           </div>
           <div class="app-table">
@@ -151,7 +154,7 @@
                   <span v-else>液位</span>
                 </template>
               </el-table-column>
-              <el-table-column prop="reason" label="告警原因" v-if="this.searchType!=3"></el-table-column>
+              <el-table-column prop="reason" label="告警原因" v-if="this.searchType!=3" show-overflow-tooltip></el-table-column>
               <el-table-column prop="create_time" label="告警时间"></el-table-column>
               <el-table-column prop="address" label="发生位置"></el-table-column>
               <el-table-column prop="is_repair" label="是否修复" v-if="this.searchType!=3">
@@ -427,6 +430,12 @@ export default {
     },
     searchTypeEvent(val) {
       this.type = this.searchType;
+      this.getDataList();
+    },
+     searchAllEvent() {
+      this.page_cur = 1;
+      this.searchStartTime = "";
+      this.searchEndTime = "";
       this.getDataList();
     },
     repairEvent(flag, id) {
