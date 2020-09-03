@@ -2,34 +2,25 @@
   <div class="app-pages">
     <div class="baidumap">
       <div class="baidumap-so">
-        <!--
-      <el-input v-model="address" placeholder="请输入地址  支持手动在地图标注位置"></el-input>
-        -->
-        <!-- <el-input
-        placeholder="请输入位置关键字"
-        v-model="searchAddress"
-        @keyup.enter.native="searchEvent"
-        class="map-so-input"   prefix-icon="el-icon-search"
-        clearable
-      >
-        </el-input>-->
-  <el-select
-    v-model="value"
-    multiple
-    filterable
-    remote
-    reserve-keyword
-    placeholder="请输入关键词"
-    :remote-method="remoteMethod"
-    :loading="loading" clearable>
-    <el-option
-      v-for="item in options"
-      :key="item.id"
-      :label="item.value"
-      :value="item.id">
-    </el-option>
-  </el-select>
-
+        <!-- <el-select
+          v-model="value"
+          filterable
+          remote
+          icon="el-icon-search"
+          placeholder="请输入关键词"
+          :remote-method="searchRemoteMethod"
+          :loading="loading"
+          clearable
+          @click="searchEvent"
+        >
+          <el-option
+            v-for="item in options"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id"
+            @click.native="searchStationEvent(item)"
+          ></el-option>
+        </el-select>-->
         <el-autocomplete
           v-model="chlidStationName"
           class="map-so-input"
@@ -38,7 +29,6 @@
           placeholder="请输入处理站名"
           :trigger-on-focus="false"
           @select="searchStationEvent($event)"
-          clearable
         ></el-autocomplete>
       </div>
       <baidu-map
@@ -92,8 +82,9 @@ import {
 export default {
   data() {
     return {
-       loading: false,
-      options:[],
+      loading: false,
+      value: [],
+      options: [],
       searchAddress: "",
       address: "",
       center: { lng: 0, lat: 0 },
@@ -170,48 +161,37 @@ export default {
     //   this.zoom = e.target.getZoom();
     //   // console.log(this.centerStr.lng + "__A__" + this.centerStr.lat);
     // },
-    searchEvent() {},
-     remoteMethod(query) {
-        if (query !== '') {
-          this.loading = true;
-  this.request({
-        url: "/station/getChildStationLists",
-        method: "get",
-        params: { name: query }
-      }).then(response => {
-        let data = response.data;
-        if (data.status == 1) {
-          let results = data.data;
-          let list = [];
-          if (results.length == 0) {
-            this.options.push({
-              id: 0,
-              value: "未查询到站名"
-            });
-          }
-          for (let item of results) {
-            this.options.push({
-              id: item.id,
-              pid: item.pid,
-              value: item.name,
-              lng: item.lng,
-              lat: item.lat
-            });
-          }
-        }
-      });
-      console.log(this.options);
-          // setTimeout(() => {
-          //   this.loading = false;
-          //   this.options = this.list.filter(item => {
-          //     return item.label.toLowerCase()
-          //       .indexOf(query.toLowerCase()) > -1;
-          //   });
-          // }, 200);
-        } else {
-          this.options = [];
-        }
-      },
+    searchRemoteMethod(query) {
+      if (query !== "") {
+        this.loading = true;
+        setTimeout(() => {
+          this.loading = false;
+          this.request({
+            url: "/station/getChildStationLists",
+            method: "get",
+            params: { name: query }
+          }).then(response => {
+            let data = response.data;
+            if (data.status == 1) {
+              let results = data.data;
+              let jlist = [];
+              for (let item of results) {
+                jlist.push({
+                  id: item.id,
+                  pid: item.pid,
+                  value: item.name,
+                  lng: item.lng,
+                  lat: item.lat
+                });
+              }
+              this.options = data.data;
+            }
+          });
+        }, 200);
+      } else {
+        this.options = [];
+      }
+    },
     searchStationCallBack(queryString, cb) {
       this.request({
         url: "/station/getChildStationLists",
