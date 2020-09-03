@@ -87,6 +87,9 @@
               <el-form-item class="el-form-item">
                 <el-button type="primary" @click="expectExcel">导入</el-button>
               </el-form-item>
+              <el-form-item class="el-form-item">
+                <el-button type="primary" @click="expectExcelOut">导出</el-button>
+              </el-form-item>
             </el-form>
           </div>
           <div class="app-table">
@@ -94,7 +97,7 @@
               <el-table-column label="序号" width="80px">
                 <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
               </el-table-column>
-              <el-table-column align="center" label="采样日期"  width="100">
+              <el-table-column align="center" label="采样日期" width="100">
                 <template slot-scope="scope">{{scope.row.create_time|formatGetDate}}</template>
               </el-table-column>
               <el-table-column align="center" prop="station_name" label="采样站点"></el-table-column>
@@ -224,14 +227,10 @@
             accept=".xls"
           >
             <el-button type="primary" plain>选择模板文件</el-button>
-           <div slot="tip" class="el-upload__tip" style="line-height:20px;padding-top:20px">
+            <div slot="tip" class="el-upload__tip" style="line-height:20px;padding-top:20px">
               <p>请按照下载的模板格式填写信息</p>
               <p>否则上传可能会出现数据格式不正确的问题</p>
-              <a
-                style="text-decoration: none;color:#4093ED"
-                target="_blank"
-                :href="uploadTemp"
-              >下载模板</a>
+              <a style="text-decoration: none;color:#4093ED" target="_blank" :href="uploadTemp">下载模板</a>
             </div>
           </el-upload>
         </el-form-item>
@@ -521,6 +520,26 @@ export default {
         return false;
       }
       return extension || isLtM;
+    },
+    expectExcelOut() {
+      let type = this.searchType;
+      let sid = this.chlidStationId;
+      let start_time = this.searchStartTime;
+      let end_time = this.searchEndTime;
+      let user_id = this.searchAssignerId;
+
+      window.location.href =
+        this.hostURL +
+        "/record/exportExcel?type=" +
+        type +
+        "&sid=" +
+        sid +
+        "&start_time=" +
+        start_time +
+        "&end_time=" +
+        end_time +
+        "&user_id=" +
+        user_id;
     },
     //station
     getFatherStationList() {

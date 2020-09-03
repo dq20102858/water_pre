@@ -125,7 +125,7 @@
                   :picker-options="pickerEndTime"
                 ></el-date-picker>
               </el-form-item>
-               <el-form-item class="el-form-item">
+              <el-form-item class="el-form-item">
                 <el-button type="primary" @click="searchAllEvent">重置</el-button>
               </el-form-item>
             </el-form>
@@ -154,7 +154,12 @@
                   <span v-else>液位</span>
                 </template>
               </el-table-column>
-              <el-table-column prop="reason" label="告警原因" v-if="this.searchType!=3" show-overflow-tooltip></el-table-column>
+              <el-table-column
+                prop="reason"
+                label="告警原因"
+                v-if="this.searchType!=3"
+                show-overflow-tooltip
+              ></el-table-column>
               <el-table-column prop="create_time" label="告警时间"></el-table-column>
               <el-table-column prop="address" label="发生位置"></el-table-column>
               <el-table-column prop="is_repair" label="是否修复" v-if="this.searchType!=3">
@@ -183,7 +188,10 @@
                       class="btn-print"
                       size="mini"
                     >未读</el-button>
-                    <el-button class="btn-edit" @click="videoEvent(scope.row.id)">查看视频</el-button>
+                    <el-button
+                      class="btn-edit"
+                      @click="videoEvent(scope.row.id,scope.row.is_read)"
+                    >查看视频</el-button>
                     <el-button
                       class="btn-del"
                       size="mini"
@@ -432,7 +440,7 @@ export default {
       this.type = this.searchType;
       this.getDataList();
     },
-     searchAllEvent() {
+    searchAllEvent() {
       this.page_cur = 1;
       this.searchStartTime = "";
       this.searchEndTime = "";
@@ -474,7 +482,22 @@ export default {
         }
       });
     },
-    videoEvent() {
+    videoEvent(id, is_read) {
+          let mscount = document.querySelectorAll(".msgcount")[0].innerText;
+      if (is_read == 0) {
+        this.request({
+          url: "/alert/updateRead",
+          method: "post",
+          data: { id: id, type: this.searchType }
+        }).then(res => {
+          let data = res.data;
+          if (data.status == 1) {
+            this.getDataList();
+            document.querySelectorAll(".msgcount")[0].innerText =
+              parseInt(mscount) - 1;
+          }
+        });
+      }
       this.diaLogFormVisible = true;
     },
     deleteEvent(id, is_read) {
@@ -524,7 +547,7 @@ export default {
   padding: 3px 5px;
 }
 .cirshow {
-  background: #FF3856;
+  background: #ff3856;
   color: #fff;
   padding: 3px 5px;
   border-radius: 3px;
