@@ -526,7 +526,6 @@ export default {
       let sid = this.chlidStationId;
       let start_time = this.searchStartTime;
       let end_time = this.searchEndTime;
-      let user_id = this.searchAssignerId;
 
       window.location.href =
         this.hostURL +
@@ -537,9 +536,7 @@ export default {
         "&start_time=" +
         start_time +
         "&end_time=" +
-        end_time +
-        "&user_id=" +
-        user_id;
+        end_time 
     },
     //station
     getFatherStationList() {
