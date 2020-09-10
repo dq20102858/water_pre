@@ -526,7 +526,6 @@ export default {
       let sid = this.chlidStationId;
       let start_time = this.searchStartTime;
       let end_time = this.searchEndTime;
-
       window.location.href =
         this.hostURL +
         "/record/exportExcel?type=" +
