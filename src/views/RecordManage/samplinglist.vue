@@ -423,7 +423,6 @@ export default {
         }
       });
     },
-
     printEvent(id) {
       this.request({
         url: "/record/getRecordDetail",
