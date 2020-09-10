@@ -523,8 +523,9 @@ export default {
     expectExcelOut() {
       let type = this.searchType;
       let sid = this.chlidStationId;
-      let start_time = this.searchStartTime;
-      let end_time = this.searchEndTime;
+      let start_time = this.$options.filters["formatAllDate"](this.searchStartTime);
+      let end_time =   this.$options.filters["formatAllDate"](this.searchEndTime);
+      console.log(start_time);
       window.location.href =
         this.hostURL +
         "/record/exportExcel?type=" +
@@ -536,6 +537,7 @@ export default {
         "&end_time=" +
         end_time 
     },
+
     //station
     getFatherStationList() {
       let name = this.chlidName;

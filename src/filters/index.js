@@ -26,6 +26,19 @@ export function formatGetDate(val) {
     return year + "-" + month + "-" + day;
   }
 }
+export function formatAllDate(val) {
+  if (val != "") {
+    function addDateZero(num) {
+      return (num < 10 ? "0" + num : num);
+    }
+    let d = new Date(val);
+    let formatdatetime = d.getFullYear() + '-' + addDateZero(d.getMonth() + 1) + '-' + addDateZero(d.getDate()) + ' ' + addDateZero(d.getHours()) + ':' + addDateZero(d.getMinutes()) + ':' + addDateZero(d.getSeconds());
+    return formatdatetime;
+  }
+  else{
+    return "";
+  }
+}
 //格式化时间戳
 export function formatDateTamp(time, type) {
   var timestamp = time
@@ -54,7 +67,7 @@ export function formatDateTamps(timestamp) {
   var m =
     (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':'
   var s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
-  return Y + M + D 
+  return Y + M + D
 }
 
 export function dateDifference(sDate1, sDate2) {
@@ -71,3 +84,4 @@ export function dateDifference(sDate1, sDate2) {
   }
   return iDays
 };
+
