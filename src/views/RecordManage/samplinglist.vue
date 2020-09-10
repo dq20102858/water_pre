@@ -521,6 +521,7 @@ export default {
       }
       return extension || isLtM;
     },
+    
     expectExcelOut() {
       let type = this.searchType;
       let sid = this.chlidStationId;
