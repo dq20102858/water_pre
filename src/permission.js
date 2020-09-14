@@ -26,8 +26,6 @@ router.beforeEach((to, from, next) => {
       NProgress.done() // if current page is dashboard will not trigger	afterEach hook, so manually handle it
     } else {
       if (store.getters.roles.length === 0) {
-
-     
         // 判断当前用户是否已拉取完user_info信息
         store
           .dispatch('GetUserInfo')
@@ -35,7 +33,13 @@ router.beforeEach((to, from, next) => {
             // 拉取user_info
             const access = res.data.access // note: roles must be a array! such as: ['editor','develop']
             const roles = res.data.roles // note: roles must be a array! such as: ['editor','develop']
-            next({ path: '/sitemanage' })
+            var activeMenus = sessionStorage.getItem("activeMenu");
+            if (activeMenus != "") {
+              next({ path: activeMenus })
+            }
+            else {
+              next({ path: '/sitemanage' })
+            }
             store.dispatch('GenerateRoutes', { access, roles }).then(() => {
               // 根据roles权限生成可访问的路由表
               router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表

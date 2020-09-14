@@ -30,27 +30,28 @@ function hasPermission(roles, route) {
 //   return accessedRouters
 // }
 function mapAsyncRouter(map, routes) {
+  debugger
   const res = []
-  routes.forEach(route => {
-    const tmp = {
-      path: route.moduleUrl,
-      component: map[route.moduleActionName],
-      hidden: route.moduleHide === 1,
-      meta: { title: route.moduleTitle, icon: route.moduleIcon }
-    }
-    if (route.children && route.children.length > 0) {
-      tmp.children = route.children
-      tmp.children = mapAsyncRouter(map, tmp.children)
-    }
-    if (route.pid !== 0) {
-      tmp.name = route.moduleName
-      tmp.meta.noCache = route.noCache===0?false:true;
-    }
-    if (route.moduleUrl === '') {
-      tmp.redirect = 'SiteManage'
-    }
-    res.push(tmp)
-  })
+  // routes.forEach(route => {
+  //   const tmp = {
+  //     path: route.moduleUrl,
+  //     component: map[route.moduleActionName],
+  //     hidden: route.moduleHide === 1,
+  //     meta: { title: route.moduleTitle, icon: route.moduleIcon }
+  //   }
+  //   if (route.children && route.children.length > 0) {
+  //     tmp.children = route.children
+  //     tmp.children = mapAsyncRouter(map, tmp.children)
+  //   }
+  //   if (route.pid !== 0) {
+  //     tmp.name = route.moduleName
+  //     tmp.meta.noCache = route.noCache===0?false:true;
+  //   }
+  //   if (route.moduleUrl === '') {
+  //     tmp.redirect = 'SiteManage'
+  //   }
+  //   res.push(tmp)
+  // })
   return res
 }
 
