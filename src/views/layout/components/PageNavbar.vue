@@ -107,6 +107,7 @@ export default {
       console.log(path);
       this.$router.push(path);
       sessionStorage.setItem("activeMenu", this.activeMenu);
+     //  sessionStorage.setItem("activeURL", this.activeMenu);
     },
     logout() {
       this.$confirm("您确定要退出当前系统？", "提示", {
