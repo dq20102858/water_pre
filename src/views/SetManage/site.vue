@@ -161,10 +161,10 @@
             </div>
           </el-dialog>
           <el-dialog
-            width="300px"
+            width="400px"
             :close-on-click-modal="false"
             class="dialog-qrcode"
-            title="二维码"
+            :title="diaLogQrCodeName"
             :visible.sync="diaLogQrCodeVisible"
           >
             <div id="qrcode" class="qrcode" ref="qrCodeUrl"></div>
@@ -194,6 +194,7 @@ export default {
       diaLogTitle: "添加站点",
       diaLogEdit: false,
       diaLogQrCodeVisible: false,
+      diaLogQrCodeName:'',
       formData: {},
       formRules: {
         name: [
@@ -422,8 +423,8 @@ export default {
     bindQRCode(text) {
       new QRCode(this.$refs.qrCodeUrl, {
         text: text,
-        width: 200,
-        height: 200,
+        width: 300,
+        height: 300,
         colorDark: "#000000",
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.L //容错率，L/M/H
@@ -431,7 +432,7 @@ export default {
     },
     qrCodeEvent(id, name) {
       this.diaLogQrCodeVisible = true;
-
+      this.diaLogQrCodeName=name;
       var jdata = {
         id: id,
         name: name
@@ -479,8 +480,9 @@ export default {
   height: 360px;
 }
 .dialog-qrcode .qrcode {
-  width: 200px;
+  width: 300px;
   margin: 0 auto;
   padding: 20px 0 35px 5px
+
 }
 </style>
