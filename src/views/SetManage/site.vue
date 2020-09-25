@@ -460,7 +460,7 @@ export default {
       this.diaLogQrCodeVisible = true;
       this.diaLogQrCodeName = name;
       var jdata = {
-        id: nxstationid,
+        nxstationid: id,
         name: name
       };
       let that = this;
