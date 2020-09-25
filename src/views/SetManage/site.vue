@@ -39,26 +39,46 @@
           <div class="app-table">
             <el-table :data="dataList">
               <el-table-column label="序号" width="80px">
-                <template slot-scope="scope">{{scope.$index+(page_cur - 1) * page_size + 1}}</template>
+                <template slot-scope="scope">{{
+                  scope.$index + (page_cur - 1) * page_size + 1
+                }}</template>
               </el-table-column>
               <el-table-column prop="name" label="站点名"></el-table-column>
-              <el-table-column prop="address" label="所在位置" show-overflow-tooltip></el-table-column>
+              <el-table-column
+                prop="address"
+                label="所在位置"
+                show-overflow-tooltip
+              ></el-table-column>
               <el-table-column prop="number" label="日均排污量（吨）">
                 <template slot-scope="scope">
                   <span v-html="scope.row.number">吨</span>
                 </template>
               </el-table-column>
-              <el-table-column prop="create_time" label="入网时间"></el-table-column>
+              <el-table-column
+                prop="create_time"
+                label="入网时间"
+              ></el-table-column>
               <el-table-column label="操作" width="200">
                 <template slot-scope="scope">
                   <div class="app-operation">
                     <el-button
                       class="btn-gray"
                       size="mini"
-                      @click="qrCodeEvent(scope.row.id,scope.row.name)"
-                    >二维码</el-button>
-                    <el-button class="btn-edit" size="mini" @click="editEvent(scope.row.id)">编辑</el-button>
-                    <el-button class="btn-del" size="mini" @click="deleteEvent(scope.row.id)">删除</el-button>
+                      @click="qrCodeEvent(scope.row.id, scope.row.name)"
+                      >二维码</el-button
+                    >
+                    <el-button
+                      class="btn-edit"
+                      size="mini"
+                      @click="editEvent(scope.row.id)"
+                      >编辑</el-button
+                    >
+                    <el-button
+                      class="btn-del"
+                      size="mini"
+                      @click="deleteEvent(scope.row.id)"
+                      >删除</el-button
+                    >
                   </div>
                 </template>
               </el-table-column>
@@ -113,12 +133,18 @@
                 </el-select>
               </el-form-item>
               <el-form-item label="日均排污量：" prop="number">
-                <el-input placeholder="请输入日均排污量" v-model="formData.number">
+                <el-input
+                  placeholder="请输入日均排污量"
+                  v-model="formData.number"
+                >
                   <template slot="append">吨</template>
                 </el-input>
               </el-form-item>
               <el-form-item label="站点地址：" prop="address">
-                <el-input v-model="formData.address" placeholder="请输入地址  支持手动在地图标注位置"></el-input>
+                <el-input
+                  v-model="formData.address"
+                  placeholder="请输入地址  支持手动在地图标注位置"
+                ></el-input>
               </el-form-item>
               <el-form-item>
                 <div class="baiduMap">
@@ -194,7 +220,7 @@ export default {
       diaLogTitle: "添加站点",
       diaLogEdit: false,
       diaLogQrCodeVisible: false,
-      diaLogQrCodeName:'',
+      diaLogQrCodeName: "",
       formData: {},
       formRules: {
         name: [
@@ -432,9 +458,9 @@ export default {
     },
     qrCodeEvent(id, name) {
       this.diaLogQrCodeVisible = true;
-      this.diaLogQrCodeName=name;
+      this.diaLogQrCodeName = name;
       var jdata = {
-        id: id,
+        id: nxstationid,
         name: name
       };
       let that = this;
@@ -443,6 +469,9 @@ export default {
         that.bindQRCode(JSON.stringify(jdata));
       }, 300);
     },
+
+    //  .replace('"id"', "id")
+    //         .replace('"name"', "name")
     getClickInfo(e) {
       this.centerStr.lng = e.point.lng;
       this.centerStr.lat = e.point.lat;
@@ -482,7 +511,6 @@ export default {
 .dialog-qrcode .qrcode {
   width: 300px;
   margin: 0 auto;
-  padding: 20px 0 35px 5px
-
+  padding: 20px 0 35px 5px;
 }
 </style>
