@@ -469,7 +469,6 @@ export default {
         that.bindQRCode(JSON.stringify(jdata));
       }, 300);
     },
-
     //  .replace('"id"', "id")
     //         .replace('"name"', "name")
     getClickInfo(e) {
