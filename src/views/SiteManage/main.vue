@@ -28,7 +28,7 @@
               :class="fatherStationId === item.id ? 'active' : ''"
               @click="fatherStationEvent(item.id)"
             >
-              <span :title="item.name">{{item.name}}</span>
+              <span :title="item.name">{{ item.name }}</span>
             </el-menu-item>
           </el-menu>
         </div>
@@ -40,7 +40,9 @@
               :class="chlidStationId === item.id ? 'active' : ''"
               @click="chlidStationEvent(item)"
             >
-              <span :id="'span'+item.id" :title="item.name">{{item.name}}</span>
+              <span :id="'span' + item.id" :title="item.name">{{
+                item.name
+              }}</span>
             </el-menu-item>
           </el-menu>
         </div>
@@ -52,7 +54,7 @@
               <div class="centerbox">
                 <div class="nenghao">
                   <span @click="statisticsEnergyDetail">查看能耗分析</span>
-                  当前控制室温度{{stationViewDetail.temp}}
+                  当前控制室温度{{ stationViewDetail.temp }}
                 </div>
                 <div class="jcname" @click="statisticsWaterDetail">进水口</div>
                 <div class="ccname" @click="statisticsWaterDetail">出水口</div>
@@ -101,8 +103,8 @@
                 <div class="adapter3 ad14"></div>
                 <div class="adapter4 ad15"></div>
                 <div class="j2text" @click="statisticsWaterQualityDetail">
-                  <div>PH：{{stationViewDetail.ph}}</div>
-                  <div>电导率：{{stationViewDetail.ec}}</div>
+                  <div>PH：{{ stationViewDetail.ph }}</div>
+                  <div>电导率：{{ stationViewDetail.ec }}</div>
                   <div>液位：无</div>
                 </div>
                 <div class="shbeng">
@@ -119,7 +121,7 @@
                     <span class="start1">停止运行</span>
                   </p>
                 </div>
-                <div class="huiliu" style="top: -115px;left:830px;">
+                <div class="huiliu" style="top: -115px; left: 830px">
                   <h3>淤泥回流泵</h3>
                   <p class="zhtai">
                     <em>设备状态：</em>
@@ -133,7 +135,7 @@
                     <span class="start0">运行中</span>
                   </p>
                 </div>
-                <div class="fengji" style="top: -170px; left:1115px;">
+                <div class="fengji" style="top: -170px; left: 1115px">
                   <h3>2#风机</h3>
                   <p class="zhtai">
                     <em>设备状态：</em>
@@ -209,7 +211,7 @@
                 <div class="itembox0">
                   <div class="wbox0">
                     <div class="bbans"></div>
-                    <div class="bbans" style="top:150px"></div>
+                    <div class="bbans" style="top: 150px"></div>
                   </div>
                 </div>
               </div>
@@ -230,7 +232,7 @@ export default {
       fatherStationId: this.$route.query.pid,
       chlidStationId: this.$route.query.sid,
       chlidStationName: "",
-      stationViewDetail: []
+      stationViewDetail: [],
     };
   },
   mounted() {
@@ -264,7 +266,7 @@ export default {
     this.flowAnimations("line28", 150, 12, "w");
     this.flowAnimations("line29", 250, 12, "w");
     let that = this;
-    this.timer = setInterval(function() {
+    this.timer = setInterval(function () {
       that.getStationViewList();
     }, 5000);
   },
@@ -290,19 +292,19 @@ export default {
         line_w: 4,
         fx: fx,
         width: 10, //线长
-        jiange: 10 //间隔
+        jiange: 10, //间隔
       };
       //debugger;
       var res = new Createline(data);
       res.begin(canvas, data);
     },
     getStationViewList() {
-      let sid =this.$route.query.sid
+      let sid = this.$route.query.sid;
       this.request({
         url: "/station/getStationViewDetail",
         method: "get",
-        params: { sid }
-      }).then(response => {
+        params: { sid },
+      }).then((response) => {
         let data = response.data;
         if (data.status == 1) {
           if (data.data.length > 0) {
@@ -316,19 +318,19 @@ export default {
     statisticsEnergyDetail() {
       this.$router.push({
         path: "/sitemanage/statisticsenergy",
-        query: { id: this.$route.query.id }
+        query: { id: this.$route.query.id },
       });
     },
     statisticsWaterDetail() {
       this.$router.push({
         path: "/sitemanage/statisticswater",
-        query: { id: this.$route.query.id }
+        query: { id: this.$route.query.id },
       });
     },
     statisticsWaterQualityDetail() {
       this.$router.push({
         path: "/sitemanage/statisticswaterquality",
-        query: { id: this.$route.query.id }
+        query: { id: this.$route.query.id },
       });
     },
     //station
@@ -337,13 +339,13 @@ export default {
       this.request({
         url: "/station/getStationLists",
         method: "get",
-        params: { name }
-      }).then(response => {
+        params: { name },
+      }).then((response) => {
         let data = response.data;
         if (data.status == 1) {
           this.fatherStationList = data.data;
           let pids = this.$route.query.pid;
-          this.fatherStationList.map(ele => {
+          this.fatherStationList.map((ele) => {
             if (ele.id == pids) {
               this.childStationList = ele.child;
               this.fatherStationId = this.$route.query.pid;
@@ -358,8 +360,8 @@ export default {
       this.request({
         url: "/station/getChildStationLists",
         method: "get",
-        params: { name }
-      }).then(response => {
+        params: { name },
+      }).then((response) => {
         let data = response.data;
         if (data.status == 1) {
           let results = data.data;
@@ -380,25 +382,26 @@ export default {
         this.getChildStationList();
       }
       this.fatherStationId = val;
-      this.fatherStationList.map(ele => {
+      this.fatherStationList.map((ele) => {
         if (ele.id == val) {
           this.childStationList = ele.child;
         }
       });
     },
     chlidStationEvent(item) {
-      this.chlidStationId=item.id;
+      this.chlidStationId = item.id;
+      this.getStationViewList();
       this.$router.push({
         path: "/sitemanage/main",
-        query: { pid: item.pid, sid: item.id }
+        query: { pid: item.pid, sid: item.id },
       });
     },
     searchStationCallBack(queryString, cb) {
       this.request({
         url: "/station/getChildStationLists",
         method: "get",
-        params: { name: queryString }
-      }).then(response => {
+        params: { name: queryString },
+      }).then((response) => {
         let data = response.data;
         if (data.status == 1) {
           let results = data.data;
@@ -406,14 +409,14 @@ export default {
           if (results.length == 0) {
             list.push({
               id: 0,
-              value: "未查询到站名"
+              value: "未查询到站名",
             });
           }
           for (let item of results) {
             list.push({
               id: item.id,
               pid: item.pid,
-              value: item.name
+              value: item.name,
             });
           }
 
@@ -422,14 +425,15 @@ export default {
       });
     },
     searchStationEvent(item) {
-       this.chlidStationId=item.id;
+      this.chlidStationId = item.id;
+      this.getStationViewList();
       this.$router.push({
         path: "/sitemanage/main",
-        query: { pid: item.pid, sid: item.id }
+        query: { pid: item.pid, sid: item.id },
       });
-    }
+    },
     //end station
-  }
+  },
 };
 </script>
 <style>
