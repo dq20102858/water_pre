@@ -310,7 +310,7 @@ export default {
           if (data.data.length > 0) {
             this.stationViewDetail = data.data[0];
           }
-          console.log(this.stationViewDetail);
+        //  console.log(this.stationViewDetail);
         }
       });
     },
