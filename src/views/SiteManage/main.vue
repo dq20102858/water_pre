@@ -297,7 +297,7 @@ export default {
       res.begin(canvas, data);
     },
     getStationViewList() {
-      let sid = 2; //this.$route.query.sid
+      let sid =this.$route.query.sid
       this.request({
         url: "/station/getStationViewDetail",
         method: "get",
@@ -387,6 +387,7 @@ export default {
       });
     },
     chlidStationEvent(item) {
+      this.chlidStationId=item.id;
       this.$router.push({
         path: "/sitemanage/main",
         query: { pid: item.pid, sid: item.id }
@@ -421,6 +422,7 @@ export default {
       });
     },
     searchStationEvent(item) {
+       this.chlidStationId=item.id;
       this.$router.push({
         path: "/sitemanage/main",
         query: { pid: item.pid, sid: item.id }
