@@ -101,9 +101,9 @@
                 <div class="adapter3 ad14"></div>
                 <div class="adapter4 ad15"></div>
                 <div class="j2text" @click="statisticsWaterQualityDetail">
-                  <div>PH：60</div>
-                  <div>电导率：60</div>
-                  <div>液位：60</div>
+                  <div>PH：{{stationViewDetail.ph}}</div>
+                  <div>电导率：{{stationViewDetail.ec}}</div>
+                  <div>液位：无</div>
                 </div>
                 <div class="shbeng">
                   <h3>排水泵</h3>
