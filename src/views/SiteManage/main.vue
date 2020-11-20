@@ -54,7 +54,7 @@
               <div class="centerbox">
                 <div class="nenghao">
                   <span @click="statisticsEnergyDetail">查看能耗分析</span>
-                  当前控制室温度{{ stationViewDetail.temp }}
+                  当前污水的温度{{ stationViewDetail.temp }}
                 </div>
                 <div class="jcname" @click="statisticsWaterDetail">进水口</div>
                 <div class="ccname" @click="statisticsWaterDetail">出水口</div>
