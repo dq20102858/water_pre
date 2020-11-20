@@ -151,7 +151,8 @@
                 <template slot-scope="scope">
                   <span v-if="scope.row.type==1">PH</span>
                   <span v-else-if="scope.row.type==2">DO</span>
-                  <span v-else>液位</span>
+                  <span v-else-if="scope.row.type==3">液位</span>
+                  <span v-else>电导率</span>
                 </template>
               </el-table-column>
               <el-table-column
