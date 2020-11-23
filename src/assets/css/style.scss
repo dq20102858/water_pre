@@ -35,7 +35,7 @@ em,i{font-style: normal;}
 .el-menu-top  .el-menu-item.is_active {background-color: #23449b!important;color: #fff!important;border-bottom: 1px solid #386cbd;}
 .el-menu-top .el-menu-item.is_active .el-submenu__title:hover {background-color:#23449b!important; color: #fff;}
 .el-menu-top .iconss{ height:  30px;display: block;margin: 0 auto;margin-top:20px;}
-.el-menu-top .el-menu-item  .msgcount {position: absolute;top:12px; font-size: 11px; background: #f96f6d;width: 20px;height: 20px;line-height: 20px;  text-align: center; color: #fff; border-radius: 100%;}
+.el-menu-top .el-menu-item  .msgcount {position: absolute;top:12px; font-size: 11px; background: #f96f6d;width: 20px;height: 20px;line-height: 20px;  text-align: center; color: #fff; border-radius: 100%;overflow: hidden;}
 @media screen and (max-width: 1200px) {
   .el-menu-top .logos .gname  h3{font-size: 18px;font-weight: 700;}
   .el-menu-top .logos{padding-right: 30px;}

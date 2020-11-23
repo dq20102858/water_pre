@@ -37,13 +37,13 @@
               <el-form-item label="PH：" required>
                 <el-col :span="11">
                   <el-form-item prop="ph">
-                    <el-input v-model="formData.ph" autocomplete="off"></el-input>
+                    <el-input v-model="formData.ph" autocomplete="off" maxlength="7"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col class="line" :span="2">-</el-col>
                 <el-col :span="11">
                   <el-form-item prop="max_ph">
-                    <el-input v-model="formData.max_ph" autocomplete="off"></el-input>
+                    <el-input v-model="formData.max_ph" autocomplete="off" maxlength="7"></el-input>
                   </el-form-item>
                 </el-col>
               </el-form-item>
@@ -51,13 +51,13 @@
               <el-form-item label="DO：" required>
                 <el-col :span="11">
                   <el-form-item prop="do">
-                    <el-input v-model="formData.do" autocomplete="off"></el-input>
+                    <el-input v-model="formData.do" autocomplete="off" maxlength="7"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col class="line" :span="2">-</el-col>
                 <el-col :span="11">
                   <el-form-item prop="max_do">
-                    <el-input v-model="formData.max_do" autocomplete="off"></el-input>
+                    <el-input v-model="formData.max_do" autocomplete="off" maxlength="7"></el-input>
                   </el-form-item>
                 </el-col>
               </el-form-item>
@@ -65,19 +65,19 @@
               <el-form-item label="电导率：" required>
                 <el-col :span="11">
                   <el-form-item prop="conductivity">
-                    <el-input v-model="formData.conductivity" autocomplete="off"></el-input>
+                    <el-input v-model="formData.conductivity" autocomplete="off" maxlength="7"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col class="line" :span="2">-</el-col>
                 <el-col :span="11">
                   <el-form-item prop="max_conductivity">
-                    <el-input v-model="formData.max_conductivity" autocomplete="off"></el-input>
+                    <el-input v-model="formData.max_conductivity" autocomplete="off" maxlength="7"></el-input>
                   </el-form-item>
                 </el-col>
               </el-form-item>
               <el-form-item label="液位：" prop="level">
                 <el-input v-model="formData.level">
-                  <template slot="append">厘米</template>
+                  <template slot="append">米</template>
                 </el-input>
               </el-form-item>
               <el-form-item>
@@ -100,72 +100,72 @@ export default {
         ph: [
           {
             required: true,
-            message: "请输入1-3位正数字并可保留两位小数点",
+            message: "请输入正实数可保留两位小数点",
             trigger: "blur"
           },
           {
-            pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
-            message: "请输入1-3位正数字并可保留两位小数点",
+            pattern: /^[0-9]+(.[0-9]{2})?$/,
+            message: "请输入正实数可保留两位小数点",
             trigger: "blur"
           }
         ],
         max_ph: [
           {
             required: true,
-            message: "请输入1-3位正数字并可保留两位小数点",
+            message: "请输入正实数可保留两位小数点",
             trigger: "blur"
           },
           {
-            pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
-            message: "请输入1-3位正数字并可保留两位小数点",
+            pattern: /^[0-9]+(.[0-9]{2})?$/,
+            message: "请输入正实数可保留两位小数点",
             trigger: "blur"
           }
         ],
         do: [
           {
             required: true,
-            message: "请输入1-3位正数字并可保留两位小数点",
+            message: "请输入正实数可保留两位小数点",
             trigger: "blur"
           },
           {
-            pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
-            message: "请输入1-3位正数字并可保留两位小数点",
+            pattern: /^[0-9]+(.[0-9]{2})?$/,
+            message: "请输入正实数可保留两位小数点",
             trigger: "blur"
           }
         ],
         max_do: [
           {
             required: true,
-            message: "请输入1-3位正数字并可保留两位小数点",
+            message: "请输入正实数可保留两位小数点",
             trigger: "blur"
           },
           {
-            pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
-            message: "请输入1-3位正数字并可保留两位小数点",
+            pattern: /^[0-9]+(.[0-9]{2})?$/,
+            message: "请输入正实数可保留两位小数点",
             trigger: "blur"
           }
         ],
         conductivity: [
           {
             required: true,
-            message: "请输入1-3位正数字并可保留两位小数点",
+            message: "请输入正实数可保留两位小数点",
             trigger: "blur"
           },
           {
-            pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
-            message: "请输入1-3位正数字并可保留两位小数点",
+            pattern: /^[0-9]+(.[0-9]{2})?$/,
+            message: "请输入正实数可保留两位小数点",
             trigger: "blur"
           }
         ],
         max_conductivity: [
           {
             required: true,
-            message: "请输入1-3位正数字并可保留两位小数点",
+            message: "请输入正实数可保留两位小数点",
             trigger: "blur"
           },
           {
-            pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
-            message: "请输入1-3位正数字并可保留两位小数点",
+            pattern: /^[0-9]+(.[0-9]{2})?$/,
+            message: "请输入正实数可保留两位小数点",
             trigger: "blur"
           }
         ],
@@ -176,8 +176,8 @@ export default {
             trigger: "blur"
           },
           {
-            pattern: /^(|[1-9]\d{0,2})(\.\d{1,2})?$/,
-            message: "请输入1-3位正数字并可保留两位小数点",
+            pattern: /^[0-9]+(.[0-9]{2})?$/,
+            message: "请输入正实数可保留两位小数点",
             trigger: "blur"
           }
         ]

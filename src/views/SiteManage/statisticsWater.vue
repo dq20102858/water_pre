@@ -335,14 +335,14 @@ export default {
 
           //
           let myChart = this.$echarts.init(document.getElementById("twoChart"));
-          if (data.data.length == 0) {
-            myChart.showLoading({
-              text: "暂无数据",
-              color: "#fff",
-              textColor: "#8a8e91",
-              maskColor: "rgba(255, 255, 255, 0.8)"
-            });
-          }
+          // if (data.data.length == 0) {
+          //   myChart.showLoading({
+          //     text: "暂无数据",
+          //     color: "#fff",
+          //     textColor: "#8a8e91",
+          //     maskColor: "rgba(255, 255, 255, 0.8)"
+          //   });
+          // }
           var option = {
             backgroundColor: "#fff",
 

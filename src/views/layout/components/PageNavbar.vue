@@ -6,7 +6,7 @@
         <div class="gname">
           <h3>南通智能污水处理站监控系统</h3>
           <h4>
-            欢迎您，{{name}}
+            欢迎您，{{ name }}
             <span title="退出系统" @click="logout">
               <i class="el-icon-switch-button"></i>退出系统
             </span>
@@ -15,16 +15,23 @@
       </div>
       <ul class="el-menu--horizontal el-menu">
         <li
-          v-for="(item,index)  in menuList"
-          @click="routerLink(index,item.path)"
+          v-for="(item, index) in menuList"
+          @click="routerLink(index, item.path)"
           :key="item.id"
-          :class="activeMenu === item.path ? 'el-menu-item is_active' : 'el-menu-item'"
+          :class="
+            activeMenu === item.path ? 'el-menu-item is_active' : 'el-menu-item'
+          "
           :id="item.path"
         >
-
-          <i id="msgCount"  ref="msgCount" :class="index==4?'msgcount':''" v-if="msgCount>0 && index==4">{{msgCount}}</i>
+          <i
+            id="msgCount"
+            ref="msgCount"
+            :class="index == 4 ? 'msgcount' : ''"
+            v-if="msgCount > 0 && index == 4"
+            >{{ msgCount }}</i
+          >
           <img class="iconss" :src="item.img" />
-          {{item.name}}
+          {{ item.name }}
         </li>
         <!-- <li class="el-menu-item" @click="logout">
           <img class="iconss" :src="require('@/assets/image/m_logout.png')" />退出系统
@@ -40,48 +47,48 @@ export default {
   data() {
     return {
       activeMenu: "",
-           msgCount: 0,
+      msgCount: 0,
       menuList: [
         {
           name: "站点概览",
           path: "/sitemanage",
-          img: require("@/assets/image/m_home.png")
+          img: require("@/assets/image/m_home.png"),
         },
         {
           name: "设备状态",
           path: "/devicemanage",
-          img: require("@/assets/image/m_shebeizhuangtai.png")
+          img: require("@/assets/image/m_shebeizhuangtai.png"),
         },
         {
           name: "运维记录",
           path: "/recordmanage",
-          img: require("@/assets/image/m_jilu.png")
+          img: require("@/assets/image/m_jilu.png"),
         },
         {
           name: "运维派单",
           path: "/dispatchmanage",
-          img: require("@/assets/image/m_paidan.png")
+          img: require("@/assets/image/m_paidan.png"),
         },
         {
           name: "告警列表",
           path: "/warningmanage",
-          img: require("@/assets/image/m_alert.png")
+          img: require("@/assets/image/m_alert.png"),
         },
         {
           name: "考勤打卡",
           path: "/attendancemanage",
-          img: require("@/assets/image/m_daka.png")
+          img: require("@/assets/image/m_daka.png"),
         },
         {
           name: "系统设置",
           path: "/setmanage",
-          img: require("@/assets/image/m_set.png")
-        }
-      ]
+          img: require("@/assets/image/m_set.png"),
+        },
+      ],
     };
   },
   computed: {
-    ...mapGetters(["name", "avatar", "roles", "sys_role", "system"])
+    ...mapGetters(["name", "avatar", "roles", "sys_role", "system"]),
   },
   mounted() {
     this.activeMenu = sessionStorage.getItem("activeMenu");
@@ -94,11 +101,11 @@ export default {
     getAlertNum() {
       this.request({
         url: "/alert/getAlertNum",
-        method: "get"
-      }).then(res => {
+        method: "get",
+      }).then((res) => {
         let data = res.data;
         if (data.status == 1) {
-          this.msgCount=data.data.num;
+            this.msgCount = data.data.num;
         }
       });
     },
@@ -107,14 +114,14 @@ export default {
       console.log(path);
       this.$router.push(path);
       sessionStorage.setItem("activeMenu", this.activeMenu);
-     //  sessionStorage.setItem("activeURL", this.activeMenu);
+      //  sessionStorage.setItem("activeURL", this.activeMenu);
     },
     logout() {
       this.$confirm("您确定要退出当前系统？", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning",
-        customClass: "el-message-box-new"
+        customClass: "el-message-box-new",
       })
         .then(() => {
           this.$store.dispatch("LogOut").then(() => {
@@ -122,10 +129,9 @@ export default {
           });
         })
         .catch(() => {});
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
-
 </style>

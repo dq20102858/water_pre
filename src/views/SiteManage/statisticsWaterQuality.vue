@@ -22,7 +22,7 @@
           <div class="chart-title">
             <div class="titleleft">
               <b>液位</b>
-              <em>单位：吨</em>
+              <em>单位：米</em>
             </div>
             <div class="titleright">
               <el-date-picker
@@ -67,8 +67,8 @@
         <div class="grid-content-chart">
           <div class="chart-title">
             <div class="titleleft">
-              <b>DO值</b>
-              <em>单位：吨</em>
+              <b>电导率</b>
+              <em>单位：米</em>
             </div>
             <div class="titleright">
               <el-date-picker
@@ -133,14 +133,14 @@ export default {
           //dataxAxis = [12, 13, 14, 15];
           //dataSeries = [120, 130, 140, 150];
           let myChart = this.$echarts.init(document.getElementById("oneChart"));
-          if (data.data.length == 0) {
-            myChart.showLoading({
-              text: "暂无数据",
-              color: "#fff",
-              textColor: "#8a8e91",
-              maskColor: "rgba(255, 255, 255, 0.8)"
-            });
-          }
+          // if (data.data.length == 0) {
+          //   myChart.showLoading({
+          //     text: "暂无数据",
+          //     color: "#fff",
+          //     textColor: "#8a8e91",
+          //     maskColor: "rgba(255, 255, 255, 0.8)"
+          //   });
+          // }
           var option = {
             backgroundColor: "#fff",
             tooltip: {
@@ -280,14 +280,14 @@ export default {
 
           //
           let myChart = this.$echarts.init(document.getElementById("twoChart"));
-          if (data.data.length == 0) {
-            myChart.showLoading({
-              text: "暂无数据",
-              color: "#fff",
-              textColor: "#8a8e91",
-              maskColor: "rgba(255, 255, 255, 0.8)"
-            });
-          }
+          // if (data.data.length == 0) {
+          //   myChart.showLoading({
+          //     text: "暂无数据",
+          //     color: "#fff",
+          //     textColor: "#8a8e91",
+          //     maskColor: "rgba(255, 255, 255, 0.8)"
+          //   });
+          // }
           var option = {
             backgroundColor: "#fff",
             tooltip: {
@@ -415,7 +415,7 @@ export default {
     },
     getThreeChart(type) {
       this.request({
-        url: "/log/getDoDatas",
+        url: "/log/getEcDatas",
         method: "get",
         params: {  sid: this.$route.query.id,type: type, start_time: this.threeStartTime }
       }).then(response => {
@@ -430,14 +430,14 @@ export default {
           let myChart = this.$echarts.init(
             document.getElementById("threeChart")
           );
-          if (data.data.length == 0) {
-            myChart.showLoading({
-              text: "暂无数据",
-              color: "#fff",
-              textColor: "#8a8e91",
-              maskColor: "rgba(255, 255, 255, 0.8)"
-            });
-          }
+          // if (data.data.length == 0) {
+          //   myChart.showLoading({
+          //     text: "暂无数据",
+          //     color: "#fff",
+          //     textColor: "#8a8e91",
+          //     maskColor: "rgba(255, 255, 255, 0.8)"
+          //   });
+          // }
           var option = {
             backgroundColor: "#fff",
             tooltip: {
@@ -460,7 +460,7 @@ export default {
             },
 
             legend: {
-              data: ["DO值"],
+              data: ["EC值"],
               textStyle: {
                 color: ["#4093ed", "#ef964b"],
                 fontSize: 15

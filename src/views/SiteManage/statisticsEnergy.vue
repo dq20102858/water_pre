@@ -180,14 +180,14 @@ export default {
 
           //
           let myChart = this.$echarts.init(document.getElementById("oneChart"));
-          if (data.data.x.length == 0) {
-            myChart.showLoading({
-              text: "暂无数据",
-              color: "#fff",
-              textColor: "#8a8e91",
-              maskColor: "rgba(255, 255, 255, 0.8)"
-            });
-          }
+          // if (data.data.x.length == 0) {
+          //   myChart.showLoading({
+          //     text: "暂无数据",
+          //     color: "#fff",
+          //     textColor: "#8a8e91",
+          //     maskColor: "rgba(255, 255, 255, 0.8)"
+          //   });
+          // }
           var option = {
             backgroundColor: "#fff",
             tooltip: {
@@ -316,14 +316,14 @@ export default {
 
           //
           let myChart = this.$echarts.init(document.getElementById("twoChart"));
-          if (data.data.x.length == 0) {
-            myChart.showLoading({
-              text: "暂无数据",
-              color: "#fff",
-              textColor: "#8a8e91",
-              maskColor: "rgba(255, 255, 255, 0.8)"
-            });
-          }
+          // if (data.data.x.length == 0) {
+          //   myChart.showLoading({
+          //     text: "暂无数据",
+          //     color: "#fff",
+          //     textColor: "#8a8e91",
+          //     maskColor: "rgba(255, 255, 255, 0.8)"
+          //   });
+          // }
           var option = {
             backgroundColor: "#fff",
             tooltip: {
@@ -454,14 +454,14 @@ export default {
           let myChart = this.$echarts.init(
             document.getElementById("threeChart")
           );
-          if (data.data.x.length == 0) {
-            myChart.showLoading({
-              text: "暂无数据",
-              color: "#fff",
-              textColor: "#8a8e91",
-              maskColor: "rgba(255, 255, 255, 0.8)"
-            });
-          }
+          // if (data.data.x.length == 0) {
+          //   myChart.showLoading({
+          //     text: "暂无数据",
+          //     color: "#fff",
+          //     textColor: "#8a8e91",
+          //     maskColor: "rgba(255, 255, 255, 0.8)"
+          //   });
+          // }
           var option = {
             backgroundColor: "#fff",
             tooltip: {
@@ -593,14 +593,14 @@ export default {
           let myChart = this.$echarts.init(
             document.getElementById("fourChart")
           );
-          if (data.data.x.length == 0) {
-            myChart.showLoading({
-              text: "暂无数据",
-              color: "#fff",
-              textColor: "#8a8e91",
-              maskColor: "rgba(255, 255, 255, 0.8)"
-            });
-          }
+          // if (data.data.x.length == 0) {
+          //   myChart.showLoading({
+          //     text: "暂无数据",
+          //     color: "#fff",
+          //     textColor: "#8a8e91",
+          //     maskColor: "rgba(255, 255, 255, 0.8)"
+          //   });
+          // }
           var option = {
             backgroundColor: "#fff",
             tooltip: {
